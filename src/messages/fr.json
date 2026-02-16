@@ -1,0 +1,33 @@
+{
+  "validation": {
+    "email": {
+      "required": "L'email est requis",
+      "invalid": "Format d'email invalide"
+    },
+    "password": {
+      "required": "Le mot de passe est requis",
+      "min": "Minimum 12 caractères",
+      "pattern": "Doit contenir majuscule, minuscule, chiffre et caractère spécial (@#$%^&+=!)"
+    },
+    "confirmPassword": {
+      "required": "La confirmation est requise",
+      "match": "Les mots de passe ne correspondent pas"
+    },
+    "firstName": {
+      "required": "Le prénom est requis"
+    },
+    "lastName": {
+      "required": "Le nom est requis"
+    },
+    "username": {
+      "required": "Le nom d'utilisateur est requis",
+      "min": "Minimum 3 caractères",
+      "max": "Maximum 50 caractères"
+    },
+    "code": {
+      "required": "Le code est requis",
+      "length": "Le code doit contenir 6 chiffres",
+      "digits": "Le code ne doit contenir que des chiffres"
+    }
+  }
+}
