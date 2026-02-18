@@ -1,4 +1,40 @@
 {
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign in",
+      "forgot_password": "Forgot password?",
+      "no_account": "Don't have an account?",
+      "create_account": "Create an account"
+    },
+    "register": {
+      "title": "Create an account",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "username": "Username",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "password_hint": "Min. 12 characters, 1 uppercase, 1 lowercase, 1 number, 1 special",
+      "submit": "Create my account",
+      "has_account": "Already have an account?",
+      "login": "Sign in",
+      "success": "Registration successful! You can now sign in."
+    },
+    "back_home": "Back to home"
+  },
+  "error": {
+    "generic": "An error occurred. Please try again.",
+    "auth": {
+      "invalid_credentials": "Invalid email or password.",
+      "account_locked": "Account locked due to too many attempts. Try again in 30 minutes.",
+      "password_expired": "Your password has expired. Please reset it.",
+      "already_exists": "An account already exists with this information."
+    },
+    "validation": "The entered data is invalid."
+  },
   "validation": {
     "email": {
       "required": "Email is required",

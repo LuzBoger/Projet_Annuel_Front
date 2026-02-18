@@ -1,4 +1,41 @@
 {
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "forgot_password": "Mot de passe oublié ?",
+      "no_account": "Pas encore de compte ?",
+      "create_account": "Créer un compte"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "username": "Nom d'utilisateur",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "password_hint": "Min. 12 caractères, 1 majuscule, 1 minuscule, 1 chiffre, 1 spécial",
+      "submit": "Créer mon compte",
+      "has_account": "Déjà un compte ?",
+      "login": "Se connecter",
+      "success": "Inscription réussie ! Vous pouvez maintenant vous connecter."
+    },
+    "back_home": "Retour à l'accueil"
+  },
+  "error": {
+    "generic": "Une erreur est survenue. Veuillez réessayer.",
+    "auth": {
+      "invalid_credentials": "Email ou mot de passe incorrect.",
+      "account_locked": "Compte verrouillé suite à trop de tentatives. Réessayez dans 30 minutes.",
+      "password_expired": "Votre mot de passe a expiré. Veuillez le réinitialiser.",
+      "already_exists": "Un compte existe déjà avec ces informations."
+    },
+    "validation": "Les données saisies sont invalides."
+  },
+  
   "validation": {
     "email": {
       "required": "L'email est requis",

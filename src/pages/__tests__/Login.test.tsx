@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import Login from '../Login'
+import Login from '../login/Login'
 
 describe('Login', () => {
     it('should render login form', () => {
