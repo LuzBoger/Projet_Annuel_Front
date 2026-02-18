@@ -23,14 +23,43 @@
       "login": "Sign in",
       "success": "Registration successful! You can now sign in."
     },
-    "back_home": "Back to home"
+    "back_home": "Back to home",
+    "forgot_password": {
+      "title": "Forgot password",
+      "description": "Enter your email address and we'll send you a link to reset your password.",
+      "email": "Email address",
+      "submit": "Send reset link",
+      "email_sent": "Email sent!",
+      "check_inbox": "Check your inbox to reset your password.",
+      "back_to_login": "Back to login"
+    },
+    "reset_password": {
+      "title": "Reset password",
+      "description": "Enter your new password.",
+      "new_password": "New password",
+      "confirm_password": "Confirm password",
+      "submit": "Reset password",
+      "success": "Your password has been reset successfully.",
+      "go_to_login": "Go to login",
+      "token_expired": "The reset link has expired.",
+      "weak_password": "The password is too weak.",
+      "invalid_link": "The reset link is invalid or has expired.",
+      "request_new_link": "Request a new link"
+    }
   },
   "error": {
     "generic": "An error occurred. Please try again.",
     "auth": {
-      "invalid_credentials": "Invalid email or password.",
+      "invalid_credentials": "Invalid credentials.",
       "account_locked": "Account locked due to too many attempts. Try again in 30 minutes.",
-      "password_expired": "Your password has expired. Please reset it.",
+      "account_locked_until": "Account is locked until: {{until}}.",
+      "account_locked_attempts": "Account locked due to too many failed login attempts.",
+      "account_not_found": "Account not found.",
+      "email_already_registered": "Email already registered.",
+      "username_already_taken": "Username already taken.",
+      "password_expired": "Password expired, please change your password.",
+      "invalid_token": "Invalid or expired refresh token.",
+      "invalid_reset_token": "Invalid or expired reset token.",
       "already_exists": "An account already exists with this information."
     },
     "validation": "The entered data is invalid."

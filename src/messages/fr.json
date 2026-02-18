@@ -23,14 +23,43 @@
       "login": "Se connecter",
       "success": "Inscription réussie ! Vous pouvez maintenant vous connecter."
     },
-    "back_home": "Retour à l'accueil"
+    "back_home": "Retour à l'accueil",
+    "forgot_password": {
+      "title": "Mot de passe oublié",
+      "description": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+      "email": "Adresse email",
+      "submit": "Envoyer le lien",
+      "email_sent": "Email envoyé !",
+      "check_inbox": "Vérifiez votre boîte de réception pour réinitialiser votre mot de passe.",
+      "back_to_login": "Retour à la connexion"
+    },
+    "reset_password": {
+      "title": "Réinitialiser le mot de passe",
+      "description": "Entrez votre nouveau mot de passe.",
+      "new_password": "Nouveau mot de passe",
+      "confirm_password": "Confirmer le mot de passe",
+      "submit": "Réinitialiser le mot de passe",
+      "success": "Votre mot de passe a été réinitialisé avec succès.",
+      "go_to_login": "Aller à la connexion",
+      "token_expired": "Le lien de réinitialisation a expiré.",
+      "weak_password": "Le mot de passe est trop faible.",
+      "invalid_link": "Le lien de réinitialisation est invalide ou a expiré.",
+      "request_new_link": "Demander un nouveau lien"
+    }
   },
   "error": {
     "generic": "Une erreur est survenue. Veuillez réessayer.",
     "auth": {
-      "invalid_credentials": "Email ou mot de passe incorrect.",
+      "invalid_credentials": "Identifiants invalides.",
       "account_locked": "Compte verrouillé suite à trop de tentatives. Réessayez dans 30 minutes.",
-      "password_expired": "Votre mot de passe a expiré. Veuillez le réinitialiser.",
+      "account_locked_until": "Le compte est verrouillé jusqu'à : {{until}}.",
+      "account_locked_attempts": "Compte verrouillé en raison de trop nombreuses tentatives de connexion échouées.",
+      "account_not_found": "Compte non trouvé.",
+      "email_already_registered": "Email déjà enregistré.",
+      "username_already_taken": "Nom d'utilisateur déjà pris.",
+      "password_expired": "Mot de passe expiré, veuillez changer votre mot de passe.",
+      "invalid_token": "Jeton de rafraîchissement invalide ou expiré.",
+      "invalid_reset_token": "Jeton de réinitialisation invalide ou expiré.",
       "already_exists": "Un compte existe déjà avec ces informations."
     },
     "validation": "Les données saisies sont invalides."
