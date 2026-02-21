@@ -24,7 +24,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
     };
 
     return (
-        <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onFormSubmit)} noValidate className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
             <FormField
                 id="firstName"
