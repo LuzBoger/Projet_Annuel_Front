@@ -1,0 +1,122 @@
+{
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "forgot_password": "Mot de passe oublié ?",
+      "no_account": "Pas encore de compte ?",
+      "create_account": "Créer un compte"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "username": "Nom d'utilisateur",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "password_hint": "Min. 12 caractères, 1 majuscule, 1 minuscule, 1 chiffre, 1 spécial",
+      "submit": "Créer mon compte",
+      "has_account": "Déjà un compte ?",
+      "login": "Se connecter",
+      "success": "Inscription réussie ! Vous pouvez maintenant vous connecter."
+    },
+    "back_home": "Retour à l'accueil",
+    "forgot_password": {
+      "title": "Mot de passe oublié",
+      "description": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+      "email": "Adresse email",
+      "submit": "Envoyer le lien",
+      "email_sent": "Email envoyé !",
+      "check_inbox": "Vérifiez votre boîte de réception pour réinitialiser votre mot de passe.",
+      "back_to_login": "Retour à la connexion"
+    },
+    "reset_password": {
+      "title": "Réinitialiser le mot de passe",
+      "description": "Entrez votre nouveau mot de passe.",
+      "new_password": "Nouveau mot de passe",
+      "confirm_password": "Confirmer le mot de passe",
+      "submit": "Réinitialiser le mot de passe",
+      "success": "Votre mot de passe a été réinitialisé avec succès.",
+      "go_to_login": "Aller à la connexion",
+      "token_expired": "Le lien de réinitialisation a expiré.",
+      "weak_password": "Le mot de passe est trop faible.",
+      "invalid_link": "Le lien de réinitialisation est invalide ou a expiré.",
+      "request_new_link": "Demander un nouveau lien"
+    },
+    "verify_2fa": {
+      "title": "Authentification à deux facteurs",
+      "description": "Entrez le code à 6 chiffres de votre application d'authentification.",
+      "submit": "Vérifier"
+    }
+  },
+  "error": {
+    "generic": "Une erreur est survenue. Veuillez réessayer.",
+    "auth": {
+      "invalid_credentials": "Identifiants invalides.",
+      "account_locked": "Compte verrouillé suite à trop de tentatives. Réessayez dans 30 minutes.",
+      "account_locked_until": "Le compte est verrouillé jusqu'à : {{until}}.",
+      "account_locked_attempts": "Compte verrouillé en raison de trop nombreuses tentatives de connexion échouées.",
+      "account_not_found": "Compte non trouvé.",
+      "email_already_registered": "Email déjà enregistré.",
+      "username_already_taken": "Nom d'utilisateur déjà pris.",
+      "password_expired": "Mot de passe expiré, veuillez changer votre mot de passe.",
+      "invalid_token": "Jeton de rafraîchissement invalide ou expiré.",
+      "invalid_reset_token": "Jeton de réinitialisation invalide ou expiré.",
+      "already_exists": "Un compte existe déjà avec ces informations.",
+      "invalid_2fa_code": "Code de vérification invalide."
+    },
+    "validation": "Les données saisies sont invalides."
+  },
+  "settings": {
+    "2fa": {
+      "title": "Authentification à deux facteurs",
+      "not_enabled": "L'authentification à deux facteurs n'est pas activée.",
+      "enable_button": "Activer la 2FA",
+      "enabled_status": "L'authentification à deux facteurs est activée.",
+      "disable_button": "Désactiver la 2FA",
+      "enter_code_disable": "Entrez un code pour désactiver la 2FA",
+      "cancel": "Annuler",
+      "confirm_disable": "Confirmer la désactivation",
+      "enable_success": "L'authentification à deux facteurs a été activée.",
+      "disable_success": "L'authentification à deux facteurs a été désactivée.",
+      "scan_qr": "Scannez ce QR code avec votre application d'authentification",
+      "manual_key": "Ou entrez cette clé manuellement :",
+      "enter_code": "Entrez le code de vérification",
+      "verify_button": "Vérifier"
+    }
+  },
+  "validation": {
+    "email": {
+      "required": "L'email est requis",
+      "invalid": "Format d'email invalide"
+    },
+    "password": {
+      "required": "Le mot de passe est requis",
+      "min": "Minimum 12 caractères",
+      "pattern": "Doit contenir majuscule, minuscule, chiffre et caractère spécial (@#$%^&+=!)"
+    },
+    "confirmPassword": {
+      "required": "La confirmation est requise",
+      "match": "Les mots de passe ne correspondent pas"
+    },
+    "firstName": {
+      "required": "Le prénom est requis"
+    },
+    "lastName": {
+      "required": "Le nom est requis"
+    },
+    "username": {
+      "required": "Le nom d'utilisateur est requis",
+      "min": "Minimum 3 caractères",
+      "max": "Maximum 50 caractères"
+    },
+    "code": {
+      "required": "Le code est requis",
+      "length": "Le code doit contenir 6 chiffres",
+      "digits": "Le code ne doit contenir que des chiffres"
+    }
+  }
+}

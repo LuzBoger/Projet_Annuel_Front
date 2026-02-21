@@ -1,79 +1,59 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
-import Register from '../Register'
+import { screen } from '@testing-library/react'
+import { renderWithProviders } from '../../test/renderWithProviders'
+import i18n from '../../i18n/i18n'
+import Register from '../register/Register'
+
+const t = i18n.t.bind(i18n)
 
 describe('Register', () => {
     it('should render register form', () => {
-        render(
-            <BrowserRouter>
-                <Register />
-            </BrowserRouter>
-        )
+        renderWithProviders(<Register />)
 
-        expect(screen.getByText('Créer un compte')).toBeInTheDocument()
+        expect(screen.getByText(t('auth.register.title'))).toBeInTheDocument()
     })
 
-    it('should display full name input field', () => {
-        render(
-            <BrowserRouter>
-                <Register />
-            </BrowserRouter>
-        )
+    it('should display first name and last name fields', () => {
+        renderWithProviders(<Register />)
 
-        expect(screen.getByLabelText('Nom complet')).toBeInTheDocument()
-        expect(screen.getByPlaceholderText('Jean Dupont')).toBeInTheDocument()
+        expect(screen.getByLabelText(t('auth.register.firstName'))).toBeInTheDocument()
+        expect(screen.getByLabelText(t('auth.register.lastName'))).toBeInTheDocument()
+    })
+
+    it('should display username field', () => {
+        renderWithProviders(<Register />)
+
+        expect(screen.getByLabelText(t('auth.register.username'))).toBeInTheDocument()
     })
 
     it('should display email input field', () => {
-        render(
-            <BrowserRouter>
-                <Register />
-            </BrowserRouter>
-        )
+        renderWithProviders(<Register />)
 
-        expect(screen.getByLabelText('Adresse email')).toBeInTheDocument()
-        expect(screen.getByPlaceholderText('votre@email.com')).toBeInTheDocument()
+        expect(screen.getByLabelText(t('auth.register.email'))).toBeInTheDocument()
     })
 
     it('should display password input fields', () => {
-        render(
-            <BrowserRouter>
-                <Register />
-            </BrowserRouter>
-        )
+        renderWithProviders(<Register />)
 
-        expect(screen.getByLabelText('Mot de passe')).toBeInTheDocument()
-        expect(screen.getByLabelText('Confirmer le mot de passe')).toBeInTheDocument()
+        expect(screen.getByLabelText(t('auth.register.password'))).toBeInTheDocument()
+        expect(screen.getByLabelText(t('auth.register.confirmPassword'))).toBeInTheDocument()
     })
 
     it('should display submit button', () => {
-        render(
-            <BrowserRouter>
-                <Register />
-            </BrowserRouter>
-        )
+        renderWithProviders(<Register />)
 
-        expect(screen.getByRole('button', { name: 'Créer mon compte' })).toBeInTheDocument()
+        expect(screen.getByRole('button', { name: t('auth.register.submit') })).toBeInTheDocument()
     })
 
     it('should display link to login page', () => {
-        render(
-            <BrowserRouter>
-                <Register />
-            </BrowserRouter>
-        )
+        renderWithProviders(<Register />)
 
-        expect(screen.getByText('Se connecter')).toBeInTheDocument()
+        expect(screen.getByText(t('auth.register.login'))).toBeInTheDocument()
     })
 
     it('should display link to home page', () => {
-        render(
-            <BrowserRouter>
-                <Register />
-            </BrowserRouter>
-        )
+        renderWithProviders(<Register />)
 
-        expect(screen.getByText("Retour à l'accueil")).toBeInTheDocument()
+        expect(screen.getByText(t('auth.back_home'))).toBeInTheDocument()
     })
 })

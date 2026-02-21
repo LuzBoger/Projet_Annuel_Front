@@ -1,0 +1,122 @@
+{
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign in",
+      "forgot_password": "Forgot password?",
+      "no_account": "Don't have an account?",
+      "create_account": "Create an account"
+    },
+    "register": {
+      "title": "Create an account",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "username": "Username",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "password_hint": "Min. 12 characters, 1 uppercase, 1 lowercase, 1 number, 1 special",
+      "submit": "Create my account",
+      "has_account": "Already have an account?",
+      "login": "Sign in",
+      "success": "Registration successful! You can now sign in."
+    },
+    "back_home": "Back to home",
+    "forgot_password": {
+      "title": "Forgot password",
+      "description": "Enter your email address and we'll send you a link to reset your password.",
+      "email": "Email address",
+      "submit": "Send reset link",
+      "email_sent": "Email sent!",
+      "check_inbox": "Check your inbox to reset your password.",
+      "back_to_login": "Back to login"
+    },
+    "reset_password": {
+      "title": "Reset password",
+      "description": "Enter your new password.",
+      "new_password": "New password",
+      "confirm_password": "Confirm password",
+      "submit": "Reset password",
+      "success": "Your password has been reset successfully.",
+      "go_to_login": "Go to login",
+      "token_expired": "The reset link has expired.",
+      "weak_password": "The password is too weak.",
+      "invalid_link": "The reset link is invalid or has expired.",
+      "request_new_link": "Request a new link"
+    },
+    "verify_2fa": {
+      "title": "Two-factor authentication",
+      "description": "Enter the 6-digit code from your authenticator app.",
+      "submit": "Verify"
+    }
+  },
+  "error": {
+    "generic": "An error occurred. Please try again.",
+    "auth": {
+      "invalid_credentials": "Invalid credentials.",
+      "account_locked": "Account locked due to too many attempts. Try again in 30 minutes.",
+      "account_locked_until": "Account is locked until: {{until}}.",
+      "account_locked_attempts": "Account locked due to too many failed login attempts.",
+      "account_not_found": "Account not found.",
+      "email_already_registered": "Email already registered.",
+      "username_already_taken": "Username already taken.",
+      "password_expired": "Password expired, please change your password.",
+      "invalid_token": "Invalid or expired refresh token.",
+      "invalid_reset_token": "Invalid or expired reset token.",
+      "already_exists": "An account already exists with this information.",
+      "invalid_2fa_code": "Invalid verification code."
+    },
+    "validation": "The entered data is invalid."
+  },
+  "settings": {
+    "2fa": {
+      "title": "Two-factor authentication",
+      "not_enabled": "Two-factor authentication is not enabled.",
+      "enable_button": "Enable 2FA",
+      "enabled_status": "Two-factor authentication is enabled.",
+      "disable_button": "Disable 2FA",
+      "enter_code_disable": "Enter a code to disable 2FA",
+      "cancel": "Cancel",
+      "confirm_disable": "Confirm disable",
+      "enable_success": "Two-factor authentication has been enabled.",
+      "disable_success": "Two-factor authentication has been disabled.",
+      "scan_qr": "Scan this QR code with your authenticator app",
+      "manual_key": "Or enter this key manually:",
+      "enter_code": "Enter the verification code",
+      "verify_button": "Verify"
+    }
+  },
+  "validation": {
+    "email": {
+      "required": "Email is required",
+      "invalid": "Invalid email format"
+    },
+    "password": {
+      "required": "Password is required",
+      "min": "Minimum 12 characters",
+      "pattern": "Must contain uppercase, lowercase, number and special character (@#$%^&+=!)"
+    },
+    "confirmPassword": {
+      "required": "Confirmation is required",
+      "match": "Passwords do not match"
+    },
+    "firstName": {
+      "required": "First name is required"
+    },
+    "lastName": {
+      "required": "Last name is required"
+    },
+    "username": {
+      "required": "Username is required",
+      "min": "Minimum 3 characters",
+      "max": "Maximum 50 characters"
+    },
+    "code": {
+      "required": "Code is required",
+      "length": "Code must contain 6 digits",
+      "digits": "Code must only contain digits"
+    }
+  }
+}
