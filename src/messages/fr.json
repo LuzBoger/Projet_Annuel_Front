@@ -45,6 +45,11 @@
       "weak_password": "Le mot de passe est trop faible.",
       "invalid_link": "Le lien de réinitialisation est invalide ou a expiré.",
       "request_new_link": "Demander un nouveau lien"
+    },
+    "verify_2fa": {
+      "title": "Authentification à deux facteurs",
+      "description": "Entrez le code à 6 chiffres de votre application d'authentification.",
+      "submit": "Vérifier"
     }
   },
   "error": {
@@ -60,11 +65,29 @@
       "password_expired": "Mot de passe expiré, veuillez changer votre mot de passe.",
       "invalid_token": "Jeton de rafraîchissement invalide ou expiré.",
       "invalid_reset_token": "Jeton de réinitialisation invalide ou expiré.",
-      "already_exists": "Un compte existe déjà avec ces informations."
+      "already_exists": "Un compte existe déjà avec ces informations.",
+      "invalid_2fa_code": "Code de vérification invalide."
     },
     "validation": "Les données saisies sont invalides."
   },
-  
+  "settings": {
+    "2fa": {
+      "title": "Authentification à deux facteurs",
+      "not_enabled": "L'authentification à deux facteurs n'est pas activée.",
+      "enable_button": "Activer la 2FA",
+      "enabled_status": "L'authentification à deux facteurs est activée.",
+      "disable_button": "Désactiver la 2FA",
+      "enter_code_disable": "Entrez un code pour désactiver la 2FA",
+      "cancel": "Annuler",
+      "confirm_disable": "Confirmer la désactivation",
+      "enable_success": "L'authentification à deux facteurs a été activée.",
+      "disable_success": "L'authentification à deux facteurs a été désactivée.",
+      "scan_qr": "Scannez ce QR code avec votre application d'authentification",
+      "manual_key": "Ou entrez cette clé manuellement :",
+      "enter_code": "Entrez le code de vérification",
+      "verify_button": "Vérifier"
+    }
+  },
   "validation": {
     "email": {
       "required": "L'email est requis",

@@ -45,6 +45,11 @@
       "weak_password": "The password is too weak.",
       "invalid_link": "The reset link is invalid or has expired.",
       "request_new_link": "Request a new link"
+    },
+    "verify_2fa": {
+      "title": "Two-factor authentication",
+      "description": "Enter the 6-digit code from your authenticator app.",
+      "submit": "Verify"
     }
   },
   "error": {
@@ -60,9 +65,28 @@
       "password_expired": "Password expired, please change your password.",
       "invalid_token": "Invalid or expired refresh token.",
       "invalid_reset_token": "Invalid or expired reset token.",
-      "already_exists": "An account already exists with this information."
+      "already_exists": "An account already exists with this information.",
+      "invalid_2fa_code": "Invalid verification code."
     },
     "validation": "The entered data is invalid."
+  },
+  "settings": {
+    "2fa": {
+      "title": "Two-factor authentication",
+      "not_enabled": "Two-factor authentication is not enabled.",
+      "enable_button": "Enable 2FA",
+      "enabled_status": "Two-factor authentication is enabled.",
+      "disable_button": "Disable 2FA",
+      "enter_code_disable": "Enter a code to disable 2FA",
+      "cancel": "Cancel",
+      "confirm_disable": "Confirm disable",
+      "enable_success": "Two-factor authentication has been enabled.",
+      "disable_success": "Two-factor authentication has been disabled.",
+      "scan_qr": "Scan this QR code with your authenticator app",
+      "manual_key": "Or enter this key manually:",
+      "enter_code": "Enter the verification code",
+      "verify_button": "Verify"
+    }
   },
   "validation": {
     "email": {
