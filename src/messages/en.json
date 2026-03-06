@@ -1,4 +1,15 @@
 {
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "update": "Update",
+    "create": "Create",
+    "close": "Close",
+    "active": "Active",
+    "view": "View",
+    "edit": "Edit",
+    "back": "Back"
+  },
   "auth": {
     "login": {
       "title": "Login",
@@ -52,8 +63,139 @@
       "submit": "Verify"
     }
   },
+  "subscription": {
+    "title": "Subscription",
+    "current_plan": "Current plan",
+    "select_plan": "Select a plan",
+    "view_plans": "View plans",
+    "upgrade_message": "Upgrade your plan to access more features.",
+    "free": "Free",
+    "included": "Included",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "interval": {
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    },
+    "paymentHistory": {
+      "method": "Payment method",
+      "amount": "Amount",
+      "date": "Date",
+      "no_payments": "No payments found.",
+      "payments": "Payment{{s}}",
+      "status": {
+        "label": "Status",
+        "pending": "Pending",
+        "succeeded": "Succeeded",
+        "failed": "Failed",
+        "refunded": "Refunded"
+      }
+    },
+    "cancel": {
+      "title": "Cancel subscription",
+      "description": "Are you sure you want to cancel your subscription? You will lose access to premium features.",
+      "reason": "Cancellation reason",
+      "reason_placeholder": "Please provide the reason for your cancellation...",
+      "now": "Cancel now",
+      "warning": "You will immediately lose access to premium features.",
+      "confirm_cancel": "Confirm cancellation"
+    },
+    "keep_subscription": "Keep subscription",
+    "manage": {
+      "title": "Manage subscription",
+      "change_plan": "Change plan",
+      "reactivate": "Reactivate subscription",
+      "cancel": "Cancel subscription"
+    },
+    "details": {
+      "title": "Subscription details",
+      "my_subscription": "My subscription",
+      "plan_name": "Plan name",
+      "type": "Type",
+      "status": {
+        "ACTIVE": "Active",
+        "EXPIRED": "Expired",
+        "CANCELED": "Canceled",
+        "PENDING": "Pending",
+        "active": "Active",
+        "expired": "Expired",
+        "canceled": "Canceled",
+        "pending": "Pending"
+      },
+      "current_period": "Current period",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "canceled_at": "Canceled at",
+      "days": "days",
+      "days_remaining": "Days remaining",
+      "cancel_at_period_end_warning": "Your subscription will be canceled at the end of the current period.",
+      "payment_history_title": "Payment history"
+    },
+    "plans": {
+      "title": "Plans",
+      "description": "Choose the plan that suits you best."
+    },
+    "payment_history_title": "Payment history"
+  },
+  "plans": {
+    "title": "Plans",
+    "page_title": "Plans management",
+    "create": {
+      "title": "Create a plan"
+    },
+    "edit": {
+      "title": "Edit plan"
+    },
+    "delete": {
+      "title": "Delete plan",
+      "description": "Are you sure you want to delete this plan? This action cannot be undone."
+    },
+    "form": {
+      "name": "Plan name",
+      "description": "Plan description",
+      "price": "Price",
+      "currency": "Currency",
+      "payment_interval": "Payment interval",
+      "stripe_price_id": "Stripe price ID"
+    },
+    "is_active": "Active",
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "price": "Price",
+      "interval": "Interval",
+      "actions": "Actions"
+    }
+  },
+  "admin": {
+    "subscriptions": {
+      "title": "Subscriptions management"
+    }
+  },
+  "subscriptions": {
+    "table": {
+      "account": "Account",
+      "plan": "Plan",
+      "status": "Status",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "actions": "Actions"
+    }
+  },
+  "checkout": {
+    "success": {
+      "title": "Payment successful!",
+      "description": "Your subscription has been activated successfully."
+    },
+    "cancel": {
+      "title": "Payment canceled",
+      "description": "Your payment has been canceled. You can try again at any time."
+    },
+    "view_subscription": "View my subscription"
+  },
   "error": {
     "generic": "An error occurred. Please try again.",
+    "unknown": "An unknown error occurred.",
     "auth": {
       "invalid_credentials": "Invalid credentials.",
       "account_locked": "Account locked due to too many attempts. Try again in 30 minutes.",
@@ -68,7 +210,23 @@
       "already_exists": "An account already exists with this information.",
       "invalid_2fa_code": "Invalid verification code."
     },
-    "validation": "The entered data is invalid."
+    "validation": "The entered data is invalid.",
+    "fetchPlans": "Failed to fetch plans.",
+    "fetchPlanById": "Failed to fetch plan details.",
+    "fetchPlansByInterval": "Failed to fetch plans by interval.",
+    "createPlan": "Failed to create plan.",
+    "updatePlan": "Failed to update plan.",
+    "deletePlan": "Failed to delete plan.",
+    "fetchSubscriptions": "Failed to fetch subscriptions.",
+    "fetchSubscriptionDetails": "Failed to fetch subscription details.",
+    "fetchSubscriptionByAccountId": "Failed to fetch subscription.",
+    "subscribeToPlan": "Failed to subscribe to plan.",
+    "cancelSubscription": "Failed to cancel subscription.",
+    "cancelSubscriptionByAdmin": "Failed to cancel subscription.",
+    "reactivateSubscription": "Failed to reactivate subscription.",
+    "changePlan": "Failed to change plan.",
+    "fetchPaymentHistory": "Failed to fetch payment history.",
+    "fetchPaymentHistoryByAccountId": "Failed to fetch payment history."
   },
   "settings": {
     "2fa": {
@@ -117,6 +275,36 @@
       "required": "Code is required",
       "length": "Code must contain 6 digits",
       "digits": "Code must only contain digits"
+    },
+    "cancellationReason": {
+      "max": "Maximum 500 characters"
+    },
+    "planName": {
+      "required": "Plan name is required",
+      "min": "Minimum 2 characters",
+      "max": "Maximum 100 characters"
+    },
+    "planDescription": {
+      "max": "Maximum 500 characters"
+    },
+    "planPrice": {
+      "required": "Price is required",
+      "min": "Price must be greater than 0"
+    },
+    "planCurrency": {
+      "required": "Currency is required",
+      "length": "Currency must be 3 characters"
+    },
+    "planPaymentInterval": {
+      "required": "Payment interval is required",
+      "oneOf": "Must be monthly or yearly"
     }
-  }
+  },
+  "show": "Show",
+  "items": "items",
+  "of": "of",
+  "next": "Next",
+  "previous": "Previous",
+  "empty": "No data available",
+  "token": "Token"
 }

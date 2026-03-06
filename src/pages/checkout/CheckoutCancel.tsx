@@ -1,0 +1,28 @@
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
+export default function CheckoutCancel() {
+    const {t} = useTranslation();
+    const navigate = useNavigate();
+        return (
+        <div className="max-w-md mx-auto mt-20 text-center p-8">
+            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                {t('checkout.cancel.title')}
+            </h1>
+            <p className="text-gray-600 mb-6">
+                {t('checkout.cancel.description')}
+            </p>
+            <button
+                onClick={() => navigate('/plans')}
+                className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors"
+            >
+                {t('common.back')}
+            </button>
+        </div>
+    );
+}

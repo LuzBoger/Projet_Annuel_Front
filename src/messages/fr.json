@@ -1,4 +1,15 @@
 {
+  "common": {
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "update": "Mettre à jour",
+    "create": "Créer",
+    "close": "Fermer",
+    "active": "Actif",
+    "view": "Voir",
+    "edit": "Modifier",
+    "back": "Retour"
+  },
   "auth": {
     "login": {
       "title": "Connexion",
@@ -52,8 +63,135 @@
       "submit": "Vérifier"
     }
   },
+  "subscription": {
+    "title": "Abonnement",
+    "current_plan": "Plan actuel",
+    "select_plan": "Choisir un plan",
+    "view_plans": "Voir les plans",
+    "upgrade_message": "Passez à un plan supérieur pour accéder à plus de fonctionnalités.",
+    "free": "Gratuit",
+    "included": "Inclus",
+    "enabled": "Activé",
+    "disabled": "Désactivé",
+    "interval": {
+      "monthly": "Mensuel",
+      "yearly": "Annuel"
+    },
+    "paymentHistory": {
+      "method": "Méthode de paiement",
+      "amount": "Montant",
+      "date": "Date",
+      "no_payments": "Aucun paiement trouvé.",
+      "payments": "Paiement{{s}}",
+      "status": {
+        "label": "Statut",
+        "pending": "En attente",
+        "succeeded": "Réussi",
+        "failed": "Échoué",
+        "refunded": "Remboursé"
+      }
+    },
+    "cancel": {
+      "title": "Annuler l'abonnement",
+      "description": "Êtes-vous sûr de vouloir annuler votre abonnement ? Vous perdrez l'accès aux fonctionnalités premium.",
+      "reason": "Raison de l'annulation",
+      "reason_placeholder": "Veuillez indiquer la raison de votre annulation...",
+      "now": "Annuler maintenant",
+      "warning": "Vous perdrez immédiatement l'accès aux fonctionnalités premium.",
+      "confirm_cancel": "Confirmer l'annulation"
+    },
+    "keep_subscription": "Conserver l'abonnement",
+    "manage": {
+      "title": "Gérer l'abonnement",
+      "change_plan": "Changer de plan",
+      "reactivate": "Réactiver l'abonnement",
+      "cancel": "Annuler l'abonnement"
+    },
+    "details": {
+      "title": "Détails de l'abonnement",
+      "my_subscription": "Mon abonnement",
+      "plan_name": "Nom du plan",
+      "type": "Type",
+      "status": {
+        "ACTIVE": "Actif",
+        "EXPIRED": "Expiré",
+        "CANCELED": "Annulé",
+        "PENDING": "En attente"
+      },
+      "current_period": "Période en cours",
+      "start_date": "Date de début",
+      "end_date": "Date de fin",
+      "canceled_at": "Annulé le",
+      "days": "jours",
+      "days_remaining": "Jours restants",
+      "cancel_at_period_end_warning": "Votre abonnement sera annulé à la fin de la période en cours.",
+      "payment_history_title": "Historique des paiements"
+    },
+    "plans": {
+      "title": "Plans",
+      "description": "Choisissez le plan qui vous convient le mieux."
+    },
+    "payment_history_title": "Historique des paiements"
+  },
+  "plans": {
+    "title": "Plans",
+    "page_title": "Gestion des plans",
+    "create": {
+      "title": "Créer un plan"
+    },
+    "edit": {
+      "title": "Modifier le plan"
+    },
+    "delete": {
+      "title": "Supprimer le plan",
+      "description": "Êtes-vous sûr de vouloir supprimer ce plan ? Cette action est irréversible."
+    },
+    "form": {
+      "name": "Nom du plan",
+      "description": "Description du plan",
+      "price": "Prix",
+      "currency": "Devise",
+      "payment_interval": "Intervalle de paiement",
+      "stripe_price_id": "ID du prix Stripe"
+    },
+    "is_active": "Actif",
+    "table": {
+      "name": "Nom",
+      "description": "Description",
+      "price": "Prix",
+      "interval": "Intervalle",
+      "actions": "Actions"
+    }
+  },
+  "admin": {
+    "subscriptions": {
+      "title": "Gestion des abonnements"
+    }
+  },
+  "subscriptions": {
+    "table": {
+      "account": "Compte",
+      "plan": "Plan",
+      "status": "Statut",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "actions": "Actions"
+    }
+  },
+  "checkout": {
+    "success": {
+      "title": "Paiement réussi !",
+      "description": "Votre abonnement a été activé avec succès."
+    },
+    "cancel": {
+      "title": "Paiement annulé",
+      "description": "Votre paiement a été annulé. Vous pouvez réessayer à tout moment."
+    },
+    "view_subscription": "Voir mon abonnement"
+  },
   "error": {
     "generic": "Une erreur est survenue. Veuillez réessayer.",
+    "unknown": "Une erreur inconnue est survenue.",
     "auth": {
       "invalid_credentials": "Identifiants invalides.",
       "account_locked": "Compte verrouillé suite à trop de tentatives. Réessayez dans 30 minutes.",
@@ -68,7 +206,23 @@
       "already_exists": "Un compte existe déjà avec ces informations.",
       "invalid_2fa_code": "Code de vérification invalide."
     },
-    "validation": "Les données saisies sont invalides."
+    "validation": "Les données saisies sont invalides.",
+    "fetchPlans": "Impossible de récupérer les plans.",
+    "fetchPlanById": "Impossible de récupérer les détails du plan.",
+    "fetchPlansByInterval": "Impossible de récupérer les plans par intervalle.",
+    "createPlan": "Impossible de créer le plan.",
+    "updatePlan": "Impossible de mettre à jour le plan.",
+    "deletePlan": "Impossible de supprimer le plan.",
+    "fetchSubscriptions": "Impossible de récupérer les abonnements.",
+    "fetchSubscriptionDetails": "Impossible de récupérer les détails de l'abonnement.",
+    "fetchSubscriptionByAccountId": "Impossible de récupérer l'abonnement.",
+    "subscribeToPlan": "Impossible de souscrire au plan.",
+    "cancelSubscription": "Impossible d'annuler l'abonnement.",
+    "cancelSubscriptionByAdmin": "Impossible d'annuler l'abonnement.",
+    "reactivateSubscription": "Impossible de réactiver l'abonnement.",
+    "changePlan": "Impossible de changer de plan.",
+    "fetchPaymentHistory": "Impossible de récupérer l'historique des paiements.",
+    "fetchPaymentHistoryByAccountId": "Impossible de récupérer l'historique des paiements."
   },
   "settings": {
     "2fa": {
@@ -117,6 +271,36 @@
       "required": "Le code est requis",
       "length": "Le code doit contenir 6 chiffres",
       "digits": "Le code ne doit contenir que des chiffres"
+    },
+    "cancellationReason": {
+      "max": "Maximum 500 caractères"
+    },
+    "planName": {
+      "required": "Le nom du plan est requis",
+      "min": "Minimum 2 caractères",
+      "max": "Maximum 100 caractères"
+    },
+    "planDescription": {
+      "max": "Maximum 500 caractères"
+    },
+    "planPrice": {
+      "required": "Le prix est requis",
+      "min": "Le prix doit être supérieur à 0"
+    },
+    "planCurrency": {
+      "required": "La devise est requise",
+      "length": "La devise doit contenir 3 caractères"
+    },
+    "planPaymentInterval": {
+      "required": "L'intervalle de paiement est requis",
+      "oneOf": "Doit être mensuel ou annuel"
     }
-  }
+  },
+  "show": "Afficher",
+  "items": "éléments",
+  "of": "sur",
+  "next": "Suivant",
+  "previous": "Précédent",
+  "empty": "Aucune donnée disponible",
+  "token": "Jeton"
 }
