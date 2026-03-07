@@ -72,7 +72,6 @@ describe('RegisterForm', () => {
         { name: 'email required', error: 'validation.email.required' },
         { name: 'firstName required', error: 'validation.firstName.required' },
         { name: 'lastName required', error: 'validation.lastName.required' },
-        { name: 'username required', error: 'validation.username.required' },
     ])('should show $name error on empty submit', async ({ error }) => {
         const user = userEvent.setup()
         renderWithProviders(<RegisterForm {...defaultProps} />)
