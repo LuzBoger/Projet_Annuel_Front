@@ -168,8 +168,17 @@
     }
   },
   "admin": {
+    "dashboard": {
+      "title": "Admin Dashboard"
+    },
     "subscriptions": {
       "title": "Subscriptions management"
+    }
+  },
+  "payment": {
+    "intervals": {
+      "monthly": "Monthly",
+      "yearly": "Yearly"
     }
   },
   "subscriptions": {

@@ -3,7 +3,7 @@ import type { RefreshTokenResponse } from '../types/auth/refreshToken';
 
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
-const PUBLIC_ENDPOINTS = ['/auth/login', '/auth/register', '/auth/refresh', '/auth/forgot-password', '/auth/reset-password', '/auth/verify-2fa'];
+const PUBLIC_ENDPOINTS = ['/auth/login', '/auth/register', '/auth/refresh', '/auth/forgot-password', '/auth/reset-password', '/auth/verify-2fa', '/auth/admin/login'];
 
 const apiClient = axios.create({
     baseURL: API_BASE_URL,
@@ -52,7 +52,7 @@ apiClient.interceptors.response.use(
                 return apiClient(originalRequest);
             } catch (refreshError) {
                 processRequests(refreshError as AxiosError);
-                if (window.location.pathname !== '/login') {
+                if (window.location.pathname !== '/login' && window.location.pathname !== '/admin/login') {
                     window.location.href = '/login';
                 }
                 return Promise.reject(refreshError);

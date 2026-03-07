@@ -15,6 +15,10 @@ import SubscriptionsManage from './pages/admin/subscriptions/SubscriptionsManage
 import PlansManage from './pages/admin/plans/PlansManage'
 import CheckoutCancel from './pages/checkout/CheckoutCancel'
 import CheckoutSuccess from './pages/checkout/CheckoutSuccess'
+import { SettingsLayout } from './layout/SettingsLayout'
+import { AdminLayout } from './layout/AdminLayout'
+import { CheckoutLayout } from './layout/CheckoutLayout'
+import AdminLogin from './pages/admin/login/AdminLogin'
 
 function App() {
   return (
@@ -27,13 +31,20 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/verify-2fa" element={<Verify2FA />} />
-        <Route path="/settings/two-factor" element={<ProtectedRoute><TwoFactorSettings /></ProtectedRoute>} />
         <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
         <Route path="/plans" element={<Plans />} />
-        <Route path="/admin/plans" element={<PlansManage />} />
-        <Route path="/admin/subscriptions" element={<SubscriptionsManage />} />
-        <Route path="/checkout/success" element={<ProtectedRoute><CheckoutSuccess /></ProtectedRoute>} />
-        <Route path="/checkout/cancel" element={<ProtectedRoute><CheckoutCancel /></ProtectedRoute>} />
+        <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>}>
+          <Route path="two-factor" element={<TwoFactorSettings />} />
+        </Route>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+          <Route path="plans" element={<PlansManage />} />
+          <Route path="subscriptions" element={<SubscriptionsManage />} />
+        </Route>
+        <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
+          <Route path="success" element={<CheckoutSuccess />} />
+          <Route path="cancel" element={<CheckoutCancel />} />
+        </Route>
       </Routes>
       </AuthProvider>
     </BrowserRouter>

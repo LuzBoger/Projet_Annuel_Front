@@ -9,7 +9,7 @@ export const registerSchema = (t: (key:string) => string) =>
         confirmPassword: yup.string().required(t('validation.confirmPassword.required')).oneOf([yup.ref('password')], t('validation.confirmPassword.match')).matches(PASSWORD_PATTERN, t('validation.password.pattern')),
         firstName: yup.string().required(t('validation.firstName.required')),
         lastName: yup.string().required(t('validation.lastName.required')),
-        username: yup.string().required(t('validation.username.required')).min(3, t('validation.username.min')).max(50, t('validation.username.max')),
+        username: yup.string().min(3, t('validation.username.min')).max(50, t('validation.username.max')),
     });
 
 export type RegisterFormData = yup.InferType<ReturnType<typeof registerSchema>>;

@@ -5,7 +5,7 @@ export interface RegisterRequest {
     password: string;
     firstName: string;
     lastName: string;
-    username: string;
+    username?: string;
 }
 
 export interface RegisterResponse {

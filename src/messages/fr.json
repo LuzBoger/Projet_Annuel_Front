@@ -164,8 +164,17 @@
     }
   },
   "admin": {
+    "dashboard": {
+      "title": "Tableau de bord"
+    },
     "subscriptions": {
       "title": "Gestion des abonnements"
+    }
+  },
+  "payment": {
+    "intervals": {
+      "monthly": "Mensuel",
+      "yearly": "Annuel"
     }
   },
   "subscriptions": {
