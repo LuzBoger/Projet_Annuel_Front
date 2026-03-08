@@ -44,7 +44,7 @@ import { formDateTime } from "../../lib/utils/date";
                 <div className="space-y-3 mb-6">
                     <div className="flex justify-between text-sm">
                         <span className="text-gray-500">{t('subscription.details.type')}</span>
-                        <span className="font-medium text-gray-900">{subscription.subscriptionType}</span>
+                        <span className="font-medium text-gray-900">{subscription.plan?.subscriptionType}</span>
                     </div>
                     {subscription.plan && (
                         <div className="flex justify-between text-sm">

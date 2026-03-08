@@ -97,14 +97,16 @@ export default function PlansManage() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{plan.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{plan.description}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${getFormatForCurrency(locale, plan.currency, plan.price)}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{t(`payment.intervals.${plan.paymentInterval.toLowerCase()}`)}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{plan.paymentInterval ? (t(`payment.intervals.${plan.paymentInterval.toLowerCase()}`)) : '-'}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <Button variant="secondary" onClick={() => handleEditPlan(plan)}>
                                 {t('common.edit')}
                             </Button>
+                            {plan.subscriptionType !== "FREE" && (
                             <Button variant="danger" onClick={() => handleDeletePlan(plan)}>
                                 {t('common.delete')}
                             </Button>
+                            )}
                         </td>
                     </>
                 )}

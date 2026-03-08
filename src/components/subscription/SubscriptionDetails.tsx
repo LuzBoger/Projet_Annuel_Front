@@ -30,7 +30,7 @@ export function SubscriptionDetails({ subscription }: SubscriptionDetailsProps) 
             </div>
 
             <div className="px-6 py-2">
-                {subscription.subscriptionType === 'PREMIUM' && (
+                {subscription.plan?.subscriptionType === 'PREMIUM' && (
                     <>
                         <div className="flex justify-between items-center py-2.5 border-b border-slate-50 text-sm">
                             <span className="text-slate-500">{t('subscription.details.current_period')}</span>

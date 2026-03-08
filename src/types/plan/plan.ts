@@ -1,4 +1,5 @@
 import { PaymentInterval } from "../payment/payment";
+import { SubscriptionType } from "../subscription/subscription";
 
 export interface PlanResponse {
     id: string;
@@ -7,6 +8,7 @@ export interface PlanResponse {
     price: number;
     currency: string;
     paymentInterval: PaymentInterval;
+    subscriptionType: SubscriptionType;
 }
 
 export interface CreatePlanRequest {
@@ -15,6 +17,7 @@ export interface CreatePlanRequest {
     price: number;
     currency?: string;
     paymentInterval: PaymentInterval;
+    subscriptionType: SubscriptionType;
     stripePriceId?: string;
 }
 
@@ -24,6 +27,7 @@ export interface UpdatePlanRequest {
     price?: number;
     currency?: string;
     paymentInterval?: PaymentInterval;
+    subscriptionType?: SubscriptionType;
     stripePriceId?: string;
     isActive?: boolean;
 }

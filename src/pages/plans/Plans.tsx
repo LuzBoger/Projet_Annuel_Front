@@ -33,7 +33,7 @@ export default function Plans() {
 
         try {
             let response;
-            if (subscription?.subscriptionType === 'PREMIUM') {
+            if (subscription?.plan?.subscriptionType === 'PREMIUM') {
                 response = await changePlan(planId);
             } else {
                 response = await subscribeToPlan(planId);
@@ -96,7 +96,7 @@ export default function Plans() {
                         key={plan.id}
                         plan={plan}
                         isCurrentUserPlan={subscription?.plan?.id === plan.id}
-                        hasActiveSubscription={subscription?.subscriptionType === 'PREMIUM'}
+                        hasActiveSubscription={subscription?.plan?.subscriptionType === 'PREMIUM'}
                         isLoading={loading}
                         onSelect={handleSelectPlan}
                     />

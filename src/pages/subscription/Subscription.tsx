@@ -54,7 +54,7 @@ export default function Subscription() {
                         <SubscriptionDetails subscription={subscription} />
                     </div>
                     <div>
-                        {subscription.subscriptionType === 'FREE' ? (
+                        {subscription.plan?.subscriptionType === 'FREE' ? (
                             <div className="bg-white rounded-lg border border-gray-200 p-6 text-center">
                                 <p className="text-gray-600 mb-4">{t('subscription.upgrade_message')}</p>
                                 <button

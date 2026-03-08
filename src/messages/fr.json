@@ -151,15 +151,23 @@
       "description": "Description du plan",
       "price": "Prix",
       "currency": "Devise",
-      "payment_interval": "Intervalle de paiement",
+      "payment_interval": "Période de paiement",
       "stripe_price_id": "ID du prix Stripe"
+    },
+    "types": {
+      "Free": "Gratuit",
+      "Premium": "Premium"
+    },
+    "descriptions": {
+        "Free plan": "C'est le plan gratuit",
+        "Premium plan": "Plan premium avec toutes les fonctionnalités"
     },
     "is_active": "Actif",
     "table": {
       "name": "Nom",
       "description": "Description",
       "price": "Prix",
-      "interval": "Intervalle",
+      "interval": "Période de paiement",
       "actions": "Actions"
     }
   },
@@ -207,7 +215,7 @@
       "account_locked_until": "Le compte est verrouillé jusqu'à : {{until}}.",
       "account_locked_attempts": "Compte verrouillé en raison de trop nombreuses tentatives de connexion échouées.",
       "account_not_found": "Compte non trouvé.",
-      "email_already_registered": "Email déjà enregistré.",
+      "email_already_registered": "Email déjà existant.",
       "username_already_taken": "Nom d'utilisateur déjà pris.",
       "password_expired": "Mot de passe expiré, veuillez changer votre mot de passe.",
       "invalid_token": "Jeton de rafraîchissement invalide ou expiré.",

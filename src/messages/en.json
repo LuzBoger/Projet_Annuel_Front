@@ -158,6 +158,14 @@
       "payment_interval": "Payment interval",
       "stripe_price_id": "Stripe price ID"
     },
+    "types": {
+      "Free": "Free",
+      "Premium": "Premium"
+    },
+    "descriptions": {
+        "Free plan": "This is the plan free",
+        "Premium plan": "Premium plan "
+    },
     "is_active": "Active",
     "table": {
       "name": "Name",

@@ -13,7 +13,7 @@ interface SubscriptionActionsProps {
 export function SubscriptionActions({ subscription, onCancel, onReactivate, onChangePlan, isLoading }: SubscriptionActionsProps) {
     const { t } = useTranslation();
 
-    if (subscription.subscriptionType !== 'PREMIUM') {
+    if (subscription.plan?.subscriptionType !== 'PREMIUM') {
         return null;
     }
 

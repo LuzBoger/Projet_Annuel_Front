@@ -5,7 +5,6 @@ export type SubscriptionStatus = 'ACTIVE' | 'EXPIRED' | 'CANCELED' | 'PENDING'
 
 export interface SubscriptionResponse {
     id: string;
-    subscriptionType: SubscriptionType;
     isActive: boolean;
     startDate: string;
     endDate: string | null;
@@ -16,7 +15,6 @@ export interface SubscriptionDetailResponse {
     accountId: string;
     firstName: string;
     lastName: string;
-    subscriptionType: SubscriptionType;
     status: SubscriptionStatus;
     plan: PlanResponse | null;
     startDate: string;

@@ -27,7 +27,8 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
         resolver: yupResolver(isEditPlan ? updatePlanSchema(t) : createPlanSchema(t)) as Resolver<CreatePlanFormData | UpdatePlanFormData> ,
         defaultValues: {
             currency: 'EUR',
-            paymentInterval: 'MONTHLY'
+            paymentInterval: 'MONTHLY',
+            subscriptionType: 'FREE'
         }
     })
 
@@ -39,6 +40,8 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
             price: plan.price,
             currency: plan.currency,
             paymentInterval: plan.paymentInterval,
+            subscriptionType: plan.subscriptionType,
+            isActive: true,
         })
     } else {
         reset({
@@ -47,12 +50,18 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
             price: 0,
             currency: 'EUR',
             paymentInterval: 'MONTHLY',
+            subscriptionType: 'FREE',
         })
     }
     }, [plan, reset])
 
-    const price = watch('price');
-    const isFree = Number(price) === 0;
+    const subscriptionType = watch('subscriptionType');
+    const isFree = subscriptionType === 'FREE';
+
+    const subscriptionTypeOptions = [
+        { value: 'FREE', label: t('subscription.type.free') },
+        { value: 'PREMIUM', label: t('subscription.type.premium') },
+    ]
 
     const paymentIntervalOptions = [
         { value: 'MONTHLY', label: t('subscription.interval.monthly') },
@@ -113,6 +122,16 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                             onChange={(value) => setValue('currency', value)}
                         />
                     </div>
+
+                    <Select
+                        id="subscriptionType"
+                        label={t('plans.form.subscription_type')}
+                        value={watch('subscriptionType') ?? 'FREE'}
+                        options={subscriptionTypeOptions}
+                        disabled={isLoading}
+                        error={errors.subscriptionType?.message}
+                        onChange={(value) => setValue('subscriptionType', value as 'FREE' | 'PREMIUM')}
+                    />
 
                     {!isFree && (
                         <Select
