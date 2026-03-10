@@ -10,6 +10,7 @@ import { Table } from "@/components/ui/Table";
 import { PlanForm } from "@/components/plans/PlanForm";
 import { DeletePlanModal } from "@/components/plans/DeletePlanModal";
 import { getFormatForCurrency } from "@/lib/utils/currency";
+import { TableActions } from "@/components/ui/TableActions";
 
 export default function PlansManage() {
     const { t, i18n } = useTranslation();
@@ -99,14 +100,10 @@ export default function PlansManage() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${getFormatForCurrency(locale, plan.currency, plan.price)}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{plan.paymentInterval ? (t(`payment.intervals.${plan.paymentInterval.toLowerCase()}`)) : '-'}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <Button variant="secondary" onClick={() => handleEditPlan(plan)}>
-                                {t('common.edit')}
-                            </Button>
-                            {plan.subscriptionType !== "FREE" && (
-                            <Button variant="danger" onClick={() => handleDeletePlan(plan)}>
-                                {t('common.delete')}
-                            </Button>
-                            )}
+                            <TableActions 
+                                onEdit={() => handleEditPlan(plan)}
+                                onDelete={plan.subscriptionType !== "FREE" ? () => handleDeletePlan(plan) : undefined} 
+                            />
                         </td>
                     </>
                 )}

@@ -8,6 +8,7 @@ import { Table } from "@/components/ui/Table";
 import { Switch } from "@/components/ui/Switch";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { LanguageForm } from "@/components/languages/LanguageForm";
+import { TableActions } from "@/components/ui/TableActions";
 
 export default function LanguageList() {
     const { t } = useTranslation();
@@ -133,13 +134,11 @@ export default function LanguageList() {
                                 onChange={(checked) => handleStatusToggle(lang, checked)}
                             />
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 space-x-2">
-                            <Button size="sm" variant="secondary" onClick={() => handleEdit(lang)}>
-                                {t('common.edit')}
-                            </Button>
-                            <Button size="sm" variant="danger" onClick={() => handleDelete(lang)}>
-                                {t('common.delete')}
-                            </Button>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
+                            <TableActions 
+                                onEdit={() => handleEdit(lang)} 
+                                onDelete={() => handleDelete(lang)} 
+                            />
                         </td>
                     </>
                 )}
