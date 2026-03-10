@@ -65,6 +65,7 @@
     }
   },
   "subscription": {
+    "short_title": "Abonnement",
     "title": "Abonnement",
     "current_plan": "Plan actuel",
     "select_plan": "Choisir un plan",
@@ -175,6 +176,9 @@
   "admin": {
     "dashboard": {
       "title": "Tableau de bord"
+    },
+    "plans": {
+      "short_title": "Plans"
     },
     "subscriptions": {
       "title": "Gestion des abonnements"
