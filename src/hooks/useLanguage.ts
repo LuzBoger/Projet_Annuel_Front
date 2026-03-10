@@ -2,9 +2,11 @@ import { useCallback, useState } from "react";
 import { CreateLanguageRequest, LanguageResponse, UpdateLanguageRequest } from "@/types/language/language";
 import { languageService } from "@/services/languageService";
 import { useTranslation } from "react-i18next";
+import { useToast } from "@/hooks/useToast";
 
 export function useLanguage() {
     const { t } = useTranslation();
+    const { addToast } = useToast();
     const [languages, setLanguages] = useState<LanguageResponse[]>([]);
     const [language, setLanguage] = useState<LanguageResponse | null>(null);
     const [loading, setLoading] = useState(true);
@@ -55,6 +57,7 @@ export function useLanguage() {
         try {
             const response = await languageService.createLanguage(data);
             setLanguages(prev => [...prev, response]);
+            addToast({ type: 'success', message: t('admin.languages.success.create', 'Langue créée avec succès') });
         } catch {
             setError(t('error.createLanguage'));
         } finally {
@@ -68,6 +71,7 @@ export function useLanguage() {
         try {
             const response = await languageService.updateLanguage(languageId, data);
             setLanguages(prev => prev.map(l => l.id === languageId ? response : l));
+            addToast({ type: 'success', message: t('admin.languages.success.update', 'Langue mise à jour avec succès') });
         } catch {
             setError(t('error.updateLanguage'));
         } finally {
@@ -81,6 +85,7 @@ export function useLanguage() {
         try {
             await languageService.deleteLanguage(languageId);
             setLanguages(prev => prev.filter(l => l.id !== languageId));
+            addToast({ type: 'success', message: t('admin.languages.success.delete', 'Langue supprimée avec succès') });
         } catch {
             setError(t('error.deleteLanguage'));
         } finally {

@@ -4,6 +4,7 @@ import Login from '@/pages/login/Login'
 import Register from '@/pages/register/Register'
 import './App.css'
 import { AuthProvider } from '@/contexts/AuthProvider'
+import { ToastProvider } from '@/contexts/ToastProvider'
 import ResetPassword from '@/pages/reset-password/ResetPassword'
 import ForgotPassword from '@/pages/forgot-password/ForgotPassword'
 import TwoFactorSettings from '@/pages/settings/TwoFactorSettings'
@@ -25,7 +26,8 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-      <Routes>
+        <ToastProvider>
+          <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -46,8 +48,9 @@ function App() {
         <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
           <Route path="success" element={<CheckoutSuccess />} />
           <Route path="cancel" element={<CheckoutCancel />} />
-        </Route>
-      </Routes>
+          </Route>
+        </Routes>
+        </ToastProvider>
       </AuthProvider>
     </BrowserRouter>
   )

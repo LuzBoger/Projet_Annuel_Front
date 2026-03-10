@@ -8,7 +8,8 @@
     "active": "Active",
     "view": "View",
     "edit": "Edit",
-    "back": "Back"
+    "back": "Back",
+    "save": "Save"
   },
   "auth": {
     "login": {

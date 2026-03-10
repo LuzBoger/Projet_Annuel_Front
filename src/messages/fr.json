@@ -8,7 +8,8 @@
     "active": "Actif",
     "view": "Voir",
     "edit": "Modifier",
-    "back": "Retour"
+    "back": "Retour",
+    "save": "Sauvegarder"
   },
   "auth": {
     "login": {
