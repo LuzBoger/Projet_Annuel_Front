@@ -181,6 +181,28 @@
     },
     "subscriptions": {
       "title": "Subscriptions management"
+    },
+    "languages": {
+      "page_title": "Languages management",
+      "create": "Create a language",
+      "edit": "Edit language",
+      "delete_title": "Delete language",
+      "delete_desc": "Are you sure you want to delete this language? This action cannot be undone.",
+      "status_title": "Change language status",
+      "status_desc": "Are you sure you want to change the status of this language?",
+      "table": {
+        "code": "Code",
+        "name": "Name",
+        "orderIndex": "Order",
+        "isActive": "Active",
+        "actions": "Actions"
+      },
+      "form": {
+        "code": "Selection code",
+        "name": "Display name",
+        "order": "Sorting index",
+        "active": "Active language"
+      }
     }
   },
   "payment": {
@@ -243,7 +265,13 @@
     "reactivateSubscription": "Failed to reactivate subscription.",
     "changePlan": "Failed to change plan.",
     "fetchPaymentHistory": "Failed to fetch payment history.",
-    "fetchPaymentHistoryByAccountId": "Failed to fetch payment history."
+    "fetchPaymentHistoryByAccountId": "Failed to fetch payment history.",
+    "fetchLanguages": "Failed to fetch languages.",
+    "fetchLanguageById": "Failed to fetch language details.",
+    "fetchLanguageByCode": "Failed to fetch language by code.",
+    "createLanguage": "Failed to create language.",
+    "updateLanguage": "Failed to update language.",
+    "deleteLanguage": "Failed to delete language."
   },
   "settings": {
     "2fa": {

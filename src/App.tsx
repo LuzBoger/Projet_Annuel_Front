@@ -19,6 +19,7 @@ import { SettingsLayout } from '@/layout/SettingsLayout'
 import { AdminLayout } from '@/layout/AdminLayout'
 import { CheckoutLayout } from '@/layout/CheckoutLayout'
 import AdminLogin from '@/pages/admin/login/AdminLogin'
+import LanguageList from '@/pages/admin/languages/LanguageList'
 
 function App() {
   return (
@@ -37,9 +38,10 @@ function App() {
           <Route path="two-factor" element={<TwoFactorSettings />} />
         </Route>
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+        <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
           <Route path="plans" element={<PlansManage />} />
           <Route path="subscriptions" element={<SubscriptionsManage />} />
+          <Route path="languages" element={<LanguageList />} />
         </Route>
         <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
           <Route path="success" element={<CheckoutSuccess />} />

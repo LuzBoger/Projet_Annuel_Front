@@ -177,6 +177,28 @@
     },
     "subscriptions": {
       "title": "Gestion des abonnements"
+    },
+    "languages": {
+      "page_title": "Gestion des langues",
+      "create": "Créer une langue",
+      "edit": "Modifier la langue",
+      "delete_title": "Supprimer la langue",
+      "delete_desc": "Êtes-vous sûr de vouloir supprimer cette langue ? Cette action est irréversible.",
+      "status_title": "Changer le statut",
+      "status_desc": "Êtes-vous sûr de vouloir changer le statut (actif/inactif) de cette langue ?",
+      "table": {
+        "code": "Code",
+        "name": "Nom",
+        "orderIndex": "Ordre",
+        "isActive": "Actif",
+        "actions": "Actions"
+      },
+      "form": {
+        "code": "Code sélectionné",
+        "name": "Libellé affiché",
+        "order": "Index de tri",
+        "active": "Langue active"
+      }
     }
   },
   "payment": {
@@ -239,7 +261,13 @@
     "reactivateSubscription": "Impossible de réactiver l'abonnement.",
     "changePlan": "Impossible de changer de plan.",
     "fetchPaymentHistory": "Impossible de récupérer l'historique des paiements.",
-    "fetchPaymentHistoryByAccountId": "Impossible de récupérer l'historique des paiements."
+    "fetchPaymentHistoryByAccountId": "Impossible de récupérer l'historique des paiements.",
+    "fetchLanguages": "Impossible de récupérer les langues.",
+    "fetchLanguageById": "Impossible de récupérer les détails de la langue.",
+    "fetchLanguageByCode": "Impossible de récupérer la langue par code.",
+    "createLanguage": "Impossible de créer la langue.",
+    "updateLanguage": "Impossible de mettre à jour la langue.",
+    "deleteLanguage": "Impossible de supprimer la langue."
   },
   "settings": {
     "2fa": {
