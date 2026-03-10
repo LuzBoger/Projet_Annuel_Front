@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useSearchParams } from "react-router-dom";
-import type { ResetPasswordFormData } from "../../validations/auth/resetPasswordSchema";
-import { authService } from "../../services/authService";
+import type { ResetPasswordFormData } from "@/validations/auth/resetPasswordSchema";
+import { authService } from "@/services/authService";
 import type { AxiosError } from "axios";
-import { AuthenticationLayout } from "../../components/layouts/AuthenticationLayout";
-import ResetPasswordForm from "../../components/reset-password/ResetPasswordForm";
+import { AuthenticationLayout } from "@/components/layouts/AuthenticationLayout";
+import ResetPasswordForm from "@/components/reset-password/ResetPasswordForm";
 
 export default function ResetPassword() {
   const { t } = useTranslation();

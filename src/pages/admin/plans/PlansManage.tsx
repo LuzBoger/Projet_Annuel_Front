@@ -1,15 +1,15 @@
 import { useTranslation } from "react-i18next";
-import { usePlan } from "../../../hooks/usePlan";
+import { usePlan } from "@/hooks/usePlan";
 import { useEffect, useState } from "react";
-import {  PlanResponse } from "../../../types/plan/plan";
-import { CreatePlanFormData } from "../../../validations/plans/createPlanSchema";
-import { UpdatePlanFormData } from "../../../validations/plans/updatePlanSchema";
-import { TableColumn } from "../../../types/components/tableColumn";
-import { Button } from "../../../components/ui/Button";
-import { Table } from "../../../components/ui/Table";
-import { PlanForm } from "../../../components/plans/PlanForm";
-import { DeletePlanModal } from "../../../components/plans/DeletePlanModal";
-import { getFormatForCurrency } from "../../../lib/utils/currency";
+import {  PlanResponse } from "@/types/plan/plan";
+import { CreatePlanFormData } from "@/validations/plans/createPlanSchema";
+import { UpdatePlanFormData } from "@/validations/plans/updatePlanSchema";
+import { TableColumn } from "@/types/components/tableColumn";
+import { Button } from "@/components/ui/Button";
+import { Table } from "@/components/ui/Table";
+import { PlanForm } from "@/components/plans/PlanForm";
+import { DeletePlanModal } from "@/components/plans/DeletePlanModal";
+import { getFormatForCurrency } from "@/lib/utils/currency";
 
 export default function PlansManage() {
     const { t, i18n } = useTranslation();

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { SubscriptionDetailResponse } from "../../types/subscription/subscription";
-import { Button } from "../ui/Button";
-import { useSubscription } from "../../hooks/useSubscription";
+import { SubscriptionDetailResponse } from "@/types/subscription/subscription";
+import { Button } from "@/components/ui/Button";
+import { useSubscription } from "@/hooks/useSubscription";
 import { useTranslation } from "react-i18next";
-import { PaymentHistoryTable } from "./payment/PaymentHistoryTable";
-import { statusColors } from "../../constants";
-import { formDateTime } from "../../lib/utils/date";
+import { PaymentHistoryTable } from "@/components/subscription/payment/PaymentHistoryTable";
+import { statusColors } from "@/constants";
+import { formDateTime } from "@/lib/utils/date";
 
     interface SubscriptionModalProps {
         isOpen: boolean;

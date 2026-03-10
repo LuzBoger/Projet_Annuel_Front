@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { ErrorResponse, Link, useNavigate } from 'react-router-dom'
-import type { RegisterRequest } from '../../types/auth/register';
+import type { RegisterRequest } from '@/types/auth/register';
 import { useTranslation } from 'react-i18next';
-import { AuthenticationLayout } from './../../components/layouts/AuthenticationLayout';
-import { RegisterForm } from '../../components/register/RegisterForm';
-import { useAuth } from '../../hooks/useAuth';
+import { AuthenticationLayout } from '@/components/layouts/AuthenticationLayout';
+import { RegisterForm } from '@/components/register/RegisterForm';
+import { useAuth } from '@/hooks/useAuth';
 import { AxiosError } from 'axios';
 
 export default function Register() {

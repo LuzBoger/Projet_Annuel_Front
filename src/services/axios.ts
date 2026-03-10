@@ -1,5 +1,5 @@
 import axios, { AxiosError, type InternalAxiosRequestConfig } from 'axios';
-import type { RefreshTokenResponse } from '../types/auth/refreshToken';
+import type { RefreshTokenResponse } from '@/types/auth/refreshToken';
 
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;

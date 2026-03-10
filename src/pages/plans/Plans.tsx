@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
-import { useSubscription } from "../../hooks/useSubscription";
-import { usePlan } from "../../hooks/usePlan";
-import { useAuth } from "../../hooks/useAuth";
-import { PlanCard } from "../../components/ui/card/PlanCard";
-import { ErrorResponse } from "../../types/api/response";
+import { useSubscription } from "@/hooks/useSubscription";
+import { usePlan } from "@/hooks/usePlan";
+import { useAuth } from "@/hooks/useAuth";
+import { PlanCard } from "@/components/ui/card/PlanCard";
+import { ErrorResponse } from "@/types/api/response";
 
 export default function Plans() {
     const { t } = useTranslation();

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
-import type { ErrorResponse } from "../../types/api/response";
-import type { ForgotPasswordRequest } from "../../types/auth/forgotPassword";
-import { authService } from "../../services/authService";
+import type { ErrorResponse } from "@/types/api/response";
+import type { ForgotPasswordRequest } from "@/types/auth/forgotPassword";
+import { authService } from "@/services/authService";
 import type { AxiosError } from "axios";
-import { AuthenticationLayout } from "../../components/layouts/AuthenticationLayout";
-import ForgotPasswordForm from "../../components/forgot-password/ForgotPasswordForm";
+import { AuthenticationLayout } from "@/components/layouts/AuthenticationLayout";
+import ForgotPasswordForm from "@/components/forgot-password/ForgotPasswordForm";
 
 export default function ForgotPassword() {
     const { t } = useTranslation();

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { PlanResponse } from "../../types/plan/plan";
-import { Button } from "../ui/Button";
+import { PlanResponse } from "@/types/plan/plan";
+import { Button } from "@/components/ui/Button";
 
 interface DeletePlanModalProps {
     plan: PlanResponse | null;

@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { useSubscription } from "../../../hooks/useSubscription";
-import { SubscriptionDetailResponse } from "../../../types/subscription/subscription";
+import { useSubscription } from "@/hooks/useSubscription";
+import { SubscriptionDetailResponse } from "@/types/subscription/subscription";
 import { useEffect, useState } from "react";
-import { TableColumn } from "../../../types/components/tableColumn";
-import { Table } from "../../../components/ui/Table";
-import { Button } from "../../../components/ui/Button";
-import { SubscriptionModal } from "../../../components/subscription/SubscriptionModal";
-import { CancelSubscriptionModal } from "../../../components/subscription/CancelSubscriptionModal";
+import { TableColumn } from "@/types/components/tableColumn";
+import { Table } from "@/components/ui/Table";
+import { Button } from "@/components/ui/Button";
+import { SubscriptionModal } from "@/components/subscription/SubscriptionModal";
+import { CancelSubscriptionModal } from "@/components/subscription/CancelSubscriptionModal";
 
 export default function SubscriptionsManage() {
     const {t, i18n } = useTranslation();

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
-import { CreatePlanRequest, PlanResponse, UpdatePlanRequest } from "../types/plan/plan";
-import { planService } from "../services/planService";
-import { PaymentInterval } from "../types/payment/payment";
+import { CreatePlanRequest, PlanResponse, UpdatePlanRequest } from "@/types/plan/plan";
+import { planService } from "@/services/planService";
+import { PaymentInterval } from "@/types/payment/payment";
 import { useTranslation } from "react-i18next";
 
 export function usePlan() {

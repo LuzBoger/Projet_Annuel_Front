@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useSubscription } from "../../hooks/useSubscription";
+import { useSubscription } from "@/hooks/useSubscription";
 import { useEffect, useState } from "react";
-import { SubscriptionDetails } from '../../components/subscription/SubscriptionDetails';
-import { SubscriptionActions } from "../../components/subscription/SubscriptionActions";
-import { CancelSubscriptionModal } from "../../components/subscription/CancelSubscriptionModal";
-import { PaymentHistoryTable } from '../../components/subscription/payment/PaymentHistoryTable';
+import { SubscriptionDetails } from '@/components/subscription/SubscriptionDetails';
+import { SubscriptionActions } from "@/components/subscription/SubscriptionActions";
+import { CancelSubscriptionModal } from "@/components/subscription/CancelSubscriptionModal";
+import { PaymentHistoryTable } from '@/components/subscription/payment/PaymentHistoryTable';
 
 export default function Subscription() {
     const {t} = useTranslation();

@@ -1,4 +1,4 @@
-import { PlanResponse } from "../plan/plan";
+import { PlanResponse } from "@/types/plan/plan";
 
 export type SubscriptionType = 'FREE' | 'PREMIUM';
 export type SubscriptionStatus = 'ACTIVE' | 'EXPIRED' | 'CANCELED' | 'PENDING'

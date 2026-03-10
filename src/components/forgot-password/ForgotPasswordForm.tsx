@@ -1,10 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import type { ForgotPasswordRequest } from "../../types/auth/forgotPassword";
-import { forgotPasswordSchema, type ForgotPasswordFormData } from "../../validations/auth/forgotPasswordSchema";
+import type { ForgotPasswordRequest } from "@/types/auth/forgotPassword";
+import { forgotPasswordSchema, type ForgotPasswordFormData } from "@/validations/auth/forgotPasswordSchema";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { FormField } from "../ui/FormField";
-import { Button } from "../ui/Button";
+import { FormField } from "@/components/ui/FormField";
+import { Button } from "@/components/ui/Button";
 
 interface ForgotPasswordFormProps {
     onSubmit: (data: ForgotPasswordRequest) => Promise<void>;

@@ -1,5 +1,5 @@
-import { PaymentInterval } from "../payment/payment";
-import { SubscriptionType } from "../subscription/subscription";
+import { PaymentInterval } from "@/types/payment/payment";
+import { SubscriptionType } from "@/types/subscription/subscription";
 
 export interface PlanResponse {
     id: string;

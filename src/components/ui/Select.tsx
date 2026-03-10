@@ -1,4 +1,4 @@
-import { SelectOption } from "../../types/components/selectOption";
+import { SelectOption } from "@/types/components/selectOption";
 
 export interface SelectProps<T = string> {
     label?: string;

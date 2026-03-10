@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
-import { CancelSubscriptionRequest, SubscriptionDetailResponse } from "../types/subscription/subscription";
-import { subscriptionService } from "../services/subscriptionService";
-import { CheckoutStripeResponse } from "../types/stripe/stripe";
-import { PaymentHistoryResponse } from "../types/payment/payment";
+import { CancelSubscriptionRequest, SubscriptionDetailResponse } from "@/types/subscription/subscription";
+import { subscriptionService } from "@/services/subscriptionService";
+import { CheckoutStripeResponse } from "@/types/stripe/stripe";
+import { PaymentHistoryResponse } from "@/types/payment/payment";
 import { useTranslation } from "react-i18next";
 
 export function useSubscription() {

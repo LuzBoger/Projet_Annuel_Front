@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
-import { AdminLoginRequest } from "../../types/auth/login";
+import { AdminLoginRequest } from "@/types/auth/login";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { adminLoginSchema } from "../../validations/auth/adminLoginSchema";
+import { adminLoginSchema } from "@/validations/auth/adminLoginSchema";
 import { useForm } from "react-hook-form";
-import { FormField } from "../ui/FormField";
-import { Button } from "../ui/Button";
+import { FormField } from "@/components/ui/FormField";
+import { Button } from "@/components/ui/Button";
 
 interface AdminLoginFormProps {
     onSubmit: (data:AdminLoginRequest) => Promise<void>;

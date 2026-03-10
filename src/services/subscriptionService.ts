@@ -1,8 +1,8 @@
-import { PaymentHistoryResponse } from "../types/payment/payment";
-import { ChangePlanRequest, SubscribePlanRequest } from "../types/plan/plan";
-import { CheckoutStripeResponse } from "../types/stripe/stripe";
-import { CancelSubscriptionRequest, SubscriptionDetailResponse } from "../types/subscription/subscription";
-import apiClient from "./axios";
+import { PaymentHistoryResponse } from "@/types/payment/payment";
+import { ChangePlanRequest, SubscribePlanRequest } from "@/types/plan/plan";
+import { CheckoutStripeResponse } from "@/types/stripe/stripe";
+import { CancelSubscriptionRequest, SubscriptionDetailResponse } from "@/types/subscription/subscription";
+import apiClient from "@/services/axios";
 
 export const subscriptionService = {
 

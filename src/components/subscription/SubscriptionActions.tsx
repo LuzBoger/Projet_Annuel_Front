@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { SubscriptionDetailResponse } from '../../types/subscription/subscription';
-import { Button } from '../ui/Button';
+import { SubscriptionDetailResponse } from '@/types/subscription/subscription';
+import { Button } from '@/components/ui/Button';
 
 interface SubscriptionActionsProps {
     subscription: SubscriptionDetailResponse;

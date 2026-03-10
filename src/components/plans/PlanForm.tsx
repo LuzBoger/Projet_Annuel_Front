@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
-import { PlanResponse } from "../../types/plan/plan";
-import { CreatePlanFormData, createPlanSchema } from "../../validations/plans/createPlanSchema";
-import { UpdatePlanFormData, updatePlanSchema } from "../../validations/plans/updatePlanSchema";
+import { PlanResponse } from "@/types/plan/plan";
+import { CreatePlanFormData, createPlanSchema } from "@/validations/plans/createPlanSchema";
+import { UpdatePlanFormData, updatePlanSchema } from "@/validations/plans/updatePlanSchema";
 import { Resolver, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
-import { FormField } from "../ui/FormField";
-import { Select } from "../ui/Select";
-import { PaymentInterval } from "../../types/payment/payment";
-import { Button } from "../ui/Button";
+import { FormField } from "@/components/ui/FormField";
+import { Select } from "@/components/ui/Select";
+import { PaymentInterval } from "@/types/payment/payment";
+import { Button } from "@/components/ui/Button";
 
 interface PlanFormProps {
     plan?: PlanResponse | null;

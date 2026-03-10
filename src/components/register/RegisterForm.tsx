@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import type { RegisterRequest } from "../../types/auth/register";
-import { registerSchema, type RegisterFormData } from "../../validations/auth/registerSchema";
-import { FormField } from "../ui/FormField";
-import { Button } from "../ui/Button";
+import type { RegisterRequest } from "@/types/auth/register";
+import { registerSchema, type RegisterFormData } from "@/validations/auth/registerSchema";
+import { FormField } from "@/components/ui/FormField";
+import { Button } from "@/components/ui/Button";
 
 interface RegisterFormProps {
     onSubmit: (data: RegisterRequest) => Promise<void>;

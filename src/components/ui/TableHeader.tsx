@@ -1,4 +1,4 @@
-import { TableColumn } from "../../types/components/tableColumn";
+import { TableColumn } from "@/types/components/tableColumn";
 
 
 interface TableHeaderProps {

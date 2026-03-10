@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { ErrorResponse, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
-import { AdminLoginRequest } from "../../../types/auth/login";
+import { AdminLoginRequest } from "@/types/auth/login";
 import { AxiosError } from "axios";
-import { AuthenticationLayout } from "../../../components/layouts/AuthenticationLayout";
-import { AdminLoginForm } from "../../../components/login/AdminLoginForm";
+import { AuthenticationLayout } from "@/components/layouts/AuthenticationLayout";
+import { AdminLoginForm } from "@/components/login/AdminLoginForm";
 
 export default function AdminLogin() {
 

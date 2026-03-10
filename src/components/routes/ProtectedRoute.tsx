@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import { RoleEnum } from "../../types/enum/roles";
+import { useAuth } from "@/hooks/useAuth";
+import { RoleEnum } from "@/types/enum/roles";
 
 export function ProtectedRoute({ children, isAdmin }: Readonly<{ children: React.ReactNode, isAdmin?: boolean }>) {
     const { isAuthenticated, isLoading, user } = useAuth();

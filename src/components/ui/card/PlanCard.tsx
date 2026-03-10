@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { PlanResponse } from "../../../types/plan/plan";
-import { getFormatForCurrency } from "../../../lib/utils/currency";
-import { Button } from "../Button";
-import BadgeActive from "../BadgeActive";
+import { PlanResponse } from "@/types/plan/plan";
+import { getFormatForCurrency } from "@/lib/utils/currency";
+import { Button } from "@/components/ui/Button";
+import BadgeActive from "@/components/ui/BadgeActive";
 
 interface PlanCardProps {
     plan: PlanResponse;

@@ -1,6 +1,6 @@
-import { PaymentInterval } from "../types/payment/payment";
-import { CreatePlanRequest, PlanResponse, UpdatePlanRequest } from "../types/plan/plan";
-import apiClient from "./axios";
+import { PaymentInterval } from "@/types/payment/payment";
+import { CreatePlanRequest, PlanResponse, UpdatePlanRequest } from "@/types/plan/plan";
+import apiClient from "@/services/axios";
 
 export const planService = {
 

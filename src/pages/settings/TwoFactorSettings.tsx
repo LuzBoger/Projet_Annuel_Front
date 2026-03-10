@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
-import type { Enable2FAResponse } from "../../types/auth/twoFactor";
-import type { ErrorResponse } from "../../types/api/response";
+import type { Enable2FAResponse } from "@/types/auth/twoFactor";
+import type { ErrorResponse } from "@/types/api/response";
 import type { AxiosError } from "axios";
-import type { TwoFactorCodeFormData } from "../../validations/auth/twoFactorCodeSchema";
-import { Button } from "../../components/ui/Button";
-import { Enable2FA } from "../../components/settings/twofactor/Enable2FA";
-import { Disabled2FA } from "../../components/settings/twofactor/Disabled2FA";
+import type { TwoFactorCodeFormData } from "@/validations/auth/twoFactorCodeSchema";
+import { Button } from "@/components/ui/Button";
+import { Enable2FA } from "@/components/settings/twofactor/Enable2FA";
+import { Disabled2FA } from "@/components/settings/twofactor/Disabled2FA";
 
 export default function TwoFactorSettings() {
     const { t } = useTranslation();
