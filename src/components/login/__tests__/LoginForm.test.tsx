@@ -1,7 +1,7 @@
 import {  beforeEach, describe, expect, it, vi } from "vitest";
-import i18n from "../../../i18n/i18n";
-import { renderWithProviders } from "../../../test/renderWithProviders";
-import { LoginForm } from "../LoginForm";
+import i18n from "@/i18n/i18n";
+import { renderWithProviders } from "@/test/renderWithProviders";
+import { LoginForm } from "@/components/login/LoginForm";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 

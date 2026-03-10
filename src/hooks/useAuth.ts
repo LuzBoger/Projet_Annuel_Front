@@ -1,9 +1,9 @@
 import { useCallback, useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
-import { authService } from "../services/authService";
-import type { LoginRequest } from "../types/auth/login";
-import type { RegisterRequest } from "../types/auth/register";
-import type { Enable2FARequest, Enable2FAResponse, Verify2FASetupRequest } from "../types/auth/twoFactor";
+import { AuthContext } from "@/contexts/AuthContext";
+import { authService } from "@/services/authService";
+import type { AdminLoginRequest, LoginRequest } from "@/types/auth/login";
+import type { RegisterRequest } from "@/types/auth/register";
+import type { Enable2FARequest, Enable2FAResponse, Verify2FASetupRequest } from "@/types/auth/twoFactor";
 
 export function useAuth() {
     const context = useContext(AuthContext);
@@ -29,6 +29,11 @@ export function useAuth() {
         return { required2FA: false };
     }, [setState, fetchUser]);
 
+    const adminLogin = useCallback(async (data: AdminLoginRequest) => {
+        await authService.adminLogin(data);
+        await fetchUser();
+    }, [fetchUser]);
+    
     const register = useCallback(async (data: RegisterRequest) => {
         const response = await authService.register(data);
         return response;
@@ -69,5 +74,5 @@ export function useAuth() {
         await fetchUser();
     }, [fetchUser]);
 
-    return { ...state, login, register, logout, verify2FA, enable2FA, verify2FASetup, disable2FA, fetchUser };
+    return { ...state, login, adminLogin, register, logout, verify2FA, enable2FA, verify2FASetup, disable2FA, fetchUser };
 }

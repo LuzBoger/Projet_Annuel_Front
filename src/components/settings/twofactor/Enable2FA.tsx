@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { twoFactorCodeSchema, type TwoFactorCodeFormData } from "../../../validations/auth/twoFactorCodeSchema";
+import { twoFactorCodeSchema, type TwoFactorCodeFormData } from "@/validations/auth/twoFactorCodeSchema";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "../../ui/Button";
-import { CodeInput } from "../../ui/CodeInput";
+import { Button } from "@/components/ui/Button";
+import { CodeInput } from "@/components/ui/CodeInput";
 import { QRCodeSVG } from "qrcode.react";
 
 interface Enable2FAProps {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { AuthContextType, AuthState } from "../types/auth/context";
-import { authService } from "../services/authService";
-import { AuthContext } from "./AuthContext";
+import type { AuthContextType, AuthState } from "@/types/auth/context";
+import { authService } from "@/services/authService";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const initialAuthState: AuthState = {
     user: null,

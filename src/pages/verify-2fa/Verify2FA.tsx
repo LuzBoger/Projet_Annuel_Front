@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, Navigate, useNavigate, type ErrorResponse } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "../../hooks/useAuth";
-import type { TwoFactorCodeFormData } from "../../validations/auth/twoFactorCodeSchema";
+import { useAuth } from "@/hooks/useAuth";
+import type { TwoFactorCodeFormData } from "@/validations/auth/twoFactorCodeSchema";
 import type { AxiosError } from "axios";
-import { AuthenticationLayout } from "../../components/layouts/AuthenticationLayout";
-import { Verify2FAForm } from "../../components/verify-2fa/Verify2FAForm";
+import { AuthenticationLayout } from "@/components/layouts/AuthenticationLayout";
+import { Verify2FAForm } from "@/components/verify-2fa/Verify2FAForm";
 
 export default function Verify2FA() {
     const { t } = useTranslation();

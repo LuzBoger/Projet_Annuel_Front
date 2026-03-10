@@ -1,12 +1,12 @@
-import type { AccountInfoResponse } from "../types/account";
-import type { ApiResponse } from "../types/api/response";
-import type { ForgotPasswordRequest } from "../types/auth/forgotPassword";
-import type { LoginRequest, LoginResponse } from "../types/auth/login";
-import type { RefreshTokenResponse } from "../types/auth/refreshToken";
-import type { RegisterResponse, RegisterRequest } from "../types/auth/register";
-import type { ResetPasswordRequest } from "../types/auth/resetPassword";
-import type { Disable2FARequest, Enable2FARequest, Enable2FAResponse, Verify2FARequest, Verify2FASetupRequest } from "../types/auth/twoFactor";
-import apiClient from "./axios";
+import type { AccountInfoResponse } from "@/types/account";
+import type { ApiResponse } from "@/types/api/response";
+import type { ForgotPasswordRequest } from "@/types/auth/forgotPassword";
+import type { AdminLoginRequest, AdminLoginResponse, LoginRequest, LoginResponse } from "@/types/auth/login";
+import type { RefreshTokenResponse } from "@/types/auth/refreshToken";
+import type { RegisterResponse, RegisterRequest } from "@/types/auth/register";
+import type { ResetPasswordRequest } from "@/types/auth/resetPassword";
+import type { Disable2FARequest, Enable2FARequest, Enable2FAResponse, Verify2FARequest, Verify2FASetupRequest } from "@/types/auth/twoFactor";
+import apiClient from "@/services/axios";
 
 export const authService = {
 
@@ -15,6 +15,10 @@ export const authService = {
         return response.data;
     },
 
+    async adminLogin(data: AdminLoginRequest): Promise<AdminLoginResponse> {
+        const response = await apiClient.post<AdminLoginResponse>('/auth/admin/login', data);
+        return response.data;
+    },
     async register(data: RegisterRequest) : Promise<RegisterResponse> {
         const response = await apiClient.post<RegisterResponse>('/auth/register', data);
         return response.data;

@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
-import type { LoginRequest } from "../../types/auth/login";
+import type { LoginRequest } from "@/types/auth/login";
 import { useTranslation } from "react-i18next";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginSchema } from "../../validations/auth/loginSchema";
-import { FormField } from "../ui/FormField";
+import { loginSchema } from "@/validations/auth/loginSchema";
+import { FormField } from "@/components/ui/FormField";
 import { Link } from "react-router-dom";
-import { Button } from '../ui/Button';
+import { Button } from '@/components/ui/Button';
 
 interface LoginFormProps {
     onSubmit: (data: LoginRequest) => Promise<void>;

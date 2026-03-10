@@ -2,8 +2,8 @@ import { useTranslation } from "react-i18next";
 import { resetPasswordSchema, type ResetPasswordFormData } from "../../validations/auth/resetPasswordSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/src/index.js";
-import { FormField } from "../ui/FormField";
-import { Button } from "../ui/Button";
+import { FormField } from "@/components/ui/FormField";
+import { Button } from "@/components/ui/Button";
 
 interface ResetPasswordFormProps {
     onSubmit: (data: ResetPasswordFormData) => Promise<void>;

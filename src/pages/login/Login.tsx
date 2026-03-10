@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../hooks/useAuth';
-import type { LoginRequest } from '../../types/auth/login';
-import { AuthenticationLayout } from '../../components/layouts/AuthenticationLayout';
-import { LoginForm } from '../../components/login/LoginForm';
+import { useAuth } from '@/hooks/useAuth';
+import type { LoginRequest } from '@/types/auth/login';
+import { AuthenticationLayout } from '@/components/layouts/AuthenticationLayout';
+import { LoginForm } from '@/components/login/LoginForm';
 import { useState } from 'react';
 import type { AxiosError } from 'axios';
-import type { ErrorResponse } from '../../types/api/response';
+import type { ErrorResponse } from '@/types/api/response';
 
 export default function Login() {
   const { t } = useTranslation();

@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
-import { twoFactorCodeSchema, type TwoFactorCodeFormData } from "../../../validations/auth/twoFactorCodeSchema";
+import { twoFactorCodeSchema, type TwoFactorCodeFormData } from "@/validations/auth/twoFactorCodeSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
-import { Button } from "../../ui/Button";
-import { CodeInput } from "../../ui/CodeInput";
+import { Button } from "@/components/ui/Button";
+import { CodeInput } from "@/components/ui/CodeInput";
 
 interface Disabled2FAProps {
     onDisable: (data: TwoFactorCodeFormData) => Promise<void>;
