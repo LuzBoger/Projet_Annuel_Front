@@ -21,6 +21,7 @@ import { AdminLayout } from '@/layout/AdminLayout'
 import { CheckoutLayout } from '@/layout/CheckoutLayout'
 import AdminLogin from '@/pages/admin/login/AdminLogin'
 import LanguageList from '@/pages/admin/languages/LanguageList'
+import TopicList from '@/pages/admin/topics/TopicList'
 import AdminDashboard from '@/pages/admin/dashboard/AdminDashboard'
 import { Header } from '@/components/layout/Header'
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="plans" element={<PlansManage />} />
           <Route path="subscriptions" element={<SubscriptionsManage />} />
           <Route path="languages" element={<LanguageList />} />
+          <Route path="topics" element={<TopicList />} />
         </Route>
         <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
           <Route path="success" element={<CheckoutSuccess />} />

@@ -235,6 +235,50 @@
         "select_placeholder": "Select a language",
         "flag_preview": "Flag Preview:"
       }
+    },
+    "topics": {
+      "page_title": "Topics management",
+      "create": "Create a topic",
+      "edit": "Edit topic",
+      "delete_title": "Delete topic",
+      "delete_desc": "Are you sure you want to delete this topic? This action cannot be undone.",
+      "create_success": "Topic created successfully.",
+      "update_success": "Topic updated successfully.",
+      "delete_success": "Topic deleted successfully.",
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "difficulty": "Difficulty",
+        "language": "Language",
+        "order": "Order",
+        "active": "Active",
+        "actions": "Actions"
+      },
+      "filters": {
+        "search_name": "Search by name...",
+        "all_difficulties": "All difficulties",
+        "status_all": "All statuses",
+        "status_active": "Active only",
+        "status_inactive": "Inactive only"
+      },
+      "form": {
+        "language": "Language",
+        "language_placeholder": "Select a language",
+        "name": "Topic name",
+        "description": "Description",
+        "difficulty": "Proficiency Level",
+        "difficulty_placeholder": "Select a level",
+        "order": "Sorting index",
+        "active": "Active topic",
+        "levels": {
+          "A1": "A1 - Beginner",
+          "A2": "A2 - Elementary",
+          "B1": "B1 - Intermediate",
+          "B2": "B2 - Upper Intermediate",
+          "C1": "C1 - Advanced",
+          "C2": "C2 - Proficient"
+        }
+      }
     }
   },
   "payment": {

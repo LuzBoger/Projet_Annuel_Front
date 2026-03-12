@@ -235,6 +235,50 @@
         "select_placeholder": "Sélectionnez une langue",
         "flag_preview": "Aperçu du Drapeau :"
       }
+    },
+    "topics": {
+      "page_title": "Gestion des topics",
+      "create": "Créer un topic",
+      "edit": "Modifier le topic",
+      "delete_title": "Supprimer le topic",
+      "delete_desc": "Êtes-vous sûr de vouloir supprimer ce topic ? Cette action est irréversible.",
+      "create_success": "Topic créé avec succès.",
+      "update_success": "Topic mis à jour avec succès.",
+      "delete_success": "Topic supprimé avec succès.",
+      "table": {
+        "name": "Nom",
+        "description": "Description",
+        "difficulty": "Difficulté",
+        "language": "Langue",
+        "order": "Ordre",
+        "active": "Actif",
+        "actions": "Actions"
+      },
+      "filters": {
+        "search_name": "Rechercher par nom...",
+        "all_difficulties": "Toutes les difficultés",
+        "status_all": "Tous les statuts",
+        "status_active": "Actifs uniquement",
+        "status_inactive": "Inactifs uniquement"
+      },
+      "form": {
+        "language": "Langue",
+        "language_placeholder": "Sélectionnez une langue",
+        "name": "Nom du topic",
+        "description": "Description",
+        "difficulty": "Niveau de difficulté",
+        "difficulty_placeholder": "Sélectionnez un niveau",
+        "order": "Index de tri",
+        "active": "Topic actif",
+        "levels": {
+          "A1": "A1 - Débutant",
+          "A2": "A2 - Élémentaire",
+          "B1": "B1 - Intermédiaire",
+          "B2": "B2 - Intermédiaire supérieur",
+          "C1": "C1 - Avancé",
+          "C2": "C2 - Expérimenté"
+        }
+      }
     }
   },
   "payment": {

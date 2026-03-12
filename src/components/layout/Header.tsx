@@ -70,6 +70,9 @@ export function Header() {
                                         <Link to="/admin/subscriptions" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
                                             {t("admin.subscriptions.title", "Abonnements")}
                                         </Link>
+                                        <Link to="/admin/topics" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
+                                            {t("admin.topics.page_title", "Topics")}
+                                        </Link>
                                     </div>
                                 )}
                             </>

@@ -1,6 +1,7 @@
 import SubscriptionsManage from "@/pages/admin/subscriptions/SubscriptionsManage";
 import PlansManage from "@/pages/admin/plans/PlansManage";
 import LanguageList from "@/pages/admin/languages/LanguageList";
+import TopicList from "@/pages/admin/topics/TopicList";
 
 export default function AdminDashboard() {
     return (
@@ -9,6 +10,7 @@ export default function AdminDashboard() {
             <SubscriptionsManage />
             <PlansManage />
             <LanguageList />
+            <TopicList />
         </div>
     );
 }

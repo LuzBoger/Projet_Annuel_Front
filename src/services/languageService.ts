@@ -8,6 +8,11 @@ export const languageService = {
         return response.data;
     },
 
+    async getAllActiveLanguages(): Promise<LanguageResponse[]> {
+        const response = await apiClient.get<LanguageResponse[]>('/languages/active');
+        return response.data;
+    },
+
     async getLanguageById(id: string): Promise<LanguageResponse> {
         const response = await apiClient.get<LanguageResponse>(`/languages/${id}`);
         return response.data;
