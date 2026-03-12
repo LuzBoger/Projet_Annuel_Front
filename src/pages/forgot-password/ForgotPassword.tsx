@@ -34,7 +34,11 @@ export default function ForgotPassword() {
 
 
     return (
-        <AuthenticationLayout title={t('auth.forgot_password.title')}>
+        <AuthenticationLayout 
+            title={t('auth.forgot_password.title')}
+            illustrationTitle={<>{t('auth.illustrations.forgot_password.title_start')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-300">{t('auth.illustrations.forgot_password.title_highlight')}</span></>}
+            illustrationDescription={t('auth.illustrations.forgot_password.description')}
+        >
             {passwordExpired && (
         <div className="mb-4 p-4 rounded-md bg-amber-50 border border-amber-200 text-amber-800 text-sm">
           <p>{t('error.auth.password_expired')}</p>

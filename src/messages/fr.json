@@ -19,7 +19,8 @@
       "submit": "Se connecter",
       "forgot_password": "Mot de passe oublié ?",
       "no_account": "Pas encore de compte ?",
-      "create_account": "Créer un compte"
+      "create_account": "Créer un compte",
+      "secretKey": "Clé secrète"
     },
     "register": {
       "title": "Créer un compte",
@@ -62,6 +63,34 @@
       "title": "Authentification à deux facteurs",
       "description": "Entrez le code à 6 chiffres de votre application d'authentification.",
       "submit": "Vérifier"
+    },
+    "logout": "Déconnexion",
+    "illustrations": {
+      "default": {
+        "title_start": "Maîtrisez les langues avec ",
+        "title_highlight": "l'Intelligence Artificielle",
+        "description": "S'appuyant sur des décennies de recherche en sciences cognitives pour graver le vocabulaire dans votre mémoire à long terme."
+      },
+      "register": {
+        "title_start": "Rejoignez la révolution de ",
+        "title_highlight": "l'apprentissage",
+        "description": "Vos données personnelles sont confidentielles et ne seront jamais partagées à un tiers. Votre progression vous appartient."
+      },
+      "login": {
+        "title_start": "De retour dans votre espace ",
+        "title_highlight": "d'apprentissage",
+        "description": "Retrouvez votre progression, vos statistiques et vos révisions personnalisées en un seul endroit."
+      },
+      "forgot_password": {
+        "title_start": "Sécurité de votre ",
+        "title_highlight": "compte",
+        "description": "Jamais GlotRush ne vous demandera un identifiant personnel ou votre mot de passe par e-mail ou par téléphone."
+      },
+      "admin": {
+        "title_start": "Espace ",
+        "title_highlight": "Administration",
+        "description": "Cet espace est strictement réservé à la gestion et au paramétrage de la plateforme GlotRush."
+      }
     }
   },
   "subscription": {
@@ -202,7 +231,9 @@
         "code": "Code sélectionné",
         "name": "Libellé affiché",
         "order": "Index de tri",
-        "active": "Langue active"
+        "active": "Langue active",
+        "select_placeholder": "Sélectionnez une langue",
+        "flag_preview": "Aperçu du Drapeau :"
       }
     }
   },
@@ -352,5 +383,73 @@
   "next": "Suivant",
   "previous": "Précédent",
   "empty": "Aucune donnée disponible",
-  "token": "Jeton"
+  "token": "Jeton",
+  "home": {
+    "hero": {
+      "title_start": "Maîtrisez une langue avec ",
+      "title_highlight": "l'Intelligence Artificielle",
+      "description": "GlotRush s'appuie sur la science cognitive et des algorithmes de pointe pour créer le parcours d'apprentissage absolu. Répétition espacée, leçons sur-mesure et immersion totale.",
+      "logged_in_as": "Connecté en tant que ",
+      "continue_learning": "Continuer mon apprentissage"
+    },
+    "features": {
+      "scientific": {
+        "title": "Apprentissage Scientifique",
+        "description": "Nos leçons sont fondées sur des études cognitives prouvées. La répétition espacée garantit une mémorisation gravée sur le long terme."
+      },
+      "ai": {
+        "title": "IA Omniprésente",
+        "description": "Une pédagogie qui s'adapte en temps réel. L'intelligence artificielle évalue vos faiblesses et génère le contenu parfait pour vous faire progresser."
+      },
+      "variety": {
+        "title": "Dispositifs Variés",
+        "description": "Une multitude d'exercices interactifs et variés, conçus spécifiquement pour maximiser la rétention linguistique et l'immersion totale."
+      }
+    },
+    "science": {
+      "title": "Prouvé par la science",
+      "subtitle": "L'efficacité de nos dispositifs s'appuie sur des décennies de recherche en sciences cognitives et en linguistique.",
+      "spaced_repetition": {
+        "title": "1. Cartes Mémoire & Effet d'Espacement",
+        "description": "Sans révision, le cerveau oublie naturellement 78% des informations (la courbe de l'oubli d'Ebbinghaus). La répétition espacée force le rappel actif juste avant l'oubli, maximisant la mémorisation grâce à la \"potentialisation à long terme\".",
+        "stat1": "+200% à +400%",
+        "stat1_desc": " d'amélioration par rapport au \"bachotage\".",
+        "chart_title": "Taux de rétention à 1 an",
+        "classic": "Apprentissage Classique",
+        "glotrush": "Apprentissage Espacé (GlotRush)"
+      },
+      "dual_coding": {
+        "title": "2. Paires Visuelles & Théorie du Double Codage",
+        "description": "Traiter l'information simultanément par les canaux visuel et verbal (comme dans les jeux d'association de paires) crée de multiples chemins de récupération dans le cerveau.",
+        "stat1": "Diminution de la surcharge cognitive.",
+        "stat2": "+65%",
+        "stat2_desc": " de rétention par rapport au texte sans contexte visuel (Paivio, 1971).",
+        "chart_title": "Voies de Mémorisation",
+        "text_only": "Texte Seul",
+        "dual_coding": "Double Codage"
+      },
+      "testing_effect": {
+        "title": "3. QCM & Effet de Test",
+        "description": "La pratique de récupération (Retrieval Practice) est supérieure à l'étude passive. Les QCM bien calibrés obligent à discriminer l'information, consolidant directement la trace en mémoire, bien au-delà de la simple évaluation.",
+        "stat1_start": "Accès au vocabulaire jusqu'à ",
+        "stat1_highlight": "340%",
+        "stat1_end": " plus rapide.",
+        "chart_title": "Vitesse d'accès mémoriel gagnée",
+        "chart_desc": "grâce aux quizz récurrents"
+      },
+      "chunking": {
+        "title": "4. Tri Conceptuel & Chunking",
+        "description": "La mémoire de travail naturelle plafonne autour de 7 éléments (Loi de Miller). Les exercices de tri obligent un encodage sémantique fort (par le sens de la catégorie), ce qui permet de grouper les informations (Chunking).",
+        "stat1": "Transfère l'information de la mémoire courte saturée vers la mémoire sémantique structurée.",
+        "chunk_word": "CHUNK"
+      },
+      "sources": {
+        "title": "Sources & Références d'Études :",
+        "source1": "(1885). Memory: A Contribution to Experimental Psychology. L'effet d'espacement (Spacing Effect) retient systématiquement l'oubli à des taux de 80%+ contre moins de 25% sans rappels.",
+        "source2": "(1971). Imagery and verbal processes. La théorie du double codage. Les preuves démontrent que les paires text-imagery stimulent les chemins mnésiques croisés.",
+        "source3": "(2006). Test-enhanced learning. L'application du QCM (\"Testing Effect\") produit de meilleures capacités de récupération que le simple temps de relecture.",
+        "source4": "(1956). The magical number seven, plus or minus two, and Semantic Encoding (Craik & Lockhart, 1972). Le chunking modifie la hiérarchie du stockage mental vis-à-vis des apprentissages linguistiques."
+      }
+    }
+  }
 }

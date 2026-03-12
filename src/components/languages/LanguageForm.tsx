@@ -4,10 +4,10 @@ import { CreateLanguageRequest, LanguageResponse, UpdateLanguageRequest } from "
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
 import { Select } from "@/components/ui/Select";
-import { SelectOption } from "@/types/components/selectOption";
 import { Cross } from "@/assets/icons";
 import { Switch } from "@/components/ui/Switch";
 import { PREDEFINED_LANGUAGES } from "@/constants/languages";
+import { LanguageFlag } from "@/components/languages/LanguageFlag";
 
 interface LanguageFormProps {
     isOpen: boolean;
@@ -26,7 +26,7 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
     const [orderIndex, setOrderIndex] = useState<number>(0);
     const [isActive, setIsActive] = useState(true);
 
-    const languageOptions: SelectOption[] = PREDEFINED_LANGUAGES.map(lang => ({
+    const languageOptions = PREDEFINED_LANGUAGES.map(lang => ({
         label: `${lang.name} (${lang.code})`,
         value: lang.code,
     }));
@@ -91,6 +91,7 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                             options={languageOptions}
                             value={code}
                             onChange={handleLanguageChange}
+                            placeholder={t('admin.languages.form.select_placeholder')}
                             required
                         />
                     </div>
@@ -104,6 +105,16 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                             required
                         />
                     </div>
+                    
+                    {code && (
+                        <div className="flex items-center space-x-4 p-3 bg-gray-50 border border-gray-100 rounded-md">
+                            <span className="text-sm font-medium text-gray-500 whitespace-nowrap">{t('admin.languages.form.flag_preview')}</span>
+                            <div className="flex items-center space-x-2">
+                                <LanguageFlag languageCode={code} className="w-8 h-8 rounded shadow-sm object-cover" />
+                                <span className="text-gray-900 font-medium">{name}</span>
+                            </div>
+                        </div>
+                    )}
                     
                     <div>
                         <FormField

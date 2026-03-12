@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { hasRole } from "@/lib/utils/roles";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/Button";
 import { User, ChevronDown } from "@/assets/icons";
 
 export function Header() {
@@ -80,18 +79,14 @@ export function Header() {
                     {/* Right side Buttons */}
                     <div className="flex items-center space-x-4">
                         {!isAuthenticated ? (
-                            <>
-                                <Link to="/login">
-                                    <Button variant="secondary" size="sm">
-                                        {t("auth.login", "Connexion")}
-                                    </Button>
+                            <div className="flex items-center space-x-8">
+                                <Link to="/login" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
+                                    {t("auth.login.title")}
                                 </Link>
-                                <Link to="/register">
-                                    <Button variant="primary" size="sm">
-                                        {t("auth.register", "S'inscrire")}
-                                    </Button>
+                                <Link to="/register" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
+                                    {t("auth.register.title")}
                                 </Link>
-                            </>
+                            </div>
                         ) : (
                             <div className="relative" ref={dropdownRef}>
                                 <button
@@ -123,7 +118,7 @@ export function Header() {
                                             }}
                                             className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors border-t border-gray-100"
                                         >
-                                            {t("auth.logout", "Déconnexion")}
+                                            {t("auth.logout")}
                                         </button>
                                     </div>
                                 )}

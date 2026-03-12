@@ -36,7 +36,11 @@ export default function AdminLogin() {
     };
 
      return (
-            <AuthenticationLayout title={t('auth.login.title')} >
+            <AuthenticationLayout 
+                title={t('auth.login.title')}
+                illustrationTitle={<>{t('auth.illustrations.admin.title_start')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">{t('auth.illustrations.admin.title_highlight')}</span></>}
+                illustrationDescription={t('auth.illustrations.admin.description')}
+            >
               {error && (
                 <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
                     <p>{error}</p>

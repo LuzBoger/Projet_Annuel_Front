@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/Switch";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { LanguageForm } from "@/components/languages/LanguageForm";
 import { TableActions } from "@/components/ui/TableActions";
+import { LanguageFlag } from "@/components/languages/LanguageFlag";
 
 export default function LanguageList() {
     const { t } = useTranslation();
@@ -103,7 +104,7 @@ export default function LanguageList() {
     };
 
     return (
-        <div className="max-w-6xl mx-auto p-6">
+        <div className="w-full space-y-6">
             <div className="flex items-center justify-between mb-6">
                 <h1 className="text-2xl font-bold text-indigo-900">
                     {t('admin.languages.page_title')}
@@ -125,7 +126,12 @@ export default function LanguageList() {
                 keyExtractor={(lang) => lang.id}
                 renderRow={(lang) => (
                     <>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-b border-gray-200">{lang.code.toUpperCase()}</td>
+                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
+                            <div className="flex items-center space-x-3">
+                                <LanguageFlag languageCode={lang.code} className="w-6 h-6 rounded-sm shadow-sm" />
+                                <span className="text-sm font-medium text-gray-900">{lang.code.toUpperCase()}</span>
+                            </div>
+                        </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{lang.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{lang.orderIndex}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
