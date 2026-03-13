@@ -11,3 +11,5 @@ export const paymentStatusColors: Record<string, string> = {
     FAILED: 'bg-red-100 text-red-800',
     REFUNDED: 'bg-blue-100 text-blue-800',
 }
+
+export const PIE_CHART_COLORS = ['#94a3b8', '#4f46e5'];

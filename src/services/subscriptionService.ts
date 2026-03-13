@@ -3,6 +3,7 @@ import { ChangePlanRequest, SubscribePlanRequest } from "@/types/plan/plan";
 import { CheckoutStripeResponse } from "@/types/stripe/stripe";
 import { CancelSubscriptionRequest, SubscriptionDetailResponse } from "@/types/subscription/subscription";
 import apiClient from "@/services/axios";
+import { SubscriptionStats } from "@/types/subscription/stats";
 
 export const subscriptionService = {
 
@@ -55,4 +56,9 @@ export const subscriptionService = {
         const response = await apiClient.post<CheckoutStripeResponse>('/subscriptions/subscribe', data);
         return response.data;
     },
+
+    async getSubscriptionStats(): Promise<SubscriptionStats> {
+        const response = await apiClient.get<SubscriptionStats>('/subscriptions/stats');
+        return response.data;
+    }
 }

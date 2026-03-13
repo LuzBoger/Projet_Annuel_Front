@@ -7,11 +7,14 @@ import { Table } from "@/components/ui/Table";
 import { Button } from "@/components/ui/Button";
 import { SubscriptionModal } from "@/components/subscription/SubscriptionModal";
 import { CancelSubscriptionModal } from "@/components/subscription/CancelSubscriptionModal";
+import { SubscriptionPieChart } from "@/components/subscription/pieChart/SubscriptionPieChart";
+import { SubscriptionBarChart } from "@/components/subscription/barChart/SubscriptionBarChart";
+import { SubscriptionStats } from "@/components/subscription/SubscriptionStats";
 
 export default function SubscriptionsManage() {
     const {t, i18n } = useTranslation();
     const locale = i18n.language;
-    const { subscriptions, loading, error, fetchAllSubscriptions, cancelSubscriptionByAdmin } = useSubscription();
+    const { subscriptions, subscriptionStats, loading, error, fetchAllSubscriptions, cancelSubscriptionByAdmin, fetchSubscriptionStats } = useSubscription();
     const [selectedSubscription, setSelectedSubscription] = useState<SubscriptionDetailResponse | null>(null);
     const [showCancelModal, setShowCancelModal] = useState(false);
     const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -19,7 +22,8 @@ export default function SubscriptionsManage() {
 
     useEffect(() => {
         fetchAllSubscriptions();
-    }, [fetchAllSubscriptions]);
+        fetchSubscriptionStats();
+    }, [fetchAllSubscriptions, fetchSubscriptionStats]);
 
     const handleViewDetails = (subscription: SubscriptionDetailResponse, accountId: string) => {
         setSelectedSubscription(subscription);
@@ -66,6 +70,20 @@ export default function SubscriptionsManage() {
                     <p>{error}</p>
                 </div>
             )}
+
+            {subscriptionStats && (
+                <>
+                    <SubscriptionStats stats={subscriptionStats} />
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
+                        <SubscriptionBarChart
+                            monthly={subscriptionStats.subscriptionsByMonth}
+                            yearly={subscriptionStats.subscriptionsByYear}
+                        />
+                        <SubscriptionPieChart data={subscriptionStats.subscriptionsByPlan} />
+                    </div>
+                </>
+            )}
+
             <Table<SubscriptionDetailResponse>
                 columns={colums}
                 data={subscriptions}
