@@ -1,16 +1,65 @@
 import type { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Brain, Sparkles, BookOpen } from '@/assets/icons';
 
 interface AuthenticationLayoutProps {
   children: ReactNode;
   title: string;
+  illustrationTitle?: ReactNode;
+  illustrationDescription?: ReactNode;
 }
 
-export function AuthenticationLayout({ children, title }: AuthenticationLayoutProps) {
+export function AuthenticationLayout({ children, title, illustrationTitle, illustrationDescription }: AuthenticationLayoutProps) {
+  const { t } = useTranslation();
+
+  const defaultTitle = (
+    <>{t('auth.illustrations.default.title_start')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-300">{t('auth.illustrations.default.title_highlight')}</span></>
+  );
+  const defaultDesc = t('auth.illustrations.default.description');
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 py-8">
-      <div className="bg-white rounded-lg shadow-xl p-8 w-full max-w-md">
-        <h2 className="text-3xl font-bold text-indigo-900 mb-2 text-center">{title}</h2>
-        {children}
+    <div className="min-h-[calc(100vh-65px)] flex bg-white">
+      {/* Left Column: Form Content */}
+      <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:w-1/2 xl:w-5/12 mx-auto">
+        <div className="mx-auto w-full max-w-lg">
+          <div className="mb-10 text-center lg:text-left">
+            <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
+          </div>
+          
+          <div className="bg-white shadow-xl lg:shadow-none lg:bg-transparent rounded-2xl p-8 lg:p-0">
+            {children}
+          </div>
+        </div>
+      </div>
+
+      {/* Right Column: Visual Area (Hidden on small screens) */}
+      <div className="hidden lg:flex flex-1 relative bg-gradient-to-br from-indigo-900 via-indigo-800 to-purple-900 items-center justify-center overflow-hidden">
+        {/* Subtle Glow Effects */}
+        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-purple-500 blur-3xl opacity-20"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-indigo-500 blur-3xl opacity-20"></div>
+        
+        {/* Content Container */}
+        <div className="relative z-10 p-16 max-w-2xl text-center">
+            
+            <div className="flex justify-center space-x-8 mb-12">
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 shadow-2xl transform -rotate-6 transition-transform hover:rotate-0">
+                    <Brain className="w-8 h-8 text-indigo-300" />
+                </div>
+                <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 shadow-2xl transform translate-y-4 transition-transform hover:translate-y-0">
+                    <Sparkles className="w-10 h-10 text-purple-300" />
+                </div>
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 shadow-2xl transform rotate-6 transition-transform hover:rotate-0">
+                    <BookOpen className="w-8 h-8 text-indigo-300" />
+                </div>
+            </div>
+
+            <h1 className="text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
+                {illustrationTitle || defaultTitle}
+            </h1>
+            <p className="text-lg lg:text-xl text-indigo-100/80 font-medium leading-relaxed">
+                {illustrationDescription || defaultDesc}
+            </p>
+        </div>
       </div>
     </div>
   );

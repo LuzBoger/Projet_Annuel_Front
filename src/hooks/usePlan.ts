@@ -3,9 +3,11 @@ import { CreatePlanRequest, PlanResponse, UpdatePlanRequest } from "@/types/plan
 import { planService } from "@/services/planService";
 import { PaymentInterval } from "@/types/payment/payment";
 import { useTranslation } from "react-i18next";
+import { useToast } from "@/hooks/useToast";
 
 export function usePlan() {
     const { t } = useTranslation();
+    const { addToast } = useToast();
     const [plans, setPlans] = useState<PlanResponse[]>([]);
     const [plan, setPlan] = useState<PlanResponse | null>(null);
     const [loading, setLoading] = useState(true);
@@ -56,6 +58,7 @@ export function usePlan() {
         try {
             const response = await planService.createPlan(data);
             setPlans(prev => [...prev, response]);
+            addToast({ type: 'success', message: t('admin.plans.success.create', 'Plan créé avec succès') });
         } catch {
             setError(t('error.createPlan'));
         } finally {
@@ -69,6 +72,7 @@ export function usePlan() {
         try {
             const response = await planService.updatePlan(planId, data);
             setPlans(prev => prev.map(p => p.id === planId ? response : p));
+            addToast({ type: 'success', message: t('admin.plans.success.update', 'Plan mis à jour avec succès') });
         } catch {
             setError(t('error.updatePlan'));
         } finally {
@@ -82,6 +86,7 @@ export function usePlan() {
         try {
             await planService.deletePlan(planId);
             setPlans(prev => prev.filter(p => p.id !== planId));
+            addToast({ type: 'success', message: t('admin.plans.success.delete', 'Plan supprimé avec succès') });
         } catch {
             setError(t('error.deletePlan'));
         } finally {

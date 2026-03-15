@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { PlanResponse } from "@/types/plan/plan";
 import { CreatePlanFormData, createPlanSchema } from "@/validations/plans/createPlanSchema";
 import { UpdatePlanFormData, updatePlanSchema } from "@/validations/plans/updatePlanSchema";
-import { Resolver, useForm } from "react-hook-form";
+import { Resolver, useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { FormField } from "@/components/ui/FormField";
@@ -23,7 +23,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
     const { t } = useTranslation();
     const isEditPlan = !!plan;
 
-    const {register, handleSubmit, reset, setValue, watch, formState: { errors}} = useForm<CreatePlanFormData | UpdatePlanFormData>({
+    const {register, handleSubmit, reset, setValue, control, formState: { errors}} = useForm<CreatePlanFormData | UpdatePlanFormData>({
         resolver: yupResolver(isEditPlan ? updatePlanSchema(t) : createPlanSchema(t)) as Resolver<CreatePlanFormData | UpdatePlanFormData> ,
         defaultValues: {
             currency: 'EUR',
@@ -55,7 +55,9 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
     }
     }, [plan, reset])
 
-    const subscriptionType = watch('subscriptionType');
+        const subscriptionType = useWatch({ control, name: 'subscriptionType' });
+    const currency = useWatch({ control, name: 'currency' });
+    const paymentInterval = useWatch({ control, name: 'paymentInterval' });
     const isFree = subscriptionType === 'FREE';
 
     const subscriptionTypeOptions = [
@@ -103,7 +105,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                         {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>}
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-2 gap-4">
                         <FormField
                             id="price"
                             label={t('plans.form.price')}
@@ -115,7 +117,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                         <Select
                             id="currency"
                             label={t('plans.form.currency')}
-                            value={watch('currency') ?? 'EUR'}
+                            value={currency ?? 'EUR'}
                             options={currencyOption}
                             disabled={isLoading}
                             error={errors.currency?.message}
@@ -126,7 +128,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                     <Select
                         id="subscriptionType"
                         label={t('plans.form.subscription_type')}
-                        value={watch('subscriptionType') ?? 'FREE'}
+                        value={subscriptionType ?? 'FREE'}
                         options={subscriptionTypeOptions}
                         disabled={isLoading}
                         error={errors.subscriptionType?.message}
@@ -137,7 +139,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                         <Select
                             id="paymentInterval"
                             label={t('plans.form.payment_interval')}
-                            value={watch('paymentInterval') ?? 'MONTHLY'}
+                            value={paymentInterval ?? 'MONTHLY'}
                             options={paymentIntervalOptions}
                             disabled={isLoading}
                             error={errors.paymentInterval?.message}

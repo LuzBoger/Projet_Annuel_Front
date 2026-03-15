@@ -1,5 +1,6 @@
 import axios, { AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import type { RefreshTokenResponse } from '@/types/auth/refreshToken';
+import { globalEvents } from '@/lib/utils/eventEmitter';
 
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
@@ -60,6 +61,14 @@ apiClient.interceptors.response.use(
                 isRefreshing = false;
             }
         }
+
+        // Émission d'un Toast d'erreur global (ex: 403, 500, ou 400 validation)
+        const errorMessage = (error.response?.data as { message?: string })?.message || error.message || "Une erreur inattendue est survenue";
+        globalEvents.emit("SHOW_TOAST", {
+            type: "error",
+            message: errorMessage
+        });
+
         return Promise.reject(error);
     }
 );
