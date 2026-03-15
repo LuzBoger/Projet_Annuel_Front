@@ -45,7 +45,11 @@ export default function Login() {
   };
 
     return (
-        <AuthenticationLayout title={t('auth.login.title')} >
+        <AuthenticationLayout 
+            title={t('auth.login.title')}
+            illustrationTitle={<>{t('auth.illustrations.login.title_start')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-300">{t('auth.illustrations.login.title_highlight')}</span></>}
+            illustrationDescription={t('auth.illustrations.login.description')}
+        >
             {error && (
               <div className={`mb-4 rounded-md p-4 ${isAccountLocked ? 'bg-red-100 border border-red-400' : 'bg-red-50'}`}>
                 <p className={`text-sm ${isAccountLocked ? 'text-red-800 font-medium' : 'text-red-600'}`}>

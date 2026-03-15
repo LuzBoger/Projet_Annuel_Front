@@ -4,7 +4,7 @@ import { SubscriptionDetailResponse } from "@/types/subscription/subscription";
 import { useEffect, useState } from "react";
 import { TableColumn } from "@/types/components/tableColumn";
 import { Table } from "@/components/ui/Table";
-import { Button } from "@/components/ui/Button";
+import { TableActions } from "@/components/ui/TableActions";
 import { SubscriptionModal } from "@/components/subscription/SubscriptionModal";
 import { CancelSubscriptionModal } from "@/components/subscription/CancelSubscriptionModal";
 
@@ -56,7 +56,7 @@ export default function SubscriptionsManage() {
     ];
 
     return (
-               <div className="max-w-6xl mx-auto p-6">
+               <div className="w-full space-y-6">
             <h1 className="text-2xl font-bold text-indigo-900 mb-6">
                 {t('admin.subscriptions.title')}
             </h1>
@@ -77,25 +77,15 @@ export default function SubscriptionsManage() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{t(`subscription.status.${subscription.status.toLowerCase()}`)}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.startDate ? new Date(subscription.startDate).toLocaleDateString(locale) : '-'}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.endDate ? new Date(subscription.endDate).toLocaleDateString(locale) : '-'}</td>
-                        <td className="px-6 py-3 text-right">
-                            <div className="flex gap-2 justify-end">
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={() => handleViewDetails(subscription, subscription.accountId)}
-                                >
-                                    {t('common.view')}
-                                </Button>
-                                {subscription.status === 'ACTIVE' && (
-                                    <Button
-                                        variant="danger"
-                                        size="sm"
-                                        onClick={() => handleCancelSubscription(subscription, subscription.accountId)}
-                                    >
-                                        {t('common.cancel')}
-                                    </Button>
-                                )}
-                            </div>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
+                            <TableActions
+                                onView={() => handleViewDetails(subscription, subscription.accountId)}
+                                onCancelAction={
+                                    subscription.status === 'ACTIVE' 
+                                        ? () => handleCancelSubscription(subscription, subscription.accountId) 
+                                        : undefined
+                                }
+                            />
                         </td>
                     </>
                 )}

@@ -31,8 +31,12 @@ export default function Register() {
         }
     };
 
-     return (
-    <AuthenticationLayout title={t('auth.register.title')}>
+    return (
+    <AuthenticationLayout 
+      title={t('auth.register.title')}
+      illustrationTitle={<>{t('auth.illustrations.register.title_start')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">{t('auth.illustrations.register.title_highlight')}</span></>}
+      illustrationDescription={t('auth.illustrations.register.description')}
+    >
       <RegisterForm onSubmit={handleSubmit} isLoading={isLoading} />
 
       <div className="mt-6 text-center">

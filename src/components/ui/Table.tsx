@@ -46,20 +46,7 @@ export function Table<T>({data,columns,renderRow,keyExtractor,emptyMessage,initi
     <div
       className={`bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden ${className}`}
     >
-      {showControls && (
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <Select
-            label={t("show")}
-            value={itemsPerPage.toString()}
-            onChange={(val) => { setItemsPerPage(Number.parseInt(val, 10)); setCurrentPage(1); }}
-            options={pageSizeSelectOptions}
-            className="w-32"
-          />
-          <div className="text-sm text-gray-600">
-            {paginatedData.length} {t("of")} {data.length} {actualItemLabel}
-          </div>
-        </div>
-      )}
+      {/* Contenu principal */}
 
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
@@ -88,13 +75,34 @@ export function Table<T>({data,columns,renderRow,keyExtractor,emptyMessage,initi
         </table>
       </div>
 
-      {data.length > 0 && (
-        <Pagination
-          currentPage={safePage}
-          hasMore={safePage * itemsPerPage < data.length}
-          onNext={() => setCurrentPage((prev) => prev + 1)}
-          onPrev={() => setCurrentPage((prev) => prev - 1)}
-        />
+      {(showControls || data.length > 0) && (
+        <div className="flex flex-col sm:flex-row items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50 gap-4">
+          {/* Bloc Select (Nombre d'éléments affichés) */}
+          {showControls ? (
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-gray-500">{t("show")}</span>
+              <Select
+                value={itemsPerPage.toString()}
+                onChange={(val) => { setItemsPerPage(Number.parseInt(val, 10)); setCurrentPage(1); }}
+                options={pageSizeSelectOptions}
+                className="w-20"
+              />
+              <span className="text-sm text-gray-500">
+                {paginatedData.length} {t("of")} {data.length} {actualItemLabel}
+              </span>
+            </div>
+          ) : <div />}
+
+          {/* Bloc Pagination */}
+          {data.length > 0 && (
+            <Pagination
+              currentPage={safePage}
+              hasMore={safePage * itemsPerPage < data.length}
+              onNext={() => setCurrentPage((prev) => prev + 1)}
+              onPrev={() => setCurrentPage((prev) => prev - 1)}
+            />
+          )}
+        </div>
       )}
     </div>
   );

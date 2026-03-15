@@ -4,6 +4,7 @@ import Login from '@/pages/login/Login'
 import Register from '@/pages/register/Register'
 import './App.css'
 import { AuthProvider } from '@/contexts/AuthProvider'
+import { ToastProvider } from '@/contexts/ToastProvider'
 import ResetPassword from '@/pages/reset-password/ResetPassword'
 import ForgotPassword from '@/pages/forgot-password/ForgotPassword'
 import TwoFactorSettings from '@/pages/settings/TwoFactorSettings'
@@ -19,13 +20,21 @@ import { SettingsLayout } from '@/layout/SettingsLayout'
 import { AdminLayout } from '@/layout/AdminLayout'
 import { CheckoutLayout } from '@/layout/CheckoutLayout'
 import AdminLogin from '@/pages/admin/login/AdminLogin'
+import LanguageList from '@/pages/admin/languages/LanguageList'
+import TopicList from '@/pages/admin/topics/TopicList'
+import AdminDashboard from '@/pages/admin/dashboard/AdminDashboard'
+import { Header } from '@/components/layout/Header'
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-      <Routes>
-        <Route path="/" element={<Home />} />
+        <ToastProvider>
+          <div className="min-h-screen bg-gray-50 flex flex-col">
+            <Header />
+            <main className="flex-1">
+              <Routes>
+                <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -37,15 +46,21 @@ function App() {
           <Route path="two-factor" element={<TwoFactorSettings />} />
         </Route>
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+        <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
+          <Route index element={<AdminDashboard />} />
           <Route path="plans" element={<PlansManage />} />
           <Route path="subscriptions" element={<SubscriptionsManage />} />
+          <Route path="languages" element={<LanguageList />} />
+          <Route path="topics" element={<TopicList />} />
         </Route>
         <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
           <Route path="success" element={<CheckoutSuccess />} />
           <Route path="cancel" element={<CheckoutCancel />} />
         </Route>
       </Routes>
+            </main>
+          </div>
+        </ToastProvider>
       </AuthProvider>
     </BrowserRouter>
   )

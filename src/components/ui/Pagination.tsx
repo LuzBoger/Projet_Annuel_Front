@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { ChevronLeft, ChevronRight } from "@/assets/icons";
 
 interface PaginationProps {
   currentPage: number;
@@ -10,32 +11,33 @@ interface PaginationProps {
 export function Pagination({ currentPage, hasMore, onNext, onPrev }: PaginationProps) {
   const { t } = useTranslation('common.actions');
   return (
-    <div className="flex justify-center items-center gap-4 py-6">
-
+    <div className="flex justify-center items-center gap-2">
       <button
         onClick={onPrev}
         disabled={currentPage === 1}
         className={`
-          px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700
-          hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed
+          flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-200 bg-white text-sm font-medium text-gray-600
+          hover:bg-gray-50 hover:text-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed
         `}
       >
-        ◀ {currentPage > 1 ? currentPage - 1 : t("previous")}
+        <ChevronLeft className="w-4 h-4" />
+        <span className="hidden sm:inline">{t("previous", "Précédent")}</span>
       </button>
 
-      <span className="px-5 py-2 rounded-lg bg-blue-500 text-white font-semibold shadow-md">
+      <div className="flex items-center justify-center w-8 h-8 rounded-md bg-indigo-50 text-indigo-700 font-semibold text-sm border border-indigo-100">
         {currentPage}
-      </span>
+      </div>
 
       <button
         onClick={onNext}
         disabled={!hasMore}
         className={`
-          px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700
-          hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed
+          flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-200 bg-white text-sm font-medium text-gray-600
+          hover:bg-gray-50 hover:text-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed
         `}
       >
-        {hasMore ? currentPage + 1 : t("next")} ▶
+        <span className="hidden sm:inline">{t("next", "Suivant")}</span>
+        <ChevronRight className="w-4 h-4" />
       </button>
     </div>
   );

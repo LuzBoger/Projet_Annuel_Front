@@ -8,7 +8,8 @@
     "active": "Active",
     "view": "View",
     "edit": "Edit",
-    "back": "Back"
+    "back": "Back",
+    "save": "Save"
   },
   "auth": {
     "login": {
@@ -18,7 +19,8 @@
       "submit": "Sign in",
       "forgot_password": "Forgot password?",
       "no_account": "Don't have an account?",
-      "create_account": "Create an account"
+      "create_account": "Create an account",
+      "secretKey": "Secret Key"
     },
     "register": {
       "title": "Create an account",
@@ -61,6 +63,34 @@
       "title": "Two-factor authentication",
       "description": "Enter the 6-digit code from your authenticator app.",
       "submit": "Verify"
+    },
+    "logout": "Logout",
+    "illustrations": {
+      "default": {
+        "title_start": "Master languages with ",
+        "title_highlight": "Artificial Intelligence",
+        "description": "Drawing on decades of cognitive science research to etch vocabulary into your long-term memory."
+      },
+      "register": {
+        "title_start": "Join the learning ",
+        "title_highlight": "revolution",
+        "description": "Your personal data is strictly confidential and will never be shared with third parties. Your progress belongs to you."
+      },
+      "login": {
+        "title_start": "Welcome back to your ",
+        "title_highlight": "learning space",
+        "description": "Find your progress, statistics, and personalized reviews all in one place."
+      },
+      "forgot_password": {
+        "title_start": "Account ",
+        "title_highlight": "Security",
+        "description": "GlotRush will never ask for your personal username or password via email or phone."
+      },
+      "admin": {
+        "title_start": "Administration ",
+        "title_highlight": "Area",
+        "description": "This area is strictly reserved for the management and configuration of the GlotRush platform."
+      }
     }
   },
   "subscription": {
@@ -181,6 +211,74 @@
     },
     "subscriptions": {
       "title": "Subscriptions management"
+    },
+    "languages": {
+      "page_title": "Languages management",
+      "create": "Create a language",
+      "edit": "Edit language",
+      "delete_title": "Delete language",
+      "delete_desc": "Are you sure you want to delete this language? This action cannot be undone.",
+      "status_title": "Change language status",
+      "status_desc": "Are you sure you want to change the status of this language?",
+      "table": {
+        "code": "Code",
+        "name": "Name",
+        "orderIndex": "Order",
+        "isActive": "Active",
+        "actions": "Actions"
+      },
+      "form": {
+        "code": "Selection code",
+        "name": "Display name",
+        "order": "Sorting index",
+        "active": "Active language",
+        "select_placeholder": "Select a language",
+        "flag_preview": "Flag Preview:"
+      }
+    },
+    "topics": {
+      "page_title": "Topics management",
+      "create": "Create a topic",
+      "edit": "Edit topic",
+      "delete_title": "Delete topic",
+      "delete_desc": "Are you sure you want to delete this topic? This action cannot be undone.",
+      "create_success": "Topic created successfully.",
+      "update_success": "Topic updated successfully.",
+      "delete_success": "Topic deleted successfully.",
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "difficulty": "Difficulty",
+        "language": "Language",
+        "order": "Order",
+        "active": "Active",
+        "actions": "Actions"
+      },
+      "filters": {
+        "search_name": "Search by name...",
+        "all_difficulties": "All difficulties",
+        "status_all": "All statuses",
+        "status_active": "Active only",
+        "status_inactive": "Inactive only"
+      },
+      "form": {
+        "language": "Language",
+        "language_placeholder": "Select a language",
+        "name": "Topic name",
+        "description": "Description",
+        "difficulty": "Proficiency Level",
+        "difficulty_placeholder": "Select a level",
+        "order": "Sorting index",
+        "active": "Active topic",
+        "levels": {
+          "A1": "A1 - Beginner",
+          "A2": "A2 - Elementary",
+          "B1": "B1 - Intermediate",
+          "B2": "B2 - Upper Intermediate",
+          "C1": "C1 - Advanced",
+          "C2": "C2 - Proficient"
+        }
+      }
     }
   },
   "payment": {
@@ -243,7 +341,13 @@
     "reactivateSubscription": "Failed to reactivate subscription.",
     "changePlan": "Failed to change plan.",
     "fetchPaymentHistory": "Failed to fetch payment history.",
-    "fetchPaymentHistoryByAccountId": "Failed to fetch payment history."
+    "fetchPaymentHistoryByAccountId": "Failed to fetch payment history.",
+    "fetchLanguages": "Failed to fetch languages.",
+    "fetchLanguageById": "Failed to fetch language details.",
+    "fetchLanguageByCode": "Failed to fetch language by code.",
+    "createLanguage": "Failed to create language.",
+    "updateLanguage": "Failed to update language.",
+    "deleteLanguage": "Failed to delete language."
   },
   "settings": {
     "2fa": {
@@ -323,5 +427,73 @@
   "next": "Next",
   "previous": "Previous",
   "empty": "No data available",
-  "token": "Token"
+  "token": "Token",
+  "home": {
+    "hero": {
+      "title_start": "Master a new language with ",
+      "title_highlight": "Artificial Intelligence",
+      "description": "GlotRush leverages cognitive science and cutting-edge algorithms to create the ultimate learning journey. Spaced repetition, custom lessons, and total immersion.",
+      "logged_in_as": "Logged in as ",
+      "continue_learning": "Continue learning"
+    },
+    "features": {
+      "scientific": {
+        "title": "Scientific Learning",
+        "description": "Our lessons are based on proven cognitive studies. Spaced repetition ensures long-term memory retention."
+      },
+      "ai": {
+        "title": "Omnipresent AI",
+        "description": "Pedagogy that adapts in real time. Artificial intelligence evaluates your weaknesses and generates perfect content to help you progress."
+      },
+      "variety": {
+        "title": "Diverse Tools",
+        "description": "A multitude of varied interactive exercises, specifically designed to maximize linguistic retention and total immersion."
+      }
+    },
+    "science": {
+      "title": "Proven by Science",
+      "subtitle": "The effectiveness of our tools is backed by decades of research in cognitive science and linguistics.",
+      "spaced_repetition": {
+        "title": "1. Flashcards & Spacing Effect",
+        "description": "Without review, the brain naturally forgets 78% of information (Ebbinghaus forgetting curve). Spaced repetition forces active recall just before forgetting, maximizing memorization via long-term potentiation.",
+        "stat1": "+200% to +400%",
+        "stat1_desc": " improvement compared to cramming.",
+        "chart_title": "Retention rate at 1 year",
+        "classic": "Classic Learning",
+        "glotrush": "Spaced Learning (GlotRush)"
+      },
+      "dual_coding": {
+        "title": "2. Visual Pairs & Dual Coding Theory",
+        "description": "Processing information simultaneously through visual and verbal channels (like in pair-matching games) creates multiple retrieval pathways in the brain.",
+        "stat1": "Decreased cognitive overload.",
+        "stat2": "+65%",
+        "stat2_desc": " retention compared to text without visual context (Paivio, 1971).",
+        "chart_title": "Memory Pathways",
+        "text_only": "Text Only",
+        "dual_coding": "Dual Coding"
+      },
+      "testing_effect": {
+        "title": "3. Quizzes & Testing Effect",
+        "description": "Retrieval Practice is superior to passive study. Well-calibrated quizzes force information discrimination, directly consolidating memory traces well beyond simple assessment.",
+        "stat1_start": "Up to ",
+        "stat1_highlight": "340%",
+        "stat1_end": " faster vocabulary access.",
+        "chart_title": "Memory access speed gained",
+        "chart_desc": "thanks to recurring quizzes"
+      },
+      "chunking": {
+        "title": "4. Conceptual Sorting & Chunking",
+        "description": "Natural working memory caps around 7 items (Miller's Law). Sorting exercises require strong semantic encoding, allowing information grouping (Chunking).",
+        "stat1": "Transfers information from saturated short-term memory to structured semantic memory.",
+        "chunk_word": "CHUNK"
+      },
+      "sources": {
+        "title": "Sources & Study References:",
+        "source1": "(1885). Memory: A Contribution to Experimental Psychology. The Spacing Effect consistently prevents forgetting at rates of 80%+ versus less than 25% without repetitions.",
+        "source2": "(1971). Imagery and verbal processes. Dual coding theory. Evidence shows text-imagery pairs stimulate crossed memory pathways.",
+        "source3": "(2006). Test-enhanced learning. The Testing Effect using quizzes produces better retrieval capacities than simple re-reading.",
+        "source4": "(1956). The magical number seven, plus or minus two, and Semantic Encoding (Craik & Lockhart, 1972). Chunking changes the hierarchy of mental storage regarding language learning."
+      }
+    }
+  }
 }
