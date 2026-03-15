@@ -94,6 +94,10 @@
     }
   },
   "subscription": {
+    "stats": {
+      "totalActiveSubscribers": "Total Active Subscribers",
+      "totalRevenue": "Total Revenue"
+    },
     "title": "Subscription",
     "current_plan": "Current plan",
     "select_plan": "Select a plan",
@@ -287,7 +291,17 @@
       "yearly": "Yearly"
     }
   },
+  "dashboard": {
+    "subscriptionsOverTime": "Subscriptions over time",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "subscriptions": "Subscriptions",
+    "freeVsPremium": " Free and Premium subscribers"
+  },
   "subscriptions": {
+    "title": "Subscriptions",
+    "free": "Free",
+    "premium": "Premium",
     "table": {
       "account": "Account",
       "plan": "Plan",

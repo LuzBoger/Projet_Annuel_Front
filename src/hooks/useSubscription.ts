@@ -4,12 +4,14 @@ import { subscriptionService } from "@/services/subscriptionService";
 import { CheckoutStripeResponse } from "@/types/stripe/stripe";
 import { PaymentHistoryResponse } from "@/types/payment/payment";
 import { useTranslation } from "react-i18next";
+import { SubscriptionStats } from "@/types/subscription/stats";
 
 export function useSubscription() {
     const {t} = useTranslation();
     const [subscription, setSubscription] = useState<SubscriptionDetailResponse | null>(null);
     const [subscriptions, setSubscriptions] = useState<SubscriptionDetailResponse[]>([]);
     const [payment, setPayment] = useState<PaymentHistoryResponse[]>([]);
+    const [subscriptionStats, setSubscriptionStats] = useState<SubscriptionStats | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -151,5 +153,18 @@ export function useSubscription() {
         }
     }, [t]);
 
-    return {subscription,subscriptions,payment,loading,error,fetchAllSubscriptions,fetchSubscriptionByAccountId,fetchSubscription,cancelSubscriptionByAdmin,cancelSubscription,reactivateSubscription,subscribeToPlan,changePlan,fetchPaymentHistory,fetchPaymentHistoryByAccountId};
+    const fetchSubscriptionStats = useCallback(async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await subscriptionService.getSubscriptionStats();
+            setSubscriptionStats(response);
+        } catch {
+            setError(t('error.fetchSubscriptionStats'));
+        } finally {
+            setLoading(false);
+        }
+    }, [t]);
+
+    return {subscription,subscriptions,payment, subscriptionStats,loading,error,fetchAllSubscriptions,fetchSubscriptionByAccountId,fetchSubscription,cancelSubscriptionByAdmin,cancelSubscription,reactivateSubscription,subscribeToPlan,changePlan,fetchPaymentHistory,fetchPaymentHistoryByAccountId,fetchSubscriptionStats};
 }
