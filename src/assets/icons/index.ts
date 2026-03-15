@@ -13,3 +13,5 @@ export { default as User } from "./user.svg?react";
 export { default as Brain } from "./brain.svg?react";
 export { default as Sparkles } from "./sparkles.svg?react";
 export { default as BookOpen } from "./book-open.svg?react";
+export { default as Warning } from "./warning.svg?react";
+export { default as Info } from "./info.svg?react";
