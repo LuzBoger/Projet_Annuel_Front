@@ -37,7 +37,6 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
 
     const code = useWatch({ control, name: "code" });
     const name = useWatch({ control, name: "name" });
-    const orderIndex = useWatch({ control, name: "orderIndex" });
     const isActive = useWatch({ control, name: "isActive" });
 
     useEffect(() => {

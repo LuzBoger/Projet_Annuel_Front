@@ -39,10 +39,7 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
     });
 
     const languageId = useWatch({ control, name: "languageId" });
-    const name = useWatch({ control, name: "name" });
-    const description = useWatch({ control, name: "description" });
     const difficulty = useWatch({ control, name: "difficulty" });
-    const orderIndex = useWatch({ control, name: "orderIndex" });
     const isActive = useWatch({ control, name: "isActive" });
 
     useEffect(() => {
