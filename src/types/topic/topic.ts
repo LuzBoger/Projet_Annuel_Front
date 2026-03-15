@@ -21,4 +21,5 @@ export interface CreateTopicRequest {
     isActive: boolean;
 }
 
-export interface UpdateTopicRequest extends CreateTopicRequest {}
+export type UpdateTopicRequest = CreateTopicRequest;
+

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/hooks/useLanguage";
-import { LanguageResponse } from "@/types/language/language";
+import { LanguageResponse, CreateLanguageRequest, UpdateLanguageRequest } from "@/types/language/language";
 import { TableColumn } from "@/types/components/tableColumn";
 import { Button } from "@/components/ui/Button";
 import { Table } from "@/components/ui/Table";
@@ -62,7 +62,7 @@ export default function LanguageList() {
         setShowStatusModal(true);
     };
 
-    const onSubmitForm = async (data: any) => {
+    const onSubmitForm = async (data: CreateLanguageRequest | UpdateLanguageRequest) => {
         if (selectedLanguage) {
             await updateLanguage(selectedLanguage.id, data);
         } else {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTopic } from "@/hooks/useTopic";
-import { TopicResponse, PROFICIENCY_LEVELS, ProficiencyLevel } from "@/types/topic/topic";
+import { TopicResponse, PROFICIENCY_LEVELS, CreateTopicRequest, UpdateTopicRequest } from "@/types/topic/topic";
 import { LanguageResponse } from "@/types/language/language";
 import { TableColumn } from "@/types/components/tableColumn";
 import { Button } from "@/components/ui/Button";
@@ -96,7 +96,7 @@ export default function TopicList() {
         setShowStatusModal(true);
     };
 
-    const onSubmitForm = async (data: any) => {
+    const onSubmitForm = async (data: CreateTopicRequest | UpdateTopicRequest) => {
         if (selectedTopic) {
             await updateTopic(selectedTopic.id, data);
         } else {

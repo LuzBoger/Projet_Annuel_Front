@@ -17,7 +17,7 @@ export function useTopic() {
             setError(null);
             const data = await topicService.getAllTopics();
             setTopics(data);
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Error fetching topics:', err);
             const errorMessage = t('error.fetchTopics', 'Impossible de récupérer les topics.');
             setError(errorMessage);
@@ -33,7 +33,7 @@ export function useTopic() {
             setError(null);
             const data = await topicService.searchTopics(name, difficulty, isActive);
             setTopics(data);
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Error searching topics:', err);
             const errorMessage = t('error.searchTopics', 'Impossible de rechercher les topics.');
             setError(errorMessage);
@@ -51,9 +51,10 @@ export function useTopic() {
             setTopics(prev => [...prev, newTopic]);
             addToast({ type: 'success', message: t('admin.topics.create_success', 'Topic créé avec succès.') });
             return newTopic;
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Error creating topic:', err);
-            const errorMessage = err.response?.data?.message || t('error.createTopic', 'Impossible de créer le topic.');
+            const axiosError = err as { response?: { data?: { message?: string } } };
+            const errorMessage = axiosError.response?.data?.message || t('error.createTopic', 'Impossible de créer le topic.');
             setError(errorMessage);
             addToast({ type: 'error', message: errorMessage });
             throw err;
@@ -70,9 +71,10 @@ export function useTopic() {
             setTopics(prev => prev.map(t => t.id === id ? updatedTopic : t));
             addToast({ type: 'success', message: t('admin.topics.update_success', 'Topic mis à jour avec succès.') });
             return updatedTopic;
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Error updating topic:', err);
-            const errorMessage = err.response?.data?.message || t('error.updateTopic', 'Impossible de mettre à jour le topic.');
+            const axiosError = err as { response?: { data?: { message?: string } } };
+            const errorMessage = axiosError.response?.data?.message || t('error.updateTopic', 'Impossible de mettre à jour le topic.');
             setError(errorMessage);
             addToast({ type: 'error', message: errorMessage });
             throw err;
@@ -88,9 +90,10 @@ export function useTopic() {
             await topicService.deleteTopic(id);
             setTopics(prev => prev.filter(t => t.id !== id));
             addToast({ type: 'success', message: t('admin.topics.delete_success', 'Topic supprimé avec succès.') });
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Error deleting topic:', err);
-            const errorMessage = err.response?.data?.message || t('error.deleteTopic', 'Impossible de supprimer le topic.');
+            const axiosError = err as { response?: { data?: { message?: string } } };
+            const errorMessage = axiosError.response?.data?.message || t('error.deleteTopic', 'Impossible de supprimer le topic.');
             setError(errorMessage);
             addToast({ type: 'error', message: errorMessage });
             throw err;

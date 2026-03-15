@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { CreateTopicRequest, TopicResponse, UpdateTopicRequest, ProficiencyLevel, PROFICIENCY_LEVELS } from "@/types/topic/topic";
 import { LanguageResponse } from "@/types/language/language";
@@ -8,6 +7,11 @@ import { Select } from "@/components/ui/Select";
 import { Cross } from "@/assets/icons";
 import { Switch } from "@/components/ui/Switch";
 import { LanguageFlag } from "@/components/languages/LanguageFlag";
+import { createTopicSchema, type CreateTopicFormData } from "@/validations/topics/createTopicSchema";
+import { updateTopicSchema, type UpdateTopicFormData } from "@/validations/topics/updateTopicSchema";
+import { useForm, useWatch } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
 
 interface TopicFormProps {
     isOpen: boolean;
@@ -20,14 +24,48 @@ interface TopicFormProps {
 
 export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel, onSubmit }: TopicFormProps) {
     const { t } = useTranslation();
-    
-    // State form
-    const [languageId, setLanguageId] = useState("");
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [difficulty, setDifficulty] = useState<ProficiencyLevel | "">("");
-    const [orderIndex, setOrderIndex] = useState<number>(0);
-    const [isActive, setIsActive] = useState(true);
+    const isEditTopic = !!topic;
+
+    const { register, handleSubmit, reset, setValue, control, formState: { errors } } = useForm<CreateTopicFormData | UpdateTopicFormData>({
+        resolver: yupResolver(isEditTopic ? updateTopicSchema(t) : createTopicSchema(t)),
+        defaultValues: {
+            languageId: "",
+            name: "",
+            description: "",
+            difficulty: "",
+            orderIndex: 0,
+            isActive: true,
+        }
+    });
+
+    const languageId = useWatch({ control, name: "languageId" });
+    const name = useWatch({ control, name: "name" });
+    const description = useWatch({ control, name: "description" });
+    const difficulty = useWatch({ control, name: "difficulty" });
+    const orderIndex = useWatch({ control, name: "orderIndex" });
+    const isActive = useWatch({ control, name: "isActive" });
+
+    useEffect(() => {
+        if (topic) {
+            reset({
+                languageId: topic.languageId,
+                name: topic.name,
+                description: topic.description || "",
+                difficulty: topic.difficulty,
+                orderIndex: topic.orderIndex,
+                isActive: topic.isActive,
+            });
+        } else {
+            reset({
+                languageId: "",
+                name: "",
+                description: "",
+                difficulty: "",
+                orderIndex: 0,
+                isActive: true,
+            });
+        }
+    }, [topic, reset]);
 
     const languageOptions = activeLanguages.map(lang => ({
         label: `${lang.name} (${lang.code.toUpperCase()})`,
@@ -39,34 +77,14 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
         value: level,
     }));
 
-    useEffect(() => {
-        if (topic) {
-            setLanguageId(topic.languageId);
-            setName(topic.name);
-            setDescription(topic.description || "");
-            setDifficulty(topic.difficulty);
-            setOrderIndex(topic.orderIndex);
-            setIsActive(topic.isActive);
-        } else {
-            setLanguageId("");
-            setName("");
-            setDescription("");
-            setDifficulty("");
-            setOrderIndex(0);
-            setIsActive(true);
-        }
-    }, [topic, isOpen]);
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!difficulty) return;
+    const onFormSubmit = async (data: CreateTopicFormData | UpdateTopicFormData) => {
         await onSubmit({
-            languageId,
-            name,
-            description,
-            difficulty: difficulty as ProficiencyLevel,
-            orderIndex,
-            isActive
+            languageId: data.languageId,
+            name: data.name,
+            description: data.description,
+            difficulty: data.difficulty as ProficiencyLevel,
+            orderIndex: data.orderIndex,
+            isActive: data.isActive,
         });
     };
 
@@ -93,15 +111,16 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                     </Button>
                 </div>
                 
-                <form onSubmit={handleSubmit} className="p-4 space-y-4">
+                <form onSubmit={handleSubmit(onFormSubmit)} className="p-4 space-y-4">
                     <div>
                         <Select
                             label={t('admin.topics.form.language')}
                             options={languageOptions}
                             value={languageId}
-                            onChange={(val) => setLanguageId(val)}
+                            onChange={(val) => setValue("languageId", val)}
                             placeholder={t('admin.topics.form.language_placeholder')}
                             required
+                            error={errors.languageId?.message}
                         />
                     </div>
 
@@ -116,9 +135,9 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                         <FormField
                             type="text"
                             label={t('admin.topics.form.name')}
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            {...register("name")}
                             required
+                            error={errors.name?.message}
                         />
                     </div>
 
@@ -127,10 +146,10 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                             {t('admin.topics.form.description')}
                         </label>
                         <textarea
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            {...register("description")}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors resize-y min-h-[80px]"
                         />
+                        {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>}
                     </div>
 
                     <div>
@@ -138,9 +157,10 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                             label={t('admin.topics.form.difficulty')}
                             options={difficultyOptions}
                             value={difficulty as string}
-                            onChange={(val) => setDifficulty(val as ProficiencyLevel)}
+                            onChange={(val) => setValue("difficulty", val)}
                             placeholder={t('admin.topics.form.difficulty_placeholder')}
                             required
+                            error={errors.difficulty?.message}
                         />
                     </div>
                     
@@ -148,9 +168,9 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                         <FormField
                             type="number"
                             label={t('admin.topics.form.order')}
-                            value={orderIndex}
-                            onChange={(e) => setOrderIndex(parseInt(e.target.value) || 0)}
+                            {...register("orderIndex")}
                             required
+                            error={errors.orderIndex?.message}
                         />
                     </div>
                     
@@ -158,7 +178,7 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                         <span className="text-sm font-medium text-gray-700">{t('admin.topics.form.active')}</span>
                         <Switch
                             checked={isActive}
-                            onChange={setIsActive}
+                            onChange={(val) => setValue("isActive", val)}
                         />
                     </div>
 

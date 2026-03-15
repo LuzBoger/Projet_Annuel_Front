@@ -63,7 +63,7 @@ apiClient.interceptors.response.use(
         }
 
         // Émission d'un Toast d'erreur global (ex: 403, 500, ou 400 validation)
-        const errorMessage = (error.response?.data as any)?.message || error.message || "Une erreur inattendue est survenue";
+        const errorMessage = (error.response?.data as { message?: string })?.message || error.message || "Une erreur inattendue est survenue";
         globalEvents.emit("SHOW_TOAST", {
             type: "error",
             message: errorMessage

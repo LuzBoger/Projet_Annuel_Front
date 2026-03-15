@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { CreateLanguageRequest, LanguageResponse, UpdateLanguageRequest } from "@/types/language/language";
 import { Button } from "@/components/ui/Button";
@@ -8,6 +7,11 @@ import { Cross } from "@/assets/icons";
 import { Switch } from "@/components/ui/Switch";
 import { PREDEFINED_LANGUAGES } from "@/constants/languages";
 import { LanguageFlag } from "@/components/languages/LanguageFlag";
+import { createLanguageSchema, type CreateLanguageFormData } from "@/validations/languages/createLanguageSchema";
+import { updateLanguageSchema, type UpdateLanguageFormData } from "@/validations/languages/updateLanguageSchema";
+import { useForm, useWatch } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
 
 interface LanguageFormProps {
     isOpen: boolean;
@@ -19,47 +23,60 @@ interface LanguageFormProps {
 
 export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }: LanguageFormProps) {
     const { t } = useTranslation();
-    
-    // State form
-    const [code, setCode] = useState("");
-    const [name, setName] = useState("");
-    const [orderIndex, setOrderIndex] = useState<number>(0);
-    const [isActive, setIsActive] = useState(true);
+    const isEditLanguage = !!language;
+
+    const { register, handleSubmit, reset, setValue, control, formState: { errors } } = useForm<CreateLanguageFormData | UpdateLanguageFormData>({
+        resolver: yupResolver(isEditLanguage ? updateLanguageSchema(t) : createLanguageSchema(t)),
+        defaultValues: {
+            code: "",
+            name: "",
+            orderIndex: 0,
+            isActive: true,
+        }
+    });
+
+    const code = useWatch({ control, name: "code" });
+    const name = useWatch({ control, name: "name" });
+    const orderIndex = useWatch({ control, name: "orderIndex" });
+    const isActive = useWatch({ control, name: "isActive" });
+
+    useEffect(() => {
+        if (language) {
+            reset({
+                code: language.code,
+                name: language.name,
+                orderIndex: language.orderIndex,
+                isActive: language.isActive,
+            });
+        } else {
+            reset({
+                code: "",
+                name: "",
+                orderIndex: 0,
+                isActive: true,
+            });
+        }
+    }, [language, reset]);
 
     const languageOptions = PREDEFINED_LANGUAGES.map(lang => ({
         label: `${lang.name} (${lang.code})`,
         value: lang.code,
     }));
 
-    useEffect(() => {
-        if (language) {
-            setCode(language.code);
-            setName(language.name);
-            setOrderIndex(language.orderIndex);
-            setIsActive(language.isActive);
-        } else {
-            setCode("");
-            setName("");
-            setOrderIndex(0);
-            setIsActive(true);
-        }
-    }, [language, isOpen]);
-
     const handleLanguageChange = (selectedCode: string) => {
         const predefined = PREDEFINED_LANGUAGES.find(lang => lang.code === selectedCode);
-        setCode(selectedCode);
+        setValue("code", selectedCode);
         if (predefined) {
-            setName(predefined.name);
+            setValue("name", predefined.name);
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const onFormSubmit = async (data: CreateLanguageFormData | UpdateLanguageFormData) => {
         await onSubmit({
-            code,
-            name,
-            orderIndex,
-            isActive
+            code: data.code,
+            name: data.name,
+            orderIndex: data.orderIndex,
+            isActive: data.isActive,
         });
     };
 
@@ -84,7 +101,7 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                     </Button>
                 </div>
                 
-                <form onSubmit={handleSubmit} className="p-4 space-y-4">
+                <form onSubmit={handleSubmit(onFormSubmit)} className="p-4 space-y-4">
                     <div>
                         <Select
                             label={t('admin.languages.form.code')}
@@ -93,6 +110,7 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                             onChange={handleLanguageChange}
                             placeholder={t('admin.languages.form.select_placeholder')}
                             required
+                            error={errors.code?.message}
                         />
                     </div>
                     
@@ -100,9 +118,9 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                         <FormField
                             type="text"
                             label={t('admin.languages.form.name')}
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            {...register("name")}
                             required
+                            error={errors.name?.message}
                         />
                     </div>
                     
@@ -120,9 +138,9 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                         <FormField
                             type="number"
                             label={t('admin.languages.form.order')}
-                            value={orderIndex}
-                            onChange={(e) => setOrderIndex(parseInt(e.target.value) || 0)}
+                            {...register("orderIndex")}
                             required
+                            error={errors.orderIndex?.message}
                         />
                     </div>
                     
@@ -130,7 +148,7 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                         <span className="text-sm font-medium text-gray-700">{t('admin.languages.form.active')}</span>
                         <Switch
                             checked={isActive}
-                            onChange={setIsActive}
+                            onChange={(val) => setValue("isActive", val)}
                         />
                     </div>
 
