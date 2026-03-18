@@ -7,7 +7,6 @@ import { AuthProvider } from '@/contexts/AuthProvider'
 import { ToastProvider } from '@/contexts/ToastProvider'
 import ResetPassword from '@/pages/reset-password/ResetPassword'
 import ForgotPassword from '@/pages/forgot-password/ForgotPassword'
-import TwoFactorSettings from '@/pages/settings/TwoFactorSettings'
 import Verify2FA from '@/pages/verify-2fa/Verify2FA'
 import { ProtectedRoute } from '@/components/routes/ProtectedRoute'
 import Subscription from '@/pages/subscription/Subscription'
@@ -24,6 +23,7 @@ import LanguageList from '@/pages/admin/languages/LanguageList'
 import TopicList from '@/pages/admin/topics/TopicList'
 import AdminDashboard from '@/pages/admin/dashboard/AdminDashboard'
 import { Header } from '@/components/layout/Header'
+import { Profile } from './pages/profile/Profile'
 
 function App() {
   return (
@@ -35,28 +35,33 @@ function App() {
             <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/verify-2fa" element={<Verify2FA />} />
-        <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
-        <Route path="/plans" element={<Plans />} />
-        <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>}>
-          <Route path="two-factor" element={<TwoFactorSettings />} />
-        </Route>
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
-          <Route index element={<AdminDashboard />} />
-          <Route path="plans" element={<PlansManage />} />
-          <Route path="subscriptions" element={<SubscriptionsManage />} />
-          <Route path="languages" element={<LanguageList />} />
-          <Route path="topics" element={<TopicList />} />
-        </Route>
-        <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
-          <Route path="success" element={<CheckoutSuccess />} />
-          <Route path="cancel" element={<CheckoutCancel />} />
-        </Route>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route path="/reset-password" element={<ResetPassword />} />
+                  <Route path="/verify-2fa" element={<Verify2FA />} />
+                  <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
+                  <Route path="/plans" element={<Plans />} />
+                  <Route path="/profile" element={<Profile />} />
+                                
+                  <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} >
+                  </Route>
+                  
+                  
+                  <Route path="/admin/login" element={<AdminLogin />} />
+                  <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
+                    <Route index element={<AdminDashboard />} />
+                    <Route path="plans" element={<PlansManage />} />
+                    <Route path="subscriptions" element={<SubscriptionsManage />} />
+                    <Route path="languages" element={<LanguageList />} />
+                    <Route path="topics" element={<TopicList />} />
+                  </Route>
+                  
+                  
+                  <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
+                    <Route path="success" element={<CheckoutSuccess />} />
+                    <Route path="cancel" element={<CheckoutCancel />} />
+                  </Route>
       </Routes>
             </main>
           </div>

@@ -15,3 +15,21 @@ export const PREDEFINED_LANGUAGES = [
     { code: "tr", name: "Türkçe" },
     { code: "fa", name: "فارسی" }
 ];
+
+export const LANGUAGE_TO_COUNTRY_MAPPING: Record<string, string> = {
+    "en": "gb",
+    "fr": "fr",
+    "es": "es",
+    "de": "de",
+    "it": "it",
+    "pt": "pt",
+    "ru": "ru",
+    "zh": "cn",
+    "ja": "jp",
+    "ar": "dz",
+    "hi": "in",
+    "ko": "kr",
+    "vi": "vn",
+    "tr": "tr",
+    "fa": "ir",
+};

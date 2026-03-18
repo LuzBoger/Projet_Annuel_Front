@@ -13,7 +13,6 @@ export default function Home() {
             <main className="flex-grow flex flex-col justify-center py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     
-                    {/* Hero Section */}
                     <div className="text-center md:max-w-3xl md:mx-auto mb-20">
                         <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl mb-6">
                             {t('home.hero.title_start')}<span className="text-indigo-600">{t('home.hero.title_highlight')}</span>
@@ -44,7 +43,7 @@ export default function Home() {
                                             fullWidth
                                             className="bg-purple-600 hover:bg-purple-700"
                                         >
-                                            {t('home.hero.start_free', 'Commencer gratuitement')}
+                                            {t('home.hero.start_free')}
                                         </Button>
                                     </Link>
                                     <Link to="/login" className="flex items-center justify-center font-medium text-gray-700 hover:text-indigo-600 transition-colors w-full sm:w-auto h-full px-4">
@@ -55,11 +54,9 @@ export default function Home() {
                         </div>
                     </div>
 
-                    {/* Features Grid */}
                     <div className="mt-16">
                         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             
-                            {/* Feature 1 */}
                             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition-shadow">
                                 <div className="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 mb-6">
                                     <Brain className="w-6 h-6" />
@@ -72,7 +69,6 @@ export default function Home() {
                                 </p>
                             </div>
 
-                            {/* Feature 2 */}
                             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition-shadow">
                                 <div className="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-purple-50 text-purple-600 mb-6">
                                     <Sparkles className="w-6 h-6" />
@@ -85,7 +81,6 @@ export default function Home() {
                                 </p>
                             </div>
 
-                            {/* Feature 3 */}
                             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition-shadow sm:col-span-2 lg:col-span-1">
                                 <div className="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-rose-50 text-rose-500 mb-6">
                                     <BookOpen className="w-6 h-6" />
@@ -104,7 +99,6 @@ export default function Home() {
                 </div>
             </main>
 
-            {/* Scientific Proof Section */}
             <section className="bg-white py-20 border-t border-gray-200">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
@@ -117,7 +111,6 @@ export default function Home() {
                     </div>
 
                     <div className="space-y-24">
-                        {/* Flashcards & Spaced Repetition */}
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
                                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('home.science.spaced_repetition.title')}</h3>
@@ -159,7 +152,6 @@ export default function Home() {
                             </div>
                         </div>
 
-                        {/* Matching Pair & Dual Coding */}
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1 bg-gray-50 p-6 rounded-xl border border-gray-100 shadow-sm">
                                 <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">{t('home.science.dual_coding.chart_title')}</h4>
@@ -193,7 +185,6 @@ export default function Home() {
                             </div>
                         </div>
 
-                        {/* QCM & Testing Effect */}
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
                                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('home.science.testing_effect.title')}</h3>
@@ -222,7 +213,6 @@ export default function Home() {
                             </div>
                         </div>
 
-                        {/* Sorting & Chunking */}
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1 bg-gray-50 p-6 rounded-xl border border-gray-100 shadow-sm flex items-center justify-center overflow-hidden">
                                 <div className="flex space-x-2">
@@ -251,7 +241,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Scientific Sources Footer */}
             <section className="bg-gray-100 py-10 border-t border-gray-200 text-sm text-gray-500">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h5 className="font-bold text-gray-700 mb-4 uppercase tracking-wider text-xs">{t('home.science.sources.title')}</h5>

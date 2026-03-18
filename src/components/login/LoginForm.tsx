@@ -25,7 +25,7 @@ export function LoginForm({ onSubmit, isLoading }: LoginFormProps) {
                 id="email"
                 label={t('auth.login.email')}
                 type="email"
-                placeholder="paul@exemple.com"
+                placeholder={t('auth.login.email_placeholder')}
                 disabled={isLoading}
                 error={errors.email?.message}
                 {...register('email')}

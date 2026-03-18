@@ -1,6 +1,6 @@
+import { PASSWORD_PATTERN } from '@/constants/global';
 import * as yup from 'yup';
 
-const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\S+$).{12,}$/;
 
 export const registerSchema = (t: (key:string) => string) =>
     yup.object({

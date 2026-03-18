@@ -57,7 +57,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
                 id="email"
                 label={t('auth.register.email')}
                 type="email"
-                placeholder="paul@exemple.com"
+                placeholder={t('auth.register.email_placeholder')}
                 disabled={isLoading}
                 error={errors.email?.message}
                 {...register('email')}
