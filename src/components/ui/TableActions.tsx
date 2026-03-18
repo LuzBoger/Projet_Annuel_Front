@@ -1,14 +1,15 @@
 import { useTranslation } from "react-i18next";
-import { Edit, Trash, Eye, Ban } from "@/assets/icons";
+import { Edit, Trash, Eye, Ban, BookOpen } from "@/assets/icons";
 
 interface TableActionsProps {
     onView?: () => void;
     onEdit?: () => void;
     onDelete?: () => void;
     onCancelAction?: () => void;
+    onLessons?: () => void;
 }
 
-export function TableActions({ onView, onEdit, onDelete, onCancelAction }: TableActionsProps) {
+export function TableActions({ onView, onEdit, onDelete, onCancelAction, onLessons }: TableActionsProps) {
     const { t } = useTranslation();
 
     return (
@@ -20,6 +21,15 @@ export function TableActions({ onView, onEdit, onDelete, onCancelAction }: Table
                     className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
                 >
                     <Eye className="w-5 h-5 scale-110" />
+                </button>
+            )}
+            {onLessons && (
+                <button 
+                    onClick={onLessons}
+                    title={t('admin.topics.manage_lessons')}
+                    className="p-1.5 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-md transition-colors"
+                >
+                    <BookOpen className="w-5 h-5" />
                 </button>
             )}
             {onEdit && (

@@ -15,3 +15,4 @@ export { default as Sparkles } from "./sparkles.svg?react";
 export { default as BookOpen } from "./book-open.svg?react";
 export { default as Warning } from "./warning.svg?react";
 export { default as Info } from "./info.svg?react";
+export { default as Plus } from "./plus.svg?react";

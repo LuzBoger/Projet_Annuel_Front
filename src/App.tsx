@@ -23,6 +23,8 @@ import AdminLogin from '@/pages/admin/login/AdminLogin'
 import LanguageList from '@/pages/admin/languages/LanguageList'
 import TopicList from '@/pages/admin/topics/TopicList'
 import AdminDashboard from '@/pages/admin/dashboard/AdminDashboard'
+import LessonList from '@/pages/admin/lessons/LessonList'
+import LessonForm from '@/pages/admin/lessons/LessonForm'
 import { Header } from '@/components/layout/Header'
 
 function App() {
@@ -52,6 +54,9 @@ function App() {
           <Route path="subscriptions" element={<SubscriptionsManage />} />
           <Route path="languages" element={<LanguageList />} />
           <Route path="topics" element={<TopicList />} />
+          <Route path="topics/:topicId/lessons" element={<LessonList />} />
+          <Route path="topics/:topicId/lessons/new" element={<LessonForm />} />
+          <Route path="topics/:topicId/lessons/:lessonId/edit" element={<LessonForm />} />
         </Route>
         <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
           <Route path="success" element={<CheckoutSuccess />} />
