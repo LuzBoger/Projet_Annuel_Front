@@ -13,3 +13,4 @@ export const paymentStatusColors: Record<string, string> = {
 }
 
 export const PIE_CHART_COLORS = ['#94a3b8', '#4f46e5'];
+

@@ -33,7 +33,7 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
 
             <div className="mb-1">
                 <span className={`text-4xl font-black ${plan.subscriptionType === 'FREE' ? 'text-gray-900' : 'text-white'}`}>
-                    {plan.subscriptionType === 'FREE' ? t('subscription.free') : getFormatForCurrency(locale, plan.currency, plan.price)}
+                    {plan.subscriptionType === 'FREE' ? t('subscription.type.free') : getFormatForCurrency(locale, plan.currency, plan.price)}
                 </span>
                 {plan.subscriptionType !== 'FREE' && plan.paymentInterval && (
                     <span className="ml-1 text-indigo-300 text-sm">
