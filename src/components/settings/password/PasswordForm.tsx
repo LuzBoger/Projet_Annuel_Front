@@ -38,10 +38,10 @@ export function PasswordForm() {
             setTimeout(() => setSuccess(false), 3000);
         } catch (err) {
         if (isAxiosError(err)) {
-            const message = err.response?.data?.message;
-            if (message === 'error.password.mismatch') {
+            const status = err.response?.status;
+            if (status === 400) {
             setError(t('profile.password.error.mismatch'));
-            } else if (message === 'error.password.invalid_current') {
+            } else if (status === 401) {
             setError(t('profile.password.error.invalidCurrent'));
             } else {
             setError(t('profile.password.error.generic'));
