@@ -9,7 +9,9 @@
     "view": "View",
     "edit": "Edit",
     "back": "Back",
-    "save": "Save"
+    "save": "Save",
+    "confirm": "Confirm",
+    "user": "User"
   },
   "auth": {
     "login": {
@@ -20,7 +22,8 @@
       "forgot_password": "Forgot password?",
       "no_account": "Don't have an account?",
       "create_account": "Create an account",
-      "secretKey": "Secret Key"
+      "secretKey": "Secret Key",
+      "email_placeholder": "paul@example.com"
     },
     "register": {
       "title": "Create an account",
@@ -34,7 +37,8 @@
       "submit": "Create my account",
       "has_account": "Already have an account?",
       "login": "Sign in",
-      "success": "Registration successful! You can now sign in."
+      "success": "Registration successful! You can now sign in.",
+      "email_placeholder": "paul@example.com"
     },
     "back_home": "Back to home",
     "forgot_password": {
@@ -103,7 +107,10 @@
     "select_plan": "Select a plan",
     "view_plans": "View plans",
     "upgrade_message": "Upgrade your plan to access more features.",
-    "free": "Free",
+    "type": {
+      "free": "Free",
+      "premium": "Premium"
+    },
     "included": "Included",
     "enabled": "Enabled",
     "disabled": "Disabled",
@@ -190,7 +197,8 @@
       "price": "Price",
       "currency": "Currency",
       "payment_interval": "Payment interval",
-      "stripe_price_id": "Stripe price ID"
+      "stripe_price_id": "Stripe price ID",
+      "subscription_type": "Subscription type"
     },
     "types": {
       "Free": "Free",
@@ -212,6 +220,9 @@
   "admin": {
     "dashboard": {
       "title": "Admin Dashboard"
+    },
+    "plans": {
+      "title": "Plans"
     },
     "subscriptions": {
       "title": "Subscriptions management"
@@ -444,6 +455,16 @@
     "deleteLesson": "Failed to delete lesson."
   },
   "settings": {
+    "title": "Settings",
+    "password": {
+      "title": "Password",
+      "description": "Manage your account password."
+    },
+    "menu": {
+      "profile": "Profile",
+      "password": "Password",
+      "2fa": "Two-factor auth"
+    },
     "2fa": {
       "title": "Two-factor authentication",
       "not_enabled": "Two-factor authentication is not enabled.",
@@ -515,6 +536,10 @@
       "oneOf": "Must be monthly or yearly"
     }
   },
+  "info": {
+    "title": "This profile is private",
+    "description": "This user has chosen to keep their profile private."
+  },
   "show": "Show",
   "items": "items",
   "of": "of",
@@ -522,13 +547,68 @@
   "previous": "Previous",
   "empty": "No data available",
   "token": "Token",
+  "profile": {
+    "title": "My profile",
+    "privateTitle": "Private profile",
+    "privateDescription": "This profile is not publicly visible.",
+    "info": {
+      "title": "Your profile is private",
+      "description": "Your profile is not publicly visible. Update your settings to make it visible."
+    },
+    "edit": "Edit profile",
+    "bio": "Bio",
+    "bio_placeholder": "Tell us about yourself...",
+    "username": "Username",
+    "username_placeholder": "Your username",
+    "countryCode": "Country",
+    "countryCode_placeholder": "e.g. FR",
+    "timezone": "Timezone",
+    "timezone_placeholder": "e.g. Europe/Paris",
+    "isPublic": "Public profile",
+    "updateButton": "Update profile",
+    "error": {
+      "loadFailed": "Failed to load profile."
+    },
+    "update": {
+      "success": "Profile updated successfully."
+    },
+    "image": {
+      "title": "Profile picture",
+      "delete": "Delete photo",
+      "upload": "Upload photo",
+      "requirements": "JPG, PNG. Max 5 MB.",
+      "confirmDelete": {
+        "title": "Delete profile photo",
+        "message": "Are you sure you want to delete your profile photo?"
+      },
+      "error": {
+        "tooLarge": "File is too large. Maximum size is 5 MB.",
+        "invalidType": "Invalid file type. Only JPG and PNG are accepted.",
+        "uploadFailed": "Upload failed. Please try again.",
+        "deleteFailed": "Delete failed. Please try again."
+      }
+    },
+    "password": {
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm new password",
+      "change": "Change password",
+      "successMessage": "Password changed successfully.",
+      "error": {
+        "mismatch": "Passwords do not match.",
+        "invalidCurrent": "Current password is incorrect.",
+        "generic": "An error occurred. Please try again."
+      }
+    }
+  },
   "home": {
     "hero": {
       "title_start": "Master a new language with ",
       "title_highlight": "Artificial Intelligence",
       "description": "GlotRush leverages cognitive science and cutting-edge algorithms to create the ultimate learning journey. Spaced repetition, custom lessons, and total immersion.",
       "logged_in_as": "Logged in as ",
-      "continue_learning": "Continue learning"
+      "continue_learning": "Continue learning",
+      "start_free": "Start for free"
     },
     "features": {
       "scientific": {

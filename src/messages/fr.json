@@ -9,7 +9,9 @@
     "view": "Voir",
     "edit": "Modifier",
     "back": "Retour",
-    "save": "Sauvegarder"
+    "save": "Sauvegarder",
+    "confirm": "Confirmer",
+    "user": "Utilisateur"
   },
   "auth": {
     "login": {
@@ -20,7 +22,8 @@
       "forgot_password": "Mot de passe oublié ?",
       "no_account": "Pas encore de compte ?",
       "create_account": "Créer un compte",
-      "secretKey": "Clé secrète"
+      "secretKey": "Clé secrète",
+      "email_placeholder": "paul@exemple.com"
     },
     "register": {
       "title": "Créer un compte",
@@ -34,7 +37,8 @@
       "submit": "Créer mon compte",
       "has_account": "Déjà un compte ?",
       "login": "Se connecter",
-      "success": "Inscription réussie ! Vous pouvez maintenant vous connecter."
+      "success": "Inscription réussie ! Vous pouvez maintenant vous connecter.",
+      "email_placeholder": "paul@exemple.com"
     },
     "back_home": "Retour à l'accueil",
     "forgot_password": {
@@ -94,7 +98,6 @@
     }
   },
   "subscription": {
-    "short_title": "Abonnement",
     "stats": {
       "totalActiveSubscribers": "Total des abonnés actifs",
       "totalRevenue": "Revenu total"
@@ -104,7 +107,10 @@
     "select_plan": "Choisir un plan",
     "view_plans": "Voir les plans",
     "upgrade_message": "Passez à un plan supérieur pour accéder à plus de fonctionnalités.",
-    "free": "Gratuit",
+    "type": {
+      "free": "Gratuit",
+      "premium": "Premium"
+    },
     "included": "Inclus",
     "enabled": "Activé",
     "disabled": "Désactivé",
@@ -187,7 +193,8 @@
       "price": "Prix",
       "currency": "Devise",
       "payment_interval": "Période de paiement",
-      "stripe_price_id": "ID du prix Stripe"
+      "stripe_price_id": "ID du prix Stripe",
+      "subscription_type": "Type d'abonnement"
     },
     "types": {
       "Free": "Gratuit",
@@ -211,7 +218,7 @@
       "title": "Tableau de bord"
     },
     "plans": {
-      "short_title": "Plans"
+      "title": "Plans"
     },
     "subscriptions": {
       "title": "Gestion des abonnements"
@@ -445,6 +452,16 @@
     "deleteLesson": "Impossible de supprimer la leçon."
   },
   "settings": {
+    "title": "Paramètres",
+    "password": {
+      "title": "Mot de passe",
+      "description": "Gérez le mot de passe de votre compte."
+    },
+    "menu": {
+      "profile": "Profil",
+      "password": "Mot de passe",
+      "2fa": "Double authentification"
+    },
     "2fa": {
       "title": "Authentification à deux facteurs",
       "not_enabled": "L'authentification à deux facteurs n'est pas activée.",
@@ -516,6 +533,10 @@
       "oneOf": "Doit être mensuel ou annuel"
     }
   },
+  "info": {
+    "title": "Ce profil est privé",
+    "description": "Cet utilisateur a choisi de garder son profil privé."
+  },
   "show": "Afficher",
   "items": "éléments",
   "of": "sur",
@@ -523,13 +544,68 @@
   "previous": "Précédent",
   "empty": "Aucune donnée disponible",
   "token": "Jeton",
+  "profile": {
+    "title": "Mon profil",
+    "privateTitle": "Profil privé",
+    "privateDescription": "Ce profil n'est pas visible publiquement.",
+    "info": {
+      "title": "Votre profil est privé",
+      "description": "Votre profil n'est pas visible publiquement. Mettez à jour vos paramètres pour le rendre visible."
+    },
+    "edit": "Modifier le profil",
+    "bio": "Bio",
+    "bio_placeholder": "Parlez-nous de vous...",
+    "username": "Nom d'utilisateur",
+    "username_placeholder": "Votre nom d'utilisateur",
+    "countryCode": "Pays",
+    "countryCode_placeholder": "ex. FR",
+    "timezone": "Fuseau horaire",
+    "timezone_placeholder": "ex. Europe/Paris",
+    "isPublic": "Profil public",
+    "updateButton": "Mettre à jour le profil",
+    "error": {
+      "loadFailed": "Impossible de charger le profil."
+    },
+    "update": {
+      "success": "Profil mis à jour avec succès."
+    },
+    "image": {
+      "title": "Photo de profil",
+      "delete": "Supprimer la photo",
+      "upload": "Télécharger une photo",
+      "requirements": "JPG, PNG. Max 5 Mo.",
+      "confirmDelete": {
+        "title": "Supprimer la photo de profil",
+        "message": "Êtes-vous sûr de vouloir supprimer votre photo de profil ?"
+      },
+      "error": {
+        "tooLarge": "Le fichier est trop volumineux. Taille maximale : 5 Mo.",
+        "invalidType": "Type de fichier invalide. Seuls JPG et PNG sont acceptés.",
+        "uploadFailed": "L'envoi a échoué. Veuillez réessayer.",
+        "deleteFailed": "La suppression a échoué. Veuillez réessayer."
+      }
+    },
+    "password": {
+      "current": "Mot de passe actuel",
+      "new": "Nouveau mot de passe",
+      "confirm": "Confirmer le nouveau mot de passe",
+      "change": "Changer le mot de passe",
+      "successMessage": "Mot de passe modifié avec succès.",
+      "error": {
+        "mismatch": "Les mots de passe ne correspondent pas.",
+        "invalidCurrent": "Le mot de passe actuel est incorrect.",
+        "generic": "Une erreur est survenue. Veuillez réessayer."
+      }
+    }
+  },
   "home": {
     "hero": {
       "title_start": "Maîtrisez une langue avec ",
       "title_highlight": "l'Intelligence Artificielle",
       "description": "GlotRush s'appuie sur la science cognitive et des algorithmes de pointe pour créer le parcours d'apprentissage absolu. Répétition espacée, leçons sur-mesure et immersion totale.",
       "logged_in_as": "Connecté en tant que ",
-      "continue_learning": "Continuer mon apprentissage"
+      "continue_learning": "Continuer mon apprentissage",
+      "start_free": "Commencer gratuitement"
     },
     "features": {
       "scientific": {

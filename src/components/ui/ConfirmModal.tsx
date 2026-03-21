@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "./Button";
 
 interface ConfirmModalProps {
@@ -20,10 +21,11 @@ export function ConfirmModal({
     onConfirm,
     onCancel,
     isConfirming = false,
-    confirmText = "Confirmer",
-    cancelText = "Annuler",
+    confirmText,
+    cancelText,
     confirmVariant = "primary"
 }: ConfirmModalProps) {
+    const { t } = useTranslation();
     if (!isOpen) return null;
 
     return (
@@ -39,14 +41,14 @@ export function ConfirmModal({
                             onClick={onCancel} 
                             disabled={isConfirming}
                         >
-                            {cancelText}
+                            {cancelText ?? t('common.cancel')}
                         </Button>
-                        <Button 
-                            variant={confirmVariant} 
-                            onClick={onConfirm} 
+                        <Button
+                            variant={confirmVariant}
+                            onClick={onConfirm}
                             isLoading={isConfirming}
                         >
-                            {confirmText}
+                            {confirmText ?? t('common.confirm')}
                         </Button>
                     </div>
                 </div>

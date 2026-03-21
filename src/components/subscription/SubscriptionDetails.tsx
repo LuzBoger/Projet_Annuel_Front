@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { SubscriptionDetailResponse } from "@/types/subscription/subscription";
-import { statusColors } from "@/constants";
+import { statusColors } from "@/constants/colors";
 import { formDate } from "@/lib/utils/date";
 
 interface SubscriptionDetailsProps {

@@ -4,7 +4,7 @@ import { TableColumn } from "@/types/components/tableColumn";
 import { Table } from "@/components/ui/Table";
 import { getFormatForCurrency } from "@/lib/utils/currency";
 import { formDateTime } from "@/lib/utils/date";
-import { paymentStatusColors } from "@/constants";
+import { paymentStatusColors } from "@/constants/colors";
 
 interface PaymentHistoryTableProps {
     payments: PaymentHistoryResponse[];
