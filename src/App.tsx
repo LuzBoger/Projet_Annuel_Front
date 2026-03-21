@@ -46,7 +46,7 @@ function App() {
                 <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
                 <Route path="/plans" element={<Plans />} />
                 <Route path="/profile" element={<Profile />} />
-                  <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
+                <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
                 <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} >
                 </Route>
 
