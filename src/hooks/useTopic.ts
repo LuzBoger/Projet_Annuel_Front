@@ -43,7 +43,7 @@ export function useTopic() {
         }
     }, [addToast, t]);
 
-    const createTopic = async (topicData: CreateTopicRequest) => {
+    const createTopic = useCallback(async (topicData: CreateTopicRequest) => {
         try {
             setLoading(true);
             setError(null);
@@ -61,9 +61,9 @@ export function useTopic() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [addToast, t]);
 
-    const updateTopic = async (id: string, topicData: UpdateTopicRequest) => {
+    const updateTopic = useCallback(async (id: string, topicData: UpdateTopicRequest) => {
         try {
             setLoading(true);
             setError(null);
@@ -81,9 +81,9 @@ export function useTopic() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [addToast, t]);
 
-    const deleteTopic = async (id: string) => {
+    const deleteTopic = useCallback(async (id: string) => {
         try {
             setLoading(true);
             setError(null);
@@ -100,7 +100,7 @@ export function useTopic() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [addToast, t]);
 
     return {
         topics,

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useTopic } from "@/hooks/useTopic";
 import { TopicResponse, PROFICIENCY_LEVELS, CreateTopicRequest, UpdateTopicRequest } from "@/types/topic/topic";
@@ -17,6 +18,7 @@ import { LanguageFlag } from "@/components/languages/LanguageFlag";
 
 export default function TopicList() {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const {
         topics,
         loading,
@@ -235,6 +237,7 @@ export default function TopicList() {
                                 <TableActions
                                     onEdit={() => handleEdit(topic)}
                                     onDelete={() => handleDelete(topic)}
+                                    onLessons={() => navigate(`/admin/topics/${topic.id}/lessons`)}
                                 />
                             </td>
                         </>
