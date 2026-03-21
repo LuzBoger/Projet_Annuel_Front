@@ -22,6 +22,8 @@ import AdminLogin from '@/pages/admin/login/AdminLogin'
 import LanguageList from '@/pages/admin/languages/LanguageList'
 import TopicList from '@/pages/admin/topics/TopicList'
 import AdminDashboard from '@/pages/admin/dashboard/AdminDashboard'
+import LessonList from '@/pages/admin/lessons/LessonList'
+import LessonForm from '@/pages/admin/lessons/LessonForm'
 import { Header } from '@/components/layout/Header'
 import { Profile } from './pages/profile/Profile'
 import LanguageTopics from '@/pages/topics/LanguageTopics'
@@ -36,35 +38,36 @@ function App() {
             <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/forgot-password" element={<ForgotPassword />} />
-                  <Route path="/reset-password" element={<ResetPassword />} />
-                  <Route path="/verify-2fa" element={<Verify2FA />} />
-                  <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
-                  <Route path="/plans" element={<Plans />} />
-                  <Route path="/profile" element={<Profile />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/verify-2fa" element={<Verify2FA />} />
+                <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
+                <Route path="/plans" element={<Plans />} />
+                <Route path="/profile" element={<Profile />} />
                   <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
-                                
-                  <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} >
-                  </Route>
-                  
-                  
-                  <Route path="/admin/login" element={<AdminLogin />} />
-                  <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
-                    <Route index element={<AdminDashboard />} />
-                    <Route path="plans" element={<PlansManage />} />
-                    <Route path="subscriptions" element={<SubscriptionsManage />} />
-                    <Route path="languages" element={<LanguageList />} />
-                    <Route path="topics" element={<TopicList />} />
-                  </Route>
-                  
-                  
-                  <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
-                    <Route path="success" element={<CheckoutSuccess />} />
-                    <Route path="cancel" element={<CheckoutCancel />} />
-                  </Route>
-      </Routes>
+                <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} >
+                </Route>
+
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="plans" element={<PlansManage />} />
+                  <Route path="subscriptions" element={<SubscriptionsManage />} />
+                  <Route path="languages" element={<LanguageList />} />
+                  <Route path="topics" element={<TopicList />} />
+                  <Route path="topics/:topicId/lessons" element={<LessonList />} />
+                  <Route path="topics/:topicId/lessons/new" element={<LessonForm />} />
+                  <Route path="topics/:topicId/lessons/:lessonId/edit" element={<LessonForm />} />
+                </Route>
+
+
+                <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
+                  <Route path="success" element={<CheckoutSuccess />} />
+                  <Route path="cancel" element={<CheckoutCancel />} />
+                </Route>
+              </Routes>
             </main>
           </div>
         </ToastProvider>
