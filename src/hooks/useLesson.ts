@@ -91,8 +91,9 @@ export function useLesson() {
         try {
             const data = await lessonService.getLessonById(id);
             return data;
-        } catch (err: any) {
-            setError(err.message || "Failed to fetch lesson");
+        } catch (err: unknown) {
+            const error = err as Error;
+            setError(error.message || "Failed to fetch lesson");
             return null;
         } finally {
             setLoading(false);

@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { LessonType } from "@/types/lesson/lesson";
 
-export const lessonSchema = (t: any) => yup.object({
+export const lessonSchema = (t: (key: string) => string) => yup.object({
   title: yup.string().required(t('common.required')),
   description: yup.string().required(t('common.required')),
   orderIndex: yup.number().min(0).required(t('common.required')),

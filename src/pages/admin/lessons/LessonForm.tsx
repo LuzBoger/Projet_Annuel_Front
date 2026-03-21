@@ -29,7 +29,7 @@ export default function LessonForm() {
     const currentTopic = topics.find(t => t.id === topicId);
 
     const { register, handleSubmit, reset, setValue, control, formState: { errors } } = useForm<LessonFormData>({
-        resolver: yupResolver(lessonSchema(t)) as any,
+        resolver: yupResolver(lessonSchema(t)) as unknown as import("react-hook-form").Resolver<LessonFormData>,
         defaultValues: {
             title: "",
             description: "",
@@ -59,7 +59,7 @@ export default function LessonForm() {
                 const lesson = await fetchLessonById(lessonId);
                 if (lesson) {
                     // Adapt data for the form
-                    const initialData: any = {
+                    const initialData: Partial<LessonFormData> = {
                         ...lesson,
                     };
 
@@ -80,7 +80,7 @@ export default function LessonForm() {
         value: type,
     }));
 
-    const onFormSubmit = async (data: any) => {
+    const onFormSubmit = async (data: LessonFormData) => {
         if (!topicId) return;
 
         const request: LessonRequest = {
@@ -105,8 +105,8 @@ export default function LessonForm() {
             request.matchingPairs = data.matchingPairs;
         } else if (data.lessonType === LessonType.SORTING_EXERCISE && data.sortingItems) {
             request.sortingExercise = [{
-                items: data.sortingItems.map((i: any) => i.value),
-                correctOrder: data.sortingItems.map((_: any, idx: number) => idx)
+                items: data.sortingItems.map((i) => i.value),
+                correctOrder: data.sortingItems.map((_, idx) => idx)
             }];
         }
 

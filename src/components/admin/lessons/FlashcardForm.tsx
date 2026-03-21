@@ -1,13 +1,14 @@
-import { Control, useFieldArray, UseFormRegister, FieldErrors } from "react-hook-form";
+import { Control, useFieldArray, UseFormRegister, FieldErrors, FieldError } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
 import { Trash, Plus } from "@/assets/icons";
+import { LessonFormData } from "@/validations/lessons/lessonSchema";
 
 interface FlashcardFormProps {
-    control: Control<any>;
-    register: UseFormRegister<any>;
-    errors: FieldErrors<any>;
+    control: Control<LessonFormData>;
+    register: UseFormRegister<LessonFormData>;
+    errors: FieldErrors<LessonFormData>;
 }
 
 export function FlashcardForm({ control, register, errors }: FlashcardFormProps) {
@@ -50,28 +51,31 @@ export function FlashcardForm({ control, register, errors }: FlashcardFormProps)
                             <FormField
                                 label={t('admin.lessons.flashcards.front')}
                                 {...register(`flashcards.${index}.front`)}
-                                error={(errors.flashcards as any)?.[index]?.front?.message}
+                                placeholder="ex: Bonjour"
+                                error={(errors.flashcards?.[index] as Record<string, FieldError | undefined>)?.front?.message}
                                 required
                             />
                             <FormField
                                 label={t('admin.lessons.flashcards.back')}
                                 {...register(`flashcards.${index}.back`)}
-                                error={(errors.flashcards as any)?.[index]?.back?.message}
+                                placeholder="ex: Hello"
+                                error={(errors.flashcards?.[index] as Record<string, FieldError | undefined>)?.back?.message}
                                 required
                             />
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div className="grid grid-cols-2 gap-4">
                             <FormField
                                 label={t('admin.lessons.flashcards.frontLang')}
                                 {...register(`flashcards.${index}.frontLanguage`)}
-                                error={(errors.flashcards as any)?.[index]?.frontLanguage?.message}
-                                required
+                                placeholder="ex: fr"
+                                error={(errors.flashcards?.[index] as Record<string, FieldError | undefined>)?.frontLanguage?.message}
                             />
                             <FormField
                                 label={t('admin.lessons.flashcards.backLang')}
                                 {...register(`flashcards.${index}.backLanguage`)}
-                                error={(errors.flashcards as any)?.[index]?.backLanguage?.message}
+                                placeholder="ex: en"
+                                error={(errors.flashcards?.[index] as Record<string, FieldError | undefined>)?.backLanguage?.message}
                                 required
                             />
                         </div>

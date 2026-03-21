@@ -1,13 +1,15 @@
-import { Control, useFieldArray, UseFormRegister, FieldErrors } from "react-hook-form";
+import { Control, useFieldArray, UseFormRegister, FieldErrors, FieldError } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
-import { Trash, Plus } from "@/assets/icons";
+import { IconButton } from "@/components/ui/IconButton";
+import { Trash, Plus, ChevronUp, ChevronDown } from "@/assets/icons";
+import { LessonFormData } from "@/validations/lessons/lessonSchema";
 
 interface SortingExerciseFormProps {
-    control: Control<any>;
-    register: UseFormRegister<any>;
-    errors: FieldErrors<any>;
+    control: Control<LessonFormData>;
+    register: UseFormRegister<LessonFormData>;
+    errors: FieldErrors<LessonFormData>;
 }
 
 export function SortingExerciseForm({ control, register, errors }: SortingExerciseFormProps) {
@@ -38,34 +40,30 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                     <div key={field.id} className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100 group transition-all hover:bg-white hover:shadow-sm">
                         
                         <div className="flex flex-col gap-1 items-center justify-center">
-                            <button
-                                type="button"
+                            <IconButton
+                                icon={<ChevronUp className="w-5 h-5" />}
                                 disabled={index === 0}
                                 onClick={() => swap(index, index - 1)}
-                                className="text-gray-400 hover:text-indigo-600 disabled:opacity-20 disabled:hover:text-gray-400 p-1"
+                                variant="ghost"
                                 title="Monter"
-                            >
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-                            </button>
+                            />
                             <span className="text-xs font-bold text-gray-300 select-none">{index + 1}</span>
-                            <button
-                                type="button"
+                            <IconButton
+                                icon={<ChevronDown className="w-5 h-5" />}
                                 disabled={index === fields.length - 1}
                                 onClick={() => swap(index, index + 1)}
-                                className="text-gray-400 hover:text-indigo-600 disabled:opacity-20 disabled:hover:text-gray-400 p-1"
+                                variant="ghost"
                                 title="Descendre"
-                            >
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                            </button>
+                            />
                         </div>
 
                         <div className="flex-1 mt-6">
                             <FormField
                                 label=""
-                                placeholder={t('admin.lessons.sorting.item_placeholder', 'Ex: Je / suis / un / chat...')}
                                 {...register(`sortingItems.${index}.value`)}
-                                error={(errors.sortingItems as any)?.[index]?.value?.message}
-                            />
+                                placeholder="ex: Je m'appelle..."
+                                error={(errors.sortingItems?.[index] as Record<string, FieldError | undefined>)?.value?.message}
+                                required/>
                         </div>
                         
                         <div className="mt-6">

@@ -1,63 +1,48 @@
 import { useTranslation } from "react-i18next";
-import { Edit, Trash, Eye, Ban, BookOpen } from "@/assets/icons";
+import { Edit, Trash, Eye, Ban } from "@/assets/icons";
+import { IconButton } from "@/components/ui/IconButton";
 
 interface TableActionsProps {
     onView?: () => void;
     onEdit?: () => void;
     onDelete?: () => void;
     onCancelAction?: () => void;
-    onLessons?: () => void;
 }
 
-export function TableActions({ onView, onEdit, onDelete, onCancelAction, onLessons }: TableActionsProps) {
+export function TableActions({ onView, onEdit, onDelete, onCancelAction }: TableActionsProps) {
     const { t } = useTranslation();
 
     return (
         <div className="flex items-center space-x-3 justify-end">
             {onView && (
-                <button 
+                <IconButton 
                     onClick={onView}
                     title={t('common.view')}
-                    className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                >
-                    <Eye className="w-5 h-5 scale-110" />
-                </button>
-            )}
-            {onLessons && (
-                <button 
-                    onClick={onLessons}
-                    title={t('admin.topics.manage_lessons')}
-                    className="p-1.5 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-md transition-colors"
-                >
-                    <BookOpen className="w-5 h-5" />
-                </button>
+                    icon={<Eye className="w-5 h-5 scale-110" />}
+                />
             )}
             {onEdit && (
-                <button 
+                <IconButton 
                     onClick={onEdit}
                     title={t('common.edit')}
-                    className="p-1.5 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors"
-                >
-                    <Edit className="w-5 h-5" />
-                </button>
+                    icon={<Edit className="w-5 h-5" />}
+                />
             )}
             {onDelete && (
-                <button 
+                <IconButton 
+                    variant="danger"
                     onClick={onDelete}
                     title={t('common.delete')}
-                    className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
-                >
-                    <Trash className="w-5 h-5" />
-                </button>
+                    icon={<Trash className="w-5 h-5" />}
+                />
             )}
             {onCancelAction && (
-                <button 
+                <IconButton 
+                    variant="warning"
                     onClick={onCancelAction}
                     title={t('common.cancel')}
-                    className="p-1.5 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors"
-                >
-                    <Ban className="w-5 h-5" />
-                </button>
+                    icon={<Ban className="w-5 h-5" />}
+                />
             )}
         </div>
     );

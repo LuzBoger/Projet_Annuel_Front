@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LessonType } from "@/types/lesson/lesson";
+import { LessonFormData } from "@/validations/lessons/lessonSchema";
 
 interface LessonPreviewProps {
-    data: any;
+    data: Partial<LessonFormData>;
 }
 
-function FlashcardCard({ fc, index, t }: { fc: any, index: number, t: any }) {
+function FlashcardCard({ fc, index, t }: { fc: { front?: string; back?: string; frontLanguage?: string; backLanguage?: string }, index: number, t: (key: string) => string }) {
     const [isFlipped, setIsFlipped] = useState(false);
 
     return (
@@ -85,11 +86,11 @@ export function LessonPreview({ data }: LessonPreviewProps) {
             </div>
 
             <div className="max-h-[700px] overflow-y-auto pr-2 custom-scrollbar">
-                {lessonType === LessonType.FLASHCARD && (data.flashcards?.length > 0 ? data.flashcards : [{ front: "Aperçu", back: "Prévisualisation" }]).map((fc: any, i: number) =>
+                {lessonType === LessonType.FLASHCARD && (data.flashcards?.length ? data.flashcards : [{ front: "Aperçu", back: "Prévisualisation" }]).map((fc: { front?: string; back?: string; frontLanguage?: string; backLanguage?: string }, i: number) =>
                     <FlashcardCard key={i} fc={fc} index={i} t={t} />
                 )}
 
-                {lessonType === LessonType.QCM && (data.questions?.length > 0 ? data.questions : [{ question: "Exemple de question ?", options: ["Option A", "Option B"] }]).map((q: any, i: number) =>
+                {lessonType === LessonType.QCM && (data.questions?.length ? data.questions : [{ question: "Exemple de question ?", options: ["Option A", "Option B"] }]).map((q: { question?: string; options?: string[] }, i: number) =>
                     renderCard(
                         <div className="space-y-6">
                             <h4 className="text-xl font-bold text-gray-900 leading-snug">
@@ -116,10 +117,10 @@ export function LessonPreview({ data }: LessonPreviewProps) {
                             {t('admin.lessons.preview.matching_label', 'Paires de mots')}
                         </span>
                         <div className="space-y-3">
-                            {(data.matchingPairs?.length > 0 ? data.matchingPairs : [
+                            {(data.matchingPairs && data.matchingPairs.length > 0 ? data.matchingPairs : [
                                 { item1: "Item 1", item2: "Correspondance 1" },
                                 { item1: "Item 2", item2: "Correspondance 2" }
-                            ]).map((p: any, i: number) => (
+                            ]).map((p: { item1?: string; item2?: string }, i: number) => (
                                 <div key={i} className="flex items-center justify-between gap-4 py-2">
                                     <div className="flex-1 p-3 bg-blue-50 rounded-xl border border-blue-100 text-center font-bold text-blue-700 text-sm">
                                         {p.item1}
@@ -145,7 +146,7 @@ export function LessonPreview({ data }: LessonPreviewProps) {
                             {t('admin.lessons.preview.sorting_label')}
                         </span>
                         <div className="space-y-2">
-                            {(data.sortingItems?.length > 0 ? data.sortingItems.map((item: any) => item.value) : ["Item A", "Item B", "Item C"]).map((item: string, i: number) => (
+                            {(data.sortingItems?.length ? data.sortingItems.map((item) => item.value) : ["Item A", "Item B", "Item C"]).map((item: string | undefined, i: number) => (
                                 <div key={i} className="flex items-center p-4 bg-white border border-gray-100 rounded-xl shadow-sm">
                                     <div className="mr-4 text-gray-300">
                                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M4 8h16M4 16h16" /></svg>

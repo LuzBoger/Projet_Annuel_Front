@@ -1,13 +1,15 @@
-import { Control, useFieldArray, UseFormRegister, FieldErrors, useWatch } from "react-hook-form";
+import { Control, useFieldArray, useWatch, UseFormRegister, FieldErrors, FieldError } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
+import { Radio } from "@/components/ui/Radio";
 import { Trash, Plus } from "@/assets/icons";
+import { LessonFormData } from "@/validations/lessons/lessonSchema";
 
 interface QCMFormProps {
-    control: Control<any>;
-    register: UseFormRegister<any>;
-    errors: FieldErrors<any>;
+    control: Control<LessonFormData>;
+    register: UseFormRegister<LessonFormData>;
+    errors: FieldErrors<LessonFormData>;
 }
 
 export function QCMForm({ control, register, errors }: QCMFormProps) {
@@ -55,7 +57,7 @@ export function QCMForm({ control, register, errors }: QCMFormProps) {
     );
 }
 
-function QuestionItem({ index, control, register, errors, onRemove }: { index: number, control: Control<any>, register: UseFormRegister<any>, errors: FieldErrors<any>, onRemove: () => void }) {
+function QuestionItem({ index, control, register, errors, onRemove }: { index: number, control: Control<LessonFormData>, register: UseFormRegister<LessonFormData>, errors: FieldErrors<LessonFormData>, onRemove: () => void }) {
     const { t } = useTranslation();
     const { fields: options, append: appendOption, remove: removeOption } = useFieldArray({
         control,
@@ -82,8 +84,9 @@ function QuestionItem({ index, control, register, errors, onRemove }: { index: n
             <div className="space-y-4">
                 <FormField
                     label={t('admin.lessons.qcm.question')}
+                    placeholder="ex: Comment dit-on 'Bonjour' ?"
                     {...register(`questions.${index}.question`)}
-                    error={(errors.questions as any)?.[index]?.question?.message}
+                    error={(errors.questions?.[index] as Record<string, FieldError | undefined>)?.question?.message}
                     required
                 />
 
@@ -104,19 +107,17 @@ function QuestionItem({ index, control, register, errors, onRemove }: { index: n
                     <div className="grid gap-3">
                         {options.map((optionField, optIndex) => (
                             <div key={optionField.id} className="flex items-center gap-3">
-                                <input
-                                    type="radio"
+                                <Radio
                                     value={optIndex}
                                     checked={Number(correctOptionIndex) === optIndex}
                                     {...register(`questions.${index}.correctOptionIndex`)}
-                                    className="w-4 h-4 text-indigo-600 focus:ring-indigo-500"
                                 />
                                 <div className="flex-1">
                                     <FormField
                                         label={t('admin.lessons.qcm.option', { index: optIndex + 1 })}
                                         placeholder={t('admin.lessons.qcm.option', { index: optIndex + 1 })}
                                         {...register(`questions.${index}.options.${optIndex}`)}
-                                        error={(errors.questions as any)?.[index]?.options?.[optIndex]?.message}
+                                        error={((errors.questions?.[index] as Record<string, unknown>)?.options as Record<number, FieldError | undefined> | undefined)?.[optIndex]?.message}
                                     />
                                 </div>
                                 {options.length > 2 && (
@@ -137,8 +138,9 @@ function QuestionItem({ index, control, register, errors, onRemove }: { index: n
 
                 <FormField
                     label={t('admin.lessons.qcm.explanation')}
+                    placeholder={t('admin.lessons.qcm.explanation_placeholder')}
                     {...register(`questions.${index}.explanation`)}
-                    error={(errors.questions as any)?.[index]?.explanation?.message}
+                    error={(errors.questions?.[index] as Record<string, FieldError | undefined>)?.explanation?.message}
                 />
             </div>
         </div>

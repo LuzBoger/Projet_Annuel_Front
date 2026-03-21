@@ -1,13 +1,14 @@
-import { Control, useFieldArray, UseFormRegister, FieldErrors } from "react-hook-form";
+import { Control, useFieldArray, UseFormRegister, FieldErrors, FieldError } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
 import { Trash, Plus } from "@/assets/icons";
+import { LessonFormData } from "@/validations/lessons/lessonSchema";
 
 interface MatchingPairFormProps {
-    control: Control<any>;
-    register: UseFormRegister<any>;
-    errors: FieldErrors<any>;
+    control: Control<LessonFormData>;
+    register: UseFormRegister<LessonFormData>;
+    errors: FieldErrors<LessonFormData>;
 }
 
 export function MatchingPairForm({ control, register, errors }: MatchingPairFormProps) {
@@ -50,13 +51,15 @@ export function MatchingPairForm({ control, register, errors }: MatchingPairForm
                             <FormField
                                 label={t('admin.lessons.matching.item1')}
                                 {...register(`matchingPairs.${index}.item1`)}
-                                error={(errors.matchingPairs as any)?.[index]?.item1?.message}
+                                placeholder="ex: Bonjour"
+                                error={(errors.matchingPairs?.[index] as Record<string, FieldError | undefined>)?.item1?.message}
                                 required
                             />
                             <FormField
                                 label={t('admin.lessons.matching.item2')}
                                 {...register(`matchingPairs.${index}.item2`)}
-                                error={(errors.matchingPairs as any)?.[index]?.item2?.message}
+                                placeholder="ex: Hello"
+                                error={(errors.matchingPairs?.[index] as Record<string, FieldError | undefined>)?.item2?.message}
                                 required
                             />
                         </div>

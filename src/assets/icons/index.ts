@@ -5,6 +5,7 @@ export { default as Cross } from "./cross.svg?react";
 export { default as ChevronLeft } from "./chevron-left.svg?react";
 export { default as ChevronRight } from "./chevron-right.svg?react";
 export { default as ChevronDown } from "./chevron-down.svg?react";
+export { default as ChevronUp } from "./chevron-up.svg?react";
 export { default as Edit } from "./edit.svg?react";
 export { default as Trash } from "./trash.svg?react";
 export { default as Eye } from "./eye.svg?react";
