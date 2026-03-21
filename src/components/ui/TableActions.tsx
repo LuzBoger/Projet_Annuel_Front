@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Edit, Trash, Eye, Ban } from "@/assets/icons";
+import { Edit, Trash, Eye, Ban, BookOpen } from "@/assets/icons";
 import { IconButton } from "@/components/ui/IconButton";
 
 interface TableActionsProps {
@@ -7,9 +7,10 @@ interface TableActionsProps {
     onEdit?: () => void;
     onDelete?: () => void;
     onCancelAction?: () => void;
+    onLessons?: () => void;
 }
 
-export function TableActions({ onView, onEdit, onDelete, onCancelAction }: TableActionsProps) {
+export function TableActions({ onView, onEdit, onDelete, onCancelAction, onLessons }: TableActionsProps) {
     const { t } = useTranslation();
 
     return (
@@ -19,6 +20,13 @@ export function TableActions({ onView, onEdit, onDelete, onCancelAction }: Table
                     onClick={onView}
                     title={t('common.view')}
                     icon={<Eye className="w-5 h-5 scale-110" />}
+                />
+            )}
+            {onLessons && (
+                <IconButton 
+                    onClick={onLessons}
+                    title={t('admin.topics.manage_lessons')}
+                    icon={<BookOpen className="w-5 h-5 text-green-600" />}
                 />
             )}
             {onEdit && (
