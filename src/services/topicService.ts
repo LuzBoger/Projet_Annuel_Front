@@ -23,6 +23,16 @@ export const topicService = {
         return response.data;
     },
 
+    async searchActiveTopics(languageId: string, name?: string, difficulty?: string): Promise<TopicResponse[]> {
+        const params = new URLSearchParams();
+        params.append('languageId', languageId);
+        if (name) params.append('name', name);
+        if (difficulty) params.append('difficulty', difficulty);
+        
+        const response = await apiClient.get<TopicResponse[]>('/topics/search/active', { params });
+        return response.data;
+    },
+
     async getTopicsByLanguage(languageId: string): Promise<TopicResponse[]> {
         const response = await apiClient.get<TopicResponse[]>(`/topics/language/${languageId}`);
         return response.data;

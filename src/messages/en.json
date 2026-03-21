@@ -374,6 +374,19 @@
     "updateLanguage": "Failed to update language.",
     "deleteLanguage": "Failed to delete language."
   },
+  "topics": {
+    "page_title": "Available Topics",
+    "page_desc": "Select a subject to start practicing.",
+    "error_load": "Unable to load topics at this moment.",
+    "empty_title": "No topics found",
+    "empty_desc": "Try modifying your search filters.",
+    "search_placeholder": "Search topics by name...",
+    "all_levels": "All levels",
+    "level": "Level {{level}}",
+    "no_desc": "No description provided",
+    "practice_btn": "Practice now",
+    "order": "Order: {{orderIndex}}"
+  },
   "settings": {
     "title": "Settings",
     "password": {

@@ -370,6 +370,19 @@
     "updateLanguage": "Impossible de mettre à jour la langue.",
     "deleteLanguage": "Impossible de supprimer la langue."
   },
+  "topics": {
+    "page_title": "Topics disponibles",
+    "page_desc": "Sélectionnez un sujet pour commencer votre entraînement.",
+    "error_load": "Impossible de charger les topics pour le moment.",
+    "empty_title": "Aucun topic trouvé",
+    "empty_desc": "Essayez de modifier vos filtres de recherche.",
+    "search_placeholder": "Rechercher un topic par nom...",
+    "all_levels": "Tous les niveaux",
+    "level": "Niveau {{level}}",
+    "no_desc": "Aucune description fournie",
+    "practice_btn": "S'entraîner maintenant",
+    "order": "Ordre: {{orderIndex}}"
+  },
   "settings": {
     "title": "Paramètres",
     "password": {

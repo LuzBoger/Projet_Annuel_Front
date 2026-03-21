@@ -17,3 +17,4 @@ export { default as BookOpen } from "./book-open.svg?react";
 export { default as Warning } from "./warning.svg?react";
 export { default as Info } from "./info.svg?react";
 export { default as AvatarIcon } from "./avatar.svg?react";
+export { default as Search } from "./search.svg?react";
