@@ -20,3 +20,7 @@ export { default as Info } from "./info.svg?react";
 export { default as Plus } from "./plus.svg?react";
 export { default as AvatarIcon } from "./avatar.svg?react";
 export { default as Search } from "./search.svg?react";
+export { default as IconFlashcard } from "./lesson-flashcard.svg?react";
+export { default as IconQcm } from "./lesson-qcm.svg?react";
+export { default as IconMatching } from "./lesson-matching.svg?react";
+export { default as IconSorting } from "./lesson-sorting.svg?react";

@@ -27,6 +27,7 @@ import LessonForm from '@/pages/admin/lessons/LessonForm'
 import { Header } from '@/components/layout/Header'
 import { Profile } from './pages/profile/Profile'
 import LanguageTopics from '@/pages/topics/LanguageTopics'
+import TopicLessons from '@/pages/topics/TopicLessons'
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/plans" element={<Plans />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
+                <Route path="/topics/:topicId" element={<ProtectedRoute><TopicLessons /></ProtectedRoute>} />
                 <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} >
                 </Route>
 
