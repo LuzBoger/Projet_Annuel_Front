@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { lessonService } from '@/services/lessonService';
-import type { LessonResponse, LessonRequest } from '@/types/lesson/lesson';
+import type { LessonResponse, LessonRequest, CompleteLessonRequest } from '@/types/lesson/lesson';
 import { useToast } from '@/hooks/useToast';
 import { useTranslation } from 'react-i18next';
 
@@ -100,6 +100,42 @@ export function useLesson() {
         }
     }, []);
 
+    const startLesson = useCallback(async (lessonId: string) => {
+        try {
+            setLoading(true);
+            setError(null);
+            const data = await lessonService.startLesson(lessonId);
+            return data;
+        } catch (err: unknown) {
+            console.error('Error starting lesson:', err);
+            const axiosError = err as { response?: { data?: { message?: string } } };
+            const errorMessage = axiosError.response?.data?.message || t('error.startLesson', 'Impossible de démarrer la leçon.');
+            setError(errorMessage);
+            addToast({ type: 'error', message: errorMessage });
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, [addToast, t]);
+
+    const completeLesson = useCallback(async (lessonId: string, data: CompleteLessonRequest) => {
+        try {
+            setLoading(true);
+            setError(null);
+            const responseData = await lessonService.completeLesson(lessonId, data);
+            return responseData;
+        } catch (err: unknown) {
+            console.error('Error completing lesson:', err);
+            const axiosError = err as { response?: { data?: { message?: string } } };
+            const errorMessage = axiosError.response?.data?.message || t('error.completeLesson', 'Impossible de valider la leçon.');
+            setError(errorMessage);
+            addToast({ type: 'error', message: errorMessage });
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, [addToast, t]);
+
     return {
         lessons,
         loading,
@@ -108,6 +144,8 @@ export function useLesson() {
         fetchLessonById,
         createLesson,
         updateLesson,
-        deleteLesson
+        deleteLesson,
+        startLesson,
+        completeLesson
     };
 }

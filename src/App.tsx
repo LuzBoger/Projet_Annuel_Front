@@ -28,6 +28,8 @@ import { Header } from '@/components/layout/Header'
 import { Profile } from './pages/profile/Profile'
 import LanguageTopics from '@/pages/topics/LanguageTopics'
 import TopicLessons from '@/pages/topics/TopicLessons'
+import LessonPlayer from '@/pages/lessons/LessonPlayer'
+import LessonSuccess from '@/pages/lessons/LessonSuccess'
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
                 <Route path="/topics/:topicId" element={<ProtectedRoute><TopicLessons /></ProtectedRoute>} />
+                <Route path="/lessons/:lessonId/play" element={<ProtectedRoute><LessonPlayer /></ProtectedRoute>} />
+                <Route path="/lessons/:lessonId/success" element={<ProtectedRoute><LessonSuccess /></ProtectedRoute>} />
                 <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} >
                 </Route>
 

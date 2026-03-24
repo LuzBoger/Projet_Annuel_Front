@@ -51,3 +51,25 @@ export interface LessonRequest {
 export interface LessonResponse extends LessonRequest {
     id: string;
 }
+
+export interface UserLessonProgressSummary {
+    userId: string;
+    lessonId: string;
+    startedAt: string;
+    completedAt?: string;
+    score?: number;
+    passed?: boolean;
+}
+
+export interface CompleteLessonRequest {
+    score: number;
+    timeSpentSeconds: number;
+}
+
+export interface CompleteLessonResponse {
+    success: boolean;
+    xpEarned: number;
+    leveledUp: boolean;
+    newLevel?: number;
+    message?: string;
+}
