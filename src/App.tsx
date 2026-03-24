@@ -24,6 +24,7 @@ import TopicList from '@/pages/admin/topics/TopicList'
 import AdminDashboard from '@/pages/admin/dashboard/AdminDashboard'
 import { Header } from '@/components/layout/Header'
 import { Profile } from './pages/profile/Profile'
+import { LanguageCatalog } from './pages/catalog-languages/LanguageCatalog'
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
                   <Route path="/verify-2fa" element={<Verify2FA />} />
                   <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
                   <Route path="/plans" element={<Plans />} />
+                  <Route path="/catalog-languages" element={<LanguageCatalog />} />
                   <Route path="/profile" element={<Profile />} />
                                 
                   <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} >

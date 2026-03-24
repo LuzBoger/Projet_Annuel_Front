@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import { Spinner } from "@/assets/icons";
 
-type ButtonVariant = "primary" | "secondary" | "danger" | "outline";
+type ButtonVariant = "primary" | "secondary" | "danger" | "outline" | "ghost";
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 
@@ -18,6 +18,7 @@ const variants: Record<ButtonVariant, string> = {
   secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
   danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
   outline: 'border-2 border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-500',
+  ghost: 'border border-gray-200 text-gray-700 hover:bg-gray-50 focus:ring-gray-200',
 };
 
 const sizes: Record<ButtonSize, string> = {

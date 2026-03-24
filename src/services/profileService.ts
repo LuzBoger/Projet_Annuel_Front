@@ -35,5 +35,10 @@ export const profileService = {
     async deleteProfileImage(): Promise<ApiResponse> {
         const response = await apiClient.delete<ApiResponse>('/profile/delete/image');
         return response.data;
+    },
+
+    async addActiveLanguage(languageId: string): Promise<UserProfileResponse> {
+        const response = await apiClient.put<UserProfileResponse>(`/profile/active-language/${languageId}`);
+        return response.data;
     }
 }

@@ -1,5 +1,5 @@
 import apiClient from "@/services/axios";
-import type { TopicResponse, CreateTopicRequest, UpdateTopicRequest } from "@/types/topic/topic";
+import type { TopicResponse, TopicWithProgressResponse, CreateTopicRequest, UpdateTopicRequest } from "@/types/topic/topic";
 
 export const topicService = {
 
@@ -23,8 +23,8 @@ export const topicService = {
         return response.data;
     },
 
-    async getTopicsByLanguage(languageId: string): Promise<TopicResponse[]> {
-        const response = await apiClient.get<TopicResponse[]>(`/topics/language/${languageId}`);
+    async getTopicsByLanguage(languageId: string): Promise<TopicWithProgressResponse[]> {
+        const response = await apiClient.get<TopicWithProgressResponse[]>(`/topics/language/${languageId}`);
         return response.data;
     },
 

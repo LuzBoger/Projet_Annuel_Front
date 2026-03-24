@@ -1,3 +1,5 @@
+import { LanguageResponse } from "../language/language";
+import { UserLanguageResponse } from "../userLanguage/userLanguage";
 export interface UpdateProfileRequest {
     photoUrl?: string;
     bio?: string;
@@ -19,18 +21,20 @@ export interface UploadResponse {
 }
 export interface UserProfileResponse {
   id: string;
+  accountId: string;
   username: string;
   email: string;
+  firstName?: string;
+  lastName?: string;
   photoUrl?: string;
   bio?: string;
   countryCode?: string;
   timezone?: string;
   isPublic: boolean;
   languages?: UserLanguageResponse[];
+  activeLanguage?: LanguageResponse | null;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
-export interface UserLanguageResponse {
-  languageCode: string;
-  nativeLanguage: boolean;
-  proficiencyLevel: string;
-}
+

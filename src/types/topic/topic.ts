@@ -23,3 +23,12 @@ export interface CreateTopicRequest {
 
 export type UpdateTopicRequest = CreateTopicRequest;
 
+import { LessonResponse } from "@/types/lesson/lesson";
+
+export interface TopicWithProgressResponse extends TopicResponse {
+    completedLessons: number;
+    totalLessons: number;
+    progressPercent: number;
+    lessons: LessonResponse[];
+}
+
