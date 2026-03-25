@@ -201,8 +201,8 @@
       "Premium": "Premium"
     },
     "descriptions": {
-        "Free plan": "C'est le plan gratuit",
-        "Premium plan": "Plan premium avec toutes les fonctionnalités"
+      "Free plan": "C'est le plan gratuit",
+      "Premium plan": "Plan premium avec toutes les fonctionnalités"
     },
     "is_active": "Actif",
     "table": {
@@ -256,6 +256,7 @@
       "create_success": "Topic créé avec succès.",
       "update_success": "Topic mis à jour avec succès.",
       "delete_success": "Topic supprimé avec succès.",
+      "manage_lessons": "Gérer les leçons",
       "table": {
         "name": "Nom",
         "description": "Description",
@@ -289,6 +290,82 @@
           "C1": "C1 - Avancé",
           "C2": "C2 - Expérimenté"
         }
+      }
+    },
+    "lessons": {
+      "page_title": "Gestion des leçons - {{topicName}}",
+      "create": "Créer une leçon",
+      "edit": "Modifier la leçon",
+      "delete_title": "Supprimer la leçon",
+      "delete_desc": "Êtes-vous sûr de vouloir supprimer cette leçon ? Cette action est irréversible.",
+      "list_title": "Leçons pour le topic : {{topicName}}",
+      "no_lessons": "Aucune leçon pour ce topic.",
+      "create_success": "Leçon créée avec succès.",
+      "update_success": "Leçon mise à jour avec succès.",
+      "delete_success": "Leçon supprimée avec succès.",
+      "table": {
+        "title": "Titre",
+        "type": "Type",
+        "order": "Ordre",
+        "active": "Actif",
+        "actions": "Actions"
+      },
+      "form": {
+        "title": "Titre de la leçon",
+        "description": "Description",
+        "order": "Index de tri",
+        "xp": "Récompense XP",
+        "minLevel": "Niveau min. requis",
+        "duration": "Durée (min)",
+        "passScore": "Score de passage (%)",
+        "active": "Leçon active",
+        "type": "Type de leçon",
+        "type_placeholder": "Choisir un type",
+        "types": {
+          "FLASHCARD": "Flashcard",
+          "QCM": "QCM",
+          "MATCHING_PAIR": "Paires à relier",
+          "SORTING_EXERCISE": "Mise en ordre"
+        },
+        "sections": {
+          "basic_info": "Informations de base",
+          "lesson_content": "Contenu de la leçon"
+        },
+        "topic_label": "Topic :",
+        "untitled": "Leçon sans titre",
+        "no_description": "Aucune description fournie."
+      },
+      "flashcards": {
+        "front": "Recto (Front)",
+        "back": "Verso (Back)",
+        "frontLang": "Langue Recto",
+        "backLang": "Langue Verso",
+        "add": "Ajouter une Flashcard"
+      },
+      "qcm": {
+        "question": "Question",
+        "option": "Option {{index}}",
+        "add_option": "Ajouter une option",
+        "correct": "Bonne réponse",
+        "explanation": "Explication",
+        "add_question": "Ajouter une question"
+      },
+      "matching": {
+        "item1": "Élément 1",
+        "item2": "Élément 2",
+        "add": "Ajouter une paire"
+      },
+      "sorting": {
+        "items": "Éléments à trier (séparés par virgule)",
+        "order": "Ordre correct (index séparés par virgule, ex: 0,1,2)",
+        "note": "Note : Les éléments et l'ordre sont gérés par des chaînes séparées par des virgules dans ce formulaire simplifié."
+      },
+      "preview": {
+        "title": "Aperçu en direct",
+        "no_data": "Remplissez les informations pour voir l'aperçu",
+        "flashcard_label": "Flashcard",
+        "sorting_label": "Mise en ordre",
+        "visual_confirm": "Ceci est un aperçu visuel uniquement"
       }
     }
   },
@@ -368,7 +445,11 @@
     "fetchLanguageByCode": "Impossible de récupérer la langue par code.",
     "createLanguage": "Impossible de créer la langue.",
     "updateLanguage": "Impossible de mettre à jour la langue.",
-    "deleteLanguage": "Impossible de supprimer la langue."
+    "deleteLanguage": "Impossible de supprimer la langue.",
+    "fetchLessons": "Impossible de récupérer les leçons.",
+    "createLesson": "Impossible de créer la leçon.",
+    "updateLesson": "Impossible de mettre à jour la leçon.",
+    "deleteLesson": "Impossible de supprimer la leçon."
   },
   "settings": {
     "title": "Paramètres",
