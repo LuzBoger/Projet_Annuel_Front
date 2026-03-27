@@ -50,6 +50,8 @@ export interface LessonRequest {
 
 export interface LessonResponse extends LessonRequest {
     id: string;
+    topicName?: string;
+    isAlreadyFinish?: boolean;
 }
 
 export interface UserLessonProgressSummary {

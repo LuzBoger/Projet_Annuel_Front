@@ -37,10 +37,19 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
 
             {/* Header: Type and Step */}
             <div className="relative z-10 flex items-start justify-between mb-4">
-                <span className={`flex items-center space-x-1.5 px-3 py-1.5 text-[10px] sm:text-xs font-medium uppercase tracking-wider rounded-full border shadow-sm ${visuals.color}`}>
-                    {visuals.icon}
-                    <span>{visuals.label}</span>
-                </span>
+                <div className="flex items-center gap-2">
+                    <span className={`flex items-center space-x-1.5 px-3 py-1.5 text-[10px] sm:text-xs font-medium uppercase tracking-wider rounded-full border shadow-sm ${visuals.color}`}>
+                        {visuals.icon}
+                        <span>{visuals.label}</span>
+                    </span>
+                    {lesson.isAlreadyFinish && (
+                        <span className="flex items-center justify-center bg-emerald-100 text-emerald-600 rounded-full w-6 h-6 shadow-sm border border-emerald-200" title="Validée">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                    )}
+                </div>
                 
                 <div className="flex bg-indigo-600 text-white rounded-full w-8 h-8 items-center justify-center shadow-sm">
                     <span className="text-sm font-medium tracking-wide">
@@ -81,7 +90,7 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
                 </div>
                 
                 <div className="flex items-center justify-end text-sm font-medium text-indigo-600 group-hover:text-indigo-700 pt-3 border-t border-gray-100">
-                    {t('topics.start_lesson_btn', 'Commencer la leçon')}
+                    {lesson.isAlreadyFinish ? t('topics.replay_lesson_btn', 'Rejouer la leçon') : t('topics.start_lesson_btn', 'Commencer la leçon')}
                     <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1.5 transition-transform duration-200" />
                 </div>
             </div>
