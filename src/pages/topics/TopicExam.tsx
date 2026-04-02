@@ -11,11 +11,26 @@ import { ExamMatchingQuestion, UserPairAnswer } from "@/components/topics/ExamMa
 import { ExamSortingQuestion } from "@/components/topics/ExamSortingQuestion";
 import { MatchingPairResponse, SortingExerciseExamResponse } from "@/types/topic/topic";
 
+interface Tile {
+    id: string;
+    text: string;
+    originalPairId: string;
+}
+
 type ExamItem = 
     | { type: 'QCM', data: QcmQuestionExamResponse }
     | { type: 'FLASHCARD', data: FlashcardExamResponse }
-    | { type: 'MATCHING', data: MatchingPairResponse[] }
-    | { type: 'SORTING', data: SortingExerciseExamResponse };
+    | { type: 'MATCHING', data: MatchingPairResponse[], shuffledTiles: Tile[] }
+    | { type: 'SORTING', data: SortingExerciseExamResponse, shuffledIndices: number[] };
+
+function shuffleArray<T>(array: T[]): T[] {
+    const result = [...array];
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+}
 
 export default function TopicExam() {
     const { topicId } = useParams<{ topicId: string }>();
@@ -43,20 +58,36 @@ export default function TopicExam() {
                 setLoading(true);
                 const data = await topicService.getTopicExam(topicId);
                 
-                const qcms: ExamItem[] = (data.qcmQuestions || []).map((q: any) => ({ type: 'QCM', data: q }));
-                const flashcards: ExamItem[] = (data.flashcards || []).map((f: any) => ({ type: 'FLASHCARD', data: f }));
-                const sortings: ExamItem[] = (data.sortingExercises || []).map((s: any) => ({ type: 'SORTING', data: s }));
+                const qcms: ExamItem[] = (data.qcmQuestions || []).map((q) => ({ type: 'QCM', data: q }));
+                const flashcards: ExamItem[] = (data.flashcards || []).map((f) => ({ type: 'FLASHCARD', data: f }));
+                
+                const sortings: ExamItem[] = (data.sortingExercises || []).map((s) => ({ 
+                    type: 'SORTING', 
+                    data: s,
+                    shuffledIndices: shuffleArray(s.items.map((_, i) => i))
+                }));
                 
                 // Rassembler toutes les paires en une seule question 'MATCHING'
-                const matchings: ExamItem[] = (data.matchingPairs && data.matchingPairs.length > 0) 
-                    ? [{ type: 'MATCHING', data: data.matchingPairs }] 
-                    : [];
+                let matchings: ExamItem[] = [];
+                if (data.matchingPairs && data.matchingPairs.length > 0) {
+                    const tiles: Tile[] = [];
+                    data.matchingPairs.forEach((pair, index) => {
+                        tiles.push({ id: `t1-${index}-${pair.id}`, text: pair.item1, originalPairId: pair.id });
+                        tiles.push({ id: `t2-${index}-${pair.id}`, text: pair.item2, originalPairId: pair.id });
+                    });
+                    
+                    matchings = [{ 
+                        type: 'MATCHING', 
+                        data: data.matchingPairs,
+                        shuffledTiles: shuffleArray(tiles)
+                    }];
+                }
 
-                const mixed = [...qcms, ...flashcards, ...sortings, ...matchings].sort(() => Math.random() - 0.5);
+                const mixed = shuffleArray([...qcms, ...flashcards, ...sortings, ...matchings]);
                 
                 setMixedQuestions(mixed);
                 setExam(data);
-            } catch (err: any) {
+            } catch {
                 setError(t('topics.exam_load_error'));
             } finally {
                 setLoading(false);
@@ -81,7 +112,7 @@ export default function TopicExam() {
 
             const response = await topicService.submitTopicExam(topicId, resultPayload);
             setExamResult(response);
-        } catch (err: any) {
+        } catch {
             setError(t('topics.exam_submit_error'));
         } finally {
             setSubmitting(false);
@@ -233,47 +264,64 @@ export default function TopicExam() {
                                 </div>
                             </div>
 
-                            {mixedQuestions[currentIndex].type === 'QCM' && (
-                                <ExamQcmQuestion 
-                                    question={mixedQuestions[currentIndex].data as QcmQuestionExamResponse}
-                                    selectedValue={qcmAnswers[(mixedQuestions[currentIndex].data as QcmQuestionExamResponse).id] ?? null}
-                                    onSelect={(val) => setQcmAnswers(prev => ({ ...prev, [(mixedQuestions[currentIndex].data as QcmQuestionExamResponse).id]: val }))}
-                                />
-                            )}
-                            
-                            {mixedQuestions[currentIndex].type === 'FLASHCARD' && (
-                                <ExamFlashcardQuestion 
-                                    flashcard={mixedQuestions[currentIndex].data as FlashcardExamResponse}
-                                    value={flashcardAnswers[(mixedQuestions[currentIndex].data as FlashcardExamResponse).id] || ''}
-                                    onChange={(val) => setFlashcardAnswers(prev => ({ ...prev, [(mixedQuestions[currentIndex].data as FlashcardExamResponse).id]: val }))}
-                                />
-                            )}
+                            {(() => {
+                                const currentItem = mixedQuestions[currentIndex];
+                                
+                                if (currentItem.type === 'QCM') {
+                                    return (
+                                        <ExamQcmQuestion 
+                                            question={currentItem.data}
+                                            selectedValue={qcmAnswers[currentItem.data.id] ?? null}
+                                            onSelect={(val) => setQcmAnswers(prev => ({ ...prev, [currentItem.data.id]: val }))}
+                                        />
+                                    );
+                                }
+                                
+                                if (currentItem.type === 'FLASHCARD') {
+                                    return (
+                                        <ExamFlashcardQuestion 
+                                            flashcard={currentItem.data}
+                                            value={flashcardAnswers[currentItem.data.id] || ''}
+                                            onChange={(val) => setFlashcardAnswers(prev => ({ ...prev, [currentItem.data.id]: val }))}
+                                        />
+                                    );
+                                }
 
-                            {mixedQuestions[currentIndex].type === 'SORTING' && (
-                                <ExamSortingQuestion 
-                                    exercise={mixedQuestions[currentIndex].data as SortingExerciseExamResponse}
-                                    userOrder={sortingAnswers[(mixedQuestions[currentIndex].data as SortingExerciseExamResponse).id] || []}
-                                    onChange={(val) => setSortingAnswers(prev => ({ ...prev, [(mixedQuestions[currentIndex].data as SortingExerciseExamResponse).id]: val }))}
-                                />
-                            )}
+                                if (currentItem.type === 'SORTING') {
+                                    return (
+                                        <ExamSortingQuestion 
+                                            exercise={currentItem.data}
+                                            shuffledIndices={currentItem.shuffledIndices}
+                                            userOrder={sortingAnswers[currentItem.data.id] || []}
+                                            onChange={(val) => setSortingAnswers(prev => ({ ...prev, [currentItem.data.id]: val }))}
+                                        />
+                                    );
+                                }
 
-                            {mixedQuestions[currentIndex].type === 'MATCHING' && (
-                                <ExamMatchingQuestion 
-                                    pairs={mixedQuestions[currentIndex].data as MatchingPairResponse[]}
-                                    userPairs={matchingAnswers}
-                                    onChange={(val) => setMatchingAnswers(val)}
-                                />
-                            )}
+                                if (currentItem.type === 'MATCHING') {
+                                    return (
+                                        <ExamMatchingQuestion 
+                                            shuffledTiles={currentItem.shuffledTiles}
+                                            userPairs={matchingAnswers}
+                                            onChange={(val) => setMatchingAnswers(val)}
+                                        />
+                                    );
+                                }
+
+                                return null;
+                            })()}
 
                             <Button 
                                 className="w-full py-4 text-lg mt-4 shadow-sm" 
                                 onClick={() => setCurrentIndex(prev => prev + 1)}
-                                disabled={
-                                    (mixedQuestions[currentIndex].type === 'QCM' && qcmAnswers[(mixedQuestions[currentIndex].data as QcmQuestionExamResponse).id] === undefined) ||
-                                    (mixedQuestions[currentIndex].type === 'FLASHCARD' && !flashcardAnswers[(mixedQuestions[currentIndex].data as FlashcardExamResponse).id]?.trim()) ||
-                                    (mixedQuestions[currentIndex].type === 'SORTING' && (!sortingAnswers[(mixedQuestions[currentIndex].data as SortingExerciseExamResponse).id] || sortingAnswers[(mixedQuestions[currentIndex].data as SortingExerciseExamResponse).id].length < (mixedQuestions[currentIndex].data as SortingExerciseExamResponse).items.length)) ||
-                                    (mixedQuestions[currentIndex].type === 'MATCHING' && matchingAnswers.length < (mixedQuestions[currentIndex].data as MatchingPairResponse[]).length)
-                                }
+                                disabled={(() => {
+                                    const currentItem = mixedQuestions[currentIndex];
+                                    if (currentItem.type === 'QCM') return qcmAnswers[currentItem.data.id] === undefined;
+                                    if (currentItem.type === 'FLASHCARD') return !flashcardAnswers[currentItem.data.id]?.trim();
+                                    if (currentItem.type === 'SORTING') return (!sortingAnswers[currentItem.data.id] || sortingAnswers[currentItem.data.id].length < currentItem.data.items.length);
+                                    if (currentItem.type === 'MATCHING') return matchingAnswers.length < currentItem.shuffledTiles.length / 2;
+                                    return false;
+                                })()}
                             >
                                 {currentIndex < mixedQuestions.length - 1 ? t('common.next') : t('common.validate')}
                             </Button>

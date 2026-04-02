@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { MatchingPairResponse } from "@/types/topic/topic";
 import { Cross } from "@/assets/icons";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 
@@ -19,43 +18,25 @@ interface Tile {
 }
 
 interface ExamMatchingQuestionProps {
-    pairs: MatchingPairResponse[];
+    shuffledTiles: Tile[];
     userPairs: UserPairAnswer[];
     onChange: (answers: UserPairAnswer[]) => void;
 }
 
-export function ExamMatchingQuestion({ pairs, userPairs, onChange }: ExamMatchingQuestionProps) {
+export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: ExamMatchingQuestionProps) {
     const { t } = useTranslation();
-    const [tiles, setTiles] = useState<Tile[]>([]);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
     
-    useEffect(() => {
-        if (!pairs || pairs.length === 0) return;
+    // Derive visible tiles by filtering answered ones
+    const answeredTileIds = new Set(userPairs.flatMap(p => [p.tileAId, p.tileBId].filter(Boolean)));
+    const tiles = shuffledTiles.filter(tile => !answeredTileIds.has(tile.id));
 
-        const answeredTileIds = new Set(userPairs.flatMap(p => [p.tileAId, p.tileBId].filter(Boolean)));
-        const newTiles: Tile[] = [];
-        
-        pairs.forEach((pair, index) => {
-            const tile1Id = `t1-${index}-${pair.id}`;
-            const tile2Id = `t2-${index}-${pair.id}`;
-            
-            if (!answeredTileIds.has(tile1Id)) {
-                newTiles.push({ id: tile1Id, text: pair.item1, originalPairId: pair.id });
-            }
-            if (!answeredTileIds.has(tile2Id)) {
-                newTiles.push({ id: tile2Id, text: pair.item2, originalPairId: pair.id });
-            }
-        });
-
-        const shuffledTiles = [...newTiles];
-        for (let i = shuffledTiles.length - 1; i > 0; i--) {
-            const randomIndex = Math.floor(Math.random() * (i + 1));
-            [shuffledTiles[i], shuffledTiles[randomIndex]] = [shuffledTiles[randomIndex], shuffledTiles[i]];
-        }
-
-        setTiles(shuffledTiles);
+    // Reset selection if shuffledTiles change (new question)
+    const [prevTiles, setPrevTiles] = useState(shuffledTiles);
+    if (shuffledTiles !== prevTiles) {
+        setPrevTiles(shuffledTiles);
         setSelectedIds([]);
-    }, [pairs, userPairs]);
+    }
 
     const handleTileSelection = (tileId: string) => {
         if (selectedIds.includes(tileId)) {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MatchingPairRequest } from "@/types/lesson/lesson";
 import { ChevronRight } from "@/assets/icons";
@@ -23,39 +23,41 @@ interface Tile {
 const PENALTY_PER_ERROR = 10;
 const ERROR_DISPLAY_DURATION_MS = 800;
 
+const initTiles = (pairs: MatchingPairRequest[]): Tile[] => {
+    if (!pairs || pairs.length === 0) return [];
+    
+    const newTiles: Tile[] = [];
+    pairs.forEach((pair, index) => {
+        const matchId = `pair-${index}`;
+        newTiles.push({ id: `item1-${index}`, text: pair.item1, matchId });
+        newTiles.push({ id: `item2-${index}`, text: pair.item2, matchId });
+    });
+
+    for (let i = newTiles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newTiles[i], newTiles[j]] = [newTiles[j], newTiles[i]];
+    }
+    return newTiles;
+};
+
 export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
     const { t } = useTranslation();
-    const [tiles, setTiles] = useState<Tile[]>([]);
+    
+    const [prevPairs, setPrevPairs] = useState(pairs);
+    const [tiles, setTiles] = useState(() => initTiles(pairs));
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
     const [matchedMatchIds, setMatchedMatchIds] = useState<string[]>([]);
     const [errorIds, setErrorIds] = useState<string[]>([]);
     const [errorCount, setErrorCount] = useState(0);
 
-    /* Initialise et mélange le tableau des tuiles à la création */
-    useEffect(() => {
-        if (!pairs || pairs.length === 0) {
-            return;
-        }
-
-        const newTiles: Tile[] = [];
-
-        pairs.forEach((pair, index) => {
-            const matchId = `pair-${index}`;
-            newTiles.push({ id: `item1-${index}`, text: pair.item1, matchId });
-            newTiles.push({ id: `item2-${index}`, text: pair.item2, matchId });
-        });
-
-        for (let currentIndex = newTiles.length - 1; currentIndex > 0; currentIndex--) {
-            const randomIndex = Math.floor(Math.random() * (currentIndex + 1));
-            [newTiles[currentIndex], newTiles[randomIndex]] = [newTiles[randomIndex], newTiles[currentIndex]];
-        }
-
-        setTiles(newTiles);
-        setMatchedMatchIds([]);
+    if (pairs !== prevPairs) {
+        setPrevPairs(pairs);
+        setTiles(initTiles(pairs));
         setSelectedIds([]);
+        setMatchedMatchIds([]);
         setErrorIds([]);
         setErrorCount(0);
-    }, [pairs]);
+    }
 
     if (!pairs || pairs.length === 0) {
         return (
@@ -91,7 +93,6 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
         }
     };
 
-    /* Vérifie si les deux tuiles sélectionnées constituent une paire valide */
     const checkSelectedPair = (currentSelectedIds: string[]) => {
         const firstTile = tiles.find(tile => tile.id === currentSelectedIds[0]);
         const secondTile = tiles.find(tile => tile.id === currentSelectedIds[1]);

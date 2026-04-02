@@ -24,7 +24,7 @@ export default function TopicLessons() {
                     setLoading(true);
                     const data = await lessonService.getTopicLessonsDetails(topicId);
                     setDetails(data);
-                } catch (err) {
+                } catch {
                     setError(t('error.fetchLessons'));
                 } finally {
                     setLoading(false);
@@ -113,12 +113,12 @@ export default function TopicLessons() {
                         <>
                             {/* Progress Bar */}
                             <TopicProgressBar 
-                                finishedCount={lessons.filter((l: any) => l.isAlreadyFinish).length} 
+                                finishedCount={lessons.filter((l) => l.isAlreadyFinish).length} 
                                 totalCount={lessons.length} 
                             />
 
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative items-stretch">
-                                {lessons.map((lesson: any, index: number) => {
+                                {lessons.map((lesson, index: number) => {
                                     const isLastInRowLg = (index + 1) % 3 === 0;
                                     const isLastInRowMd = (index + 1) % 2 === 0;
 
@@ -148,7 +148,7 @@ export default function TopicLessons() {
                                 })}
 
                                 <FinalExamCard 
-                                    isUnlocked={lessons.every((l: any) => l.isAlreadyFinish)} 
+                                    isUnlocked={lessons.every((l) => l.isAlreadyFinish)} 
                                     onTakeExam={() => navigate(`/topics/${topicId}/exam`)} 
                                 />
                             </div>

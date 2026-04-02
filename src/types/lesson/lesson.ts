@@ -76,7 +76,7 @@ export interface CompleteLessonResponse {
     currentLevel: number;
     leveledUp: boolean;
     newLevel?: number;
-    progress?: any; // To be typed later if UserProgressResponse is known
+    progress?: unknown; // To be typed later if UserProgressResponse is known
 }
 
 export interface LessonSummaryResponse {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SortingExerciseRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
@@ -20,38 +20,44 @@ interface SortableItem {
     originalIndex: number;
 }
 
+const initPool = (exercises: SortingExerciseRequest[], currentIndex: number): SortableItem[] => {
+    if (!exercises || exercises.length === 0 || !exercises[currentIndex]) return [];
+    
+    const currentExercise = exercises[currentIndex];
+    const items: SortableItem[] = currentExercise.items.map((text, index) => ({
+        id: `item-${currentIndex}-${index}`,
+        text,
+        originalIndex: index
+    }));
+
+    for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+    }
+    return items;
+};
+
 export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
     const { t } = useTranslation();
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [pool, setPool] = useState<SortableItem[]>([]);
+    
+    // Pattern de synchronisation sans useEffect
+    const [prevIndex, setPrevIndex] = useState(currentIndex);
+    const [prevExercises, setPrevExercises] = useState(exercises);
+    const [pool, setPool] = useState(() => initPool(exercises, currentIndex));
     const [selectedItems, setSelectedItems] = useState<SortableItem[]>([]);
     const [isValidated, setIsValidated] = useState(false);
     const [isCorrect, setIsCorrect] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
 
-    useEffect(() => {
-        if (!exercises || exercises.length === 0 || !exercises[currentIndex]) {
-            return;
-        }
-
-        const currentExercise = exercises[currentIndex];
-        
-        const initialItems: SortableItem[] = currentExercise.items.map((text, index) => ({
-            id: `item-${currentIndex}-${index}`,
-            text,
-            originalIndex: index
-        }));
-
-        for (let idx = initialItems.length - 1; idx > 0; idx--) {
-            const randomIndex = Math.floor(Math.random() * (idx + 1));
-            [initialItems[idx], initialItems[randomIndex]] = [initialItems[randomIndex], initialItems[idx]];
-        }
-
-        setPool(initialItems);
+    if (currentIndex !== prevIndex || exercises !== prevExercises) {
+        setPrevIndex(currentIndex);
+        setPrevExercises(exercises);
+        setPool(initPool(exercises, currentIndex));
         setSelectedItems([]);
         setIsValidated(false);
         setIsCorrect(false);
-    }, [exercises, currentIndex]);
+    }
 
     if (!exercises || exercises.length === 0) {
         return (

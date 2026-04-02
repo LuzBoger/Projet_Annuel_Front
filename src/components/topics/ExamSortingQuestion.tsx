@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { SortingExerciseExamResponse } from "@/types/topic/topic";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 
 interface ExamSortingQuestionProps {
     exercise: SortingExerciseExamResponse;
+    shuffledIndices: number[];
     userOrder: number[]; 
     onChange: (order: number[]) => void;
 }
@@ -15,48 +16,32 @@ interface SortableItem {
     originalIndex: number;
 }
 
-export function ExamSortingQuestion({ exercise, userOrder, onChange }: ExamSortingQuestionProps) {
+export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onChange }: ExamSortingQuestionProps) {
     const { t } = useTranslation();
-    const [pool, setPool] = useState<SortableItem[]>([]);
-    const [selectedItems, setSelectedItems] = useState<SortableItem[]>([]);
 
-    useEffect(() => {
-        const initialItems: SortableItem[] = exercise.items.map((text, index) => ({
-            id: `item-${exercise.id}-${index}`,
-            text,
-            originalIndex: index
-        }));
+    const initialItems = useMemo(() => exercise.items.map((text, index) => ({
+        id: `item-${exercise.id}-${index}`,
+        text,
+        originalIndex: index
+    })), [exercise]);
 
-        if (userOrder && userOrder.length > 0) {
-            const newSelected = userOrder.map(idx => initialItems.find(item => item.originalIndex === idx)!).filter(Boolean);
-            const selectedOriginalIndices = newSelected.map(i => i.originalIndex);
-            const newPool = initialItems.filter(item => !selectedOriginalIndices.includes(item.originalIndex));
-            
-            setSelectedItems(newSelected);
-            setPool(newPool);
-        } else {
-            const shuffledItems = [...initialItems];
-            for (let i = shuffledItems.length - 1; i > 0; i--) {
-                const randomIndex = Math.floor(Math.random() * (i + 1));
-                [shuffledItems[i], shuffledItems[randomIndex]] = [shuffledItems[randomIndex], shuffledItems[i]];
-            }
-            setPool(shuffledItems);
-            setSelectedItems([]);
-        }
-    }, [exercise, userOrder]);
+    const selectedItems = useMemo(() => 
+        userOrder.map(idx => initialItems.find(item => item.originalIndex === idx)!).filter(Boolean)
+    , [initialItems, userOrder]);
+
+    const pool = useMemo(() => {
+        const selectedIndices = new Set(userOrder);
+        return shuffledIndices
+            .map(idx => initialItems[idx])
+            .filter(item => !selectedIndices.has(item.originalIndex));
+    }, [initialItems, shuffledIndices, userOrder]);
 
     const handlePoolSelection = (item: SortableItem) => {
-        const newSelected = [...selectedItems, item];
-        setSelectedItems(newSelected);
-        setPool(prev => prev.filter(p => p.id !== item.id));
-        onChange(newSelected.map(i => i.originalIndex));
+        onChange([...userOrder, item.originalIndex]);
     };
 
     const handleTargetDeselection = (item: SortableItem) => {
-        const newSelected = selectedItems.filter(i => i.id !== item.id);
-        setSelectedItems(newSelected);
-        setPool(prev => [...prev, item]);
-        onChange(newSelected.map(i => i.originalIndex));
+        onChange(userOrder.filter(idx => idx !== item.originalIndex));
     };
 
     return (

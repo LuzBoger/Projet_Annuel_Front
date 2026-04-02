@@ -91,7 +91,7 @@ export function useLesson() {
         try {
             const data = await lessonService.getLessonById(id);
             return data;
-        } catch (err: unknown) {
+        } catch {
             setError(t('error.fetchLessonById'));
             return null;
         } finally {
