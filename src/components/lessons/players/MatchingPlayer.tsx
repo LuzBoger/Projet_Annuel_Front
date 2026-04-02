@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { MatchingPairRequest } from "@/types/lesson/lesson";
-import { Check, ChevronRight } from "@/assets/icons";
+import { ChevronRight } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
+import { PlayerLayout } from "./common/PlayerLayout";
+import { PlayerHeader } from "./common/PlayerHeader";
+import { PlayerCard } from "./common/PlayerCard";
+import { PlayerFeedback } from "./common/PlayerFeedback";
+import { PlayerFooter } from "./common/PlayerFooter";
 
 interface MatchingPlayerProps {
     pairs: MatchingPairRequest[];
@@ -54,9 +59,11 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
 
     if (!pairs || pairs.length === 0) {
         return (
-            <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm">
-                {t('common.no_data')}
-            </div>
+            <PlayerLayout maxWidth="max-w-3xl">
+                <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm w-full">
+                    {t('common.no_data')}
+                </div>
+            </PlayerLayout>
         );
     }
 
@@ -111,29 +118,15 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
     };
 
     return (
-        <div className="flex flex-col items-center w-full max-w-3xl mx-auto pb-8">
-            <div className="w-full mb-8">
-                <div className="flex justify-between text-sm font-medium text-gray-500 mb-3">
-                    <span className="uppercase tracking-widest text-[10px] sm:text-xs text-indigo-500">
-                        {t('lessons.progress')}
-                    </span>
-                    <span className="bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
-                        {matchedMatchIds.length} / {pairs.length}
-                    </span>
-                </div>
-                <div className="w-full bg-gray-200/50 rounded-full h-3 shadow-inner overflow-hidden">
-                    <div 
-                        className="bg-indigo-500 h-3 rounded-full transition-all duration-500 ease-out" 
-                        style={{ width: `${(matchedMatchIds.length / pairs.length) * 100}%` }}
-                    ></div>
-                </div>
-            </div>
+        <PlayerLayout maxWidth="max-w-3xl">
+            <PlayerHeader 
+                current={matchedMatchIds.length} 
+                total={pairs.length} 
+            />
 
-            <div className="w-full bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-6 sm:p-10 mb-6 transition-all">
-                <h3 className="text-2xl sm:text-3xl font-medium text-gray-800 mb-8 text-center leading-tight">
-                    <p className="text-gray-500 font-medium mb-1">{t('lessons.matching.instruction')}</p>
-                </h3>
-
+            <PlayerCard 
+                instruction={<p className="text-gray-500 font-medium mb-1">{t('lessons.matching.instruction')}</p>}
+            >
                 <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-3 gap-3 sm:gap-4">
                     {tiles.map(tile => {
                         const isSelected = selectedIds.includes(tile.id);
@@ -164,25 +157,16 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                         );
                     })}
                 </div>
-            </div>
+            </PlayerCard>
 
-            {isFinished && (
-                <div className="w-full p-5 rounded-2xl mb-6 border-2 flex items-start gap-4 animate-[fade-in-up_0.3s_ease-out] bg-emerald-50 border-emerald-100 text-emerald-900">
-                    <div className="mt-0.5 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 bg-emerald-200 text-emerald-800">
-                        <Check className="w-5 h-5 flex-shrink-0" />
-                    </div>
-                    <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('lessons.matching.completed')}</h2>
-                        <p className="opacity-90 font-medium text-sm leading-relaxed mt-1">
-                            {errorCount === 0 
-                                ? t('lessons.matching.flawless')
-                                : t('lessons.matching.with_errors')}
-                        </p>
-                    </div>
-                </div>
-            )}
+            <PlayerFeedback 
+                isVisible={isFinished}
+                isCorrect={true}
+                title={t('lessons.matching.completed')}
+                description={errorCount === 0 ? t('lessons.matching.flawless') : t('lessons.matching.with_errors')}
+            />
 
-            <div className="w-full">
+            <PlayerFooter>
                 {isFinished && (
                     <Button 
                         onClick={handleFinishClick}
@@ -194,7 +178,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                         <ChevronRight className="w-5 h-5 ml-2" />
                     </Button>
                 )}
-            </div>
-        </div>
+            </PlayerFooter>
+        </PlayerLayout>
     );
 }

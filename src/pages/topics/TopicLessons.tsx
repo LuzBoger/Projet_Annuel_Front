@@ -40,9 +40,9 @@ export default function TopicLessons() {
         <div className="min-h-screen pb-32 pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <Button 
                 onClick={() => navigate(-1)} 
-                variant="outline"
+                variant="ghost"
                 size="sm"
-                className="mb-8 font-bold border-none bg-transparent hover:bg-gray-100 flex items-center shadow-none text-gray-500 hover:text-gray-900"
+                className="mb-8 font-bold flex items-center text-gray-500 hover:text-gray-900"
             >
                 <ChevronLeft className="w-5 h-5 mr-1" />
                 {t('common.back')}

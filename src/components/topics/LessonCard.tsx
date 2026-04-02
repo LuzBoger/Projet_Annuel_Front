@@ -70,7 +70,7 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
                     </p>
                 ) : (
                     <p className="text-sm text-gray-400 italic">
-                        {t('topics.no_desc', 'Aucune description fournie')}
+                        {t('topics.no_desc')}
                     </p>
                 )}
             </div>
@@ -92,7 +92,7 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
                 </div>
                 
                 <div className="flex items-center justify-end text-sm font-medium text-indigo-600 group-hover:text-indigo-700 pt-3 border-t border-gray-100">
-                    {lesson.isAlreadyFinish ? t('topics.replay_lesson_btn', 'Rejouer la leçon') : t('topics.start_lesson_btn', 'Commencer la leçon')}
+                    {lesson.isAlreadyFinish ? t('topics.replay_lesson_btn') : t('topics.start_lesson_btn')}
                     <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1.5 transition-transform duration-200" />
                 </div>
             </div>

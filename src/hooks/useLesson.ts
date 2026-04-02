@@ -92,13 +92,12 @@ export function useLesson() {
             const data = await lessonService.getLessonById(id);
             return data;
         } catch (err: unknown) {
-            const error = err as Error;
-            setError(error.message || "Failed to fetch lesson");
+            setError(t('error.fetchLessonById'));
             return null;
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [t]);
 
     const startLesson = useCallback(async (lessonId: string) => {
         try {

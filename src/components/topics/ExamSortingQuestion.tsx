@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { SortingExerciseExamResponse } from "@/types/topic/topic";
+import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 
 interface ExamSortingQuestionProps {
     exercise: SortingExerciseExamResponse;
@@ -34,11 +35,12 @@ export function ExamSortingQuestion({ exercise, userOrder, onChange }: ExamSorti
             setSelectedItems(newSelected);
             setPool(newPool);
         } else {
-            for (let i = initialItems.length - 1; i > 0; i--) {
+            const shuffledItems = [...initialItems];
+            for (let i = shuffledItems.length - 1; i > 0; i--) {
                 const randomIndex = Math.floor(Math.random() * (i + 1));
-                [initialItems[i], initialItems[randomIndex]] = [initialItems[randomIndex], initialItems[i]];
+                [shuffledItems[i], shuffledItems[randomIndex]] = [shuffledItems[randomIndex], shuffledItems[i]];
             }
-            setPool(initialItems);
+            setPool(shuffledItems);
             setSelectedItems([]);
         }
     }, [exercise, userOrder]);
@@ -58,13 +60,15 @@ export function ExamSortingQuestion({ exercise, userOrder, onChange }: ExamSorti
     };
 
     return (
-        <div className="w-full bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-6 sm:p-10 mb-6 flex flex-col items-center">
-            <div className="flex justify-center mb-10">
-                <span className="px-4 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold tracking-wide uppercase">
-                    {t('lessons.sorting.instruction')}
-                </span>
-            </div>
-
+        <PlayerCard 
+            instruction={
+                <div className="flex justify-center mb-4">
+                    <span className="px-4 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold tracking-wide uppercase">
+                        {t('lessons.sorting.instruction')}
+                    </span>
+                </div>
+            }
+        >
             <div className="w-full space-y-8 max-w-lg mx-auto">
                 <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-100 py-8 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 rounded-[2rem]">
                     {selectedItems.length === 0 && (
@@ -96,6 +100,6 @@ export function ExamSortingQuestion({ exercise, userOrder, onChange }: ExamSorti
                     ))}
                 </div>
             </div>
-        </div>
+        </PlayerCard>
     );
 }

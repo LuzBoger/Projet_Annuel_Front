@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useLesson } from "@/hooks/useLesson";
 import { LessonResponse, LessonType } from "@/types/lesson/lesson";
 import { ChevronLeft } from "@/assets/icons";
+import { Button } from "@/components/ui/Button";
 import { FlashcardPlayer } from "@/components/lessons/players/FlashcardPlayer";
 import { QCMPlayer } from "@/components/lessons/players/QCMPlayer";
 import { MatchingPlayer } from "@/components/lessons/players/MatchingPlayer";
@@ -19,7 +20,6 @@ export default function LessonPlayer() {
     const [isStarting, setIsStarting] = useState(true);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     
-    // Timer interne pour valider la durée de la leçon (sans forcément l'afficher grossièrement)
     const startTimeRef = useRef<number | null>(null);
     const [isCompleting, setIsCompleting] = useState(false);
 
@@ -30,7 +30,6 @@ export default function LessonPlayer() {
             if (!lessonId) return;
             
             try {
-                // 1. Récupération des données métiers de la leçon
                 const data = await fetchLessonById(lessonId);
                 if (!data) {
                     if (mounted) setErrorMsg(t('lessons.not_found'));
@@ -38,8 +37,6 @@ export default function LessonPlayer() {
                 }
                 
                 if (mounted) setLesson(data);
-                
-                // 2. Notification au serveur du démarrage
                 await startLesson(lessonId);
                 
                 if (mounted) {
@@ -57,7 +54,6 @@ export default function LessonPlayer() {
         return () => { mounted = false; };
     }, [lessonId, fetchLessonById, startLesson, t]);
     
-    // Callback appelé par les enfants (Flashcard/QCM...) une fois leurs questions finies.
     const handleLessonComplete = useCallback(async (score: number) => {
         if (!lessonId || isCompleting) return;
         
@@ -70,7 +66,6 @@ export default function LessonPlayer() {
                 timeSpentSeconds
             });
             
-            // On navigue vers la page de succès prévue à l'étape 4, en passant les résultats
             navigate(`/lessons/${lessonId}/success`, { state: { response, lesson } });
             
         } catch {
@@ -84,9 +79,9 @@ export default function LessonPlayer() {
             <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
                 <div className="max-w-md w-full bg-white rounded-2xl p-6 text-center shadow-lg border border-red-100">
                     <p className="text-red-700 font-medium mb-5">{errorMsg}</p>
-                    <button onClick={() => navigate(-1)} className="px-5 py-2.5 bg-gray-100 text-gray-800 rounded-xl hover:bg-gray-200 transition-colors font-medium">
+                    <Button onClick={() => navigate(-1)} variant="secondary" className="w-full">
                         {t('common.back')}
-                    </button>
+                    </Button>
                 </div>
             </div>
         );
@@ -103,26 +98,24 @@ export default function LessonPlayer() {
     
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col">
-            {/* Minimalist Topbar (hors du scope scrollable) */}
             <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between shadow-sm sticky top-0 z-50">
-                <button 
+                <Button 
                     onClick={() => navigate(-1)} 
-                    className="flex items-center text-gray-500 hover:text-red-600 transition-colors p-2 -ml-2 rounded-lg hover:bg-gray-100 font-medium"
+                    variant="ghost"
+                    className="flex items-center text-gray-500 hover:text-red-600 font-medium"
                     title={t('common.quit')}
                 >
                     <ChevronLeft className="w-5 h-5 mr-1" />
                     <span className="hidden sm:inline">{t('common.quit')}</span>
-                </button>
+                </Button>
                 <div className="flex-1 text-center font-bold text-gray-900 truncate px-4">
                     {lesson.title}
                 </div>
-                {/* Espace tampon pour équiliber la barre */}
                 <div className="w-16 sm:w-32 flex justify-end">
                     {isCompleting && <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-md font-bold">Saving...</span>}
                 </div>
             </header>
             
-            {/* Zone de rendu de l'exercice - S'adaptera au type */}
             <main className="flex-1 overflow-x-hidden overflow-y-auto w-full">
                 <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 h-full flex flex-col items-center">
                     {lesson.lessonType === LessonType.FLASHCARD && (

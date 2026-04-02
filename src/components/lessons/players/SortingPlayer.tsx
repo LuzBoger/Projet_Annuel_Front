@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { SortingExerciseRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
-import { Check, Cross, ChevronRight } from "@/assets/icons";
+import { ChevronRight } from "@/assets/icons";
+import { PlayerLayout } from "./common/PlayerLayout";
+import { PlayerHeader } from "./common/PlayerHeader";
+import { PlayerCard } from "./common/PlayerCard";
+import { PlayerFeedback } from "./common/PlayerFeedback";
+import { PlayerFooter } from "./common/PlayerFooter";
 
 interface SortingPlayerProps {
     exercises: SortingExerciseRequest[];
@@ -37,9 +42,9 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
             originalIndex: index
         }));
 
-        for (let currentIndex = initialItems.length - 1; currentIndex > 0; currentIndex--) {
-            const randomIndex = Math.floor(Math.random() * (currentIndex + 1));
-            [initialItems[currentIndex], initialItems[randomIndex]] = [initialItems[randomIndex], initialItems[currentIndex]];
+        for (let idx = initialItems.length - 1; idx > 0; idx--) {
+            const randomIndex = Math.floor(Math.random() * (idx + 1));
+            [initialItems[idx], initialItems[randomIndex]] = [initialItems[randomIndex], initialItems[idx]];
         }
 
         setPool(initialItems);
@@ -50,9 +55,11 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
 
     if (!exercises || exercises.length === 0) {
         return (
-            <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm">
-                {t('common.empty')}
-            </div>
+            <PlayerLayout>
+                <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm w-full">
+                    {t('common.empty')}
+                </div>
+            </PlayerLayout>
         );
     }
 
@@ -98,29 +105,10 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
     const isAllSelected = pool.length === 0;
 
     return (
-        <div className="flex flex-col items-center w-full max-w-2xl mx-auto pb-8">
-            <div className="w-full mb-8">
-                <div className="flex justify-between text-sm font-medium text-gray-500 mb-3">
-                    <span className="uppercase tracking-widest text-[10px] sm:text-xs text-indigo-500 font-bold">
-                        {t('lessons.progress')}
-                    </span>
-                    <span className="bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
-                        {currentIndex + 1} / {exercises.length}
-                    </span>
-                </div>
-                <div className="w-full bg-gray-200/50 rounded-full h-3 shadow-inner overflow-hidden">
-                    <div 
-                        className="bg-indigo-500 h-3 rounded-full transition-all duration-500 ease-out" 
-                        style={{ width: `${((currentIndex + 1) / exercises.length) * 100}%` }}
-                    ></div>
-                </div>
-            </div>
+        <PlayerLayout>
+            <PlayerHeader current={currentIndex + 1} total={exercises.length} />
 
-            <div className="w-full bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-6 sm:p-10 mb-6 transition-all">
-                <h3 className="text-xl sm:text-2xl font-medium text-gray-800 mb-8 text-center leading-tight">
-                    {t('lessons.sorting.instruction')}
-                </h3>
-
+            <PlayerCard instruction={t('lessons.sorting.instruction')}>
                 <div className="space-y-8">
                     <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-200 py-6 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 rounded-xl">
                         {selectedItems.length === 0 && (
@@ -154,28 +142,21 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                         ))}
                     </div>
                 </div>
-            </div>
+            </PlayerCard>
 
-            {isValidated && (
-                <div className={`w-full p-5 rounded-2xl mb-6 border-2 flex items-start gap-4 animate-[fade-in-up_0.3s_ease-out] ${isCorrect ? 'bg-emerald-50 border-emerald-100 text-emerald-900' : 'bg-red-50 border-red-100 text-red-900'}`}>
-                    <div className={`mt-0.5 w-8 h-8 flex-shrink-0 rounded-full flex items-center justify-center ${isCorrect ? 'bg-emerald-200 text-emerald-800' : 'bg-red-200 text-red-800'}`}>
-                        {isCorrect ? <Check className="w-5 h-5 flex-shrink-0" /> : <Cross className="w-5 h-5 flex-shrink-0" />}
-                    </div>
-                    <div>
-                        <h4 className="font-semibold text-lg mb-1">
-                            {isCorrect ? t('lessons.qcm.correct') : t('lessons.qcm.incorrect')}
-                        </h4>
-                        {!isCorrect && (
-                            <p className="opacity-90 font-medium text-sm leading-relaxed mt-1">
-                                {t('lessons.sorting.correct_order_prefix')} 
-                                <strong className="font-bold">{expectedSequenceText}</strong>
-                            </p>
-                        )}
-                    </div>
-                </div>
-            )}
+            <PlayerFeedback 
+                isVisible={isValidated}
+                isCorrect={isCorrect}
+                title={isCorrect ? t('lessons.qcm.correct') : t('lessons.qcm.incorrect')}
+                description={!isCorrect ? (
+                    <>
+                        {t('lessons.sorting.correct_order_prefix')} 
+                        <strong className="font-bold ml-1">{expectedSequenceText}</strong>
+                    </>
+                ) : undefined}
+            />
 
-            <div className="w-full">
+            <PlayerFooter>
                 {!isValidated ? (
                     <Button 
                         onClick={handleValidationAction}
@@ -191,13 +172,13 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                         onClick={handleNextAction}
                         fullWidth
                         size="lg"
-                        className="py-6 !bg-gray-900 hover:!bg-gray-800 text-white rounded-2xl font-medium text-lg shadow-sm"
+                        className="py-6 !bg-gray-900 hover:!bg-gray-800 text-white rounded-2xl font-medium text-lg shadow-sm flex items-center justify-center gap-2"
                     >
                         <span>{currentIndex < exercises.length - 1 ? t('lessons.sorting.next') : t('lessons.finish')}</span>
                         {currentIndex < exercises.length - 1 && <ChevronRight className="w-5 h-5 ml-2" />}
                     </Button>
                 )}
-            </div>
-        </div>
+            </PlayerFooter>
+        </PlayerLayout>
     );
 }

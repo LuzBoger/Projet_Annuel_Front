@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { FlashcardRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
 import { FaceSad, FaceNeutral, FaceSmile } from "@/assets/icons";
+import { PlayerLayout } from "./common/PlayerLayout";
+import { PlayerHeader } from "./common/PlayerHeader";
 
 interface FlashcardPlayerProps {
     flashcards: FlashcardRequest[];
@@ -27,17 +29,21 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
 
     if (!flashcards || flashcards.length === 0) {
         return (
-            <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm">
-                {t('common.empty')}
-            </div>
+            <PlayerLayout>
+                <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm w-full">
+                    {t('common.empty')}
+                </div>
+            </PlayerLayout>
         );
     }
 
     if (queue.length === 0 && scores.length > 0 && scores[0] !== -1) {
         return (
-            <div className="text-center p-8 text-indigo-500 animate-pulse font-medium">
-                {t('lessons.computing_score')}
-            </div>
+            <PlayerLayout>
+                <div className="text-center p-8 text-indigo-500 animate-pulse font-medium">
+                    {t('lessons.computing_score')}
+                </div>
+            </PlayerLayout>
         );
     }
     
@@ -86,23 +92,8 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
     };
 
     return (
-        <div className="flex flex-col items-center max-w-2xl mx-auto w-full pb-8">
-            <div className="w-full mb-8">
-                <div className="flex justify-between text-sm font-medium text-gray-500 mb-3">
-                    <span className="uppercase tracking-widest text-[10px] sm:text-xs text-indigo-500 font-bold">
-                        {t('lessons.progress')}
-                    </span>
-                    <span className="bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
-                        {completedCards} / {flashcards.length}
-                    </span>
-                </div>
-                <div className="w-full bg-gray-200/50 rounded-full h-3 shadow-inner overflow-hidden">
-                    <div 
-                        className="bg-gradient-to-r from-indigo-500 to-indigo-600 h-3 rounded-full transition-all duration-500 ease-out" 
-                        style={{ width: `${(completedCards / flashcards.length) * 100}%` }}
-                    ></div>
-                </div>
-            </div>
+        <PlayerLayout>
+            <PlayerHeader current={completedCards} total={flashcards.length} />
 
             <div 
                 className="relative w-full aspect-[4/3] sm:aspect-[3/2] max-w-lg cursor-pointer group"
@@ -162,6 +153,6 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                     </Button>
                 </div>
             </div>
-        </div>
+        </PlayerLayout>
     );
 }

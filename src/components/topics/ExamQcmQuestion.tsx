@@ -1,4 +1,5 @@
 import { QcmQuestionExamResponse } from "@/types/topic/topic";
+import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 
 interface ExamQcmQuestionProps {
     question: QcmQuestionExamResponse;
@@ -8,11 +9,7 @@ interface ExamQcmQuestionProps {
 
 export function ExamQcmQuestion({ question, selectedValue, onSelect }: ExamQcmQuestionProps) {
     return (
-        <div className="w-full bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-6 sm:p-10 mb-6 transition-all">
-            <h3 className="text-2xl sm:text-3xl font-medium text-gray-800 mb-8 text-center leading-tight">
-                {question.question}
-            </h3>
-            
+        <PlayerCard instruction={question.question}>
             <div className="space-y-4">
                 {question.options.map((option, idx) => {
                     const isSelected = selectedValue === idx;
@@ -39,6 +36,6 @@ export function ExamQcmQuestion({ question, selectedValue, onSelect }: ExamQcmQu
                     );
                 })}
             </div>
-        </div>
+        </PlayerCard>
     );
 }

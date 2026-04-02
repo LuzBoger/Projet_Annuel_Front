@@ -57,7 +57,7 @@ export default function TopicExam() {
                 setMixedQuestions(mixed);
                 setExam(data);
             } catch (err: any) {
-                setError(t('topics.exam_load_error', "Erreur lors du chargement de l'examen."));
+                setError(t('topics.exam_load_error'));
             } finally {
                 setLoading(false);
             }
@@ -82,7 +82,7 @@ export default function TopicExam() {
             const response = await topicService.submitTopicExam(topicId, resultPayload);
             setExamResult(response);
         } catch (err: any) {
-            setError(t('topics.exam_submit_error', "Erreur lors de la soumission de l'examen."));
+            setError(t('topics.exam_submit_error'));
         } finally {
             setSubmitting(false);
         }
@@ -105,29 +105,29 @@ export default function TopicExam() {
                     </div>
 
                     <h2 className={`text-3xl sm:text-4xl font-medium tracking-tight mb-2 ${examResult.success ? 'text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-800' : 'text-gray-800'}`}>
-                        {examResult.success ? t('topics.exam_passed', 'Examen validé !') : t('topics.exam_failed', 'Examen échoué')}
+                        {examResult.success ? t('topics.exam_passed') : t('topics.exam_failed')}
                     </h2>
                     <p className="text-gray-500 font-medium mb-8 bg-gray-50 py-2 px-4 rounded-xl inline-block border border-gray-100">
-                        {exam?.topicName || 'Sujet'}
+                        {exam?.topicName || t('common.topic')}
                     </p>
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div className="bg-indigo-50 rounded-2xl p-5 border border-indigo-100/50 relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-16 h-16 bg-white opacity-30 transform rotate-45 translate-x-6 -translate-y-6"></div>
-                            <p className="text-indigo-800 text-[10px] font-large uppercase tracking-widest mb-1">{t('lessons.xp_earned', 'XP Gagné')}</p>
+                            <p className="text-indigo-800 text-[10px] font-large uppercase tracking-widest mb-1">{t('lessons.xp_earned')}</p>
                             <p className="text-3xl font-medium text-indigo-600">+{examResult.xpEarned}</p>
                         </div>
 
                         <div className={`rounded-2xl p-5 border relative overflow-hidden ${examResult.success ? 'bg-emerald-50 border-emerald-100/50' : 'bg-red-50 border-red-100/50'}`}>
                             <div className="absolute top-0 right-0 w-16 h-16 bg-white opacity-30 transform rotate-45 translate-x-6 -translate-y-6"></div>
-                            <p className={`text-[10px] font-medium uppercase tracking-widest mb-1 ${examResult.success ? 'text-emerald-800' : 'text-red-800'}`}>{t('lessons.status', 'Résultat')}</p>
-                            <p className={`text-2xl font-medium ${examResult.success ? 'text-emerald-600' : 'text-red-500'}`}>{examResult.success ? t('lessons.success', 'Validé') : t('lessons.failed', 'Échoué')}</p>
+                            <p className={`text-[10px] font-medium uppercase tracking-widest mb-1 ${examResult.success ? 'text-emerald-800' : 'text-red-800'}`}>{t('lessons.status')}</p>
+                            <p className={`text-2xl font-medium ${examResult.success ? 'text-emerald-600' : 'text-red-500'}`}>{examResult.success ? t('lessons.success') : t('lessons.failed')}</p>
                         </div>
                     </div>
 
                     {examResult.totalAnswers !== undefined && examResult.totalAnswers > 0 && (
                         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col items-center justify-center mb-8">
-                            <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-2">{t('topics.accuracy', 'Précision')}</p>
+                            <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-2">{t('topics.accuracy')}</p>
                             <div className="flex items-baseline space-x-2">
                                 <span className={`text-4xl font-extrabold ${examResult.accuracy && examResult.accuracy >= 0.8 ? 'text-emerald-500' : examResult.accuracy && examResult.accuracy >= 0.5 ? 'text-amber-500' : 'text-red-500'}`}>
                                     {Math.round((examResult.accuracy || 0) * 100)}%
@@ -147,16 +147,16 @@ export default function TopicExam() {
 
                     {examResult.leveledUp && (
                         <div className="bg-gradient-to-r from-amber-400 to-amber-500 text-white font-bold p-4 rounded-2xl mb-8 shadow-lg animate-bounce">
-                            🎉 {t('lessons.level_up', 'Niveau Supérieur ! Level {{level}}', { level: examResult.newLevel })}
+                            🎉 {t('lessons.level_up', { level: examResult.newLevel })}
                         </div>
                     )}
 
-                    <button
+                    <Button
                         onClick={() => navigate(`/topics/${topicId}`)}
-                        className="w-full py-4 bg-gray-900 text-white rounded-2xl hover:bg-gray-800 transition-colors font-medium text-lg shadow-sm"
+                        className="w-full py-4 text-lg"
                     >
-                        {t('common.continue', 'Continuer')}
-                    </button>
+                        {t('common.continue')}
+                    </Button>
                 </div>
             </div>
         );
@@ -166,20 +166,20 @@ export default function TopicExam() {
         <div className="min-h-screen pb-32 pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <Button 
                 onClick={() => navigate(-1)} 
-                variant="outline"
+                variant="ghost"
                 size="sm"
-                className="mb-8 font-bold border-none bg-transparent hover:bg-gray-100 flex items-center shadow-none text-gray-500 hover:text-gray-900"
+                className="mb-8 font-bold flex items-center text-gray-500 hover:text-gray-900"
             >
                 <ChevronLeft className="w-5 h-5 mr-1" />
-                {t('common.back', 'Retour')}
+                {t('common.back')}
             </Button>
 
             <div className="mb-12 text-center">
                 <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-600 tracking-tight">
-                    {t('topics.exam_title', 'Examen Final')}
+                    {t('topics.exam_title')}
                 </h1>
                 <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
-                    {t('topics.exam_desc', 'Validez vos acquis sur ce sujet.')}
+                    {t('topics.exam_desc')}
                 </p>
             </div>
 
@@ -196,22 +196,22 @@ export default function TopicExam() {
                     {mixedQuestions.length === 0 ? (
                         <div className="p-12 bg-white rounded-3xl border border-gray-200 shadow-sm max-w-2xl mx-auto w-full text-center">
                             <p className="text-gray-500 mb-8 font-medium">
-                                {t('topics.no_questions', "Aucune question pour cet examen.")}
+                                {t('topics.no_questions')}
                             </p>
                             <Button size="lg" onClick={submitExam} disabled={submitting} isLoading={submitting}>
-                                {t('topics.exam_submit', "Retourner à l'accueil")}
+                                {t('topics.exam_submit')}
                             </Button>
                         </div>
                     ) : currentIndex >= mixedQuestions.length ? (
                         <div className="p-12 bg-white rounded-3xl border border-gray-200 shadow-sm max-w-2xl mx-auto w-full text-center animate-[fade-in-up_0.5s_ease-out]">
                             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                                {t('topics.exam_completed_title', 'Toutes les questions sont répondues !')}
+                                {t('topics.exam_completed_title')}
                             </h2>
                             <p className="text-gray-500 mb-8">
-                                {t('topics.exam_completed_desc', 'Vous pouvez maintenant soumettre vos réponses pour découvrir votre résultat final.')}
+                                {t('topics.exam_completed_desc')}
                             </p>
                             <Button size="lg" onClick={submitExam} disabled={submitting} isLoading={submitting} className="w-full text-lg py-4">
-                                {t('topics.exam_submit', 'Soumettre l\'examen')}
+                                {t('topics.exam_submit')}
                             </Button>
                         </div>
                     ) : (
@@ -219,7 +219,7 @@ export default function TopicExam() {
                             <div className="w-full mb-8">
                                 <div className="flex justify-between text-sm font-medium text-gray-500 mb-3">
                                     <span className="uppercase tracking-widest text-[10px] sm:text-xs text-indigo-500">
-                                        {t('topics.exam_progress', 'Progression de l\'examen')}
+                                        {t('topics.exam_progress')}
                                     </span>
                                     <span className="bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
                                         {currentIndex + 1} / {mixedQuestions.length}
@@ -275,7 +275,7 @@ export default function TopicExam() {
                                     (mixedQuestions[currentIndex].type === 'MATCHING' && matchingAnswers.length < (mixedQuestions[currentIndex].data as MatchingPairResponse[]).length)
                                 }
                             >
-                                {currentIndex < mixedQuestions.length - 1 ? t('common.next', 'Continuer') : t('common.validate', 'Terminer')}
+                                {currentIndex < mixedQuestions.length - 1 ? t('common.next') : t('common.validate')}
                             </Button>
                         </div>
                     )}

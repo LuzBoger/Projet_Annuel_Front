@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { MatchingPairResponse } from "@/types/topic/topic";
 import { Cross } from "@/assets/icons";
+import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 
 export interface UserPairAnswer {
     id: string;
@@ -46,12 +47,13 @@ export function ExamMatchingQuestion({ pairs, userPairs, onChange }: ExamMatchin
             }
         });
 
-        for (let i = newTiles.length - 1; i > 0; i--) {
+        const shuffledTiles = [...newTiles];
+        for (let i = shuffledTiles.length - 1; i > 0; i--) {
             const randomIndex = Math.floor(Math.random() * (i + 1));
-            [newTiles[i], newTiles[randomIndex]] = [newTiles[randomIndex], newTiles[i]];
+            [shuffledTiles[i], shuffledTiles[randomIndex]] = [shuffledTiles[randomIndex], shuffledTiles[i]];
         }
 
-        setTiles(newTiles);
+        setTiles(shuffledTiles);
         setSelectedIds([]);
     }, [pairs, userPairs]);
 
@@ -89,13 +91,15 @@ export function ExamMatchingQuestion({ pairs, userPairs, onChange }: ExamMatchin
     const isAllMatched = tiles.length === 0;
 
     return (
-        <div className="w-full bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-6 sm:p-10 mb-6 transition-all">
-             <div className="flex justify-center mb-10">
-                <span className="px-4 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold tracking-wide uppercase">
-                    {t('lessons.matching.instruction')}
-                </span>
-            </div>
-
+        <PlayerCard 
+            instruction={
+                <div className="flex justify-center mb-4">
+                    <span className="px-4 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold tracking-wide uppercase">
+                        {t('lessons.matching.instruction')}
+                    </span>
+                </div>
+            }
+        >
             {isAllMatched ? (
                  <div className="text-center p-10 bg-emerald-50 rounded-[2rem] border border-emerald-100 text-emerald-800 font-medium animate-pulse">
                     {t('topics.exam_matching_finished')}
@@ -150,6 +154,6 @@ export function ExamMatchingQuestion({ pairs, userPairs, onChange }: ExamMatchin
                     </div>
                 </div>
             )}
-        </div>
+        </PlayerCard>
     );
 }

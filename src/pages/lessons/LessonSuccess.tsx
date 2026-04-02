@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/Button";
 import { CompleteLessonResponse, LessonResponse } from "@/types/lesson/lesson";
 
 export default function LessonSuccess() {
@@ -15,9 +16,9 @@ export default function LessonSuccess() {
         return (
             <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
                 <p className="text-gray-500 mb-4 font-medium">{t('lessons.session_invalid')}</p>
-                <button onClick={() => navigate('/dashboard')} className="px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl">
+                <Button onClick={() => navigate('/dashboard')} variant="primary" size="lg">
                     {t('common.home')}
-                </button>
+                </Button>
             </div>
         );
     }
@@ -63,12 +64,13 @@ export default function LessonSuccess() {
                     </div>
                 )}
 
-                <button
+                <Button
                     onClick={() => navigate(`/topics/${lesson.topicId}`)}
-                    className="w-full py-4 bg-gray-900 text-white rounded-2xl hover:bg-gray-800 transition-colors font-medium text-lg shadow-sm"
+                    className="w-full text-lg shadow-sm py-4 rounded-2xl"
+                    size="lg"
                 >
                     {t('common.continue')}
-                </button>
+                </Button>
             </div>
         </div>
     );

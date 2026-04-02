@@ -454,6 +454,7 @@
     "updateLanguage": "Impossible de mettre à jour la langue.",
     "deleteLanguage": "Impossible de supprimer la langue.",
     "fetchLessons": "Impossible de récupérer les leçons.",
+    "fetchLessonById": "Impossible de récupérer la leçon.",
     "createLesson": "Impossible de créer la leçon.",
     "updateLesson": "Impossible de mettre à jour la leçon.",
     "deleteLesson": "Impossible de supprimer la leçon.",
@@ -498,7 +499,17 @@
     "take_exam": "Passer l'examen",
     "exam_locked": "Complétez toutes les leçons d'abord",
     "progress": "Progression",
-    "lessons_count_label": "Leçons réalisées"
+    "lessons_count_label": "Leçons réalisées",
+    "exam_load_error": "Erreur lors du chargement de l'examen.",
+    "exam_submit_error": "Erreur lors de la soumission de l'examen.",
+    "exam_passed": "Examen validé !",
+    "exam_failed": "Examen échoué",
+    "accuracy": "Précision",
+    "no_questions": "Aucune question pour cet examen.",
+    "exam_completed_title": "Toutes les questions sont répondues !",
+    "exam_completed_desc": "Vous pouvez maintenant soumettre vos réponses pour découvrir votre résultat final.",
+    "exam_submit": "Soumettre l'examen",
+    "exam_progress": "Progression de l'examen"
   },
   "lessons": {
     "progress": "Progression de l'exercice",
