@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { QcmQuestionRequest } from "@/types/lesson/lesson";
+import { Button } from "@/components/ui/Button";
+import { Check, Cross, ChevronRight } from "@/assets/icons";
 
 interface QCMPlayerProps {
     questions: QcmQuestionRequest[];
@@ -15,7 +17,11 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
     const [correctCount, setCorrectCount] = useState(0);
 
     if (!questions || questions.length === 0) {
-        return <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm">{t('common.no_data', 'Aucune donnée.')}</div>;
+        return (
+            <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm">
+                {t('common.empty')}
+            </div>
+        );
     }
 
     const currentQ = questions[currentIndex];
@@ -48,11 +54,18 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
         <div className="flex flex-col items-center w-full max-w-2xl mx-auto pb-8">
             <div className="w-full mb-8">
                 <div className="flex justify-between text-sm font-medium text-gray-500 mb-3">
-                    <span className="uppercase tracking-widest text-[10px] sm:text-xs text-indigo-500">{t('lessons.progress', 'Progression de l\'exercice')}</span>
-                    <span className="bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">{currentIndex + 1} / {questions.length}</span>
+                    <span className="uppercase tracking-widest text-[10px] sm:text-xs text-indigo-500 font-bold">
+                        {t('lessons.progress')}
+                    </span>
+                    <span className="bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
+                        {currentIndex + 1} / {questions.length}
+                    </span>
                 </div>
                 <div className="w-full bg-gray-200/50 rounded-full h-3 shadow-inner overflow-hidden">
-                    <div className="bg-indigo-500 h-3 rounded-full transition-all duration-500 ease-out" style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}></div>
+                    <div 
+                        className="bg-indigo-500 h-3 rounded-full transition-all duration-500 ease-out" 
+                        style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
+                    ></div>
                 </div>
             </div>
 
@@ -104,19 +117,11 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
             {isValidated && (
                 <div className={`w-full p-5 rounded-2xl mb-6 border-2 flex items-start gap-4 animate-[fade-in-up_0.3s_ease-out] ${isCorrect ? 'bg-emerald-50 border-emerald-100 text-emerald-900' : 'bg-red-50 border-red-100 text-red-900'}`}>
                     <div className={`mt-0.5 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${isCorrect ? 'bg-emerald-200 text-emerald-800' : 'bg-red-200 text-red-800'}`}>
-                        {isCorrect ? (
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                        ) : (
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        )}
+                        {isCorrect ? <Check className="w-5 h-5" /> : <Cross className="w-5 h-5" />}
                     </div>
                     <div>
                         <h4 className="font-semibold text-lg mb-1">
-                            {isCorrect ? t('lessons.correct_answer', 'Parfait !') : t('lessons.incorrect_answer', 'Oups, ce n\'est pas la bonne réponse.')}
+                            {isCorrect ? t('lessons.qcm.correct') : t('lessons.qcm.incorrect')}
                         </h4>
                         {currentQ.explanation && (
                             <p className="opacity-90 font-medium text-sm leading-relaxed mt-1">{currentQ.explanation}</p>
@@ -127,25 +132,25 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
 
             <div className="w-full">
                 {!isValidated ? (
-                    <button 
+                    <Button 
                         onClick={handleValidate}
                         disabled={selectedOption === null}
-                        className="w-full py-4 bg-indigo-600 text-white rounded-2xl hover:bg-indigo-700 transition-colors font-medium text-lg disabled:bg-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed shadow-sm"
+                        fullWidth
+                        size="lg"
+                        className="py-6 rounded-2xl font-medium text-lg shadow-sm"
                     >
-                        {t('common.validate', 'Valider')}
-                    </button>
+                        {t('lessons.qcm.validate')}
+                    </Button>
                 ) : (
-                    <button 
+                    <Button 
                         onClick={handleNext}
-                        className="w-full py-4 bg-gray-900 text-white rounded-2xl hover:bg-gray-800 transition-colors font-medium text-lg shadow-sm flex items-center justify-center gap-2"
+                        fullWidth
+                        size="lg"
+                        className="py-6 !bg-gray-900 hover:!bg-gray-800 text-white rounded-2xl font-medium text-lg shadow-sm flex items-center justify-center gap-2"
                     >
-                        <span>{currentIndex < questions.length - 1 ? t('common.next', 'Continuer') : t('lessons.finish', 'Terminer')}</span>
-                        {currentIndex < questions.length - 1 && (
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                        )}
-                    </button>
+                        <span>{currentIndex < questions.length - 1 ? t('lessons.qcm.next') : t('lessons.finish')}</span>
+                        {currentIndex < questions.length - 1 && <ChevronRight className="w-5 h-5" />}
+                    </Button>
                 )}
             </div>
         </div>

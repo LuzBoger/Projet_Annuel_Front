@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { lessonService } from "@/services/lessonService";
-import { TopicLessonsResponse, LessonSummaryResponse } from "@/types/lesson/lesson";
+import { TopicLessonsResponse } from "@/types/lesson/lesson";
 import { ChevronLeft, ChevronRight, IconQcm, IconFlashcard } from "@/assets/icons";
 import { LessonCard } from "@/components/topics/LessonCard";
 import { TopicProgressBar } from "@/components/topics/TopicProgressBar";

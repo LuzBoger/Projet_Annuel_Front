@@ -88,6 +88,7 @@ export interface LessonSummaryResponse {
     isAlreadyFinish: boolean;
     durationMinutes: number;
     xpReward: number;
+    passScorePercentage: number;
 }
 
 export interface TopicLessonsResponse {

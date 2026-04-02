@@ -11,7 +11,10 @@
     "back": "Back",
     "save": "Save",
     "confirm": "Confirm",
-    "user": "User"
+    "user": "User",
+    "locked": "Locked",
+    "finish": "Finish",
+    "empty": "No data available"
   },
   "auth": {
     "login": {
@@ -465,7 +468,65 @@
     "level": "Level {{level}}",
     "no_desc": "No description provided",
     "practice_btn": "Practice now",
-    "order": "Order: {{orderIndex}}"
+    "order": "Order: {{orderIndex}}",
+    "lessons_title": "Lessons Playground",
+    "lessons_desc": "Explore the lessons below in chronological order to progress and master this topic.",
+    "exam_status": "Exam Status",
+    "exam_attempts": "Attempts",
+    "last_accuracy": "Last Accuracy",
+    "exam_matching_title": "Matching Challenge",
+    "exam_sorting_title": "Sorting Challenge",
+    "exam_qcm_title": "QCM Challenge",
+    "exam_flashcard_title": "Flashcard Challenge",
+    "exam_pairs_selected": "Pairs selected",
+    "exam_clear_pair": "Cancel",
+    "replay_lesson_btn": "Replay lesson",
+    "start_lesson_btn": "Start lesson",
+    "passed": "Passed",
+    "not_passed": "To pass",
+    "no_lessons_title": "No lessons available",
+    "no_lessons_desc": "Come back later!",
+    "translate_or_answer": "Translate or answer",
+    "type_answer_here": "Type your answer here...",
+    "exam_matching_finished": "All pairs have been matched. You can continue or undo a pair.",
+    "exam_matching_answers": "Formed pairs",
+    "final_exam_title": "Final Exam",
+    "final_exam_desc": "Evaluate your new knowledge globally.",
+    "take_exam": "Take the exam",
+    "exam_locked": "Complete all lessons first"
+  },
+  "lessons": {
+    "progress": "Exercise Progress",
+    "click_to_flip": "Tap to reveal",
+    "computing_score": "Computing score...",
+    "hard": "Hard - Review needed",
+    "medium": "Medium - Getting there",
+    "easy": "Easy - Acquired",
+    "finish": "Finish",
+    "matching": {
+      "title": "Matching Game",
+      "instruction": "Match the correct pairs",
+      "matches_found": "Matches found",
+      "errors": "Errors",
+      "completed": "Excellent !",
+      "flawless": "You found everything on the first try !",
+      "with_errors": "All pairs have been found."
+    },
+    "sorting": {
+      "title": "Sorting Exercise",
+      "instruction": "Put the items in the correct order",
+      "empty_target": "Select items in the correct order",
+      "correct_order_prefix": "Solution: ",
+      "validate": "Check answer",
+      "next": "Continue"
+    },
+    "qcm": {
+      "title": "Questionnaire",
+      "validate": "Validate",
+      "next": "Next",
+      "correct": "Correct answer!",
+      "incorrect": "Wrong answer"
+    }
   },
   "settings": {
     "title": "Settings",

@@ -24,3 +24,6 @@ export { default as IconFlashcard } from "./lesson-flashcard.svg?react";
 export { default as IconQcm } from "./lesson-qcm.svg?react";
 export { default as IconMatching } from "./lesson-matching.svg?react";
 export { default as IconSorting } from "./lesson-sorting.svg?react";
+export { default as FaceSad } from "./face-sad.svg?react";
+export { default as FaceNeutral } from "./face-neutral.svg?react";
+export { default as FaceSmile } from "./face-smile.svg?react";

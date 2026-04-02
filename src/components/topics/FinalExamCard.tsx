@@ -11,41 +11,47 @@ export function FinalExamCard({ isUnlocked, onTakeExam }: FinalExamCardProps) {
     const { t } = useTranslation();
 
     return (
-        <div className="relative flex flex-col">
+        <div className="relative flex flex-col h-full group">
             <div 
                 onClick={() => isUnlocked ? onTakeExam() : undefined}
                 className={`
-                    flex-1 sm:p-6 p-4 rounded-3xl border-2 flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[250px]
+                    flex-1 sm:p-8 p-6 rounded-[2.5rem] border-2 flex flex-col justify-center items-center text-center transition-all duration-500 min-h-[300px]
                     ${isUnlocked 
-                        ? 'bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-300 hover:shadow-xl hover:-translate-y-1 hover:border-indigo-400 cursor-pointer group' 
-                        : 'bg-gray-50 border-gray-200 cursor-not-allowed opacity-80'}
+                        ? 'bg-white border-indigo-100 hover:border-indigo-400 hover:shadow-[0_20px_50px_rgba(79,70,229,0.15)] cursor-pointer' 
+                        : 'bg-gray-50 border-gray-100 cursor-not-allowed grayscale'}
                 `}
-                title={!isUnlocked ? t('topics.exam_locked', "Complétez toutes les leçons d'abord") : ""}
+                title={!isUnlocked ? t('topics.exam_locked') : ""}
             >
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 shadow-sm ${isUnlocked ? 'bg-white text-indigo-600 group-hover:scale-110 transition-transform' : 'bg-gray-200 text-gray-400'}`}>
-                    <IconQcm className="w-8 h-8" />
+                <div className={`w-20 h-20 rounded-3xl flex items-center justify-center mb-6 shadow-sm transition-all duration-500 ${isUnlocked ? 'bg-indigo-50 text-indigo-600 group-hover:scale-110 group-hover:rotate-3' : 'bg-gray-100 text-gray-400'}`}>
+                    <IconQcm className="w-10 h-10" />
                 </div>
-                <h3 className={`text-xl font-extrabold mb-2 ${isUnlocked ? 'text-indigo-900' : 'text-gray-500'}`}>
-                    {t('topics.final_exam_title', 'Examen Final')}
-                </h3>
-                <p className={`text-sm mb-6 ${isUnlocked ? 'text-indigo-700' : 'text-gray-400'}`}>
-                    {t('topics.final_exam_desc', 'Évaluez globalement vos nouvelles connaissances.')}
-                </p>
-                {isUnlocked ? (
-                    <Button 
-                        className="w-full mt-auto"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onTakeExam();
-                        }}
-                    >
-                        {t('topics.take_exam', "Passer l'examen")}
-                    </Button>
-                ) : (
-                    <div className="text-xs font-bold text-gray-500 uppercase tracking-widest bg-gray-200 px-4 py-2 rounded-xl mt-auto shadow-inner">
-                        {t('common.locked', 'Verrouillé')}
-                    </div>
-                )}
+                
+                <div className="space-y-3 mb-8">
+                    <h3 className={`text-2xl font-bold tracking-tight ${isUnlocked ? 'text-gray-900' : 'text-gray-400'}`}>
+                        {t('topics.final_exam_title')}
+                    </h3>
+                    <p className={`text-[15px] leading-relaxed max-w-[200px] mx-auto ${isUnlocked ? 'text-gray-500' : 'text-gray-400'}`}>
+                        {t('topics.final_exam_desc')}
+                    </p>
+                </div>
+
+                <div className="w-full">
+                    {isUnlocked ? (
+                        <Button 
+                            className="w-full py-4 rounded-2xl font-bold shadow-indigo-200 shadow-lg"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onTakeExam();
+                            }}
+                        >
+                            {t('topics.take_exam')}
+                        </Button>
+                    ) : (
+                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] bg-gray-100/50 backdrop-blur-sm border border-gray-200/50 px-6 py-2.5 rounded-full inline-block">
+                            {t('common.locked')}
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

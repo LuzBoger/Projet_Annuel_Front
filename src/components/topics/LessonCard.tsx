@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { LessonResponse, LessonType } from "@/types/lesson/lesson";
+import { LessonSummaryResponse, LessonType } from "@/types/lesson/lesson";
 import { ChevronRight, IconFlashcard, IconQcm, IconMatching, IconSorting } from "@/assets/icons";
 
 interface LessonCardProps {
-    lesson: any; // Allow LessonSummaryResponse or LessonResponse
+    lesson: LessonSummaryResponse; 
     index: number;
     onClick: (lessonId: string) => void;
 }
