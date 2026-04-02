@@ -23,3 +23,72 @@ export interface CreateTopicRequest {
 
 export type UpdateTopicRequest = CreateTopicRequest;
 
+export interface FlashcardAnswerRequest {
+    id: string;
+    userResponse: string;
+}
+
+export interface QcmAnswerRequest {
+    id: string;
+    selectedOptionIndex: number;
+}
+
+export interface MatchingPairAnswerRequest {
+    id: string;
+    item1: string;
+    item2: string;
+}
+
+export interface SortingExerciseAnswerRequest {
+    id: string;
+    userOrder: number[];
+}
+
+export interface ExamResultRequest {
+    flashcardAnswers: FlashcardAnswerRequest[];
+    qcmAnswers: QcmAnswerRequest[];
+    matchingPairAnswers: MatchingPairAnswerRequest[];
+    sortingExerciseAnswers: SortingExerciseAnswerRequest[];
+}
+
+export interface QcmQuestionExamResponse {
+    id: string;
+    question: string;
+    options: string[];
+}
+export interface FlashcardExamResponse {
+    id: string;
+    front: string;
+}
+export interface MatchingPairResponse {
+    id: string;
+    item1: string;
+    item2: string;
+}
+
+export interface SortingExerciseExamResponse {
+    id: string;
+    items: string[];
+}
+
+export interface ExamResponse {
+    topicId: string;
+    topicName: string;
+    qcmQuestions: QcmQuestionExamResponse[];
+    flashcards: FlashcardExamResponse[];
+    matchingPairs: MatchingPairResponse[];
+    sortingExercises: SortingExerciseExamResponse[];
+}
+
+export interface CompleteExamResponse {
+    success: boolean;
+    message?: string;
+    xpEarned: number;
+    totalXP: number;
+    currentLevel?: number;
+    leveledUp?: boolean;
+    newLevel?: number;
+    totalAnswers?: number;
+    correctAnswers?: number;
+    accuracy?: number;
+}

@@ -70,8 +70,30 @@ export interface CompleteLessonRequest {
 
 export interface CompleteLessonResponse {
     success: boolean;
+    message?: string;
     xpEarned: number;
+    totalXP: number;
+    currentLevel: number;
     leveledUp: boolean;
     newLevel?: number;
-    message?: string;
+    progress?: any; // To be typed later if UserProgressResponse is known
+}
+
+export interface LessonSummaryResponse {
+    id: string;
+    title: string;
+    description: string;
+    orderIndex: number;
+    lessonType: LessonType;
+    isAlreadyFinish: boolean;
+    durationMinutes: number;
+    xpReward: number;
+}
+
+export interface TopicLessonsResponse {
+    topicTitle: string;
+    lessons: LessonSummaryResponse[];
+    examPassed: boolean;
+    examAttempts: number;
+    lastAccuracy: number;
 }

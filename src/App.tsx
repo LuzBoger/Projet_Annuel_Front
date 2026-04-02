@@ -28,6 +28,7 @@ import { Header } from '@/components/layout/Header'
 import { Profile } from './pages/profile/Profile'
 import LanguageTopics from '@/pages/topics/LanguageTopics'
 import TopicLessons from '@/pages/topics/TopicLessons'
+import TopicExam from '@/pages/topics/TopicExam'
 import LessonPlayer from '@/pages/lessons/LessonPlayer'
 import LessonSuccess from '@/pages/lessons/LessonSuccess'
 
@@ -51,6 +52,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
                 <Route path="/topics/:topicId" element={<ProtectedRoute><TopicLessons /></ProtectedRoute>} />
+                <Route path="/topics/:topicId/exam" element={<ProtectedRoute><TopicExam /></ProtectedRoute>} />
                 <Route path="/lessons/:lessonId/play" element={<ProtectedRoute><LessonPlayer /></ProtectedRoute>} />
                 <Route path="/lessons/:lessonId/success" element={<ProtectedRoute><LessonSuccess /></ProtectedRoute>} />
                 <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} >

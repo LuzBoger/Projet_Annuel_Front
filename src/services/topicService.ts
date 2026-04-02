@@ -1,5 +1,6 @@
 import apiClient from "@/services/axios";
-import type { TopicResponse, CreateTopicRequest, UpdateTopicRequest } from "@/types/topic/topic";
+import type { TopicResponse, CreateTopicRequest, UpdateTopicRequest, ExamResponse, ExamResultRequest, CompleteExamResponse } from "@/types/topic/topic";
+
 
 export const topicService = {
 
@@ -55,5 +56,15 @@ export const topicService = {
 
     async deleteTopic(topicId: string): Promise<void> {
         await apiClient.delete(`/topics/${topicId}`);
+    },
+
+    async getTopicExam(topicId: string): Promise<ExamResponse> {
+        const response = await apiClient.get<ExamResponse>(`/topics/${topicId}/exam`);
+        return response.data;
+    },
+
+    async submitTopicExam(topicId: string, data: ExamResultRequest): Promise<CompleteExamResponse> {
+        const response = await apiClient.post<CompleteExamResponse>(`/topics/${topicId}/exam/submit`, data);
+        return response.data;
     }
 };

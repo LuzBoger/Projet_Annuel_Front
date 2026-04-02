@@ -1,10 +1,15 @@
 import apiClient from "@/services/axios";
-import type { LessonRequest, LessonResponse, UserLessonProgressSummary, CompleteLessonRequest, CompleteLessonResponse } from "@/types/lesson/lesson";
+import type { LessonRequest, LessonResponse, UserLessonProgressSummary, CompleteLessonRequest, CompleteLessonResponse, TopicLessonsResponse } from "@/types/lesson/lesson";
 
 export const lessonService = {
 
     async getLessonsByTopic(topicId: string): Promise<LessonResponse[]> {
         const response = await apiClient.get<LessonResponse[]>(`/lessons/topic/${topicId}`);
+        return response.data;
+    },
+
+    async getTopicLessonsDetails(topicId: string): Promise<TopicLessonsResponse> {
+        const response = await apiClient.get<TopicLessonsResponse>(`/lessons/topic/${topicId}/details`);
         return response.data;
     },
 

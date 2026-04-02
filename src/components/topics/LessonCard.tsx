@@ -3,7 +3,7 @@ import { LessonResponse, LessonType } from "@/types/lesson/lesson";
 import { ChevronRight, IconFlashcard, IconQcm, IconMatching, IconSorting } from "@/assets/icons";
 
 interface LessonCardProps {
-    lesson: LessonResponse;
+    lesson: any; // Allow LessonSummaryResponse or LessonResponse
     index: number;
     onClick: (lessonId: string) => void;
 }
@@ -84,9 +84,11 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
                     <span className="flex items-center text-orange-600 bg-orange-50 border border-orange-100 px-2.5 py-1.5 rounded-md whitespace-nowrap">
                         ~{lesson.durationMinutes} MIN
                     </span>
-                    <span className="flex items-center text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1.5 rounded-md whitespace-nowrap hidden sm:flex">
-                        {lesson.passScorePercentage}% REQ
-                    </span>
+                    {lesson.passScorePercentage !== undefined && (
+                        <span className="flex items-center text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1.5 rounded-md whitespace-nowrap hidden sm:flex">
+                            {lesson.passScorePercentage}% REQ
+                        </span>
+                    )}
                 </div>
                 
                 <div className="flex items-center justify-end text-sm font-medium text-indigo-600 group-hover:text-indigo-700 pt-3 border-t border-gray-100">
