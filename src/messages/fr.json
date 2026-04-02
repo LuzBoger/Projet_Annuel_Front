@@ -8,13 +8,17 @@
     "active": "Actif",
     "view": "Voir",
     "edit": "Modifier",
-    "back": "Retour",
     "save": "Sauvegarder",
     "confirm": "Confirmer",
     "user": "Utilisateur",
     "locked": "Verrouillé",
     "finish": "Terminer",
-    "empty": "Aucune donnée disponible"
+    "empty": "Aucune donnée disponible",
+    "no_data": "Aucune donnée disponible",
+    "back": "Retour",
+    "quit": "Quitter",
+    "home": "Retour à l'accueil",
+    "continue": "Continuer"
   },
   "auth": {
     "login": {
@@ -452,7 +456,9 @@
     "fetchLessons": "Impossible de récupérer les leçons.",
     "createLesson": "Impossible de créer la leçon.",
     "updateLesson": "Impossible de mettre à jour la leçon.",
-    "deleteLesson": "Impossible de supprimer la leçon."
+    "deleteLesson": "Impossible de supprimer la leçon.",
+    "startLesson": "Impossible de démarrer la leçon.",
+    "completeLesson": "Impossible de valider la leçon."
   },
   "topics": {
     "page_title": "Topics disponibles",
@@ -490,7 +496,9 @@
     "final_exam_title": "Examen Final",
     "final_exam_desc": "Évaluez globalement vos nouvelles connaissances.",
     "take_exam": "Passer l'examen",
-    "exam_locked": "Complétez toutes les leçons d'abord"
+    "exam_locked": "Complétez toutes les leçons d'abord",
+    "progress": "Progression",
+    "lessons_count_label": "Leçons réalisées"
   },
   "lessons": {
     "progress": "Progression de l'exercice",
@@ -523,7 +531,18 @@
       "next": "Suivant",
       "correct": "Bonne réponse !",
       "incorrect": "Mauvaise réponse"
-    }
+    },
+    "starting": "Préparation de la leçon...",
+    "session_invalid": "Session introuvable ou expirée.",
+    "lesson_completed": "Leçon terminée !",
+    "xp_earned": "XP Gagné",
+    "status": "Résultat",
+    "success": "Validée",
+    "failed": "Échouée",
+    "level_up": "Niveau Supérieur ! Level {{level}}",
+    "not_found": "Leçon introuvable.",
+    "start_error": "Erreur lors du démarrage de la leçon.",
+    "complete_error": "Erreur de connexion lors de la validation."
   },
   "settings": {
     "title": "Paramètres",

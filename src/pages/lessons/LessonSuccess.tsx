@@ -14,9 +14,9 @@ export default function LessonSuccess() {
         // Fallback de sécurité si l'utilisateur rafraîchit la page de succès sans le Context Router
         return (
             <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
-                <p className="text-gray-500 mb-4 font-medium">{t('lessons.session_invalid', 'Session introuvable ou expirée.')}</p>
+                <p className="text-gray-500 mb-4 font-medium">{t('lessons.session_invalid')}</p>
                 <button onClick={() => navigate('/dashboard')} className="px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl">
-                    {t('common.home', 'Retour à l\'accueil')}
+                    {t('common.home')}
                 </button>
             </div>
         );
@@ -35,7 +35,7 @@ export default function LessonSuccess() {
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-800 tracking-tight mb-2">
-                    {t('lessons.lesson_completed', 'Leçon terminée !')}
+                    {t('lessons.lesson_completed')}
                 </h2>
                 <p className="text-gray-500 font-medium mb-8 bg-gray-50 py-2 px-4 rounded-xl inline-block border border-gray-100">
                     {lesson.title}
@@ -45,21 +45,21 @@ export default function LessonSuccess() {
                 <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="bg-indigo-50 rounded-2xl p-5 border border-indigo-100/50 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-16 h-16 bg-white opacity-30 transform rotate-45 translate-x-6 -translate-y-6"></div>
-                        <p className="text-indigo-800 text-[10px] font-large uppercase tracking-widest mb-1">{t('lessons.xp_earned', 'XP Gagné')}</p>
+                        <p className="text-indigo-800 text-[10px] font-large uppercase tracking-widest mb-1">{t('lessons.xp_earned')}</p>
                         <p className="text-3xl font-medium text-indigo-600">+{response.xpEarned}</p>
                     </div>
 
                     <div className={`rounded-2xl p-5 border relative overflow-hidden ${response.success ? 'bg-emerald-50 border-emerald-100/50' : 'bg-red-50 border-red-100/50'}`}>
                         <div className="absolute top-0 right-0 w-16 h-16 bg-white opacity-30 transform rotate-45 translate-x-6 -translate-y-6"></div>
-                        <p className={`text-[10px] font-medium uppercase tracking-widest mb-1 ${response.success ? 'text-emerald-800' : 'text-red-800'}`}>{t('lessons.status', 'Résultat')}</p>
-                        <p className={`text-2xl font-medium ${response.success ? 'text-emerald-600' : 'text-red-500'}`}>{response.success ? t('lessons.success', 'Validée') : t('lessons.failed', 'Échouée')}</p>
+                        <p className={`text-[10px] font-medium uppercase tracking-widest mb-1 ${response.success ? 'text-emerald-800' : 'text-red-800'}`}>{t('lessons.status')}</p>
+                        <p className={`text-2xl font-medium ${response.success ? 'text-emerald-600' : 'text-red-500'}`}>{response.success ? t('lessons.success') : t('lessons.failed')}</p>
                     </div>
                 </div>
 
                 {/* Bannière de passage de niveau */}
                 {response.leveledUp && (
                     <div className="bg-gradient-to-r from-amber-400 to-amber-500 text-white font-bold p-4 rounded-2xl mb-8 shadow-lg animate-bounce">
-                        🎉 {t('lessons.level_up', 'Niveau Supérieur ! Level {{level}}', { level: response.newLevel })}
+                        🎉 {t('lessons.level_up', { level: response.newLevel })}
                     </div>
                 )}
 
@@ -67,7 +67,7 @@ export default function LessonSuccess() {
                     onClick={() => navigate(`/topics/${lesson.topicId}`)}
                     className="w-full py-4 bg-gray-900 text-white rounded-2xl hover:bg-gray-800 transition-colors font-medium text-lg shadow-sm"
                 >
-                    {t('common.continue', 'Continuer l\'apprentissage')}
+                    {t('common.continue')}
                 </button>
             </div>
         </div>

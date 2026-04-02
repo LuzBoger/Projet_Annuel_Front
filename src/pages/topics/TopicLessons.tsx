@@ -25,7 +25,7 @@ export default function TopicLessons() {
                     const data = await lessonService.getTopicLessonsDetails(topicId);
                     setDetails(data);
                 } catch (err) {
-                    setError(t('error.fetchLessons', 'Impossible de récupérer les leçons.'));
+                    setError(t('error.fetchLessons'));
                 } finally {
                     setLoading(false);
                 }
@@ -45,15 +45,15 @@ export default function TopicLessons() {
                 className="mb-8 font-bold border-none bg-transparent hover:bg-gray-100 flex items-center shadow-none text-gray-500 hover:text-gray-900"
             >
                 <ChevronLeft className="w-5 h-5 mr-1" />
-                {t('common.back', 'Retour')}
+                {t('common.back')}
             </Button>
 
             <div className="mb-12 text-center sm:text-left">
                 <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-600 tracking-tight">
-                    {t('topics.lessons_title', 'Lessons Playground')}
+                    {t('topics.lessons_title')}
                 </h1>
                 <p className="mt-3 text-lg text-gray-600 max-w-2xl">
-                    {t('topics.lessons_desc', 'Explore the lessons below in chronological order to progress and master this topic.')}
+                    {t('topics.lessons_desc')}
                 </p>
             </div>
 
@@ -73,29 +73,29 @@ export default function TopicLessons() {
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full">
                             <div className="flex flex-col border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-6">
-                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_status', 'Statut de l\'Examen')}</p>
+                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_status')}</p>
                                 <div className="flex items-center">
                                     {details.examPassed ? (
                                         <span className="flex items-center text-emerald-600 font-extrabold text-xl">
                                             <svg className="w-5 h-5 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                                            {t('topics.passed', 'Validé')}
+                                            {t('topics.passed')}
                                         </span>
                                     ) : (
                                         <span className="text-indigo-400 font-medium text-lg flex items-center">
                                             <IconFlashcard className="w-4 h-4 mr-1.5 opacity-70" />
-                                            {t('topics.not_passed', 'À passer')}
+                                            {t('topics.not_passed')}
                                         </span>
                                     )}
                                 </div>
                             </div>
 
                             <div className="flex flex-col border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-6 md:pl-6 pl-0">
-                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_attempts', 'Tentatives')}</p>
+                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_attempts')}</p>
                                 <p className="text-3xl font-extrabold text-indigo-900">{details.examAttempts}</p>
                             </div>
 
                             <div className="flex flex-col pt-2 md:pt-0 md:pl-6 pl-0">
-                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.last_accuracy', 'Dernière Précision')}</p>
+                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.last_accuracy')}</p>
                                 <div className="flex items-baseline space-x-2">
                                     <span className={`text-3xl font-extrabold ${
                                         details.lastAccuracy && details.lastAccuracy >= 0.8 ? 'text-emerald-500' : 
@@ -156,8 +156,8 @@ export default function TopicLessons() {
                     ) : (
                         <div className="flex flex-col items-center justify-center py-16 bg-white bg-opacity-70 rounded-3xl border border-gray-200 border-dashed shadow-sm">
                             <IconQcm className="w-12 h-12 text-gray-300 mb-4" />
-                            <h3 className="text-lg font-bold text-gray-900">{t('topics.no_lessons_title', 'Aucune leçon disponible')}</h3>
-                            <p className="mt-2 text-sm text-gray-500 text-center">{t('topics.no_lessons_desc', 'Revenez plus tard !')}</p>
+                            <h3 className="text-lg font-bold text-gray-900">{t('topics.no_lessons_title')}</h3>
+                            <p className="mt-2 text-sm text-gray-500 text-center">{t('topics.no_lessons_desc')}</p>
                         </div>
                     )}
                 </div>

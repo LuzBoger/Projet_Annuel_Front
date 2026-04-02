@@ -12,10 +12,10 @@ export function TopicProgressBar({ finishedCount, totalCount }: TopicProgressBar
     return (
         <div className="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm flex flex-col">
             <div className="flex justify-between items-center mb-3">
-                <span className="text-sm font-bold text-gray-700 uppercase tracking-wider">{t('topics.progress', 'Progression globale')}</span>
+                <span className="text-sm font-bold text-gray-700 uppercase tracking-wider">{t('topics.progress')}</span>
                 <div className="flex items-center space-x-2">
                     <span className="text-xs font-semibold px-2 py-1 bg-indigo-50 text-indigo-700 rounded-lg">
-                        {finishedCount} / {totalCount} {t('topics.lessons_count_label', 'leçons')}
+                        {finishedCount} / {totalCount} {t('topics.lessons_count_label')}
                     </span>
                     <span className="text-sm font-extrabold text-indigo-600">{progress}%</span>
                 </div>

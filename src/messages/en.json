@@ -8,13 +8,17 @@
     "active": "Active",
     "view": "View",
     "edit": "Edit",
-    "back": "Back",
     "save": "Save",
     "confirm": "Confirm",
     "user": "User",
     "locked": "Locked",
     "finish": "Finish",
-    "empty": "No data available"
+    "empty": "No data available",
+    "no_data": "No data available",
+    "back": "Back",
+    "quit": "Quit",
+    "home": "Back to Home",
+    "continue": "Continue"
   },
   "auth": {
     "login": {
@@ -455,7 +459,9 @@
     "fetchLessons": "Failed to fetch lessons.",
     "createLesson": "Failed to create lesson.",
     "updateLesson": "Failed to update lesson.",
-    "deleteLesson": "Failed to delete lesson."
+    "deleteLesson": "Failed to delete lesson.",
+    "startLesson": "Failed to start lesson.",
+    "completeLesson": "Failed to complete lesson."
   },
   "topics": {
     "page_title": "Available Topics",
@@ -493,7 +499,9 @@
     "final_exam_title": "Final Exam",
     "final_exam_desc": "Evaluate your new knowledge globally.",
     "take_exam": "Take the exam",
-    "exam_locked": "Complete all lessons first"
+    "exam_locked": "Complete all lessons first",
+    "progress": "Progress",
+    "lessons_count_label": "Lessons completed"
   },
   "lessons": {
     "progress": "Exercise Progress",
@@ -526,7 +534,18 @@
       "next": "Next",
       "correct": "Correct answer!",
       "incorrect": "Wrong answer"
-    }
+    },
+    "starting": "Preparing the lesson...",
+    "session_invalid": "Session not found or expired.",
+    "lesson_completed": "Lesson completed!",
+    "xp_earned": "XP Earned",
+    "status": "Result",
+    "success": "Passed",
+    "failed": "Failed",
+    "level_up": "Leveled Up! Level {{level}}",
+    "not_found": "Lesson not found.",
+    "start_error": "Error while starting the lesson.",
+    "complete_error": "Connection error during validation."
   },
   "settings": {
     "title": "Settings",

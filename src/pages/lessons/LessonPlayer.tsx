@@ -33,7 +33,7 @@ export default function LessonPlayer() {
                 // 1. Récupération des données métiers de la leçon
                 const data = await fetchLessonById(lessonId);
                 if (!data) {
-                    if (mounted) setErrorMsg(t('lessons.not_found', 'Leçon introuvable.'));
+                    if (mounted) setErrorMsg(t('lessons.not_found'));
                     return;
                 }
                 
@@ -48,7 +48,7 @@ export default function LessonPlayer() {
                 }
                 
             } catch {
-                if (mounted) setErrorMsg(t('lessons.start_error', 'Erreur lors du démarrage de la leçon.'));
+                if (mounted) setErrorMsg(t('lessons.start_error'));
             }
         }
         
@@ -74,7 +74,7 @@ export default function LessonPlayer() {
             navigate(`/lessons/${lessonId}/success`, { state: { response, lesson } });
             
         } catch {
-            setErrorMsg(t('lessons.complete_error', 'Erreur de connexion lors de la validation.'));
+            setErrorMsg(t('lessons.complete_error'));
             setIsCompleting(false);
         }
     }, [lessonId, completeLesson, isCompleting, navigate, t, lesson]);
@@ -85,7 +85,7 @@ export default function LessonPlayer() {
                 <div className="max-w-md w-full bg-white rounded-2xl p-6 text-center shadow-lg border border-red-100">
                     <p className="text-red-700 font-medium mb-5">{errorMsg}</p>
                     <button onClick={() => navigate(-1)} className="px-5 py-2.5 bg-gray-100 text-gray-800 rounded-xl hover:bg-gray-200 transition-colors font-medium">
-                        {t('common.back', 'Retour')}
+                        {t('common.back')}
                     </button>
                 </div>
             </div>
@@ -96,7 +96,7 @@ export default function LessonPlayer() {
         return (
             <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mb-6"></div>
-                <p className="text-indigo-600 font-medium animate-pulse">{t('lessons.starting', 'Préparation de la leçon...')}</p>
+                <p className="text-indigo-600 font-medium animate-pulse">{t('lessons.starting')}</p>
             </div>
         );
     }
@@ -108,10 +108,10 @@ export default function LessonPlayer() {
                 <button 
                     onClick={() => navigate(-1)} 
                     className="flex items-center text-gray-500 hover:text-red-600 transition-colors p-2 -ml-2 rounded-lg hover:bg-gray-100 font-medium"
-                    title={t('common.quit', 'Quitter')}
+                    title={t('common.quit')}
                 >
                     <ChevronLeft className="w-5 h-5 mr-1" />
-                    <span className="hidden sm:inline">{t('common.quit', 'Quitter l\'entraînement')}</span>
+                    <span className="hidden sm:inline">{t('common.quit')}</span>
                 </button>
                 <div className="flex-1 text-center font-bold text-gray-900 truncate px-4">
                     {lesson.title}

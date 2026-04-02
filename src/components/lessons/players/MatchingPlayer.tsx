@@ -55,7 +55,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
     if (!pairs || pairs.length === 0) {
         return (
             <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm">
-                {t('common.no_data', 'Aucune donnée.')}
+                {t('common.no_data')}
             </div>
         );
     }
@@ -115,7 +115,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
             <div className="w-full mb-8">
                 <div className="flex justify-between text-sm font-medium text-gray-500 mb-3">
                     <span className="uppercase tracking-widest text-[10px] sm:text-xs text-indigo-500">
-                        {t('lessons.progress', "Progression de l'exercice")}
+                        {t('lessons.progress')}
                     </span>
                     <span className="bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
                         {matchedMatchIds.length} / {pairs.length}
@@ -131,7 +131,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
 
             <div className="w-full bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-6 sm:p-10 mb-6 transition-all">
                 <h3 className="text-2xl sm:text-3xl font-medium text-gray-800 mb-8 text-center leading-tight">
-                    {t('lessons.matching.instruction', 'Associez les paires correspondantes')}
+                    <p className="text-gray-500 font-medium mb-1">{t('lessons.matching.instruction')}</p>
                 </h3>
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-3 gap-3 sm:gap-4">
@@ -172,13 +172,11 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                         <Check className="w-5 h-5 flex-shrink-0" />
                     </div>
                     <div>
-                        <h4 className="font-semibold text-lg mb-1">
-                            {t('lessons.matching.completed', 'Excellent !')}
-                        </h4>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('lessons.matching.completed')}</h2>
                         <p className="opacity-90 font-medium text-sm leading-relaxed mt-1">
                             {errorCount === 0 
-                                ? t('lessons.matching.flawless', 'Vous avez tout trouvé du premier coup !')
-                                : t('lessons.matching.with_errors', 'Toutes les paires ont été trouvées.')}
+                                ? t('lessons.matching.flawless')
+                                : t('lessons.matching.with_errors')}
                         </p>
                     </div>
                 </div>
@@ -192,7 +190,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                         size="lg"
                         className="py-6 !bg-gray-900 hover:!bg-gray-800 text-white rounded-2xl font-medium text-lg shadow-sm"
                     >
-                        {t('lessons.finish', 'Terminer')}
+                        {t('lessons.finish')}
                         <ChevronRight className="w-5 h-5 ml-2" />
                     </Button>
                 )}
