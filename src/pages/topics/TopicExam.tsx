@@ -17,7 +17,7 @@ interface Tile {
     originalPairId: string;
 }
 
-type ExamItem = 
+type ExamItem =
     | { type: 'QCM', data: QcmQuestionExamResponse }
     | { type: 'FLASHCARD', data: FlashcardExamResponse }
     | { type: 'MATCHING', data: MatchingPairResponse[], shuffledTiles: Tile[] }
@@ -57,16 +57,16 @@ export default function TopicExam() {
             try {
                 setLoading(true);
                 const data = await topicService.getTopicExam(topicId);
-                
+
                 const qcms: ExamItem[] = (data.qcmQuestions || []).map((q) => ({ type: 'QCM', data: q }));
                 const flashcards: ExamItem[] = (data.flashcards || []).map((f) => ({ type: 'FLASHCARD', data: f }));
-                
-                const sortings: ExamItem[] = (data.sortingExercises || []).map((s) => ({ 
-                    type: 'SORTING', 
+
+                const sortings: ExamItem[] = (data.sortingExercises || []).map((s) => ({
+                    type: 'SORTING',
                     data: s,
                     shuffledIndices: shuffleArray(s.items.map((_, i) => i))
                 }));
-                
+
                 // Rassembler toutes les paires en une seule question 'MATCHING'
                 let matchings: ExamItem[] = [];
                 if (data.matchingPairs && data.matchingPairs.length > 0) {
@@ -75,16 +75,16 @@ export default function TopicExam() {
                         tiles.push({ id: `t1-${index}-${pair.id}`, text: pair.item1, originalPairId: pair.id });
                         tiles.push({ id: `t2-${index}-${pair.id}`, text: pair.item2, originalPairId: pair.id });
                     });
-                    
-                    matchings = [{ 
-                        type: 'MATCHING', 
+
+                    matchings = [{
+                        type: 'MATCHING',
                         data: data.matchingPairs,
                         shuffledTiles: shuffleArray(tiles)
                     }];
                 }
 
                 const mixed = shuffleArray([...qcms, ...flashcards, ...sortings, ...matchings]);
-                
+
                 setMixedQuestions(mixed);
                 setExam(data);
             } catch {
@@ -99,10 +99,10 @@ export default function TopicExam() {
 
     const submitExam = async () => {
         if (!topicId) return;
-        
+
         try {
             setSubmitting(true);
-            
+
             const resultPayload: ExamResultRequest = {
                 flashcardAnswers: Object.entries(flashcardAnswers).map(([id, userResponse]) => ({ id, userResponse })),
                 qcmAnswers: Object.entries(qcmAnswers).map(([id, selectedOptionIndex]) => ({ id, selectedOptionIndex })),
@@ -195,8 +195,8 @@ export default function TopicExam() {
 
     return (
         <div className="min-h-screen pb-32 pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <Button 
-                onClick={() => navigate(-1)} 
+            <Button
+                onClick={() => navigate(-1)}
                 variant="ghost"
                 size="sm"
                 className="mb-8 font-bold flex items-center text-gray-500 hover:text-gray-900"
@@ -257,8 +257,8 @@ export default function TopicExam() {
                                     </span>
                                 </div>
                                 <div className="w-full bg-gray-200/50 rounded-full h-3 shadow-inner overflow-hidden">
-                                    <div 
-                                        className="bg-indigo-500 h-3 rounded-full transition-all duration-500 ease-out" 
+                                    <div
+                                        className="bg-indigo-500 h-3 rounded-full transition-all duration-500 ease-out"
                                         style={{ width: `${((currentIndex) / mixedQuestions.length) * 100}%` }}
                                     ></div>
                                 </div>
@@ -266,20 +266,20 @@ export default function TopicExam() {
 
                             {(() => {
                                 const currentItem = mixedQuestions[currentIndex];
-                                
+
                                 if (currentItem.type === 'QCM') {
                                     return (
-                                        <ExamQcmQuestion 
+                                        <ExamQcmQuestion
                                             question={currentItem.data}
                                             selectedValue={qcmAnswers[currentItem.data.id] ?? null}
                                             onSelect={(val) => setQcmAnswers(prev => ({ ...prev, [currentItem.data.id]: val }))}
                                         />
                                     );
                                 }
-                                
+
                                 if (currentItem.type === 'FLASHCARD') {
                                     return (
-                                        <ExamFlashcardQuestion 
+                                        <ExamFlashcardQuestion
                                             flashcard={currentItem.data}
                                             value={flashcardAnswers[currentItem.data.id] || ''}
                                             onChange={(val) => setFlashcardAnswers(prev => ({ ...prev, [currentItem.data.id]: val }))}
@@ -289,7 +289,7 @@ export default function TopicExam() {
 
                                 if (currentItem.type === 'SORTING') {
                                     return (
-                                        <ExamSortingQuestion 
+                                        <ExamSortingQuestion
                                             exercise={currentItem.data}
                                             shuffledIndices={currentItem.shuffledIndices}
                                             userOrder={sortingAnswers[currentItem.data.id] || []}
@@ -300,7 +300,7 @@ export default function TopicExam() {
 
                                 if (currentItem.type === 'MATCHING') {
                                     return (
-                                        <ExamMatchingQuestion 
+                                        <ExamMatchingQuestion
                                             shuffledTiles={currentItem.shuffledTiles}
                                             userPairs={matchingAnswers}
                                             onChange={(val) => setMatchingAnswers(val)}
@@ -311,8 +311,8 @@ export default function TopicExam() {
                                 return null;
                             })()}
 
-                            <Button 
-                                className="w-full py-4 text-lg mt-4 shadow-sm" 
+                            <Button
+                                className="w-full py-4 text-lg mt-4 shadow-sm"
                                 onClick={() => setCurrentIndex(prev => prev + 1)}
                                 disabled={(() => {
                                     const currentItem = mixedQuestions[currentIndex];

@@ -26,7 +26,7 @@ interface ExamMatchingQuestionProps {
 export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: ExamMatchingQuestionProps) {
     const { t } = useTranslation();
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
-    
+
     // Derive visible tiles by filtering answered ones
     const answeredTileIds = new Set(userPairs.flatMap(p => [p.tileAId, p.tileBId].filter(Boolean)));
     const tiles = shuffledTiles.filter(tile => !answeredTileIds.has(tile.id));
@@ -45,11 +45,11 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
         }
 
         const newSelected = [...selectedIds, tileId];
-        
+
         if (newSelected.length === 2) {
             const tA = tiles.find(t => t.id === newSelected[0])!;
             const tB = tiles.find(t => t.id === newSelected[1])!;
-            
+
             const newPair: UserPairAnswer = {
                 id: tA.originalPairId,
                 item1: tA.text,
@@ -72,7 +72,7 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
     const isAllMatched = tiles.length === 0;
 
     return (
-        <PlayerCard 
+        <PlayerCard
             instruction={
                 <div className="flex justify-center mb-4">
                     <span className="px-4 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold tracking-wide uppercase">
@@ -82,14 +82,14 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
             }
         >
             {isAllMatched ? (
-                 <div className="text-center p-10 bg-emerald-50 rounded-[2rem] border border-emerald-100 text-emerald-800 font-medium animate-pulse">
+                <div className="text-center p-10 bg-emerald-50 rounded-[2rem] border border-emerald-100 text-emerald-800 font-medium animate-pulse">
                     {t('topics.exam_matching_finished')}
-                 </div>
+                </div>
             ) : (
                 <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-3 gap-3 sm:gap-4 mb-8">
                     {tiles.map(tile => {
                         const isSelected = selectedIds.includes(tile.id);
-                        
+
                         let buttonClass = "w-full min-h-[90px] p-4 rounded-2xl border-2 transition-all duration-300 font-medium text-[15px] sm:text-lg flex items-center justify-center text-center select-none ";
 
                         if (isSelected) {
@@ -123,7 +123,7 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
                                 <span className="font-medium text-gray-700 text-sm sm:text-base">{pair.item1}</span>
                                 <span className="mx-3 text-indigo-300/70 font-bold">↔</span>
                                 <span className="font-medium text-gray-700 text-sm sm:text-base">{pair.item2}</span>
-                                <button 
+                                <button
                                     onClick={() => handleUndoPair(pair)}
                                     className="ml-4 p-1 rounded-full bg-gray-50 group-hover:bg-red-50 text-gray-300 group-hover:text-red-400 transition-all hover:rotate-90"
                                     title={t('common.undo')}

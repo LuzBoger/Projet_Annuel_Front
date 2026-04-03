@@ -6,7 +6,7 @@ import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 interface ExamSortingQuestionProps {
     exercise: SortingExerciseExamResponse;
     shuffledIndices: number[];
-    userOrder: number[]; 
+    userOrder: number[];
     onChange: (order: number[]) => void;
 }
 
@@ -25,9 +25,9 @@ export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onCh
         originalIndex: index
     })), [exercise]);
 
-    const selectedItems = useMemo(() => 
+    const selectedItems = useMemo(() =>
         userOrder.map(idx => initialItems.find(item => item.originalIndex === idx)!).filter(Boolean)
-    , [initialItems, userOrder]);
+        , [initialItems, userOrder]);
 
     const pool = useMemo(() => {
         const selectedIndices = new Set(userOrder);
@@ -45,7 +45,7 @@ export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onCh
     };
 
     return (
-        <PlayerCard 
+        <PlayerCard
             instruction={
                 <div className="flex justify-center mb-4">
                     <span className="px-4 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold tracking-wide uppercase">
@@ -61,7 +61,7 @@ export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onCh
                             {t('lessons.sorting.empty_target')}
                         </span>
                     )}
-                    
+
                     {selectedItems.map(item => (
                         <button
                             key={item.id}
