@@ -8,6 +8,7 @@ export interface Account {
     lastName: string;
     role: RoleEnum;
     has2FAEnabled: boolean;
+    hasCompletedOnboarding: boolean;
 }
 
 export interface AccountInfoResponse {
@@ -18,4 +19,11 @@ export interface AccountInfoResponse {
   lastName: string;
   role: RoleEnum;
   has2FAEnabled: boolean;
+  hasCompletedOnboarding: boolean;
+
+}
+
+
+export interface CompleteOnboardingRequest {
+  languageId: string | null;
 }

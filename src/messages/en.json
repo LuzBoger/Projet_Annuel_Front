@@ -11,7 +11,8 @@
     "back": "Back",
     "save": "Save",
     "confirm": "Confirm",
-    "user": "User"
+    "user": "User",
+    "loading": "Loading..."
   },
   "auth": {
     "login": {
@@ -456,6 +457,13 @@
   },
   "settings": {
     "title": "Settings",
+    "language": {
+      "title": "Interface Language"
+    },
+    "languages": {
+      "french": "French",
+      "english": "English"
+    },
     "password": {
       "title": "Password",
       "description": "Manage your account password."
@@ -463,7 +471,8 @@
     "menu": {
       "profile": "Profile",
       "password": "Password",
-      "2fa": "Two-factor auth"
+      "2fa": "Two-factor auth",
+      "language": "Language"
     },
     "2fa": {
       "title": "Two-factor authentication",
@@ -599,6 +608,48 @@
         "invalidCurrent": "Current password is incorrect.",
         "generic": "An error occurred. Please try again."
       }
+    },
+    "languageSection": {
+      "learningLanguages": "Languages I'm learning",
+      "addLanguage": "Add a language",
+      "noLearningLanguages": "No languages added yet.",
+      "chooseLanguage": "Choose a language"
+    }
+  },
+  "popular": "Popular",
+  "languages": {
+    "available": "languages available",
+    "chooseYour": "Choose your",
+    "nextLanguage": "next language",
+    "clickToExplore": "Click on a language to explore its topics and lessons.",
+    "inLearning": "In Learning",
+    "regions": {
+      "all": "All",
+      "europe": "Europe",
+      "amériques": "Americas",
+      "asie": "Asia",
+      "afrique": "Africa",
+      "populaires": "Popular"
+    }
+  },
+  "pages": {
+    "languageDetail": {
+      "remove": "Remove from my languages",
+      "start": "Start learning",
+      "topics": "Topics",
+      "lessons": "Lessons",
+      "topicsAndLessons": "Topics & Lessons"
+    }
+  },
+  "components": {
+    "topicCard": {
+      "lessons": "lessons",
+      "completed": "completed"
+    },
+    "badgeStatusLanguages": {
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "notStarted": "Not Started"
     }
   },
   "home": {

@@ -1,6 +1,7 @@
 import { UpdatePasswordRequest, UpdateProfileRequest, UploadResponse, UserProfileResponse } from "@/types/profile/profile";
 import apiClient from "./axios";
 import { ApiResponse } from "@/types/api/response";
+import { CompleteOnboardingRequest } from "@/types/account";
 
 export const profileService = {
 
@@ -40,5 +41,9 @@ export const profileService = {
     async addActiveLanguage(languageId: string): Promise<UserProfileResponse> {
         const response = await apiClient.put<UserProfileResponse>(`/profile/active-language/${languageId}`);
         return response.data;
+    },
+
+    async completeOnboarding(data: CompleteOnboardingRequest): Promise<void> {
+        await apiClient.post('/onboarding/complete', data);
     }
 }

@@ -1,4 +1,4 @@
-import { Lock, Shield, User } from "lucide-react";
+import { Globe, Lock, Shield, User } from "lucide-react";
 import { MenuItem, SettingsTab } from "@/types/components/menutItem";
 import { useTranslation } from "react-i18next";
 
@@ -14,6 +14,7 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
         { id: 'profile', label: t('settings.menu.profile'), icon: <User /> },
         { id: 'password', label: t('settings.menu.password'), icon: <Lock /> },
         { id: '2fa', label: t('settings.menu.2fa'), icon: <Shield /> },
+        { id: 'language', label: t('settings.menu.language'), icon: <Globe /> },
     ];
 
     return (

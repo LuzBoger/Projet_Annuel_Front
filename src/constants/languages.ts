@@ -36,3 +36,21 @@ export const LANGUAGE_TO_COUNTRY_MAPPING: Record<string, string> = {
 export const REGION_MAP: Record<string, string> = Object.fromEntries(
     PREDEFINED_LANGUAGES.map(lang => [lang.code, lang.region])
 );
+export const LANG_META: Record<string, { code: string; color: string }> = {
+  ja: { code: "JP", color: "#FFCDD2" },
+  en: { code: "GB", color: "#BBDEFB" },
+  ko: { code: "KR", color: "#C8E6C9" },
+  es: { code: "ES", color: "#FFF9C4" },
+  zh: { code: "CN", color: "#E1BEE7" },
+  de: { code: "DE", color: "#B2EBF2" },
+  fr: { code: "FR", color: "#FFE0B2" },
+  pt: { code: "PT", color: "#DCEDC8" },
+  it: { code: "IT", color: "#F8BBD0" },
+  ar: { code: "DZ", color: "#D7CCC8" },
+  ru: { code: "RU", color: "#CFD8DC" },
+  vi: { code: "VN", color: "#FFE082" },
+  tr: { code: "TR", color: "#FFAB91" },
+  fa: { code: "IR", color: "#BCAAA4" },
+  hi: { code: "IN", color: "#DCE775" },
+};
+

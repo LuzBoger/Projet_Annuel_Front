@@ -1,10 +1,12 @@
 import InfoAccountPrivate from "@/components/profile/InfoAccountPrivate";
 import { InfoPrivateBanner } from "@/components/profile/InfoPrivateBanner";
+import { ProfileLanguageSection } from "@/components/profile/LanguageSection";
 import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/hooks/useAuth";
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { profileService } from "@/services/profileService";
 import { UserProfileResponse } from "@/types/profile/profile";
+import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -14,6 +16,7 @@ export  function Profile() {
     const {t} = useTranslation();
     const {userId} = useParams();
     const {user} = useAuth();
+    const [languages, setLanguages] = useState<UserLanguageResponse[]>([]);
     const [profile, setProfile] = useState<UserProfileResponse | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -26,7 +29,7 @@ export  function Profile() {
             try {
                 const profileData = isProfile ? await profileService.getMyProfile() : await profileService.getUserProfile(userId);
                 setProfile(profileData);
-
+                setLanguages(profileData.languages ?? []);
             } catch (err) {
                 if (isAxiosError(err)) {
                     const status = err.response?.status;
@@ -47,7 +50,9 @@ export  function Profile() {
     }, [userId, isProfile, t]);
 
 
-
+    const handleLanguageRemoved = (userLanguageId: string) => {
+        setLanguages((prev) => prev.filter((l) => l.id !== userLanguageId));
+    };
   if (loading) {
     return (
       <div className="min-h-screen bg-[#faf7f2] flex justify-center items-center">
@@ -116,6 +121,7 @@ export  function Profile() {
           </aside>
 
           <main className="flex-1 min-w-0 flex flex-col gap-4">
+            <ProfileLanguageSection languages={languages} onLanguageRemove={handleLanguageRemoved} />
           </main>
 
         </div>

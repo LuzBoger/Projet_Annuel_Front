@@ -2,6 +2,7 @@ import { userLanguageService } from "@/services/userLanguage";
 import { AddUserLanguageRequest, UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useToast } from "./useToast";
 
 export function useUserLanguage() {
 
@@ -9,6 +10,7 @@ export function useUserLanguage() {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
+    const {addToast} = useToast();
     const {t} = useTranslation();
     const fetchLearningLanguages = useCallback(async () => {
         setLoading(true);
@@ -18,19 +20,24 @@ export function useUserLanguage() {
             setUserLanguages(response);
         } catch {
             setError(t('error.fetchUserLearningLanguages'));
+            addToast({type: 'error', message: t('error.fetchUserLearningLanguages')});
+            
         } finally {
             setLoading(false);
         }
     }, [t]);
 
-    const addLanguage = async (data: AddUserLanguageRequest) => {
+    const addLanguage = async (data: AddUserLanguageRequest): Promise<UserLanguageResponse> => {
         setLoading(true);
         setError(null);
         try {
             const response = await userLanguageService.addUserLanguage(data);
             setUserLanguages(prev => [...prev, response]);
-        } catch {
+            return response;
+        } catch (err) {
             setError(t('error.addUserLanguage'));
+            addToast({type: 'error', message: t('error.addUserLanguage')});
+            throw err;
         } finally {
             setLoading(false);
         }
@@ -44,6 +51,7 @@ export function useUserLanguage() {
             setUserLanguages(prev => prev.filter(lang => lang.id !== id));
         } catch {
             setError(t('error.deleteUserLanguage'));
+            addToast({type: 'error', message: t('error.deleteUserLanguage')});
         } finally {
             setLoading(false);
         }

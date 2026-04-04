@@ -11,7 +11,8 @@
     "back": "Retour",
     "save": "Sauvegarder",
     "confirm": "Confirmer",
-    "user": "Utilisateur"
+    "user": "Utilisateur",
+    "loading": "Chargement..."
   },
   "auth": {
     "login": {
@@ -157,7 +158,11 @@
         "ACTIVE": "Actif",
         "EXPIRED": "Expiré",
         "CANCELED": "Annulé",
-        "PENDING": "En attente"
+        "PENDING": "En attente",
+        "active": "Actif",
+        "expired": "Expiré",
+        "canceled": "Annulé",
+        "pending": "En attente"
       },
       "current_period": "Période en cours",
       "start_date": "Date de début",
@@ -453,6 +458,13 @@
   },
   "settings": {
     "title": "Paramètres",
+    "language": {
+      "title": "Langue d'interface"
+    },
+    "languages": {
+      "french": "Français",
+      "english": "Anglais"
+    },
     "password": {
       "title": "Mot de passe",
       "description": "Gérez le mot de passe de votre compte."
@@ -460,7 +472,8 @@
     "menu": {
       "profile": "Profil",
       "password": "Mot de passe",
-      "2fa": "Double authentification"
+      "2fa": "Double authentification",
+      "language": "Langue"
     },
     "2fa": {
       "title": "Authentification à deux facteurs",
@@ -596,6 +609,48 @@
         "invalidCurrent": "Le mot de passe actuel est incorrect.",
         "generic": "Une erreur est survenue. Veuillez réessayer."
       }
+    },
+    "languageSection": {
+      "learningLanguages": "Langues que j'apprends",
+      "addLanguage": "Ajouter une langue",
+      "noLearningLanguages": "Aucune langue ajoutée pour l'instant.",
+      "chooseLanguage": "Choisir une langue"
+    }
+  },
+  "popular": "Populaire",
+  "languages": {
+    "available": "langues disponibles",
+    "chooseYour": "Choisissez votre",
+    "nextLanguage": "prochaine langue",
+    "clickToExplore": "Cliquez sur une langue pour explorer ses topics et leçons.",
+    "inLearning": "En apprentissage",
+    "regions": {
+      "all": "Toutes",
+      "europe": "Europe",
+      "amériques": "Amériques",
+      "asie": "Asie",
+      "afrique": "Afrique",
+      "populaires": "Populaires"
+    }
+  },
+  "pages": {
+    "languageDetail": {
+      "remove": "Retirer de mes langues",
+      "start": "Commencer à apprendre",
+      "topics": "Topics",
+      "lessons": "Leçons",
+      "topicsAndLessons": "Topics & Leçons"
+    }
+  },
+  "components": {
+    "topicCard": {
+      "lessons": "leçons",
+      "completed": "complétées"
+    },
+    "badgeStatusLanguages": {
+      "completed": "Complété",
+      "inProgress": "En cours",
+      "notStarted": "Non commencé"
     }
   },
   "home": {
