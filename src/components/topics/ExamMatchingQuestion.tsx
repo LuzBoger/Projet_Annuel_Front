@@ -3,19 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Cross } from "@/assets/icons";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 
-export interface UserPairAnswer {
-    id: string;
-    item1: string;
-    item2: string;
-    tileAId?: string;
-    tileBId?: string;
-}
-
-interface Tile {
-    id: string;
-    text: string;
-    originalPairId: string;
-}
+import { UserPairAnswer, Tile } from "@/types/components/examMatching";
 
 interface ExamMatchingQuestionProps {
     shuffledTiles: Tile[];

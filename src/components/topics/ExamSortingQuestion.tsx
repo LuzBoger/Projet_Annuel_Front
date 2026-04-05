@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { SortableItem } from "@/types/components/sorting";
 import { SortingExerciseExamResponse } from "@/types/topic/topic";
-import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 
 interface ExamSortingQuestionProps {
     exercise: SortingExerciseExamResponse;
@@ -9,12 +9,7 @@ interface ExamSortingQuestionProps {
     userOrder: number[];
     onChange: (order: number[]) => void;
 }
-
-interface SortableItem {
-    id: string;
-    text: string;
-    originalIndex: number;
-}
+import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 
 export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onChange }: ExamSortingQuestionProps) {
     const { t } = useTranslation();

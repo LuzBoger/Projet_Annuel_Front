@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { SortableItem } from "@/types/components/sorting";
 import { SortingExerciseRequest } from "@/types/lesson/lesson";
+
+interface SortingPlayerProps {
+    exercises: SortingExerciseRequest[];
+    onFinish: (score: number) => void;
+}
 import { Button } from "@/components/ui/Button";
 import { ChevronRight } from "@/assets/icons";
 import { PlayerLayout } from "./common/PlayerLayout";
@@ -8,17 +14,6 @@ import { PlayerHeader } from "./common/PlayerHeader";
 import { PlayerCard } from "./common/PlayerCard";
 import { PlayerFeedback } from "./common/PlayerFeedback";
 import { PlayerFooter } from "./common/PlayerFooter";
-
-interface SortingPlayerProps {
-    exercises: SortingExerciseRequest[];
-    onFinish: (score: number) => void;
-}
-
-interface SortableItem {
-    id: string;
-    text: string;
-    originalIndex: number;
-}
 
 const initPool = (exercises: SortingExerciseRequest[], currentIndex: number): SortableItem[] => {
     if (!exercises || exercises.length === 0 || !exercises[currentIndex]) return [];

@@ -7,15 +7,10 @@ import { ChevronLeft } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { ExamQcmQuestion } from "@/components/topics/ExamQcmQuestion";
 import { ExamFlashcardQuestion } from "@/components/topics/ExamFlashcardQuestion";
-import { ExamMatchingQuestion, UserPairAnswer } from "@/components/topics/ExamMatchingQuestion";
+import { ExamMatchingQuestion } from "@/components/topics/ExamMatchingQuestion";
 import { ExamSortingQuestion } from "@/components/topics/ExamSortingQuestion";
+import { UserPairAnswer, Tile } from "@/types/components/examMatching";
 import { MatchingPairResponse, SortingExerciseExamResponse } from "@/types/topic/topic";
-
-interface Tile {
-    id: string;
-    text: string;
-    originalPairId: string;
-}
 
 type ExamItem =
     | { type: 'QCM', data: QcmQuestionExamResponse }
