@@ -1,5 +1,5 @@
 import apiClient from "@/services/axios";
-import type { TopicResponse, CreateTopicRequest, UpdateTopicRequest, ExamResponse, ExamResultRequest, CompleteExamResponse } from "@/types/topic/topic";
+import type { TopicResponse, CreateTopicRequest, UpdateTopicRequest, ExamResponse, ExamResultRequest, CompleteExamResponse, TopicWithProgressResponse } from "@/types/topic/topic";
 
 
 export const topicService = {
