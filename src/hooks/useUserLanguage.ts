@@ -1,5 +1,6 @@
 import { userLanguageService } from "@/services/userLanguage";
 import { AddUserLanguageRequest, UserLanguageResponse } from "@/types/userLanguage/userLanguage";
+import axios from "axios";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useToast } from "./useToast";
@@ -27,7 +28,7 @@ export function useUserLanguage() {
         }
     }, [t]);
 
-    const addLanguage = async (data: AddUserLanguageRequest): Promise<UserLanguageResponse> => {
+    const addLanguage = async (data: AddUserLanguageRequest): Promise<UserLanguageResponse | null> => {
         setLoading(true);
         setError(null);
         try {
@@ -35,9 +36,10 @@ export function useUserLanguage() {
             setUserLanguages(prev => [...prev, response]);
             return response;
         } catch (err) {
-            setError(t('error.addUserLanguage'));
-            addToast({type: 'error', message: t('error.addUserLanguage')});
-            throw err;
+            if (axios.isAxiosError(err) && err.response?.status === 400) {
+                await fetchLearningLanguages();
+            }
+            return null;
         } finally {
             setLoading(false);
         }

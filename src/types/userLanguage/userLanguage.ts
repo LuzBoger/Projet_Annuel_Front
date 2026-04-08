@@ -10,7 +10,9 @@ export interface UserLanguageResponse {
   proficiencyLevel?: string;
   startedAt?: string;
 }
-
+export interface UpdateUserLanguageRequest {
+  proficiencyLevel?: string;
+}
 export interface AddUserLanguageRequest {
     languageId: string;
     languageType: TypeLanguage;

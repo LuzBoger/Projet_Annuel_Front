@@ -391,7 +391,49 @@
     "monthly": "Monthly",
     "yearly": "Yearly",
     "subscriptions": "Subscriptions",
-    "freeVsPremium": " Free and Premium subscribers"
+    "freeVsPremium": " Free and Premium subscribers",
+    "topics": "Topics",
+    "view_all": "View all",
+    "language": {
+      "active": "Active language",
+      "level": "Level {{level}}"
+    },
+    "xp": {
+      "level": "Level"
+    },
+    "welcome": {
+      "subtitle": "Your dashboard",
+      "greeting": "Hello,",
+      "morning": {
+        "0": "A great morning to learn something new!",
+        "1": "Start strong — your brain is at its sharpest.",
+        "2": "Morning is the best time to build new habits.",
+        "3": "Rise and learn! Every session counts.",
+        "4": "Good morning! Let's make progress today.",
+        "5": "A fresh start. Make it count!"
+      },
+      "afternoon": {
+        "0": "Keep the momentum going this afternoon.",
+        "1": "A great time for a quick session!",
+        "2": "Mid-day boost — your progress awaits.",
+        "3": "Stay consistent. Every bit adds up.",
+        "4": "Afternoon review is great for retention.",
+        "5": "Halfway through the day — keep it up!"
+      },
+      "evening": {
+        "0": "Wind down with a learning session tonight.",
+        "1": "Evening review helps cement your memory.",
+        "2": "End the day on a high note!",
+        "3": "A perfect time to reflect and review.",
+        "4": "Learning before sleep boosts retention.",
+        "5": "Good evening! One more session today?"
+      }
+    }
+  },
+  "lesson": {
+    "resume": "Resume lesson",
+    "start_first_lesson": "Start your first lesson to get going!",
+    "completed": "completed"
   },
   "subscriptions": {
     "title": "Subscriptions",
@@ -721,6 +763,9 @@
     }
   },
   "popular": "Popular",
+  "catalogLanguages": {
+    "title": "Languages"
+  },
   "languages": {
     "available": "languages available",
     "chooseYour": "Choose your",

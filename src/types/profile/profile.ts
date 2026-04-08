@@ -31,6 +31,7 @@ export interface UserProfileResponse {
   countryCode?: string;
   timezone?: string;
   isPublic: boolean;
+  hasCompletedOnboarding: boolean;
   languages?: UserLanguageResponse[];
   activeLanguage?: LanguageResponse | null;
   createdAt?: string;

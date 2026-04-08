@@ -19,7 +19,7 @@ export function LanguagesSection({ languages, onRemove }: LanguagesSectionProps)
     const navigate = useNavigate();
 
     const learningLanguages = languages.filter(lang => lang.languageType === "LEARNING");
-
+    const nativeLanguages = languages.filter(lang => lang.languageType === "NATIVE");
     const handleRemove = async (language: UserLanguageResponse) => {
         await userLanguageService.deleteUserLanguage(language.id);
         globalEvents.emit(EVENT_USER_LANGUAGE_REMOVED, language.languageId);
@@ -42,6 +42,23 @@ export function LanguagesSection({ languages, onRemove }: LanguagesSectionProps)
                     {t("common.add")}
                 </Button>
             </div>
+            {nativeLanguages.length > 0 && (
+                <div className="mb-4">
+                    <h3 className="text-sm font-semibold text-white mb-2">
+                        {t("profile.languageSection.nativeLanguages")}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                        {nativeLanguages.map((lang) => (
+                            <div key={lang.id} className="inline-flex items-center gap-1.5 bg-neutral-800 border border-neutral-700 rounded-full px-2.5 py-1.5">
+                                <span className="text-[10px] font-bold">
+                                    {lang.languageCode.toUpperCase()}
+                                </span>
+                                <span className="text-xs text-neutral-300">{lang.languageName}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
 
             {learningLanguages.length === 0 ? (
                 <AddLanguageToList/>

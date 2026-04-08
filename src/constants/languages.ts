@@ -54,3 +54,4 @@ export const LANG_META: Record<string, { code: string; color: string }> = {
   hi: { code: "IN", color: "#DCE775" },
 };
 
+export const SHOW_ACTIVE_LANGUAGE = 2;

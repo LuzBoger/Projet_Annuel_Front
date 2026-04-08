@@ -6,6 +6,8 @@ export const LessonType = {
 } as const;
 
 export type LessonType = typeof LessonType[keyof typeof LessonType];
+export type LessonStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED";
+export type DifficultyFeedback = 'VERY_GOOD' | 'GOOD' | 'MEDIUM' | 'HARD';
 
 export interface FlashcardRequest {
     front: string;
@@ -47,20 +49,21 @@ export interface LessonRequest {
     matchingPairs?: MatchingPairRequest[];
     sortingExercise?: SortingExerciseRequest[];
 }
+export interface UserLessonProgressSummary {
+    status: LessonStatus;
+    totalAttempts: number;
+    failedAttempts: number;
+    score: number;
+    timeSpentSeconds: number;
+    completedAt?: string;
+    lastAttemptAt?: string;
+}
 
 export interface LessonResponse extends LessonRequest {
     id: string;
     topicName?: string;
     isAlreadyFinish?: boolean;
-}
-
-export interface UserLessonProgressSummary {
-    userId: string;
-    lessonId: string;
-    startedAt: string;
-    completedAt?: string;
-    score?: number;
-    passed?: boolean;
+    userProgress?: UserLessonProgressSummary;
 }
 
 export interface CompleteLessonRequest {
@@ -76,7 +79,7 @@ export interface CompleteLessonResponse {
     currentLevel: number;
     leveledUp: boolean;
     newLevel?: number;
-    progress?: unknown; // To be typed later if UserProgressResponse is known
+    progress?: UserLessonProgressSummary;
 }
 
 export interface LessonSummaryResponse {
@@ -101,16 +104,4 @@ export interface TopicLessonsResponse {
     userProgress?: UserLessonProgressSummary;
 
 }
-export type LessonStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED";
-
-export interface UserLessonProgressSummary {
-    status: LessonStatus;
-    totalAttempts: number;
-    failedAttempts: number;
-    score: number;
-    timeSpentSeconds: number;
-    completedAt?: string;
-    lastAttemptAt?: string;
-}
-
 

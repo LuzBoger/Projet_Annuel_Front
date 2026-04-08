@@ -1,4 +1,4 @@
-import { AddUserLanguageRequest, UserLanguageResponse } from "@/types/userLanguage/userLanguage";
+import { AddUserLanguageRequest, UpdateUserLanguageRequest, UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import apiClient from "./axios";
 
 export const userLanguageService = {
@@ -11,9 +11,17 @@ export const userLanguageService = {
         const response = await apiClient.get<UserLanguageResponse[]>('/user-languages/type/LEARNING');
         return response.data;
     },
+    async getUserNativeLanguages(): Promise<UserLanguageResponse[]> {
+        const response = await apiClient.get<UserLanguageResponse[]>('/user-languages/type/NATIVE');
+        return response.data;
+    },
 
     async addUserLanguage(data: AddUserLanguageRequest): Promise<UserLanguageResponse> {
         const response = await apiClient.post<UserLanguageResponse>('/user-languages', data);
+        return response.data;
+    },
+    async updateUserLanguage(languageId: string, data: UpdateUserLanguageRequest): Promise<UserLanguageResponse> {
+        const response = await apiClient.put<UserLanguageResponse>(`/user-languages/${languageId}`, data);
         return response.data;
     },
 

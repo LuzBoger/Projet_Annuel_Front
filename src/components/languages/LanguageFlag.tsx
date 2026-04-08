@@ -11,7 +11,7 @@ export function LanguageFlag({ languageCode, className = "w-5 h-5 object-cover r
 
     return (
         <div className="flex-shrink-0 inline-flex items-center justify-center">
-            <Flag code={countryCode} className={`${className} shadow-sm`} fallback={<span>{languageCode.toUpperCase()}</span>} />
+            <Flag code={countryCode} className={`${className} shadow-sm`} fallback={<span>{languageCode?.toUpperCase()}</span>} />
         </div>
     );
 }

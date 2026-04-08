@@ -25,5 +25,6 @@ export interface AccountInfoResponse {
 
 
 export interface CompleteOnboardingRequest {
-  languageId: string | null;
+  nativeLanguageId: string | null;
+  learningLanguageId: string | null;
 }

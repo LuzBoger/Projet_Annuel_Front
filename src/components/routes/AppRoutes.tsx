@@ -26,10 +26,16 @@ import LessonForm from "@/pages/admin/lessons/LessonForm";
 import { CheckoutLayout } from "@/layout/CheckoutLayout";
 import CheckoutSuccess from "@/pages/checkout/CheckoutSuccess";
 import CheckoutCancel from "@/pages/checkout/CheckoutCancel";
+import LanguageTopics from "@/pages/topics/LanguageTopics";
+import TopicLessons from "@/pages/topics/TopicLessons";
+import TopicExam from "@/pages/topics/TopicExam";
+import LessonPlayer from "@/pages/lessons/LessonPlayer";
+import LessonSuccess from "@/pages/lessons/LessonSuccess";
 import { OnBoardingModal } from "../onBoarding/OnBoardingModal";
 import { Header } from "@/components/layout/Header";
 import { RoleEnum } from "@/types/enum/roles";
 import { AUTH_PATH } from "@/constants/global";
+import Dashboard from "@/pages/user/Dashboard";
 
 export function AppRoutes() {
   const { user, isAuthenticated, fetchUser } = useContext(AuthContext)!;
@@ -52,7 +58,13 @@ export function AppRoutes() {
           <Route path="/plans" element={<Plans />} />
           <Route path="/catalog-languages" element={<LanguageCatalog />} />
           <Route path="/languages/:languageId" element={<LanguageDetailPage />} />
+          <Route path="/dashboard" element={<ProtectedRoute userOnly><Dashboard /></ProtectedRoute>} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
+          <Route path="/topics/:topicId" element={<ProtectedRoute><TopicLessons /></ProtectedRoute>} />
+          <Route path="/topics/:topicId/exam" element={<ProtectedRoute><TopicExam /></ProtectedRoute>} />
+          <Route path="/lessons/:lessonId/play" element={<ProtectedRoute><LessonPlayer /></ProtectedRoute>} />
+          <Route path="/lessons/:lessonId/success" element={<ProtectedRoute><LessonSuccess /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>

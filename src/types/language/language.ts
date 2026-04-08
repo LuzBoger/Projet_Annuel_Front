@@ -24,3 +24,5 @@ export interface UpdateLanguageRequest {
     orderIndex: number;
     isActive: boolean;
 }
+
+export type StepOnBoarding = 'native' | 'learning' ;

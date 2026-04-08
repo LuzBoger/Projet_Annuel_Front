@@ -8,7 +8,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { profileService } from "@/services/profileService";
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { globalEvents } from "@/lib/utils/eventEmitter";
-import { EVENT_PROFILE_UPDATED, EVENT_USER_LANGUAGE_ADDED, EVENT_USER_LANGUAGE_REMOVED } from "@/constants/event";
+import { EVENT_ACTIVE_LANGUAGE_CHANGED, EVENT_PROFILE_UPDATED, EVENT_USER_LANGUAGE_ADDED, EVENT_USER_LANGUAGE_REMOVED } from "@/constants/event";
 import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { LanguageResponse } from "@/types/language/language";
 import { LanguageSwitcherButton } from "../languages/LanguageSwitcherButton";
@@ -63,6 +63,15 @@ export function Header() {
     }, []);
 
     useEffect(() => {
+        const handler = (...args: unknown[]) => {
+            const lang = args[0] as LanguageResponse | null | undefined;
+            setActiveLanguage(lang ?? null);
+        };
+        globalEvents.on(EVENT_ACTIVE_LANGUAGE_CHANGED, handler);
+        return () => globalEvents.off(EVENT_ACTIVE_LANGUAGE_CHANGED, handler);
+    }, []);
+
+    useEffect(() => {
         const onAdded = (...args: unknown[]) => {
             setLearningLanguages((prev) => [...prev, args[0] as UserLanguageResponse]);
         };
@@ -105,6 +114,9 @@ export function Header() {
                                         </Link>
                                         <Link to="/subscription" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
                                             {t("subscription.title")}
+                                        </Link>
+                                        <Link to="/catalog-languages" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
+                                            {t("catalogLanguages.title")}
                                         </Link>
                                     </>
                                 )}

@@ -52,7 +52,9 @@ export function LanguageDetailPage() {
                 globalEvents.emit(EVENT_USER_LANGUAGE_REMOVED, language?.id);
             } else if (language) {
                 const addedLanguage = await addLanguage({ languageId: language.id, languageType: "LEARNING" });
-                globalEvents.emit(EVENT_USER_LANGUAGE_ADDED, addedLanguage);
+                if (addedLanguage) {
+                    globalEvents.emit(EVENT_USER_LANGUAGE_ADDED, addedLanguage);
+                }
             }
         } finally {
             setTogglingLearning(false);

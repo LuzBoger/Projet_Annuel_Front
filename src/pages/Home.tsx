@@ -1,12 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link,  Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { useAuth } from '@/hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { Brain, Sparkles, BookOpen } from '@/assets/icons';
+import { RoleEnum } from '@/types/enum/roles';
 
 export default function Home() {
     const { isAuthenticated, user } = useAuth();
     const { t } = useTranslation();
+    if (isAuthenticated) {
+    return <Navigate to={user?.role === RoleEnum.ADMIN ? "/admin" : "/dashboard"} replace />;
+    } 
+
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
