@@ -13,7 +13,7 @@ export function ExamQcmQuestion({ question, selectedValue, onSelect }: ExamQcmQu
             <div className="space-y-4">
                 {question.options.map((option, idx) => {
                     const isSelected = selectedValue === idx;
-                    
+        
                     return (
                         <button 
                             key={idx} 

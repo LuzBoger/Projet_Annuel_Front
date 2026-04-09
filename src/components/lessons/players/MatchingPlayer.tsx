@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Tile } from "@/types/components/matching";
 import { MatchingPairRequest } from "@/types/lesson/lesson";
+
+interface MatchingPlayerProps {
+    pairs: MatchingPairRequest[];
+    onFinish: (score: number) => void;
+}
 import { ChevronRight } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { PlayerLayout } from "./common/PlayerLayout";
@@ -8,17 +14,6 @@ import { PlayerHeader } from "./common/PlayerHeader";
 import { PlayerCard } from "./common/PlayerCard";
 import { PlayerFeedback } from "./common/PlayerFeedback";
 import { PlayerFooter } from "./common/PlayerFooter";
-
-interface MatchingPlayerProps {
-    pairs: MatchingPairRequest[];
-    onFinish: (score: number) => void;
-}
-
-interface Tile {
-    id: string;
-    text: string;
-    matchId: string;
-}
 
 const PENALTY_PER_ERROR = 10;
 const ERROR_DISPLAY_DURATION_MS = 800;

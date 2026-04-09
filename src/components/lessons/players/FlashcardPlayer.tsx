@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlashcardRequest } from "@/types/lesson/lesson";
+import { QueuedCard } from "@/types/components/flashcard";
 import { Button } from "@/components/ui/Button";
 import { FaceSad, FaceNeutral, FaceSmile } from "@/assets/icons";
 import { PlayerLayout } from "./common/PlayerLayout";
@@ -9,11 +10,6 @@ import { PlayerHeader } from "./common/PlayerHeader";
 interface FlashcardPlayerProps {
     flashcards: FlashcardRequest[];
     onFinish: (score: number) => void;
-}
-
-interface QueuedCard {
-    originalIndex: number;
-    card: FlashcardRequest;
 }
 
 export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) {
