@@ -1,7 +1,6 @@
 import { Check } from "@/assets/icons";
 import { BadgeLanguagesStatus, StatusStyles } from "@/types/components/badgeLanguagesStatus";
 import { Circle, PlayIcon } from "lucide-react";
-import React from "react";
 import { useTranslation } from "react-i18next";
 
 interface BadgeStatusLanguagesProps {
