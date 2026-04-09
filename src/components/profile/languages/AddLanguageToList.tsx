@@ -14,7 +14,7 @@ export function AddLanguageToList() {
             <p className="text-sm text-gray-400">
                 {t("components.profileLanguages.empty")}
             </p>
-            <Button variant="ghost" size="sm" onClick={() => navigate("/languages")}>
+            <Button variant="ghost" size="sm" onClick={() => navigate("/dashboard")}>
                 {t("components.profileLanguages.choose")} →
             </Button>
         </div>

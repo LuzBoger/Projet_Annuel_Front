@@ -1,3 +1,4 @@
+import { calculateProgress } from "@/lib/utils/topic";
 import { useTranslation } from "react-i18next";
 
 interface TopicProgressBarProps {
@@ -7,7 +8,7 @@ interface TopicProgressBarProps {
 
 export function TopicProgressBar({ finishedCount, totalCount }: TopicProgressBarProps) {
     const { t } = useTranslation();
-    const progress = totalCount > 0 ? Math.round((finishedCount / totalCount) * 100) : 0;
+    const progress = calculateProgress(finishedCount, totalCount);
 
     return (
         <div className="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm flex flex-col">

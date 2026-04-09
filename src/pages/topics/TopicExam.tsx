@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { topicService } from "@/services/topicService";
-import { ExamResultRequest, QcmQuestionExamResponse, FlashcardExamResponse, ExamResponse, CompleteExamResponse } from "@/types/topic/topic";
+import { ExamResultRequest, QcmQuestionExamResponse, FlashcardExamResponse, ExamResponse, CompleteExamResponse, SortingExerciseExamResponse, MatchingPairResponse } from "@/types/topic/topic";
 import { ChevronLeft } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { ExamQcmQuestion } from "@/components/topics/ExamQcmQuestion";
@@ -10,7 +10,7 @@ import { ExamFlashcardQuestion } from "@/components/topics/ExamFlashcardQuestion
 import { ExamMatchingQuestion } from "@/components/topics/ExamMatchingQuestion";
 import { ExamSortingQuestion } from "@/components/topics/ExamSortingQuestion";
 import { UserPairAnswer, Tile } from "@/types/components/examMatching";
-import { MatchingPairResponse, SortingExerciseExamResponse } from "@/types/topic/topic";
+import { shuffleArray } from "@/lib/utils/topic";
 
 type ExamItem =
     | { type: 'QCM', data: QcmQuestionExamResponse }
@@ -18,14 +18,7 @@ type ExamItem =
     | { type: 'MATCHING', data: MatchingPairResponse[], shuffledTiles: Tile[] }
     | { type: 'SORTING', data: SortingExerciseExamResponse, shuffledIndices: number[] };
 
-function shuffleArray<T>(array: T[]): T[] {
-    const result = [...array];
-    for (let i = result.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [result[i], result[j]] = [result[j], result[i]];
-    }
-    return result;
-}
+
 
 export default function TopicExam() {
     const { topicId } = useParams<{ topicId: string }>();

@@ -1,4 +1,5 @@
 import { LanguageFlag } from "@/components/languages/LanguageFlag";
+import { Button } from "@/components/ui/Button";
 import { SHOW_ACTIVE_LANGUAGE } from "@/constants/languages";
 import { LanguageLevelResponse } from "@/types/progress/progress";
 import { useTranslation } from "react-i18next";
@@ -21,8 +22,9 @@ export function LanguageLevel({ languageLevels, activeLanguageId, onSelect }: La
                 {sortedActivelanguage.map((lang) => {
                     const isActive = lang.languageId === activeLanguageId;
                     return (
-                        <button
+                        <Button
                             key={lang.languageId}
+                            variant="none"
                             onClick={() => onSelect(lang.languageId)}
                             className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-all ${
                                 isActive
@@ -37,7 +39,7 @@ export function LanguageLevel({ languageLevels, activeLanguageId, onSelect }: La
                                     {t("dashboard.language.level", { level: lang.level })}
                                 </p>
                             </div>
-                        </button>
+                        </Button>
                     );
                 })}
             </div>

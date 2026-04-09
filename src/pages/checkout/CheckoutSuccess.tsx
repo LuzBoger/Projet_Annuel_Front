@@ -1,4 +1,5 @@
 import { Check } from "@/assets/icons";
+import { Button } from "@/components/ui/Button";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -25,12 +26,13 @@ export default function CheckoutSuccess() {
             <p className="text-gray-600 mb-6">
                 {t('checkout.success.description')}
             </p>
-            <button
+            <Button
+                variant="none"
                 onClick={() => navigate('/subscription')}
                 className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors"
             >
                 {t('checkout.view_subscription')}
-            </button>
+            </Button>
         </div>
     );
 }

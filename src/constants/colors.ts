@@ -1,7 +1,5 @@
-interface FlagBadgeColors {
-    background: string;
-    text: string;
-}
+import { FlagBadgeColors } from "@/types/components/flag";
+
 
 export const statusColors: Record<string, string> = {
     ACTIVE: 'bg-green-100 text-green-800',
@@ -28,3 +26,5 @@ export const FLAG_BADGE_COLORS: Record<number, FlagBadgeColors> = {
     4: { background: "#F0F9FF", text: "#0284C7" }, 
 }
 
+export const COLORS = ["#4F8EF7", "#F7634F", "#F7A84F", "#A84FF7", "#4FF7A8", "#F74FA8", "#4FF7F7", "#A8F74F", "#F74F4F", "#4F4FF7"];
+export const COLORS_PIE_CHART = ['#6366f1', '#a5b4fc'];

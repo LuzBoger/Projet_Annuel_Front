@@ -10,12 +10,7 @@ interface FloatingFilterBarProperties {
     onSearchDifficultyChange: (newDifficulty: string) => void;
 }
 
-export function FloatingFilterBar({
-    searchName,
-    onSearchNameChange,
-    searchDifficulty,
-    onSearchDifficultyChange
-}: FloatingFilterBarProperties) {
+export function FloatingFilterBar({searchName,onSearchNameChange,searchDifficulty,onSearchDifficultyChange}: FloatingFilterBarProperties) {
     const { t } = useTranslation();
 
     const difficultyOptions = [

@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 import { QcmQuestionRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
 import { ChevronRight } from "@/assets/icons";
-import { PlayerLayout } from "./common/PlayerLayout";
-import { PlayerHeader } from "./common/PlayerHeader";
-import { PlayerCard } from "./common/PlayerCard";
-import { PlayerFeedback } from "./common/PlayerFeedback";
-import { PlayerFooter } from "./common/PlayerFooter";
+import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
+import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
+import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
+import { PlayerFeedback } from "@/components/lessons/players/common/PlayerFeedback";
+import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 
 interface QCMPlayerProps {
     questions: QcmQuestionRequest[];

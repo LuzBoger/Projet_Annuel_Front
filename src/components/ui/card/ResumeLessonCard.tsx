@@ -3,6 +3,7 @@ import { LESSON_TYPE } from "@/constants/lesson";
 import { LastLessonResponse } from "@/types/progress/progress";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/Button";
 
 interface ResumeLessonCardProps {
     lesson: LastLessonResponse | null;
@@ -36,12 +37,13 @@ export function ResumeLessonCard({ lesson }: ResumeLessonCardProps) {
                 {lesson.completionCount}/{lesson.totalLessonsInTopic} {t("lesson.completed")}
             </p>
 
-            <button
+            <Button
                 onClick={() => navigate(`/lessons/${lesson.lessonId}/play`)}
+                variant="none"
                 className="w-full bg-gray-900 text-white rounded-lg py-2 text-sm font-medium hover:bg-gray-800 transition-colors mb-2"
             >
                 {LESSON_TYPE[lesson.lessonType] ?? lesson.lessonType} · +{lesson.xpReward} XP
-            </button>
+            </Button>
         </div>
     )
 }

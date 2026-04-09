@@ -35,7 +35,6 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
         >
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-            {/* Header: Type and Step */}
             <div className="relative z-10 flex items-start justify-between mb-4">
                 <div className="flex items-center gap-2">
                     <span className={`flex items-center space-x-1.5 px-3 py-1.5 text-[10px] sm:text-xs font-medium uppercase tracking-wider rounded-full border shadow-sm ${visuals.color}`}>
@@ -58,7 +57,6 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
                 </div>
             </div>
 
-            {/* Body: Title and Description */}
             <div className="relative z-10 flex-grow mb-6 pt-2">
                 <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors duration-200">
                     {lesson.title}
@@ -75,7 +73,6 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
                 )}
             </div>
 
-            {/* Footer: Badges XP/Time and Button */}
             <div className="relative z-10 flex flex-col space-y-4">
                 <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-widest text-gray-500 overflow-x-auto pb-1 scrollbar-hide">
                     <span className="flex items-center text-indigo-600 bg-indigo-50 border border-indigo-100 px-2.5 py-1.5 rounded-md whitespace-nowrap">

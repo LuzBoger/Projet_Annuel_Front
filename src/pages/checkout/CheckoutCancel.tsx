@@ -1,4 +1,5 @@
 import { Cross } from "@/assets/icons";
+import { Button } from "@/components/ui/Button";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -16,12 +17,13 @@ export default function CheckoutCancel() {
             <p className="text-gray-600 mb-6">
                 {t('checkout.cancel.description')}
             </p>
-            <button
+            <Button
+                variant="none"
                 onClick={() => navigate('/plans')}
                 className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors"
             >
                 {t('common.back')}
-            </button>
+            </Button>
         </div>
     );
 }

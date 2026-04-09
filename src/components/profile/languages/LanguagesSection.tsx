@@ -6,8 +6,8 @@ import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { Plus } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { AddLanguageToList } from "./AddLanguageToList";
-import { Badge } from "./Badge";
+import { AddLanguageToList } from "@/components/profile/languages/AddLanguageToList";
+import { Badge } from "@/components/profile/languages/Badge";
 
 interface LanguagesSectionProps {
     languages: UserLanguageResponse[];
@@ -35,7 +35,7 @@ export function LanguagesSection({ languages, onRemove }: LanguagesSectionProps)
                 <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => navigate("/languages")}
+                    onClick={() => navigate("/catalog-languages")}
                     className="inline-flex items-center gap-1 text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-full border-0"
                 >
                     <Plus className="w-3 h-3" />

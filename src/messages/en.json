@@ -763,6 +763,14 @@
     }
   },
   "popular": "Popular",
+  "catalog": {
+    "search": "Search a language…",
+    "topics": "topics",
+    "lessons": "lessons",
+    "currentlyLearning": "Currently learning",
+    "discover": "Discover",
+    "noResults": "No language found."
+  },
   "catalogLanguages": {
     "title": "Languages"
   },
@@ -793,7 +801,11 @@
   "components": {
     "topicCard": {
       "lessons": "lessons",
-      "completed": "completed"
+      "completed": "completed",
+      "next": "Next",
+      "hide": "Hide",
+      "show": "Show",
+      "practice": "Practice"
     },
     "badgeStatusLanguages": {
       "completed": "Completed",

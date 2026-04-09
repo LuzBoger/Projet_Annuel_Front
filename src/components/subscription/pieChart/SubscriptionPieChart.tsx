@@ -1,8 +1,8 @@
+import { COLORS_PIE_CHART } from "@/constants/colors";
 import { SubscriptionByPlan } from "@/types/subscription/stats";
 import { useTranslation } from "react-i18next";
 import { PieChart, Legend, ResponsiveContainer, Tooltip, Pie, Cell } from "recharts";
 
-const COLORS = ['#6366f1', '#a5b4fc'];
 
 interface SubscriptionPieChartProps {
     data: SubscriptionByPlan;
@@ -37,7 +37,7 @@ export function SubscriptionPieChart({ data }: SubscriptionPieChartProps) {
             strokeWidth={0}
           >
             {planData.map((_entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index]} />
+              <Cell key={`cell-${index}`} fill={COLORS_PIE_CHART[index]} />
             ))}
           </Pie>
           <Tooltip

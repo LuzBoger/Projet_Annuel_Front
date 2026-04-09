@@ -1,7 +1,7 @@
 import { SubscriptionsByMonth, SubscriptionsByYear, ViewType } from "@/types/subscription/stats";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { SubscriptionsBarChartHeader } from "./SubscriptionsBarChartHeader";
+import { SubscriptionsBarChartHeader } from "@/components/subscription/barChart/SubscriptionsBarChartHeader";
 import { BarChart, Bar, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 interface SubscriptionBarChartProps {
@@ -31,7 +31,7 @@ export function SubscriptionBarChart({ monthly, yearly }: SubscriptionBarChartPr
 
       {isEmpty ? (
         <div className="flex items-center justify-center h-[300px] text-slate-400 text-sm">
-          {t('common.noData', 'Aucune donnée disponible')}
+          {t('common.noData')}
         </div>
       ) : (
         <ResponsiveContainer width="100%" height={300}>

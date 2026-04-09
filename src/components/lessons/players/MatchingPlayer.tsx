@@ -1,39 +1,20 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Tile } from "@/types/components/matching";
 import { MatchingPairRequest } from "@/types/lesson/lesson";
+import { ChevronRight } from "@/assets/icons";
+import { Button } from "@/components/ui/Button";
+import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
+import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
+import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
+import { PlayerFeedback } from "@/components/lessons/players/common/PlayerFeedback";
+import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
+import { ERROR_DISPLAY_DURATION_MS, PENALTY_PER_ERROR } from "@/constants/lesson";
+import { initTiles } from "@/lib/utils/matchingPair";
 
 interface MatchingPlayerProps {
     pairs: MatchingPairRequest[];
     onFinish: (score: number) => void;
 }
-import { ChevronRight } from "@/assets/icons";
-import { Button } from "@/components/ui/Button";
-import { PlayerLayout } from "./common/PlayerLayout";
-import { PlayerHeader } from "./common/PlayerHeader";
-import { PlayerCard } from "./common/PlayerCard";
-import { PlayerFeedback } from "./common/PlayerFeedback";
-import { PlayerFooter } from "./common/PlayerFooter";
-
-const PENALTY_PER_ERROR = 10;
-const ERROR_DISPLAY_DURATION_MS = 800;
-
-const initTiles = (pairs: MatchingPairRequest[]): Tile[] => {
-    if (!pairs || pairs.length === 0) return [];
-    
-    const newTiles: Tile[] = [];
-    pairs.forEach((pair, index) => {
-        const matchId = `pair-${index}`;
-        newTiles.push({ id: `item1-${index}`, text: pair.item1, matchId });
-        newTiles.push({ id: `item2-${index}`, text: pair.item2, matchId });
-    });
-
-    for (let i = newTiles.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newTiles[i], newTiles[j]] = [newTiles[j], newTiles[i]];
-    }
-    return newTiles;
-};
 
 export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
     const { t } = useTranslation();

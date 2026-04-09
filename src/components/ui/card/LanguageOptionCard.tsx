@@ -1,6 +1,6 @@
-import { LANG_META } from "@/constants/languages";
 import { clsx } from "clsx";
 import { Button } from "../Button";
+import { lang } from "@/lib/utils/color";
 
 interface LanguageOptionCardProps {
     id: string;
@@ -11,7 +11,6 @@ interface LanguageOptionCardProps {
 }
 
 export function LanguageOptionCard({name, code, isSelected, onSelect }: LanguageOptionCardProps) {
-    const lang = LANG_META[code] || { code: code.toUpperCase(), color: '#E0E0E0' };
 
     return (
         <Button
@@ -27,9 +26,9 @@ export function LanguageOptionCard({name, code, isSelected, onSelect }: Language
         >
             <span
                 className="flex items-center justify-center w-9 h-9 rounded-full shrink-0 text-xs font-bold text-gray-600"
-                style={{ backgroundColor: lang.color }}
+                style={{ backgroundColor: lang(code).color }}
             >
-                {lang.code}
+                {lang(code).code}
             </span>
 
             <span className="font-semibold text-[#1A1A1A] text-sm flex-1 min-w-0">{name}</span>

@@ -1,5 +1,5 @@
 import { Check } from "@/assets/icons";
-import { BadgeLanguagesStatus } from "@/types/components/badgeLanguagesStatus";
+import { BadgeLanguagesStatus, StatusStyles } from "@/types/components/badgeLanguagesStatus";
 import { Circle, PlayIcon } from "lucide-react";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -7,14 +7,6 @@ import { useTranslation } from "react-i18next";
 interface BadgeStatusLanguagesProps {
     status: BadgeLanguagesStatus;
 }
-
-interface StatusStyles {
-    label: string;
-    icon: React.ReactNode;
-    className: string;
-}
-
-
 export function BadgeStatusLanguages({ status }: BadgeStatusLanguagesProps) {
 
     const {t} = useTranslation();

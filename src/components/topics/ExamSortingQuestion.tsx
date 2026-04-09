@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { SortableItem } from "@/types/components/sorting";
 import { SortingExerciseExamResponse } from "@/types/topic/topic";
+import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
+import { Button } from "@/components/ui/Button";
 
 interface ExamSortingQuestionProps {
     exercise: SortingExerciseExamResponse;
@@ -9,7 +11,6 @@ interface ExamSortingQuestionProps {
     userOrder: number[];
     onChange: (order: number[]) => void;
 }
-import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 
 export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onChange }: ExamSortingQuestionProps) {
     const { t } = useTranslation();
@@ -58,25 +59,27 @@ export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onCh
                     )}
 
                     {selectedItems.map(item => (
-                        <button
+                        <Button
                             key={item.id}
+                            variant="none"
                             onClick={() => handleTargetDeselection(item)}
                             className="px-5 py-3 bg-white border-2 border-indigo-200 shadow-sm rounded-2xl text-indigo-900 font-medium text-[15px] sm:text-lg hover:bg-red-50 hover:border-red-200 hover:text-red-700 transition-all active:scale-95 shadow-[0_4px_12px_rgb(0,0,0,0.03)]"
                         >
                             {item.text}
-                        </button>
+                        </Button>
                     ))}
                 </div>
 
                 <div className="flex flex-wrap gap-3 justify-center min-h-[100px] content-start">
                     {pool.map(item => (
-                        <button
+                        <Button
                             key={item.id}
+                            variant="none"
                             onClick={() => handlePoolSelection(item)}
                             className="px-5 py-3 bg-white border-2 border-gray-100 shadow-sm rounded-2xl text-gray-800 font-medium text-[15px] sm:text-lg hover:border-indigo-400 hover:text-indigo-800 hover:shadow-md transition-all active:scale-95"
                         >
                             {item.text}
-                        </button>
+                        </Button>
                     ))}
                 </div>
             </div>

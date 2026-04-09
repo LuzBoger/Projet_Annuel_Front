@@ -27,7 +27,7 @@ export function LanguageSwitcherButton({ learningLanguage, activeLanguage }: Lan
     }, [activeLanguage]);
 
     useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
+        const handleClickOutside = (event: MouseEvent) => {
             if (languageRef.current && !languageRef.current.contains(event.target as Node)) {
                 setIsOpen(false);
             }

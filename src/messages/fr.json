@@ -764,6 +764,14 @@
     }
   },
   "popular": "Populaire",
+  "catalog": {
+    "search": "Rechercher une langue…",
+    "topics": "sujets",
+    "lessons": "leçons",
+    "currentlyLearning": "En cours d'apprentissage",
+    "discover": "Découvrir",
+    "noResults": "Aucune langue trouvée."
+  },
   "catalogLanguages": {
     "title": "Langues"
   },
@@ -794,7 +802,11 @@
   "components": {
     "topicCard": {
       "lessons": "leçons",
-      "completed": "complétées"
+      "completed": "complétées",
+      "next": "Prochaine",
+      "hide": "Masquer",
+      "show": "Afficher",
+      "practice": "S'entraîner"
     },
     "badgeStatusLanguages": {
       "completed": "Complété",

@@ -4,6 +4,7 @@ import { Cross } from "@/assets/icons";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 
 import { UserPairAnswer, Tile } from "@/types/components/examMatching";
+import { Button } from "@/components/ui/Button";
 
 interface ExamMatchingQuestionProps {
     shuffledTiles: Tile[];
@@ -15,11 +16,9 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
     const { t } = useTranslation();
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
-    // Derive visible tiles by filtering answered ones
     const answeredTileIds = new Set(userPairs.flatMap(p => [p.tileAId, p.tileBId].filter(Boolean)));
     const tiles = shuffledTiles.filter(tile => !answeredTileIds.has(tile.id));
 
-    // Reset selection if shuffledTiles change (new question)
     const [prevTiles, setPrevTiles] = useState(shuffledTiles);
     if (shuffledTiles !== prevTiles) {
         setPrevTiles(shuffledTiles);
@@ -87,13 +86,14 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
                         }
 
                         return (
-                            <button
+                            <Button
                                 key={tile.id}
+                                variant="none"
                                 onClick={() => handleTileSelection(tile.id)}
                                 className={buttonClass}
                             >
                                 {tile.text}
-                            </button>
+                            </Button>
                         );
                     })}
                 </div>
@@ -111,13 +111,14 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
                                 <span className="font-medium text-gray-700 text-sm sm:text-base">{pair.item1}</span>
                                 <span className="mx-3 text-indigo-300/70 font-bold">↔</span>
                                 <span className="font-medium text-gray-700 text-sm sm:text-base">{pair.item2}</span>
-                                <button
+                                <Button
                                     onClick={() => handleUndoPair(pair)}
                                     className="ml-4 p-1 rounded-full bg-gray-50 group-hover:bg-red-50 text-gray-300 group-hover:text-red-400 transition-all hover:rotate-90"
                                     title={t('common.undo')}
+                                    variant="none"
                                 >
                                     <Cross className="w-3.5 h-3.5" />
-                                </button>
+                                </Button>
                             </div>
                         ))}
                     </div>

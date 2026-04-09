@@ -4,15 +4,8 @@ import { userLanguageService } from "@/services/userLanguage";
 import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../ui/Button";
-
-const COLORS = ["#4F8EF7", "#F7634F", "#F7A84F", "#A84FF7", "#4FF7A8", "#F74FA8", "#4FF7F7", "#A8F74F", "#F74F4F", "#4F4FF7"];
-
-function getLanguageColor(code: string): string {
-    let hash = 5381;
-    for (let i = 0; i < code.length; i++) hash = ((hash << 5) + hash) ^ (code.codePointAt(i) ?? 0);
-    return COLORS[Math.abs(hash) % COLORS.length];
-}
+import { Button } from "@/components/ui/Button";
+import { getLanguageColor } from "@/lib/utils/color";
 
 interface ProfileLanguageSectionProps {
     languages: UserLanguageResponse[];

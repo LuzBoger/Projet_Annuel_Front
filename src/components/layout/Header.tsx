@@ -13,6 +13,7 @@ import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { LanguageResponse } from "@/types/language/language";
 import { LanguageSwitcherButton } from "../languages/LanguageSwitcherButton";
 import { userLanguageService } from "@/services/userLanguage";
+import { Button } from "../ui/Button";
 
 export function Header() {
     const { user, isAuthenticated, logout } = useAuth();
@@ -159,7 +160,8 @@ export function Header() {
                             </div>
                         ) : (
                             <div className="relative" ref={dropdownRef}>
-                                <button
+                                <Button
+                                    variant="none"
                                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                     className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 transition-colors focus:outline-none"
                                 >
@@ -168,7 +170,7 @@ export function Header() {
                                         <p className="font-medium text-gray-700">{user?.username || t('common.user')}</p>
                                     </div>
                                     <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                                </button>
+                                </Button>
 
                                 {isDropdownOpen && (
                                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
@@ -186,7 +188,8 @@ export function Header() {
                                         >
                                             {t("settings.title")}
                                         </Link>
-                                        <button 
+                                        <Button
+                                            variant="none"
                                             onClick={() => {
                                                 setIsDropdownOpen(false);
                                                 handleLogout();
@@ -194,7 +197,7 @@ export function Header() {
                                             className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors border-t border-gray-100"
                                         >
                                             {t("auth.logout")}
-                                        </button>
+                                        </Button>
                                     </div>
                                 )}
                             </div>

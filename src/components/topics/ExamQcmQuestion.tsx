@@ -1,5 +1,6 @@
 import { QcmQuestionExamResponse } from "@/types/topic/topic";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
+import { Button } from "@/components/ui/Button";
 
 interface ExamQcmQuestionProps {
     question: QcmQuestionExamResponse;
@@ -15,9 +16,10 @@ export function ExamQcmQuestion({ question, selectedValue, onSelect }: ExamQcmQu
                     const isSelected = selectedValue === idx;
         
                     return (
-                        <button 
+                        <Button 
                             key={idx} 
                             onClick={() => onSelect(idx)}
+                            variant="none"
                             className={`w-full text-left p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200 font-medium text-[15px] sm:text-lg flex items-center group ${
                                 isSelected 
                                     ? "border-indigo-500 bg-indigo-50 text-indigo-800 shadow-sm" 
@@ -32,7 +34,7 @@ export function ExamQcmQuestion({ question, selectedValue, onSelect }: ExamQcmQu
                                 {String.fromCharCode(65 + idx)}
                             </span>
                             <span className="flex-1">{option}</span>
-                        </button>
+                        </Button>
                     );
                 })}
             </div>

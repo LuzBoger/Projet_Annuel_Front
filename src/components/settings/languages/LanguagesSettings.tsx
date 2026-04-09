@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { getUILanguages } from "@/constants/languages";
 import i18n from "@/i18n/i18n";
 import { useTranslation } from "react-i18next";
 
@@ -6,15 +7,12 @@ export function LanguagesSettings() {
     const {t} = useTranslation();
     const currentLanguage = i18n.language;
 
-    const languages = [
-        { code: "fr", label: t('settings.languages.french'), flag: "🇫🇷" },
-        { code: "en", label: t('settings.languages.english'), flag: "🇬🇧" },
-    ];
+    const languages = getUILanguages(t);
     const handleChangeLanguage = (language: string) => {
         i18n.changeLanguage(language);
         localStorage.setItem("language", language);
     }
-return (
+    return (
         <div>
             <h2 className="text-xl font-bold text-gray-900 mb-6">{t('settings.language.title')}</h2>
             <div className="flex gap-4">

@@ -12,14 +12,13 @@ export function Toast({ toast, onClose }: ToastProps) {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Déclencher l'animation d'entrée
         const timer = setTimeout(() => setIsVisible(true), 10);
         return () => clearTimeout(timer);
     }, []);
 
     const handleClose = () => {
         setIsVisible(false);
-        setTimeout(onClose, 300); // Attendre la fin de l'animation de sortie
+        setTimeout(onClose, 300); 
     };
     
     const getTypeStyles = (type: string) => {

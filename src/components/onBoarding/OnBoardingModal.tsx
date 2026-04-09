@@ -3,8 +3,8 @@ import { languageService } from "@/services/languageService";
 import { LanguageResponse } from "@/types/language/language";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button } from "../ui/Button";
-import { LanguageOptionCard } from "../ui/card/LanguageOptionCard";
+import { Button } from "@/components/ui/Button";
+import { LanguageOptionCard } from "@/components/ui/card/LanguageOptionCard";
 
 interface OnBoardingModalProps {
   readonly onClose: () => void;
@@ -42,12 +42,7 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
             <div />
           )}
 
-          <Button
-            onClick={skip}
-            variant="ghost"
-            size="sm"
-            className="text-[#8B8279] hover:text-[#1A1A1A] border-none"
-          >
+          <Button onClick={skip} variant="ghost" size="sm" className="text-[#8B8279] hover:text-[#1A1A1A] border-none">
             {t("common.skip")}
           </Button>
         </div>

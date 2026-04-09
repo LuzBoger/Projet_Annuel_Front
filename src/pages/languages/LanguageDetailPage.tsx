@@ -23,7 +23,6 @@ export function LanguageDetailPage() {
     const [loading, setLoading] = useState(true);
     const [togglingLearning, setTogglingLearning] = useState(false);
     const [topics, setTopics] = useState<TopicWithProgressResponse[]>([]);
-    const [expandedTopicId, setExpandedTopicId] = useState<string | null>(null);
     const { userLanguages, fetchLearningLanguages, addLanguage, deleteLanguage } = useUserLanguage();
 
     useEffect(() => {
@@ -54,6 +53,7 @@ export function LanguageDetailPage() {
                 const addedLanguage = await addLanguage({ languageId: language.id, languageType: "LEARNING" });
                 if (addedLanguage) {
                     globalEvents.emit(EVENT_USER_LANGUAGE_ADDED, addedLanguage);
+                    navigate("/dashboard");
                 }
             }
         } finally {
@@ -69,7 +69,7 @@ export function LanguageDetailPage() {
 
     return (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <Button variant="outline" size="sm" onClick={() => navigate("/languages")} className="mb-8">
+            <Button variant="outline" size="sm" onClick={() => navigate("/catalog-languages")} className="mb-8">
                 {t("common.back")}
             </Button>
 
@@ -81,8 +81,14 @@ export function LanguageDetailPage() {
                 <div className="flex-1">
                     <h1 className="text-4xl font-black text-gray-900">{language.name}</h1>
                     <div className="flex flex-wrap gap-2 mt-3">
-                        <BadgeTag variant="default">{language.levelRange ?? "A1-C2"}</BadgeTag>
-                        {language.isPopular && ( <BadgeTag variant="popular"> <Star className="w-3 h-3 text-yellow-600" /> {t("popular")}</BadgeTag> )}
+                        <BadgeTag variant="default">{
+                                (() => {
+                                    const range = language.levelRange ?? "A1-C2";
+                                    const parts = range.split(" → ");
+                                    return parts[0] === parts[1] ? parts[0] : range;
+                                })()
+                            }</BadgeTag>
+                        {language.isPopular && ( <BadgeTag variant="popular"> <Star className="w-3 h-3 text-yellow-500 inline mr-1" /> {t("popular")}</BadgeTag> )}
                     </div>
                 </div>
 
@@ -111,10 +117,7 @@ export function LanguageDetailPage() {
                         <TopicCard
                             key={topic.id}
                             topic={topic}
-                            isExpanded={expandedTopicId === topic.id}
-                            onToggle={() => setExpandedTopicId(
-                                expandedTopicId === topic.id ? null : topic.id
-                            )}
+                            onPractice={() => navigate(`/topics/${topic.id}`)}
                         />
                     ))}
                 </div>

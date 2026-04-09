@@ -31,7 +31,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                     className="flex items-center gap-2"
                 >
                     <Plus className="w-4 h-4" />
-                    {t('admin.lessons.sorting.add', 'Ajouter un élément')}
+                    {t('admin.lessons.sorting.add')}
                 </Button>
             </div>
 
@@ -45,7 +45,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                                 disabled={index === 0}
                                 onClick={() => swap(index, index - 1)}
                                 variant="ghost"
-                                title="Monter"
+                                title={t('admin.lessons.sorting.move_up')}
                             />
                             <span className="text-xs font-bold text-gray-300 select-none">{index + 1}</span>
                             <IconButton
@@ -53,7 +53,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                                 disabled={index === fields.length - 1}
                                 onClick={() => swap(index, index + 1)}
                                 variant="ghost"
-                                title="Descendre"
+                                title={t('admin.lessons.sorting.move_down')}
                             />
                         </div>
 
@@ -88,7 +88,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
             </div>
 
             <p className="text-sm text-gray-500 italic px-2">
-                {t('admin.lessons.sorting.note_new', "Ajoutez les éléments (mots ou fragments) directement dans l'ordre final attendu de 1 à N. Vous pouvez utiliser les flèches pour les réorganiser facilement.")}
+                {t('admin.lessons.sorting.note_new')}
             </p>
         </div>
     );

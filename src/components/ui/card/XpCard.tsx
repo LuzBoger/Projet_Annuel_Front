@@ -10,6 +10,7 @@ export function XpCard({ overview }: XpCardProps) {
     const { overallLevel, levelProgressPercentage, nextLevelXP } = overview;
     const currentLevelXP = Math.max(0, overview.currentLevelXP);
     const totalLevelXP = currentLevelXP + nextLevelXP;
+
     const { t } = useTranslation();
       return (
         <div className="bg-white rounded-xl border border-gray-200 p-4 mb-4">

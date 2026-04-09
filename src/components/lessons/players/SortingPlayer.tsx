@@ -2,41 +2,22 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SortableItem } from "@/types/components/sorting";
 import { SortingExerciseRequest } from "@/types/lesson/lesson";
-
+import { Button } from "@/components/ui/Button";
+import { ChevronRight } from "@/assets/icons";
+import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
+import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
+import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
+import { PlayerFeedback } from "@/components/lessons/players/common/PlayerFeedback";
+import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
+import { initPool } from "@/lib/utils/sorting";
 interface SortingPlayerProps {
     exercises: SortingExerciseRequest[];
     onFinish: (score: number) => void;
 }
-import { Button } from "@/components/ui/Button";
-import { ChevronRight } from "@/assets/icons";
-import { PlayerLayout } from "./common/PlayerLayout";
-import { PlayerHeader } from "./common/PlayerHeader";
-import { PlayerCard } from "./common/PlayerCard";
-import { PlayerFeedback } from "./common/PlayerFeedback";
-import { PlayerFooter } from "./common/PlayerFooter";
-
-const initPool = (exercises: SortingExerciseRequest[], currentIndex: number): SortableItem[] => {
-    if (!exercises || exercises.length === 0 || !exercises[currentIndex]) return [];
-    
-    const currentExercise = exercises[currentIndex];
-    const items: SortableItem[] = currentExercise.items.map((text, index) => ({
-        id: `item-${currentIndex}-${index}`,
-        text,
-        originalIndex: index
-    }));
-
-    for (let i = items.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [items[i], items[j]] = [items[j], items[i]];
-    }
-    return items;
-};
 
 export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
     const { t } = useTranslation();
     const [currentIndex, setCurrentIndex] = useState(0);
-    
-    // Pattern de synchronisation sans useEffect
     const [prevIndex, setPrevIndex] = useState(currentIndex);
     const [prevExercises, setPrevExercises] = useState(exercises);
     const [pool, setPool] = useState(() => initPool(exercises, currentIndex));
@@ -87,8 +68,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
         setIsValidated(true);
 
         const expectedOrder = currentExercise.correctOrder || currentExercise.items.map((_, i) => i);
-        const isOrderCorrect = selectedItems.length === expectedOrder.length && 
-                               selectedItems.every((item, index) => item.originalIndex === expectedOrder[index]);
+        const isOrderCorrect = selectedItems.length === expectedOrder.length && selectedItems.every((item, index) => item.originalIndex === expectedOrder[index]);
         
         setIsCorrect(isOrderCorrect);
         if (isOrderCorrect) setCorrectCount(previous => previous + 1);
@@ -119,27 +99,29 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                         )}
                         
                         {selectedItems.map(item => (
-                            <button
+                            <Button
                                 key={item.id}
+                                variant="none"
                                 onClick={() => handleTargetDeselection(item)}
                                 disabled={isValidated}
                                 className="px-4 py-2.5 bg-white border-2 border-indigo-200 shadow-sm rounded-xl text-indigo-900 font-medium text-[15px] sm:text-lg hover:bg-red-50 hover:border-red-200 hover:text-red-700 transition-all active:scale-95 disabled:hover:scale-100 disabled:opacity-90 disabled:cursor-default"
                             >
                                 {item.text}
-                            </button>
+                            </Button>
                         ))}
                     </div>
 
                     <div className="flex flex-wrap gap-2.5 justify-center min-h-[100px] content-start">
                         {pool.map(item => (
-                            <button
+                            <Button
                                 key={item.id}
+                                variant="none"
                                 onClick={() => handlePoolSelection(item)}
                                 disabled={isValidated}
                                 className="px-4 py-2.5 bg-white border-2 border-gray-200 shadow-sm rounded-xl text-gray-800 font-medium text-[15px] sm:text-lg hover:border-indigo-400 hover:text-indigo-800 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {item.text}
-                            </button>
+                            </Button>
                         ))}
                     </div>
                 </div>
