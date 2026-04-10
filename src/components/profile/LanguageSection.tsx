@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { getLanguageColor } from "@/lib/utils/color";
+import { AddIcon, RemoveIcon } from "@/assets/icons";
 
 interface ProfileLanguageSectionProps {
     languages: UserLanguageResponse[];
@@ -41,9 +42,7 @@ export function ProfileLanguageSection({ languages, onLanguageRemove }: ProfileL
                     onClick={() => navigate("/catalog-languages")}
                     className="flex-shrink-0 flex items-center gap-1.5 text-xs"
                 >
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M5 1v8M1 5h8" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
+                    <AddIcon className="text-white" />
                     {t("profile.languageSection.addLanguage")}
                 </Button>
             </div>
@@ -76,20 +75,13 @@ export function ProfileLanguageSection({ languages, onLanguageRemove }: ProfileL
                             <span className="text-xs text-neutral-300 whitespace-nowrap">
                                 {lang.languageName}
                             </span>
-                            <button
+                            <Button
+                                variant="none"
                                 onClick={() => handleRemoveLanguage(lang)}
                                 className="w-4 h-4 rounded-full bg-neutral-700 hover:bg-red-900/30 flex items-center justify-center flex-shrink-0 ml-0.5 transition-colors group"
                             >
-                                <svg width="7" height="7" viewBox="0 0 7 7" fill="none">
-                                    <path
-                                        d="M1 1l5 5M6 1L1 6"
-                                        stroke="currentColor"
-                                        strokeWidth="1.3"
-                                        strokeLinecap="round"
-                                        className="text-neutral-500 group-hover:text-red-400"
-                                    />
-                                </svg>
-                            </button>
+                                <RemoveIcon className="text-neutral-500 group-hover:text-red-400" />
+                            </Button>
                         </div>
                     ))}
                 </div>

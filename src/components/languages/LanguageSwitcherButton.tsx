@@ -6,9 +6,9 @@ import { LanguageResponse } from "@/types/language/language";
 import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { LanguageFlag } from "./LanguageFlag";
-import { SelectedLanguagesButton } from "../ui/dropdown/SelectedLanguagesButton";
-import { DropDownMenu } from "../ui/dropdown/DropDownMenu";
+import { LanguageFlag } from "@/components/languages/LanguageFlag";
+import { SelectedLanguagesButton } from "@/components/ui/dropdown/SelectedLanguagesButton";
+import { DropDownMenu } from "@/components/ui/dropdown/DropDownMenu";
 
 interface LanguageSwitcherButtonProps {
     learningLanguage: UserLanguageResponse[];

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { LessonSummaryResponse, LessonType } from "@/types/lesson/lesson";
-import { ChevronRight, IconFlashcard, IconQcm, IconMatching, IconSorting } from "@/assets/icons";
+import { ChevronRight, IconFlashcard, IconQcm, IconMatching, IconSorting, Check } from "@/assets/icons";
 
 interface LessonCardProps {
     lesson: LessonSummaryResponse; 
@@ -43,9 +43,7 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
                     </span>
                     {lesson.isAlreadyFinish && (
                         <span className="flex items-center justify-center bg-emerald-100 text-emerald-600 rounded-full w-6 h-6 shadow-sm border border-emerald-200" title="Validée">
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
+                            <Check className="w-4 h-4" />
                         </span>
                     )}
                 </div>

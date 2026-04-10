@@ -123,14 +123,15 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                         }
 
                         return (
-                            <button
+                            <Button
                                 key={tile.id}
+                                variant="none"
                                 onClick={() => handleTileSelection(tile.id)}
                                 disabled={isMatched || errorIds.length > 0}
                                 className={buttonClass}
                             >
                                 {tile.text}
-                            </button>
+                            </Button>
                         );
                     })}
                 </div>

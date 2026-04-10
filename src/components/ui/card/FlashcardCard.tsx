@@ -1,3 +1,4 @@
+import { clsx } from "clsx";
 import { useState } from "react";
 
 export function FlashcardCard({ fc, index, t }: { fc: { front?: string; back?: string; frontLanguage?: string; backLanguage?: string }, index: number, t: (key: string) => string }) {
@@ -9,7 +10,7 @@ export function FlashcardCard({ fc, index, t }: { fc: { front?: string; back?: s
             className="group perspective-1000 mb-6 cursor-pointer"
             onClick={() => setIsFlipped(!isFlipped)}
         >
-            <div className={`relative w-full min-h-[220px] transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
+            <div className={clsx('relative w-full min-h-[220px] transition-transform duration-700 preserve-3d', isFlipped && 'rotate-y-180')}>
                 <div className="absolute inset-0 backface-hidden bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col items-center justify-center space-y-4">
                     <div className="absolute"></div>
                     <span className="text-[10px] font-bold tracking-[0.2em] text-blue-600/60 uppercase">

@@ -1,5 +1,5 @@
 import { ProgressOverviewResponse } from "@/types/progress/progress";
-import { ProgressBar } from "../ProgressBar";
+import { ProgressBar } from "@/components/ui/ProgressBar";
 import { useTranslation } from "react-i18next";
 
 interface XpCardProps {

@@ -11,9 +11,9 @@ import { globalEvents } from "@/lib/utils/eventEmitter";
 import { EVENT_ACTIVE_LANGUAGE_CHANGED, EVENT_PROFILE_UPDATED, EVENT_USER_LANGUAGE_ADDED, EVENT_USER_LANGUAGE_REMOVED } from "@/constants/event";
 import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { LanguageResponse } from "@/types/language/language";
-import { LanguageSwitcherButton } from "../languages/LanguageSwitcherButton";
+import { LanguageSwitcherButton } from "@/components/languages/LanguageSwitcherButton";
 import { userLanguageService } from "@/services/userLanguage";
-import { Button } from "../ui/Button";
+import { Button } from "@/components/ui/Button";
 
 export function Header() {
     const { user, isAuthenticated, logout } = useAuth();

@@ -81,11 +81,12 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                         }
 
                         return (
-                            <button 
+                            <Button 
                                 key={idx} 
                                 onClick={() => handleSelect(idx)}
                                 disabled={isValidated}
                                 className={buttonClass}
+                                variant="none"
                             >
                                 <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full border-2 text-center mr-4 text-sm font-medium flex-shrink-0 transition-colors ${
                                     (!isValidated && selectedOption === idx) ? "bg-indigo-500 border-indigo-500 text-white" :
@@ -96,7 +97,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                                     {String.fromCharCode(65 + idx)}
                                 </span>
                                 <span className="flex-1">{option}</span>
-                            </button>
+                            </Button>
                         );
                     })}
                 </div>
