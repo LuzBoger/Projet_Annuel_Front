@@ -64,7 +64,6 @@ export default function LessonForm() {
                     };
 
                     if (lesson.lessonType === LessonType.SORTING_EXERCISE && lesson.sortingExercise && lesson.sortingExercise.length > 0) {
-                        // Les items sont sauvegardés tels qu'intercalés par l'admin, donc ils sont déjà dans le bon ordre.
                         initialData.sortingItems = lesson.sortingExercise[0].items.map((item: string) => ({ value: item }));
                     }
 
@@ -144,9 +143,7 @@ export default function LessonForm() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Main Form */}
                 <form onSubmit={handleSubmit(onFormSubmit)} className="lg:col-span-2 space-y-8">
-                    {/* Common Section */}
                     <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
                         <div className="flex items-center gap-2 mb-4 text-indigo-600">
                             <Info className="w-5 h-5" />
@@ -219,7 +216,6 @@ export default function LessonForm() {
                         </div>
                     </div>
 
-                    {/* Lesson Type & Specific Content */}
                     <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">
                         <div className="flex items-center gap-2 text-indigo-600">
                             <Info className="w-5 h-5" />
@@ -264,7 +260,6 @@ export default function LessonForm() {
                     </div>
                 </form>
 
-                {/* Preview Side */}
                 <div className="lg:sticky lg:top-8 self-start space-y-6">
                     <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                         <h2 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">

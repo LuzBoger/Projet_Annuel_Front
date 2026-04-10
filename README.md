@@ -37,6 +37,30 @@ npm run lint
 npm run preview
 ```
 
+## Déploiement
+
+### Docker
+
+#### Build l'image
+```bash
+docker build -t glotrush-front:latest .
+```
+
+#### Tag et Push
+```bash
+docker tag glotrush-front:latest arthurbrd/glotrush-front:latest
+docker push arthurbrd/glotrush-front:latest
+```
+
+#### Run sur le serveur
+```bash
+# Récupérer la dernière version
+docker pull arthurbrd/glotrush-front:latest
+
+# Lancer le conteneur
+docker run -d -p 80:80 --name glotrush-front arthurbrd/glotrush-front:latest
+```
+
 ## Structure
 
 - `/src/pages` : Pages de l'application (Home, Login, Register)

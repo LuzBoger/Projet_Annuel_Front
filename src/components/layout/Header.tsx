@@ -8,14 +8,21 @@ import { Avatar } from "@/components/ui/Avatar";
 import { profileService } from "@/services/profileService";
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { globalEvents } from "@/lib/utils/eventEmitter";
-import { EVENT_PROFILE_UPDATED } from "@/constants/event";
+import { EVENT_ACTIVE_LANGUAGE_CHANGED, EVENT_PROFILE_UPDATED, EVENT_USER_LANGUAGE_ADDED, EVENT_USER_LANGUAGE_REMOVED } from "@/constants/event";
+import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
+import { LanguageResponse } from "@/types/language/language";
+import { LanguageSwitcherButton } from "@/components/languages/LanguageSwitcherButton";
+import { userLanguageService } from "@/services/userLanguage";
+import { Button } from "@/components/ui/Button";
 
 export function Header() {
     const { user, isAuthenticated, logout } = useAuth();
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [photoUrl, setPhotoUrl] = useState<string | null>(null);    
+    const [photoUrl, setPhotoUrl] = useState<string | null>(null); 
+    const [learningLanguages, setLearningLanguages] = useState<UserLanguageResponse[]>([]); 
+    const [activeLanguage, setActiveLanguage] = useState<LanguageResponse | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const isAdmin = hasRole(user?.role, "ADMIN");
@@ -37,9 +44,15 @@ export function Header() {
                 if (profile.photoUrl) {
                     setPhotoUrl(getProfileImageUrl(profile.photoUrl));
                 }
+                if(profile.activeLanguage) {
+                    setActiveLanguage(profile.activeLanguage);
+                }
             })
             .catch(() => {});
-    }, [isAuthenticated]);
+        userLanguageService.getUserLearningLanguages()
+            .then(setLearningLanguages)
+            .catch(() => {});
+    }, [isAuthenticated, user?.hasCompletedOnboarding]);
 
     useEffect(() => {
         const handler = (...args: unknown[]) => {
@@ -48,6 +61,33 @@ export function Header() {
         };
         globalEvents.on(EVENT_PROFILE_UPDATED, handler);
         return () => globalEvents.off(EVENT_PROFILE_UPDATED, handler);
+    }, []);
+
+    useEffect(() => {
+        const handler = (...args: unknown[]) => {
+            const lang = args[0] as LanguageResponse | null | undefined;
+            setActiveLanguage(lang ?? null);
+        };
+        globalEvents.on(EVENT_ACTIVE_LANGUAGE_CHANGED, handler);
+        return () => globalEvents.off(EVENT_ACTIVE_LANGUAGE_CHANGED, handler);
+    }, []);
+
+    useEffect(() => {
+        const onAdded = (...args: unknown[]) => {
+            setLearningLanguages((prev) => [...prev, args[0] as UserLanguageResponse]);
+        };
+
+        const onRemoved = (...args: unknown[]) => {
+            setLearningLanguages((prev) => prev.filter(ul => ul.languageId !== (args[0] as string)));
+        };
+
+        globalEvents.on(EVENT_USER_LANGUAGE_ADDED, onAdded);
+        globalEvents.on(EVENT_USER_LANGUAGE_REMOVED, onRemoved);
+
+        return () => {
+            globalEvents.off(EVENT_USER_LANGUAGE_ADDED, onAdded);
+            globalEvents.off(EVENT_USER_LANGUAGE_REMOVED, onRemoved);
+        };
     }, []);
 
     const handleLogout = async () => {
@@ -76,6 +116,9 @@ export function Header() {
                                         <Link to="/subscription" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
                                             {t("subscription.title")}
                                         </Link>
+                                        <Link to="/catalog-languages" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
+                                            {t("catalogLanguages.title")}
+                                        </Link>
                                     </>
                                 )}
                                 
@@ -103,6 +146,9 @@ export function Header() {
                     </nav>
 
                     <div className="flex items-center space-x-4">
+                        {isAuthenticated && !isAdmin && (
+                            <LanguageSwitcherButton learningLanguage={learningLanguages} activeLanguage={activeLanguage} />
+                        )}
                         {!isAuthenticated ? (
                             <div className="flex items-center space-x-8">
                                 <Link to="/login" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
@@ -114,7 +160,8 @@ export function Header() {
                             </div>
                         ) : (
                             <div className="relative" ref={dropdownRef}>
-                                <button
+                                <Button
+                                    variant="none"
                                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                     className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 transition-colors focus:outline-none"
                                 >
@@ -123,7 +170,7 @@ export function Header() {
                                         <p className="font-medium text-gray-700">{user?.username || t('common.user')}</p>
                                     </div>
                                     <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                                </button>
+                                </Button>
 
                                 {isDropdownOpen && (
                                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
@@ -141,7 +188,8 @@ export function Header() {
                                         >
                                             {t("settings.title")}
                                         </Link>
-                                        <button 
+                                        <Button
+                                            variant="none"
                                             onClick={() => {
                                                 setIsDropdownOpen(false);
                                                 handleLogout();
@@ -149,7 +197,7 @@ export function Header() {
                                             className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors border-t border-gray-100"
                                         >
                                             {t("auth.logout")}
-                                        </button>
+                                        </Button>
                                     </div>
                                 )}
                             </div>

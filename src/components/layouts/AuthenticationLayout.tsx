@@ -19,7 +19,6 @@ export function AuthenticationLayout({ children, title, illustrationTitle, illus
 
   return (
     <div className="min-h-[calc(100vh-65px)] flex bg-white">
-      {/* Left Column: Form Content */}
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:w-1/2 xl:w-5/12 mx-auto">
         <div className="mx-auto w-full max-w-lg">
           <div className="mb-10 text-center lg:text-left">
@@ -32,13 +31,10 @@ export function AuthenticationLayout({ children, title, illustrationTitle, illus
         </div>
       </div>
 
-      {/* Right Column: Visual Area (Hidden on small screens) */}
       <div className="hidden lg:flex flex-1 relative bg-gradient-to-br from-indigo-900 via-indigo-800 to-purple-900 items-center justify-center overflow-hidden">
-        {/* Subtle Glow Effects */}
         <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-purple-500 blur-3xl opacity-20"></div>
         <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-indigo-500 blur-3xl opacity-20"></div>
         
-        {/* Content Container */}
         <div className="relative z-10 p-16 max-w-2xl text-center">
             
             <div className="flex justify-center space-x-8 mb-12">

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { lessonService } from '@/services/lessonService';
-import type { LessonResponse, LessonRequest } from '@/types/lesson/lesson';
+import type { LessonResponse, LessonRequest, CompleteLessonRequest } from '@/types/lesson/lesson';
 import { useToast } from '@/hooks/useToast';
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +19,7 @@ export function useLesson() {
             setLessons(data);
         } catch (err: unknown) {
             console.error('Error fetching lessons:', err);
-            const errorMessage = t('error.fetchLessons', 'Impossible de récupérer les leçons.');
+            const errorMessage = t('error.fetchLessons');
             setError(errorMessage);
             addToast({ type: 'error', message: errorMessage });
         } finally {
@@ -33,12 +33,12 @@ export function useLesson() {
             setError(null);
             const newLesson = await lessonService.createLesson(lessonData);
             setLessons(prev => [...prev, newLesson]);
-            addToast({ type: 'success', message: t('admin.lessons.create_success', 'Leçon créée avec succès.') });
+            addToast({ type: 'success', message: t('admin.lessons.create_success') });
             return newLesson;
         } catch (err: unknown) {
             console.error('Error creating lesson:', err);
             const axiosError = err as { response?: { data?: { message?: string } } };
-            const errorMessage = axiosError.response?.data?.message || t('error.createLesson', 'Impossible de créer la leçon.');
+            const errorMessage = axiosError.response?.data?.message || t('error.createLesson');
             setError(errorMessage);
             addToast({ type: 'error', message: errorMessage });
             throw err;
@@ -53,12 +53,12 @@ export function useLesson() {
             setError(null);
             const updatedLesson = await lessonService.updateLesson(id, lessonData);
             setLessons(prev => prev.map(l => l.id === id ? updatedLesson : l));
-            addToast({ type: 'success', message: t('admin.lessons.update_success', 'Leçon mise à jour avec succès.') });
+            addToast({ type: 'success', message: t('admin.lessons.update_success') });
             return updatedLesson;
         } catch (err: unknown) {
             console.error('Error updating lesson:', err);
             const axiosError = err as { response?: { data?: { message?: string } } };
-            const errorMessage = axiosError.response?.data?.message || t('error.updateLesson', 'Impossible de mettre à jour la leçon.');
+            const errorMessage = axiosError.response?.data?.message || t('error.updateLesson');
             setError(errorMessage);
             addToast({ type: 'error', message: errorMessage });
             throw err;
@@ -73,11 +73,11 @@ export function useLesson() {
             setError(null);
             await lessonService.deleteLesson(id);
             setLessons(prev => prev.filter(l => l.id !== id));
-            addToast({ type: 'success', message: t('admin.lessons.delete_success', 'Leçon supprimée avec succès.') });
+            addToast({ type: 'success', message: t('admin.lessons.delete_success') });
         } catch (err: unknown) {
             console.error('Error deleting lesson:', err);
             const axiosError = err as { response?: { data?: { message?: string } } };
-            const errorMessage = axiosError.response?.data?.message || t('error.deleteLesson', 'Impossible de supprimer la leçon.');
+            const errorMessage = axiosError.response?.data?.message || t('error.deleteLesson');
             setError(errorMessage);
             addToast({ type: 'error', message: errorMessage });
             throw err;
@@ -91,14 +91,49 @@ export function useLesson() {
         try {
             const data = await lessonService.getLessonById(id);
             return data;
-        } catch (err: unknown) {
-            const error = err as Error;
-            setError(error.message || "Failed to fetch lesson");
+        } catch {
+            setError(t('error.fetchLessonById'));
             return null;
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [t]);
+
+    const startLesson = useCallback(async (lessonId: string) => {
+        try {
+            setLoading(true);
+            setError(null);
+            const data = await lessonService.startLesson(lessonId);
+            return data;
+        } catch (err: unknown) {
+            console.error('Error starting lesson:', err);
+            const axiosError = err as { response?: { data?: { message?: string } } };
+            const errorMessage = axiosError.response?.data?.message || t('error.startLesson');
+            setError(errorMessage);
+            addToast({ type: 'error', message: errorMessage });
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, [addToast, t]);
+
+    const completeLesson = useCallback(async (lessonId: string, data: CompleteLessonRequest) => {
+        try {
+            setLoading(true);
+            setError(null);
+            const responseData = await lessonService.completeLesson(lessonId, data);
+            return responseData;
+        } catch (err: unknown) {
+            console.error('Error completing lesson:', err);
+            const axiosError = err as { response?: { data?: { message?: string } } };
+            const errorMessage = axiosError.response?.data?.message || t('error.completeLesson');
+            setError(errorMessage);
+            addToast({ type: 'error', message: errorMessage });
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, [addToast, t]);
 
     return {
         lessons,
@@ -108,6 +143,8 @@ export function useLesson() {
         fetchLessonById,
         createLesson,
         updateLesson,
-        deleteLesson
+        deleteLesson,
+        startLesson,
+        completeLesson
     };
 }

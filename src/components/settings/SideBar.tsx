@@ -1,6 +1,7 @@
-import { Lock, Shield, User } from "lucide-react";
+import { Globe, Lock, Shield, User } from "lucide-react";
 import { MenuItem, SettingsTab } from "@/types/components/menutItem";
 import { useTranslation } from "react-i18next";
+import { Button } from "../ui/Button";
 
 interface SideBarProps {
     activeTab: SettingsTab;
@@ -14,14 +15,16 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
         { id: 'profile', label: t('settings.menu.profile'), icon: <User /> },
         { id: 'password', label: t('settings.menu.password'), icon: <Lock /> },
         { id: '2fa', label: t('settings.menu.2fa'), icon: <Shield /> },
+        { id: 'language', label: t('settings.menu.language'), icon: <Globe /> },
     ];
 
     return (
     <aside className="w-64 flex-shrink-0">
       <nav className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-2">
         {menuItems.map((item) => (
-          <button
+          <Button
             key={item.id}
+            variant="none"
             onClick={() => onTabChange(item.id)}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
               activeTab === item.id
@@ -31,7 +34,7 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
           >
             <span className="text-xl">{item.icon}</span>
             <span className="font-medium">{item.label}</span>
-          </button>
+          </Button>
         ))}
       </nav>
     </aside>

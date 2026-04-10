@@ -37,13 +37,11 @@ export default function TopicList() {
     const [selectedTopic, setSelectedTopic] = useState<TopicResponse | null>(null);
     const [pendingStatus, setPendingStatus] = useState<boolean | null>(null);
 
-    // Filters state
     const [filterName, setFilterName] = useState("");
     const [debouncedName, setDebouncedName] = useState("");
     const [filterDifficulty, setFilterDifficulty] = useState<string>("");
-    const [filterIsActive, setFilterIsActive] = useState<string>(""); // "true", "false", or "" for all
+    const [filterIsActive, setFilterIsActive] = useState<string>(""); 
 
-    // Debounce effect for text search
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedName(filterName);
@@ -64,7 +62,6 @@ export default function TopicList() {
         languageService.getAllActiveLanguages().then(setActiveLanguages).catch(console.error);
     }, []);
 
-    // Perform search whenever debouncedName, difficulty, or isActive changes
     useEffect(() => {
         let isActiveBool: boolean | undefined = undefined;
         if (filterIsActive === "true") isActiveBool = true;

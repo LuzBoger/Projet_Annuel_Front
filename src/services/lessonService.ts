@@ -1,10 +1,15 @@
 import apiClient from "@/services/axios";
-import type { LessonRequest, LessonResponse } from "@/types/lesson/lesson";
+import type { LessonRequest, LessonResponse, UserLessonProgressSummary, CompleteLessonRequest, CompleteLessonResponse, TopicLessonsResponse } from "@/types/lesson/lesson";
 
 export const lessonService = {
 
     async getLessonsByTopic(topicId: string): Promise<LessonResponse[]> {
         const response = await apiClient.get<LessonResponse[]>(`/lessons/topic/${topicId}`);
+        return response.data;
+    },
+
+    async getTopicLessonsDetails(topicId: string): Promise<TopicLessonsResponse> {
+        const response = await apiClient.get<TopicLessonsResponse>(`/lessons/topic/${topicId}/details`);
         return response.data;
     },
 
@@ -25,5 +30,15 @@ export const lessonService = {
 
     async deleteLesson(id: string): Promise<void> {
         await apiClient.delete(`/lessons/${id}`);
+    },
+
+    async startLesson(lessonId: string): Promise<UserLessonProgressSummary> {
+        const response = await apiClient.post<UserLessonProgressSummary>(`/lessons/${lessonId}/start`);
+        return response.data;
+    },
+
+    async completeLesson(lessonId: string, data: CompleteLessonRequest): Promise<CompleteLessonResponse> {
+        const response = await apiClient.post<CompleteLessonResponse>(`/lessons/${lessonId}/complete`, data);
+        return response.data;
     }
 };

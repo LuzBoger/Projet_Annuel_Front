@@ -1,3 +1,4 @@
+import { LanguagesSettings } from "@/components/settings/languages/LanguagesSettings";
 import { SideBar } from "@/components/settings/SideBar";
 import { PasswordSettings } from "@/pages/settings/PasswordSettings";
 import { ProfileSettings } from "@/pages/settings/ProfileSettings";
@@ -25,6 +26,7 @@ export function SettingsLayout() {
             {activeTab === 'profile' && <ProfileSettings />}
             {activeTab === 'password' && <PasswordSettings />}
             {activeTab === '2fa' && <TwoFactorSettings />}
+            {activeTab === 'language' && <LanguagesSettings />}
           </main>
         </div>
       </div>

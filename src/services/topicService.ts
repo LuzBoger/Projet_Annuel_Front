@@ -1,5 +1,6 @@
 import apiClient from "@/services/axios";
-import type { TopicResponse, CreateTopicRequest, UpdateTopicRequest } from "@/types/topic/topic";
+import type { TopicResponse, CreateTopicRequest, UpdateTopicRequest, ExamResponse, ExamResultRequest, CompleteExamResponse, TopicWithProgressResponse } from "@/types/topic/topic";
+
 
 export const topicService = {
 
@@ -23,8 +24,18 @@ export const topicService = {
         return response.data;
     },
 
-    async getTopicsByLanguage(languageId: string): Promise<TopicResponse[]> {
-        const response = await apiClient.get<TopicResponse[]>(`/topics/language/${languageId}`);
+    async searchActiveTopics(languageId: string, name?: string, difficulty?: string): Promise<TopicResponse[]> {
+        const params = new URLSearchParams();
+        params.append('languageId', languageId);
+        if (name) params.append('name', name);
+        if (difficulty) params.append('difficulty', difficulty);
+        
+        const response = await apiClient.get<TopicResponse[]>('/topics/search/active', { params });
+        return response.data;
+    },
+
+    async getTopicsByLanguage(languageId: string): Promise<TopicWithProgressResponse[]> {
+        const response = await apiClient.get<TopicWithProgressResponse[]>(`/topics/language/${languageId}`);
         return response.data;
     },
 
@@ -45,5 +56,15 @@ export const topicService = {
 
     async deleteTopic(topicId: string): Promise<void> {
         await apiClient.delete(`/topics/${topicId}`);
+    },
+
+    async getTopicExam(topicId: string): Promise<ExamResponse> {
+        const response = await apiClient.get<ExamResponse>(`/topics/${topicId}/exam`);
+        return response.data;
+    },
+
+    async submitTopicExam(topicId: string, data: ExamResultRequest): Promise<CompleteExamResponse> {
+        const response = await apiClient.post<CompleteExamResponse>(`/topics/${topicId}/exam/submit`, data);
+        return response.data;
     }
 };

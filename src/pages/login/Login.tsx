@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth';
 import type { LoginRequest } from '@/types/auth/login';
+import { RoleEnum } from '@/types/enum/roles';
 import { AuthenticationLayout } from '@/components/layouts/AuthenticationLayout';
 import { LoginForm } from '@/components/login/LoginForm';
 import { useState } from 'react';
@@ -11,7 +12,7 @@ import type { ErrorResponse } from '@/types/api/response';
 export default function Login() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isAccountLocked, setIsAccountLocked] = useState(false);
@@ -25,7 +26,7 @@ export default function Login() {
       if (result.required2FA) {
         navigate('/verify-2fa');
       } else {
-        navigate('/');
+        navigate(user?.role === RoleEnum.ADMIN ? '/admin' : '/dashboard');
       }
     } catch (err) {
       const axiosError = err as AxiosError<ErrorResponse>;

@@ -8,10 +8,18 @@
     "active": "Actif",
     "view": "Voir",
     "edit": "Modifier",
-    "back": "Retour",
     "save": "Sauvegarder",
     "confirm": "Confirmer",
-    "user": "Utilisateur"
+    "user": "Utilisateur",
+    "locked": "Verrouillé",
+    "finish": "Terminer",
+    "empty": "Aucune donnée disponible",
+    "no_data": "Aucune donnée disponible",
+    "back": "Retour",
+    "quit": "Quitter",
+    "home": "Retour à l'accueil",
+    "continue": "Continuer",
+    "loading": "Chargement..."
   },
   "auth": {
     "login": {
@@ -157,7 +165,11 @@
         "ACTIVE": "Actif",
         "EXPIRED": "Expiré",
         "CANCELED": "Annulé",
-        "PENDING": "En attente"
+        "PENDING": "En attente",
+        "active": "Actif",
+        "expired": "Expiré",
+        "canceled": "Annulé",
+        "pending": "En attente"
       },
       "current_period": "Période en cours",
       "start_date": "Date de début",
@@ -380,7 +392,49 @@
     "monthly": "Mensuel",
     "yearly": "Annuel",
     "subscriptions": "Abonnements",
-    "freeVsPremium": "Nombre d'abonnés gratuits et premium"
+    "freeVsPremium": "Nombre d'abonnés gratuits et premium",
+    "topics": "Sujets",
+    "view_all": "Voir tout",
+    "language": {
+      "active": "Langue active",
+      "level": "Niveau {{level}}"
+    },
+    "xp": {
+      "level": "Niveau"
+    },
+    "welcome": {
+      "subtitle": "Votre tableau de bord",
+      "greeting": "Bonjour,",
+      "morning": {
+        "0": "Une belle matinée pour apprendre quelque chose de nouveau !",
+        "1": "Commencez fort — votre cerveau est au sommet.",
+        "2": "Le matin est le meilleur moment pour créer de nouvelles habitudes.",
+        "3": "Levez-vous et apprenez ! Chaque session compte.",
+        "4": "Bonjour ! Faisons des progrès aujourd'hui.",
+        "5": "Un nouveau départ. Faites-en quelque chose !"
+      },
+      "afternoon": {
+        "0": "Gardez l'élan cet après-midi.",
+        "1": "Un excellent moment pour une session rapide !",
+        "2": "Boost de mi-journée — vos progrès vous attendent.",
+        "3": "Restez régulier. Chaque effort compte.",
+        "4": "La révision l'après-midi favorise la mémorisation.",
+        "5": "La moitié de la journée est passée — continuez !"
+      },
+      "evening": {
+        "0": "Terminez la journée avec une session d'apprentissage.",
+        "1": "La révision du soir consolide votre mémoire.",
+        "2": "Finissez la journée en beauté !",
+        "3": "Le moment idéal pour réfléchir et réviser.",
+        "4": "Apprendre avant de dormir améliore la rétention.",
+        "5": "Bonne soirée ! Encore une session aujourd'hui ?"
+      }
+    }
+  },
+  "lesson": {
+    "resume": "Reprendre la leçon",
+    "start_first_lesson": "Commencez votre première leçon pour démarrer !",
+    "completed": "complétées"
   },
   "subscriptions": {
     "title": "Abonnements",
@@ -447,12 +501,116 @@
     "updateLanguage": "Impossible de mettre à jour la langue.",
     "deleteLanguage": "Impossible de supprimer la langue.",
     "fetchLessons": "Impossible de récupérer les leçons.",
+    "fetchLessonById": "Impossible de récupérer la leçon.",
     "createLesson": "Impossible de créer la leçon.",
     "updateLesson": "Impossible de mettre à jour la leçon.",
-    "deleteLesson": "Impossible de supprimer la leçon."
+    "deleteLesson": "Impossible de supprimer la leçon.",
+    "startLesson": "Impossible de démarrer la leçon.",
+    "completeLesson": "Impossible de valider la leçon."
+  },
+  "topics": {
+    "page_title": "Topics disponibles",
+    "page_desc": "Sélectionnez un sujet pour commencer votre entraînement.",
+    "error_load": "Impossible de charger les topics pour le moment.",
+    "empty_title": "Aucun topic trouvé",
+    "empty_desc": "Essayez de modifier vos filtres de recherche.",
+    "search_placeholder": "Rechercher un topic par nom...",
+    "all_levels": "Tous les niveaux",
+    "level": "Niveau {{level}}",
+    "no_desc": "Aucune description fournie",
+    "practice_btn": "S'entraîner maintenant",
+    "order": "Ordre: {{orderIndex}}",
+    "lessons_title": "Plateau de Leçons",
+    "lessons_desc": "Explorez les leçons ci-dessous dans l'ordre chronologique pour progresser et maîtriser ce sujet.",
+    "exam_status": "Statut de l'Examen",
+    "exam_attempts": "Tentatives",
+    "last_accuracy": "Dernière Précision",
+    "exam_matching_title": "Épreuve de Matching",
+    "exam_sorting_title": "Épreuve de Tri",
+    "exam_qcm_title": "Épreuve de QCM",
+    "exam_flashcard_title": "Épreuve de Flashcard",
+    "exam_pairs_selected": "Paires sélectionnées",
+    "exam_clear_pair": "Annuler",
+    "replay_lesson_btn": "Rejouer la leçon",
+    "start_lesson_btn": "Commencer la leçon",
+    "passed": "Validé",
+    "not_passed": "À passer",
+    "no_lessons_title": "Aucune leçon disponible",
+    "no_lessons_desc": "Revenez plus tard !",
+    "translate_or_answer": "Traduisez ou répondez",
+    "type_answer_here": "Tapez votre réponse ici...",
+    "exam_matching_finished": "Toutes les paires ont été associées. Vous pouvez continuer ou annuler une paire.",
+    "exam_matching_answers": "Paires formées",
+    "final_exam_title": "Examen Final",
+    "final_exam_desc": "Évaluez globalement vos nouvelles connaissances.",
+    "take_exam": "Passer l'examen",
+    "exam_locked": "Complétez toutes les leçons d'abord",
+    "progress": "Progression",
+    "lessons_count_label": "Leçons réalisées",
+    "exam_load_error": "Erreur lors du chargement de l'examen.",
+    "exam_submit_error": "Erreur lors de la soumission de l'examen.",
+    "exam_passed": "Examen validé !",
+    "exam_failed": "Examen échoué",
+    "accuracy": "Précision",
+    "no_questions": "Aucune question pour cet examen.",
+    "exam_completed_title": "Toutes les questions sont répondues !",
+    "exam_completed_desc": "Vous pouvez maintenant soumettre vos réponses pour découvrir votre résultat final.",
+    "exam_submit": "Soumettre l'examen",
+    "exam_progress": "Progression de l'examen"
+  },
+  "lessons": {
+    "progress": "Progression de l'exercice",
+    "click_to_flip": "Appuyez pour révéler",
+    "computing_score": "Calcul du score en cours...",
+    "hard": "Difficile - À revoir",
+    "medium": "Moyen - On le met de côté",
+    "easy": "Facile - Acquis",
+    "finish": "Terminer",
+    "matching": {
+      "title": "Jeu de paires",
+      "instruction": "Associez les paires correspondantes",
+      "matches_found": "Paires trouvées",
+      "errors": "Erreurs",
+      "completed": "Excellent !",
+      "flawless": "Vous avez tout trouvé du premier coup !",
+      "with_errors": "Toutes les paires ont été trouvées."
+    },
+    "sorting": {
+      "title": "Mise en ordre",
+      "instruction": "Remettez les éléments dans le bon ordre",
+      "empty_target": "Sélectionnez les éléments dans le bon ordre",
+      "correct_order_prefix": "Solution : ",
+      "validate": "Vérifier la réponse",
+      "next": "Continuer"
+    },
+    "qcm": {
+      "title": "Questionnaire",
+      "validate": "Valider",
+      "next": "Suivant",
+      "correct": "Bonne réponse !",
+      "incorrect": "Mauvaise réponse"
+    },
+    "starting": "Préparation de la leçon...",
+    "session_invalid": "Session introuvable ou expirée.",
+    "lesson_completed": "Leçon terminée !",
+    "xp_earned": "XP Gagné",
+    "status": "Résultat",
+    "success": "Validée",
+    "failed": "Échouée",
+    "level_up": "Niveau Supérieur ! Level {{level}}",
+    "not_found": "Leçon introuvable.",
+    "start_error": "Erreur lors du démarrage de la leçon.",
+    "complete_error": "Erreur de connexion lors de la validation."
   },
   "settings": {
     "title": "Paramètres",
+    "language": {
+      "title": "Langue d'interface"
+    },
+    "languages": {
+      "french": "Français",
+      "english": "Anglais"
+    },
     "password": {
       "title": "Mot de passe",
       "description": "Gérez le mot de passe de votre compte."
@@ -460,7 +618,8 @@
     "menu": {
       "profile": "Profil",
       "password": "Mot de passe",
-      "2fa": "Double authentification"
+      "2fa": "Double authentification",
+      "language": "Langue"
     },
     "2fa": {
       "title": "Authentification à deux facteurs",
@@ -596,6 +755,63 @@
         "invalidCurrent": "Le mot de passe actuel est incorrect.",
         "generic": "Une erreur est survenue. Veuillez réessayer."
       }
+    },
+    "languageSection": {
+      "learningLanguages": "Langues que j'apprends",
+      "addLanguage": "Ajouter une langue",
+      "noLearningLanguages": "Aucune langue ajoutée pour l'instant.",
+      "chooseLanguage": "Choisir une langue"
+    }
+  },
+  "popular": "Populaire",
+  "catalog": {
+    "search": "Rechercher une langue…",
+    "topics": "sujets",
+    "lessons": "leçons",
+    "currentlyLearning": "En cours d'apprentissage",
+    "discover": "Découvrir",
+    "noResults": "Aucune langue trouvée."
+  },
+  "catalogLanguages": {
+    "title": "Langues"
+  },
+  "languages": {
+    "available": "langues disponibles",
+    "chooseYour": "Choisissez votre",
+    "nextLanguage": "prochaine langue",
+    "clickToExplore": "Cliquez sur une langue pour explorer ses topics et leçons.",
+    "inLearning": "En apprentissage",
+    "regions": {
+      "all": "Toutes",
+      "europe": "Europe",
+      "amériques": "Amériques",
+      "asie": "Asie",
+      "afrique": "Afrique",
+      "populaires": "Populaires"
+    }
+  },
+  "pages": {
+    "languageDetail": {
+      "remove": "Retirer de mes langues",
+      "start": "Commencer à apprendre",
+      "topics": "Topics",
+      "lessons": "Leçons",
+      "topicsAndLessons": "Topics & Leçons"
+    }
+  },
+  "components": {
+    "topicCard": {
+      "lessons": "leçons",
+      "completed": "complétées",
+      "next": "Prochaine",
+      "hide": "Masquer",
+      "show": "Afficher",
+      "practice": "S'entraîner"
+    },
+    "badgeStatusLanguages": {
+      "completed": "Complété",
+      "inProgress": "En cours",
+      "notStarted": "Non commencé"
     }
   },
   "home": {

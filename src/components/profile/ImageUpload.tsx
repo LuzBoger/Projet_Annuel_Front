@@ -2,11 +2,11 @@ import { ALLOWED_FILE_TYPES, MAX_FILE_SIZE } from "@/constants/global";
 import { profileService } from "@/services/profileService";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Avatar } from "../ui/Avatar";
-import { FileInput } from './../ui/FileInput';
-import { Button } from "../ui/Button";
+import { Avatar } from "@/components/ui/Avatar";
+import { FileInput } from '@/components/ui/FileInput';
+import { Button } from "@/components/ui/Button";
 import { getProfileImageUrl } from "@/lib/utils/image";
-import { ConfirmModal } from "../ui/ConfirmModal";
+import { ConfirmModal } from "@/components/ui/ConfirmModal";
 
 interface ProfileImageUploadProps {
     currentPhotoUrl?: string;
