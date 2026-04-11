@@ -9,6 +9,7 @@ import { FlashcardPlayer } from "@/components/lessons/players/FlashcardPlayer";
 import { QCMPlayer } from "@/components/lessons/players/QCMPlayer";
 import { MatchingPlayer } from "@/components/lessons/players/MatchingPlayer";
 import { SortingPlayer } from "@/components/lessons/players/SortingPlayer";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function LessonPlayer() {
     const { lessonId } = useParams<{ lessonId: string }>();
@@ -97,11 +98,13 @@ export default function LessonPlayer() {
     }
     
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col">
-            <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between shadow-sm sticky top-0 z-50">
-                <Button 
-                    onClick={() => navigate(-1)} 
-                    variant="ghost"
+        <>
+            <MetaData title={lesson.title} robots="noindex, nofollow" />
+            <div className="min-h-screen bg-gray-100 flex flex-col">
+                <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between shadow-sm sticky top-0 z-50">
+                    <Button 
+                        onClick={() => navigate(-1)} 
+                        variant="ghost"
                     className="flex items-center text-gray-500 hover:text-red-600 font-medium"
                     title={t('common.quit')}
                 >
@@ -133,5 +136,6 @@ export default function LessonPlayer() {
                 </div>
             </main>
         </div>
+        </>
     );
 }

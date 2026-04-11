@@ -15,6 +15,7 @@ import { TopicForm } from "@/components/topics/TopicForm";
 import { TableActions } from "@/components/ui/TableActions";
 import { languageService } from "@/services/languageService";
 import { LanguageFlag } from "@/components/languages/LanguageFlag";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function TopicList() {
     const { t } = useTranslation();
@@ -154,121 +155,124 @@ export default function TopicList() {
     ];
 
     return (
-        <div className="w-full space-y-6">
-            <div className="flex items-center justify-between mb-6">
-                <h1 className="text-2xl font-bold text-indigo-900">
-                    {t('admin.topics.page_title')}
-                </h1>
-                <Button variant="primary" onClick={handleCreate}>
-                    {t('common.create')}
-                </Button>
+        <>
+            <MetaData title={t('admin.topics.page_title')} robots="noindex, nofollow"  />
+            <div className="w-full space-y-6">
+                <div className="flex items-center justify-between mb-6">
+                    <h1 className="text-2xl font-bold text-indigo-900">
+                        {t('admin.topics.page_title')}
+                    </h1>
+                    <Button variant="primary" onClick={handleCreate}>
+                        {t('common.create')}
+                    </Button>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                    <div className="flex-1">
+                        <FormField
+                            type="text"
+                            label=""
+                            placeholder={t('admin.topics.filters.search_name')}
+                            value={filterName}
+                            onChange={(e) => setFilterName(e.target.value)}
+                        />
+                    </div>
+                    <div className="w-full sm:w-48 pt-1">
+                        <Select
+                            options={difficultyOptions}
+                            value={filterDifficulty}
+                            onChange={setFilterDifficulty}
+                        />
+                    </div>
+                    <div className="w-full sm:w-48 pt-1">
+                        <Select
+                            options={statusOptions}
+                            value={filterIsActive}
+                            onChange={setFilterIsActive}
+                        />
+                    </div>
+                </div>
+
+                {error && (
+                    <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+                        <p>{error}</p>
+                    </div>
+                )}
+
+                <Table
+                    data={topics}
+                    columns={columns}
+                    keyExtractor={(topic) => topic.id}
+                    renderRow={(topic) => {
+                        const lang = getLanguageInfo(topic.languageId);
+                        return (
+                            <>
+                                <td className="px-6 py-4 text-sm font-medium text-gray-900 border-b border-gray-200">
+                                    <div>{topic.name}</div>
+                                    {topic.description && <div className="text-xs text-gray-500 font-normal mt-1 max-w-xs truncate" title={topic.description}>{topic.description}</div>}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
+                                    {lang ? (
+                                        <div className="flex items-center space-x-2">
+                                            <LanguageFlag languageCode={lang.code} className="w-5 h-5 rounded-sm shadow-sm" />
+                                            <span className="text-sm font-medium text-gray-900">{lang.code.toUpperCase()}</span>
+                                        </div>
+                                    ) : (
+                                        <span className="text-sm text-gray-400">?</span>
+                                    )}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
+                                    <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                        {topic.difficulty}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{topic.orderIndex}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
+                                    <Switch
+                                        checked={topic.isActive}
+                                        onChange={(checked) => handleStatusToggle(topic, checked)}
+                                    />
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
+                                    <TableActions
+                                        onEdit={() => handleEdit(topic)}
+                                        onDelete={() => handleDelete(topic)}
+                                        onLessons={() => navigate(`/admin/topics/${topic.id}/lessons`)}
+                                    />
+                                </td>
+                            </>
+                        );
+                    }}
+                />
+
+                <TopicForm
+                    isOpen={showForm}
+                    isLoading={loading}
+                    topic={selectedTopic}
+                    activeLanguages={activeLanguages}
+                    onCancel={() => setShowForm(false)}
+                    onSubmit={onSubmitForm}
+                />
+
+                <ConfirmModal
+                    isOpen={showDeleteModal}
+                    title={t('admin.topics.delete_title')}
+                    description={t('admin.topics.delete_desc')}
+                    onConfirm={confirmDelete}
+                    onCancel={() => setShowDeleteModal(false)}
+                    isConfirming={loading}
+                    confirmVariant="danger"
+                />
+
+                <ConfirmModal
+                    isOpen={showStatusModal}
+                    title={t('admin.languages.status_title')}
+                    description={t('admin.languages.status_desc')}
+                    onConfirm={confirmStatusChange}
+                    onCancel={cancelStatusChange}
+                    isConfirming={loading}
+                />
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                <div className="flex-1">
-                    <FormField
-                        type="text"
-                        label=""
-                        placeholder={t('admin.topics.filters.search_name')}
-                        value={filterName}
-                        onChange={(e) => setFilterName(e.target.value)}
-                    />
-                </div>
-                <div className="w-full sm:w-48 pt-1">
-                    <Select
-                        options={difficultyOptions}
-                        value={filterDifficulty}
-                        onChange={setFilterDifficulty}
-                    />
-                </div>
-                <div className="w-full sm:w-48 pt-1">
-                    <Select
-                        options={statusOptions}
-                        value={filterIsActive}
-                        onChange={setFilterIsActive}
-                    />
-                </div>
-            </div>
-
-            {error && (
-                <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
-                    <p>{error}</p>
-                </div>
-            )}
-
-            <Table
-                data={topics}
-                columns={columns}
-                keyExtractor={(topic) => topic.id}
-                renderRow={(topic) => {
-                    const lang = getLanguageInfo(topic.languageId);
-                    return (
-                        <>
-                            <td className="px-6 py-4 text-sm font-medium text-gray-900 border-b border-gray-200">
-                                <div>{topic.name}</div>
-                                {topic.description && <div className="text-xs text-gray-500 font-normal mt-1 max-w-xs truncate" title={topic.description}>{topic.description}</div>}
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                {lang ? (
-                                    <div className="flex items-center space-x-2">
-                                        <LanguageFlag languageCode={lang.code} className="w-5 h-5 rounded-sm shadow-sm" />
-                                        <span className="text-sm font-medium text-gray-900">{lang.code.toUpperCase()}</span>
-                                    </div>
-                                ) : (
-                                    <span className="text-sm text-gray-400">?</span>
-                                )}
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
-                                <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                    {topic.difficulty}
-                                </span>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{topic.orderIndex}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
-                                <Switch
-                                    checked={topic.isActive}
-                                    onChange={(checked) => handleStatusToggle(topic, checked)}
-                                />
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
-                                <TableActions
-                                    onEdit={() => handleEdit(topic)}
-                                    onDelete={() => handleDelete(topic)}
-                                    onLessons={() => navigate(`/admin/topics/${topic.id}/lessons`)}
-                                />
-                            </td>
-                        </>
-                    );
-                }}
-            />
-
-            <TopicForm
-                isOpen={showForm}
-                isLoading={loading}
-                topic={selectedTopic}
-                activeLanguages={activeLanguages}
-                onCancel={() => setShowForm(false)}
-                onSubmit={onSubmitForm}
-            />
-
-            <ConfirmModal
-                isOpen={showDeleteModal}
-                title={t('admin.topics.delete_title')}
-                description={t('admin.topics.delete_desc')}
-                onConfirm={confirmDelete}
-                onCancel={() => setShowDeleteModal(false)}
-                isConfirming={loading}
-                confirmVariant="danger"
-            />
-
-            <ConfirmModal
-                isOpen={showStatusModal}
-                title={t('admin.languages.status_title')}
-                description={t('admin.languages.status_desc')}
-                onConfirm={confirmStatusChange}
-                onCancel={cancelStatusChange}
-                isConfirming={loading}
-            />
-        </div>
+        </>
     );
 }

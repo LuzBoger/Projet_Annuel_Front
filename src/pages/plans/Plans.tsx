@@ -7,6 +7,7 @@ import { usePlan } from "@/hooks/usePlan";
 import { useAuth } from "@/hooks/useAuth";
 import { PlanCard } from "@/components/ui/card/PlanCard";
 import { ErrorResponse } from "@/types/api/response";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function Plans() {
     const { t } = useTranslation();
@@ -70,6 +71,8 @@ export default function Plans() {
     const displayError = error || fetchError;
 
     return (
+        <>
+        <MetaData title={t('subscription.plans.title')} description={t('subscription.plans.description')} keywords={t('subscription.plans.keywords')} robots="index, follow" url="https://skaldly.fr/plans"  />
         <div className="max-w-4xl mx-auto p-6">
             <div className="text-center mb-8">
                 <h1 className="text-2xl font-bold text-indigo-900">
@@ -105,5 +108,6 @@ export default function Plans() {
                 ))}
             </div>
         </div>
+        </>
     );
 }

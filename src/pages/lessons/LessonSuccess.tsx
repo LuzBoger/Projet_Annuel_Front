@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { StarIcon } from "@/assets/icons";
 import { CompleteLessonResponse, LessonResponse } from "@/types/lesson/lesson";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function LessonSuccess() {
     const { t } = useTranslation();
@@ -25,6 +26,8 @@ export default function LessonSuccess() {
     const { response, lesson } = state;
 
     return (
+        <>
+        <MetaData title={t('lessons.lesson_completed')} robots="noindex, nofollow"  />
         <div className="min-h-screen bg-indigo-50/50 flex flex-col items-center justify-center p-4">
             <div className="max-w-md w-full bg-white rounded-[2rem] shadow-xl shadow-indigo-100/50 p-8 sm:p-10 text-center animate-[fade-in-up_0.5s_ease-out]">
                 <div className="w-24 h-24 bg-gradient-to-br from-yellow-300 to-yellow-500 text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner ring-8 ring-yellow-50">
@@ -67,5 +70,6 @@ export default function LessonSuccess() {
                 </Button>
             </div>
         </div>
+        </>
     );
 }

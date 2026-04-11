@@ -10,6 +10,7 @@ import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { LanguageForm } from "@/components/languages/LanguageForm";
 import { TableActions } from "@/components/ui/TableActions";
 import { LanguageFlag } from "@/components/languages/LanguageFlag";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function LanguageList() {
     const { t } = useTranslation();
@@ -104,78 +105,81 @@ export default function LanguageList() {
     };
 
     return (
-        <div className="w-full space-y-6">
-            <div className="flex items-center justify-between mb-6">
-                <h1 className="text-2xl font-bold text-indigo-900">
-                    {t('admin.languages.page_title')}
-                </h1>
-                <Button variant="primary" onClick={handleCreate}>
-                    {t('common.create')}
-                </Button>
-            </div>
-
-            {error && (
-                <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
-                    <p>{error}</p>
+        <>
+            <MetaData title={t('languages.page_title')} robots="noindex, nofollow"  />
+            <div className="w-full space-y-6">
+                <div className="flex items-center justify-between mb-6">
+                    <h1 className="text-2xl font-bold text-indigo-900">
+                        {t('admin.languages.page_title')}
+                    </h1>
+                    <Button variant="primary" onClick={handleCreate}>
+                        {t('common.create')}
+                    </Button>
                 </div>
-            )}
 
-            <Table
-                data={languages}
-                columns={columns}
-                keyExtractor={(lang) => lang.id}
-                renderRow={(lang) => (
-                    <>
-                        <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                            <div className="flex items-center space-x-3">
-                                <LanguageFlag languageCode={lang.code} className="w-6 h-6 rounded-sm shadow-sm" />
-                                <span className="text-sm font-medium text-gray-900">{lang.code.toUpperCase()}</span>
-                            </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{lang.name}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{lang.orderIndex}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
-                            <Switch 
-                                checked={lang.isActive} 
-                                onChange={(checked) => handleStatusToggle(lang, checked)}
-                            />
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
-                            <TableActions 
-                                onEdit={() => handleEdit(lang)} 
-                                onDelete={() => handleDelete(lang)} 
-                            />
-                        </td>
-                    </>
+                {error && (
+                    <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+                        <p>{error}</p>
+                    </div>
                 )}
-            />
 
-            <LanguageForm
-                isOpen={showForm}
-                isLoading={loading}
-                language={selectedLanguage}
-                onCancel={() => setShowForm(false)}
-                onSubmit={onSubmitForm}
-            />
+                <Table
+                    data={languages}
+                    columns={columns}
+                    keyExtractor={(lang) => lang.id}
+                    renderRow={(lang) => (
+                        <>
+                            <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
+                                <div className="flex items-center space-x-3">
+                                    <LanguageFlag languageCode={lang.code} className="w-6 h-6 rounded-sm shadow-sm" />
+                                    <span className="text-sm font-medium text-gray-900">{lang.code.toUpperCase()}</span>
+                                </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{lang.name}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{lang.orderIndex}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
+                                <Switch 
+                                    checked={lang.isActive} 
+                                    onChange={(checked) => handleStatusToggle(lang, checked)}
+                                />
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
+                                <TableActions 
+                                    onEdit={() => handleEdit(lang)} 
+                                    onDelete={() => handleDelete(lang)} 
+                                />
+                            </td>
+                        </>
+                    )}
+                />
 
-            <ConfirmModal
-                isOpen={showDeleteModal}
-                title={t('admin.languages.delete_title')}
-                description={t('admin.languages.delete_desc')}
-                onConfirm={confirmDelete}
-                onCancel={() => setShowDeleteModal(false)}
-                isConfirming={loading}
-                confirmVariant="danger"
-            />
+                <LanguageForm
+                    isOpen={showForm}
+                    isLoading={loading}
+                    language={selectedLanguage}
+                    onCancel={() => setShowForm(false)}
+                    onSubmit={onSubmitForm}
+                />
 
-            <ConfirmModal
-                isOpen={showStatusModal}
-                title={t('admin.languages.status_title')}
-                description={t('admin.languages.status_desc')}
-                onConfirm={confirmStatusChange}
-                onCancel={cancelStatusChange}
-                isConfirming={loading}
-            />
-        </div>
+                <ConfirmModal
+                    isOpen={showDeleteModal}
+                    title={t('admin.languages.delete_title')}
+                    description={t('admin.languages.delete_desc')}
+                    onConfirm={confirmDelete}
+                    onCancel={() => setShowDeleteModal(false)}
+                    isConfirming={loading}
+                    confirmVariant="danger"
+                />
+
+                <ConfirmModal
+                    isOpen={showStatusModal}
+                    title={t('admin.languages.status_title')}
+                    description={t('admin.languages.status_desc')}
+                    onConfirm={confirmStatusChange}
+                    onCancel={cancelStatusChange}
+                    isConfirming={loading}
+                />
+            </div>
+        </>
     );
 }

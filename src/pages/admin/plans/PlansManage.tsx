@@ -11,6 +11,7 @@ import { PlanForm } from "@/components/plans/PlanForm";
 import { DeletePlanModal } from "@/components/plans/DeletePlanModal";
 import { getFormatForCurrency } from "@/lib/utils/currency";
 import { TableActions } from "@/components/ui/TableActions";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function PlansManage() {
     const { t, i18n } = useTranslation();
@@ -73,6 +74,8 @@ export default function PlansManage() {
     }
 
     return (
+        <>
+            <MetaData title={t('plans.page_title')} robots="noindex, nofollow"  />
             <div className="w-full space-y-6">
             <div className="flex items-center justify-between mb-6">
                 <h1 className="text-2xl font-bold text-indigo-900">
@@ -125,6 +128,7 @@ export default function PlansManage() {
                 onDelete={confirmDeletePlan}
             />
         </div>
+        </>
     )
 
 

@@ -11,6 +11,7 @@ import { ExamMatchingQuestion } from "@/components/topics/ExamMatchingQuestion";
 import { ExamSortingQuestion } from "@/components/topics/ExamSortingQuestion";
 import { UserPairAnswer, Tile } from "@/types/components/examMatching";
 import { shuffleArray } from "@/lib/utils/topic";
+import { MetaData } from "@/components/seo/MetaData";
 
 type ExamItem =
     | { type: 'QCM', data: QcmQuestionExamResponse }
@@ -178,6 +179,8 @@ export default function TopicExam() {
     }
 
     return (
+        <>
+        <MetaData title={t('topics.exam_page_title')}  robots="noindex, nofollow"  />
         <div className="min-h-screen pb-32 pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <Button
                 onClick={() => navigate(-1)}
@@ -314,5 +317,6 @@ export default function TopicExam() {
                 </div>
             )}
         </div>
+        </>
     );
 }
