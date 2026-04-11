@@ -21,7 +21,7 @@ export function Topics({ topics, activeLanguageId }: Readonly<TopicsProps>) {
                     <Button
                         variant="none"
                         onClick={() => navigate(`/language/${activeLanguageId}/topics`)}
-                        className="text-xs text-gray-400 hover:text-gray-700 transition-colors"
+                        className="text-xs text-gray-700 transition-colors cursor-pointer "
                     >
                         {t("dashboard.view_all")} →
                     </Button>

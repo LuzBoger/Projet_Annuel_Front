@@ -52,11 +52,11 @@ export function TopicCard({ topic, onPractice }: Readonly<TopicCardProps>) {
 
                 <Button
                     variant="none"
-                    className="group flex items-center justify-end w-full mt-3 pt-3 border-t border-gray-100 text-sm font-medium text-indigo-600 hover:text-indigo-700 transition-colors"
+                    className="group flex items-center justify-end w-full mt-3 pt-3 border-t border-gray-100 text-sm font-medium text-indigo-600 hover:text-indigo-700 transition-colors cursor-pointer"
                     onClick={onPractice}
                 >
                     {t("components.topicCard.practice")}
-                    <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" />
+                    <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200 cursor-pointer" />
                 </Button>
             </div>
 

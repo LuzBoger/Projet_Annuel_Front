@@ -39,10 +39,10 @@ export function FlashcardForm({ control, register, errors }: FlashcardFormProps)
                     <div key={field.id} className="relative p-6 bg-gray-50 rounded-xl border border-gray-100 group">
                         <Button
                             type="button"
-                            variant="secondary"
+                            variant="ghost"
                             size="sm"
                             onClick={() => remove(index)}
-                            className="absolute -top-3 -right-3 p-2 bg-white shadow-md hover:bg-red-50 hover:text-red-600 transition-all opacity-0 group-hover:opacity-100"
+                            className="absolute -top-3 -right-3 p-2 bg-white shadow-md hover:bg-red-50 hover:text-red-600 transition-all "
                         >
                             <Trash className="w-4 h-4" />
                         </Button>
