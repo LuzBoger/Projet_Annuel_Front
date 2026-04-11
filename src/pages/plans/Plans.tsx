@@ -19,8 +19,10 @@ export default function Plans() {
 
     useEffect(() => {
         fetchPlans();
-        fetchSubscription();
-    }, [fetchPlans, fetchSubscription]);
+        if (isAuthenticated) {
+            fetchSubscription();
+        }
+    }, [fetchPlans, fetchSubscription, isAuthenticated]);
 
     const handleSelectPlan = async (planId: string) => {
         if (!isAuthenticated) {

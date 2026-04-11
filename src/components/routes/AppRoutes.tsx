@@ -56,10 +56,10 @@ export function AppRoutes() {
           <Route path="/verify-2fa" element={<Verify2FA />} />
           <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
           <Route path="/plans" element={<Plans />} />
-          <Route path="/catalog-languages" element={<LanguageCatalog />} />
-          <Route path="/languages/:languageId" element={<LanguageDetailPage />} />
+          <Route path="/catalog-languages" element={<ProtectedRoute><LanguageCatalog /></ProtectedRoute>} />
+          <Route path="/languages/:languageId" element={<ProtectedRoute><LanguageDetailPage /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute userOnly><Dashboard /></ProtectedRoute>} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
           <Route path="/topics/:topicId" element={<ProtectedRoute><TopicLessons /></ProtectedRoute>} />
           <Route path="/topics/:topicId/exam" element={<ProtectedRoute><TopicExam /></ProtectedRoute>} />

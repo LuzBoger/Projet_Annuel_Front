@@ -31,7 +31,9 @@ apiClient.interceptors.response.use(
     async (error: AxiosError) => {
         const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
         const isPublic = PUBLIC_ENDPOINTS.some(endpoint => originalRequest.url?.includes(endpoint));
-
+        if (error.response?.status === 401 && isPublic) {
+            return Promise.reject(error);
+        }
         if (error.response?.status === 401 && !originalRequest._retry && !isPublic) {
             if (isRefreshing) {
                 return new Promise((resolve, reject) => {
