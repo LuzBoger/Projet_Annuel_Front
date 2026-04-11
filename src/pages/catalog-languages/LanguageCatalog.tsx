@@ -1,5 +1,6 @@
 import { Filter } from "@/components/languages/catalog/Filter";
 import { Header } from "@/components/languages/catalog/Header";
+import { MetaData } from "@/components/seo/MetaData";
 import { LanguageCard } from "@/components/ui/card/LanguageCard";
 import { REGION_MAP } from "@/constants/languages";
 import { useUserLanguage } from "@/hooks/useUserLanguage";
@@ -47,19 +48,22 @@ export function LanguageCatalog() {
     if (loading) return <div className="flex justify-center py-20">{t("common.loading")}</div>;
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <Header nbLanguages={filteredLanguages.length} />
-            <Filter regions={filters} selectedFilter={selectedFilter} onChange={setSelectedFilter} />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
-                {filteredLanguages.map((language) => (
-                    <LanguageCard
-                        key={language.id}
-                        language={language}
-                        isLearning={!!isLanguageAdded(language.id)}
-                        onClick={() => navigate(`/languages/${language.id}`)}
-                    />
-                ))}
+        <>
+            <MetaData title={t('catalog_languages.page_title')} robots="noindex, nofollow" />
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <Header nbLanguages={filteredLanguages.length} />
+                <Filter regions={filters} selectedFilter={selectedFilter} onChange={setSelectedFilter} />
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+                    {filteredLanguages.map((language) => (
+                        <LanguageCard
+                            key={language.id}
+                            language={language}
+                            isLearning={!!isLanguageAdded(language.id)}
+                            onClick={() => navigate(`/languages/${language.id}`)}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 }

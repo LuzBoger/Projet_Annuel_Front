@@ -19,7 +19,12 @@
     "back": "Back",
     "quit": "Quit",
     "home": "Back to Home",
-    "continue": "Continue"
+    "continue": "Continue",
+    "skip": "Skip"
+  },
+  "onBoarding": {
+    "selectNativeLanguage": "What is your native language?",
+    "selectLearningLanguage": "Which language do you want to learn?"
   },
   "auth": {
     "login": {
@@ -96,12 +101,12 @@
       "forgot_password": {
         "title_start": "Account ",
         "title_highlight": "Security",
-        "description": "GlotRush will never ask for your personal username or password via email or phone."
+        "description": "Skaldly will never ask for your personal username or password via email or phone."
       },
       "admin": {
         "title_start": "Administration ",
         "title_highlight": "Area",
-        "description": "This area is strictly reserved for the management and configuration of the GlotRush platform."
+        "description": "This area is strictly reserved for the management and configuration of the Skaldly platform."
       }
     }
   },
@@ -111,6 +116,7 @@
       "totalRevenue": "Total Revenue"
     },
     "title": "Subscription",
+    "page_title": "My subscription",
     "current_plan": "Current plan",
     "select_plan": "Select a plan",
     "view_plans": "View plans",
@@ -182,7 +188,8 @@
     },
     "plans": {
       "title": "Plans",
-      "description": "Choose the plan that suits you best."
+      "description": "Choose the plan that suits you best.",
+      "keywords": "plans, pricing, subscription, premium, free, Skaldly"
     },
     "payment_history_title": "Payment history"
   },
@@ -369,7 +376,11 @@
       "sorting": {
         "items": "Items to sort (comma separated)",
         "order": "Correct order (comma separated indices, e.g.: 0,1,2)",
-        "note": "Note: Items and order are managed by comma-separated strings in this simplified form."
+        "note": "Note: Items and order are managed by comma-separated strings in this simplified form.",
+        "add": "Add an item",
+        "move_up": "Move up",
+        "move_down": "Move down",
+        "note_new": "The order in which you add the items defines the correct answer."
       },
       "preview": {
         "title": "Live Preview",
@@ -387,6 +398,7 @@
     }
   },
   "dashboard": {
+    "page_title": "Dashboard",
     "subscriptionsOverTime": "Subscriptions over time",
     "monthly": "Monthly",
     "yearly": "Yearly",
@@ -437,6 +449,7 @@
   },
   "subscriptions": {
     "title": "Subscriptions",
+    "page_title": "Subscriptions management",
     "free": "Free",
     "premium": "Premium",
     "table": {
@@ -509,6 +522,8 @@
   },
   "topics": {
     "page_title": "Available Topics",
+    "lessons_page_title": "Lessons",
+    "exam_page_title": "Topic Exam",
     "page_desc": "Select a subject to start practicing.",
     "error_load": "Unable to load topics at this moment.",
     "empty_title": "No topics found",
@@ -604,7 +619,9 @@
   "settings": {
     "title": "Settings",
     "language": {
-      "title": "Interface Language"
+      "title": "Interface Language",
+      "page_title": "Language settings"
+
     },
     "languages": {
       "french": "French",
@@ -612,6 +629,7 @@
     },
     "password": {
       "title": "Password",
+      "page_title": "Password settings",
       "description": "Manage your account password."
     },
     "menu": {
@@ -622,6 +640,7 @@
     },
     "2fa": {
       "title": "Two-factor authentication",
+      "page_title": "Two-factor authentication",
       "not_enabled": "Two-factor authentication is not enabled.",
       "enable_button": "Enable 2FA",
       "enabled_status": "Two-factor authentication is enabled.",
@@ -711,6 +730,9 @@
       "description": "Your profile is not publicly visible. Update your settings to make it visible."
     },
     "edit": "Edit profile",
+    "settings": {
+      "page_title": "Profile settings"
+    },
     "bio": "Bio",
     "bio_placeholder": "Tell us about yourself...",
     "username": "Username",
@@ -814,10 +836,13 @@
     }
   },
   "home": {
+    "page_title": " Skaldly -Speak fluently. Think differently.",
+    "page_description": "Skaldly uses artificial intelligence to adapt every lesson to your level. Personalized lessons, natural learning, real results.",
+    "page_keywords": "language learning, AI, personalized lessons, natural learning, vocabulary, grammar, Skaldly",
     "hero": {
       "title_start": "Master a new language with ",
       "title_highlight": "Artificial Intelligence",
-      "description": "GlotRush leverages cognitive science and cutting-edge algorithms to create the ultimate learning journey. Spaced repetition, custom lessons, and total immersion.",
+      "description": "Skaldly leverages cognitive science and cutting-edge algorithms to create the ultimate learning journey. Spaced repetition, custom lessons, and total immersion.",
       "logged_in_as": "Logged in as ",
       "continue_learning": "Continue learning",
       "start_free": "Start for free"
@@ -846,7 +871,7 @@
         "stat1_desc": " improvement compared to cramming.",
         "chart_title": "Retention rate at 1 year",
         "classic": "Classic Learning",
-        "glotrush": "Spaced Learning (GlotRush)"
+        "glotrush": "Spaced Learning (Skaldly)"
       },
       "dual_coding": {
         "title": "2. Visual Pairs & Dual Coding Theory",
@@ -881,5 +906,8 @@
         "source4": "(1956). The magical number seven, plus or minus two, and Semantic Encoding (Craik & Lockhart, 1972). Chunking changes the hierarchy of mental storage regarding language learning."
       }
     }
+  },
+  "catalog_languages": {
+    "page_title": "Language Catalog"
   }
 }

@@ -6,6 +6,7 @@ import { topicService } from "@/services/topicService";
 import { TopicCard } from "@/components/topics/TopicCard";
 import { FloatingFilterBar } from "@/components/topics/FloatingFilterBar";
 import { Search } from "@/assets/icons";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function LanguageTopics() {
     const { languageId } = useParams<{ languageId: string }>();
@@ -59,6 +60,8 @@ export default function LanguageTopics() {
     }
 
     return (
+        <>
+        <MetaData title={t('topics.page_title')}  robots="noindex, nofollow"  />
         <div className="relative min-h-screen pb-32 pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div className="mb-4">
                 <h1 className="text-2xl font-bold text-indigo-900 tracking-tight">
@@ -104,5 +107,6 @@ export default function LanguageTopics() {
                 </div>
             )}
         </div>
+        </>
     );
 }

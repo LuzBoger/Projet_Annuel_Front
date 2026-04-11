@@ -4,6 +4,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { Brain, Sparkles, BookOpen } from '@/assets/icons';
 import { RoleEnum } from '@/types/enum/roles';
+import { MetaData } from '@/components/seo/MetaData';
 
 export default function Home() {
     const { isAuthenticated, user } = useAuth();
@@ -14,6 +15,8 @@ export default function Home() {
 
 
     return (
+        <>
+        <MetaData title={t('home.page_title')} description={t('home.page_description')} keywords={t('home.page_keywords')} robots='index, follow' url='https://skaldly.fr' />
         <div className="min-h-screen bg-gray-50 flex flex-col">
             <main className="flex-grow flex flex-col justify-center py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -259,5 +262,6 @@ export default function Home() {
             </section>
 
         </div>
+        </>
     );
 }

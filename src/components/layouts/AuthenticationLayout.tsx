@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Brain, Sparkles, BookOpen } from '@/assets/icons';
+import { MetaData } from '../seo/MetaData';
 
 interface AuthenticationLayoutProps {
   children: ReactNode;
@@ -18,6 +19,8 @@ export function AuthenticationLayout({ children, title, illustrationTitle, illus
   const defaultDesc = t('auth.illustrations.default.description');
 
   return (
+    <>
+    <MetaData title={title} robots="noindex, nofollow"  />
     <div className="min-h-[calc(100vh-65px)] flex bg-white">
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:w-1/2 xl:w-5/12 mx-auto">
         <div className="mx-auto w-full max-w-lg">
@@ -58,5 +61,6 @@ export function AuthenticationLayout({ children, title, illustrationTitle, illus
         </div>
       </div>
     </div>
+    </>
   );
 }

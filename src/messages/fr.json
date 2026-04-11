@@ -19,7 +19,12 @@
     "quit": "Quitter",
     "home": "Retour à l'accueil",
     "continue": "Continuer",
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "skip": "Passer"
+  },
+  "onBoarding": {
+    "selectNativeLanguage": "Quelle est votre langue maternelle ?",
+    "selectLearningLanguage": "Quelle langue souhaitez-vous apprendre ?"
   },
   "auth": {
     "login": {
@@ -96,12 +101,12 @@
       "forgot_password": {
         "title_start": "Sécurité de votre ",
         "title_highlight": "compte",
-        "description": "Jamais GlotRush ne vous demandera un identifiant personnel ou votre mot de passe par e-mail ou par téléphone."
+        "description": "Jamais Skaldly ne vous demandera un identifiant personnel ou votre mot de passe par e-mail ou par téléphone."
       },
       "admin": {
         "title_start": "Espace ",
         "title_highlight": "Administration",
-        "description": "Cet espace est strictement réservé à la gestion et au paramétrage de la plateforme GlotRush."
+        "description": "Cet espace est strictement réservé à la gestion et au paramétrage de la plateforme Skaldly."
       }
     }
   },
@@ -111,6 +116,7 @@
       "totalRevenue": "Revenu total"
     },
     "title": "Abonnement",
+    "page_title": "Mon abonnement",
     "current_plan": "Plan actuel",
     "select_plan": "Choisir un plan",
     "view_plans": "Voir les plans",
@@ -182,7 +188,8 @@
     },
     "plans": {
       "title": "Plans",
-      "description": "Choisissez le plan qui vous convient le mieux."
+      "description": "Choisissez le plan qui vous convient le mieux.",
+      "keywords": "plans, tarifs, abonnement, premium, gratuit, Skaldly"
     },
     "payment_history_title": "Historique des paiements"
   },
@@ -370,7 +377,11 @@
       "sorting": {
         "items": "Éléments à trier (séparés par virgule)",
         "order": "Ordre correct (index séparés par virgule, ex: 0,1,2)",
-        "note": "Note : Les éléments et l'ordre sont gérés par des chaînes séparées par des virgules dans ce formulaire simplifié."
+        "note": "Note : Les éléments et l'ordre sont gérés par des chaînes séparées par des virgules dans ce formulaire simplifié.",
+        "add": "Ajouter un élément",
+        "move_up": "Monter",
+        "move_down": "Descendre",
+        "note_new": "L'ordre dans lequel vous ajoutez les éléments définit la bonne réponse."
       },
       "preview": {
         "title": "Aperçu en direct",
@@ -388,6 +399,7 @@
     }
   },
   "dashboard": {
+    "page_title": "Tableau de bord",
     "subscriptionsOverTime": "Abonnements au fil du temps",
     "monthly": "Mensuel",
     "yearly": "Annuel",
@@ -438,6 +450,7 @@
   },
   "subscriptions": {
     "title": "Abonnements",
+    "page_title": "Gestion des abonnements",
     "free": "Gratuit",
     "premium": "Premium",
     "table": {
@@ -510,6 +523,8 @@
   },
   "topics": {
     "page_title": "Topics disponibles",
+    "lessons_page_title": "Leçons",
+    "exam_page_title": "Examen du topic",
     "page_desc": "Sélectionnez un sujet pour commencer votre entraînement.",
     "error_load": "Impossible de charger les topics pour le moment.",
     "empty_title": "Aucun topic trouvé",
@@ -605,7 +620,9 @@
   "settings": {
     "title": "Paramètres",
     "language": {
-      "title": "Langue d'interface"
+      "title": "Langue d'interface",
+      "page_title": "Paramètres de langue"
+
     },
     "languages": {
       "french": "Français",
@@ -613,6 +630,7 @@
     },
     "password": {
       "title": "Mot de passe",
+      "page_title": "Paramètres du mot de passe",
       "description": "Gérez le mot de passe de votre compte."
     },
     "menu": {
@@ -623,6 +641,7 @@
     },
     "2fa": {
       "title": "Authentification à deux facteurs",
+      "page_title": "Authentification à deux facteurs",
       "not_enabled": "L'authentification à deux facteurs n'est pas activée.",
       "enable_button": "Activer la 2FA",
       "enabled_status": "L'authentification à deux facteurs est activée.",
@@ -712,6 +731,9 @@
       "description": "Votre profil n'est pas visible publiquement. Mettez à jour vos paramètres pour le rendre visible."
     },
     "edit": "Modifier le profil",
+    "settings": {
+      "page_title": "Paramètres du profil"
+    },
     "bio": "Bio",
     "bio_placeholder": "Parlez-nous de vous...",
     "username": "Nom d'utilisateur",
@@ -815,10 +837,13 @@
     }
   },
   "home": {
+    "page_title": "Skaldly - Parlez couramment. Pensez autrement.",
+    "page_description": "Skaldly utilise l'intelligence artificielle pour adapter chaque leçon à votre niveau. Leçons sur-mesure, apprentissage naturel, résultats réels.",
+    "page_keywords": "apprentissage des langues, IA, leçons sur-mesure, apprentissage naturel, vocabulaire, grammaire, Skaldly",
     "hero": {
       "title_start": "Maîtrisez une langue avec ",
       "title_highlight": "l'Intelligence Artificielle",
-      "description": "GlotRush s'appuie sur la science cognitive et des algorithmes de pointe pour créer le parcours d'apprentissage absolu. Répétition espacée, leçons sur-mesure et immersion totale.",
+      "description": "Skaldly s'appuie sur la science cognitive et des algorithmes de pointe pour créer le parcours d'apprentissage absolu. Répétition espacée, leçons sur-mesure et immersion totale.",
       "logged_in_as": "Connecté en tant que ",
       "continue_learning": "Continuer mon apprentissage",
       "start_free": "Commencer gratuitement"
@@ -847,7 +872,7 @@
         "stat1_desc": " d'amélioration par rapport au \"bachotage\".",
         "chart_title": "Taux de rétention à 1 an",
         "classic": "Apprentissage Classique",
-        "glotrush": "Apprentissage Espacé (GlotRush)"
+        "glotrush": "Apprentissage Espacé (Skaldly)"
       },
       "dual_coding": {
         "title": "2. Paires Visuelles & Théorie du Double Codage",
@@ -882,5 +907,8 @@
         "source4": "(1956). The magical number seven, plus or minus two, and Semantic Encoding (Craik & Lockhart, 1972). Le chunking modifie la hiérarchie du stockage mental vis-à-vis des apprentissages linguistiques."
       }
     }
+  },
+  "catalog_languages": {
+    "page_title": "Catalogue des langues"
   }
 }

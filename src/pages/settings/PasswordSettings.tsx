@@ -1,9 +1,12 @@
+import { MetaData } from "@/components/seo/MetaData";
 import { PasswordForm } from "@/components/settings/password/PasswordForm";
 import { useTranslation } from "react-i18next";
 
 export function PasswordSettings() {
     const {t} = useTranslation();
   return (
+    <>
+    <MetaData title={t('settings.password.page_title')}  robots="noindex, nofollow"  />
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
@@ -18,5 +21,6 @@ export function PasswordSettings() {
         <PasswordForm />
       </div>
     </div>
+    </>
   );
 };

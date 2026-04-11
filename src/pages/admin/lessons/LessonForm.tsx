@@ -17,6 +17,7 @@ import { QCMForm } from "@/components/admin/lessons/QCMForm";
 import { MatchingPairForm } from "@/components/admin/lessons/MatchingPairForm";
 import { SortingExerciseForm } from "@/components/admin/lessons/SortingExerciseForm";
 import { LessonPreview } from "@/components/admin/lessons/LessonPreview";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function LessonForm() {
     const { topicId, lessonId } = useParams<{ topicId: string, lessonId?: string }>();
@@ -122,154 +123,157 @@ export default function LessonForm() {
     };
 
     return (
-        <div className="p-6">
-            <div className="flex items-center space-x-4 mb-8">
-                <Button
-                    variant="secondary"
-                    size="sm"
-                    onClick={() => navigate(`/admin/topics/${topicId}/lessons`)}
-                    className="p-2"
-                >
-                    <ChevronLeft className="w-5 h-5" />
-                </Button>
-                <div>
-                    <h1 className="text-2xl font-bold text-gray-900">
-                        {isEdit ? t('admin.lessons.edit') : t('admin.lessons.create')}
-                    </h1>
-                    <p className="text-sm text-gray-500">
-                        {t('admin.lessons.form.topic_label')} <span className="font-semibold text-indigo-600">{currentTopic?.name || "..."}</span>
-                    </p>
+        <>
+            <MetaData title={isEdit ? t('admin.lessons.edit') : t('admin.lessons.create')} robots="noindex, nofollow"  />
+            <div className="p-6">
+                <div className="flex items-center space-x-4 mb-8">
+                    <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => navigate(`/admin/topics/${topicId}/lessons`)}
+                        className="p-2"
+                    >
+                        <ChevronLeft className="w-5 h-5" />
+                    </Button>
+                    <div>
+                        <h1 className="text-2xl font-bold text-gray-900">
+                            {isEdit ? t('admin.lessons.edit') : t('admin.lessons.create')}
+                        </h1>
+                        <p className="text-sm text-gray-500">
+                            {t('admin.lessons.form.topic_label')} <span className="font-semibold text-indigo-600">{currentTopic?.name || "..."}</span>
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <form onSubmit={handleSubmit(onFormSubmit)} className="lg:col-span-2 space-y-8">
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
-                        <div className="flex items-center gap-2 mb-4 text-indigo-600">
-                            <Info className="w-5 h-5" />
-                            <h2 className="text-lg font-bold">{t('admin.lessons.form.sections.basic_info')}</h2>
-                        </div>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <form onSubmit={handleSubmit(onFormSubmit)} className="lg:col-span-2 space-y-8">
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
+                            <div className="flex items-center gap-2 mb-4 text-indigo-600">
+                                <Info className="w-5 h-5" />
+                                <h2 className="text-lg font-bold">{t('admin.lessons.form.sections.basic_info')}</h2>
+                            </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="md:col-span-2">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="md:col-span-2">
+                                    <FormField
+                                        label={t('admin.lessons.form.title')}
+                                        {...register("title")}
+                                        error={errors.title?.message}
+                                        required
+                                    />
+                                </div>
+                                <div className="md:col-span-2">
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        {t('admin.lessons.form.description')}
+                                    </label>
+                                    <textarea
+                                        {...register("description")}
+                                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none min-h-[100px]"
+                                    />
+                                    {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>}
+                                </div>
+
                                 <FormField
-                                    label={t('admin.lessons.form.title')}
-                                    {...register("title")}
-                                    error={errors.title?.message}
+                                    type="number"
+                                    label={t('admin.lessons.form.order')}
+                                    {...register("orderIndex")}
+                                    error={errors.orderIndex?.message}
                                     required
                                 />
-                            </div>
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    {t('admin.lessons.form.description')}
-                                </label>
-                                <textarea
-                                    {...register("description")}
-                                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none min-h-[100px]"
+                                <FormField
+                                    type="number"
+                                    label={t('admin.lessons.form.xp')}
+                                    {...register("xpReward")}
+                                    error={errors.xpReward?.message}
+                                    required
                                 />
-                                {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>}
+                                <FormField
+                                    type="number"
+                                    label={t('admin.lessons.form.minLevel')}
+                                    {...register("minLevelRequired")}
+                                    error={errors.minLevelRequired?.message}
+                                    required
+                                />
+                                <FormField
+                                    type="number"
+                                    label={t('admin.lessons.form.duration')}
+                                    {...register("durationMinutes")}
+                                    error={errors.durationMinutes?.message}
+                                    required
+                                />
+                                <FormField
+                                    type="number"
+                                    label={t('admin.lessons.form.passScore')}
+                                    {...register("passScorePercentage")}
+                                    error={errors.passScorePercentage?.message}
+                                    required
+                                />
+
+                                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100">
+                                    <span className="text-sm font-medium text-gray-700">{t('admin.lessons.form.active')}</span>
+                                    <Switch
+                                        checked={isActive}
+                                        onChange={(val) => setValue("isActive", val)}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">
+                            <div className="flex items-center gap-2 text-indigo-600">
+                                <Info className="w-5 h-5" />
+                                <h2 className="text-lg font-bold">{t('admin.lessons.form.sections.lesson_content')}</h2>
                             </div>
 
-                            <FormField
-                                type="number"
-                                label={t('admin.lessons.form.order')}
-                                {...register("orderIndex")}
-                                error={errors.orderIndex?.message}
-                                required
-                            />
-                            <FormField
-                                type="number"
-                                label={t('admin.lessons.form.xp')}
-                                {...register("xpReward")}
-                                error={errors.xpReward?.message}
-                                required
-                            />
-                            <FormField
-                                type="number"
-                                label={t('admin.lessons.form.minLevel')}
-                                {...register("minLevelRequired")}
-                                error={errors.minLevelRequired?.message}
-                                required
-                            />
-                            <FormField
-                                type="number"
-                                label={t('admin.lessons.form.duration')}
-                                {...register("durationMinutes")}
-                                error={errors.durationMinutes?.message}
-                                required
-                            />
-                            <FormField
-                                type="number"
-                                label={t('admin.lessons.form.passScore')}
-                                {...register("passScorePercentage")}
-                                error={errors.passScorePercentage?.message}
-                                required
-                            />
-
-                            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100">
-                                <span className="text-sm font-medium text-gray-700">{t('admin.lessons.form.active')}</span>
-                                <Switch
-                                    checked={isActive}
-                                    onChange={(val) => setValue("isActive", val)}
+                            <div className="max-w-xs">
+                                <Select
+                                    label={t('admin.lessons.form.type')}
+                                    options={lessonTypeOptions}
+                                    value={lessonType}
+                                    onChange={(val) => setValue("lessonType", val as LessonType)}
+                                    placeholder={t('admin.lessons.form.type_placeholder')}
+                                    required
+                                    error={errors.lessonType?.message}
                                 />
                             </div>
-                        </div>
-                    </div>
 
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">
-                        <div className="flex items-center gap-2 text-indigo-600">
-                            <Info className="w-5 h-5" />
-                            <h2 className="text-lg font-bold">{t('admin.lessons.form.sections.lesson_content')}</h2>
-                        </div>
-
-                        <div className="max-w-xs">
-                            <Select
-                                label={t('admin.lessons.form.type')}
-                                options={lessonTypeOptions}
-                                value={lessonType}
-                                onChange={(val) => setValue("lessonType", val as LessonType)}
-                                placeholder={t('admin.lessons.form.type_placeholder')}
-                                required
-                                error={errors.lessonType?.message}
-                            />
+                            <div className="pt-4 border-t border-gray-100">
+                                {lessonType === LessonType.FLASHCARD && (
+                                    <FlashcardForm control={control} register={register} errors={errors} />
+                                )}
+                                {lessonType === LessonType.QCM && (
+                                    <QCMForm control={control} register={register} errors={errors} />
+                                )}
+                                {lessonType === LessonType.MATCHING_PAIR && (
+                                    <MatchingPairForm control={control} register={register} errors={errors} />
+                                )}
+                                {lessonType === LessonType.SORTING_EXERCISE && (
+                                    <SortingExerciseForm control={control} register={register} errors={errors} />
+                                )}
+                            </div>
                         </div>
 
-                        <div className="pt-4 border-t border-gray-100">
-                            {lessonType === LessonType.FLASHCARD && (
-                                <FlashcardForm control={control} register={register} errors={errors} />
-                            )}
-                            {lessonType === LessonType.QCM && (
-                                <QCMForm control={control} register={register} errors={errors} />
-                            )}
-                            {lessonType === LessonType.MATCHING_PAIR && (
-                                <MatchingPairForm control={control} register={register} errors={errors} />
-                            )}
-                            {lessonType === LessonType.SORTING_EXERCISE && (
-                                <SortingExerciseForm control={control} register={register} errors={errors} />
-                            )}
+                        <div className="flex justify-end gap-4">
+                            <Button type="button" variant="outline" onClick={() => navigate(`/admin/topics/${topicId}/lessons`)}>
+                                {t('common.cancel')}
+                            </Button>
+                            <Button type="submit" variant="primary" isLoading={lessonLoading}>
+                                {t('common.save')}
+                            </Button>
                         </div>
-                    </div>
+                    </form>
 
-                    <div className="flex justify-end gap-4">
-                        <Button type="button" variant="outline" onClick={() => navigate(`/admin/topics/${topicId}/lessons`)}>
-                            {t('common.cancel')}
-                        </Button>
-                        <Button type="submit" variant="primary" isLoading={lessonLoading}>
-                            {t('common.save')}
-                        </Button>
-                    </div>
-                </form>
-
-                <div className="lg:sticky lg:top-8 self-start space-y-6">
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                        <h2 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                            {t('admin.lessons.preview.title')}
-                        </h2>
-                        <LessonPreview data={formData} />
+                    <div className="lg:sticky lg:top-8 self-start space-y-6">
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                            <h2 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                {t('admin.lessons.preview.title')}
+                            </h2>
+                            <LessonPreview data={formData} />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

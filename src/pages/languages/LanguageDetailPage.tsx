@@ -1,3 +1,4 @@
+import { MetaData } from "@/components/seo/MetaData";
 import { BadgeTag } from "@/components/ui/BadgeTag";
 import { Button } from "@/components/ui/Button";
 import { StatsCard } from "@/components/ui/card/StatsCard";
@@ -68,10 +69,12 @@ export function LanguageDetailPage() {
     );
 
     return (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <Button variant="outline" size="sm" onClick={() => navigate("/catalog-languages")} className="mb-8">
-                {t("common.back")}
-            </Button>
+        <>
+            <MetaData title={language.name} robots="noindex, nofollow" />
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <Button variant="outline" size="sm" onClick={() => navigate("/catalog-languages")} className="mb-8">
+                    {t("common.back")}
+                </Button>
 
             <div className="flex items-start gap-6 mb-8">
                 <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl font-back text-gray-700 ">
@@ -123,6 +126,7 @@ export function LanguageDetailPage() {
                 </div>
             </div>
         </div>
+    </>
 
     )
 

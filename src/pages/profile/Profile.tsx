@@ -1,6 +1,7 @@
 import InfoAccountPrivate from "@/components/profile/InfoAccountPrivate";
 import { InfoPrivateBanner } from "@/components/profile/InfoPrivateBanner";
 import { ProfileLanguageSection } from "@/components/profile/LanguageSection";
+import { MetaData } from "@/components/seo/MetaData";
 import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/hooks/useAuth";
 import { getProfileImageUrl } from "@/lib/utils/image";
@@ -80,6 +81,8 @@ export  function Profile() {
   }
 
   return (
+    <>
+    <MetaData title={profile.username} robots="noindex, nofollow"  />
     <div className="min-h-screen bg-[#faf7f2]">
       {isProfile && !profile.isPublic && <InfoPrivateBanner />}
 
@@ -127,5 +130,7 @@ export  function Profile() {
         </div>
       </div>
     </div>
+      </>
   );
+
 }

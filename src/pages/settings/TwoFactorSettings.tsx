@@ -8,6 +8,7 @@ import type { TwoFactorCodeFormData } from "@/validations/auth/twoFactorCodeSche
 import { Button } from "@/components/ui/Button";
 import { Enable2FA } from "@/components/settings/twofactor/Enable2FA";
 import { Disabled2FA } from "@/components/settings/twofactor/Disabled2FA";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function TwoFactorSettings() {
     const { t } = useTranslation();
@@ -73,6 +74,8 @@ export default function TwoFactorSettings() {
 
   
   return (
+    <>
+      <MetaData title={t('settings.2fa.page_title')}  robots="noindex, nofollow"  />
     <div className="max-w-lg mx-auto p-6">
       <h2 className="text-2xl font-bold text-indigo-900 mb-4">
         {t('settings.2fa.title')}
@@ -108,5 +111,6 @@ export default function TwoFactorSettings() {
         </div>
       )}
     </div>
+    </>
   );
 }

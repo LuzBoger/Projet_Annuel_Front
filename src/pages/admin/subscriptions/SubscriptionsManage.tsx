@@ -10,6 +10,7 @@ import { CancelSubscriptionModal } from "@/components/subscription/CancelSubscri
 import { SubscriptionPieChart } from "@/components/subscription/pieChart/SubscriptionPieChart";
 import { SubscriptionBarChart } from "@/components/subscription/barChart/SubscriptionBarChart";
 import { SubscriptionStats } from "@/components/subscription/SubscriptionStats";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function SubscriptionsManage() {
     const {t, i18n } = useTranslation();
@@ -60,68 +61,71 @@ export default function SubscriptionsManage() {
     ];
 
     return (
-               <div className="w-full space-y-6">
-            <h1 className="text-2xl font-bold text-indigo-900 mb-6">
-                {t('admin.subscriptions.title')}
-            </h1>
+        <>
+            <MetaData title={t('subscriptions.page_title')} robots="noindex, nofollow"  />
+                <div className="w-full space-y-6">
+                <h1 className="text-2xl font-bold text-indigo-900 mb-6">
+                    {t('admin.subscriptions.title')}
+                </h1>
 
-            {error && (
-                <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
-                    <p>{error}</p>
-                </div>
-            )}
-
-            {subscriptionStats && (
-                <>
-                    <SubscriptionStats stats={subscriptionStats} />
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
-                        <SubscriptionBarChart
-                            monthly={subscriptionStats.subscriptionsByMonth}
-                            yearly={subscriptionStats.subscriptionsByYear}
-                        />
-                        <SubscriptionPieChart data={subscriptionStats.subscriptionsByPlan} />
+                {error && (
+                    <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+                        <p>{error}</p>
                     </div>
-                </>
-            )}
+                )}
 
-            <Table<SubscriptionDetailResponse>
-                columns={colums}
-                data={subscriptions}
-                keyExtractor={(subscription) => subscription.id}
-                renderRow={(subscription) => (
+                {subscriptionStats && (
                     <>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{subscription.firstName}  {subscription.lastName}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.plan?.name}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{t(`subscription.status.${subscription.status.toLowerCase()}`)}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.startDate ? new Date(subscription.startDate).toLocaleDateString(locale) : '-'}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.endDate ? new Date(subscription.endDate).toLocaleDateString(locale) : '-'}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
-                            <TableActions
-                                onView={() => handleViewDetails(subscription, subscription.accountId)}
-                                onCancelAction={
-                                    subscription.status === 'ACTIVE' 
-                                        ? () => handleCancelSubscription(subscription, subscription.accountId) 
-                                        : undefined
-                                }
+                        <SubscriptionStats stats={subscriptionStats} />
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
+                            <SubscriptionBarChart
+                                monthly={subscriptionStats.subscriptionsByMonth}
+                                yearly={subscriptionStats.subscriptionsByYear}
                             />
-                        </td>
+                            <SubscriptionPieChart data={subscriptionStats.subscriptionsByPlan} />
+                        </div>
                     </>
                 )}
-            />
 
-            <SubscriptionModal
-                isOpen={showDetailsModal}
-                onClose={() => setShowDetailsModal(false)}
-                subscription={selectedSubscription}
-                accountId={selectedAccountId!}
-            />
+                <Table<SubscriptionDetailResponse>
+                    columns={colums}
+                    data={subscriptions}
+                    keyExtractor={(subscription) => subscription.id}
+                    renderRow={(subscription) => (
+                        <>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{subscription.firstName}  {subscription.lastName}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.plan?.name}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{t(`subscription.status.${subscription.status.toLowerCase()}`)}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.startDate ? new Date(subscription.startDate).toLocaleDateString(locale) : '-'}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.endDate ? new Date(subscription.endDate).toLocaleDateString(locale) : '-'}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
+                                <TableActions
+                                    onView={() => handleViewDetails(subscription, subscription.accountId)}
+                                    onCancelAction={
+                                        subscription.status === 'ACTIVE' 
+                                            ? () => handleCancelSubscription(subscription, subscription.accountId) 
+                                            : undefined
+                                    }
+                                />
+                            </td>
+                        </>
+                    )}
+                />
 
-            <CancelSubscriptionModal
-                isOpen={showCancelModal}
-                isLoading={loading}
-                onCancel={() => setShowCancelModal(false)}
-                onConfirm={onConfirmCancel}
-            />
-        </div>
+                <SubscriptionModal
+                    isOpen={showDetailsModal}
+                    onClose={() => setShowDetailsModal(false)}
+                    subscription={selectedSubscription}
+                    accountId={selectedAccountId!}
+                />
+
+                <CancelSubscriptionModal
+                    isOpen={showCancelModal}
+                    isLoading={loading}
+                    onCancel={() => setShowCancelModal(false)}
+                    onConfirm={onConfirmCancel}
+                />
+            </div>
+        </>
     );
 }

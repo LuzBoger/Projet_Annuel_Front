@@ -6,6 +6,7 @@ import { SubscriptionDetails } from '@/components/subscription/SubscriptionDetai
 import { SubscriptionActions } from "@/components/subscription/SubscriptionActions";
 import { CancelSubscriptionModal } from "@/components/subscription/CancelSubscriptionModal";
 import { PaymentHistoryTable } from '@/components/subscription/payment/PaymentHistoryTable';
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function Subscription() {
     const {t} = useTranslation();
@@ -41,6 +42,8 @@ export default function Subscription() {
 
 
     return (
+        <>
+        <MetaData title={t('subscription.page_title')}  robots="noindex, nofollow"  />
         <div className="max-w-4xl mx-auto p-6">
             <h1 className="text-2xl font-bold text-indigo-900 mb-6">{t("subscription.title")}</h1>
             {error && (
@@ -91,6 +94,7 @@ export default function Subscription() {
                 onConfirm={handleCancel}
             />
         </div>
+        </>
     );
     
 }    

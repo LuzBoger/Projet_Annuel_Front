@@ -8,6 +8,7 @@ import { LessonCard } from "@/components/topics/LessonCard";
 import { TopicProgressBar } from "@/components/topics/TopicProgressBar";
 import { FinalExamCard } from "@/components/topics/FinalExamCard";
 import { Button } from "@/components/ui/Button";
+import { MetaData } from "@/components/seo/MetaData";
 
 export default function TopicLessons() {
     const { topicId } = useParams<{ topicId: string }>();
@@ -37,6 +38,8 @@ export default function TopicLessons() {
     const lessons = details?.lessons || [];
 
     return (
+        <>
+        <MetaData title={t('topics.lessons_page_title')}  robots="noindex, nofollow"  /> 
         <div className="min-h-screen pb-32 pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <Button 
                 onClick={() => navigate(-1)} 
@@ -163,5 +166,6 @@ export default function TopicLessons() {
                 </div>
             ) : null}
         </div>
+        </>
     );
 }

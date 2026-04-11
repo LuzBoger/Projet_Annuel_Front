@@ -1,4 +1,5 @@
 import { ProfileImageUpload } from "@/components/profile/ImageUpload";
+import { MetaData } from "@/components/seo/MetaData";
 import { UpdateProfileForm } from "@/components/settings/profile/UpdateProfileForm";
 import { EVENT_PROFILE_UPDATED } from "@/constants/event";
 import { globalEvents } from "@/lib/utils/eventEmitter";
@@ -32,6 +33,8 @@ export function ProfileSettings() {
   }
 
   return (
+    <>
+      <MetaData title={t('profile.settings.page_title')}  robots="noindex, nofollow"  />
     <div className="space-y-8">
       {success && (
         <div className="p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-lg">
@@ -73,6 +76,7 @@ export function ProfileSettings() {
         />}
       </section>
     </div>
+    </>
   );
 
 

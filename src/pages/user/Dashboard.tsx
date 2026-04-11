@@ -1,3 +1,4 @@
+import { MetaData } from "@/components/seo/MetaData";
 import { ResumeLessonCard } from "@/components/ui/card/ResumeLessonCard";
 import { XpCard } from "@/components/ui/card/XpCard";
 import { LanguageLevel } from "@/components/user/dashboard/LanguageLevel";
@@ -65,6 +66,8 @@ export default function Dashboard() {
 
     if (loading) return <div className="flex justify-center items-center h-64 text-gray-400">{t("common.loading")}</div>;
     return (
+        <>
+            <MetaData title={t('dashboard.page_title')}  robots="noindex, nofollow"  /> 
         <div className="max-w-6xl mx-auto px-4 py-8">
             <div className="flex gap-8">
 
@@ -87,6 +90,7 @@ export default function Dashboard() {
 
             </div>
         </div>
+        </>
     );
 }
 
