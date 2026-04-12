@@ -49,7 +49,7 @@ export function ProfileSettings() {
       )}
 
       <section>
-        <h2 className="text-xl font-semibold mb-4">{t('profile.image.title')}</h2>
+        <h2 className="text-xl font-semibold mb-4 dark:text-white">{t('profile.image.title')}</h2>
         <ProfileImageUpload
           currentPhotoUrl={profile?.photoUrl}
           onUploadSuccess={(url) => {
@@ -66,7 +66,7 @@ export function ProfileSettings() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-4">{t('profile.info.title')}</h2>
+        <h2 className="text-xl font-semibold mb-4 dark:text-white">{t('profile.info.title')}</h2>
         {profile && <UpdateProfileForm
           data={profile}
           onSuccess={() => {

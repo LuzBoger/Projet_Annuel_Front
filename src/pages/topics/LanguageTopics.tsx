@@ -64,17 +64,17 @@ export default function LanguageTopics() {
         <MetaData title={t('topics.page_title')}  robots="noindex, nofollow"  />
         <div className="relative min-h-screen pb-32 pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div className="mb-4">
-                <h1 className="text-2xl font-bold text-indigo-900 tracking-tight">
+                <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300 tracking-tight">
                     {t('topics.page_title')}
                 </h1>
-                <p className="mt-2 text-lg text-gray-600">
+                <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
                     {t('topics.page_desc')}
                 </p>
             </div>
 
             {error && (
-                <div className="mb-8 p-4 bg-red-50 rounded-xl border border-red-200">
-                    <p className="text-red-800">{error}</p>
+                <div className="mb-8 p-4 bg-red-50 dark:bg-red-900/20 rounded-xl border border-red-200 dark:border-red-800">
+                    <p className="text-red-800 dark:text-red-300">{error}</p>
                 </div>
             )}
 
@@ -100,10 +100,10 @@ export default function LanguageTopics() {
                     ))}
                 </div>
             ) : (
-                <div className="text-center py-20 bg-white bg-opacity-50 rounded-3xl border border-gray-200 border-dashed">
+                <div className="text-center py-20 bg-white dark:bg-gray-800 bg-opacity-50 rounded-3xl border border-gray-200 dark:border-gray-700 border-dashed">
                     <Search className="mx-auto h-12 w-12 text-gray-400" />
-                    <h3 className="mt-4 text-sm font-medium text-gray-900">{t('topics.empty_title')}</h3>
-                    <p className="mt-1 text-sm text-gray-500">{t('topics.empty_desc')}</p>
+                    <h3 className="mt-4 text-sm font-medium text-gray-900 dark:text-white">{t('topics.empty_title')}</h3>
+                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{t('topics.empty_desc')}</p>
                 </div>
             )}
         </div>

@@ -80,8 +80,8 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg mx-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-lg mx-4">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                     {isEditPlan ? t('plans.edit.title') : t('plans.create.title')}
                 </h3>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -94,11 +94,11 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                         {...register('name')}
                     />
                     <div>
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">{t('plans.form.description')}</label>
+                        <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t('plans.form.description')}</label>
                         <textarea
                             id="description"
                             rows={4}
-                            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${errors.description ? 'border-red-500' : ''}`}
+                            className={`mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${errors.description ? 'border-red-500' : ''}`}
                             disabled={isLoading}
                             {...register('description')}
                         />
@@ -166,7 +166,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                                 className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 {...register('isActive' as keyof (CreatePlanFormData | UpdatePlanFormData))}
                             />
-                            <label htmlFor="isActive" className="text-sm text-gray-700">
+                            <label htmlFor="isActive" className="text-sm text-gray-700 dark:text-gray-300">
                                 {t('plans.is_active')}
                             </label>
                         </div>

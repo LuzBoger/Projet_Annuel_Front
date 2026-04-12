@@ -52,8 +52,8 @@ export default function Login() {
             illustrationDescription={t('auth.illustrations.login.description')}
         >
             {error && (
-              <div className={`mb-4 rounded-md p-4 ${isAccountLocked ? 'bg-red-100 border border-red-400' : 'bg-red-50'}`}>
-                <p className={`text-sm ${isAccountLocked ? 'text-red-800 font-medium' : 'text-red-600'}`}>
+              <div className={`mb-4 rounded-md p-4 ${isAccountLocked ? 'bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-700' : 'bg-red-50 dark:bg-red-900/20'}`}>
+                <p className={`text-sm ${isAccountLocked ? 'text-red-800 dark:text-red-300 font-medium' : 'text-red-600 dark:text-red-400'}`}>
                   {error}
                 </p>
               </div>
@@ -61,16 +61,16 @@ export default function Login() {
             <LoginForm onSubmit={handleSubmit} isLoading={isLoading} />
 
             <div className='mt-6 text-center'>
-                <p className='text-sm text-gray-600'>
+                <p className='text-sm text-gray-600 dark:text-gray-400'>
                     {t('auth.login.no_account')}{' '}
-                    <Link to="/register" className='text-indigo-600 hover:text-indigo-800'>
+                    <Link to="/register" className='text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300'>
                         {t('auth.login.create_account')}
                     </Link>
                 </p>
             </div>
 
             <div className='mt-4 text-center'>
-                <Link to="/" className="text-gray-500 hover:text-gray-700 text-sm">
+                <Link to="/" className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm">
                     {t('auth.back_home')}
                 </Link>
             </div>

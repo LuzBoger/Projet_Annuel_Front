@@ -136,19 +136,19 @@ export default function LessonForm() {
                         <ChevronLeft className="w-5 h-5" />
                     </Button>
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-900">
+                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                             {isEdit ? t('admin.lessons.edit') : t('admin.lessons.create')}
                         </h1>
-                        <p className="text-sm text-gray-500">
-                            {t('admin.lessons.form.topic_label')} <span className="font-semibold text-indigo-600">{currentTopic?.name || "..."}</span>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                            {t('admin.lessons.form.topic_label')} <span className="font-semibold text-indigo-600 dark:text-indigo-400">{currentTopic?.name || "..."}</span>
                         </p>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <form onSubmit={handleSubmit(onFormSubmit)} className="lg:col-span-2 space-y-8">
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
-                            <div className="flex items-center gap-2 mb-4 text-indigo-600">
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 space-y-6">
+                            <div className="flex items-center gap-2 mb-4 text-indigo-600 dark:text-indigo-400">
                                 <Info className="w-5 h-5" />
                                 <h2 className="text-lg font-bold">{t('admin.lessons.form.sections.basic_info')}</h2>
                             </div>
@@ -163,12 +163,12 @@ export default function LessonForm() {
                                     />
                                 </div>
                                 <div className="md:col-span-2">
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                         {t('admin.lessons.form.description')}
                                     </label>
                                     <textarea
                                         {...register("description")}
-                                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none min-h-[100px]"
+                                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none min-h-[100px] bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                                     />
                                     {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>}
                                 </div>
@@ -209,8 +209,8 @@ export default function LessonForm() {
                                     required
                                 />
 
-                                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100">
-                                    <span className="text-sm font-medium text-gray-700">{t('admin.lessons.form.active')}</span>
+                                <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-600">
+                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200">{t('admin.lessons.form.active')}</span>
                                     <Switch
                                         checked={isActive}
                                         onChange={(val) => setValue("isActive", val)}
@@ -219,8 +219,8 @@ export default function LessonForm() {
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">
-                            <div className="flex items-center gap-2 text-indigo-600">
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 space-y-8">
+                            <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
                                 <Info className="w-5 h-5" />
                                 <h2 className="text-lg font-bold">{t('admin.lessons.form.sections.lesson_content')}</h2>
                             </div>
@@ -237,7 +237,7 @@ export default function LessonForm() {
                                 />
                             </div>
 
-                            <div className="pt-4 border-t border-gray-100">
+                            <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
                                 {lessonType === LessonType.FLASHCARD && (
                                     <FlashcardForm control={control} register={register} errors={errors} />
                                 )}
@@ -264,8 +264,8 @@ export default function LessonForm() {
                     </form>
 
                     <div className="lg:sticky lg:top-8 self-start space-y-6">
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                            <h2 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+                            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                                 {t('admin.lessons.preview.title')}
                             </h2>

@@ -32,8 +32,8 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
   }, [t]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF7F4]/80 backdrop-blur-sm">
-      <div className="relative w-full max-w-lg mx-4 bg-white rounded-3xl shadow-xl p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF7F4]/80 dark:bg-gray-900/80 backdrop-blur-sm">
+      <div className="relative w-full max-w-lg mx-4 bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
 
         <div className="flex items-center justify-between mb-6">
           {step === "learning" ? (
@@ -42,12 +42,12 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
             <div />
           )}
 
-          <Button onClick={skip} variant="ghost" size="sm" className="text-[#8B8279] hover:text-[#1A1A1A] border-none">
+          <Button onClick={skip} variant="ghost" size="sm" className="text-[#8B8279] dark:text-gray-400 hover:text-[#1A1A1A] border-none">
             {t("common.skip")}
           </Button>
         </div>
 
-        <h2 className="text-2xl font-bold text-[#1A1A1A] mb-6">
+        <h2 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-6">
           {step === "native" ? t("onBoarding.selectNativeLanguage") : t("onBoarding.selectLearningLanguage")}
         </h2>
 
@@ -91,12 +91,12 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
         <div className="flex justify-center mt-4 gap-2">
           <div
             className={`h-2 w-2 rounded-full ${
-              step === "native" ? "bg-black" : "bg-gray-300"
+              step === "native" ? "bg-black dark:bg-white" : "bg-gray-300 dark:bg-gray-600"
             }`}
           />
           <div
             className={`h-2 w-2 rounded-full ${
-              step === "learning" ? "bg-black" : "bg-gray-300"
+              step === "learning" ? "bg-black dark:bg-white" : "bg-gray-300 dark:bg-gray-600"
             }`}
           />
         </div>

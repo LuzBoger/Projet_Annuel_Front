@@ -54,7 +54,7 @@ export function CodeInput({ length = 6, value, onChange, disabled = false, error
           className={clsx(
             'w-12 h-14 text-center text-2xl font-bold rounded-md shadow-sm',
             'border focus:outline-none focus:ring-2 transition-colors',
-            error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500',
+            error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-500',
             disabled && 'opacity-50 cursor-not-allowed'
           )}
         />

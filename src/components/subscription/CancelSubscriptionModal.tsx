@@ -22,11 +22,11 @@ export function CancelSubscriptionModal({isOpen, isLoading, onCancel, onConfirm}
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                     {t('subscription.cancel.title')}
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                     {t('subscription.cancel.description')}
                 </p>
 
@@ -35,7 +35,7 @@ export function CancelSubscriptionModal({isOpen, isLoading, onCancel, onConfirm}
                         {t('subscription.cancel.reason')}
                     </label>
                     <textarea
-                        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-200"
                         rows={3}
                         maxLength={500}
                         value={reason}
@@ -44,7 +44,7 @@ export function CancelSubscriptionModal({isOpen, isLoading, onCancel, onConfirm}
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="flex items-center gap-2 text-sm text-gray-700">
+                    <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                     <input type="checkbox" checked={isCancel} onChange={(e) => setIsCancel(e.target.checked)} className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" />
                     {t('subscription.cancel.now')}
                     </label>

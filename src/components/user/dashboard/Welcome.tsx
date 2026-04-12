@@ -21,11 +21,11 @@ export function Welcome({ username }: WelcomeProps) {
     return (
         <div className="mb-6">
 
-            <h1 className="text-4xl font-bold text-gray-900">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
                 {t("dashboard.welcome.greeting")}{" "}
                 <span className="italic">{username}.</span>
             </h1>
-            <p className="text-gray-500 mt-2 text-sm">{message}</p>
+            <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm">{message}</p>
         </div>
     )
 }

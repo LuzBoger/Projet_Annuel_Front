@@ -80,10 +80,10 @@ export default function LessonList() {
                             <ChevronLeft className="w-5 h-5" />
                         </Button>
                         <div>
-                            <h1 className="text-2xl font-bold text-gray-900">
+                            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                                 {t('admin.lessons.page_title', { topicName: currentTopic?.name || '...' })}
                             </h1>
-                            <p className="text-sm text-gray-500 mt-1">
+                            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                                 {t('admin.lessons.list_title', { topicName: currentTopic?.name || '...' })}
                             </p>
                         </div>
@@ -99,24 +99,24 @@ export default function LessonList() {
                     emptyMessage={t('admin.lessons.no_lessons')}
                     renderRow={(lesson) => (
                         <>
-                            <td className="px-6 py-4 text-sm font-medium text-gray-900 border-b border-gray-200">
+                            <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700">
                                 {lesson.title}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
-                                <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                                <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300">
                                     {lesson.lessonType}
                                 </span>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
                                 {lesson.orderIndex}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
-                                <Switch 
-                                    checked={lesson.isActive} 
-                                    onChange={(checked) => handleStatusToggle(lesson, checked)} 
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                                <Switch
+                                    checked={lesson.isActive}
+                                    onChange={(checked) => handleStatusToggle(lesson, checked)}
                                 />
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 text-right">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700 text-right">
                                 <TableActions
                                     onEdit={() => handleEdit(lesson)}
                                     onDelete={() => handleDeleteClick(lesson)}

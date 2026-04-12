@@ -56,7 +56,7 @@ export  function Profile() {
     };
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#faf7f2] flex justify-center items-center">
+      <div className="min-h-screen bg-[#faf7f2] dark:bg-gray-900 flex justify-center items-center">
         <div className="w-7 h-7 rounded-full border-2 border-[#e8dcc8] border-t-[#c8a97e] animate-spin" />
       </div>
     );
@@ -64,7 +64,7 @@ export  function Profile() {
 
  if (isPrivate) {
     return (
-      <div className="min-h-screen bg-[#faf7f2] flex justify-center items-center px-4">
+      <div className="min-h-screen bg-[#faf7f2] dark:bg-gray-900 flex justify-center items-center px-4">
         <InfoAccountPrivate />
       </div>
     );
@@ -72,8 +72,8 @@ export  function Profile() {
 
   if (error || !profile) {
     return (
-      <div className="min-h-screen bg-[#faf7f2] flex justify-center items-center px-4">
-        <div className="px-6 py-4 bg-[#fcebeb] text-[#791F1F] rounded-xl border border-[#f09595] text-sm">
+      <div className="min-h-screen bg-[#faf7f2] dark:bg-gray-900 flex justify-center items-center px-4">
+        <div className="px-6 py-4 bg-[#fcebeb] dark:bg-red-900/20 text-[#791F1F] dark:text-red-400 rounded-xl border border-[#f09595] dark:border-red-800 text-sm">
           {error || t("profile.error.loadFailed")}
         </div>
       </div>
@@ -83,7 +83,7 @@ export  function Profile() {
   return (
     <>
     <MetaData title={profile.username} robots="noindex, nofollow"  />
-    <div className="min-h-screen bg-[#faf7f2]">
+    <div className="min-h-screen bg-[#faf7f2] dark:bg-gray-900">
       {isProfile && !profile.isPublic && <InfoPrivateBanner />}
 
       <div className="max-w-5xl mx-auto px-4 py-8">
@@ -91,7 +91,7 @@ export  function Profile() {
 
           <aside className="w-56 flex-shrink-0 flex flex-col gap-4 sticky top-8">
 
-            <div className="bg-white rounded-2xl border border-[#e8dcc8] px-5 py-5 flex flex-col items-center gap-3 text-center">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-5 py-5 flex flex-col items-center gap-3 text-center">
               <div className="flex-shrink-0 border-2 border-[#e8dcc8] rounded-full">
                 <Avatar
                   imageUrl={getProfileImageUrl(profile.photoUrl ?? "") ?? undefined}
@@ -99,12 +99,12 @@ export  function Profile() {
                 />
               </div>
               <div className="min-w-0">
-                <h1 className="text-[16px] font-medium text-[#3a2e1e] truncate">{profile.username}</h1>
+                <h1 className="text-[16px] font-medium text-[#3a2e1e] dark:text-white truncate">{profile.username}</h1>
               </div>
               {isProfile && (
                 <Link
                   to="/settings"
-                  className="w-full inline-flex justify-center items-center px-4 py-2 text-sm font-medium rounded-lg border border-[#c8a97e] text-[#5a4a2e] bg-white hover:bg-[#faf7f2] transition-colors"
+                  className="w-full inline-flex justify-center items-center px-4 py-2 text-sm font-medium rounded-lg border border-[#c8a97e] dark:border-gray-600 text-[#5a4a2e] dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-[#faf7f2] dark:hover:bg-gray-600 transition-colors"
                 >
                   {t("profile.edit")}
                 </Link>
@@ -112,12 +112,12 @@ export  function Profile() {
             </div>
 
             {profile.bio && (
-              <div className="bg-white rounded-2xl border border-[#e8dcc8] px-6 py-5">
-                <h2 className="text-[10px] font-medium text-[#8a7a60] uppercase tracking-widest mb-3 flex items-center gap-2">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-6 py-5">
+                <h2 className="text-[10px] font-medium text-[#8a7a60] dark:text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
                   {t("profile.bio")}
                   <span className="flex-1 h-px bg-[#e8dcc8]" />
                 </h2>
-                <p className="text-[15px] text-[#3a2e1e] leading-relaxed font-light">{profile.bio}</p>
+                <p className="text-[15px] text-[#3a2e1e] dark:text-gray-300 leading-relaxed font-light">{profile.bio}</p>
               </div>
             )}
 

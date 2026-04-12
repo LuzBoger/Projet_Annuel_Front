@@ -64,12 +64,12 @@ export default function SubscriptionsManage() {
         <>
             <MetaData title={t('subscriptions.page_title')} robots="noindex, nofollow"  />
                 <div className="w-full space-y-6">
-                <h1 className="text-2xl font-bold text-indigo-900 mb-6">
+                <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300 mb-6">
                     {t('admin.subscriptions.title')}
                 </h1>
 
                 {error && (
-                    <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+                    <div className="mb-4 p-4 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 text-sm">
                         <p>{error}</p>
                     </div>
                 )}
@@ -93,12 +93,12 @@ export default function SubscriptionsManage() {
                     keyExtractor={(subscription) => subscription.id}
                     renderRow={(subscription) => (
                         <>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{subscription.firstName}  {subscription.lastName}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.plan?.name}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{t(`subscription.status.${subscription.status.toLowerCase()}`)}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.startDate ? new Date(subscription.startDate).toLocaleDateString(locale) : '-'}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscription.endDate ? new Date(subscription.endDate).toLocaleDateString(locale) : '-'}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{subscription.firstName}  {subscription.lastName}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{subscription.plan?.name}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{t(`subscription.status.${subscription.status.toLowerCase()}`)}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{subscription.startDate ? new Date(subscription.startDate).toLocaleDateString(locale) : '-'}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{subscription.endDate ? new Date(subscription.endDate).toLocaleDateString(locale) : '-'}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700">
                                 <TableActions
                                     onView={() => handleViewDetails(subscription, subscription.accountId)}
                                     onCancelAction={

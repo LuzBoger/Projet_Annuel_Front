@@ -24,7 +24,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
     if (!questions || questions.length === 0) {
         return (
             <PlayerLayout>
-                <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm w-full">
+                <div className="text-center p-8 text-gray-500 font-medium bg-white dark:bg-gray-800 rounded-2xl shadow-sm w-full">
                     {t('common.empty')}
                 </div>
             </PlayerLayout>
@@ -68,15 +68,15 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                         
                         if (!isValidated) {
                             buttonClass += selectedOption === idx 
-                                ? "border-indigo-500 bg-indigo-50 text-indigo-800" 
-                                : "border-gray-100 hover:border-gray-200 bg-white text-gray-700";
+                                ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300"
+                                : "border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300";
                         } else {
                             if (idx === currentQ.correctOptionIndex) {
-                                buttonClass += "border-emerald-500 bg-emerald-50 text-emerald-800"; 
+                                buttonClass += "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300";
                             } else if (idx === selectedOption) {
-                                buttonClass += "border-red-400 bg-red-50 text-red-800"; 
+                                buttonClass += "border-red-400 bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-red-300";
                             } else {
-                                buttonClass += "border-gray-100 bg-gray-50 text-gray-400 opacity-60"; 
+                                buttonClass += "border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-400 opacity-60";
                             }
                         }
 
@@ -92,7 +92,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                                     (!isValidated && selectedOption === idx) ? "bg-indigo-500 border-indigo-500 text-white" :
                                     (isValidated && idx === currentQ.correctOptionIndex) ? "bg-emerald-500 border-emerald-500 text-white" :
                                     (isValidated && idx === selectedOption) ? "bg-red-400 border-red-400 text-white" :
-                                    "bg-white border-gray-200 text-gray-400 group-hover:border-gray-300 group-hover:text-gray-500"
+                                    "bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-400 group-hover:border-gray-300 group-hover:text-gray-500"
                                 }`}>
                                     {String.fromCharCode(65 + idx)}
                                 </span>
@@ -126,7 +126,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                         onClick={handleNext}
                         fullWidth
                         size="lg"
-                        className="py-6 !bg-gray-900 hover:!bg-gray-800 text-white rounded-2xl font-medium text-lg shadow-sm flex items-center justify-center gap-2"
+                        className="py-6 !bg-gray-900 dark:!bg-gray-700 hover:!bg-gray-800 dark:hover:!bg-gray-600 text-white rounded-2xl font-medium text-lg shadow-sm flex items-center justify-center gap-2"
                     >
                         <span>{currentIndex < questions.length - 1 ? t('lessons.qcm.next') : t('lessons.finish')}</span>
                         {currentIndex < questions.length - 1 && <ChevronRight className="w-5 h-5 ml-2" />}

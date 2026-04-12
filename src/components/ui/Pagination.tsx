@@ -16,15 +16,15 @@ export function Pagination({ currentPage, hasMore, onNext, onPrev }: PaginationP
         onClick={onPrev}
         disabled={currentPage === 1}
         className={`
-          flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-200 bg-white text-sm font-medium text-gray-600
-          hover:bg-gray-50 hover:text-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed
+          flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-gray-600 dark:text-gray-300
+          hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed
         `}
       >
         <ChevronLeft className="w-4 h-4" />
         <span className="hidden sm:inline">{t("previous", "Précédent")}</span>
       </button>
 
-      <div className="flex items-center justify-center w-8 h-8 rounded-md bg-indigo-50 text-indigo-700 font-semibold text-sm border border-indigo-100">
+      <div className="flex items-center justify-center w-8 h-8 rounded-md bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-semibold text-sm border border-indigo-100 dark:border-indigo-800">
         {currentPage}
       </div>
 
@@ -32,8 +32,8 @@ export function Pagination({ currentPage, hasMore, onNext, onPrev }: PaginationP
         onClick={onNext}
         disabled={!hasMore}
         className={`
-          flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-200 bg-white text-sm font-medium text-gray-600
-          hover:bg-gray-50 hover:text-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed
+          flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-gray-600 dark:text-gray-300
+          hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed
         `}
       >
         <span className="hidden sm:inline">{t("next", "Suivant")}</span>

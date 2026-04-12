@@ -29,14 +29,14 @@ export function LanguagesSection({ languages, onRemove }: LanguagesSectionProps)
     return (
         <div className="mt-6">
             <div className="flex justify-between items-center mb-3">
-                <h3 className="text-sm font-semibold text-gray-700">
+                <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                     {t("profile.profileLanguages.title")}
                 </h3>
                 <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => navigate("/catalog-languages")}
-                    className="inline-flex items-center gap-1 text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-full border-0"
+                    className="inline-flex items-center gap-1 text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 rounded-full border-0"
                 >
                     <Plus className="w-3 h-3" />
                     {t("common.add")}
@@ -67,20 +67,20 @@ export function LanguagesSection({ languages, onRemove }: LanguagesSectionProps)
                     {learningLanguages.map((lang, index) => (
                         <div
                             key={lang.id}
-                            className="flex items-center justify-between px-3 py-2.5 bg-white rounded-xl border border-gray-100 hover:border-gray-200 transition-colors"
+                            className="flex items-center justify-between px-3 py-2.5 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 transition-colors"
                         >
                             <div className="flex items-center gap-3">
                                 <Badge code={lang.languageCode} index={index} />
                                 <div className="flex flex-col">
-                                    <span className="text-sm font-medium text-gray-800">{lang.languageName}</span>
-                                    <span className="text-xs text-gray-400">{t("profile.profileLanguages.learning")}</span>
+                                    <span className="text-sm font-medium text-gray-800 dark:text-gray-200">{lang.languageName}</span>
+                                    <span className="text-xs text-gray-400 dark:text-gray-500">{t("profile.profileLanguages.learning")}</span>
                                 </div>
                             </div>
                             <Button
                                 variant="danger"
                                 size="sm"
                                 onClick={() => handleRemove(lang)}
-                                className="text-xs bg-transparent text-red-300 hover:text-red-500 hover:bg-red-50 border-0"
+                                className="text-xs bg-transparent text-red-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 border-0"
                             >
                                 {t("common.remove")}
                             </Button>

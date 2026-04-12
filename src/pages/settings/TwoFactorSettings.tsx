@@ -77,17 +77,17 @@ export default function TwoFactorSettings() {
     <>
       <MetaData title={t('settings.2fa.page_title')}  robots="noindex, nofollow"  />
     <div className="max-w-lg mx-auto p-6">
-      <h2 className="text-2xl font-bold text-indigo-900 mb-4">
+      <h2 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300 mb-4">
         {t('settings.2fa.title')}
       </h2>
 
       {error && (
-        <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+        <div className="mb-4 p-4 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 text-sm">
           <p>{error}</p>
         </div>
       )}
       {success && (
-        <div className="mb-4 p-4 rounded-md bg-green-50 border border-green-200 text-green-800 text-sm">
+        <div className="mb-4 p-4 rounded-md bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-400 text-sm">
           <p>{success}</p>
         </div>
       )}

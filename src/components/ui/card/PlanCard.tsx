@@ -19,7 +19,7 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
     return (
         <div className={`relative flex flex-col p-8 rounded-2xl border-2 shadow-sm transition-all duration-300
             ${plan.subscriptionType === 'FREE'
-                ? 'bg-white border-gray-100'
+                ? 'bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700'
                 : 'bg-indigo-600 border-indigo-600'
             }
             ${isCurrentUserPlan ? 'border-indigo-500 shadow-lg shadow-indigo-100' : ''}
@@ -27,12 +27,12 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
 
             {isCurrentUserPlan && <BadgeActive />}
 
-            <h3 className={`text-xs font-bold tracking-widest uppercase mb-4 ${plan.subscriptionType === 'FREE' ? 'text-gray-400' : 'text-indigo-300'}`}>
+            <h3 className={`text-xs font-bold tracking-widest uppercase mb-4 ${plan.subscriptionType === 'FREE' ? 'text-gray-400 dark:text-gray-500' : 'text-indigo-300'}`}>
                 {plan.name}
             </h3>
 
             <div className="mb-1">
-                <span className={`text-4xl font-black ${plan.subscriptionType === 'FREE' ? 'text-gray-900' : 'text-white'}`}>
+                <span className={`text-4xl font-black ${plan.subscriptionType === 'FREE' ? 'text-gray-900 dark:text-white' : 'text-white'}`}>
                     {plan.subscriptionType === 'FREE' ? t('subscription.type.free') : getFormatForCurrency(locale, plan.currency, plan.price)}
                 </span>
                 {plan.subscriptionType !== 'FREE' && plan.paymentInterval && (
@@ -43,14 +43,14 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
             </div>
 
             {plan.description && (
-                <p className={`text-sm leading-relaxed mb-8 ${plan.subscriptionType === 'FREE' ? 'text-gray-400' : 'text-indigo-200'}`}>
+                <p className={`text-sm leading-relaxed mb-8 ${plan.subscriptionType === 'FREE' ? 'text-gray-400 dark:text-gray-500' : 'text-indigo-200'}`}>
                     {plan.description}
                 </p>
             )}
 
             <div className="mt-auto">
                 {isCurrentUserPlan ? (
-                    <p className={`text-sm font-semibold ${plan.subscriptionType === 'FREE' ? 'text-gray-400' : 'text-indigo-200'}`}>
+                    <p className={`text-sm font-semibold ${plan.subscriptionType === 'FREE' ? 'text-gray-400 dark:text-gray-500' : 'text-indigo-200'}`}>
                         ✓ {t('subscription.current_plan')}
                     </p>
                 ) : plan.subscriptionType === 'FREE' && !hasActiveSubscription ? (

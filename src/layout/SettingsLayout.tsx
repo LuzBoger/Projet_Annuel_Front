@@ -1,5 +1,6 @@
 import { LanguagesSettings } from "@/components/settings/languages/LanguagesSettings";
 import { SideBar } from "@/components/settings/SideBar";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { PasswordSettings } from "@/pages/settings/PasswordSettings";
 import { ProfileSettings } from "@/pages/settings/ProfileSettings";
 import TwoFactorSettings from "@/pages/settings/TwoFactorSettings";
@@ -27,6 +28,7 @@ export function SettingsLayout() {
             {activeTab === 'password' && <PasswordSettings />}
             {activeTab === '2fa' && <TwoFactorSettings />}
             {activeTab === 'language' && <LanguagesSettings />}
+            {activeTab === 'theme' && <ThemeToggle />}
           </main>
         </div>
       </div>

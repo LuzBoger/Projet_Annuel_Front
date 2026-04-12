@@ -12,14 +12,14 @@ export function LessonPreview({ data }: LessonPreviewProps) {
 
     if (!title && !lessonType) {
         return (
-            <div className="flex flex-col items-center justify-center h-64 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50 text-gray-400">
+            <div className="flex flex-col items-center justify-center h-64 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-400 dark:text-gray-500">
                 <p>{t('admin.lessons.preview.no_data')}</p>
             </div>
         );
     }
 
     const renderCard = (content: React.ReactNode, index: number) => (
-        <div key={index} className="relative bg-white rounded-2xl border border-gray-100 shadow-sm p-8 mb-6 overflow-hidden transition-all hover:shadow-md">
+        <div key={index} className="relative bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm p-8 mb-6 overflow-hidden transition-all hover:shadow-md">
 
             {content}
             <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600 border border-blue-100">
@@ -38,8 +38,8 @@ export function LessonPreview({ data }: LessonPreviewProps) {
             `}</style>
 
             <div className="px-2">
-                <h3 className="text-xl font-extrabold text-gray-900 mb-1">{title || t('admin.lessons.form.untitled')}</h3>
-                <p className="text-sm text-gray-500">{description || t('admin.lessons.form.no_description')}</p>
+                <h3 className="text-xl font-extrabold text-gray-900 dark:text-white mb-1">{title || t('admin.lessons.form.untitled')}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{description || t('admin.lessons.form.no_description')}</p>
             </div>
 
             <div className="max-h-[700px] overflow-y-auto pr-2 custom-scrollbar">
@@ -50,13 +50,13 @@ export function LessonPreview({ data }: LessonPreviewProps) {
                 {lessonType === LessonType.QCM && (data.questions?.length ? data.questions : [{ question: "Exemple de question ?", options: ["Option A", "Option B"] }]).map((q: { question?: string; options?: string[] }, i: number) =>
                     renderCard(
                         <div className="space-y-6">
-                            <h4 className="text-xl font-bold text-gray-900 leading-snug">
+                            <h4 className="text-xl font-bold text-gray-900 dark:text-white leading-snug">
                                 {q.question}
                             </h4>
                             <div className="grid grid-cols-1 gap-3">
                                 {q.options?.map((opt: string, optIdx: number) => (
-                                    <div key={optIdx} className="flex items-center p-4 rounded-xl border-2 border-gray-50 bg-gray-50/30 text-sm font-medium text-gray-700">
-                                        <div className="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center mr-3 text-[10px] text-gray-400">
+                                    <div key={optIdx} className="flex items-center p-4 rounded-xl border-2 border-gray-50 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-700/30 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        <div className="w-6 h-6 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 flex items-center justify-center mr-3 text-[10px] text-gray-400 dark:text-gray-500">
                                             {String.fromCharCode(65 + optIdx)}
                                         </div>
                                         {opt}
@@ -87,7 +87,7 @@ export function LessonPreview({ data }: LessonPreviewProps) {
                                             <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
                                         </div>
                                     </div>
-                                    <div className="flex-1 p-3 bg-white rounded-xl border border-gray-100 text-center font-bold text-gray-700 text-sm">
+                                    <div className="flex-1 p-3 bg-white dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-600 text-center font-bold text-gray-700 dark:text-gray-200 text-sm">
                                         {p.item2}
                                     </div>
                                 </div>
@@ -104,11 +104,11 @@ export function LessonPreview({ data }: LessonPreviewProps) {
                         </span>
                         <div className="space-y-2">
                             {(data.sortingItems?.length ? data.sortingItems.map((item) => item.value) : ["Item A", "Item B", "Item C"]).map((item: string | undefined, i: number) => (
-                                <div key={i} className="flex items-center p-4 bg-white border border-gray-100 rounded-xl shadow-sm">
-                                    <div className="mr-4 text-gray-300">
+                                <div key={i} className="flex items-center p-4 bg-white dark:bg-gray-700 border border-gray-100 dark:border-gray-600 rounded-xl shadow-sm">
+                                    <div className="mr-4 text-gray-300 dark:text-gray-600">
                                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M4 8h16M4 16h16" /></svg>
                                     </div>
-                                    <span className="text-sm font-medium text-gray-700">{item ? item.trim() : `Élément ${i + 1}`}</span>
+                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200">{item ? item.trim() : `Élément ${i + 1}`}</span>
                                 </div>
                             ))}
                         </div>
@@ -117,7 +117,7 @@ export function LessonPreview({ data }: LessonPreviewProps) {
                 )}
             </div>
 
-            <p className="text-[10px] text-gray-400 uppercase tracking-widest text-center pt-4 border-t border-gray-100 font-bold">
+            <p className="text-[10px] text-gray-400 dark:text-gray-600 uppercase tracking-widest text-center pt-4 border-t border-gray-100 dark:border-gray-700 font-bold">
                 {t('admin.lessons.preview.visual_confirm')}
             </p>
         </div>

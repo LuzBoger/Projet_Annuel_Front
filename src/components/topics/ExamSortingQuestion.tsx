@@ -44,16 +44,16 @@ export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onCh
         <PlayerCard
             instruction={
                 <div className="flex justify-center mb-4">
-                    <span className="px-4 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold tracking-wide uppercase">
+                    <span className="px-4 py-1.5 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-bold tracking-wide uppercase">
                         {t('lessons.sorting.instruction')}
                     </span>
                 </div>
             }
         >
             <div className="w-full space-y-8 max-w-lg mx-auto">
-                <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-100 py-8 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 rounded-[2rem]">
+                <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-100 dark:border-gray-700 py-8 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 dark:bg-gray-700/50 rounded-[2rem]">
                     {selectedItems.length === 0 && (
-                        <span className="text-gray-400 font-medium select-none text-sm sm:text-base text-center">
+                        <span className="text-gray-400 dark:text-gray-500 font-medium select-none text-sm sm:text-base text-center">
                             {t('lessons.sorting.empty_target')}
                         </span>
                     )}
@@ -63,7 +63,7 @@ export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onCh
                             key={item.id}
                             variant="none"
                             onClick={() => handleTargetDeselection(item)}
-                            className="px-5 py-3 bg-white border-2 border-indigo-200 shadow-sm rounded-2xl text-indigo-900 font-medium text-[15px] sm:text-lg hover:bg-red-50 hover:border-red-200 hover:text-red-700 transition-all active:scale-95 shadow-[0_4px_12px_rgb(0,0,0,0.03)]"
+                            className="px-5 py-3 bg-white dark:bg-gray-700 border-2 border-indigo-200 dark:border-indigo-700 shadow-sm rounded-2xl text-indigo-900 dark:text-indigo-200 font-medium text-[15px] sm:text-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-200 dark:hover:border-red-700 hover:text-red-700 dark:hover:text-red-300 transition-all active:scale-95 shadow-[0_4px_12px_rgb(0,0,0,0.03)]"
                         >
                             {item.text}
                         </Button>
@@ -76,7 +76,7 @@ export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onCh
                             key={item.id}
                             variant="none"
                             onClick={() => handlePoolSelection(item)}
-                            className="px-5 py-3 bg-white border-2 border-gray-100 shadow-sm rounded-2xl text-gray-800 font-medium text-[15px] sm:text-lg hover:border-indigo-400 hover:text-indigo-800 hover:shadow-md transition-all active:scale-95"
+                            className="px-5 py-3 bg-white dark:bg-gray-700 border-2 border-gray-100 dark:border-gray-700 shadow-sm rounded-2xl text-gray-800 dark:text-gray-200 font-medium text-[15px] sm:text-lg hover:border-indigo-400 dark:hover:border-indigo-500 hover:text-indigo-800 dark:hover:text-indigo-200 hover:shadow-md transition-all active:scale-95"
                         >
                             {item.text}
                         </Button>

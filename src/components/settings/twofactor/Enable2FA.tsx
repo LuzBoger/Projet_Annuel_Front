@@ -23,21 +23,21 @@ export function Enable2FA({ qrCodeUri, secret, onVerify, onCancel, isLoading }: 
 
      return (
     <div className="space-y-6">
-      <p className="text-sm text-gray-600 text-center">{t('settings.2fa.scan_qr')}</p>
+      <p className="text-sm text-gray-600 dark:text-gray-400 text-center">{t('settings.2fa.scan_qr')}</p>
 
       <div className="flex justify-center">
         <QRCodeSVG value={qrCodeUri} size={192} />
       </div>
 
-      <div className="bg-gray-50 rounded-md p-4 text-center">
-        <p className="text-xs text-gray-500 mb-1">{t('settings.2fa.manual_key')}</p>
-        <code className="text-sm font-mono font-bold text-gray-800 select-all">
+      <div className="bg-gray-50 dark:bg-gray-700 rounded-md p-4 text-center">
+        <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{t('settings.2fa.manual_key')}</p>
+        <code className="text-sm font-mono font-bold text-gray-800 dark:text-gray-200 select-all">
           {secret}
         </code>
       </div>
 
       <form onSubmit={handleSubmit(onVerify)} className="space-y-4">
-        <p className="text-sm text-gray-600 text-center">{t('settings.2fa.enter_code')}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400 text-center">{t('settings.2fa.enter_code')}</p>
         <Controller
           name="code"
           control={control}
@@ -51,7 +51,7 @@ export function Enable2FA({ qrCodeUri, secret, onVerify, onCancel, isLoading }: 
           )}
         />
         {errors.code && (
-          <p className="text-sm text-red-600 text-center">{errors.code.message}</p>
+          <p className="text-sm text-red-600 dark:text-red-400 text-center">{errors.code.message}</p>
         )}
 
         <div className="flex gap-3">

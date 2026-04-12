@@ -19,20 +19,20 @@ export function IconButton({
     let variantStyles = "";
     switch (variant) {
         case "danger":
-            variantStyles = "text-gray-400 hover:text-red-600 hover:bg-red-50 focus:ring-red-500";
+            variantStyles = "text-gray-400 dark:text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:text-red-400 dark:hover:!bg-red-900/20 focus:ring-red-500";
             break;
         case "warning":
-            variantStyles = "text-gray-400 hover:text-orange-600 hover:bg-orange-50 focus:ring-orange-500";
+            variantStyles = "text-gray-400 dark:text-orange-500 hover:text-orange-600 hover:bg-orange-50 dark:hover:text-orange-400 dark:hover:!bg-orange-900/20 focus:ring-orange-500";
             break;
         case "success":
-            variantStyles = "text-gray-400 hover:text-green-600 hover:bg-green-50 focus:ring-green-500";
+            variantStyles = "text-gray-400 dark:text-green-500 hover:text-green-600 hover:bg-green-50 dark:hover:text-green-400 dark:hover:!bg-green-900/20 focus:ring-green-500";
             break;
         case "ghost":
-            variantStyles = "text-gray-400 hover:text-indigo-600 hover:bg-gray-100 disabled:opacity-20 disabled:hover:text-gray-400 disabled:hover:bg-transparent focus:ring-indigo-500";
+            variantStyles = "text-gray-400 hover:text-indigo-600 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-20 disabled:hover:text-gray-400 disabled:hover:bg-transparent focus:ring-indigo-500";
             break;
         case "default":
         default:
-            variantStyles = "text-gray-400 hover:text-blue-600 hover:bg-blue-50 focus:ring-blue-500";
+            variantStyles = "text-gray-400 dark:text-blue-500 hover:text-blue-600 hover:bg-blue-50 dark:hover:text-blue-400 dark:hover:!bg-blue-900/20 focus:ring-blue-500";
             break;
     }
     

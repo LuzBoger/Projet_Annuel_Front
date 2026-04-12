@@ -17,7 +17,7 @@ export function LanguagesSettings() {
         <>
         <MetaData title={t('settings.language.page_title')} robots="noindex, nofollow" />
         <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-6">{t('settings.language.title')}</h2>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">{t('settings.language.title')}</h2>
             <div className="flex gap-4">
                 {languages.map(({ code, label, flag }) => (
                     <Button

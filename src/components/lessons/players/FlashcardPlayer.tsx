@@ -26,7 +26,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
     if (!flashcards || flashcards.length === 0) {
         return (
             <PlayerLayout>
-                <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm w-full">
+                <div className="text-center p-8 text-gray-500 dark:text-gray-400 font-medium bg-white dark:bg-gray-800 rounded-2xl shadow-sm w-full">
                     {t('common.empty')}
                 </div>
             </PlayerLayout>
@@ -100,9 +100,9 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                     className="w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.4,0.0,0.2,1)]"
                     style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'none' }}
                 >
-                    <div className="absolute w-full h-full bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col items-center justify-center p-10 text-center hover:border-indigo-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all" style={{ backfaceVisibility: 'hidden' }}>
-                        <span className="absolute top-6 right-8 text-xs font-bold text-gray-300 uppercase tracking-widest">{currentCard.frontLanguage}</span>
-                        <h3 className="text-3xl sm:text-5xl font-extrabold text-gray-800 break-words leading-tight">{currentCard.front}</h3>
+                    <div className="absolute w-full h-full bg-white dark:bg-gray-800 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center p-10 text-center hover:border-indigo-100 dark:hover:border-indigo-900/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all" style={{ backfaceVisibility: 'hidden' }}>
+                        <span className="absolute top-6 right-8 text-xs font-bold text-gray-300 dark:text-gray-400 uppercase tracking-widest">{currentCard.frontLanguage}</span>
+                        <h3 className="text-3xl sm:text-5xl font-extrabold text-gray-800 dark:text-gray-200 break-words leading-tight">{currentCard.front}</h3>
                         {!isFlipped && (
                             <div className="absolute bottom-8 flex flex-col items-center animate-bounce">
                                 <p className="text-sm text-indigo-400 font-bold uppercase tracking-widest mt-2 hidden sm:block">
@@ -112,9 +112,9 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                         )}
                     </div>
                     
-                    <div className="absolute w-full h-full bg-indigo-50 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-indigo-100 flex flex-col items-center justify-center p-10 text-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
-                        <span className="absolute top-6 right-8 text-xs font-bold text-indigo-300 uppercase tracking-widest">{currentCard.backLanguage}</span>
-                        <h3 className="text-3xl sm:text-5xl font-extrabold text-indigo-900 break-words leading-tight">{currentCard.back}</h3>
+                    <div className="absolute w-full h-full bg-indigo-50 dark:bg-indigo-900/20 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-indigo-100 dark:border-indigo-700 flex flex-col items-center justify-center p-10 text-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                        <span className="absolute top-6 right-8 text-xs font-bold text-indigo-300 dark:text-indigo-400 uppercase tracking-widest">{currentCard.backLanguage}</span>
+                        <h3 className="text-3xl sm:text-5xl font-extrabold text-indigo-900 dark:text-indigo-200 break-words leading-tight">{currentCard.back}</h3>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                     <Button 
                         variant="outline"
                         onClick={(e) => { e.stopPropagation(); handleAnswer('red'); }}
-                        className="flex-1 py-8 bg-white border-2 border-red-50 text-red-500 rounded-2xl hover:bg-red-50 hover:border-red-100 transition-colors shadow-sm flex flex-col items-center justify-center font-bold"
+                        className="flex-1 py-8 bg-white dark:bg-gray-800 border-2 border-red-50 dark:border-red-900/30 text-red-500 dark:text-red-400 rounded-2xl hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-100 dark:hover:border-red-900/30 transition-colors shadow-sm flex flex-col items-center justify-center font-bold"
                         title={t('lessons.hard')}
                     >
                         <FaceSad className="w-8 h-8" />
@@ -133,7 +133,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                     <Button 
                         variant="outline"
                         onClick={(e) => { e.stopPropagation(); handleAnswer('yellow'); }}
-                        className="flex-1 py-8 bg-white border-2 border-yellow-50 text-amber-500 rounded-2xl hover:bg-yellow-50 hover:border-yellow-100 transition-colors shadow-sm flex flex-col items-center justify-center font-bold"
+                        className="flex-1 py-8 bg-white dark:bg-gray-800 border-2 border-yellow-50 dark:border-yellow-900/30 text-amber-500 dark:!text-amber-400 rounded-2xl hover:bg-yellow-50 dark:hover:bg-yellow-900/20 hover:border-yellow-100 dark:hover:border-yellow-900/30 transition-colors shadow-sm flex flex-col items-center justify-center font-bold"
                         title={t('lessons.medium')}
                     >
                         <FaceNeutral className="w-8 h-8" />
@@ -142,7 +142,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                     <Button 
                         variant="outline"
                         onClick={(e) => { e.stopPropagation(); handleAnswer('green'); }}
-                        className="flex-1 py-8 bg-white border-2 border-emerald-50 text-emerald-500 rounded-2xl hover:bg-emerald-50 hover:border-emerald-100 transition-colors shadow-sm flex flex-col items-center justify-center font-bold"
+                        className="flex-1 py-8 bg-white dark:bg-gray-800 border-2 border-emerald-50 dark:border-emerald-900/30 text-emerald-500 dark:!text-emerald-400 rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:border-emerald-100 dark:hover:border-emerald-900/30 transition-colors shadow-sm flex flex-col items-center justify-center font-bold"
                         title={t('lessons.easy')}
                     >
                         <FaceSmile className="w-8 h-8" />
