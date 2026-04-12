@@ -4,7 +4,7 @@ interface BadgeTagProps {
 }
 
 const variants = {
-    default: "border-gray-200 text-gray-600",
+    default: "border-gray-200 dark:border-white text-gray-600 dark:text-white",
     popular: "border-yellow-300 bg-yellow-50 text-yellow-700",
 }
 

@@ -91,9 +91,9 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/50 p-4">
-            <div className="relative w-full max-w-md rounded-lg bg-white shadow-xl max-h-[90vh] overflow-y-auto">
-                <div className="sticky top-0 bg-white z-10 flex items-center justify-between border-b p-4">
-                    <h3 className="text-xl font-semibold text-gray-900">
+            <div className="relative w-full max-w-md rounded-lg bg-white dark:bg-gray-800 shadow-xl max-h-[90vh] overflow-y-auto">
+                <div className="sticky top-0 bg-white dark:bg-gray-800 z-10 flex items-center justify-between border-b dark:border-gray-700 p-4">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                         {topic ? t('admin.topics.edit') : t('admin.topics.create')}
                     </h3>
                     <Button
@@ -122,7 +122,7 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                     </div>
 
                     {selectedLanguage && (
-                        <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
+                        <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 mb-2">
                             <LanguageFlag languageCode={selectedLanguage.code} className="w-5 h-5 rounded-sm object-cover shadow-sm" />
                             <span>{selectedLanguage.name}</span>
                         </div>
@@ -139,12 +139,12 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             {t('admin.topics.form.description')}
                         </label>
                         <textarea
                             {...register("description")}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors resize-y min-h-[80px]"
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors resize-y min-h-[80px] dark:bg-gray-700 dark:text-gray-200"
                         />
                         {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>}
                     </div>
@@ -172,14 +172,14 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                     </div>
                     
                     <div className="flex items-center justify-between pt-2">
-                        <span className="text-sm font-medium text-gray-700">{t('admin.topics.form.active')}</span>
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('admin.topics.form.active')}</span>
                         <Switch
                             checked={isActive}
                             onChange={(val) => setValue("isActive", val)}
                         />
                     </div>
 
-                    <div className="sticky bottom-0 bg-white flex justify-end gap-3 pt-4 border-t mt-4 pb-2">
+                    <div className="sticky bottom-0 bg-white dark:bg-gray-800 flex justify-end gap-3 pt-4 border-t dark:border-gray-700 mt-4 pb-2">
                         <Button type="button" variant="outline" onClick={onCancel}>
                             {t('common.cancel')}
                         </Button>

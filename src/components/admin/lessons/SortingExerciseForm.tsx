@@ -22,7 +22,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h3 className="text-lg font-medium text-gray-900">{t('admin.lessons.form.types.SORTING_EXERCISE')}</h3>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white">{t('admin.lessons.form.types.SORTING_EXERCISE')}</h3>
                 <Button 
                     type="button" 
                     variant="outline" 
@@ -37,7 +37,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
 
             <div className="space-y-3">
                 {fields.map((field, index) => (
-                    <div key={field.id} className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100 group transition-all hover:bg-white hover:shadow-sm">
+                    <div key={field.id} className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-700 group transition-all hover:bg-white dark:hover:bg-gray-800 hover:shadow-sm">
                         
                         <div className="flex flex-col gap-1 items-center justify-center">
                             <IconButton
@@ -47,7 +47,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                                 variant="ghost"
                                 title={t('admin.lessons.sorting.move_up')}
                             />
-                            <span className="text-xs font-bold text-gray-300 select-none">{index + 1}</span>
+                            <span className="text-xs font-bold text-gray-300 dark:text-gray-600 select-none">{index + 1}</span>
                             <IconButton
                                 icon={<ChevronDown className="w-5 h-5" />}
                                 disabled={index === fields.length - 1}
@@ -72,7 +72,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                                 variant="secondary"
                                 size="sm"
                                 onClick={() => remove(index)}
-                                className="bg-white p-2 !text-gray-400 hover:!text-red-600 hover:!bg-red-50 border border-gray-100 shadow-sm opacity-0 group-hover:opacity-100 transition-all"
+                                className="bg-white dark:bg-gray-800 p-2 !text-gray-400 dark:!text-gray-500 hover:!text-red-600 dark:hover:!text-red-400 hover:!bg-red-50 dark:hover:!bg-red-900/20 border border-gray-100 dark:border-gray-700 shadow-sm opacity-0 group-hover:opacity-100 transition-all"
                             >
                                 <Trash className="w-4 h-4" />
                             </Button>

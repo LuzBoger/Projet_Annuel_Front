@@ -21,7 +21,7 @@ export function MatchingPairForm({ control, register, errors }: MatchingPairForm
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h3 className="text-lg font-medium text-gray-900">{t('admin.lessons.form.types.MATCHING_PAIR')}</h3>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white">{t('admin.lessons.form.types.MATCHING_PAIR')}</h3>
                 <Button 
                     type="button" 
                     variant="outline" 
@@ -36,13 +36,13 @@ export function MatchingPairForm({ control, register, errors }: MatchingPairForm
 
             <div className="grid gap-6">
                 {fields.map((field, index) => (
-                    <div key={field.id} className="relative p-6 bg-gray-50 rounded-xl border border-gray-100 group">
+                    <div key={field.id} className="relative p-6 bg-gray-50 dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-700 group">
                         <Button
                             type="button"
                             variant="secondary"
                             size="sm"
                             onClick={() => remove(index)}
-                            className="absolute -top-3 -right-3 p-2 bg-white shadow-md hover:!bg-red-50 !text-gray-400 hover:!text-red-600 transition-all opacity-0 group-hover:opacity-100"
+                            className="absolute -top-3 -right-3 p-2 bg-white dark:bg-gray-800 shadow-md hover:!bg-red-50 dark:hover:!bg-red-900/20 !text-gray-400 dark:!text-gray-500 hover:!text-red-600 dark:hover:!text-red-400 transition-all opacity-0 group-hover:opacity-100"
                         >
                             <Trash className="w-4 h-4" />
                         </Button>
@@ -68,8 +68,8 @@ export function MatchingPairForm({ control, register, errors }: MatchingPairForm
             </div>
             
             {fields.length === 0 && (
-                <div className="text-center py-12 border-2 border-dashed border-gray-200 rounded-xl">
-                    <p className="text-gray-500">{t('admin.lessons.no_lessons')}</p>
+                <div className="text-center py-12 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl">
+                    <p className="text-gray-500 dark:text-gray-400">{t('admin.lessons.no_lessons')}</p>
                 </div>
             )}
         </div>

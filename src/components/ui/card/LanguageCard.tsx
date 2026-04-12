@@ -18,13 +18,13 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
         <Button
             type="button"
             variant="none"
-            className="group w-full text-left bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            className="group w-full text-left bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-300"
             onClick={onClick}
         >
             <div className="px-5 pt-5 flex items-center gap-3">
                 <LanguageFlag
                     languageCode={language.code}
-                    className="w-12 h-8 object-cover rounded-lg shadow-sm border border-gray-100 flex-shrink-0"
+                    className="w-12 h-8 object-cover rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 flex-shrink-0"
                 />
                 {language.isPopular && (
                     <BadgeTag variant="popular">
@@ -35,11 +35,11 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
             </div>
 
             <div className="px-5 pt-3 pb-4">
-                <p className="font-bold text-gray-900 text-base leading-tight truncate">
+                <p className="font-bold text-gray-900 dark:text-white text-base leading-tight truncate">
                     {language.name}
                 </p>
                 {language.region && (
-                    <p className="text-xs text-gray-400 mt-0.5">{language.region}</p>
+                    <p className="text-xs text-gray-400 dark:text-white mt-0.5">{language.region}</p>
                 )}
             </div>
 
@@ -47,25 +47,25 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
                 <div className="px-5 pb-4 flex items-center gap-5">
                     {language.topicsCount != null && (
                         <div className="flex items-center gap-1.5">
-                            <Layers className="w-3.5 h-3.5 text-gray-400" />
-                            <span className="text-sm font-semibold text-gray-800">{language.topicsCount}</span>
-                            <span className="text-xs text-gray-400">{t("catalog.topics")}</span>
+                            <Layers className="w-3.5 h-3.5 text-gray-400 dark:text-white" />
+                            <span className="text-sm font-semibold text-gray-800 dark:text-white">{language.topicsCount}</span>
+                            <span className="text-xs text-gray-400 dark:text-white">{t("catalog.topics")}</span>
                         </div>
                     )}
                     {language.topicsCount != null && language.lessonsCount != null && (
-                        <div className="w-px h-4 bg-gray-200" />
+                        <div className="w-px h-4 bg-gray-200 dark:bg-white" />
                     )}
                     {language.lessonsCount != null && (
                         <div className="flex items-center gap-1.5">
-                            <BookOpen className="w-3.5 h-3.5 text-gray-400" />
-                            <span className="text-sm font-semibold text-gray-800">{language.lessonsCount}</span>
-                            <span className="text-xs text-gray-400">{t("catalog.lessons")}</span>
+                            <BookOpen className="w-3.5 h-3.5 text-gray-400 dark:text-white" />
+                            <span className="text-sm font-semibold text-gray-800 dark:text-white">{language.lessonsCount}</span>
+                            <span className="text-xs text-gray-400 dark:text-white">{t("catalog.lessons")}</span>
                         </div>
                     )}
                 </div>
             )}
 
-            <div className="border-t border-gray-100 px-5 py-3 flex items-center justify-between">
+            <div className="border-t border-gray-100 dark:border-white px-5 py-3 flex items-center justify-between">
                 {language.levelRange
                     ? <BadgeTag variant="default">{
                         (() => {
@@ -77,7 +77,7 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
                 }
                 {isLearning
                     ? <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    : <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-indigo-400 transition-colors" />
+                    : <ArrowRight className="w-4 h-4 text-gray-300 dark:text-white group-hover:text-indigo-400 transition-colors" />
                 }
             </div>
         </Button>

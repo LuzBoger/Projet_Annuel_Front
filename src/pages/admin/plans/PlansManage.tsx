@@ -78,7 +78,7 @@ export default function PlansManage() {
             <MetaData title={t('plans.page_title')} robots="noindex, nofollow"  />
             <div className="w-full space-y-6">
             <div className="flex items-center justify-between mb-6">
-                <h1 className="text-2xl font-bold text-indigo-900">
+                <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300">
                     {t('plans.page_title')}
                 </h1>
                 <Button variant="primary" onClick={handleCreatePlan}>
@@ -87,7 +87,7 @@ export default function PlansManage() {
             </div>
 
             {error && (
-                <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+                <div className="mb-4 p-4 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 text-sm">
                     <p>{error}</p>
                 </div>
             )}
@@ -98,10 +98,10 @@ export default function PlansManage() {
                 keyExtractor={(plan) => plan.id}
                 renderRow={(plan) => (
                     <>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{plan.name}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{plan.description}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${getFormatForCurrency(locale, plan.currency, plan.price)}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{plan.paymentInterval ? (t(`payment.intervals.${plan.paymentInterval.toLowerCase()}`)) : '-'}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{plan.name}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{plan.description}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">${getFormatForCurrency(locale, plan.currency, plan.price)}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{plan.paymentInterval ? (t(`payment.intervals.${plan.paymentInterval.toLowerCase()}`)) : '-'}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <TableActions 
                                 onEdit={() => handleEditPlan(plan)}

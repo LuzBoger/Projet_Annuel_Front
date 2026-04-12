@@ -40,17 +40,17 @@ export default function Register() {
       <RegisterForm onSubmit={handleSubmit} isLoading={isLoading} />
 
       <div className="mt-6 text-center">
-        {error && <p className="text-red-600">{error}</p>}
-        <p className="text-gray-600">
+        {error && <p className="text-red-600 dark:text-red-400">{error}</p>}
+        <p className="text-gray-600 dark:text-gray-400">
           {t('auth.register.has_account')}{' '}
-          <Link to="/login" className="text-indigo-600 hover:text-indigo-700 font-semibold">
+          <Link to="/login" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold">
             {t('auth.register.login')}
           </Link>
         </p>
       </div>
 
       <div className="mt-4 text-center">
-        <Link to="/" className="text-gray-500 hover:text-gray-700 text-sm">
+        <Link to="/" className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm">
           {t('auth.back_home')}
         </Link>
       </div>

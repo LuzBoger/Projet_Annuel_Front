@@ -637,7 +637,8 @@
       "profile": "Profil",
       "password": "Mot de passe",
       "2fa": "Double authentification",
-      "language": "Langue"
+      "language": "Langue",
+      "theme": "Thème"
     },
     "2fa": {
       "title": "Authentification à deux facteurs",

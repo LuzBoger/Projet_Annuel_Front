@@ -14,17 +14,17 @@ export function PlayerFeedback({ isVisible, isCorrect, title, description, extra
 
     return (
         <div className={`w-full p-5 rounded-2xl mb-6 border-2 flex items-start gap-4 animate-[fade-in-up_0.3s_ease-out] ${
-            isCorrect 
-                ? 'bg-emerald-50 border-emerald-100 text-emerald-900' 
-                : 'bg-red-50 border-red-100 text-red-900'
+            isCorrect
+                ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300'
+                : 'bg-red-50 dark:bg-red-900/20 border-red-100 dark:border-red-800 text-red-900 dark:text-red-300'
         }`}>
             <div className={`mt-0.5 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                isCorrect ? 'bg-emerald-200 text-emerald-800' : 'bg-red-200 text-red-800'
+                isCorrect ? 'bg-emerald-200 dark:bg-emerald-800 text-emerald-800 dark:text-emerald-200' : 'bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200'
             }`}>
                 {isCorrect ? <Check className="w-5 h-5 flex-shrink-0" /> : <Cross className="w-5 h-5 flex-shrink-0" />}
             </div>
             <div>
-                {title && <h4 className="font-semibold text-lg mb-1 text-gray-900">{title}</h4>}
+                {title && <h4 className="font-semibold text-lg mb-1 text-gray-900 dark:text-white">{title}</h4>}
                 {description && (
                     <p className="opacity-90 font-medium text-sm leading-relaxed mt-1 text-gray-700">
                         {description}

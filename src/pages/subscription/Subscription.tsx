@@ -33,8 +33,8 @@ export default function Subscription() {
         return (
             <div className="max-w-4xl mx-auto p-6">
                 <div className="animate-pulse space-y-4">
-                    <div className="h-8 bg-gray-200 rounded w-1/3" />
-                    <div className="h-48 bg-gray-200 rounded" />
+                    <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
+                    <div className="h-48 bg-gray-200 dark:bg-gray-700 rounded" />
                 </div>
             </div>
         );
@@ -45,9 +45,9 @@ export default function Subscription() {
         <>
         <MetaData title={t('subscription.page_title')}  robots="noindex, nofollow"  />
         <div className="max-w-4xl mx-auto p-6">
-            <h1 className="text-2xl font-bold text-indigo-900 mb-6">{t("subscription.title")}</h1>
+            <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300 mb-6">{t("subscription.title")}</h1>
             {error && (
-                <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+                <div className="mb-4 p-4 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-300 text-sm">
                     <p>{error}</p>
                 </div>
             )}
@@ -58,8 +58,8 @@ export default function Subscription() {
                     </div>
                     <div>
                         {subscription.plan?.subscriptionType === 'FREE' ? (
-                            <div className="bg-white rounded-lg border border-gray-200 p-6 text-center">
-                                <p className="text-gray-600 mb-4">{t('subscription.upgrade_message')}</p>
+                            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 text-center">
+                                <p className="text-gray-600 dark:text-gray-400 mb-4">{t('subscription.upgrade_message')}</p>
                                 <button
                                     onClick={() => navigate('/plans')}
                                     className="inline-flex items-center justify-center rounded-md bg-indigo-600 px-6 py-3 text-white font-medium hover:bg-indigo-700 transition-colors"
@@ -81,8 +81,8 @@ export default function Subscription() {
             )}
 
             <div className="mt-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">{t('subscription.payment_history_title')}</h2>
-                <div className="bg-white rounded-lg border border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{t('subscription.payment_history_title')}</h2>
+                <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
                     <PaymentHistoryTable payments={payments} />
                 </div>
             </div>

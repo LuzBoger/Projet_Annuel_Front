@@ -16,12 +16,12 @@ export function Topics({ topics, activeLanguageId }: Readonly<TopicsProps>) {
     return (
         <div>
             <div className="flex items-center justify-between mb-3">
-                <h2 className="text-base font-semibold text-gray-900">{t("dashboard.topics")}</h2>
+                <h2 className="text-base font-semibold text-gray-900 dark:text-white">{t("dashboard.topics")}</h2>
                 {activeLanguageId && (
                     <Button
                         variant="none"
                         onClick={() => navigate(`/language/${activeLanguageId}/topics`)}
-                        className="text-xs text-gray-400 hover:text-gray-700 transition-colors"
+                        className="text-xs text-gray-700 dark:text-gray-300 transition-colors cursor-pointer "
                     >
                         {t("dashboard.view_all")} →
                     </Button>

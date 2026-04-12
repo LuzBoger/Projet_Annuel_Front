@@ -63,7 +63,7 @@ export function LanguageDetailPage() {
     };
 
      if (loading || !language) return (
-        <div className="flex justify-center py-20 text-sm text-gray-400">
+        <div className="flex justify-center py-20 text-sm text-gray-400 dark:text-gray-500">
             {t("common.loading")}
         </div>
     );
@@ -77,12 +77,12 @@ export function LanguageDetailPage() {
                 </Button>
 
             <div className="flex items-start gap-6 mb-8">
-                <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl font-back text-gray-700 ">
+                <div className="w-16 h-16 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-2xl font-back text-gray-700 dark:text-gray-200 ">
                     {language.code.toUpperCase()}
                 </div>
 
                 <div className="flex-1">
-                    <h1 className="text-4xl font-black text-gray-900">{language.name}</h1>
+                    <h1 className="text-4xl font-black text-gray-900 dark:text-white">{language.name}</h1>
                     <div className="flex flex-wrap gap-2 mt-3">
                         <BadgeTag variant="default">{
                                 (() => {
@@ -112,7 +112,7 @@ export function LanguageDetailPage() {
                 <StatsCard value={language.lessonsCount ?? 0} title={t("pages.languageDetail.lessons")}/>
             </div>
             <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-4">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                     {t("pages.languageDetail.topicsAndLessons")}
                 </h2>
                 <div className="flex flex-col gap-3">

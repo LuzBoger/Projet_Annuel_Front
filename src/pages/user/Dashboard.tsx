@@ -64,7 +64,7 @@ export default function Dashboard() {
         }
     };
 
-    if (loading) return <div className="flex justify-center items-center h-64 text-gray-400">{t("common.loading")}</div>;
+    if (loading) return <div className="flex justify-center items-center h-64 text-gray-400 dark:text-gray-500">{t("common.loading")}</div>;
     return (
         <>
             <MetaData title={t('dashboard.page_title')}  robots="noindex, nofollow"  /> 

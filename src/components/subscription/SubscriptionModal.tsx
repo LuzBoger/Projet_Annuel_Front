@@ -31,9 +31,9 @@ import { formDateTime } from "@/lib/utils/date";
 
       return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl mx-4 max-h-[80vh] overflow-y-auto">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-2xl mx-4 max-h-[80vh] overflow-y-auto">
                 <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-gray-900">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                         {t('subscription.details.title')}
                     </h3>
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[subscription.status] || statusColors.PENDING}`}>
@@ -43,52 +43,52 @@ import { formDateTime } from "@/lib/utils/date";
 
                 <div className="space-y-3 mb-6">
                     <div className="flex justify-between text-sm">
-                        <span className="text-gray-500">{t('subscription.details.type')}</span>
-                        <span className="font-medium text-gray-900">{subscription.plan?.subscriptionType}</span>
+                        <span className="text-gray-500 dark:text-gray-400">{t('subscription.details.type')}</span>
+                        <span className="font-medium text-gray-900 dark:text-white">{subscription.plan?.subscriptionType}</span>
                     </div>
                     {subscription.plan && (
                         <div className="flex justify-between text-sm">
-                            <span className="text-gray-500">{t('subscription.details.plan_name')}</span>
-                            <span className="font-medium text-gray-900">{subscription.plan.name}</span>
+                            <span className="text-gray-500 dark:text-gray-400">{t('subscription.details.plan_name')}</span>
+                            <span className="font-medium text-gray-900 dark:text-white">{subscription.plan.name}</span>
                         </div>
                     )}
                     <div className="flex justify-between text-sm">
-                        <span className="text-gray-500">{t('subscription.details.start_date')}</span>
-                        <span className="font-medium text-gray-900">{formDateTime(subscription.startDate, locale)}</span>
+                        <span className="text-gray-500 dark:text-gray-400">{t('subscription.details.start_date')}</span>
+                        <span className="font-medium text-gray-900 dark:text-white">{formDateTime(subscription.startDate, locale)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                        <span className="text-gray-500">{t('subscription.details.end_date')}</span>
-                        <span className="font-medium text-gray-900">{formDateTime(subscription.endDate, locale)}</span>
+                        <span className="text-gray-500 dark:text-gray-400">{t('subscription.details.end_date')}</span>
+                        <span className="font-medium text-gray-900 dark:text-white">{formDateTime(subscription.endDate, locale)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                        <span className="text-gray-500">{t('subscription.details.current_period')}</span>
-                        <span className="font-medium text-gray-900">
+                        <span className="text-gray-500 dark:text-gray-400">{t('subscription.details.current_period')}</span>
+                        <span className="font-medium text-gray-900 dark:text-white">
                             {formDateTime(subscription.currentPeriodStart, locale)} - {formDateTime(subscription.currentPeriodEnd, locale)}
                         </span>
                     </div>
                     {subscription.cancelAtPeriodEnd && (
-                        <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-md">
-                            <p className="text-sm text-yellow-800">
+                        <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-md">
+                            <p className="text-sm text-yellow-800 dark:text-yellow-200">
                                 {t('subscription.details.cancel_at_period_end_warning')}
                             </p>
                         </div>
                     )}
                     {subscription.canceledAt && (
                         <div className="flex justify-between text-sm">
-                            <span className="text-gray-500">{t('subscription.details.canceled_at')}</span>
+                            <span className="text-gray-500 dark:text-gray-400">{t('subscription.details.canceled_at')}</span>
                             <span className="font-medium text-red-600">{formDateTime(subscription.canceledAt, locale)}</span>
                         </div>
                     )}
                 </div>
 
-                <div className="border-t border-gray-200 pt-4">
-                    <h4 className="text-md font-semibold text-gray-900 mb-3">
+                <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                    <h4 className="text-md font-semibold text-gray-900 dark:text-white mb-3">
                         {t('subscription.details.payment_history_title')}
                     </h4>
                     {isLoading ? (
                         <div className="animate-pulse space-y-2">
-                            <div className="h-8 bg-gray-200 rounded" />
-                            <div className="h-8 bg-gray-200 rounded" />
+                            <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded" />
+                            <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded" />
                         </div>
                     ) : (
                         <PaymentHistoryTable payments={payments} />

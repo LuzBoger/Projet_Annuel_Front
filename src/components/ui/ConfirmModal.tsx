@@ -30,10 +30,10 @@ export function ConfirmModal({
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/50 overflow-hidden p-4">
-            <div className="relative w-full max-w-md rounded-lg bg-white shadow-xl">
+            <div className="relative w-full max-w-md rounded-lg bg-white dark:bg-gray-800 shadow-xl">
                 <div className="p-6 text-center">
-                    <h3 className="mb-2 text-lg font-bold text-gray-900">{title}</h3>
-                    <div className="mb-6 text-sm text-gray-500">{description}</div>
+                    <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">{title}</h3>
+                    <div className="mb-6 text-sm text-gray-500 dark:text-gray-400">{description}</div>
                     
                     <div className="flex justify-center gap-4">
                         <Button 

@@ -11,17 +11,17 @@ export function TopicProgressBar({ finishedCount, totalCount }: TopicProgressBar
     const progress = calculateProgress(finishedCount, totalCount);
 
     return (
-        <div className="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm flex flex-col">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col">
             <div className="flex justify-between items-center mb-3">
-                <span className="text-sm font-bold text-gray-700 uppercase tracking-wider">{t('topics.progress')}</span>
+                <span className="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">{t('topics.progress')}</span>
                 <div className="flex items-center space-x-2">
-                    <span className="text-xs font-semibold px-2 py-1 bg-indigo-50 text-indigo-700 rounded-lg">
+                    <span className="text-xs font-semibold px-2 py-1 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded-lg">
                         {finishedCount} / {totalCount} {t('topics.lessons_count_label')}
                     </span>
-                    <span className="text-sm font-extrabold text-indigo-600">{progress}%</span>
+                    <span className="text-sm font-extrabold text-indigo-600 dark:text-indigo-400">{progress}%</span>
                 </div>
             </div>
-            <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden shadow-inner">
+            <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-3 overflow-hidden shadow-inner">
                 <div 
                     className="bg-gradient-to-r from-indigo-500 to-indigo-600 h-3 rounded-full transition-all duration-1000 ease-out flex items-center justify-end pr-1" 
                     style={{ width: `${progress}%` }}

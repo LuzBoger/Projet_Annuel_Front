@@ -18,9 +18,9 @@ export function SubscriptionActions({ subscription, onCancel, onReactivate, onCh
     }
 
     return (
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
 
-            <div className="px-6 py-5 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-blue-50">
+            <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-slate-50 to-blue-50 dark:from-gray-800 dark:to-gray-800">
                 <h3 className="text-base font-bold text-slate-900">
                     {t('subscription.manage.title')}
                 </h3>
