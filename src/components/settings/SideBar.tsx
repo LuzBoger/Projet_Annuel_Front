@@ -1,7 +1,8 @@
 import { Globe, Lock, Shield, User } from "lucide-react";
 import { MenuItem, SettingsTab } from "@/types/components/menutItem";
 import { useTranslation } from "react-i18next";
-import { Button } from "../ui/Button";
+import { Button } from "@/components/ui/Button";
+import { ThemeToggle } from "../ui/ThemeToggle";
 
 interface SideBarProps {
     activeTab: SettingsTab;
@@ -19,7 +20,7 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
     ];
 
     return (
-    <aside className="w-64 flex-shrink-0">
+    <aside className="w-64 flex-shrink-0 flex flex-col gap-2">
       <nav className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-2">
         {menuItems.map((item) => (
           <Button
@@ -37,6 +38,10 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
           </Button>
         ))}
       </nav>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-3 flex items-center justify-between">
+        <span className="text-sm text-gray-600 dark:text-gray-400">{t('settings.menu.theme')}</span>
+        <ThemeToggle />
+      </div>
     </aside>
   );
 }

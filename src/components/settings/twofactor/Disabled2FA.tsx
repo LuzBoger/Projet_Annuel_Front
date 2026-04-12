@@ -38,7 +38,7 @@ if(!showForm){
 }
  return (
     <form onSubmit={handleSubmit(onDisable)} className="space-y-4">
-      <p className="text-sm text-gray-600 text-center">{t('settings.2fa.enter_code_disable')}</p>
+      <p className="text-sm text-gray-600 dark:text-gray-400 text-center">{t('settings.2fa.enter_code_disable')}</p>
       <Controller
         name="code"
         control={control}

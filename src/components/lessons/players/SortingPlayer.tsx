@@ -38,7 +38,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
     if (!exercises || exercises.length === 0) {
         return (
             <PlayerLayout>
-                <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm w-full">
+                <div className="text-center p-8 text-gray-500 font-medium bg-white dark:bg-gray-800 rounded-2xl shadow-sm w-full">
                     {t('common.empty')}
                 </div>
             </PlayerLayout>
@@ -91,7 +91,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
 
             <PlayerCard instruction={t('lessons.sorting.instruction')}>
                 <div className="space-y-8">
-                    <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-200 py-6 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 rounded-xl">
+                    <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-200 dark:border-gray-600 py-6 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 dark:bg-gray-700/30 rounded-xl">
                         {selectedItems.length === 0 && (
                             <span className="text-gray-400 font-medium select-none text-sm sm:text-base text-center">
                                 {t('lessons.sorting.empty_target')}

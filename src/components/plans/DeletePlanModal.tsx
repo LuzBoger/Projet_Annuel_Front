@@ -20,9 +20,9 @@ export function DeletePlanModal({ plan, onCancel, onDelete, isOpen, isLoading }:
     
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{t('plans.delete.title')}</h3>
-                <p className="text-sm text-gray-600 mb-4">{t('plans.delete.description', { name: plan.name })}</p>
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('plans.delete.title')}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{t('plans.delete.description', { name: plan.name })}</p>
                 <div className="flex gap-3 justify-end">
                     <Button variant="outline" onClick={onCancel} disabled={isLoading}>
                         {t('common.cancel')}

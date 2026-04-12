@@ -159,7 +159,7 @@ export default function TopicList() {
             <MetaData title={t('admin.topics.page_title')} robots="noindex, nofollow"  />
             <div className="w-full space-y-6">
                 <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-indigo-900">
+                    <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300">
                         {t('admin.topics.page_title')}
                     </h1>
                     <Button variant="primary" onClick={handleCreate}>
@@ -194,7 +194,7 @@ export default function TopicList() {
                 </div>
 
                 {error && (
-                    <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+                    <div className="mb-4 p-4 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 text-sm">
                         <p>{error}</p>
                     </div>
                 )}
@@ -207,33 +207,33 @@ export default function TopicList() {
                         const lang = getLanguageInfo(topic.languageId);
                         return (
                             <>
-                                <td className="px-6 py-4 text-sm font-medium text-gray-900 border-b border-gray-200">
+                                <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700">
                                     <div>{topic.name}</div>
-                                    {topic.description && <div className="text-xs text-gray-500 font-normal mt-1 max-w-xs truncate" title={topic.description}>{topic.description}</div>}
+                                    {topic.description && <div className="text-xs text-gray-500 dark:text-gray-400 font-normal mt-1 max-w-xs truncate" title={topic.description}>{topic.description}</div>}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
+                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200 dark:border-gray-700">
                                     {lang ? (
                                         <div className="flex items-center space-x-2">
                                             <LanguageFlag languageCode={lang.code} className="w-5 h-5 rounded-sm shadow-sm" />
-                                            <span className="text-sm font-medium text-gray-900">{lang.code.toUpperCase()}</span>
+                                            <span className="text-sm font-medium text-gray-900 dark:text-white">{lang.code.toUpperCase()}</span>
                                         </div>
                                     ) : (
-                                        <span className="text-sm text-gray-400">?</span>
+                                        <span className="text-sm text-gray-400 dark:text-gray-500">?</span>
                                     )}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
-                                    <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                                    <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
                                         {topic.difficulty}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{topic.orderIndex}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">{topic.orderIndex}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
                                     <Switch
                                         checked={topic.isActive}
                                         onChange={(checked) => handleStatusToggle(topic, checked)}
                                     />
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700">
                                     <TableActions
                                         onEdit={() => handleEdit(topic)}
                                         onDelete={() => handleDelete(topic)}

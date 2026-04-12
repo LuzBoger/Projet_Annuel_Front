@@ -109,7 +109,7 @@ export default function LanguageList() {
             <MetaData title={t('languages.page_title')} robots="noindex, nofollow"  />
             <div className="w-full space-y-6">
                 <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-indigo-900">
+                    <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300">
                         {t('admin.languages.page_title')}
                     </h1>
                     <Button variant="primary" onClick={handleCreate}>
@@ -118,7 +118,7 @@ export default function LanguageList() {
                 </div>
 
                 {error && (
-                    <div className="mb-4 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+                    <div className="mb-4 p-4 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 text-sm">
                         <p>{error}</p>
                     </div>
                 )}
@@ -129,21 +129,21 @@ export default function LanguageList() {
                     keyExtractor={(lang) => lang.id}
                     renderRow={(lang) => (
                         <>
-                            <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
+                            <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200 dark:border-gray-700">
                                 <div className="flex items-center space-x-3">
                                     <LanguageFlag languageCode={lang.code} className="w-6 h-6 rounded-sm shadow-sm" />
-                                    <span className="text-sm font-medium text-gray-900">{lang.code.toUpperCase()}</span>
+                                    <span className="text-sm font-medium text-gray-900 dark:text-white">{lang.code.toUpperCase()}</span>
                                 </div>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{lang.name}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">{lang.orderIndex}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200">
-                                <Switch 
-                                    checked={lang.isActive} 
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">{lang.name}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">{lang.orderIndex}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                                <Switch
+                                    checked={lang.isActive}
                                     onChange={(checked) => handleStatusToggle(lang, checked)}
                                 />
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700">
                                 <TableActions 
                                     onEdit={() => handleEdit(lang)} 
                                     onDelete={() => handleDelete(lang)} 

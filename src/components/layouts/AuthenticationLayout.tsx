@@ -21,14 +21,14 @@ export function AuthenticationLayout({ children, title, illustrationTitle, illus
   return (
     <>
     <MetaData title={title} robots="noindex, nofollow"  />
-    <div className="min-h-[calc(100vh-65px)] flex bg-white">
+    <div className="min-h-[calc(100vh-65px)] flex bg-white dark:bg-gray-900">
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:w-1/2 xl:w-5/12 mx-auto">
         <div className="mx-auto w-full max-w-lg">
           <div className="mb-10 text-center lg:text-left">
-            <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{title}</h2>
           </div>
           
-          <div className="bg-white shadow-xl lg:shadow-none lg:bg-transparent rounded-2xl p-8 lg:p-0">
+          <div className="bg-white dark:bg-gray-800 shadow-xl lg:shadow-none lg:bg-transparent dark:lg:bg-transparent rounded-2xl p-8 lg:p-0">
             {children}
           </div>
         </div>

@@ -55,7 +55,7 @@ export default function TopicLessons() {
                 <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-600 tracking-tight">
                     {t('topics.lessons_title')}
                 </h1>
-                <p className="mt-3 text-lg text-gray-600 max-w-2xl">
+                <p className="mt-3 text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
                     {t('topics.lessons_desc')}
                 </p>
             </div>
@@ -65,18 +65,17 @@ export default function TopicLessons() {
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
                 </div>
             ) : error ? (
-                <div className="mb-8 p-6 bg-red-50 rounded-2xl border border-red-100 text-center">
-                    <p className="text-red-800 font-medium">{error}</p>
+                <div className="mb-8 p-6 bg-red-50 dark:bg-red-900/20 rounded-2xl border border-red-100 dark:border-red-800 text-center">
+                    <p className="text-red-800 dark:text-red-300 font-medium">{error}</p>
                 </div>
             ) : details ? (
                 <div className="space-y-8">
-                    {/* Header stats from topic details */}
-                    <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-indigo-100 flex flex-col md:flex-row md:items-center md:justify-between relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full opacity-50 pointer-events-none"></div>
+                    <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-indigo-100 dark:border-gray-700 flex flex-col md:flex-row md:items-center md:justify-between relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 dark:bg-indigo-900/20 rounded-bl-full opacity-50 pointer-events-none"></div>
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full">
                             <div className="flex flex-col border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-6">
-                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_status')}</p>
+                                <p className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_status')}</p>
                                 <div className="flex items-center">
                                     {details.examPassed ? (
                                         <span className="flex items-center text-emerald-600 font-extrabold text-xl">
@@ -93,8 +92,8 @@ export default function TopicLessons() {
                             </div>
 
                             <div className="flex flex-col border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-6 md:pl-6 pl-0">
-                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_attempts')}</p>
-                                <p className="text-3xl font-extrabold text-indigo-900">{details.examAttempts}</p>
+                                <p className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_attempts')}</p>
+                                <p className="text-3xl font-extrabold text-indigo-900 dark:text-indigo-300">{details.examAttempts}</p>
                             </div>
 
                             <div className="flex flex-col pt-2 md:pt-0 md:pl-6 pl-0">
@@ -157,10 +156,10 @@ export default function TopicLessons() {
                             </div>
                         </>
                     ) : (
-                        <div className="flex flex-col items-center justify-center py-16 bg-white bg-opacity-70 rounded-3xl border border-gray-200 border-dashed shadow-sm">
+                        <div className="flex flex-col items-center justify-center py-16 bg-white dark:bg-gray-800 bg-opacity-70 rounded-3xl border border-gray-200 dark:border-gray-700 border-dashed shadow-sm">
                             <IconQcm className="w-12 h-12 text-gray-300 mb-4" />
-                            <h3 className="text-lg font-bold text-gray-900">{t('topics.no_lessons_title')}</h3>
-                            <p className="mt-2 text-sm text-gray-500 text-center">{t('topics.no_lessons_desc')}</p>
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white">{t('topics.no_lessons_title')}</h3>
+                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center">{t('topics.no_lessons_desc')}</p>
                         </div>
                     )}
                 </div>

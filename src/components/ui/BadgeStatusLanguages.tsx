@@ -13,7 +13,7 @@ export function BadgeStatusLanguages({ status }: BadgeStatusLanguagesProps) {
     const COLORS_STATUS: Record<BadgeLanguagesStatus, StatusStyles> = {
         "COMPLETED": { label: t("components.badgeStatusLanguages.completed"), icon: <Check />, className: "bg-green-50 text-green-700" },
         "IN_PROGRESS": { label: t("components.badgeStatusLanguages.inProgress"), icon: <PlayIcon />, className: "bg-amber-50 text-amber-700" },
-        "NOT_STARTED": { label: t("components.badgeStatusLanguages.notStarted"), icon: <Circle />, className: "bg-gray-100 text-gray-500" },
+        "NOT_STARTED": { label: t("components.badgeStatusLanguages.notStarted"), icon: <Circle />, className: "bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400" },
     }
 
     const { label, icon, className } = COLORS_STATUS[status];

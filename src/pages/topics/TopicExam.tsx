@@ -110,8 +110,8 @@ export default function TopicExam() {
 
     if (examResult) {
         return (
-            <div className="min-h-screen bg-indigo-50/50 flex flex-col items-center justify-center p-4">
-                <div className="max-w-md w-full bg-white rounded-[2rem] shadow-xl shadow-indigo-100/50 p-8 sm:p-10 text-center animate-[fade-in-up_0.5s_ease-out]">
+            <div className="min-h-screen bg-indigo-50/50 dark:bg-gray-900 flex flex-col items-center justify-center p-4">
+                <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-[2rem] shadow-xl shadow-indigo-100/50 p-8 sm:p-10 text-center animate-[fade-in-up_0.5s_ease-out]">
                     <div className={`w-24 h-24 ${examResult.success ? 'bg-gradient-to-br from-yellow-300 to-yellow-500' : 'bg-gradient-to-br from-gray-300 to-gray-500'} text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner ring-8 ${examResult.success ? 'ring-yellow-50' : 'ring-gray-50'}`}>
                         {examResult.success ? (
                             <StarIcon className="w-12 h-12" />
@@ -128,13 +128,13 @@ export default function TopicExam() {
                     </p>
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
-                        <div className="bg-indigo-50 rounded-2xl p-5 border border-indigo-100/50 relative overflow-hidden">
+                        <div className="bg-indigo-50 dark:bg-indigo-900/30 rounded-2xl p-5 border border-indigo-100/50 dark:border-indigo-800 relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-16 h-16 bg-white opacity-30 transform rotate-45 translate-x-6 -translate-y-6"></div>
                             <p className="text-indigo-800 text-[10px] font-large uppercase tracking-widest mb-1">{t('lessons.xp_earned')}</p>
                             <p className="text-3xl font-medium text-indigo-600">+{examResult.xpEarned}</p>
                         </div>
 
-                        <div className={`rounded-2xl p-5 border relative overflow-hidden ${examResult.success ? 'bg-emerald-50 border-emerald-100/50' : 'bg-red-50 border-red-100/50'}`}>
+                        <div className={`rounded-2xl p-5 border relative overflow-hidden ${examResult.success ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-100/50 dark:border-emerald-800' : 'bg-red-50 dark:bg-red-900/20 border-red-100/50 dark:border-red-800'}`}>
                             <div className="absolute top-0 right-0 w-16 h-16 bg-white opacity-30 transform rotate-45 translate-x-6 -translate-y-6"></div>
                             <p className={`text-[10px] font-medium uppercase tracking-widest mb-1 ${examResult.success ? 'text-emerald-800' : 'text-red-800'}`}>{t('lessons.status')}</p>
                             <p className={`text-2xl font-medium ${examResult.success ? 'text-emerald-600' : 'text-red-500'}`}>{examResult.success ? t('lessons.success') : t('lessons.failed')}</p>
@@ -142,7 +142,7 @@ export default function TopicExam() {
                     </div>
 
                     {examResult.totalAnswers !== undefined && examResult.totalAnswers > 0 && (
-                        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col items-center justify-center mb-8">
+                        <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-100 dark:border-gray-700 shadow-sm flex flex-col items-center justify-center mb-8">
                             <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-2">{t('topics.accuracy')}</p>
                             <div className="flex items-baseline space-x-2">
                                 <span className={`text-4xl font-extrabold ${examResult.accuracy && examResult.accuracy >= 0.8 ? 'text-emerald-500' : examResult.accuracy && examResult.accuracy >= 0.5 ? 'text-amber-500' : 'text-red-500'}`}>
@@ -156,7 +156,7 @@ export default function TopicExam() {
                     )}
 
                     {examResult.message && !examResult.success && (
-                        <div className="bg-red-50 text-red-800 text-sm font-medium p-4 rounded-2xl mb-8 border border-red-100">
+                        <div className="bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-400 text-sm font-medium p-4 rounded-2xl mb-8 border border-red-100 dark:border-red-800">
                             {examResult.message}
                         </div>
                     )}
@@ -206,14 +206,14 @@ export default function TopicExam() {
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
                 </div>
             ) : error ? (
-                <div className="mb-8 p-6 bg-red-50 rounded-2xl border border-red-100 text-center">
+                <div className="mb-8 p-6 bg-red-50 dark:bg-red-900/20 rounded-2xl border border-red-100 dark:border-red-800 text-center">
                     <p className="text-red-800 font-medium">{error}</p>
                 </div>
             ) : (
                 <div className="flex flex-col items-center justify-center w-full">
                     {mixedQuestions.length === 0 ? (
-                        <div className="p-12 bg-white rounded-3xl border border-gray-200 shadow-sm max-w-2xl mx-auto w-full text-center">
-                            <p className="text-gray-500 mb-8 font-medium">
+                        <div className="p-12 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-sm max-w-2xl mx-auto w-full text-center">
+                            <p className="text-gray-500 dark:text-gray-400 mb-8 font-medium">
                                 {t('topics.no_questions')}
                             </p>
                             <Button size="lg" onClick={submitExam} disabled={submitting} isLoading={submitting}>
@@ -221,11 +221,11 @@ export default function TopicExam() {
                             </Button>
                         </div>
                     ) : currentIndex >= mixedQuestions.length ? (
-                        <div className="p-12 bg-white rounded-3xl border border-gray-200 shadow-sm max-w-2xl mx-auto w-full text-center animate-[fade-in-up_0.5s_ease-out]">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                        <div className="p-12 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-sm max-w-2xl mx-auto w-full text-center animate-[fade-in-up_0.5s_ease-out]">
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                                 {t('topics.exam_completed_title')}
                             </h2>
-                            <p className="text-gray-500 mb-8">
+                            <p className="text-gray-500 dark:text-gray-400 mb-8">
                                 {t('topics.exam_completed_desc')}
                             </p>
                             <Button size="lg" onClick={submitExam} disabled={submitting} isLoading={submitting} className="w-full text-lg py-4">
@@ -239,11 +239,11 @@ export default function TopicExam() {
                                     <span className="uppercase tracking-widest text-[10px] sm:text-xs text-indigo-500">
                                         {t('topics.exam_progress')}
                                     </span>
-                                    <span className="bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
+                                    <span className="bg-white dark:bg-gray-800 px-3 py-1 rounded-full shadow-sm border border-gray-100 dark:border-gray-700">
                                         {currentIndex + 1} / {mixedQuestions.length}
                                     </span>
                                 </div>
-                                <div className="w-full bg-gray-200/50 rounded-full h-3 shadow-inner overflow-hidden">
+                                <div className="w-full bg-gray-200/50 dark:bg-gray-700/50 rounded-full h-3 shadow-inner overflow-hidden">
                                     <div
                                         className="bg-indigo-500 h-3 rounded-full transition-all duration-500 ease-out"
                                         style={{ width: `${((currentIndex) / mixedQuestions.length) * 100}%` }}

@@ -9,7 +9,7 @@ export function LocaleLanguageSwitcher() {
   const locales = Object.keys(i18n.options.resources ?? {}).map(l => l.toUpperCase());
 
   return (
-    <div className="fixed top-4 right-4 flex items-center gap-1 bg-white border border-gray-200 rounded-full px-3 py-1.5 shadow-sm text-sm font-medium z-50">
+    <div className="fixed top-4 right-4 flex items-center gap-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full px-3 py-1.5 shadow-sm text-sm font-medium z-50">
       {locales.map((locale, i) => (
         <Fragment key={locale}>
           {i > 0 && <span className="text-gray-300">|</span>}

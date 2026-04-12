@@ -11,15 +11,15 @@ export function FlashcardCard({ fc, index, t }: { fc: { front?: string; back?: s
             onClick={() => setIsFlipped(!isFlipped)}
         >
             <div className={clsx('relative w-full min-h-[220px] transition-transform duration-700 preserve-3d', isFlipped && 'rotate-y-180')}>
-                <div className="absolute inset-0 backface-hidden bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col items-center justify-center space-y-4">
+                <div className="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm p-8 flex flex-col items-center justify-center space-y-4">
                     <div className="absolute"></div>
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-blue-600/60 uppercase">
+                    <span className="text-[10px] font-bold tracking-[0.2em] text-blue-600 dark:text-blue-400/60 uppercase">
                         {fc.frontLanguage || t('admin.lessons.preview.flashcard_label')}
                     </span>
-                    <h4 className="text-3xl font-black text-gray-900 text-center leading-tight">
+                    <h4 className="text-3xl font-black text-gray-900 dark:text-white text-center leading-tight">
                         {fc.front}
                     </h4>
-                    <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600 border border-blue-100">
+                    <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-xs font-bold text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30">
                         {index + 1}
                     </div>
                 </div>

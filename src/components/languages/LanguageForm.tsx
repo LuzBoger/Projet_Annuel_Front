@@ -83,9 +83,9 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/50 p-4">
-            <div className="relative w-full max-w-md rounded-lg bg-white shadow-xl">
-                <div className="flex items-center justify-between border-b p-4">
-                    <h3 className="text-xl font-semibold text-gray-900">
+            <div className="relative w-full max-w-md rounded-lg bg-white dark:bg-gray-800 shadow-xl">
+                <div className="flex items-center justify-between border-b dark:border-gray-700 p-4">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                         {language ? t('admin.languages.edit') : t('admin.languages.create')}
                     </h3>
                     <Button
@@ -93,7 +93,7 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                         variant="outline"
                         size="sm"
                         onClick={onCancel}
-                        className="ml-auto border-transparent bg-transparent hover:bg-gray-100 px-2 shadow-none text-gray-500"
+                        className="ml-auto border-transparent bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700 px-2 shadow-none text-gray-500 dark:text-gray-400"
                     >
                         <span className="sr-only">{t('common.close')}</span>
                         <Cross className="h-5 w-5" />
@@ -124,11 +124,11 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                     </div>
                     
                     {code && (
-                        <div className="flex items-center space-x-4 p-3 bg-gray-50 border border-gray-100 rounded-md">
-                            <span className="text-sm font-medium text-gray-500 whitespace-nowrap">{t('admin.languages.form.flag_preview')}</span>
+                        <div className="flex items-center space-x-4 p-3 bg-gray-50 dark:bg-gray-700 border border-gray-100 dark:border-gray-600 rounded-md">
+                            <span className="text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">{t('admin.languages.form.flag_preview')}</span>
                             <div className="flex items-center space-x-2">
                                 <LanguageFlag languageCode={code} className="w-8 h-8 rounded shadow-sm object-cover" />
-                                <span className="text-gray-900 font-medium">{name}</span>
+                                <span className="text-gray-900 dark:text-white font-medium">{name}</span>
                             </div>
                         </div>
                     )}
@@ -144,14 +144,14 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                     </div>
                     
                     <div className="flex items-center justify-between pt-2">
-                        <span className="text-sm font-medium text-gray-700">{t('admin.languages.form.active')}</span>
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('admin.languages.form.active')}</span>
                         <Switch
                             checked={isActive}
                             onChange={(val) => setValue("isActive", val)}
                         />
                     </div>
 
-                    <div className="flex justify-end gap-3 pt-4 border-t">
+                    <div className="flex justify-end gap-3 pt-4 border-t dark:border-gray-700">
                         <Button type="button" variant="outline" onClick={onCancel}>
                             {t('common.cancel')}
                         </Button>

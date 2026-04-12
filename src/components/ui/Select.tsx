@@ -16,7 +16,7 @@ export interface SelectProps<T = string> {
 export function Select<T extends string = string>({label,value,options,onChange,className = "",placeholder,disabled = false,error,required = false,id}: SelectProps<T>) {
   return (
     <div className={className}>{label && (
-        <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor={id} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
@@ -26,9 +26,9 @@ export function Select<T extends string = string>({label,value,options,onChange,
         value={value}
         onChange={(e) => onChange(e.target.value as T)}
         disabled={disabled}
-        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors
-        ${error ? "border-red-500 focus:ring-red-500" : "border-gray-300"}
-        ${disabled ? "bg-gray-100 cursor-not-allowed opacity-60" : "bg-white"}`}
+        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-gray-900 dark:text-white
+        ${error ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600"}
+        ${disabled ? "bg-gray-100 dark:bg-gray-700 cursor-not-allowed opacity-60" : "bg-white dark:bg-gray-800"}`}
     >
         {placeholder && (
           <option value="" disabled>

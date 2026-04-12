@@ -38,7 +38,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
     if (!pairs || pairs.length === 0) {
         return (
             <PlayerLayout maxWidth="max-w-3xl">
-                <div className="text-center p-8 text-gray-500 font-medium bg-white rounded-2xl shadow-sm w-full">
+                <div className="text-center p-8 text-gray-500 dark:text-gray-400 font-medium bg-white dark:bg-gray-800 rounded-2xl shadow-sm w-full">
                     {t('common.no_data')}
                 </div>
             </PlayerLayout>
@@ -113,13 +113,13 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                         let buttonClass = "w-full min-h-[80px] p-4 rounded-xl border-2 transition-all duration-200 font-medium text-[15px] sm:text-lg flex items-center justify-center text-center select-none ";
 
                         if (isMatched) {
-                            buttonClass += "border-emerald-200 bg-emerald-50 text-emerald-400 opacity-50 cursor-default scale-95";
+                            buttonClass += "border-emerald-200 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-400 opacity-50 cursor-default scale-95";
                         } else if (isError) {
-                            buttonClass += "border-red-400 bg-red-50 text-red-700";
+                            buttonClass += "border-red-400 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400";
                         } else if (isSelected) {
-                            buttonClass += "border-indigo-500 bg-indigo-50 text-indigo-700 scale-105 shadow-md ring-2 ring-indigo-100";
+                            buttonClass += "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 scale-105 shadow-md ring-2 ring-indigo-100 dark:ring-indigo-900";
                         } else {
-                            buttonClass += "border-gray-200 bg-white text-gray-700 hover:border-indigo-200 hover:bg-gray-50 active:scale-95 shadow-sm hover:shadow-md";
+                            buttonClass += "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-200 dark:hover:border-indigo-700 hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm hover:shadow-md";
                         }
 
                         return (
@@ -150,7 +150,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                         onClick={handleFinishClick}
                         fullWidth
                         size="lg"
-                        className="py-6 !bg-gray-900 hover:!bg-gray-800 text-white rounded-2xl font-medium text-lg shadow-sm"
+                        className="py-6 !bg-gray-900 dark:!bg-gray-700 hover:!bg-gray-800 dark:hover:!bg-gray-600 text-white rounded-2xl font-medium text-lg shadow-sm"
                     >
                         {t('lessons.finish')}
                         <ChevronRight className="w-5 h-5 ml-2" />
