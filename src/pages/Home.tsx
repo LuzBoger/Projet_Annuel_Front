@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { Brain, Sparkles, BookOpen } from '@/assets/icons';
 import { RoleEnum } from '@/types/enum/roles';
 import { MetaData } from '@/components/seo/MetaData';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 export default function Home() {
     const { isAuthenticated, user } = useAuth();
