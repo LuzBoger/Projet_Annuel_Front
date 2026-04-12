@@ -63,11 +63,11 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
                 code={lang.code}
                 name={lang.name}
                 isSelected={isSelected}
+                isDisabled={step === "learning" && lang.id === nativeLanguageId}
                 onSelect={() => {
                   if (step === "native") {
                     setNativeLanguageId(lang.id);
                   } else {
-                    if (lang.id === nativeLanguageId) return;
                     setLearningLanguageId(lang.id);
                   }
                 }}
@@ -83,7 +83,7 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
           }
           isLoading={isLoading}
           fullWidth
-          className="bg-[#FF5722] hover:bg-[#E64A19] text-white rounded-xl py-3 disabled:opacity-40"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl py-3 disabled:opacity-40"
         >
           {step === "native" ? t("common.next") : t("common.continue")}
         </Button>
@@ -91,12 +91,12 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
         <div className="flex justify-center mt-4 gap-2">
           <div
             className={`h-2 w-2 rounded-full ${
-              step === "native" ? "bg-black" : "bg-gray-300"
+              step === "native" ? "bg-indigo-600" : "bg-gray-300"
             }`}
           />
           <div
             className={`h-2 w-2 rounded-full ${
-              step === "learning" ? "bg-black" : "bg-gray-300"
+              step === "learning" ? "bg-indigo-600" : "bg-gray-300"
             }`}
           />
         </div>

@@ -7,21 +7,21 @@ interface LanguageOptionCardProps {
     name: string;
     code: string;
     isSelected: boolean;
+    isDisabled?: boolean;
     onSelect: () => void;
 }
 
-export function LanguageOptionCard({name, code, isSelected, onSelect }: LanguageOptionCardProps) {
+export function LanguageOptionCard({name, code, isSelected, isDisabled = false, onSelect }: LanguageOptionCardProps) {
 
     return (
-        <Button
+        <button
             onClick={onSelect}
-            fullWidth
-            variant="ghost"
+            disabled={isDisabled}
             className={clsx(
-                "flex items-center gap-3 px-4 py-3 rounded-2xl border-2 text-left justify-start",
-                isSelected
-                    ? "border-[#FF5722] bg-[#FFF3EE] hover:bg-[#FFF3EE]"
-                    : "border-transparent bg-[#F5F0EB] hover:bg-[#EDE8E2]"
+                "w-full flex items-center gap-3 px-4 py-3 rounded-2xl border-2 text-left transition-all",
+                isDisabled && "opacity-40 grayscale cursor-not-allowed pointer-events-none bg-gray-100 border-gray-200",
+                !isDisabled && isSelected && "border-indigo-600 bg-indigo-50",
+                !isDisabled && !isSelected && "border-transparent bg-[#F5F0EB] hover:bg-[#EDE8E2]"
             )}
         >
             <span
@@ -36,11 +36,11 @@ export function LanguageOptionCard({name, code, isSelected, onSelect }: Language
             <span
                 className={clsx(
                 "w-5 h-5 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors",
-                isSelected ? "border-[#FF5722]" : "border-gray-300"
+                isSelected ? "border-indigo-600" : "border-gray-300"
                 )}
             >
-                {isSelected && <span className="w-2.5 h-2.5 rounded-full bg-[#FF5722]" />}
+                {isSelected && <span className="w-2.5 h-2.5 rounded-full bg-indigo-600" />}
             </span>
-        </Button>
+        </button>
     );
 }
