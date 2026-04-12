@@ -48,7 +48,7 @@ export default function Login() {
     return (
         <AuthenticationLayout 
             title={t('auth.login.title')}
-            illustrationTitle={<>{t('auth.illustrations.login.title_start')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-300">{t('auth.illustrations.login.title_highlight')}</span></>}
+            illustrationTitle={<>{t('auth.illustrations.login.title_start')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-brand-300">{t('auth.illustrations.login.title_highlight')}</span></>}
             illustrationDescription={t('auth.illustrations.login.description')}
         >
             {error && (
@@ -63,7 +63,7 @@ export default function Login() {
             <div className='mt-6 text-center'>
                 <p className='text-sm text-gray-600 dark:text-gray-400'>
                     {t('auth.login.no_account')}{' '}
-                    <Link to="/register" className='text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300'>
+                    <Link to="/register" className='text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-300'>
                         {t('auth.login.create_account')}
                     </Link>
                 </p>

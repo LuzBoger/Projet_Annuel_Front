@@ -18,7 +18,7 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
         <Button
             type="button"
             variant="none"
-            className="group w-full text-left bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            className="group w-full text-left bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-300"
             onClick={onClick}
         >
             <div className="px-5 pt-5 flex items-center gap-3">
@@ -77,7 +77,7 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
                 }
                 {isLearning
                     ? <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    : <ArrowRight className="w-4 h-4 text-gray-300 dark:text-white group-hover:text-indigo-400 transition-colors" />
+                    : <ArrowRight className="w-4 h-4 text-gray-300 dark:text-white group-hover:text-brand-400 transition-colors" />
                 }
             </div>
         </Button>

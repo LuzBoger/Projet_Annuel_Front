@@ -144,7 +144,7 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                         </label>
                         <textarea
                             {...register("description")}
-                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors resize-y min-h-[80px] dark:bg-gray-700 dark:text-gray-200"
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors resize-y min-h-[80px] dark:bg-gray-700 dark:text-gray-200"
                         />
                         {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>}
                     </div>

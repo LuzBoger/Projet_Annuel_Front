@@ -27,7 +27,7 @@ export default function Home() {
                     
                     <div className="text-center md:max-w-3xl md:mx-auto mb-20">
                         <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl mb-6">
-                            {t('home.hero.title_start')}<span className="text-indigo-600">{t('home.hero.title_highlight')}</span>
+                            {t('home.hero.title_start')}<span className="text-brand-600">{t('home.hero.title_highlight')}</span>
                         </h1>
                         <p className="mt-3 text-base text-gray-600 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
                             {t('home.hero.description')}
@@ -36,12 +36,12 @@ export default function Home() {
                         <div className="mt-10 sm:flex sm:justify-center">
                             {isAuthenticated ? (
                                 <div className="space-y-4">
-                                    <p className="text-sm font-medium text-gray-500">
-                                        {t('home.hero.logged_in_as')}<span className="text-indigo-700">{user?.username || user?.email}</span>
+                                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                                        {t('home.hero.logged_in_as')}<span className="text-brand-800 dark:text-brand-400">{user?.username || user?.email}</span>
                                     </p>
                                     <Link
                                         to="/subscription"
-                                        className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 transition-colors shadow-sm"
+                                        className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700 md:py-4 md:text-lg md:px-10 transition-colors shadow-sm"
                                     >
                                         {t('home.hero.continue_learning')}
                                     </Link>
@@ -58,7 +58,7 @@ export default function Home() {
                                             {t('home.hero.start_free')}
                                         </Button>
                                     </Link>
-                                    <Link to="/login" className="flex items-center justify-center font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors w-full sm:w-auto h-full px-4">
+                                    <Link to="/login" className="flex items-center justify-center font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors w-full sm:w-auto h-full px-4">
                                         {t('auth.login.title')}
                                     </Link>
                                 </div>
@@ -76,7 +76,7 @@ export default function Home() {
                                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                                     {t('home.features.scientific.title')}
                                 </h3>
-                                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                                     {t('home.features.scientific.description')}
                                 </p>
                             </div>
@@ -88,7 +88,7 @@ export default function Home() {
                                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                                     {t('home.features.ai.title')}
                                 </h3>
-                                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                                     {t('home.features.ai.description')}
                                 </p>
                             </div>
@@ -100,7 +100,7 @@ export default function Home() {
                                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                                     {t('home.features.variety.title')}
                                 </h3>
-                                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                                     {t('home.features.variety.description')}
                                 </p>
                             </div>
@@ -114,10 +114,10 @@ export default function Home() {
             <section className="bg-white dark:bg-gray-800 py-20 border-t border-gray-200 dark:border-gray-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl shadow-sm inline-block px-4 py-2 border-b-4 border-indigo-200">
+                        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl shadow-sm inline-block px-4 py-2 border-b-4 border-brand-200">
                             {t('home.science.title')}
                         </h2>
-                        <p className="mt-4 text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                        <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                             {t('home.science.subtitle')}
                         </p>
                     </div>
@@ -126,7 +126,7 @@ export default function Home() {
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
                                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('home.science.spaced_repetition.title')}</h3>
-                                <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                                     {t('home.science.spaced_repetition.description')}
                                 </p>
                                 <ul className="space-y-3">
@@ -137,7 +137,7 @@ export default function Home() {
                                 </ul>
                             </div>
                             <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-100 dark:border-gray-600 shadow-sm relative overflow-hidden">
-                                <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-6">{t('home.science.spaced_repetition.chart_title')}</h4>
+                                <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider mb-6">{t('home.science.spaced_repetition.chart_title')}</h4>
 
                                 <div className="space-y-6">
                                     <div>
@@ -150,7 +150,7 @@ export default function Home() {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="flex justify-between text-sm mb-1 font-bold text-indigo-700 dark:text-indigo-400">
+                                        <div className="flex justify-between text-sm mb-1 font-bold text-brand-800 dark:text-brand-300">
                                             <span>{t('home.science.spaced_repetition.glotrush')}</span>
                                             <span>85%</span>
                                         </div>
@@ -166,14 +166,14 @@ export default function Home() {
 
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1 bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-100 dark:border-gray-600 shadow-sm">
-                                <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-6">{t('home.science.dual_coding.chart_title')}</h4>
+                                <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider mb-6">{t('home.science.dual_coding.chart_title')}</h4>
                                 <div className="flex justify-around items-end h-32 px-4 gap-4">
                                     <div className="w-full relative flex flex-col items-center justify-end h-full">
                                         <div className="w-16 bg-gray-300 dark:bg-gray-500 rounded-t-md text-center text-xs text-gray-700 dark:text-gray-200 font-medium py-1" style={{ height: '40%' }}>{t('home.science.dual_coding.text_only')}</div>
                                     </div>
                                     <div className="w-full relative flex flex-col items-center justify-end h-full">
-                                        <div className="w-16 bg-indigo-500 rounded-t-md text-center text-xs text-white font-medium py-1 shadow-md" style={{ height: '85%' }}>
-                                            <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-sm text-indigo-600 font-bold whitespace-nowrap">+65%</span>
+                                        <div className="w-16 bg-brand-500 rounded-t-md text-center text-xs text-white font-medium py-1 shadow-md" style={{ height: '85%' }}>
+                                            <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-sm text-brand-600 dark:text-brand-400 font-bold whitespace-nowrap">+65%</span>
                                             {t('home.science.dual_coding.dual_coding')}
                                         </div>
                                     </div>
@@ -181,7 +181,7 @@ export default function Home() {
                             </div>
                             <div className="order-1 md:order-2">
                                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('home.science.dual_coding.title')}</h3>
-                                <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                                     {t('home.science.dual_coding.description')}
                                 </p>
                                 <ul className="space-y-3">
@@ -200,7 +200,7 @@ export default function Home() {
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
                                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('home.science.testing_effect.title')}</h3>
-                                <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                                     {t('home.science.testing_effect.description')}
                                 </p>
                                 <ul className="space-y-3">
@@ -217,10 +217,10 @@ export default function Home() {
                                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                                           <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
                                         </span>
-                                        <span className="text-4xl font-extrabold text-rose-600 inline-block">340%</span>
+                                        <span className="text-4xl font-extrabold text-rose-600 dark:text-rose-400 inline-block">340%</span>
                                     </div>
                                     <p className="font-semibold text-gray-700 dark:text-gray-300">{t('home.science.testing_effect.chart_title')}</p>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">{t('home.science.testing_effect.chart_desc')}</p>
+                                    <p className="text-sm text-gray-600 dark:text-gray-300">{t('home.science.testing_effect.chart_desc')}</p>
                                 </div>
                             </div>
                         </div>
@@ -231,13 +231,13 @@ export default function Home() {
                                     <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded border border-gray-300 dark:border-gray-500"></div>
                                     <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded border border-gray-300 dark:border-gray-500"></div>
                                     <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded border border-gray-300 dark:border-gray-500"></div>
-                                    <div className="text-gray-400 dark:text-gray-500 text-xl font-bold flex items-center px-2">{"→"}</div>
+                                    <div className="text-gray-500 dark:text-gray-400 text-xl font-bold flex items-center px-2">{"→"}</div>
                                     <div className="w-24 h-10 bg-purple-600 rounded border border-purple-700 shadow-md text-white flex items-center justify-center font-bold text-sm tracking-wider">{t('home.science.chunking.chunk_word')}</div>
                                 </div>
                             </div>
                             <div className="order-1 md:order-2">
                                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('home.science.chunking.title')}</h3>
-                                <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                                     {t('home.science.chunking.description')}
                                 </p>
                                 <ul className="space-y-3">
@@ -253,10 +253,10 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="bg-gray-100 dark:bg-gray-800/50 py-10 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400">
+            <section className="bg-gray-100 dark:bg-gray-800/50 py-10 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h5 className="font-bold text-gray-700 dark:text-gray-300 mb-4 uppercase tracking-wider text-xs">{t('home.science.sources.title')}</h5>
-                    <ol className="list-decimal pl-5 space-y-2 max-w-4xl opacity-80">
+                    <ol className="list-decimal pl-5 space-y-2 max-w-4xl">
                         <li><strong>Ebbinghaus, H.</strong> {t('home.science.sources.source1')}</li>
                         <li><strong>Paivio, A.</strong> {t('home.science.sources.source2')}</li>
                         <li><strong>Roediger, H. L., & Karpicke, J. D.</strong> {t('home.science.sources.source3')}</li>

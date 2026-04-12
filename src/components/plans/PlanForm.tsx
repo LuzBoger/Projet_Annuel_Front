@@ -98,7 +98,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                         <textarea
                             id="description"
                             rows={4}
-                            className={`mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${errors.description ? 'border-red-500' : ''}`}
+                            className={`mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-brand-500 focus:border-brand-500 sm:text-sm ${errors.description ? 'border-red-500' : ''}`}
                             disabled={isLoading}
                             {...register('description')}
                         />
@@ -163,7 +163,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                             <input
                                 type="checkbox"
                                 id="isActive"
-                                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                className="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
                                 {...register('isActive' as keyof (CreatePlanFormData | UpdatePlanFormData))}
                             />
                             <label htmlFor="isActive" className="text-sm text-gray-700 dark:text-gray-300">

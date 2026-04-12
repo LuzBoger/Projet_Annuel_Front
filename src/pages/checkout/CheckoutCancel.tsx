@@ -23,7 +23,7 @@ export default function CheckoutCancel() {
                 <Button
                     variant="none"
                     onClick={() => navigate('/plans')}
-                    className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors"
+                    className="bg-brand-600 text-white px-6 py-3 rounded-md hover:bg-brand-700 transition-colors"
                 >
                     {t('common.back')}
                 </Button>

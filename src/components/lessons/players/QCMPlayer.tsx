@@ -68,7 +68,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                         
                         if (!isValidated) {
                             buttonClass += selectedOption === idx 
-                                ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300"
+                                ? "border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-800 dark:text-brand-300"
                                 : "border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300";
                         } else {
                             if (idx === currentQ.correctOptionIndex) {
@@ -89,7 +89,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                                 variant="none"
                             >
                                 <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full border-2 text-center mr-4 text-sm font-medium flex-shrink-0 transition-colors ${
-                                    (!isValidated && selectedOption === idx) ? "bg-indigo-500 border-indigo-500 text-white" :
+                                    (!isValidated && selectedOption === idx) ? "bg-brand-500 border-brand-500 text-white" :
                                     (isValidated && idx === currentQ.correctOptionIndex) ? "bg-emerald-500 border-emerald-500 text-white" :
                                     (isValidated && idx === selectedOption) ? "bg-red-400 border-red-400 text-white" :
                                     "bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-400 group-hover:border-gray-300 group-hover:text-gray-500"

@@ -104,7 +104,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                                 variant="none"
                                 onClick={() => handleTargetDeselection(item)}
                                 disabled={isValidated}
-                                className="px-4 py-2.5 bg-white border-2 border-indigo-200 shadow-sm rounded-xl text-indigo-900 font-medium text-[15px] sm:text-lg hover:bg-red-50 hover:border-red-200 hover:text-red-700 transition-all active:scale-95 disabled:hover:scale-100 disabled:opacity-90 disabled:cursor-default"
+                                className="px-4 py-2.5 bg-white border-2 border-brand-200 shadow-sm rounded-xl text-brand-900 font-medium text-[15px] sm:text-lg hover:bg-red-50 hover:border-red-200 hover:text-red-700 transition-all active:scale-95 disabled:hover:scale-100 disabled:opacity-90 disabled:cursor-default"
                             >
                                 {item.text}
                             </Button>
@@ -118,7 +118,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                                 variant="none"
                                 onClick={() => handlePoolSelection(item)}
                                 disabled={isValidated}
-                                className="px-4 py-2.5 bg-white border-2 border-gray-200 shadow-sm rounded-xl text-gray-800 font-medium text-[15px] sm:text-lg hover:border-indigo-400 hover:text-indigo-800 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="px-4 py-2.5 bg-white border-2 border-gray-200 shadow-sm rounded-xl text-gray-800 font-medium text-[15px] sm:text-lg hover:border-brand-400 hover:text-brand-800 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {item.text}
                             </Button>

@@ -52,7 +52,7 @@ export default function TopicLessons() {
             </Button>
 
             <div className="mb-12 text-center sm:text-left">
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-600 tracking-tight">
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-900 to-brand-600 tracking-tight">
                     {t('topics.lessons_title')}
                 </h1>
                 <p className="mt-3 text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
@@ -62,7 +62,7 @@ export default function TopicLessons() {
 
             {loading ? (
                 <div className="flex justify-center items-center py-24">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"></div>
                 </div>
             ) : error ? (
                 <div className="mb-8 p-6 bg-red-50 dark:bg-red-900/20 rounded-2xl border border-red-100 dark:border-red-800 text-center">
@@ -70,8 +70,8 @@ export default function TopicLessons() {
                 </div>
             ) : details ? (
                 <div className="space-y-8">
-                    <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-indigo-100 dark:border-gray-700 flex flex-col md:flex-row md:items-center md:justify-between relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 dark:bg-indigo-900/20 rounded-bl-full opacity-50 pointer-events-none"></div>
+                    <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-brand-100 dark:border-gray-700 flex flex-col md:flex-row md:items-center md:justify-between relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-brand-50 dark:bg-brand-900/20 rounded-bl-full opacity-50 pointer-events-none"></div>
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full">
                             <div className="flex flex-col border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-6">
@@ -83,7 +83,7 @@ export default function TopicLessons() {
                                             {t('topics.passed')}
                                         </span>
                                     ) : (
-                                        <span className="text-indigo-400 font-medium text-lg flex items-center">
+                                        <span className="text-brand-400 font-medium text-lg flex items-center">
                                             <IconFlashcard className="w-4 h-4 mr-1.5 opacity-70" />
                                             {t('topics.not_passed')}
                                         </span>
@@ -93,7 +93,7 @@ export default function TopicLessons() {
 
                             <div className="flex flex-col border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-6 md:pl-6 pl-0">
                                 <p className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_attempts')}</p>
-                                <p className="text-3xl font-extrabold text-indigo-900 dark:text-indigo-300">{details.examAttempts}</p>
+                                <p className="text-3xl font-extrabold text-brand-900 dark:text-brand-300">{details.examAttempts}</p>
                             </div>
 
                             <div className="flex flex-col pt-2 md:pt-0 md:pl-6 pl-0">

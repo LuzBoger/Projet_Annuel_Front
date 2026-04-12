@@ -45,7 +45,7 @@ export default function Subscription() {
         <>
         <MetaData title={t('subscription.page_title')}  robots="noindex, nofollow"  />
         <div className="max-w-4xl mx-auto p-6">
-            <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300 mb-6">{t("subscription.title")}</h1>
+            <h1 className="text-2xl font-bold text-brand-900 dark:text-brand-300 mb-6">{t("subscription.title")}</h1>
             {error && (
                 <div className="mb-4 p-4 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-300 text-sm">
                     <p>{error}</p>
@@ -62,7 +62,7 @@ export default function Subscription() {
                                 <p className="text-gray-600 dark:text-gray-400 mb-4">{t('subscription.upgrade_message')}</p>
                                 <button
                                     onClick={() => navigate('/plans')}
-                                    className="inline-flex items-center justify-center rounded-md bg-indigo-600 px-6 py-3 text-white font-medium hover:bg-indigo-700 transition-colors"
+                                    className="inline-flex items-center justify-center rounded-md bg-brand-600 px-6 py-3 text-white font-medium hover:bg-brand-700 transition-colors"
                                 >
                                     {t('subscription.view_plans')}
                                 </button>

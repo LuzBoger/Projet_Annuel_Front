@@ -19,7 +19,7 @@ export function LocaleLanguageSwitcher() {
               i18n.changeLanguage(locale.toLowerCase());
               localStorage.setItem('locale', locale.toLowerCase());
             }}
-            className={clsx('px-1 transition-colors', current === locale ? 'text-indigo-600 font-bold' : 'text-gray-400 hover:text-gray-600')}
+            className={clsx('px-1 transition-colors', current === locale ? 'text-brand-600 font-bold' : 'text-gray-400 hover:text-gray-600')}
           >
             {locale}
           </Button>

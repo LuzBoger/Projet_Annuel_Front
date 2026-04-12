@@ -35,7 +35,7 @@ export function CancelSubscriptionModal({isOpen, isLoading, onCancel, onConfirm}
                         {t('subscription.cancel.reason')}
                     </label>
                     <textarea
-                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-200"
+                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-gray-700 dark:text-gray-200"
                         rows={3}
                         maxLength={500}
                         value={reason}
@@ -45,7 +45,7 @@ export function CancelSubscriptionModal({isOpen, isLoading, onCancel, onConfirm}
                 </div>
                 <div className="mb-6">
                     <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <input type="checkbox" checked={isCancel} onChange={(e) => setIsCancel(e.target.checked)} className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" />
+                    <input type="checkbox" checked={isCancel} onChange={(e) => setIsCancel(e.target.checked)} className="h-4 w-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500" />
                     {t('subscription.cancel.now')}
                     </label>
                     {isCancel && (

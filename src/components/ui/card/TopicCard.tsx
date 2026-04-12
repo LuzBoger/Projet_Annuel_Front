@@ -52,7 +52,7 @@ export function TopicCard({ topic, onPractice }: Readonly<TopicCardProps>) {
 
                 <Button
                     variant="none"
-                    className="group flex items-center justify-end w-full mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors cursor-pointer"
+                    className="group flex items-center justify-end w-full mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors cursor-pointer"
                     onClick={onPractice}
                 >
                     {t("components.topicCard.practice")}

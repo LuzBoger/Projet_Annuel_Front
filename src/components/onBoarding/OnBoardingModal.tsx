@@ -83,7 +83,7 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
           }
           isLoading={isLoading}
           fullWidth
-          className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl py-3 disabled:opacity-40"
+          className="bg-brand-600 hover:bg-brand-700 text-white rounded-xl py-3 disabled:opacity-40"
         >
           {step === "native" ? t("common.next") : t("common.continue")}
         </Button>
@@ -92,14 +92,14 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
           <div
             className={`h-2 w-2 rounded-full transition-colors ${
               step === "native" 
-                ? "bg-indigo-600 dark:bg-indigo-400" 
+                ? "bg-brand-600 dark:bg-brand-400" 
                 : "bg-gray-300 dark:bg-gray-600"
             }`}
           />
           <div
             className={`h-2 w-2 rounded-full transition-colors ${
               step === "learning" 
-                ? "bg-indigo-600 dark:bg-indigo-400" 
+                ? "bg-brand-600 dark:bg-brand-400" 
                 : "bg-gray-300 dark:bg-gray-600"
             }`}
           />

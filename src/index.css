@@ -1,6 +1,32 @@
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --color-brand-50: var(--color-indigo-50);
+  --color-brand-100: var(--color-indigo-100);
+  --color-brand-200: var(--color-indigo-200);
+  --color-brand-300: var(--color-indigo-300);
+  --color-brand-400: var(--color-indigo-400);
+  --color-brand-500: var(--color-indigo-500);
+  --color-brand-600: var(--color-indigo-600);
+  --color-brand-700: var(--color-indigo-700);
+  --color-brand-800: var(--color-indigo-800);
+  --color-brand-900: var(--color-indigo-900);
+  --color-brand-950: var(--color-indigo-950);
+}
+
+.dark {
+  /* On éclaircit les nuances 600+ pour le mode sombre car brand-600 est trop sombre sur fond noir */
+  --color-brand-600: var(--color-indigo-400);
+  --color-brand-700: var(--color-indigo-300);
+  --color-brand-800: var(--color-indigo-200);
+  --color-brand-900: var(--color-indigo-100);
+  
+  /* On sombre les nuances 50-100 pour les fonds */
+  --color-brand-50: var(--color-indigo-950);
+  --color-brand-100: var(--color-indigo-900);
+}
+
 body {
   margin: 0;
   min-width: 320px;

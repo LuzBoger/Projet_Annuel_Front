@@ -100,7 +100,7 @@ export function Header() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex-shrink-0 flex items-center">
-                        <Link to="/" className="text-2xl font-bold text-indigo-600 hover:text-indigo-500 transition-colors">
+                        <Link to="/" className="text-2xl font-bold text-brand-600 hover:text-brand-500 transition-colors">
                             Skaldly
                         </Link>
                     </div>
@@ -110,13 +110,13 @@ export function Header() {
                             <>
                                 {!isAdmin && (
                                     <>
-                                        <Link to="/plans" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/plans" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("plans.page_title")}
                                         </Link>
-                                        <Link to="/subscription" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/subscription" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("subscription.title")}
                                         </Link>
-                                        <Link to="/catalog-languages" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/catalog-languages" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("catalogLanguages.title")}
                                         </Link>
                                     </>
@@ -124,19 +124,19 @@ export function Header() {
                                 
                                 {isAdmin && (
                                     <div className="flex items-center space-x-8">
-                                        <Link to="/admin" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/admin" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.dashboard.title")}
                                         </Link>
-                                        <Link to="/admin/languages" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/admin/languages" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.languages.page_title")}
                                         </Link>
-                                        <Link to="/admin/plans" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/admin/plans" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.plans.title")}
                                         </Link>
-                                        <Link to="/admin/subscriptions" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/admin/subscriptions" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.subscriptions.title")}
                                         </Link>
-                                        <Link to="/admin/topics" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/admin/topics" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.topics.page_title")}
                                         </Link>
                                     </div>
@@ -151,10 +151,10 @@ export function Header() {
                         )}
                         {!isAuthenticated ? (
                             <div className="flex items-center space-x-8">
-                                <Link to="/login" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                <Link to="/login" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                     {t("auth.login.title")}
                                 </Link>
-                                <Link to="/register" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                <Link to="/register" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                     {t("auth.register.title")}
                                 </Link>
                             </div>
@@ -176,14 +176,14 @@ export function Header() {
                                     <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
                                         <Link
                                             to="/profile"
-                                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-indigo-600 transition-colors"
+                                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-brand-600 transition-colors"
                                             onClick={() => setIsDropdownOpen(false)}
                                         >
                                             {t("profile.title")}
                                         </Link>
                                         <Link
                                             to="/settings"
-                                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-indigo-600 transition-colors"
+                                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-brand-600 transition-colors"
                                             onClick={() => setIsDropdownOpen(false)}
                                         >
                                             {t("settings.title")}

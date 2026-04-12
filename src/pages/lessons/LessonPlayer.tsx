@@ -91,8 +91,8 @@ export default function LessonPlayer() {
     if (isStarting || !lesson) {
         return (
             <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center justify-center p-4">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mb-6"></div>
-                <p className="text-indigo-600 font-medium animate-pulse">{t('lessons.starting')}</p>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mb-6"></div>
+                <p className="text-brand-600 font-medium animate-pulse">{t('lessons.starting')}</p>
             </div>
         );
     }
@@ -115,7 +115,7 @@ export default function LessonPlayer() {
                     {lesson.title}
                 </div>
                 <div className="w-16 sm:w-32 flex justify-end">
-                    {isCompleting && <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-md font-bold">Saving...</span>}
+                    {isCompleting && <span className="text-xs bg-brand-100 text-brand-700 px-2 py-1 rounded-md font-bold">Saving...</span>}
                 </div>
             </header>
             

@@ -64,7 +64,7 @@ export default function LanguageTopics() {
         <MetaData title={t('topics.page_title')}  robots="noindex, nofollow"  />
         <div className="relative min-h-screen pb-32 pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div className="mb-4">
-                <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300 tracking-tight">
+                <h1 className="text-2xl font-bold text-brand-900 dark:text-brand-300 tracking-tight">
                     {t('topics.page_title')}
                 </h1>
                 <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
@@ -87,7 +87,7 @@ export default function LanguageTopics() {
 
             {isLoading ? (
                 <div className="flex justify-center items-center py-20">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"></div>
                 </div>
             ) : topics.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

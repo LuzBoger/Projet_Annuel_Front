@@ -44,7 +44,7 @@ export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onCh
         <PlayerCard
             instruction={
                 <div className="flex justify-center mb-4">
-                    <span className="px-4 py-1.5 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-bold tracking-wide uppercase">
+                    <span className="px-4 py-1.5 bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 rounded-full text-sm font-bold tracking-wide uppercase">
                         {t('lessons.sorting.instruction')}
                     </span>
                 </div>
@@ -63,7 +63,7 @@ export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onCh
                             key={item.id}
                             variant="none"
                             onClick={() => handleTargetDeselection(item)}
-                            className="px-5 py-3 bg-white dark:bg-gray-700 border-2 border-indigo-200 dark:border-indigo-700 shadow-sm rounded-2xl text-indigo-900 dark:text-indigo-200 font-medium text-[15px] sm:text-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-200 dark:hover:border-red-700 hover:text-red-700 dark:hover:text-red-300 transition-all active:scale-95 shadow-[0_4px_12px_rgb(0,0,0,0.03)]"
+                            className="px-5 py-3 bg-white dark:bg-gray-700 border-2 border-brand-200 dark:border-brand-700 shadow-sm rounded-2xl text-brand-900 dark:text-brand-200 font-medium text-[15px] sm:text-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-200 dark:hover:border-red-700 hover:text-red-700 dark:hover:text-red-300 transition-all active:scale-95 shadow-[0_4px_12px_rgb(0,0,0,0.03)]"
                         >
                             {item.text}
                         </Button>
@@ -76,7 +76,7 @@ export function ExamSortingQuestion({ exercise, shuffledIndices, userOrder, onCh
                             key={item.id}
                             variant="none"
                             onClick={() => handlePoolSelection(item)}
-                            className="px-5 py-3 bg-white dark:bg-gray-700 border-2 border-gray-100 dark:border-gray-700 shadow-sm rounded-2xl text-gray-800 dark:text-gray-200 font-medium text-[15px] sm:text-lg hover:border-indigo-400 dark:hover:border-indigo-500 hover:text-indigo-800 dark:hover:text-indigo-200 hover:shadow-md transition-all active:scale-95"
+                            className="px-5 py-3 bg-white dark:bg-gray-700 border-2 border-gray-100 dark:border-gray-700 shadow-sm rounded-2xl text-gray-800 dark:text-gray-200 font-medium text-[15px] sm:text-lg hover:border-brand-400 dark:hover:border-brand-500 hover:text-brand-800 dark:hover:text-brand-200 hover:shadow-md transition-all active:scale-95"
                         >
                             {item.text}
                         </Button>

@@ -140,7 +140,7 @@ export default function LessonForm() {
                             {isEdit ? t('admin.lessons.edit') : t('admin.lessons.create')}
                         </h1>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                            {t('admin.lessons.form.topic_label')} <span className="font-semibold text-indigo-600 dark:text-indigo-400">{currentTopic?.name || "..."}</span>
+                            {t('admin.lessons.form.topic_label')} <span className="font-semibold text-brand-600 dark:text-brand-400">{currentTopic?.name || "..."}</span>
                         </p>
                     </div>
                 </div>
@@ -148,7 +148,7 @@ export default function LessonForm() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <form onSubmit={handleSubmit(onFormSubmit)} className="lg:col-span-2 space-y-8">
                         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 space-y-6">
-                            <div className="flex items-center gap-2 mb-4 text-indigo-600 dark:text-indigo-400">
+                            <div className="flex items-center gap-2 mb-4 text-brand-600 dark:text-brand-400">
                                 <Info className="w-5 h-5" />
                                 <h2 className="text-lg font-bold">{t('admin.lessons.form.sections.basic_info')}</h2>
                             </div>
@@ -168,7 +168,7 @@ export default function LessonForm() {
                                     </label>
                                     <textarea
                                         {...register("description")}
-                                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none min-h-[100px] bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all resize-none min-h-[100px] bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                                     />
                                     {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>}
                                 </div>
@@ -220,7 +220,7 @@ export default function LessonForm() {
                         </div>
 
                         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 space-y-8">
-                            <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
+                            <div className="flex items-center gap-2 text-brand-600 dark:text-brand-400">
                                 <Info className="w-5 h-5" />
                                 <h2 className="text-lg font-bold">{t('admin.lessons.form.sections.lesson_content')}</h2>
                             </div>

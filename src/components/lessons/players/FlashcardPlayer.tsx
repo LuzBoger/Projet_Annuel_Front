@@ -36,7 +36,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
     if (queue.length === 0 && scores.length > 0 && scores[0] !== -1) {
         return (
             <PlayerLayout>
-                <div className="text-center p-8 text-indigo-500 animate-pulse font-medium">
+                <div className="text-center p-8 text-brand-500 animate-pulse font-medium">
                     {t('lessons.computing_score')}
                 </div>
             </PlayerLayout>
@@ -100,21 +100,21 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                     className="w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.4,0.0,0.2,1)]"
                     style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'none' }}
                 >
-                    <div className="absolute w-full h-full bg-white dark:bg-gray-800 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center p-10 text-center hover:border-indigo-100 dark:hover:border-indigo-900/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all" style={{ backfaceVisibility: 'hidden' }}>
+                    <div className="absolute w-full h-full bg-white dark:bg-gray-800 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center p-10 text-center hover:border-brand-100 dark:hover:border-brand-900/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all" style={{ backfaceVisibility: 'hidden' }}>
                         <span className="absolute top-6 right-8 text-xs font-bold text-gray-300 dark:text-gray-400 uppercase tracking-widest">{currentCard.frontLanguage}</span>
                         <h3 className="text-3xl sm:text-5xl font-extrabold text-gray-800 dark:text-gray-200 break-words leading-tight">{currentCard.front}</h3>
                         {!isFlipped && (
                             <div className="absolute bottom-8 flex flex-col items-center animate-bounce">
-                                <p className="text-sm text-indigo-400 font-bold uppercase tracking-widest mt-2 hidden sm:block">
+                                <p className="text-sm text-brand-400 font-bold uppercase tracking-widest mt-2 hidden sm:block">
                                     {t('lessons.click_to_flip')}
                                 </p>
                             </div>
                         )}
                     </div>
                     
-                    <div className="absolute w-full h-full bg-indigo-50 dark:bg-indigo-900/20 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-indigo-100 dark:border-indigo-700 flex flex-col items-center justify-center p-10 text-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
-                        <span className="absolute top-6 right-8 text-xs font-bold text-indigo-300 dark:text-indigo-400 uppercase tracking-widest">{currentCard.backLanguage}</span>
-                        <h3 className="text-3xl sm:text-5xl font-extrabold text-indigo-900 dark:text-indigo-200 break-words leading-tight">{currentCard.back}</h3>
+                    <div className="absolute w-full h-full bg-brand-50 dark:bg-brand-900/20 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-brand-100 dark:border-brand-700 flex flex-col items-center justify-center p-10 text-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                        <span className="absolute top-6 right-8 text-xs font-bold text-brand-300 dark:text-brand-400 uppercase tracking-widest">{currentCard.backLanguage}</span>
+                        <h3 className="text-3xl sm:text-5xl font-extrabold text-brand-900 dark:text-brand-200 break-words leading-tight">{currentCard.back}</h3>
                     </div>
                 </div>
             </div>

@@ -28,7 +28,7 @@ export function IconButton({
             variantStyles = "text-gray-400 dark:text-green-500 hover:text-green-600 hover:bg-green-50 dark:hover:text-green-400 dark:hover:!bg-green-900/20 focus:ring-green-500";
             break;
         case "ghost":
-            variantStyles = "text-gray-400 hover:text-indigo-600 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-20 disabled:hover:text-gray-400 disabled:hover:bg-transparent focus:ring-indigo-500";
+            variantStyles = "text-gray-400 hover:text-brand-600 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-20 disabled:hover:text-gray-400 disabled:hover:bg-transparent focus:ring-brand-500";
             break;
         case "default":
         default:

@@ -75,7 +75,7 @@ export default function Plans() {
         <MetaData title={t('subscription.plans.title')} description={t('subscription.plans.description')} keywords={t('subscription.plans.keywords')} robots="index, follow" url="https://skaldly.fr/plans"  />
         <div className="max-w-4xl mx-auto p-6">
             <div className="text-center mb-8">
-                <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300">
+                <h1 className="text-2xl font-bold text-brand-900 dark:text-brand-300">
                     {t('subscription.plans.title')}
                 </h1>
                 <p className="mt-2 text-gray-600 dark:text-gray-400">

@@ -23,7 +23,7 @@ export function ExamFlashcardQuestion({ flashcard, value, onChange }: ExamFlashc
         <PlayerCard 
             instruction={
                 <div className="flex justify-center mb-4">
-                    <span className="px-4 py-1.5 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-bold tracking-wide uppercase">
+                    <span className="px-4 py-1.5 bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 rounded-full text-sm font-bold tracking-wide uppercase">
                         {t('topics.translate_or_answer')}
                     </span>
                 </div>
@@ -40,7 +40,7 @@ export function ExamFlashcardQuestion({ flashcard, value, onChange }: ExamFlashc
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     placeholder={t('topics.type_answer_here')}
-                    className="w-full p-5 sm:p-6 text-lg sm:text-xl text-center border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all outline-none bg-gray-50 dark:bg-gray-700 hover:bg-white dark:hover:bg-gray-800 placeholder:text-gray-300 dark:text-gray-200"
+                    className="w-full p-5 sm:p-6 text-lg sm:text-xl text-center border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all outline-none bg-gray-50 dark:bg-gray-700 hover:bg-white dark:hover:bg-gray-800 placeholder:text-gray-300 dark:text-gray-200"
                 />
             </div>
         </PlayerCard>

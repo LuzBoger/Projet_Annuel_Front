@@ -103,7 +103,7 @@ export default function LessonList() {
                                 {lesson.title}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
-                                <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300">
+                                <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-800 dark:text-brand-300">
                                     {lesson.lessonType}
                                 </span>
                             </td>
