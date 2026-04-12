@@ -36,7 +36,6 @@ import { Header } from "@/components/layout/Header";
 import { RoleEnum } from "@/types/enum/roles";
 import { AUTH_PATH } from "@/constants/global";
 import Dashboard from "@/pages/user/Dashboard";
-import { LocaleLanguageSwitcher } from "../ui/LocaleLanguageSwitcher";
 
 export function AppRoutes() {
   const { user, isAuthenticated, fetchUser } = useContext(AuthContext)!;
@@ -48,8 +47,6 @@ export function AppRoutes() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
       <Header />
       <main className="flex-1">
-              {!isAuthenticated && <LocaleLanguageSwitcher />}
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

@@ -43,7 +43,7 @@ export default function Register() {
         {error && <p className="text-red-600 dark:text-red-400">{error}</p>}
         <p className="text-gray-600 dark:text-gray-400">
           {t('auth.register.has_account')}{' '}
-          <Link to="/login" className="text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-semibold">
+          <Link to="/login" className="font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 hover:underline transition-colors">
             {t('auth.register.login')}
           </Link>
         </p>

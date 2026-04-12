@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { hasRole } from "@/lib/utils/roles";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import { ChevronDown } from "@/assets/icons";
 import { Avatar } from "@/components/ui/Avatar";
 import { profileService } from "@/services/profileService";
@@ -14,14 +15,17 @@ import { LanguageResponse } from "@/types/language/language";
 import { LanguageSwitcherButton } from "@/components/languages/LanguageSwitcherButton";
 import { userLanguageService } from "@/services/userLanguage";
 import { Button } from "@/components/ui/Button";
+import { LocaleLanguageSwitcher } from "../ui/LocaleLanguageSwitcher";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Header() {
     const { user, isAuthenticated, logout } = useAuth();
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const location = useLocation();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [photoUrl, setPhotoUrl] = useState<string | null>(null); 
-    const [learningLanguages, setLearningLanguages] = useState<UserLanguageResponse[]>([]); 
+    const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+    const [learningLanguages, setLearningLanguages] = useState<UserLanguageResponse[]>([]);
     const [activeLanguage, setActiveLanguage] = useState<LanguageResponse | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -44,14 +48,14 @@ export function Header() {
                 if (profile.photoUrl) {
                     setPhotoUrl(getProfileImageUrl(profile.photoUrl));
                 }
-                if(profile.activeLanguage) {
+                if (profile.activeLanguage) {
                     setActiveLanguage(profile.activeLanguage);
                 }
             })
-            .catch(() => {});
+            .catch(() => { });
         userLanguageService.getUserLearningLanguages()
             .then(setLearningLanguages)
-            .catch(() => {});
+            .catch(() => { });
     }, [isAuthenticated, user?.hasCompletedOnboarding]);
 
     useEffect(() => {
@@ -97,10 +101,10 @@ export function Header() {
 
     return (
         <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-full mx-auto px-4 sm:px-6">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex-shrink-0 flex items-center">
-                        <Link to="/" className="text-2xl font-bold text-brand-600 hover:text-brand-500 transition-colors">
+                        <Link to="/" className="ml-8 text-2xl font-bold text-brand-600 hover:text-brand-500 transition-colors">
                             Skaldly
                         </Link>
                     </div>
@@ -121,7 +125,7 @@ export function Header() {
                                         </Link>
                                     </>
                                 )}
-                                
+
                                 {isAdmin && (
                                     <div className="flex items-center space-x-8">
                                         <Link to="/admin" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
@@ -202,6 +206,10 @@ export function Header() {
                                 )}
                             </div>
                         )}
+                        <div className="flex items-center gap-2 ml-2 mr-1">
+                            {['/', '/login', '/register'].includes(location.pathname) && <ThemeToggle />}
+                            <LocaleLanguageSwitcher />
+                        </div>
                     </div>
                 </div>
             </div>

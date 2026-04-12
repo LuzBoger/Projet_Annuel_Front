@@ -63,14 +63,14 @@ export default function Login() {
             <div className='mt-6 text-center'>
                 <p className='text-sm text-gray-600 dark:text-gray-400'>
                     {t('auth.login.no_account')}{' '}
-                    <Link to="/register" className='text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-300'>
+                    <Link to="/register" className='font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 hover:underline transition-colors'>
                         {t('auth.login.create_account')}
                     </Link>
                 </p>
             </div>
 
             <div className='mt-4 text-center'>
-                <Link to="/" className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm">
+                <Link to="/" className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm transition-colors">
                     {t('auth.back_home')}
                 </Link>
             </div>

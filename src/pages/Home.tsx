@@ -19,9 +19,6 @@ export default function Home() {
         <>
         <MetaData title={t('home.page_title')} description={t('home.page_description')} keywords={t('home.page_keywords')} robots='index, follow' url='https://skaldly.fr' />
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col relative">
-            <div className="absolute top-4 right-4 z-10">
-                <ThemeToggle />
-            </div>
             <main className="flex-grow flex flex-col justify-center py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     
@@ -73,9 +70,9 @@ export default function Home() {
                                 <div className="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 mb-6">
                                     <Brain className="w-6 h-6" />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                                     {t('home.features.scientific.title')}
-                                </h3>
+                                </h2>
                                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                                     {t('home.features.scientific.description')}
                                 </p>
@@ -85,9 +82,9 @@ export default function Home() {
                                 <div className="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-purple-50 dark:bg-purple-900/30 text-purple-600 mb-6">
                                     <Sparkles className="w-6 h-6" />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                                     {t('home.features.ai.title')}
-                                </h3>
+                                </h2>
                                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                                     {t('home.features.ai.description')}
                                 </p>
@@ -97,9 +94,9 @@ export default function Home() {
                                 <div className="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-rose-50 dark:bg-rose-900/30 text-rose-500 mb-6">
                                     <BookOpen className="w-6 h-6" />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                                     {t('home.features.variety.title')}
-                                </h3>
+                                </h2>
                                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                                     {t('home.features.variety.description')}
                                 </p>
@@ -165,15 +162,15 @@ export default function Home() {
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <div className="order-2 md:order-1 bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-100 dark:border-gray-600 shadow-sm">
+                            <div className="order-2 md:order-1 bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
                                 <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider mb-6">{t('home.science.dual_coding.chart_title')}</h4>
                                 <div className="flex justify-around items-end h-32 px-4 gap-4">
                                     <div className="w-full relative flex flex-col items-center justify-end h-full">
-                                        <div className="w-16 bg-gray-300 dark:bg-gray-500 rounded-t-md text-center text-xs text-gray-700 dark:text-gray-200 font-medium py-1" style={{ height: '40%' }}>{t('home.science.dual_coding.text_only')}</div>
+                                        <div className="w-16 bg-gray-300 dark:bg-gray-600 rounded-t-md text-center text-xs text-gray-700 dark:text-gray-100 font-medium py-1" style={{ height: '40%' }}>{t('home.science.dual_coding.text_only')}</div>
                                     </div>
                                     <div className="w-full relative flex flex-col items-center justify-end h-full">
                                         <div className="w-16 bg-brand-500 rounded-t-md text-center text-xs text-white font-medium py-1 shadow-md" style={{ height: '85%' }}>
-                                            <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-sm text-brand-600 dark:text-brand-400 font-bold whitespace-nowrap">+65%</span>
+                                            <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-sm text-brand-700 dark:text-brand-300 font-bold whitespace-nowrap">+65%</span>
                                             {t('home.science.dual_coding.dual_coding')}
                                         </div>
                                     </div>
@@ -255,7 +252,9 @@ export default function Home() {
 
             <section className="bg-gray-100 dark:bg-gray-800/50 py-10 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h5 className="font-bold text-gray-700 dark:text-gray-300 mb-4 uppercase tracking-wider text-xs">{t('home.science.sources.title')}</h5>
+                    <h2 className="font-bold text-gray-700 dark:text-gray-300 mb-4 uppercase tracking-wider text-xs">
+                        {t('home.science.sources.title')}
+                    </h2>
                     <ol className="list-decimal pl-5 space-y-2 max-w-4xl">
                         <li><strong>Ebbinghaus, H.</strong> {t('home.science.sources.source1')}</li>
                         <li><strong>Paivio, A.</strong> {t('home.science.sources.source2')}</li>
