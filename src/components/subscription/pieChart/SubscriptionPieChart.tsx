@@ -36,7 +36,7 @@ export function SubscriptionPieChart({ data }: SubscriptionPieChartProps) {
             cy="50%"
             innerRadius={55}
             outerRadius={90}
-            paddingAngle={4}
+            paddingAngle={data.premiumCount > 0 && data.freeCount > 0 ? 4 : 0}
             dataKey="value"
             strokeWidth={0}
           >
