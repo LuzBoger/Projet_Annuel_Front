@@ -14,7 +14,7 @@
     "locked": "Verrouillé",
     "finish": "Terminer",
     "empty": "Aucune donnée disponible",
-    "no_data": "Aucune donnée disponible",
+    "noData": "Aucune donnée disponible",
     "back": "Retour",
     "next": "Suivant",
     "quit": "Quitter",
@@ -623,7 +623,6 @@
     "language": {
       "title": "Langue d'interface",
       "page_title": "Paramètres de langue"
-
     },
     "languages": {
       "french": "Français",

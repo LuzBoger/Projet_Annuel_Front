@@ -13,7 +13,7 @@ export function LessonPreview({ data }: LessonPreviewProps) {
     if (!title && !lessonType) {
         return (
             <div className="flex flex-col items-center justify-center h-64 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-400 dark:text-gray-500">
-                <p>{t('admin.lessons.preview.no_data')}</p>
+                <p>{t('admin.lessons.preview.noData')}</p>
             </div>
         );
     }

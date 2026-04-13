@@ -39,7 +39,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
         return (
             <PlayerLayout maxWidth="max-w-3xl">
                 <div className="text-center p-8 text-gray-500 dark:text-gray-400 font-medium bg-white dark:bg-gray-800 rounded-2xl shadow-sm w-full">
-                    {t('common.no_data')}
+                    {t('common.noData')}
                 </div>
             </PlayerLayout>
         );
