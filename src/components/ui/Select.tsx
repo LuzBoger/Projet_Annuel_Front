@@ -27,8 +27,8 @@ export function Select<T extends string = string>({label,value,options,onChange,
         onChange={(e) => onChange(e.target.value as T)}
         disabled={disabled}
         className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-gray-900 dark:text-white
-        ${error ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600"}
-        ${disabled ? "bg-gray-100 dark:bg-gray-700 cursor-not-allowed opacity-60" : "bg-white dark:bg-gray-800"}`}
+        ${error ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-800"}
+        ${disabled ? "bg-gray-100 dark:bg-gray-800 cursor-not-allowed opacity-60" : "bg-white dark:bg-gray-900"}`}
     >
         {placeholder && (
           <option value="" disabled>

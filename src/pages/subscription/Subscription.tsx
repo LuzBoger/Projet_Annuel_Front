@@ -33,8 +33,8 @@ export default function Subscription() {
         return (
             <div className="max-w-4xl mx-auto p-6">
                 <div className="animate-pulse space-y-4">
-                    <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
-                    <div className="h-48 bg-gray-200 dark:bg-gray-700 rounded" />
+                    <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded w-1/3" />
+                    <div className="h-48 bg-gray-200 dark:bg-gray-800 rounded" />
                 </div>
             </div>
         );
@@ -45,7 +45,7 @@ export default function Subscription() {
         <>
         <MetaData title={t('subscription.page_title')}  robots="noindex, nofollow"  />
         <div className="max-w-4xl mx-auto p-6">
-            <h1 className="text-2xl font-bold text-brand-900 dark:text-brand-300 mb-6">{t("subscription.title")}</h1>
+            <h1 className="text-2xl font-bold text-brand-900 dark:text-white mb-6">{t("subscription.title")}</h1>
             {error && (
                 <div className="mb-4 p-4 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-300 text-sm">
                     <p>{error}</p>
@@ -58,7 +58,7 @@ export default function Subscription() {
                     </div>
                     <div>
                         {subscription.plan?.subscriptionType === 'FREE' ? (
-                            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 text-center">
+                            <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6 text-center">
                                 <p className="text-gray-600 dark:text-gray-400 mb-4">{t('subscription.upgrade_message')}</p>
                                 <button
                                     onClick={() => navigate('/plans')}
@@ -82,7 +82,7 @@ export default function Subscription() {
 
             <div className="mt-8">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{t('subscription.payment_history_title')}</h2>
-                <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
                     <PaymentHistoryTable payments={payments} />
                 </div>
             </div>

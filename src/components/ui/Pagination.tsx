@@ -24,7 +24,7 @@ export function Pagination({ currentPage, hasMore, onNext, onPrev }: PaginationP
         <span className="hidden sm:inline">{t("previous", "Précédent")}</span>
       </button>
 
-      <div className="flex items-center justify-center w-8 h-8 rounded-md bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 font-semibold text-sm border border-brand-100 dark:border-brand-800">
+      <div className="flex items-center justify-center w-8 h-8 rounded-md bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-white font-semibold text-sm border border-brand-100 dark:border-brand-800">
         {currentPage}
       </div>
 

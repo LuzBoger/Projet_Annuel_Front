@@ -17,7 +17,7 @@ export default function Home() {
     return (
         <>
         <MetaData title={t('home.page_title')} description={t('home.page_description')} keywords={t('home.page_keywords')} robots='index, follow' url='https://skaldly.fr' />
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col relative">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col relative">
             <main className="flex-grow flex flex-col justify-center py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     
@@ -107,7 +107,7 @@ export default function Home() {
                 </div>
             </main>
 
-            <section className="bg-white dark:bg-gray-800 py-20 border-t border-gray-200 dark:border-gray-700">
+            <section className="bg-white dark:bg-gray-900 py-20 border-t border-gray-200 dark:border-gray-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl shadow-sm inline-block px-4 py-2 border-b-4 border-brand-200">
@@ -146,7 +146,7 @@ export default function Home() {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="flex justify-between text-sm mb-1 font-bold text-brand-800 dark:text-brand-300">
+                                        <div className="flex justify-between text-sm mb-1 font-bold text-brand-800 dark:text-white">
                                             <span>{t('home.science.spaced_repetition.glotrush')}</span>
                                             <span>85%</span>
                                         </div>
@@ -169,7 +169,7 @@ export default function Home() {
                                     </div>
                                     <div className="w-full relative flex flex-col items-center justify-end h-full">
                                         <div className="w-16 bg-brand-500 rounded-t-md text-center text-xs text-white font-medium py-1 shadow-md" style={{ height: '85%' }}>
-                                            <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-sm text-brand-700 dark:text-brand-300 font-bold whitespace-nowrap">+65%</span>
+                                            <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-sm text-brand-700 dark:text-white font-bold whitespace-nowrap">+65%</span>
                                             {t('home.science.dual_coding.dual_coding')}
                                         </div>
                                     </div>

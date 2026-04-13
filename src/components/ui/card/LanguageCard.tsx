@@ -18,13 +18,13 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
         <Button
             type="button"
             variant="none"
-            className="group w-full text-left bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-300"
+            className="group w-full text-left bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-300"
             onClick={onClick}
         >
             <div className="px-5 pt-5 flex items-center gap-3">
                 <LanguageFlag
                     languageCode={language.code}
-                    className="w-12 h-8 object-cover rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 flex-shrink-0"
+                    className="w-12 h-8 object-cover rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 flex-shrink-0"
                 />
                 {language.isPopular && (
                     <BadgeTag variant="popular">

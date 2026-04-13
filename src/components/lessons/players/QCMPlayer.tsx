@@ -68,13 +68,13 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                         
                         if (!isValidated) {
                             buttonClass += selectedOption === idx 
-                                ? "border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-800 dark:text-brand-300"
+                                ? "border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-800 dark:text-white"
                                 : "border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300";
                         } else {
                             if (idx === currentQ.correctOptionIndex) {
-                                buttonClass += "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300";
+                                buttonClass += "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-white";
                             } else if (idx === selectedOption) {
-                                buttonClass += "border-red-400 bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-red-300";
+                                buttonClass += "border-red-400 bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-white";
                             } else {
                                 buttonClass += "border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-400 opacity-60";
                             }

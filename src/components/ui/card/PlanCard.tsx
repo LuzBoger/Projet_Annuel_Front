@@ -19,7 +19,7 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
     return (
         <div className={`relative flex flex-col p-8 rounded-2xl border-2 shadow-sm transition-all duration-300
             ${plan.subscriptionType === 'FREE'
-                ? 'bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700'
+                ? 'bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-800'
                 : 'bg-brand-600 border-brand-600'
             }
             ${isCurrentUserPlan ? 'border-brand-500 shadow-lg shadow-brand-100' : ''}

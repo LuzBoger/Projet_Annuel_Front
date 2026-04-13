@@ -20,8 +20,8 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
     ];
 
     return (
-    <aside className="w-64 flex-shrink-0 flex flex-col gap-2">
-      <nav className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-2">
+    <aside className="w-auto min-w-72 flex-shrink-0 flex flex-col gap-2">
+      <nav className="bg-white dark:bg-gray-900 rounded-lg shadow-sm p-2 border border-transparent dark:border-gray-800">
         {menuItems.map((item) => (
           <Button
             key={item.id}
@@ -29,16 +29,16 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
             onClick={() => onTabChange(item.id)}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
               activeTab === item.id
-                ? 'bg-blue-600 text-white'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                ? 'bg-brand-600 text-white'
+                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
             }`}
           >
             <span className="text-xl">{item.icon}</span>
-            <span className="font-medium">{item.label}</span>
+            <span className="font-medium whitespace-nowrap">{item.label}</span>
           </Button>
         ))}
       </nav>
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-3 flex items-center justify-between">
+      <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm p-3 flex items-center justify-between border border-transparent dark:border-gray-800">
         <span className="text-sm text-gray-600 dark:text-gray-400">{t('settings.menu.theme')}</span>
         <ThemeToggle />
       </div>

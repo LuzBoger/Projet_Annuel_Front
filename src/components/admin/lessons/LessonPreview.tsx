@@ -19,10 +19,10 @@ export function LessonPreview({ data }: LessonPreviewProps) {
     }
 
     const renderCard = (content: React.ReactNode, index: number) => (
-        <div key={index} className="relative bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm p-8 mb-6 overflow-hidden transition-all hover:shadow-md">
+        <div key={index} className="relative bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm p-8 mb-6 overflow-hidden transition-all hover:shadow-md">
 
             {content}
-            <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600 border border-blue-100">
+            <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-brand-50 dark:bg-brand-900/20 flex items-center justify-center text-xs font-bold text-brand-600 border border-brand-100 dark:border-brand-900/30">
                 {index + 1}
             </div>
         </div>
@@ -70,7 +70,7 @@ export function LessonPreview({ data }: LessonPreviewProps) {
 
                 {lessonType === LessonType.MATCHING_PAIR && renderCard(
                     <div className="space-y-4">
-                        <span className="text-[10px] font-bold tracking-[0.2em] text-blue-600/60 uppercase">
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-brand-600/60 uppercase">
                             {t('admin.lessons.preview.matching_label', 'Paires de mots')}
                         </span>
                         <div className="space-y-3">
@@ -79,7 +79,7 @@ export function LessonPreview({ data }: LessonPreviewProps) {
                                 { item1: "Item 2", item2: "Correspondance 2" }
                             ]).map((p: { item1?: string; item2?: string }, i: number) => (
                                 <div key={i} className="flex items-center justify-between gap-4 py-2">
-                                    <div className="flex-1 p-3 bg-blue-50 rounded-xl border border-blue-100 text-center font-bold text-blue-700 text-sm">
+                                    <div className="flex-1 p-3 bg-brand-50 dark:bg-brand-900/20 rounded-xl border border-brand-100 dark:border-brand-900/30 text-center font-bold text-brand-700 dark:text-brand-400 text-sm">
                                         {p.item1}
                                     </div>
                                     <div className="flex-shrink-0">
@@ -99,7 +99,7 @@ export function LessonPreview({ data }: LessonPreviewProps) {
 
                 {lessonType === LessonType.SORTING_EXERCISE && renderCard(
                     <div className="space-y-4">
-                        <span className="text-[10px] font-bold tracking-[0.2em] text-blue-600/60 uppercase">
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-brand-600/60 uppercase">
                             {t('admin.lessons.preview.sorting_label')}
                         </span>
                         <div className="space-y-2">

@@ -30,17 +30,17 @@ export function TopicCard({ topic, onClick }: TopicCardProperties) {
 
     return (
         <div 
-            className="group relative flex flex-col justify-between p-6 bg-white dark:bg-gray-800 bg-opacity-70 backdrop-blur-lg border border-gray-200 dark:border-gray-700 border-opacity-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden"
+            className="group relative flex flex-col justify-between p-6 bg-white dark:bg-gray-900 bg-opacity-70 backdrop-blur-lg border border-gray-200 dark:border-gray-800 border-opacity-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden"
             onClick={handleCardClick}
         >
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-50/50 to-white/50 dark:from-brand-900/20 dark:to-gray-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-50/50 to-white/50 dark:from-brand-950/20 dark:to-gray-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
             <div className="relative z-10 flex items-start justify-between mb-4">
                 <span className={`px-3 py-1 text-xs font-semibold rounded-full border ${getDifficultyColorClass(topic.difficulty)}`}>
                     {topic.difficulty}
                 </span>
                 
-                <div className="flex bg-gray-100 dark:bg-gray-700 rounded-full px-2 py-1 items-center">
+                <div className="flex bg-gray-100 dark:bg-gray-800 rounded-full px-2 py-1 items-center">
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
                         {t('topics.order', { orderIndex: topic.orderIndex })}
                     </span>

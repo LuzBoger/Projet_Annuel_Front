@@ -64,7 +64,7 @@ export function UpdateProfileForm({ data, onSuccess }: UpdateProfileFormProps) {
               rows={4}
               disabled={isSubmitting}
               placeholder={t('profile.bio_placeholder')}
-              className="block w-full px-3 py-2 rounded-md shadow-sm transition-colors border focus:outline-none focus:ring-2 border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50"
+              className="block w-full px-3 py-2 rounded-md shadow-sm transition-colors border focus:outline-none focus:ring-2 border-gray-300 dark:border-gray-800 dark:bg-gray-900 dark:text-white focus:ring-brand-500 focus:border-brand-500 disabled:opacity-50"
             />
             {errors.bio && (
               <p className="mt-1 text-sm text-red-600">{errors.bio.message}</p>
@@ -97,7 +97,7 @@ export function UpdateProfileForm({ data, onSuccess }: UpdateProfileFormProps) {
               type="checkbox"
               {...register('isPublic')}
               disabled={isSubmitting}
-              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
             />
             <label htmlFor="isPublic" className="text-sm font-medium text-gray-700 dark:text-gray-300">
               {t('profile.isPublic')}

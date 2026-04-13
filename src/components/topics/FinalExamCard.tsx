@@ -17,12 +17,12 @@ export function FinalExamCard({ isUnlocked, onTakeExam }: FinalExamCardProps) {
                 className={`
                     flex-1 p-6 rounded-2xl border-2 flex flex-col justify-center items-center text-center transition-all duration-500 min-h-[260px]
                     ${isUnlocked 
-                        ? 'bg-white dark:bg-gray-800 border-brand-100 dark:border-brand-900/30 hover:border-brand-400 hover:shadow-[0_20px_50px_rgba(79,70,229,0.15)] cursor-pointer'
-                        : 'bg-gray-50 dark:bg-gray-700 border-gray-100 dark:border-gray-700 cursor-not-allowed grayscale'}
+                        ? 'bg-white dark:bg-gray-900 border-brand-100 dark:border-brand-900/30 hover:border-brand-400 hover:shadow-[0_20px_50px_rgba(79,70,229,0.15)] cursor-pointer'
+                        : 'bg-gray-50 dark:bg-gray-950 border-gray-100 dark:border-gray-800 cursor-not-allowed grayscale'}
                 `}
                 title={!isUnlocked ? t('topics.exam_locked') : ""}
             >
-                <div className={`w-16 h-16 rounded-3xl flex items-center justify-center mb-4 shadow-sm transition-all duration-500 ${isUnlocked ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400 group-hover:scale-110 group-hover:rotate-3' : 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500'}`}>
+                <div className={`w-16 h-16 rounded-3xl flex items-center justify-center mb-4 shadow-sm transition-all duration-500 ${isUnlocked ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400 group-hover:scale-110 group-hover:rotate-3' : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500'}`}>
                     <IconQcm className="w-10 h-10" />
                 </div>
                 
@@ -47,7 +47,7 @@ export function FinalExamCard({ isUnlocked, onTakeExam }: FinalExamCardProps) {
                             {t('topics.take_exam')}
                         </Button>
                     ) : (
-                        <div className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] bg-gray-100/50 dark:bg-gray-700/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 px-6 py-2.5 rounded-full inline-block">
+                        <div className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 px-6 py-2.5 rounded-full inline-block">
                             {t('common.locked')}
                         </div>
                     )}

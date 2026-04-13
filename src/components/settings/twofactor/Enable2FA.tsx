@@ -29,7 +29,7 @@ export function Enable2FA({ qrCodeUri, secret, onVerify, onCancel, isLoading }: 
         <QRCodeSVG value={qrCodeUri} size={192} />
       </div>
 
-      <div className="bg-gray-50 dark:bg-gray-700 rounded-md p-4 text-center">
+      <div className="bg-gray-50 dark:bg-gray-950 rounded-md p-4 text-center">
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{t('settings.2fa.manual_key')}</p>
         <code className="text-sm font-mono font-bold text-gray-800 dark:text-gray-200 select-all">
           {secret}

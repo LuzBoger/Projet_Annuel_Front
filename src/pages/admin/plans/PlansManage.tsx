@@ -78,7 +78,7 @@ export default function PlansManage() {
             <MetaData title={t('plans.page_title')} robots="noindex, nofollow"  />
             <div className="w-full space-y-6">
             <div className="flex items-center justify-between mb-6">
-                <h1 className="text-2xl font-bold text-brand-900 dark:text-brand-300">
+                <h1 className="text-2xl font-bold text-brand-900 dark:text-white">
                     {t('plans.page_title')}
                 </h1>
                 <Button variant="primary" onClick={handleCreatePlan}>

@@ -8,12 +8,12 @@ interface TableHeaderProps {
 
 export function TableHeader({ columns, className = "" }: TableHeaderProps) {
   return (
-    <thead className={`bg-gray-50 dark:bg-gray-700 ${className}`}>
+    <thead className={`bg-gray-50 dark:bg-gray-800 ${className}`}>
       <tr>
         {columns.map((column) => (
           <th
             key={column.key}
-            className={`px-6 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase
+            className={`px-6 py-3 text-xs font-semibold text-gray-500 dark:text-white uppercase
                 ${column.align === "center" ? "text-center" : column.align === "right" ? "text-right" : "text-left"} ${column.className || ""}`}
           >
             {column.label}

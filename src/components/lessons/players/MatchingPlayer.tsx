@@ -117,7 +117,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                         } else if (isError) {
                             buttonClass += "border-red-400 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400";
                         } else if (isSelected) {
-                            buttonClass += "border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 scale-105 shadow-md ring-2 ring-brand-100 dark:ring-brand-900";
+                            buttonClass += "border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-white scale-105 shadow-md ring-2 ring-brand-100 dark:ring-brand-900";
                         } else {
                             buttonClass += "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-brand-200 dark:hover:border-brand-700 hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm hover:shadow-md";
                         }

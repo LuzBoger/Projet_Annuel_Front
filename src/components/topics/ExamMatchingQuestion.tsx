@@ -80,7 +80,7 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
                         let buttonClass = "w-full min-h-[90px] p-4 rounded-2xl border-2 transition-all duration-300 font-medium text-[15px] sm:text-lg flex items-center justify-center text-center select-none ";
 
                         if (isSelected) {
-                            buttonClass += "border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 scale-[1.03] shadow-lg ring-4 ring-brand-100/50 dark:ring-brand-900";
+                            buttonClass += "border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-white scale-[1.03] shadow-lg ring-4 ring-brand-100/50 dark:ring-brand-900";
                         } else {
                             buttonClass += "border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-brand-200 dark:hover:border-brand-700 hover:bg-brand-50/20 dark:hover:bg-brand-900/20 active:scale-95 shadow-sm hover:shadow-md";
                         }

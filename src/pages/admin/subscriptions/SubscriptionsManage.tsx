@@ -64,7 +64,7 @@ export default function SubscriptionsManage() {
         <>
             <MetaData title={t('subscriptions.page_title')} robots="noindex, nofollow"  />
                 <div className="w-full space-y-6">
-                <h1 className="text-2xl font-bold text-brand-900 dark:text-brand-300 mb-6">
+                <h1 className="text-2xl font-bold text-brand-900 dark:text-white mb-6">
                     {t('admin.subscriptions.title')}
                 </h1>
 

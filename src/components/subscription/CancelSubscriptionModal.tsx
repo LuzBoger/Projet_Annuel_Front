@@ -22,7 +22,7 @@ export function CancelSubscriptionModal({isOpen, isLoading, onCancel, onConfirm}
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                     {t('subscription.cancel.title')}
                 </h3>
@@ -35,7 +35,7 @@ export function CancelSubscriptionModal({isOpen, isLoading, onCancel, onConfirm}
                         {t('subscription.cancel.reason')}
                     </label>
                     <textarea
-                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-gray-700 dark:text-gray-200"
+                        className="w-full rounded-md border border-gray-300 dark:border-gray-800 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-gray-950 dark:text-gray-200"
                         rows={3}
                         maxLength={500}
                         value={reason}

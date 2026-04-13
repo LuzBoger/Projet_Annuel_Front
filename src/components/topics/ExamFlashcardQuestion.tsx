@@ -23,7 +23,7 @@ export function ExamFlashcardQuestion({ flashcard, value, onChange }: ExamFlashc
         <PlayerCard 
             instruction={
                 <div className="flex justify-center mb-4">
-                    <span className="px-4 py-1.5 bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 rounded-full text-sm font-bold tracking-wide uppercase">
+                    <span className="px-4 py-1.5 bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-white rounded-full text-sm font-bold tracking-wide uppercase">
                         {t('topics.translate_or_answer')}
                     </span>
                 </div>

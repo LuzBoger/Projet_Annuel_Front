@@ -636,7 +636,7 @@
     "menu": {
       "profile": "Profil",
       "password": "Mot de passe",
-      "2fa": "Double authentification",
+      "2fa": "Double Auth",
       "language": "Langue",
       "theme": "Thème"
     },

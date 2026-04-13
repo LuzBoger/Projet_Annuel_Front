@@ -17,7 +17,7 @@ export function TopicCard({ topic, onPractice }: Readonly<TopicCardProps>) {
     const typeColor = (type: string) => LESSON_TYPE_COLORS[type] ?? "bg-gray-100 text-gray-600";
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+        <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
             <div className="px-5 pt-4 pb-3">
                 <div className="flex items-start justify-between gap-3">
                     <div className="flex flex-col gap-1.5 flex-1 min-w-0">
@@ -36,7 +36,7 @@ export function TopicCard({ topic, onPractice }: Readonly<TopicCardProps>) {
                         )}
 
                         {nextLesson && (
-                            <div className="inline-flex items-center gap-1.5 mt-1 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 text-xs w-fit max-w-full overflow-hidden">
+                            <div className="inline-flex items-center gap-1.5 mt-1 px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 text-xs w-fit max-w-full overflow-hidden">
                                 <span className="text-gray-500 dark:text-gray-400 shrink-0">{t("components.topicCard.next")} :</span>
                                 <span className="font-semibold text-gray-800 dark:text-gray-200 truncate">{nextLesson.title}</span>
                                 <span className={`px-1.5 py-0.5 rounded text-xs font-medium shrink-0 ${typeColor(nextLesson.lessonType)}`}>
@@ -52,7 +52,7 @@ export function TopicCard({ topic, onPractice }: Readonly<TopicCardProps>) {
 
                 <Button
                     variant="none"
-                    className="group flex items-center justify-end w-full mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors cursor-pointer"
+                    className="group flex items-center justify-end w-full mt-3 pt-3 border-t border-gray-100 dark:border-gray-800 text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors cursor-pointer"
                     onClick={onPractice}
                 >
                     {t("components.topicCard.practice")}
