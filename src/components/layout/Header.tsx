@@ -104,7 +104,7 @@ export function Header() {
             <div className="max-w-full mx-auto px-4 sm:px-6">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex-shrink-0 flex items-center">
-                        <Link to="/" className="ml-8 text-2xl font-bold text-brand-600 dark:text-white hover:text-brand-500 dark:hover:text-gray-300 transition-colors">
+                        <Link to="/" className="text-2xl font-bold text-brand-600 dark:text-white hover:text-brand-500 dark:hover:text-gray-300 transition-colors">
                             Skaldly
                         </Link>
                     </div>

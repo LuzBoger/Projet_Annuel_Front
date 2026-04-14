@@ -717,7 +717,8 @@
     "description": "Cet utilisateur a choisi de garder son profil privé."
   },
   "show": "Afficher",
-  "items": "éléments",
+  "items_one": "élément",
+  "items_other": "éléments",
   "of": "sur",
   "next": "Suivant",
   "previous": "Précédent",
