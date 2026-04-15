@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
+import { TextArea } from "@/components/ui/TextArea";
 import { useAuth } from "@/hooks/useAuth";
 import { profileService } from "@/services/profileService";
 import { UserProfileResponse } from "@/types/profile/profile";
@@ -43,7 +44,7 @@ export function UpdateProfileForm({ data, onSuccess }: UpdateProfileFormProps) {
 
 
   return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 max-w-md">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <FormField
             id="username"
             label={t('profile.username')}
@@ -58,17 +59,14 @@ export function UpdateProfileForm({ data, onSuccess }: UpdateProfileFormProps) {
             <label htmlFor="bio" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               {t('profile.bio')}
             </label>
-            <textarea
+            <TextArea
               id="bio"
               {...register('bio')}
               rows={4}
               disabled={isSubmitting}
               placeholder={t('profile.bio_placeholder')}
-              className="block w-full px-3 py-2 rounded-md shadow-sm transition-colors border focus:outline-none focus:ring-2 border-gray-300 dark:border-gray-800 dark:bg-gray-900 dark:text-white focus:ring-brand-500 focus:border-brand-500 disabled:opacity-50"
+              error={errors.bio?.message}
             />
-            {errors.bio && (
-              <p className="mt-1 text-sm text-red-600">{errors.bio.message}</p>
-            )}
           </div>
 
           <FormField

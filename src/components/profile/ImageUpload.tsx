@@ -4,9 +4,9 @@ import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Avatar } from "@/components/ui/Avatar";
 import { FileInput } from '@/components/ui/FileInput';
-import { Button } from "@/components/ui/Button";
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
+import { Edit, Trash } from "@/assets/icons";
 
 interface ProfileImageUploadProps {
     currentPhotoUrl?: string;
@@ -79,30 +79,45 @@ export function ProfileImageUpload({ currentPhotoUrl, onUploadSuccess, onDeleteS
 
 
     return (
-            <div className="flex flex-col items-center gap-4">
-                <Avatar imageUrl={display ?? undefined} uploading={uploading} />
-                <div className="flex gap-2">
-                    <FileInput ref={fileInputRef} onChange={handleFileChange} />
-                      {display ? (
-                        <Button
-                            type="button"
-                            onClick={() => setConfirmOpen(true)}
-                            disabled={uploading}
-                            variant="danger"
-                            size="md"
-                        >
-                            {t('profile.image.delete')}
-                        </Button>
-                    ) : (
-                <Button
+        <div className="flex flex-col items-center lg:items-start gap-6">
+            <div className="relative group">
+                <Avatar 
+                    imageUrl={display ?? undefined} 
+                    uploading={uploading} 
+                    size="w-48 h-48" 
+                />
+                
+                <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
                     disabled={uploading}
-                    variant="primary"
-                    size="md"
+                    className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-all text-sm font-medium text-gray-700 dark:text-gray-200"
                 >
-                    {t('profile.image.upload')}
-                </Button>
+                    <Edit className="w-4 h-4" />
+                    {t('profile.image.edit_label')}
+                </button>
+
+                {display && !uploading && (
+                     <button
+                        type="button"
+                        onClick={() => setConfirmOpen(true)}
+                        className="absolute -top-2 -right-2 p-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-400 hover:text-red-600 transition-colors"
+                        title={t('profile.image.delete')}
+                    >
+                        <Trash className="w-4 h-4" />
+                    </button>
+                )}
+            </div>
+
+            <div className="space-y-2">
+                <FileInput ref={fileInputRef} onChange={handleFileChange} />
+                <p className="text-xs text-gray-500 dark:text-gray-400 text-center lg:text-left">
+                    {t('profile.image.requirements')}
+                </p>
+                {error && (
+                    <p className="text-xs text-red-600 dark:text-red-400 text-center lg:text-left font-medium">
+                        {error}
+                    </p>
                 )}
             </div>
             
@@ -116,18 +131,6 @@ export function ProfileImageUpload({ currentPhotoUrl, onUploadSuccess, onDeleteS
                 onConfirm={handleDelete}
                 onCancel={() => setConfirmOpen(false)}
             />
-
-            {error && (
-                <div className="w-full max-w-xs p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-gray-800 rounded-lg">
-                <p className="text-sm text-red-600 dark:text-red-400 text-center">
-                    {error}
-                </p>
-                </div>
-            )}
-
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-                {t('profile.image.requirements')}
-            </p>
     </div>
     );
 

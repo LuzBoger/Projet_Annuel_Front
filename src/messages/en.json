@@ -730,11 +730,13 @@
     "privateDescription": "This profile is not publicly visible.",
     "info": {
       "title": "Your profile is private",
+      "section_title": "Profile information",
       "description": "Your profile is not publicly visible. Update your settings to make it visible."
     },
     "edit": "Edit profile",
     "settings": {
-      "page_title": "Profile settings"
+      "page_title": "Profile settings",
+      "subtitle": "Manage your public profile information."
     },
     "bio": "Bio",
     "bio_placeholder": "Tell us about yourself...",
@@ -754,6 +756,7 @@
     },
     "image": {
       "title": "Profile picture",
+      "edit_label": "Edit",
       "delete": "Delete photo",
       "upload": "Upload photo",
       "requirements": "JPG, PNG. Max 5 MB.",

@@ -19,8 +19,8 @@ export function LanguageOptionCard({name, code, isSelected, isDisabled = false, 
             className={clsx(
                 "w-full flex items-center gap-3 px-4 py-3 rounded-2xl border-2 text-left transition-all",
                 isDisabled && "opacity-40 grayscale cursor-not-allowed pointer-events-none bg-gray-100 border-gray-200 dark:bg-gray-800 dark:border-gray-700",
-                !isDisabled && isSelected && "border-brand-600 bg-brand-50 dark:bg-brand-900/20",
-                !isDisabled && !isSelected && "border-transparent bg-[#F5F0EB] hover:bg-[#EDE8E2] dark:bg-gray-700 dark:hover:bg-gray-600"
+                !isDisabled && isSelected && "border-brand-600 bg-brand-50/50 dark:bg-brand-900/20",
+                !isDisabled && !isSelected && "border-gray-100 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-700"
             )}
         >
             <span
@@ -30,7 +30,7 @@ export function LanguageOptionCard({name, code, isSelected, isDisabled = false, 
                 {lang(code).code}
             </span>
 
-            <span className="font-semibold text-[#1A1A1A] dark:text-white text-sm flex-1 min-w-0">{name}</span>
+            <span className="font-semibold text-gray-900 dark:text-white text-sm flex-1 min-w-0">{name}</span>
 
             <span
                 className={clsx(

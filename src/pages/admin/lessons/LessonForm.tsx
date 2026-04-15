@@ -5,6 +5,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
+import { TextArea } from "@/components/ui/TextArea";
 import { Select } from "@/components/ui/Select";
 import { Switch } from "@/components/ui/Switch";
 import { ChevronLeft, Info } from "@/assets/icons";
@@ -166,11 +167,11 @@ export default function LessonForm() {
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                         {t('admin.lessons.form.description')}
                                     </label>
-                                    <textarea
+                                    <TextArea
                                         {...register("description")}
-                                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all resize-none min-h-[100px] bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                        className="min-h-[100px]"
+                                        error={errors.description?.message}
                                     />
-                                    {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>}
                                 </div>
 
                                 <FormField

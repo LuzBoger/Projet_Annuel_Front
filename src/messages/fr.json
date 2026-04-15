@@ -730,11 +730,13 @@
     "privateDescription": "Ce profil n'est pas visible publiquement.",
     "info": {
       "title": "Votre profil est privé",
+      "section_title": "Informations du profil",
       "description": "Votre profil n'est pas visible publiquement. Mettez à jour vos paramètres pour le rendre visible."
     },
     "edit": "Modifier le profil",
     "settings": {
-      "page_title": "Paramètres du profil"
+      "page_title": "Paramètres du profil",
+      "subtitle": "Gérez les informations de votre profil public."
     },
     "bio": "Bio",
     "bio_placeholder": "Parlez-nous de vous...",
@@ -754,6 +756,7 @@
     },
     "image": {
       "title": "Photo de profil",
+      "edit_label": "Modifier",
       "delete": "Supprimer la photo",
       "upload": "Télécharger une photo",
       "requirements": "JPG, PNG. Max 5 Mo.",

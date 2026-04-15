@@ -20,10 +20,10 @@ export function SettingsLayout() {
           {t('settings.title')}
         </h1>
 
-        <div className="flex gap-8">
+        <div className="flex flex-col md:flex-row gap-8">
           <SideBar activeTab={activeTab} onTabChange={setActiveTab} />
 
-          <main className="flex-1 bg-white dark:bg-gray-900 rounded-lg shadow-sm p-8">
+          <main className="flex-1 bg-white dark:bg-gray-900 rounded-lg shadow-sm p-4 sm:p-6 md:p-8">
             {activeTab === 'profile' && <ProfileSettings />}
             {activeTab === 'password' && <PasswordSettings />}
             {activeTab === '2fa' && <TwoFactorSettings />}

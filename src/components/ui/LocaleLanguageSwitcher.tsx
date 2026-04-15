@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
-import { Fragment } from "react/jsx-runtime";
 import { Button } from "@/components/ui/Button";
 
 export function LocaleLanguageSwitcher() {

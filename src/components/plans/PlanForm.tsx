@@ -6,9 +6,11 @@ import { Resolver, useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { FormField } from "@/components/ui/FormField";
+import { TextArea } from "@/components/ui/TextArea";
 import { Select } from "@/components/ui/Select";
 import { PaymentInterval } from "@/types/payment/payment";
 import { Button } from "@/components/ui/Button";
+import { Modal } from "@/components/ui/Modal";
 
 interface PlanFormProps {
     plan?: PlanResponse | null;
@@ -55,7 +57,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
     }
     }, [plan, reset])
 
-        const subscriptionType = useWatch({ control, name: 'subscriptionType' });
+    const subscriptionType = useWatch({ control, name: 'subscriptionType' });
     const currency = useWatch({ control, name: 'currency' });
     const paymentInterval = useWatch({ control, name: 'paymentInterval' });
     const isFree = subscriptionType === 'FREE';
@@ -74,115 +76,108 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
         { value: 'EUR', label: 'EUR (€)' },
     ]
 
-    if(!isOpen) {
-        return null;
-    }
-
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-lg mx-4">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
-                    {isEditPlan ? t('plans.edit.title') : t('plans.create.title')}
-                </h3>
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <Modal
+            isOpen={isOpen}
+            onClose={onCancel}
+            title={isEditPlan ? t('plans.edit.title') : t('plans.create.title')}
+        >
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <FormField
+                    id="name"
+                    label={t('plans.form.name')}
+                    type="text"
+                    disabled={isLoading}
+                    error={errors.name?.message}
+                    {...register('name')}
+                />
+                <div>
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t('plans.form.description')}</label>
+                    <TextArea
+                        id="description"
+                        rows={4}
+                        disabled={isLoading}
+                        error={errors.description?.message}
+                        {...register('description')}
+                    />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
                     <FormField
-                        id="name"
-                        label={t('plans.form.name')}
+                        id="price"
+                        label={t('plans.form.price')}
+                        type="number"
+                        disabled={isLoading}
+                        error={errors.price?.message}
+                        {...register('price')}
+                    />
+                    <Select
+                        id="currency"
+                        label={t('plans.form.currency')}
+                        value={currency ?? 'EUR'}
+                        options={currencyOption}
+                        disabled={isLoading}
+                        error={errors.currency?.message}
+                        onChange={(value) => setValue('currency', value)}
+                    />
+                </div>
+
+                <Select
+                    id="subscriptionType"
+                    label={t('plans.form.subscription_type')}
+                    value={subscriptionType ?? 'FREE'}
+                    options={subscriptionTypeOptions}
+                    disabled={isLoading}
+                    error={errors.subscriptionType?.message}
+                    onChange={(value) => setValue('subscriptionType', value as 'FREE' | 'PREMIUM')}
+                />
+
+                {!isFree && (
+                    <Select
+                        id="paymentInterval"
+                        label={t('plans.form.payment_interval')}
+                        value={paymentInterval ?? 'MONTHLY'}
+                        options={paymentIntervalOptions}
+                        disabled={isLoading}
+                        error={errors.paymentInterval?.message}
+                        onChange={(value) => setValue('paymentInterval', value as PaymentInterval)}
+                    />
+                )}
+
+                {!isFree && (
+                    <FormField
+                        id="stripePriceId"
+                        label={t('plans.form.stripe_price_id')}
                         type="text"
                         disabled={isLoading}
-                        error={errors.name?.message}
-                        {...register('name')}
+                        error={errors.stripePriceId?.message}
+                        {...register('stripePriceId')}
                     />
-                    <div>
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t('plans.form.description')}</label>
-                        <textarea
-                            id="description"
-                            rows={4}
-                            className={`mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-brand-500 focus:border-brand-500 sm:text-sm ${errors.description ? 'border-red-500' : ''}`}
-                            disabled={isLoading}
-                            {...register('description')}
+                )}
+
+                {isEditPlan && (
+                    <div className="flex items-center gap-2">
+                        <input
+                            type="checkbox"
+                            id="isActive"
+                            className="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
+                            {...register('isActive' as keyof (CreatePlanFormData | UpdatePlanFormData))}
                         />
-                        {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>}
+                        <label htmlFor="isActive" className="text-sm text-gray-700 dark:text-gray-300">
+                            {t('plans.is_active')}
+                        </label>
                     </div>
+                )}
 
-                                        <div className="grid grid-cols-2 gap-4">
-                        <FormField
-                            id="price"
-                            label={t('plans.form.price')}
-                            type="number"
-                            disabled={isLoading}
-                            error={errors.price?.message}
-                            {...register('price')}
-                        />
-                        <Select
-                            id="currency"
-                            label={t('plans.form.currency')}
-                            value={currency ?? 'EUR'}
-                            options={currencyOption}
-                            disabled={isLoading}
-                            error={errors.currency?.message}
-                            onChange={(value) => setValue('currency', value)}
-                        />
-                    </div>
-
-                    <Select
-                        id="subscriptionType"
-                        label={t('plans.form.subscription_type')}
-                        value={subscriptionType ?? 'FREE'}
-                        options={subscriptionTypeOptions}
-                        disabled={isLoading}
-                        error={errors.subscriptionType?.message}
-                        onChange={(value) => setValue('subscriptionType', value as 'FREE' | 'PREMIUM')}
-                    />
-
-                    {!isFree && (
-                        <Select
-                            id="paymentInterval"
-                            label={t('plans.form.payment_interval')}
-                            value={paymentInterval ?? 'MONTHLY'}
-                            options={paymentIntervalOptions}
-                            disabled={isLoading}
-                            error={errors.paymentInterval?.message}
-                            onChange={(value) => setValue('paymentInterval', value as PaymentInterval)}
-                        />
-                    )}
-
-                    {!isFree && (
-                        <FormField
-                            id="stripePriceId"
-                            label={t('plans.form.stripe_price_id')}
-                            type="text"
-                            disabled={isLoading}
-                            error={errors.stripePriceId?.message}
-                            {...register('stripePriceId')}
-                        />
-                    )}
-
-                    {isEditPlan && (
-                        <div className="flex items-center gap-2">
-                            <input
-                                type="checkbox"
-                                id="isActive"
-                                className="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
-                                {...register('isActive' as keyof (CreatePlanFormData | UpdatePlanFormData))}
-                            />
-                            <label htmlFor="isActive" className="text-sm text-gray-700 dark:text-gray-300">
-                                {t('plans.is_active')}
-                            </label>
-                        </div>
-                    )}
-
-                    <div className="flex gap-3 justify-end pt-4">
-                        <Button variant="outline" type="button" onClick={onCancel} disabled={isLoading}>
-                            {t('common.cancel')}
-                        </Button>
-                        <Button variant="primary" type="submit" disabled={isLoading} isLoading={isLoading}>
-                            {isEditPlan ? t('common.update') : t('common.create')}
-                        </Button>
-                    </div>
-                </form>
-            </div>
-        </div>
-)
+                <div className="flex gap-3 justify-end pt-4">
+                    <Button variant="outline" type="button" onClick={onCancel} disabled={isLoading}>
+                        {t('common.cancel')}
+                    </Button>
+                    <Button variant="primary" type="submit" disabled={isLoading} isLoading={isLoading}>
+                        {isEditPlan ? t('common.update') : t('common.create')}
+                    </Button>
+                </div>
+            </form>
+        </Modal>
+    )
 }
-    

@@ -88,7 +88,7 @@ export function Table<T>({data,columns,renderRow,keyExtractor,emptyMessage,initi
                 className="w-20"
               />
               <span className="text-sm text-gray-500 dark:text-gray-400">
-                {paginatedData.length} {t("of")} {data.length} {t("items", { count: data.length })}
+                {paginatedData.length} {t("of")} {data.length} {actualItemLabel}
               </span>
             </div>
           ) : <div />}
