@@ -96,8 +96,8 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
             title={topic ? t('admin.topics.edit') : t('admin.topics.create')}
             size="md"
         >
-            <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
-                <div>
+            <form onSubmit={handleSubmit(onFormSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                <div className="space-y-1">
                     <Select
                         label={t('admin.topics.form.language')}
                         options={languageOptions}
@@ -107,15 +107,14 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                         required
                         error={errors.languageId?.message}
                     />
+                    {selectedLanguage && (
+                        <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400 pl-1">
+                            <LanguageFlag languageCode={selectedLanguage.code} className="w-4 h-4 rounded-sm object-cover shadow-sm" />
+                            <span>{selectedLanguage.name}</span>
+                        </div>
+                    )}
                 </div>
 
-                {selectedLanguage && (
-                    <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 mb-2">
-                        <LanguageFlag languageCode={selectedLanguage.code} className="w-5 h-5 rounded-sm object-cover shadow-sm" />
-                        <span>{selectedLanguage.name}</span>
-                    </div>
-                )}
-                
                 <div>
                     <FormField
                         type="text"
@@ -123,17 +122,6 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                         {...register("name")}
                         required
                         error={errors.name?.message}
-                    />
-                </div>
-
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        {t('admin.topics.form.description')}
-                    </label>
-                    <TextArea
-                        {...register("description")}
-                        className="min-h-[80px] resize-y"
-                        error={errors.description?.message}
                     />
                 </div>
 
@@ -158,8 +146,19 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                         error={errors.orderIndex?.message}
                     />
                 </div>
+
+                <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                        {t('admin.topics.form.description')}
+                    </label>
+                    <TextArea
+                        {...register("description")}
+                        className="min-h-[70px] resize-y"
+                        error={errors.description?.message}
+                    />
+                </div>
                 
-                <div className="flex items-center justify-between pt-2">
+                <div className="md:col-span-2 flex items-center justify-between py-2 border-t dark:border-gray-800 mt-2">
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('admin.topics.form.active')}</span>
                     <Switch
                         checked={isActive}
@@ -167,7 +166,7 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                     />
                 </div>
 
-                <div className="flex justify-end gap-3 pt-4 border-t dark:border-gray-700 mt-4 pb-2">
+                <div className="md:col-span-2 flex justify-end gap-3 pt-4 border-t dark:border-gray-700 mt-4 pb-2">
                     <Button type="button" variant="outline" onClick={onCancel}>
                         {t('common.cancel')}
                     </Button>
