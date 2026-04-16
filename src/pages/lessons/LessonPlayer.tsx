@@ -100,7 +100,7 @@ export default function LessonPlayer() {
     return (
         <>
             <MetaData title={lesson.title} robots="noindex, nofollow" />
-            <div className="h-screen overflow-y-auto bg-gray-100 dark:bg-gray-950 flex flex-col scroll-smooth">
+            <div className="h-screen overflow-hidden bg-gray-100 dark:bg-gray-950 flex flex-col">
                 <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 py-3 flex items-center justify-between shadow-sm sticky top-0 z-50">
                     <Button
                         onClick={() => navigate(-1)}
@@ -119,8 +119,8 @@ export default function LessonPlayer() {
                     </div>
                 </header>
 
-                <main className="flex-1 w-full">
-                    <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 min-h-full flex flex-col items-center">
+                <main className="flex-1 w-full h-screen overflow-hidden flex flex-col">
+                    <div className="w-full flex-1 flex flex-col min-h-0">
                         {lesson.lessonType === LessonType.FLASHCARD && (
                             <FlashcardPlayer flashcards={lesson.flashcards || []} onFinish={handleLessonComplete} />
                         )}

@@ -110,55 +110,61 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                 statuses={statuses as any}
             />
 
-            <PlayerCard instruction={t('lessons.sorting.instruction')}>
-                <div className="space-y-8">
-                    <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-200 dark:border-gray-600 py-6 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 dark:bg-gray-700/30 rounded-xl">
-                        {selectedItems.length === 0 && (
-                            <span className="text-gray-400 font-medium select-none text-sm sm:text-base text-center">
-                                {t('lessons.sorting.empty_target')}
-                            </span>
-                        )}
-                        
-                        {selectedItems.map(item => (
-                            <Button
-                                key={item.id}
-                                variant="none"
-                                onClick={() => handleTargetDeselection(item)}
-                                disabled={isValidated}
-                                className="px-4 py-2.5 bg-white dark:bg-gray-800 border-2 border-brand-200 dark:border-brand-900/50 shadow-sm rounded-xl text-brand-900 dark:text-brand-300 font-medium text-[15px] sm:text-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-200 dark:hover:border-red-900/30 hover:text-red-700 dark:hover:text-red-400 transition-all active:scale-95 disabled:hover:scale-100 disabled:opacity-90 disabled:cursor-default"
-                            >
-                                {item.text}
-                            </Button>
-                        ))}
-                    </div>
+            <div className="flex-1 overflow-y-auto min-h-0 flex flex-col">
+                <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 my-auto">
+                    <div className="space-y-4">
+                        <PlayerCard instruction={t('lessons.sorting.instruction')}>
+                        <div className="space-y-8">
+                            <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-200 dark:border-gray-600 py-6 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 dark:bg-gray-700/30 rounded-xl">
+                                {selectedItems.length === 0 && (
+                                    <span className="text-gray-400 font-medium select-none text-sm sm:text-base text-center">
+                                        {t('lessons.sorting.empty_target')}
+                                    </span>
+                                )}
+                                
+                                {selectedItems.map(item => (
+                                    <Button
+                                        key={item.id}
+                                        variant="none"
+                                        onClick={() => handleTargetDeselection(item)}
+                                        disabled={isValidated}
+                                        className="px-4 py-2.5 bg-white dark:bg-gray-800 border-2 border-brand-200 dark:border-brand-900/50 shadow-sm rounded-xl text-brand-900 dark:text-brand-300 font-medium text-[15px] sm:text-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-200 dark:hover:border-red-900/30 hover:text-red-700 dark:hover:text-red-400 transition-all active:scale-95 disabled:hover:scale-100 disabled:opacity-90 disabled:cursor-default"
+                                    >
+                                        {item.text}
+                                    </Button>
+                                ))}
+                            </div>
 
-                    <div className="flex flex-wrap gap-2.5 justify-center min-h-[100px] content-start">
-                        {pool.map(item => (
-                            <Button
-                                key={item.id}
-                                variant="none"
-                                onClick={() => handlePoolSelection(item)}
-                                disabled={isValidated}
-                                className="px-4 py-2.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-sm rounded-xl text-gray-800 dark:text-gray-200 font-medium text-[15px] sm:text-lg hover:border-brand-400 dark:hover:border-brand-500 hover:text-brand-800 dark:hover:text-brand-300 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                {item.text}
-                            </Button>
-                        ))}
+                            <div className="flex flex-wrap gap-2.5 justify-center min-h-[100px] content-start">
+                                {pool.map(item => (
+                                    <Button
+                                        key={item.id}
+                                        variant="none"
+                                        onClick={() => handlePoolSelection(item)}
+                                        disabled={isValidated}
+                                        className="px-4 py-2.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-sm rounded-xl text-gray-800 dark:text-gray-200 font-medium text-[15px] sm:text-lg hover:border-brand-400 dark:hover:border-brand-500 hover:text-brand-800 dark:hover:text-brand-300 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {item.text}
+                                    </Button>
+                                ))}
+                            </div>
+                        </div>
+                    </PlayerCard>
+
+                    <PlayerFeedback 
+                        isVisible={isValidated}
+                        isCorrect={isCorrect}
+                        title={isCorrect ? t('lessons.qcm.correct') : t('lessons.qcm.incorrect')}
+                        description={!isCorrect ? (
+                            <>
+                                {t('lessons.sorting.correct_order_prefix')} 
+                                <strong className="font-bold ml-1">{expectedSequenceText}</strong>
+                            </>
+                        ) : undefined}
+                    />
                     </div>
                 </div>
-            </PlayerCard>
-
-            <PlayerFeedback 
-                isVisible={isValidated}
-                isCorrect={isCorrect}
-                title={isCorrect ? t('lessons.qcm.correct') : t('lessons.qcm.incorrect')}
-                description={!isCorrect ? (
-                    <>
-                        {t('lessons.sorting.correct_order_prefix')} 
-                        <strong className="font-bold ml-1">{expectedSequenceText}</strong>
-                    </>
-                ) : undefined}
-            />
+            </div>
 
             <PlayerFooter>
                 {!isValidated ? (

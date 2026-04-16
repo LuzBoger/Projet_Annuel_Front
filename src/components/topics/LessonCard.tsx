@@ -33,25 +33,28 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
 
     return (
         <div 
-            className="group relative flex flex-col justify-between p-6 bg-white dark:bg-gray-800 bg-opacity-70 backdrop-blur-lg border border-gray-200 dark:border-gray-800 border-opacity-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden h-full"
+            className="group relative flex flex-col justify-between p-6 bg-white dark:bg-gray-800/40 bg-opacity-70 dark:bg-opacity-40 backdrop-blur-xl border border-gray-100 dark:border-gray-800 rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-brand-500/10 transition-all duration-500 cursor-pointer overflow-hidden h-full"
             onClick={() => onClick(lesson.id)}
         >
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-50/50 to-white/50 dark:from-brand-950/20 dark:to-gray-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-50/30 to-white/30 dark:from-brand-500/5 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
             <div className="relative z-10 flex items-start justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <span className={`flex items-center space-x-1.5 px-3 py-1.5 text-[10px] sm:text-xs font-medium uppercase tracking-wider rounded-full border shadow-sm ${visuals.color}`}>
+                    <span className={`flex items-center space-x-1.5 px-3 py-1.5 text-[10px] sm:text-xs font-medium uppercase tracking-wider rounded-full border shadow-sm transition-colors duration-300 ${visuals.color}`}>
                         {visuals.icon}
                         <span>{visuals.label}</span>
                     </span>
                     {lesson.isAlreadyFinish && (
-                        <span className="flex items-center justify-center bg-emerald-100 text-emerald-600 rounded-full w-6 h-6 shadow-sm border border-emerald-200" title="Validée">
-                            <Check className="w-4 h-4" />
+                        <span 
+                            className="flex items-center justify-center bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full w-6 h-6 shadow-sm border border-emerald-100 dark:border-emerald-500/20 backdrop-blur-sm self-center" 
+                            title="Validée"
+                        >
+                            <Check className="w-3.5 h-3.5" />
                         </span>
                     )}
                 </div>
                 
-                <div className="flex bg-linear-to-b from-brand-600 to-brand-700 dark:from-indigo-600 dark:to-indigo-700 text-white rounded-full w-8 h-8 items-center justify-center shadow-md">
+                <div className="flex bg-gradient-to-b from-brand-600 to-brand-700 dark:from-brand-500 dark:to-brand-600 text-white rounded-full w-8 h-8 items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <span className="text-sm font-bold tracking-wide">
                         {index}
                     </span>

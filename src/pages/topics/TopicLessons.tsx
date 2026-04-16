@@ -45,14 +45,14 @@ export default function TopicLessons() {
                 onClick={() => navigate(-1)} 
                 variant="ghost"
                 size="sm"
-                className="mb-8 font-bold flex items-center text-gray-500 hover:text-gray-900"
+                className="mb-8 font-bold flex items-center text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
             >
                 <ChevronLeft className="w-5 h-5 mr-1" />
                 {t('common.back')}
             </Button>
 
             <div className="mb-12 text-center sm:text-left">
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-900 to-brand-600 dark:bg-none dark:text-white tracking-tight">
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-900 to-brand-600 dark:from-white dark:to-gray-400 tracking-tight">
                     {t('topics.lessons_title')}
                 </h1>
                 <p className="mt-3 text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
@@ -70,20 +70,20 @@ export default function TopicLessons() {
                 </div>
             ) : details ? (
                 <div className="space-y-8">
-                    <div className="bg-white dark:bg-gray-900 rounded-3xl p-6 sm:p-8 shadow-sm border border-brand-100 dark:border-gray-800 flex flex-col md:flex-row md:items-center md:justify-between relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-brand-50 dark:bg-brand-900/20 rounded-bl-full opacity-50 pointer-events-none"></div>
+                    <div className="bg-white dark:bg-gray-900/50 dark:backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-sm border border-brand-100 dark:border-gray-800 flex flex-col md:flex-row md:items-center md:justify-between relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-brand-50 dark:bg-brand-500/5 rounded-bl-full opacity-50 pointer-events-none"></div>
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full">
-                            <div className="flex flex-col border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-6">
+                            <div className="flex flex-col border-b md:border-b-0 md:border-r border-gray-100 dark:border-gray-800 pb-4 md:pb-0 md:pr-6">
                                 <p className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_status')}</p>
                                 <div className="flex items-center">
                                     {details.examPassed ? (
-                                        <span className="flex items-center text-emerald-600 font-extrabold text-xl">
+                                        <span className="flex items-center text-emerald-600 dark:text-emerald-400 font-extrabold text-xl">
                                             <svg className="w-5 h-5 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                                             {t('topics.passed')}
                                         </span>
                                     ) : (
-                                        <span className="text-brand-400 font-medium text-lg flex items-center">
+                                        <span className="text-brand-400 dark:text-gray-500 font-medium text-lg flex items-center">
                                             <IconFlashcard className="w-4 h-4 mr-1.5 opacity-70" />
                                             {t('topics.not_passed')}
                                         </span>
@@ -91,15 +91,15 @@ export default function TopicLessons() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-6 md:pl-6 pl-0">
+                            <div className="flex flex-col border-b md:border-b-0 md:border-r border-gray-100 dark:border-gray-800 pb-4 md:pb-0 md:pr-6 md:pl-6 pl-0">
                                 <p className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.exam_attempts')}</p>
-                                <p className="text-3xl font-extrabold text-brand-900 dark:text-white">{details.examAttempts}</p>
+                                <p className="text-3xl font-extrabold text-brand-900 dark:text-white tracking-tighter">{details.examAttempts}</p>
                             </div>
 
                             <div className="flex flex-col pt-2 md:pt-0 md:pl-6 pl-0">
-                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.last_accuracy')}</p>
+                                <p className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">{t('topics.last_accuracy')}</p>
                                 <div className="flex items-baseline space-x-2">
-                                    <span className={`text-3xl font-extrabold ${
+                                    <span className={`text-3xl font-extrabold tracking-tighter ${
                                         details.lastAccuracy && details.lastAccuracy >= 0.8 ? 'text-emerald-500' : 
                                         details.lastAccuracy && details.lastAccuracy >= 0.5 ? 'text-amber-500' : 
                                         details.lastAccuracy ? 'text-red-500' : 'text-gray-400'

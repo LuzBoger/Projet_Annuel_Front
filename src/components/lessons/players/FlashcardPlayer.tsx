@@ -7,6 +7,8 @@ import { FaceSad, FaceNeutral, FaceSmile } from "@/assets/icons";
 import { PlayerLayout } from "./common/PlayerLayout";
 import { PlayerHeader } from "./common/PlayerHeader";
 
+import { PlayerFooter } from "./common/PlayerFooter";
+
 interface FlashcardPlayerProps {
     flashcards: FlashcardRequest[];
     onFinish: (score: number) => void;
@@ -14,10 +16,10 @@ interface FlashcardPlayerProps {
 
 export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) {
     const { t } = useTranslation();
-    const [queue, setQueue] = useState<QueuedCard[]>(() => 
+    const [queue, setQueue] = useState<QueuedCard[]>(() =>
         flashcards ? flashcards.map((card, i) => ({ originalIndex: i, card })) : []
     );
-    const [scores, setScores] = useState<number[]>(() => 
+    const [scores, setScores] = useState<number[]>(() =>
         flashcards ? new Array(flashcards.length).fill(-1) : []
     );
     const [isFlipped, setIsFlipped] = useState(false);
@@ -43,7 +45,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
             </PlayerLayout>
         );
     }
-    
+
     if (queue.length === 0) return null;
 
     const currentItem = queue[0];
@@ -57,11 +59,11 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
         if (transitionState !== 'idle') return;
 
         setTransitionState('exiting');
-        
+
         // Wait for exit animation (300ms)
         setTimeout(() => {
             const { originalIndex } = currentItem;
-            
+
             const newScores = [...scores];
             if (level === 'green') newScores[originalIndex] = 100;
             else if (level === 'yellow') newScores[originalIndex] = 50;
@@ -126,72 +128,81 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
 
     return (
         <PlayerLayout>
-            <PlayerHeader 
-                current={completedCards + 1} 
-                total={flashcards.length} 
-                statuses={segmentStatuses as any} 
+            <PlayerHeader
+                current={completedCards + 1}
+                total={flashcards.length}
+                statuses={segmentStatuses as any}
             />
 
-            <div className="flex-1 w-full flex flex-col items-center justify-center py-3 sm:py-5">
-                <div 
-                    className={`relative w-full aspect-[4/3] sm:aspect-[3/2] max-w-lg cursor-pointer group transition-all duration-300 ease-out mx-auto ${getTransitionClasses()}`}
-                style={{ perspective: '1200px' }}
-                onClick={handleFlip}
-            >
-                <div 
-                    className={`w-full h-full ${transitionState !== 'idle' ? 'transition-none' : 'transition-transform duration-700 ease-[cubic-bezier(0.4,0.0,0.2,1)]'}`}
-                    style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'none' }}
-                >
-                    <div className="absolute w-full h-full bg-white dark:bg-gray-800 rounded-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-gray-700/50 flex flex-col items-center justify-center p-6 text-center hover:border-brand-200 dark:hover:border-brand-700 transition-all overflow-hidden" style={{ backfaceVisibility: 'hidden' }}>
-                        <span className="absolute top-6 right-8 text-[10px] font-black text-gray-300 dark:text-gray-500 uppercase tracking-[0.2em]">{currentCard.frontLanguage}</span>
-                        <h3 className="text-3xl sm:text-5xl font-extrabold text-gray-800 dark:text-gray-100 break-words leading-tight tracking-tight">{currentCard.front}</h3>
-                        {!isFlipped && transitionState === 'idle' && (
-                            <div className="absolute bottom-8 flex flex-col items-center animate-bounce">
-                                <p className="text-[10px] text-brand-500 dark:text-brand-400 font-black uppercase tracking-[0.2em] mt-2 hidden sm:block">
-                                    {t('lessons.click_to_flip')}
-                                </p>
+            <div className="flex-1 overflow-y-auto min-h-0 py-4 flex flex-col">
+                <div className="my-auto w-full py-4">
+                    <div
+                        className={`relative w-full aspect-[4/3] sm:aspect-[3/2] max-w-lg cursor-pointer group transition-all duration-300 ease-out mx-auto ${getTransitionClasses()}`}
+                        style={{ perspective: '1200px' }}
+                        onClick={handleFlip}
+                    >
+                        <div
+                            className={`w-full h-full ${transitionState !== 'idle' ? 'transition-none' : 'transition-transform duration-700 ease-[cubic-bezier(0.4,0.0,0.2,1)]'}`}
+                            style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'none' }}
+                        >
+                            <div className="absolute w-full h-full bg-white dark:bg-gray-800 rounded-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-gray-700/50 flex flex-col items-center justify-center p-6 text-center hover:border-brand-200 dark:hover:border-brand-700 transition-all overflow-hidden" style={{ backfaceVisibility: 'hidden' }}>
+                                <span className="absolute top-6 right-8 text-[10px] font-black text-gray-300 dark:text-gray-500 uppercase tracking-[0.2em]">{currentCard.frontLanguage}</span>
+                                <h3 className="text-3xl sm:text-5xl font-extrabold text-gray-800 dark:text-gray-100 break-words leading-tight tracking-tight">{currentCard.front}</h3>
+                                {!isFlipped && transitionState === 'idle' && (
+                                    <div className="absolute bottom-8 flex flex-col items-center animate-pulse">
+                                        <p className="text-[10px] text-brand-500 dark:text-brand-400 font-black uppercase tracking-[0.2em] mt-2">
+                                            {t('lessons.click_to_flip')}
+                                        </p>
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
-                    
-                    <div className="absolute w-full h-full bg-brand-50 dark:bg-brand-900/10 rounded-3xl shadow-[0_12px_40px_rgba(var(--brand-500-rgb),0.1)] border border-brand-100 dark:border-brand-800/50 flex flex-col items-center justify-center p-6 text-center overflow-hidden" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
-                        <span className="absolute top-6 right-8 text-[10px] font-black text-brand-400/60 dark:text-brand-300 uppercase tracking-[0.2em]">{currentCard.backLanguage}</span>
-                        <h3 className="text-3xl sm:text-5xl font-extrabold text-brand-900 dark:text-white break-words leading-tight tracking-tight">{currentCard.back}</h3>
+
+                            <div className="absolute w-full h-full bg-brand-50 dark:bg-brand-900/10 rounded-3xl shadow-[0_12px_40px_rgba(var(--brand-500-rgb),0.1)] border border-brand-100 dark:border-brand-800/50 flex flex-col items-center justify-center p-6 text-center overflow-hidden" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                                <span className="absolute top-6 right-8 text-[10px] font-black text-brand-400/60 dark:text-brand-300 uppercase tracking-[0.2em]">{currentCard.backLanguage}</span>
+                                <h3 className="text-3xl sm:text-5xl font-extrabold text-brand-900 dark:text-white break-words leading-tight tracking-tight">{currentCard.back}</h3>
+                                {currentCard.example && (
+                                    <p className="mt-4 text-sm sm:text-base text-brand-700/70 dark:text-brand-300/60 italic px-4">
+                                        "{currentCard.example}"
+                                    </p>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div className={`w-full max-w-lg mx-auto transition-all duration-300 ${isFlipped && transitionState === 'idle' ? 'opacity-100 translate-y-0 max-h-40 pb-4' : 'opacity-0 translate-y-0 max-h-0 overflow-hidden pointer-events-none'}`}>
-                <div className="flex gap-4">
-                    <Button 
-                        variant="outline"
-                        onClick={(e) => { e.stopPropagation(); handleAnswer('red'); }}
-                        className="flex-1 py-4 bg-white dark:bg-gray-800 border-2 border-red-50 dark:border-red-900/20 text-red-500 dark:text-red-400 rounded-2xl hover:bg-red-50 dark:hover:bg-red-900/30 hover:border-red-200 dark:hover:border-red-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
-                        title={t('lessons.hard')}
-                    >
-                        <FaceSad className="w-8 h-8" />
-                    </Button>
-                    
-                    <Button 
-                        variant="outline"
-                        onClick={(e) => { e.stopPropagation(); handleAnswer('yellow'); }}
-                        className="flex-1 py-8 bg-white dark:bg-gray-800 border-2 border-yellow-50 dark:border-yellow-900/20 text-amber-500 dark:text-amber-400 rounded-2xl hover:bg-yellow-50 dark:hover:bg-yellow-900/30 hover:border-yellow-200 dark:hover:border-yellow-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
-                        title={t('lessons.medium')}
-                    >
-                        <FaceNeutral className="w-8 h-8" />
-                    </Button>
+            <PlayerFooter>
+                <div className={`w-full transition-all duration-300 ${isFlipped && transitionState === 'idle' ? 'opacity-100 translate-y-0 scale-100 pb-2' : 'opacity-0 translate-y-4 scale-95 overflow-hidden pointer-events-none'}`}>
+                    <div className="flex gap-4">
+                        <Button
+                            variant="outline"
+                            onClick={(e) => { e.stopPropagation(); handleAnswer('red'); }}
+                            className="flex-1 py-4 bg-white dark:bg-gray-800 border-2 border-red-50 dark:border-red-900/20 text-red-500 dark:text-red-400 rounded-2xl hover:bg-red-50 dark:hover:bg-red-900/30 hover:border-red-200 dark:hover:border-red-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
+                            title={t('lessons.hard')}
+                        >
+                            <FaceSad className="w-8 h-8" />
+                        </Button>
 
-                    <Button 
-                        variant="outline"
-                        onClick={(e) => { e.stopPropagation(); handleAnswer('green'); }}
-                        className="flex-1 py-8 bg-white dark:bg-gray-800 border-2 border-emerald-50 dark:border-emerald-900/20 text-emerald-500 dark:text-emerald-400 rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:border-emerald-200 dark:hover:border-emerald-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
-                        title={t('lessons.easy')}
-                    >
-                        <FaceSmile className="w-8 h-8" />
-                    </Button>
+                        <Button
+                            variant="outline"
+                            onClick={(e) => { e.stopPropagation(); handleAnswer('yellow'); }}
+                            className="flex-1 py-5 bg-white dark:bg-gray-800 border-2 border-yellow-50 dark:border-yellow-900/20 text-amber-500 dark:text-amber-400 rounded-2xl hover:bg-yellow-50 dark:hover:bg-yellow-900/30 hover:border-yellow-200 dark:hover:border-yellow-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
+                            title={t('lessons.medium')}
+                        >
+                            <FaceNeutral className="w-8 h-8" />
+                        </Button>
+
+                        <Button
+                            variant="outline"
+                            onClick={(e) => { e.stopPropagation(); handleAnswer('green'); }}
+                            className="flex-1 py-5 bg-white dark:bg-gray-800 border-2 border-emerald-50 dark:border-emerald-900/20 text-emerald-500 dark:text-emerald-400 rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:border-emerald-200 dark:hover:border-emerald-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
+                            title={t('lessons.easy')}
+                        >
+                            <FaceSmile className="w-8 h-8" />
+                        </Button>
+                    </div>
                 </div>
-            </div>
+            </PlayerFooter>
         </PlayerLayout>
     );
 }

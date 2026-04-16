@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/Button";
 import { StarIcon } from "@/assets/icons";
 import { CompleteLessonResponse, LessonResponse } from "@/types/lesson/lesson";
@@ -11,6 +13,39 @@ export default function LessonSuccess() {
     const location = useLocation();
 
     const state = location.state as { response?: CompleteLessonResponse, lesson?: LessonResponse } | null;
+
+    useEffect(() => {
+        if (state?.response) {
+            const duration = 1 * 1000;
+            const end = Date.now() + duration;
+
+            const frame = () => {
+                // Only fire on some frames to reduce density (approx 30% of frames)
+                if (Math.random() > 0.7) {
+                    confetti({
+                        particleCount: 1,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0, y: 0.6 },
+                        colors: ['#6366f1', '#fbbf24', '#f59e0b', '#10b981']
+                    });
+                    confetti({
+                        particleCount: 1,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1, y: 0.6 },
+                        colors: ['#6366f1', '#fbbf24', '#f59e0b', '#10b981']
+                    });
+                }
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            };
+            
+            frame();
+        }
+    }, [state]);
 
     if (!state || !state.response || !state.lesson) {
         return (
@@ -29,8 +64,8 @@ export default function LessonSuccess() {
         <>
         <MetaData title={t('lessons.lesson_completed')} robots="noindex, nofollow"  />
         <div className="min-h-screen bg-brand-50/50 dark:bg-gray-950 flex flex-col items-center justify-center p-4">
-            <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-[2rem] shadow-xl shadow-brand-100/50 p-8 sm:p-10 text-center animate-[fade-in-up_0.5s_ease-out]">
-                <div className="w-24 h-24 bg-gradient-to-br from-yellow-300 to-yellow-500 text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner ring-8 ring-yellow-50">
+            <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-[2rem] shadow-xl shadow-brand-100/50 p-8 sm:p-10 text-center animate-fade-in-up">
+                <div className="w-24 h-24 bg-gradient-to-br from-yellow-300 to-yellow-500 text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner ring-8 ring-yellow-50 dark:ring-yellow-900/20 animate-medal-pop animate-medal-shine">
                     <StarIcon className="w-12 h-12" />
                 </div>
 
