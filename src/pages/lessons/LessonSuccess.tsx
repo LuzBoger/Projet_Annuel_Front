@@ -64,7 +64,7 @@ export default function LessonSuccess() {
         <>
         <MetaData title={t('lessons.lesson_completed')} robots="noindex, nofollow"  />
         <div className="min-h-screen bg-brand-50/50 dark:bg-gray-950 flex flex-col items-center justify-center p-4">
-            <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-[2rem] shadow-xl shadow-brand-100/50 p-8 sm:p-10 text-center animate-fade-in-up">
+            <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-[2rem] shadow-xl shadow-brand-500/10 dark:shadow-none p-8 sm:p-10 text-center animate-fade-in-up">
                 <div className="w-24 h-24 bg-gradient-to-br from-yellow-300 to-yellow-500 text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner ring-8 ring-yellow-50 dark:ring-yellow-900/20 animate-medal-pop animate-medal-shine">
                     <StarIcon className="w-12 h-12" />
                 </div>

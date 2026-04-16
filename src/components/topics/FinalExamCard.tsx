@@ -38,7 +38,7 @@ export function FinalExamCard({ isUnlocked, onTakeExam }: FinalExamCardProps) {
                 <div className="w-full">
                     {isUnlocked ? (
                         <Button 
-                            className="w-full py-3 rounded-2xl font-bold shadow-brand-200 shadow-lg"
+                            className="w-full py-3 rounded-2xl font-bold"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 onTakeExam();

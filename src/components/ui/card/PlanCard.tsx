@@ -22,7 +22,7 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
                 ? 'bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-800'
                 : 'bg-brand-600 border-brand-600'
             }
-            ${isCurrentUserPlan ? 'border-brand-500 shadow-lg shadow-brand-100' : ''}
+            ${isCurrentUserPlan ? 'border-brand-500 shadow-lg shadow-brand-500/10' : ''}
         `}>
 
             {isCurrentUserPlan && <BadgeActive />}
