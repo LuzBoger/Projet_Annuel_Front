@@ -91,7 +91,7 @@ export function LanguageDetailPage() {
                                     return parts[0] === parts[1] ? parts[0] : range;
                                 })()
                             }</BadgeTag>
-                        {language.isPopular && ( <BadgeTag variant="popular"> <Star className="w-3 h-3 text-yellow-500 inline mr-1" /> {t("popular")}</BadgeTag> )}
+                        {language.isPopular && ( <BadgeTag variant="popular"> <Star className="w-3 h-3 text-yellow-500" /> {t("popular")}</BadgeTag> )}
                     </div>
                 </div>
 

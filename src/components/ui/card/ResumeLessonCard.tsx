@@ -15,7 +15,7 @@ export function ResumeLessonCard({ lesson }: ResumeLessonCardProps) {
 
     if (!lesson) {
         return (
-            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-800 p-4">
                 <p className="text-sm text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">{t("lesson.resume")}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">{t("lesson.start_first_lesson")}</p>
             </div>
@@ -23,7 +23,7 @@ export function ResumeLessonCard({ lesson }: ResumeLessonCardProps) {
     }
 
     return (
-           <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4">
+           <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-800 p-4">
             <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">{t("lesson.resume")}</p>
 
             <div className="flex items-center gap-2 mb-2">

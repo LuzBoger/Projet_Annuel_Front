@@ -1,6 +1,7 @@
 interface BadgeTagProps {
     children: React.ReactNode;
     variant?: "default" | "popular";
+    className?: string;
 }
 
 const variants = {
@@ -8,9 +9,9 @@ const variants = {
     popular: "border-yellow-200 bg-yellow-50/60 text-yellow-700 dark:bg-yellow-500/20 dark:border-yellow-500/40 dark:text-yellow-500",
 }
 
-export function BadgeTag({ children, variant = "default" }: BadgeTagProps) {
+export function BadgeTag({ children, variant = "default", className = "" }: BadgeTagProps) {
     return (
-        <span className={`px-3 py-1 text-xs rounded-full border ${variants[variant]}`}>
+        <span className={`inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border ${variants[variant]} ${className}`}>
             {children}
         </span>
     );

@@ -17,7 +17,7 @@ export function TopicCard({ topic, onPractice }: Readonly<TopicCardProps>) {
     const typeColor = (type: string) => LESSON_TYPE_COLORS[type] ?? "bg-gray-100 text-gray-600";
 
     return (
-        <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
+        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
             <div className="px-5 pt-4 pb-3">
                 <div className="flex items-start justify-between gap-3">
                     <div className="flex flex-col gap-1.5 flex-1 min-w-0">

@@ -207,7 +207,7 @@ export function Header() {
                             </div>
                         )}
                         <div className="flex items-center gap-2 ml-2 mr-1">
-                            {['/', '/login', '/register'].includes(location.pathname) && <ThemeToggle />}
+                            <ThemeToggle />
                             <LocaleLanguageSwitcher />
                         </div>
                     </div>
