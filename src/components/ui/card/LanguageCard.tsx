@@ -79,7 +79,7 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
                         : <span />
                     }
                     
-                    <div className="flex items-center text-sm font-bold text-brand-600 dark:text-brand-400 group-hover:text-brand-700 dark:group-hover:text-brand-300 transition-colors">
+                    <div className="flex items-center text-sm font-bold text-brand-600 dark:text-indigo-400 group-hover:text-brand-700 dark:group-hover:text-indigo-300 transition-colors">
                         {isLearning ? (
                             <CheckCircle2 className="w-5 h-5 text-emerald-500" />
                         ) : (

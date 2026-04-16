@@ -63,7 +63,7 @@ export function TopicCard({ topic, onClick }: TopicCardProperties) {
                 )}
             </div>
 
-            <div className="relative z-10 mt-6 flex items-center text-sm font-medium text-brand-600 dark:text-brand-400 group-hover:text-brand-700 dark:group-hover:text-brand-300">
+            <div className="relative z-10 mt-6 flex items-center text-sm font-bold text-brand-600 dark:text-indigo-400 group-hover:text-brand-700 dark:group-hover:text-indigo-300">
                 {t('topics.practice_btn')}
                 <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" />
             </div>

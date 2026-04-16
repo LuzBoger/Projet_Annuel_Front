@@ -25,14 +25,14 @@ export function TopicCard({ topic, onPractice }: Readonly<TopicCardProps>) {
                             <span className={`px-2 py-0.5 text-xs font-bold rounded-full border ${difficultyClass}`}>
                                 {topic.difficulty}
                             </span>
-                            <span className="text-xs text-gray-400 dark:text-white">
+                            <span className="text-xs text-gray-400 dark:text-gray-400">
                                 {topic.completedLessons}/{topic.totalLessons} {t("components.topicCard.lessons")}
                             </span>
                         </div>
 
                         <p className="font-bold text-gray-900 dark:text-white text-base leading-tight">{topic.name}</p>
                         {topic.description && (
-                            <p className="text-sm text-gray-400 dark:text-white line-clamp-1">{topic.description}</p>
+                            <p className="text-sm text-gray-400 dark:text-gray-400 line-clamp-1">{topic.description}</p>
                         )}
 
                         {nextLesson && (
@@ -52,7 +52,7 @@ export function TopicCard({ topic, onPractice }: Readonly<TopicCardProps>) {
 
                 <Button
                     variant="none"
-                    className="group flex items-center justify-end w-full mt-3 pt-3 border-t border-gray-100 dark:border-gray-800 text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors cursor-pointer"
+                    className="group flex items-center justify-end w-full mt-3 pt-3 border-t border-gray-100 dark:border-gray-800 text-sm font-bold text-brand-600 dark:text-indigo-400 hover:text-brand-700 dark:hover:text-indigo-300 transition-colors cursor-pointer"
                     onClick={onPractice}
                 >
                     {t("components.topicCard.practice")}
