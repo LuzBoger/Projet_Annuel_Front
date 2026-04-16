@@ -62,7 +62,7 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
         <PlayerCard
             instruction={
                 <div className="flex justify-center mb-4">
-                    <span className="px-4 py-1.5 bg-brand-50 text-brand-700 rounded-full text-sm font-bold tracking-wide uppercase">
+                    <span className="px-4 py-1.5 bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 rounded-full text-sm font-bold tracking-wide uppercase">
                         {t('lessons.matching.instruction')}
                     </span>
                 </div>

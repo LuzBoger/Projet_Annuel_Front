@@ -21,7 +21,10 @@
     "quit": "Quit",
     "home": "Back to Home",
     "continue": "Continue",
-    "skip": "Skip"
+    "skip": "Skip",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "on": "of"
   },
   "onBoarding": {
     "selectNativeLanguage": "What is your native language?",
@@ -367,6 +370,7 @@
         "add_option": "Add an option",
         "correct": "Correct answer",
         "explanation": "Explanation",
+        "explanation_placeholder": "Explain why this answer is correct...",
         "add_question": "Add a question"
       },
       "matching": {
@@ -384,11 +388,17 @@
         "note_new": "The order in which you add the items defines the correct answer."
       },
       "preview": {
-        "title": "Live Preview",
+        "title": "Quick Actions",
         "no_data": "Fill in the information to see the preview",
         "flashcard_label": "Flashcard",
         "sorting_label": "Sorting Exercise",
-        "visual_confirm": "This is a visual preview only"
+        "visual_confirm": "This is a visual preview only",
+        "simulate_btn": "Simulate lesson",
+        "simulate_title": "Lesson Simulation",
+        "simulation_complete": "Simulation complete!",
+        "score_preview": "Your simulated score:",
+        "retry_simulation": "Restart",
+        "unsupported_type": "Lesson type not supported for simulation"
       }
     }
   },

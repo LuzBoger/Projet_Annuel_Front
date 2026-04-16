@@ -16,59 +16,59 @@ export default function LessonPlayer() {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const { fetchLessonById, startLesson, completeLesson } = useLesson();
-    
+
     const [lesson, setLesson] = useState<LessonResponse | null>(null);
     const [isStarting, setIsStarting] = useState(true);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
-    
+
     const startTimeRef = useRef<number | null>(null);
     const [isCompleting, setIsCompleting] = useState(false);
 
     useEffect(() => {
         let mounted = true;
-        
+
         async function initializeLesson() {
             if (!lessonId) return;
-            
+
             try {
                 const data = await fetchLessonById(lessonId);
                 if (!data) {
                     if (mounted) setErrorMsg(t('lessons.not_found'));
                     return;
                 }
-                
+
                 if (mounted) setLesson(data);
                 await startLesson(lessonId);
-                
+
                 if (mounted) {
                     setIsStarting(false);
                     startTimeRef.current = Date.now();
                 }
-                
+
             } catch {
                 if (mounted) setErrorMsg(t('lessons.start_error'));
             }
         }
-        
+
         initializeLesson();
-        
+
         return () => { mounted = false; };
     }, [lessonId, fetchLessonById, startLesson, t]);
-    
+
     const handleLessonComplete = useCallback(async (score: number) => {
         if (!lessonId || isCompleting) return;
-        
+
         try {
             setIsCompleting(true);
             const timeSpentSeconds = startTimeRef.current ? Math.floor((Date.now() - startTimeRef.current) / 1000) : 0;
-            
+
             const response = await completeLesson(lessonId, {
                 score,
                 timeSpentSeconds
             });
-            
+
             navigate(`/lessons/${lessonId}/success`, { state: { response, lesson } });
-            
+
         } catch {
             setErrorMsg(t('lessons.complete_error'));
             setIsCompleting(false);
@@ -87,7 +87,7 @@ export default function LessonPlayer() {
             </div>
         );
     }
-    
+
     if (isStarting || !lesson) {
         return (
             <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col items-center justify-center p-4">
@@ -96,46 +96,46 @@ export default function LessonPlayer() {
             </div>
         );
     }
-    
+
     return (
         <>
             <MetaData title={lesson.title} robots="noindex, nofollow" />
-            <div className="min-h-screen bg-gray-100 dark:bg-gray-950 flex flex-col">
+            <div className="h-screen overflow-y-auto bg-gray-100 dark:bg-gray-950 flex flex-col scroll-smooth">
                 <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 py-3 flex items-center justify-between shadow-sm sticky top-0 z-50">
-                    <Button 
-                        onClick={() => navigate(-1)} 
+                    <Button
+                        onClick={() => navigate(-1)}
                         variant="ghost"
-                    className="flex items-center text-gray-500 hover:text-red-600 font-medium"
-                    title={t('common.quit')}
-                >
-                    <ChevronLeft className="w-5 h-5 mr-1" />
-                    <span className="hidden sm:inline">{t('common.quit')}</span>
-                </Button>
-                <div className="flex-1 text-center font-bold text-gray-900 dark:text-white truncate px-4">
-                    {lesson.title}
-                </div>
-                <div className="w-16 sm:w-32 flex justify-end">
-                    {isCompleting && <span className="text-xs bg-brand-100 text-brand-700 px-2 py-1 rounded-md font-bold">Saving...</span>}
-                </div>
-            </header>
-            
-            <main className="flex-1 overflow-x-hidden overflow-y-auto w-full">
-                <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 h-full flex flex-col items-center">
-                    {lesson.lessonType === LessonType.FLASHCARD && (
-                        <FlashcardPlayer flashcards={lesson.flashcards || []} onFinish={handleLessonComplete} />
-                    )}
-                    {lesson.lessonType === LessonType.QCM && (
-                        <QCMPlayer questions={lesson.questions || []} onFinish={handleLessonComplete} />
-                    )}
-                    {lesson.lessonType === LessonType.MATCHING_PAIR && (
-                        <MatchingPlayer pairs={lesson.matchingPairs || []} onFinish={handleLessonComplete} />
-                    )}
-                    {lesson.lessonType === LessonType.SORTING_EXERCISE && (
-                        <SortingPlayer exercises={lesson.sortingExercise || []} onFinish={handleLessonComplete} />
-                    )}
-                </div>
-            </main>
-        </div>
+                        className="flex items-center text-gray-500 hover:text-red-600 font-medium"
+                        title={t('common.quit')}
+                    >
+                        <ChevronLeft className="w-5 h-5 mr-1" />
+                        <span className="hidden sm:inline">{t('common.quit')}</span>
+                    </Button>
+                    <div className="flex-1 text-center font-bold text-gray-900 dark:text-white truncate px-4">
+                        {lesson.title}
+                    </div>
+                    <div className="w-16 sm:w-32 flex justify-end">
+                        {isCompleting && <span className="text-xs bg-brand-100 text-brand-700 px-2 py-1 rounded-md font-bold">Saving...</span>}
+                    </div>
+                </header>
+
+                <main className="flex-1 w-full">
+                    <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 min-h-full flex flex-col items-center">
+                        {lesson.lessonType === LessonType.FLASHCARD && (
+                            <FlashcardPlayer flashcards={lesson.flashcards || []} onFinish={handleLessonComplete} />
+                        )}
+                        {lesson.lessonType === LessonType.QCM && (
+                            <QCMPlayer questions={lesson.questions || []} onFinish={handleLessonComplete} />
+                        )}
+                        {lesson.lessonType === LessonType.MATCHING_PAIR && (
+                            <MatchingPlayer pairs={lesson.matchingPairs || []} onFinish={handleLessonComplete} />
+                        )}
+                        {lesson.lessonType === LessonType.SORTING_EXERCISE && (
+                            <SortingPlayer exercises={lesson.sortingExercise || []} onFinish={handleLessonComplete} />
+                        )}
+                    </div>
+                </main>
+            </div>
         </>
     );
 }

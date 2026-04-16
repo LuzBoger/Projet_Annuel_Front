@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
 import { TextArea } from "@/components/ui/TextArea";
 import { Select } from "@/components/ui/Select";
-import { Cross } from "@/assets/icons";
+
 import { Switch } from "@/components/ui/Switch";
 import { LanguageFlag } from "@/components/languages/LanguageFlag";
 import { createTopicSchema, type CreateTopicFormData } from "@/validations/topics/createTopicSchema";

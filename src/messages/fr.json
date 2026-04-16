@@ -21,7 +21,10 @@
     "home": "Retour à l'accueil",
     "continue": "Continuer",
     "loading": "Chargement...",
-    "skip": "Passer"
+    "skip": "Passer",
+    "enabled": "Activé",
+    "disabled": "Désactivé",
+    "on": "sur"
   },
   "onBoarding": {
     "selectNativeLanguage": "Quelle est votre langue maternelle ?",
@@ -368,6 +371,7 @@
         "add_option": "Ajouter une option",
         "correct": "Bonne réponse",
         "explanation": "Explication",
+        "explanation_placeholder": "Expliquez pourquoi cette réponse est la bonne...",
         "add_question": "Ajouter une question"
       },
       "matching": {
@@ -385,11 +389,17 @@
         "note_new": "L'ordre dans lequel vous ajoutez les éléments définit la bonne réponse."
       },
       "preview": {
-        "title": "Aperçu en direct",
+        "title": "Actions rapides",
         "no_data": "Remplissez les informations pour voir l'aperçu",
         "flashcard_label": "Flashcard",
         "sorting_label": "Mise en ordre",
-        "visual_confirm": "Ceci est un aperçu visuel uniquement"
+        "visual_confirm": "Ceci est un aperçu visuel uniquement",
+        "simulate_btn": "Simuler la leçon",
+        "simulate_title": "Simulation de Leçon",
+        "simulation_complete": "Simulation terminée !",
+        "score_preview": "Votre score simulé :",
+        "retry_simulation": "Recommencer",
+        "unsupported_type": "Type de leçon non supporté pour la simulation"
       }
     }
   },

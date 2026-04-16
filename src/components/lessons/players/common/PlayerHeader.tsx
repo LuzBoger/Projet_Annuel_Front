@@ -1,30 +1,57 @@
 import { useTranslation } from "react-i18next";
 
+export type SegmentStatus = 'correct' | 'medium' | 'incorrect' | 'pending' | 'current';
+
 interface PlayerHeaderProps {
     current: number;
     total: number;
     label?: string;
+    statuses?: SegmentStatus[];
 }
 
-export function PlayerHeader({ current, total, label }: PlayerHeaderProps) {
+export function PlayerHeader({ current, total, label, statuses }: PlayerHeaderProps) {
     const { t } = useTranslation();
-    const progress = total > 0 ? (current / total) * 100 : 0;
+
+    const getSegmentColor = (status: SegmentStatus) => {
+        switch (status) {
+            case 'correct': return 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.3)]';
+            case 'medium': return 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.3)]';
+            case 'incorrect': return 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.3)]';
+            case 'current': return 'border-2 border-brand-500 dark:border-brand-400 bg-transparent ring-2 ring-brand-500/20 animate-pulse';
+            default: return 'bg-gray-200 dark:bg-gray-700/50';
+        }
+    };
+
+
+    const items = statuses || Array.from({ length: total }, (_, i) => 
+        i < current - 1 ? 'correct' : i === current - 1 ? 'current' : 'pending'
+    );
 
     return (
         <div className="w-full mb-8">
-            <div className="flex justify-between text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
-                <span className="uppercase tracking-widest text-[10px] sm:text-xs text-brand-500 font-bold">
-                    {label || t('lessons.progress')}
-                </span>
-                <span className="bg-white dark:bg-gray-800 dark:text-gray-300 px-3 py-1 rounded-full shadow-sm border border-gray-100 dark:border-gray-700">
-                    {current} / {total}
-                </span>
+            <div className="flex justify-between items-end text-sm font-medium mb-4">
+                <div className="flex flex-col gap-1">
+                    <span className="uppercase tracking-widest text-[10px] sm:text-xs text-brand-500 font-bold">
+                        {label || t('lessons.progress')}
+                    </span>
+                    <span className="text-gray-400 text-[10px] font-normal">
+                        {current} {t('common.on')} {total}
+                    </span>
+                </div>
+                <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm px-3 py-1 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm transition-all">
+                    <span className="text-gray-600 dark:text-gray-300 font-bold tabular-nums">
+                        {Math.round((items.filter(s => s === 'correct').length / total) * 100)}%
+                    </span>
+                </div>
             </div>
-            <div className="w-full bg-gray-200/50 dark:bg-gray-700 rounded-full h-3 shadow-inner overflow-hidden">
-                <div 
-                    className="bg-brand-500 h-3 rounded-full transition-all duration-500 ease-out" 
-                    style={{ width: `${progress}%` }}
-                ></div>
+
+            <div className="flex gap-1.5 sm:gap-2 h-2.5 sm:h-3">
+                {items.map((status, idx) => (
+                    <div 
+                        key={idx}
+                        className={`flex-1 rounded-full transition-all duration-300 ease-out ${getSegmentColor(status as SegmentStatus)}`}
+                    />
+                ))}
             </div>
         </div>
     );

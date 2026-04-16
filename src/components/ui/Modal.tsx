@@ -10,7 +10,7 @@ function cn(...inputs: ClassValue[]) {
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title?: string;
+  title?: ReactNode;
   children: ReactNode;
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   showCloseButton?: boolean;
@@ -73,9 +73,9 @@ export function Modal({
         {(title || showCloseButton) && (
           <div className="flex items-center justify-between p-6 pb-0">
             {title ? (
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+              <div className="text-xl font-bold text-gray-900 dark:text-white">
                 {title}
-              </h3>
+              </div>
             ) : <div />}
             
             {showCloseButton && (
@@ -91,7 +91,7 @@ export function Modal({
         )}
 
         {/* Content */}
-        <div className="p-6">
+        <div className="px-6 py-4">
           {children}
         </div>
       </div>

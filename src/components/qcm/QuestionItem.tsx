@@ -19,13 +19,13 @@ export function QuestionItem({ index, control, register, errors, onRemove }: { i
     });
 
     return (
-        <div className="relative p-6 bg-gray-50 rounded-xl border border-gray-100 group">
+        <div className="relative p-6 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-100 dark:border-gray-800 group transition-all hover:bg-white dark:hover:bg-gray-900/60 hover:shadow-md">
             <Button
                 type="button"
-                variant="secondary"
+                variant="ghost"
                 size="sm"
                 onClick={onRemove}
-                className="absolute -top-3 -right-3 p-2 bg-white shadow-md hover:!bg-red-50 !text-gray-400 hover:!text-red-600 transition-all opacity-0 group-hover:opacity-100"
+                className="absolute -top-3 -right-3 p-2 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all opacity-0 group-hover:opacity-100"
             >
                 <Trash className="w-4 h-4" />
             </Button>
@@ -72,10 +72,10 @@ export function QuestionItem({ index, control, register, errors, onRemove }: { i
                                 {options.length > 2 && (
                                     <Button
                                         type="button"
-                                        variant="outline"
+                                        variant="ghost"
                                         size="sm"
                                         onClick={() => removeOption(optIndex)}
-                                        className="p-2 border-transparent !text-gray-400 hover:!text-red-600"
+                                        className="p-2 bg-transparent text-gray-400 dark:text-gray-500 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all"
                                     >
                                         <Trash className="w-4 h-4" />
                                     </Button>

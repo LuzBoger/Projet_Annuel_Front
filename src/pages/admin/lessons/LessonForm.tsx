@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useForm, useWatch } from "react-hook-form";
@@ -8,7 +8,7 @@ import { FormField } from "@/components/ui/FormField";
 import { TextArea } from "@/components/ui/TextArea";
 import { Select } from "@/components/ui/Select";
 import { Switch } from "@/components/ui/Switch";
-import { ChevronLeft, Info } from "@/assets/icons";
+import { ChevronLeft, Info, PlayIcon, Check, Cross } from "@/assets/icons";
 import { useLesson } from "@/hooks/useLesson";
 import { useTopic } from "@/hooks/useTopic";
 import { LessonType, LessonRequest } from "@/types/lesson/lesson";
@@ -17,7 +17,7 @@ import { FlashcardForm } from "@/components/admin/lessons/FlashcardForm";
 import { QCMForm } from "@/components/admin/lessons/QCMForm";
 import { MatchingPairForm } from "@/components/admin/lessons/MatchingPairForm";
 import { SortingExerciseForm } from "@/components/admin/lessons/SortingExerciseForm";
-import { LessonPreview } from "@/components/admin/lessons/LessonPreview";
+import { LessonSimulatorModal } from "@/components/admin/lessons/LessonSimulatorModal";
 import { MetaData } from "@/components/seo/MetaData";
 
 export default function LessonForm() {
@@ -25,6 +25,7 @@ export default function LessonForm() {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const isEdit = !!lessonId;
+    const [isSimulatorOpen, setIsSimulatorOpen] = useState(false);
 
     const { loading: lessonLoading, createLesson, updateLesson, fetchLessonById } = useLesson();
     const { topics, fetchAllTopics } = useTopic();
@@ -60,21 +61,16 @@ export default function LessonForm() {
             const loadLesson = async () => {
                 const lesson = await fetchLessonById(lessonId);
                 if (lesson) {
-                    // Adapt data for the form
-                    const initialData: Partial<LessonFormData> = {
-                        ...lesson,
-                    };
-
+                    const initialData: Partial<LessonFormData> = { ...lesson };
                     if (lesson.lessonType === LessonType.SORTING_EXERCISE && lesson.sortingExercise && lesson.sortingExercise.length > 0) {
                         initialData.sortingItems = lesson.sortingExercise[0].items.map((item: string) => ({ value: item }));
                     }
-
                     reset(initialData);
                 }
             };
             loadLesson();
         }
-    }, [isEdit, lessonId, reset, fetchLessonById, fetchAllTopics, topics.length]);
+    }, [isEdit, lessonId, reset, fetchLessonById, fetchAllTopics, topics ?? []]);
 
     const lessonTypeOptions = Object.values(LessonType).map(type => ({
         label: t(`admin.lessons.form.types.${type}`),
@@ -97,14 +93,10 @@ export default function LessonForm() {
             lessonType: data.lessonType as LessonType,
         };
 
-        // Add polymorphic data
-        if (data.lessonType === LessonType.FLASHCARD) {
-            request.flashcards = data.flashcards;
-        } else if (data.lessonType === LessonType.QCM) {
-            request.questions = data.questions;
-        } else if (data.lessonType === LessonType.MATCHING_PAIR) {
-            request.matchingPairs = data.matchingPairs;
-        } else if (data.lessonType === LessonType.SORTING_EXERCISE && data.sortingItems) {
+        if (data.lessonType === LessonType.FLASHCARD) request.flashcards = data.flashcards;
+        else if (data.lessonType === LessonType.QCM) request.questions = data.questions;
+        else if (data.lessonType === LessonType.MATCHING_PAIR) request.matchingPairs = data.matchingPairs;
+        else if (data.lessonType === LessonType.SORTING_EXERCISE && data.sortingItems) {
             request.sortingExercise = [{
                 items: data.sortingItems.map((i) => i.value),
                 correctOrder: data.sortingItems.map((_, idx) => idx)
@@ -112,11 +104,8 @@ export default function LessonForm() {
         }
 
         try {
-            if (isEdit && lessonId) {
-                await updateLesson(lessonId, request);
-            } else {
-                await createLesson(request);
-            }
+            if (isEdit && lessonId) await updateLesson(lessonId, request);
+            else await createLesson(request);
             navigate(`/admin/topics/${topicId}/lessons`);
         } catch (error) {
             console.error("Failed to save lesson", error);
@@ -124,52 +113,78 @@ export default function LessonForm() {
     };
 
     return (
-        <>
-            <MetaData title={isEdit ? t('admin.lessons.edit') : t('admin.lessons.create')} robots="noindex, nofollow"  />
-            <div className="p-6">
-                <div className="flex items-center space-x-4 mb-8">
-                    <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => navigate(`/admin/topics/${topicId}/lessons`)}
-                        className="p-2"
-                    >
-                        <ChevronLeft className="w-5 h-5" />
-                    </Button>
-                    <div>
-                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                            {isEdit ? t('admin.lessons.edit') : t('admin.lessons.create')}
-                        </h1>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                            {t('admin.lessons.form.topic_label')} <span className="font-semibold text-brand-600 dark:text-brand-400">{currentTopic?.name || "..."}</span>
-                        </p>
+        <div className="min-h-screen bg-gray-50/50 dark:bg-gray-950/50 p-4 sm:p-6 lg:p-8">
+            <MetaData title={isEdit ? t('admin.lessons.edit') : t('admin.lessons.create')} robots="noindex, nofollow" />
+            
+            <div className="max-w-7xl mx-auto">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <div className="flex items-center gap-4">
+                        <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={() => navigate(`/admin/topics/${topicId}/lessons`)}
+                            className="rounded-xl bg-white dark:bg-gray-800 shadow-sm border-gray-100 dark:border-gray-700"
+                        >
+                            <ChevronLeft className="w-5 h-5" />
+                        </Button>
+                        <div>
+                            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                                {isEdit ? t('admin.lessons.edit') : t('admin.lessons.create')}
+                            </h1>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                                {t('admin.lessons.form.topic_label')} <span className="font-semibold text-brand-600 dark:text-brand-400">{currentTopic?.name || "..."}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                        <Button 
+                            type="button" 
+                            variant="outline" 
+                            onClick={() => setIsSimulatorOpen(true)}
+                            className="bg-white dark:bg-gray-800 border-brand-200 dark:border-brand-900/30 text-brand-600 dark:text-brand-400 hover:bg-brand-50 dark:hover:bg-brand-900/20"
+                        >
+                            <PlayIcon className="w-4 h-4 mr-2" />
+                            {t('admin.lessons.preview.simulate_btn')}
+                        </Button>
+                        <Button 
+                            variant="ghost" 
+                            onClick={() => navigate(`/admin/topics/${topicId}/lessons`)}
+                            className="text-gray-500"
+                        >
+                            <Cross className="w-4 h-4 mr-2" />
+                            {t('common.cancel')}
+                        </Button>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <form onSubmit={handleSubmit(onFormSubmit)} className="lg:col-span-2 space-y-8">
-                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 space-y-6">
-                            <div className="flex items-center gap-2 mb-4 text-brand-600 dark:text-brand-400">
-                                <Info className="w-5 h-5" />
-                                <h2 className="text-lg font-bold">{t('admin.lessons.form.sections.basic_info')}</h2>
+                <form onSubmit={handleSubmit(onFormSubmit)} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <div className="lg:col-span-8 space-y-6">
+                        <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sm:p-8">
+                            <div className="flex items-center gap-2 mb-8">
+                                <div className="w-10 h-10 rounded-2xl bg-brand-50 dark:bg-brand-900/20 flex items-center justify-center text-brand-600 dark:text-brand-400">
+                                    <Info className="w-5 h-5" />
+                                </div>
+                                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('admin.lessons.form.sections.basic_info')}</h2>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
                                 <div className="md:col-span-2">
                                     <FormField
                                         label={t('admin.lessons.form.title')}
                                         {...register("title")}
                                         error={errors.title?.message}
                                         required
+                                        className="bg-white/50 dark:bg-gray-900/50"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
                                         {t('admin.lessons.form.description')}
                                     </label>
                                     <TextArea
                                         {...register("description")}
-                                        className="min-h-[100px]"
+                                        className="min-h-[120px] bg-white/50 dark:bg-gray-900/50 rounded-2xl"
                                         error={errors.description?.message}
                                     />
                                 </div>
@@ -180,6 +195,7 @@ export default function LessonForm() {
                                     {...register("orderIndex")}
                                     error={errors.orderIndex?.message}
                                     required
+                                    className="bg-white/50 dark:bg-gray-900/50"
                                 />
                                 <FormField
                                     type="number"
@@ -187,46 +203,20 @@ export default function LessonForm() {
                                     {...register("xpReward")}
                                     error={errors.xpReward?.message}
                                     required
+                                    className="bg-white/50 dark:bg-gray-900/50"
                                 />
-                                <FormField
-                                    type="number"
-                                    label={t('admin.lessons.form.minLevel')}
-                                    {...register("minLevelRequired")}
-                                    error={errors.minLevelRequired?.message}
-                                    required
-                                />
-                                <FormField
-                                    type="number"
-                                    label={t('admin.lessons.form.duration')}
-                                    {...register("durationMinutes")}
-                                    error={errors.durationMinutes?.message}
-                                    required
-                                />
-                                <FormField
-                                    type="number"
-                                    label={t('admin.lessons.form.passScore')}
-                                    {...register("passScorePercentage")}
-                                    error={errors.passScorePercentage?.message}
-                                    required
-                                />
-
-                                <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-600">
-                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200">{t('admin.lessons.form.active')}</span>
-                                    <Switch
-                                        checked={isActive}
-                                        onChange={(val) => setValue("isActive", val)}
-                                    />
-                                </div>
                             </div>
                         </div>
 
-                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 space-y-8">
-                            <div className="flex items-center gap-2 text-brand-600 dark:text-brand-400">
-                                <Info className="w-5 h-5" />
-                                <h2 className="text-lg font-bold">{t('admin.lessons.form.sections.lesson_content')}</h2>
+                        <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sm:p-8">
+                            <div className="flex items-center gap-2 mb-8">
+                                <div className="w-10 h-10 rounded-2xl bg-brand-50 dark:bg-brand-900/20 flex items-center justify-center text-brand-600 dark:text-brand-400">
+                                    <PlayIcon className="w-5 h-5" />
+                                </div>
+                                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('admin.lessons.form.sections.lesson_content')}</h2>
                             </div>
 
-                            <div className="max-w-xs">
+                            <div className="max-w-md mb-8">
                                 <Select
                                     label={t('admin.lessons.form.type')}
                                     options={lessonTypeOptions}
@@ -235,46 +225,74 @@ export default function LessonForm() {
                                     placeholder={t('admin.lessons.form.type_placeholder')}
                                     required
                                     error={errors.lessonType?.message}
+                                    className="bg-white/50 dark:bg-gray-900/50"
                                 />
                             </div>
 
-                            <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
-                                {lessonType === LessonType.FLASHCARD && (
-                                    <FlashcardForm control={control} register={register} errors={errors} />
-                                )}
-                                {lessonType === LessonType.QCM && (
-                                    <QCMForm control={control} register={register} errors={errors} />
-                                )}
-                                {lessonType === LessonType.MATCHING_PAIR && (
-                                    <MatchingPairForm control={control} register={register} errors={errors} />
-                                )}
-                                {lessonType === LessonType.SORTING_EXERCISE && (
-                                    <SortingExerciseForm control={control} register={register} errors={errors} />
-                                )}
+                            <div className="pt-8 border-t border-gray-100 dark:border-gray-700/50">
+                                {lessonType === LessonType.FLASHCARD && <FlashcardForm control={control} register={register} errors={errors} />}
+                                {lessonType === LessonType.QCM && <QCMForm control={control} register={register} errors={errors} />}
+                                {lessonType === LessonType.MATCHING_PAIR && <MatchingPairForm control={control} register={register} errors={errors} />}
+                                {lessonType === LessonType.SORTING_EXERCISE && <SortingExerciseForm control={control} register={register} errors={errors} />}
                             </div>
                         </div>
+                    </div>
 
-                        <div className="flex justify-end gap-4">
-                            <Button type="button" variant="outline" onClick={() => navigate(`/admin/topics/${topicId}/lessons`)}>
-                                {t('common.cancel')}
-                            </Button>
-                            <Button type="submit" variant="primary" isLoading={lessonLoading}>
-                                {t('common.save')}
-                            </Button>
-                        </div>
-                    </form>
+                    <div className="lg:col-span-4 space-y-6">
+                        <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sticky top-8">
+                            <h3 className="text-md font-bold text-gray-900 dark:text-white mb-6 uppercase tracking-wider text-xs">{t('admin.lessons.form.sections.basic_info')}</h3>
+                            
+                            <div className="space-y-6">
+                                <FormField
+                                    type="number"
+                                    label={t('admin.lessons.form.minLevel')}
+                                    {...register("minLevelRequired")}
+                                    error={errors.minLevelRequired?.message}
+                                    required
+                                    className="bg-white/50 dark:bg-gray-900/50"
+                                />
+                                <FormField
+                                    type="number"
+                                    label={t('admin.lessons.form.duration')}
+                                    {...register("durationMinutes")}
+                                    error={errors.durationMinutes?.message}
+                                    required
+                                    className="bg-white/50 dark:bg-gray-900/50"
+                                />
+                                <FormField
+                                    type="number"
+                                    label={t('admin.lessons.form.passScore')}
+                                    {...register("passScorePercentage")}
+                                    error={errors.passScorePercentage?.message}
+                                    required
+                                    className="bg-white/50 dark:bg-gray-900/50"
+                                />
 
-                    <div className="lg:sticky lg:top-8 self-start space-y-6">
-                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
-                            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                                {t('admin.lessons.preview.title')}
-                            </h2>
-                            <LessonPreview data={formData} />
+                                <div className="flex items-center justify-between p-4 bg-white/50 dark:bg-gray-900/30 rounded-2xl border border-gray-100 dark:border-gray-700/50 group transition-all">
+                                    <div className="flex flex-col">
+                                        <span className="text-sm font-bold text-gray-700 dark:text-gray-200">{t('admin.lessons.form.active')}</span>
+                                        <span className="text-xs text-gray-500 dark:text-gray-400">{isActive ? t('common.enabled') : t('common.disabled')}</span>
+                                    </div>
+                                    <Switch checked={isActive} onChange={(val) => setValue("isActive", val)} />
+                                </div>
+
+                                <div className="pt-6 border-t border-gray-100 dark:border-gray-700/50">
+                                    <Button type="submit" variant="primary" isLoading={lessonLoading} className="w-full py-6 rounded-2xl shadow-lg shadow-brand-500/20">
+                                        <Check className="w-4 h-4 mr-2" />
+                                        {t('common.save')}
+                                    </Button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </>
+
+            <LessonSimulatorModal 
+                isOpen={isSimulatorOpen} 
+                onClose={() => setIsSimulatorOpen(false)} 
+                data={formData} 
+            />
+        </div>
     );
 }

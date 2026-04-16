@@ -25,6 +25,9 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
     const [isValidated, setIsValidated] = useState(false);
     const [isCorrect, setIsCorrect] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
+    const [results, setResults] = useState<('correct' | 'incorrect' | 'pending')[]>(
+        new Array(exercises.length).fill('pending')
+    );
 
     if (currentIndex !== prevIndex || exercises !== prevExercises) {
         setPrevIndex(currentIndex);
@@ -47,9 +50,12 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
 
     const currentExercise = exercises[currentIndex];
 
-    const expectedSequenceText = currentExercise.correctOrder
-        ? currentExercise.correctOrder.map(idx => currentExercise.items[idx]).join(" ")
-        : currentExercise.items.join(" ");
+    const expectedSequenceText = currentExercise?.items 
+        ? (currentExercise.correctOrder
+            ? currentExercise.correctOrder.map(idx => currentExercise.items[idx])
+            : currentExercise.items
+          ).join(" ")
+        : "";
 
     const handlePoolSelection = (item: SortableItem) => {
         if (isValidated) return;
@@ -67,10 +73,15 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
         if (selectedItems.length === 0) return;
         setIsValidated(true);
 
-        const expectedOrder = currentExercise.correctOrder || currentExercise.items.map((_, i) => i);
+        const expectedOrder = currentExercise.correctOrder || (currentExercise.items?.map((_, i) => i) || []);
         const isOrderCorrect = selectedItems.length === expectedOrder.length && selectedItems.every((item, index) => item.originalIndex === expectedOrder[index]);
         
         setIsCorrect(isOrderCorrect);
+        
+        const newResults = [...results];
+        newResults[currentIndex] = isOrderCorrect ? 'correct' : 'incorrect';
+        setResults(newResults);
+
         if (isOrderCorrect) setCorrectCount(previous => previous + 1);
     };
 
@@ -85,9 +96,19 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
 
     const isAllSelected = pool.length === 0;
 
+    // Compute statuses for header
+    const statuses = exercises.map((_, idx) => {
+        if (idx === currentIndex) return 'current';
+        return results[idx];
+    });
+
     return (
         <PlayerLayout>
-            <PlayerHeader current={currentIndex + 1} total={exercises.length} />
+            <PlayerHeader 
+                current={currentIndex + 1} 
+                total={exercises.length} 
+                statuses={statuses as any}
+            />
 
             <PlayerCard instruction={t('lessons.sorting.instruction')}>
                 <div className="space-y-8">
@@ -104,7 +125,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                                 variant="none"
                                 onClick={() => handleTargetDeselection(item)}
                                 disabled={isValidated}
-                                className="px-4 py-2.5 bg-white border-2 border-brand-200 shadow-sm rounded-xl text-brand-900 font-medium text-[15px] sm:text-lg hover:bg-red-50 hover:border-red-200 hover:text-red-700 transition-all active:scale-95 disabled:hover:scale-100 disabled:opacity-90 disabled:cursor-default"
+                                className="px-4 py-2.5 bg-white dark:bg-gray-800 border-2 border-brand-200 dark:border-brand-900/50 shadow-sm rounded-xl text-brand-900 dark:text-brand-300 font-medium text-[15px] sm:text-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-200 dark:hover:border-red-900/30 hover:text-red-700 dark:hover:text-red-400 transition-all active:scale-95 disabled:hover:scale-100 disabled:opacity-90 disabled:cursor-default"
                             >
                                 {item.text}
                             </Button>
@@ -118,7 +139,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                                 variant="none"
                                 onClick={() => handlePoolSelection(item)}
                                 disabled={isValidated}
-                                className="px-4 py-2.5 bg-white border-2 border-gray-200 shadow-sm rounded-xl text-gray-800 font-medium text-[15px] sm:text-lg hover:border-brand-400 hover:text-brand-800 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="px-4 py-2.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-sm rounded-xl text-gray-800 dark:text-gray-200 font-medium text-[15px] sm:text-lg hover:border-brand-400 dark:hover:border-brand-500 hover:text-brand-800 dark:hover:text-brand-300 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {item.text}
                             </Button>

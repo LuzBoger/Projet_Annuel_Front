@@ -40,7 +40,7 @@ import Dashboard from "@/pages/user/Dashboard";
 export function AppRoutes() {
   const { user, isAuthenticated, fetchUser } = useContext(AuthContext)!;
   const location = useLocation();
-  
+
   const showOnBoarding = isAuthenticated && !!user && !user.hasCompletedOnboarding && user.role !== RoleEnum.ADMIN && !AUTH_PATH.includes(location.pathname);
 
   return (

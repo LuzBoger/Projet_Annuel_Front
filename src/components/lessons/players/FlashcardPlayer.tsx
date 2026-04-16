@@ -22,6 +22,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
     );
     const [isFlipped, setIsFlipped] = useState(false);
     const [completedCards, setCompletedCards] = useState(0);
+    const [transitionState, setTransitionState] = useState<'idle' | 'exiting' | 'entering'>('idle');
 
     if (!flashcards || flashcards.length === 0) {
         return (
@@ -49,82 +50,124 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
     const currentCard = currentItem.card;
 
     const handleFlip = () => {
-        if (!isFlipped) setIsFlipped(true);
+        if (!isFlipped && transitionState === 'idle') setIsFlipped(true);
     };
 
     const handleAnswer = (level: 'red' | 'yellow' | 'green') => {
-        const { originalIndex } = currentItem;
+        if (transitionState !== 'idle') return;
+
+        setTransitionState('exiting');
         
-        const newScores = [...scores];
-        if (newScores[originalIndex] === -1) {
+        // Wait for exit animation (300ms)
+        setTimeout(() => {
+            const { originalIndex } = currentItem;
+            
+            const newScores = [...scores];
             if (level === 'green') newScores[originalIndex] = 100;
             else if (level === 'yellow') newScores[originalIndex] = 50;
             else if (level === 'red') newScores[originalIndex] = 0;
             setScores(newScores);
-        }
 
-        const remainingQueue = queue.slice(1);
-        let newQueue: QueuedCard[] = [];
+            const remainingQueue = queue.slice(1);
+            let newQueue: QueuedCard[] = [];
 
-        if (level === 'green') {
-            newQueue = remainingQueue;
-            setCompletedCards(prev => prev + 1);
-        } else if (level === 'yellow') {
-            newQueue = [...remainingQueue, currentItem];
-        } else if (level === 'red') {
-            newQueue = [...remainingQueue];
-            const insertIndex = Math.min(2, newQueue.length);
-            newQueue.splice(insertIndex, 0, currentItem);
-        }
+            if (level === 'green') {
+                newQueue = remainingQueue;
+                setCompletedCards(prev => prev + 1);
+            } else if (level === 'yellow') {
+                // Return in ~5-10 min (approx 10 cards later)
+                newQueue = [...remainingQueue];
+                const insertIndex = Math.min(10, newQueue.length);
+                newQueue.splice(insertIndex, 0, currentItem);
+            } else if (level === 'red') {
+                // Return in < 1 min (approx 3 cards later)
+                newQueue = [...remainingQueue];
+                const insertIndex = Math.min(3, newQueue.length);
+                newQueue.splice(insertIndex, 0, currentItem);
+            }
 
-        setIsFlipped(false);
-        setQueue(newQueue);
+            // Update content while invisible
+            setIsFlipped(false);
+            setQueue(newQueue);
 
-        if (newQueue.length === 0) {
-            const totalScore = newScores.reduce((acc, curr) => acc + curr, 0);
-            const finalScore = Math.round(totalScore / flashcards.length);
-            setTimeout(() => onFinish(finalScore), 400);
+            if (newQueue.length === 0) {
+                // Calculate final score: only count cards that were correctly answered (Green)
+                const correctCount = newScores.filter(s => s === 100).length;
+                const finalScore = Math.round((correctCount / flashcards.length) * 100);
+                setTimeout(() => onFinish(finalScore), 400);
+            } else {
+                setTransitionState('entering');
+                setTimeout(() => {
+                    setTransitionState('idle');
+                }, 50);
+            }
+        }, 300);
+    };
+
+    const getTransitionClasses = () => {
+        switch (transitionState) {
+            case 'exiting':
+                return 'opacity-0 -translate-x-24 -rotate-6 pointer-events-none';
+            case 'entering':
+                return 'opacity-0 translate-x-24 rotate-6 pointer-events-none transition-none';
+            default:
+                return 'opacity-100 translate-x-0 rotate-0';
         }
     };
 
+    // Calculate statuses for the segmented stepper
+    const segmentStatuses = flashcards.map((_, idx) => {
+        if (queue.length > 0 && idx === queue[0].originalIndex) return 'current';
+        if (scores[idx] === 100) return 'correct';
+        if (scores[idx] === 50) return 'medium';
+        if (scores[idx] === 0) return 'incorrect';
+        return 'pending';
+    });
+
     return (
         <PlayerLayout>
-            <PlayerHeader current={completedCards} total={flashcards.length} />
+            <PlayerHeader 
+                current={completedCards + 1} 
+                total={flashcards.length} 
+                statuses={segmentStatuses as any} 
+            />
 
-            <div 
-                className="relative w-full aspect-[4/3] sm:aspect-[3/2] max-w-lg cursor-pointer group"
+            <div className="flex-1 w-full flex flex-col items-center justify-center py-3 sm:py-5">
+                <div 
+                    className={`relative w-full aspect-[4/3] sm:aspect-[3/2] max-w-lg cursor-pointer group transition-all duration-300 ease-out mx-auto ${getTransitionClasses()}`}
                 style={{ perspective: '1200px' }}
                 onClick={handleFlip}
             >
                 <div 
-                    className="w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.4,0.0,0.2,1)]"
+                    className={`w-full h-full ${transitionState !== 'idle' ? 'transition-none' : 'transition-transform duration-700 ease-[cubic-bezier(0.4,0.0,0.2,1)]'}`}
                     style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'none' }}
                 >
-                    <div className="absolute w-full h-full bg-white dark:bg-gray-800 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center p-10 text-center hover:border-brand-100 dark:hover:border-brand-900/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all" style={{ backfaceVisibility: 'hidden' }}>
-                        <span className="absolute top-6 right-8 text-xs font-bold text-gray-300 dark:text-gray-400 uppercase tracking-widest">{currentCard.frontLanguage}</span>
-                        <h3 className="text-3xl sm:text-5xl font-extrabold text-gray-800 dark:text-gray-200 break-words leading-tight">{currentCard.front}</h3>
-                        {!isFlipped && (
+                    <div className="absolute w-full h-full bg-white dark:bg-gray-800 rounded-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-gray-700/50 flex flex-col items-center justify-center p-6 text-center hover:border-brand-200 dark:hover:border-brand-700 transition-all overflow-hidden" style={{ backfaceVisibility: 'hidden' }}>
+                        <span className="absolute top-6 right-8 text-[10px] font-black text-gray-300 dark:text-gray-500 uppercase tracking-[0.2em]">{currentCard.frontLanguage}</span>
+                        <h3 className="text-3xl sm:text-5xl font-extrabold text-gray-800 dark:text-gray-100 break-words leading-tight tracking-tight">{currentCard.front}</h3>
+                        {!isFlipped && transitionState === 'idle' && (
                             <div className="absolute bottom-8 flex flex-col items-center animate-bounce">
-                                <p className="text-sm text-brand-400 font-bold uppercase tracking-widest mt-2 hidden sm:block">
+                                <p className="text-[10px] text-brand-500 dark:text-brand-400 font-black uppercase tracking-[0.2em] mt-2 hidden sm:block">
                                     {t('lessons.click_to_flip')}
                                 </p>
                             </div>
                         )}
                     </div>
                     
-                    <div className="absolute w-full h-full bg-brand-50 dark:bg-brand-900/20 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-brand-100 dark:border-brand-700 flex flex-col items-center justify-center p-10 text-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
-                        <span className="absolute top-6 right-8 text-xs font-bold text-brand-300 dark:text-brand-400 uppercase tracking-widest">{currentCard.backLanguage}</span>
-                        <h3 className="text-3xl sm:text-5xl font-extrabold text-brand-900 dark:text-brand-200 break-words leading-tight">{currentCard.back}</h3>
+                    <div className="absolute w-full h-full bg-brand-50 dark:bg-brand-900/10 rounded-3xl shadow-[0_12px_40px_rgba(var(--brand-500-rgb),0.1)] border border-brand-100 dark:border-brand-800/50 flex flex-col items-center justify-center p-6 text-center overflow-hidden" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                        <span className="absolute top-6 right-8 text-[10px] font-black text-brand-400/60 dark:text-brand-300 uppercase tracking-[0.2em]">{currentCard.backLanguage}</span>
+                        <h3 className="text-3xl sm:text-5xl font-extrabold text-brand-900 dark:text-white break-words leading-tight tracking-tight">{currentCard.back}</h3>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div className={`mt-10 w-full max-w-lg transition-all duration-500 ${isFlipped ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
+        <div className={`w-full max-w-lg mx-auto transition-all duration-300 ${isFlipped && transitionState === 'idle' ? 'opacity-100 translate-y-0 max-h-40 pb-4' : 'opacity-0 translate-y-0 max-h-0 overflow-hidden pointer-events-none'}`}>
                 <div className="flex gap-4">
                     <Button 
                         variant="outline"
                         onClick={(e) => { e.stopPropagation(); handleAnswer('red'); }}
-                        className="flex-1 py-8 bg-white dark:bg-gray-800 border-2 border-red-50 dark:border-red-900/30 text-red-500 dark:text-red-400 rounded-2xl hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-100 dark:hover:border-red-900/30 transition-colors shadow-sm flex flex-col items-center justify-center font-bold"
+                        className="flex-1 py-4 bg-white dark:bg-gray-800 border-2 border-red-50 dark:border-red-900/20 text-red-500 dark:text-red-400 rounded-2xl hover:bg-red-50 dark:hover:bg-red-900/30 hover:border-red-200 dark:hover:border-red-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
                         title={t('lessons.hard')}
                     >
                         <FaceSad className="w-8 h-8" />
@@ -133,7 +176,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                     <Button 
                         variant="outline"
                         onClick={(e) => { e.stopPropagation(); handleAnswer('yellow'); }}
-                        className="flex-1 py-8 bg-white dark:bg-gray-800 border-2 border-yellow-50 dark:border-yellow-900/30 text-amber-500 dark:!text-amber-400 rounded-2xl hover:bg-yellow-50 dark:hover:bg-yellow-900/20 hover:border-yellow-100 dark:hover:border-yellow-900/30 transition-colors shadow-sm flex flex-col items-center justify-center font-bold"
+                        className="flex-1 py-8 bg-white dark:bg-gray-800 border-2 border-yellow-50 dark:border-yellow-900/20 text-amber-500 dark:text-amber-400 rounded-2xl hover:bg-yellow-50 dark:hover:bg-yellow-900/30 hover:border-yellow-200 dark:hover:border-yellow-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
                         title={t('lessons.medium')}
                     >
                         <FaceNeutral className="w-8 h-8" />
@@ -142,7 +185,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                     <Button 
                         variant="outline"
                         onClick={(e) => { e.stopPropagation(); handleAnswer('green'); }}
-                        className="flex-1 py-8 bg-white dark:bg-gray-800 border-2 border-emerald-50 dark:border-emerald-900/30 text-emerald-500 dark:!text-emerald-400 rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:border-emerald-100 dark:hover:border-emerald-900/30 transition-colors shadow-sm flex flex-col items-center justify-center font-bold"
+                        className="flex-1 py-8 bg-white dark:bg-gray-800 border-2 border-emerald-50 dark:border-emerald-900/20 text-emerald-500 dark:text-emerald-400 rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:border-emerald-200 dark:hover:border-emerald-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
                         title={t('lessons.easy')}
                     >
                         <FaceSmile className="w-8 h-8" />

@@ -94,15 +94,23 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
         onFinish(finalScore);
     };
 
+    // Compute statuses for the header
+    const statuses = pairs.map((_, idx) => {
+        if (idx < matchedMatchIds.length) return 'correct';
+        if (idx === matchedMatchIds.length) return 'current';
+        return 'pending';
+    });
+
     return (
         <PlayerLayout maxWidth="max-w-3xl">
             <PlayerHeader 
-                current={matchedMatchIds.length} 
+                current={Math.min(matchedMatchIds.length + 1, pairs.length)} 
                 total={pairs.length} 
+                statuses={statuses as any}
             />
 
             <PlayerCard 
-                instruction={<p className="text-gray-500 font-medium mb-1">{t('lessons.matching.instruction')}</p>}
+                instruction={<p className="text-gray-500 dark:text-gray-400 font-medium mb-1">{t('lessons.matching.instruction')}</p>}
             >
                 <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-3 gap-3 sm:gap-4">
                     {tiles.map(tile => {
@@ -113,7 +121,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                         let buttonClass = "w-full min-h-[80px] p-4 rounded-xl border-2 transition-all duration-200 font-medium text-[15px] sm:text-lg flex items-center justify-center text-center select-none ";
 
                         if (isMatched) {
-                            buttonClass += "border-emerald-200 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-400 opacity-50 cursor-default scale-95";
+                            buttonClass += "border-emerald-200 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 opacity-80 cursor-default scale-95";
                         } else if (isError) {
                             buttonClass += "border-red-400 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400";
                         } else if (isSelected) {
