@@ -71,6 +71,11 @@ export interface CompleteLessonRequest {
     timeSpentSeconds: number;
 }
 
+export interface UserProgressResponse {
+    completedLessons: number;
+    completionPercentage: number;
+}
+
 export interface CompleteLessonResponse {
     success: boolean;
     message?: string;
@@ -79,7 +84,7 @@ export interface CompleteLessonResponse {
     currentLevel: number;
     leveledUp: boolean;
     newLevel?: number;
-    progress?: UserLessonProgressSummary;
+    progress?: UserProgressResponse;
 }
 
 export interface LessonSummaryResponse {
