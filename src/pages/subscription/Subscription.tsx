@@ -7,6 +7,7 @@ import { SubscriptionActions } from "@/components/subscription/SubscriptionActio
 import { CancelSubscriptionModal } from "@/components/subscription/CancelSubscriptionModal";
 import { PaymentHistoryTable } from '@/components/subscription/payment/PaymentHistoryTable';
 import { MetaData } from "@/components/seo/MetaData";
+import { Button } from "@/components/ui/Button";
 
 export default function Subscription() {
     const {t} = useTranslation();
@@ -60,12 +61,12 @@ export default function Subscription() {
                         {subscription.plan?.subscriptionType === 'FREE' ? (
                             <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6 text-center">
                                 <p className="text-gray-600 dark:text-gray-400 mb-4">{t('subscription.upgrade_message')}</p>
-                                <button
+                                <Button
                                     onClick={() => navigate('/plans')}
-                                    className="inline-flex items-center justify-center rounded-md bg-brand-600 px-6 py-3 text-white font-medium hover:bg-brand-700 transition-colors"
+                                    className="px-6 py-3"
                                 >
                                     {t('subscription.view_plans')}
-                                </button>
+                                </Button>
                             </div>
                         ) : (
                             <SubscriptionActions

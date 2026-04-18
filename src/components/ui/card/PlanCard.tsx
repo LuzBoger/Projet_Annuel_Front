@@ -2,7 +2,8 @@ import { useTranslation } from "react-i18next";
 import { PlanResponse } from "@/types/plan/plan";
 import { getFormatForCurrency } from "@/lib/utils/currency";
 import { Button } from "@/components/ui/Button";
-import BadgeActive from "@/components/ui/BadgeActive";
+import { BadgeTag } from "@/components/ui/BadgeTag";
+import { Check } from "@/assets/icons";
 
 interface PlanCardProps {
     plan: PlanResponse;
@@ -25,7 +26,12 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
             ${isCurrentUserPlan ? 'border-brand-500 shadow-lg shadow-brand-500/10' : ''}
         `}>
 
-            {isCurrentUserPlan && <BadgeActive />}
+            {isCurrentUserPlan && (
+                <BadgeTag color="brand" className="absolute -top-3 left-1/2 -translate-x-1/2 shadow-md whitespace-nowrap">
+                    <Check className="w-3 h-3" />
+                    {t("common.active")}
+                </BadgeTag>
+            )}
 
             <h3 className={`text-xs font-bold tracking-widest uppercase mb-4 ${plan.subscriptionType === 'FREE' ? 'text-gray-400 dark:text-gray-500' : 'text-brand-300'}`}>
                 {plan.name}

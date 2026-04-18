@@ -111,8 +111,8 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                 </div>
                 
                 {code && (
-                    <div className="flex items-center space-x-4 p-3 bg-gray-50 dark:bg-gray-700 border border-gray-100 dark:border-gray-600 rounded-md">
-                        <span className="text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">{t('admin.languages.form.flag_preview')}</span>
+                    <div className="flex items-center space-x-4 p-4 bg-gray-100/50 dark:bg-gray-950/40 border border-gray-200/60 dark:border-gray-800/60 rounded-2xl">
+                        <span className="text-sm font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap">{t('admin.languages.form.flag_preview')}</span>
                         <div className="flex items-center space-x-2">
                             <LanguageFlag languageCode={code} className="w-8 h-8 rounded shadow-sm object-cover" />
                             <span className="text-gray-900 dark:text-white font-medium">{name}</span>

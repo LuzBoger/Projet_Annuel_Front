@@ -7,27 +7,27 @@ import { PaymentHistoryList } from "@/components/subscription/payment/PaymentHis
 import { statusColors } from "@/constants/colors";
 import { formDateTime } from "@/lib/utils/date";
 import { Modal } from "@/components/ui/Modal";
-    interface SubscriptionModalProps {
-        isOpen: boolean;
-        onClose: () => void;
-        subscription: SubscriptionDetailResponse | null;
-        accountId: string;
+interface SubscriptionModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  subscription: SubscriptionDetailResponse | null;
+  accountId: string;
+}
+
+export function SubscriptionModal({ isOpen, onClose, subscription, accountId }: SubscriptionModalProps) {
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language;
+  const { payment: payments, loading: isLoading, fetchPaymentHistoryByAccountId } = useSubscription();
+
+  useEffect(() => {
+    if (isOpen && accountId) {
+      fetchPaymentHistoryByAccountId(accountId);
     }
+  }, [isOpen, accountId, fetchPaymentHistoryByAccountId]);
 
-    export function SubscriptionModal({ isOpen, onClose, subscription, accountId }: SubscriptionModalProps) {
-        const {t, i18n} = useTranslation();
-        const locale = i18n.language;
-        const { payment: payments, loading: isLoading, fetchPaymentHistoryByAccountId } = useSubscription();
-
-        useEffect(() => {
-            if (isOpen && accountId) {
-                fetchPaymentHistoryByAccountId(accountId);
-            }
-        }, [isOpen, accountId, fetchPaymentHistoryByAccountId]);
-
-        if (!isOpen || !subscription){
-            return null;
-        }
+  if (!isOpen || !subscription) {
+    return null;
+  }
 
   return (
     <Modal

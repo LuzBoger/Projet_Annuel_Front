@@ -20,7 +20,7 @@ export function LocaleLanguageSwitcher() {
           className={clsx(
             'px-2.5 py-1 text-[11px] uppercase font-bold transition-all duration-200 rounded-md', 
             current === locale 
-              ? 'bg-white dark:bg-gray-700 text-brand-600 dark:text-brand-400 shadow-sm' 
+              ? 'bg-gray-200/80 dark:bg-gray-950/60 text-brand-700 dark:text-brand-200' 
               : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
           )}
         >

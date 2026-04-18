@@ -223,10 +223,6 @@
       "Free": "Free",
       "Premium": "Premium"
     },
-    "descriptions": {
-        "Free plan": "This is the plan free",
-        "Premium plan": "Premium plan "
-    },
     "is_active": "Active",
     "table": {
       "name": "Name",
@@ -632,7 +628,6 @@
     "language": {
       "title": "Interface Language",
       "page_title": "Language settings"
-
     },
     "languages": {
       "french": "French",
