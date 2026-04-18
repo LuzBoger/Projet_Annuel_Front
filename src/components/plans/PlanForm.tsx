@@ -170,7 +170,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                 )}
 
                 <div className="flex gap-3 justify-end pt-4">
-                    <Button variant="outline" type="button" onClick={onCancel} disabled={isLoading}>
+                    <Button variant="pill-red" type="button" onClick={onCancel} disabled={isLoading}>
                         {t('common.cancel')}
                     </Button>
                     <Button variant="primary" type="submit" disabled={isLoading} isLoading={isLoading} className="w-40">

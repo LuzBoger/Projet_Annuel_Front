@@ -99,7 +99,7 @@ import { Modal } from "@/components/ui/Modal";
       </div>
 
       <div className="flex justify-end pt-6">
-        <Button variant="outline" onClick={onClose} className="rounded-xl">
+        <Button variant="pill-red" onClick={onClose} className="w-full sm:w-auto px-8">
           {t('common.close')}
         </Button>
       </div>

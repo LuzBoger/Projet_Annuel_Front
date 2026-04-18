@@ -23,7 +23,7 @@ export function SubscriptionsBarChartHeader({ view, onChange }: SubscriptionsBar
                     <Button
                         key={v}
                         onClick={() => onChange(v)}
-                        variant={view === v ? 'primary' : 'outline'}
+                        variant={view === v ? 'primary' : 'ghost'}
                         size="sm"
                     >
                         {t(`dashboard.${v}`)}

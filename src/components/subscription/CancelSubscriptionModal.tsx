@@ -67,7 +67,7 @@ export function CancelSubscriptionModal({isOpen, isLoading, onCancel, onConfirm}
             </div>
 
             <div className="flex gap-3 justify-end">
-                <Button variant="outline" onClick={onCancel} disabled={isLoading} className="rounded-xl">
+                <Button variant="pill-red" onClick={onCancel} disabled={isLoading}>
                     {t('subscription.keep_subscription')}
                 </Button>
                 <Button variant="danger" onClick={() => onConfirm(isCancel, reason)} isLoading={isLoading} disabled={isLoading} className="rounded-xl">

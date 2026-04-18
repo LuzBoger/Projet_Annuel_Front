@@ -28,7 +28,7 @@ export function DeletePlanModal({ plan, onCancel, onDelete, isOpen, isLoading }:
                 {t('plans.delete.description', { name: plan.name })}
             </p>
             <div className="flex gap-3 justify-end">
-                <Button variant="outline" onClick={onCancel} disabled={isLoading} className="rounded-xl">
+                <Button variant="pill-red" onClick={onCancel} disabled={isLoading}>
                     {t('common.cancel')}
                 </Button>
                 <Button variant="danger" isLoading={isLoading} disabled={isLoading} onClick={() => onDelete(plan.id)} className="rounded-xl">

@@ -139,7 +139,7 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                 </div>
 
                 <div className="flex justify-end gap-3 pt-4 border-t dark:border-gray-700">
-                    <Button type="button" variant="outline" onClick={onCancel}>
+                    <Button type="button" variant="pill-red" onClick={onCancel}>
                         {t('common.cancel')}
                     </Button>
                     <Button type="submit" variant="primary" isLoading={isLoading} className="w-40">

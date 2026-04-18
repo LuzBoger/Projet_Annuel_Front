@@ -42,7 +42,7 @@ export function ConfirmModal({
                 
                 <div className="flex justify-center gap-4">
                     <Button 
-                        variant="outline" 
+                        variant="pill-red" 
                         onClick={onCancel} 
                         disabled={isConfirming}
                         className="w-40"

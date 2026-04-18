@@ -167,7 +167,7 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                 </div>
 
                 <div className="md:col-span-2 flex justify-end gap-3 pt-4 border-t dark:border-gray-700 mt-4 pb-2">
-                    <Button type="button" variant="outline" onClick={onCancel}>
+                    <Button type="button" variant="pill-red" onClick={onCancel}>
                         {t('common.cancel')}
                     </Button>
                     <Button type="submit" variant="primary" isLoading={isLoading} className="w-40">

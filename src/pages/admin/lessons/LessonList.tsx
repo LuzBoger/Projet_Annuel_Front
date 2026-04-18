@@ -12,8 +12,15 @@ import { LessonResponse } from "@/types/lesson/lesson";
 import { ChevronLeft } from "@/assets/icons";
 import { MetaData } from "@/components/seo/MetaData";
 import { BadgeTag } from "@/components/ui/BadgeTag";
-import { IconFlashcard } from "@/assets/icons";
+import { IconFlashcard, IconQcm, IconMatching, IconSorting } from "@/assets/icons";
 import { LessonType } from "@/types/lesson/lesson";
+
+const TYPE_ICONS: Record<LessonType, React.ElementType> = {
+    [LessonType.FLASHCARD]: IconFlashcard,
+    [LessonType.QCM]: IconQcm,
+    [LessonType.MATCHING_PAIR]: IconMatching,
+    [LessonType.SORTING_EXERCISE]: IconSorting,
+};
 
 export default function LessonList() {
     const { topicId } = useParams<{ topicId: string }>();
@@ -104,8 +111,11 @@ export default function LessonList() {
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
                                 <BadgeTag color="blue" className="gap-2">
-                                    {lesson.lessonType === LessonType.FLASHCARD && <IconFlashcard className="w-4 h-4" />}
-                                    {lesson.lessonType}
+                                    {(() => {
+                                        const Icon = TYPE_ICONS[lesson.lessonType];
+                                        return Icon && <Icon className="w-4 h-4" />;
+                                    })()}
+                                    {t(`admin.lessons.form.types.${lesson.lessonType}`)}
                                 </BadgeTag>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">

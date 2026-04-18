@@ -55,10 +55,10 @@ export function Enable2FA({ qrCodeUri, secret, onVerify, onCancel, isLoading }: 
         )}
 
         <div className="flex gap-3">
-          <Button type="button" variant="outline" fullWidth onClick={onCancel} disabled={isLoading}>
+          <Button type="button" variant="pill-red" fullWidth onClick={onCancel} disabled={isLoading}>
             {t('settings.2fa.cancel')}
           </Button>
-          <Button type="submit" fullWidth size="lg" disabled={isLoading} isLoading={isLoading}>
+          <Button type="submit" variant="pill-blue" fullWidth size="lg" disabled={isLoading} isLoading={isLoading}>
             {t('settings.2fa.verify_button')}
           </Button>
         </div>
