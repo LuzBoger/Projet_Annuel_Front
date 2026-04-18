@@ -65,7 +65,7 @@ export default function Home() {
                     <div className="mt-16">
                         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             
-                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 hover:shadow-md transition-shadow">
+                            <div className="bg-white dark:bg-gray-900/60 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-8 hover:shadow-md transition-shadow">
                                 <div className="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 mb-6">
                                     <Brain className="w-6 h-6" />
                                 </div>
@@ -77,7 +77,7 @@ export default function Home() {
                                 </p>
                             </div>
 
-                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 hover:shadow-md transition-shadow">
+                            <div className="bg-white dark:bg-gray-900/60 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-8 hover:shadow-md transition-shadow">
                                 <div className="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-purple-50 dark:bg-purple-900/30 text-purple-600 mb-6">
                                     <Sparkles className="w-6 h-6" />
                                 </div>
@@ -89,7 +89,7 @@ export default function Home() {
                                 </p>
                             </div>
 
-                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 hover:shadow-md transition-shadow sm:col-span-2 lg:col-span-1">
+                            <div className="bg-white dark:bg-gray-900/60 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-8 hover:shadow-md transition-shadow sm:col-span-2 lg:col-span-1">
                                 <div className="w-12 h-12 inline-flex items-center justify-center rounded-lg bg-rose-50 dark:bg-rose-900/30 text-rose-500 mb-6">
                                     <BookOpen className="w-6 h-6" />
                                 </div>
@@ -107,7 +107,7 @@ export default function Home() {
                 </div>
             </main>
 
-            <section className="bg-white dark:bg-gray-900 py-20 border-t border-gray-200 dark:border-gray-700">
+            <section className="bg-white dark:bg-gray-900/50 py-20 border-t border-gray-200 dark:border-gray-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl shadow-sm inline-block px-4 py-2 border-b-4 border-brand-200">
@@ -132,25 +132,25 @@ export default function Home() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-100 dark:border-gray-600 shadow-sm relative overflow-hidden">
-                                <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider mb-6">{t('home.science.spaced_repetition.chart_title')}</h4>
+                            <div className="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm relative overflow-hidden">
+                                <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-6">{t('home.science.spaced_repetition.chart_title')}</h4>
 
                                 <div className="space-y-6">
                                     <div>
-                                        <div className="flex justify-between text-sm mb-1 font-medium text-gray-700 dark:text-gray-300">
+                                        <div className="flex justify-between text-sm mb-1 font-medium text-gray-700 dark:text-gray-400">
                                             <span>{t('home.science.spaced_repetition.classic')}</span>
                                             <span>22%</span>
                                         </div>
-                                        <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-3">
-                                            <div className="bg-gray-400 h-3 rounded-full" style={{ width: '22%' }}></div>
+                                        <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-3">
+                                            <div className="bg-gray-400 dark:bg-gray-600 h-3 rounded-full" style={{ width: '22%' }}></div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="flex justify-between text-sm mb-1 font-bold text-brand-800 dark:text-white">
+                                        <div className="flex justify-between text-sm mb-1 font-bold text-brand-800 dark:text-emerald-400">
                                             <span>{t('home.science.spaced_repetition.glotrush')}</span>
                                             <span>85%</span>
                                         </div>
-                                        <div className="w-full bg-emerald-100 rounded-full h-3">
+                                        <div className="w-full bg-emerald-100 dark:bg-emerald-950/30 rounded-full h-3">
                                             <div className="bg-emerald-500 h-3 rounded-full relative" style={{ width: '85%' }}>
                                                 <span className="absolute -right-2 -top-1 w-3 h-5 bg-white border-2 border-emerald-500 rounded-full animate-pulse shadow-md"></span>
                                             </div>
@@ -161,14 +161,14 @@ export default function Home() {
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <div className="order-2 md:order-1 bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
-                                <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider mb-6">{t('home.science.dual_coding.chart_title')}</h4>
+                            <div className="order-2 md:order-1 bg-gray-50 dark:bg-gray-900/40 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+                                <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-6">{t('home.science.dual_coding.chart_title')}</h4>
                                 <div className="flex justify-around items-end h-32 px-4 gap-4">
                                     <div className="w-full relative flex flex-col items-center justify-end h-full">
-                                        <div className="w-16 bg-gray-300 dark:bg-gray-600 rounded-t-md text-center text-xs text-gray-700 dark:text-gray-100 font-medium py-1" style={{ height: '40%' }}>{t('home.science.dual_coding.text_only')}</div>
+                                        <div className="w-16 bg-gray-300 dark:bg-gray-700 rounded-t-lg text-center text-xs text-gray-700 dark:text-white font-medium py-1" style={{ height: '40%' }}>{t('home.science.dual_coding.text_only')}</div>
                                     </div>
                                     <div className="w-full relative flex flex-col items-center justify-end h-full">
-                                        <div className="w-16 bg-brand-500 rounded-t-md text-center text-xs text-white font-medium py-1 shadow-md" style={{ height: '85%' }}>
+                                        <div className="w-16 bg-brand-500 rounded-t-lg text-center text-xs text-white font-medium py-1 shadow-md" style={{ height: '85%' }}>
                                             <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-sm text-brand-700 dark:text-white font-bold whitespace-nowrap">+65%</span>
                                             {t('home.science.dual_coding.dual_coding')}
                                         </div>
@@ -206,9 +206,9 @@ export default function Home() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-100 dark:border-gray-600 shadow-sm flex items-center justify-center">
+                            <div className="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center justify-center">
                                 <div className="text-center">
-                                    <div className="inline-block p-4 bg-white dark:bg-gray-800 rounded-full border border-rose-100 dark:border-rose-900/50 shadow-sm mb-4 relative">
+                                    <div className="inline-block p-4 bg-white dark:bg-gray-900/60 rounded-full border border-rose-100 dark:border-rose-900/30 shadow-sm mb-4 relative">
                                         <span className="absolute top-0 right-0 flex h-3 w-3">
                                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                                           <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
@@ -222,12 +222,12 @@ export default function Home() {
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <div className="order-2 md:order-1 bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-100 dark:border-gray-600 shadow-sm flex items-center justify-center overflow-hidden">
+                            <div className="order-2 md:order-1 bg-gray-50 dark:bg-gray-900/50 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center justify-center overflow-hidden">
                                 <div className="flex space-x-2">
-                                    <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded border border-gray-300 dark:border-gray-500"></div>
-                                    <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded border border-gray-300 dark:border-gray-500"></div>
-                                    <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded border border-gray-300 dark:border-gray-500"></div>
-                                    <div className="text-gray-500 dark:text-gray-400 text-xl font-bold flex items-center px-2">{"→"}</div>
+                                    <div className="w-10 h-10 bg-gray-200 dark:bg-gray-800 rounded border border-gray-300 dark:border-gray-700"></div>
+                                    <div className="w-10 h-10 bg-gray-200 dark:bg-gray-800 rounded border border-gray-300 dark:border-gray-700"></div>
+                                    <div className="w-10 h-10 bg-gray-200 dark:bg-gray-800 rounded border border-gray-300 dark:border-gray-700"></div>
+                                    <div className="text-gray-500 dark:text-gray-500 text-xl font-bold flex items-center px-2">{"→"}</div>
                                     <div className="w-24 h-10 bg-purple-600 rounded border border-purple-700 shadow-md text-white flex items-center justify-center font-bold text-sm tracking-wider">{t('home.science.chunking.chunk_word')}</div>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="bg-gray-100 dark:bg-gray-800/50 py-10 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300">
+            <section className="bg-gray-100 dark:bg-gray-950/40 py-10 border-t border-gray-200 dark:border-gray-800 text-sm text-gray-600 dark:text-gray-400">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="font-bold text-gray-700 dark:text-gray-300 mb-4 uppercase tracking-wider text-xs">
                         {t('home.science.sources.title')}
