@@ -13,7 +13,7 @@ import { TableColumn } from "@/types/components/tableColumn";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-export default function AdminReviews() {
+export default function ReviewManage() {
     const { t } = useTranslation();
     const { addToast } = useToast();
     const { reviews, loading, fetchAllReviews, approveReview, deleteReview } = useReview();
@@ -23,6 +23,13 @@ export default function AdminReviews() {
     useEffect(() => {
         fetchAllReviews();
     }, []);
+
+    useEffect(() => {
+        const handler = () => fetchAllReviews();
+        window.addEventListener("NEW_PENDING_REVIEW", handler);
+        return () =>window.removeEventListener("NEW_PENDING_REVIEW", handler);
+    }, [fetchAllReviews]);
+
 
     const handleReject = async (id: string) => {
         try {
@@ -41,9 +48,9 @@ export default function AdminReviews() {
     };
 
     const tabs = [
-        { key: "PENDING"   as Tab, label: t("reviews.tab_pending"),   count: getReviewCountByStatus(reviews, "PENDING") },
         { key: "ALL"       as Tab, label: t("reviews.tab_all"),        count: reviews.length },
         { key: "PUBLISHED" as Tab, label: t("reviews.tab_published"),  count: getReviewCountByStatus(reviews, "PUBLISHED") },
+        { key: "PENDING"   as Tab, label: t("reviews.tab_pending"),   count: getReviewCountByStatus(reviews, "PENDING") },
         { key: "REJECTED"  as Tab, label: t("reviews.tab_rejected"),   count: getReviewCountByStatus(reviews, "REJECTED") },
     ];
 

@@ -37,9 +37,11 @@ import { RoleEnum } from "@/types/enum/roles";
 import { AUTH_PATH } from "@/constants/global";
 import Dashboard from "@/pages/user/Dashboard";
 import { LocaleLanguageSwitcher } from "../ui/LocaleLanguageSwitcher";
-import AdminReviews from "@/pages/admin/reviews/ReviewManage";
+import ReviewManage from "@/pages/admin/reviews/ReviewManage";
+import { useNotifications } from "@/hooks/useNotifications";
 
 export function AppRoutes() {
+  useNotifications();
   const { user, isAuthenticated, fetchUser } = useContext(AuthContext)!;
   const location = useLocation();
   
@@ -76,7 +78,7 @@ export function AppRoutes() {
             <Route path="plans" element={<PlansManage />} />
             <Route path="subscriptions" element={<SubscriptionsManage />} />
             <Route path="languages" element={<LanguageList />} />
-            <Route path="reviews" element={<AdminReviews />} />
+            <Route path="reviews" element={<ReviewManage />} />
             <Route path="topics" element={<TopicList />} />
             <Route path="topics/:topicId/lessons" element={<LessonList />} />
             <Route path="topics/:topicId/lessons/new" element={<LessonForm />} />

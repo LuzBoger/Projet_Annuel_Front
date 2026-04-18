@@ -11,14 +11,14 @@ export function FormHeader({ mode }: FormHeaderProps) {
     if(mode === "add") {
           return (
             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-900 text-teal-300">
-                {t('review.formHeader.add')}
+                {t('reviews.formHeader.add')}
             </span>
         );
     }
 
     return (
         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-900 text-indigo-300">
-            {t('review.formHeader.edit')}
+            {t('reviews.formHeader.edit')}
         </span>
     );
 }

@@ -158,7 +158,7 @@ export function useReview() {
             setError(null);
             await reviewService.rejectReview(reviewId);
             setReviews(prev => prev.filter(r => r.id !== reviewId));
-            addToast({ type: 'success', message: t('review.reject_success') });
+            addToast({ type: 'success', message: t('reviews.reject_success') });
         } catch (err: unknown) {
             console.error('Error rejecting review:', err);
             const axiosError = err as { response?: { data?: { message?: string } } };

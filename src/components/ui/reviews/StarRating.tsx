@@ -20,7 +20,7 @@ export function StarRating({ rating, onRatingChange, disabled = false }: StarRat
     return (
         <div>
             <p className="text-xs font-medium text-gray-500 dark:text-gray-600 tracking-widest mb-2">
-                {t('review.rating.label')}
+                {t('reviews.rating.label')}
             </p>
             <div className="flex gap-1 mb-1">
                 {RATING_VALUES.map((star) => {
@@ -29,6 +29,7 @@ export function StarRating({ rating, onRatingChange, disabled = false }: StarRat
                         <Button
                             key={star}
                             type="button"
+                            variant="none"
                             onClick={() => onRatingChange(star as RatingValue)}
                             onMouseEnter={() => setHoveredRating(star)}
                             onMouseLeave={() => setHoveredRating(0)}

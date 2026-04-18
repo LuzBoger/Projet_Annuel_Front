@@ -518,7 +518,13 @@
     "updateLesson": "Failed to update lesson.",
     "deleteLesson": "Failed to delete lesson.",
     "startLesson": "Failed to start lesson.",
-    "completeLesson": "Failed to complete lesson."
+    "completeLesson": "Failed to complete lesson.",
+    "fetchReviews": "Failed to fetch reviews.",
+    "addReview": "Failed to submit review.",
+    "updateReview": "Failed to update review.",
+    "deleteReview": "Failed to delete review.",
+    "approveReview": "Failed to approve review.",
+    "rejectReview": "Failed to reject review."
   },
   "topics": {
     "page_title": "Available Topics",
@@ -709,6 +715,11 @@
     "planPaymentInterval": {
       "required": "Payment interval is required",
       "oneOf": "Must be monthly or yearly"
+    },
+    "review": {
+      "rating_required": "Please select a rating",
+      "rating_max": "Rating cannot exceed 5",
+      "comment_max": "Comment cannot exceed 1000 characters"
     }
   },
   "info": {
@@ -910,5 +921,66 @@
   },
   "catalog_languages": {
     "page_title": "Language Catalog"
+  },
+  "reviews": {
+    "formHeader": {
+      "add": "Leave a review",
+      "edit": "Edit your review"
+    },
+    "rating": {
+      "label": "Rating"
+    },
+    "section_title": "Reviews",
+    "total": "review(s)",
+    "no_reviews": "No reviews yet.",
+    "no_comment": "No comment",
+    "pending_badge": "Pending",
+    "rejected_badge": "Rejected",
+    "your_review": "Your review",
+    "pending_message": "Your review is awaiting moderation.",
+    "rejected_message": "Your review has been rejected by moderation.",
+    "edit": "Edit",
+    "rate_and_continue": "Rate & continue",
+    "modal_title": "Rate this topic",
+    "submit": "Submit",
+    "update": "Update",
+    "comment_placeholder": "Write your comment (optional)...",
+    "success_title": "Thank you!",
+    "success_subtitle": "Your review has been submitted for",
+    "approve": "Approve",
+    "reject": "Reject",
+    "approved_success": "Review approved.",
+    "rejected_success": "Review rejected.",
+    "reject_error": "Failed to reject review.",
+    "add_error": "Failed to submit review.",
+    "update_error": "Failed to update review.",
+    "delete_title": "Delete review",
+    "delete_description": "Are you sure you want to delete this review? This action cannot be undone.",
+    "admin_title": "Reviews management",
+    "tab_pending": "Pending",
+    "tab_all": "All",
+    "tab_published": "Published",
+    "tab_rejected": "Rejected",
+    "col_user": "User",
+    "col_topic": "Topic",
+    "col_rating": "Rating",
+    "col_comment": "Comment",
+    "col_status": "Status",
+    "col_date": "Date",
+    "rating_1": "Poor",
+    "rating_2": "Fair",
+    "rating_3": "Good",
+    "rating_4": "Very good",
+    "rating_5": "Excellent",
+    "status_pending": "Pending",
+    "status_published": "Published",
+    "status_rejected": "Rejected",
+    "edit_title": "Edit your review",
+    "notif_new_pending": "A new review is awaiting moderation.",
+    "notif_pending": "Your review is awaiting moderation.",
+    "notif_approved": "Your review has been approved!",
+    "notif_rejected": "Your review has been rejected.",
+    "notif_auto_rejected": "Your review was automatically rejected.",
+    "notif_banned": "You have been banned from the comment section."
   }
 }

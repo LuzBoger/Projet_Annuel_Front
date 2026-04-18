@@ -4,17 +4,30 @@ import { Button } from "@/components/ui/Button";
 import { StarIcon } from "@/assets/icons";
 import { CompleteLessonResponse, LessonResponse } from "@/types/lesson/lesson";
 import { MetaData } from "@/components/seo/MetaData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitReviewModal } from "@/components/reviews/SubmitReviewModal";
+import { reviewService } from "@/services/reviewService";
 
 export default function LessonSuccess() {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
     const [showReviewModal, setShowReviewModal] = useState(false);
-
+    const [isAlreadyReviewed,setIsAlreadyReviewed] = useState(false);
 
     const state = location.state as { response?: CompleteLessonResponse, lesson?: LessonResponse } | null;
+
+    const allLessonCompleted = state?.response?.progress?.completionPercentage === 100;
+    
+    useEffect(() => {
+        if(allLessonCompleted && state?.lesson?.topicId) {
+            reviewService.getUserReview(state.lesson?.topicId).then((review) => {
+                if(review) {
+                    setIsAlreadyReviewed(true);
+                }
+            }).catch(() => {}); 
+        }
+    }, []);
 
     if (!state || !state.response || !state.lesson) {
         return (
@@ -28,11 +41,9 @@ export default function LessonSuccess() {
     }
 
     const { response, lesson } = state;
-    const allLessonCompleted = response.progress?.completionPercentage === 100;
-
 
     const handleContinue = () => {
-        if(allLessonCompleted) {
+        if(allLessonCompleted && !isAlreadyReviewed) {
             setShowReviewModal(true);
         } else {
             navigate(`/topics/${lesson.topicId}`);
@@ -81,7 +92,7 @@ export default function LessonSuccess() {
                 )}
 
                   <Button onClick={handleContinue} className="w-full text-lg shadow-sm py-4 rounded-2xl" size="lg">
-                        {allLessonCompleted ? t("reviews.rate_and_continue") : t("common.continue")}
+                        {allLessonCompleted && !isAlreadyReviewed ? t("reviews.rate_and_continue") : t("common.continue")}
                     </Button>
             </div>
         </div>

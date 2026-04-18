@@ -34,13 +34,29 @@ export function TopicReviews({ topicId }: TopicReviewsProps) {
         }
         reviewService.getUserReview(topicId)
             .then((review) => {
-                if (review?.status === "PENDING") {
+                if (review?.status === "PENDING" || review?.status === "REJECTED") {
                     setPendingReview(review);
                 }
             })
             .catch(() => {
             });
     }, [topicId, user]);
+        useEffect(() => {
+            const handler = () => {
+                reviewService.getTopicReviews(topicId).then(setData);
+                reviewService.getUserReview(topicId).then((review) => {
+                setPendingReview(review?.status === "PENDING" || review?.status === "REJECTED" ? review : null);
+            }).catch(() => {});
+            };
+            window.addEventListener("REVIEW_AUTO_REJECTED", handler);
+            window.addEventListener("REVIEW_REJECTED", handler);
+            window.addEventListener("REVIEW_APPROVED", handler);
+            return () => {
+                window.removeEventListener("REVIEW_AUTO_REJECTED", handler);
+                window.removeEventListener("REVIEW_REJECTED", handler);
+                window.removeEventListener("REVIEW_APPROVED", handler);
+            };
+        }, [topicId]);
 
     if(isLoading) {return null;}
     if(!pendingReview && (!data || data.reviews.length === 0)) {
@@ -66,17 +82,25 @@ return (
                 )}
             </div>
             {pendingReview && (
-                <div className="mb-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl p-5 border border-yellow-200 dark:border-yellow-700">
+                <div className={`mb-4 rounded-2xl p-5 border ${
+                    pendingReview.status === "REJECTED"
+                        ? "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-700"
+                        : "bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-700"
+                }`}>
                     <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs font-bold bg-yellow-200 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-200 px-2 py-0.5 rounded-full">
-                            {t("reviews.pending_badge")}
+                        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                            pendingReview.status === "REJECTED"
+                                ? "bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200"
+                                : "bg-yellow-200 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-200"
+                        }`}>
+                            {pendingReview.status === "REJECTED" ? t("reviews.rejected_badge") : t("reviews.pending_badge")}
                         </span>
                         <span className="text-sm font-semibold text-gray-900 dark:text-white">
                             {t("reviews.your_review")}
                         </span>
                     </div>
                     <p className="text-sm text-gray-500 dark:text-gray-400 italic">
-                        {t("reviews.pending_message")}
+                        {pendingReview.status === "REJECTED" ? t("reviews.rejected_message") : t("reviews.pending_message")}
                     </p>
                 </div>
             )}
@@ -134,6 +158,9 @@ return (
                     onClose={() => setReviewToEdit(null)}
                     onSuccess={() => {
                         reviewService.getTopicReviews(topicId).then(setData);
+                        reviewService.getUserReview(topicId).then((review) => {
+                            setPendingReview(review?.status === "PENDING" || review?.status === "REJECTED" ? review : null);
+                        }).catch(() => {});
                         setReviewToEdit(null);
                     }}
                 />
