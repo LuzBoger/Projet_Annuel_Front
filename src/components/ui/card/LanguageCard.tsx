@@ -51,40 +51,41 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
                 {(language.topicsCount != null || language.lessonsCount != null) && (
                     <div className="flex items-center gap-3 mb-6">
                         {language.topicsCount != null && (
-                            <div className="flex items-center gap-1.5 bg-brand-50 dark:bg-brand-950/40 border border-brand-100 dark:border-brand-900/50 px-2.5 py-1.5 rounded-xl whitespace-nowrap">
-                                <Layers className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" />
-                                <span className="text-xs font-bold text-brand-900 dark:text-white">{language.topicsCount}</span>
-                                <span className="text-[10px] font-black uppercase tracking-wider text-brand-600/70 dark:text-gray-400">{t("catalog.topics")}</span>
-                            </div>
+                            <BadgeTag color="brand">
+                                <Layers className="w-3.5 h-3.5" />
+                                <span className="text-xs font-bold">{language.topicsCount}</span>
+                                <span className="text-[10px] font-black uppercase tracking-wider opacity-70">{t("catalog.topics")}</span>
+                            </BadgeTag>
                         )}
                         
                         {language.lessonsCount != null && (
-                            <div className="flex items-center gap-1.5 bg-gray-50 dark:bg-gray-900/60 border border-gray-100 dark:border-gray-700 px-2.5 py-1.5 rounded-xl whitespace-nowrap">
-                                <BookOpen className="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" />
-                                <span className="text-xs font-bold text-gray-800 dark:text-white">{language.lessonsCount}</span>
-                                <span className="text-[10px] font-black uppercase tracking-wider text-gray-500 dark:text-gray-400">{t("catalog.lessons")}</span>
-                            </div>
+                            <BadgeTag color="gray">
+                                <BookOpen className="w-3.5 h-3.5" />
+                                <span className="text-xs font-bold">{language.lessonsCount}</span>
+                                <span className="text-[10px] font-black uppercase tracking-wider opacity-70">{t("catalog.lessons")}</span>
+                            </BadgeTag>
                         )}
                     </div>
                 )}
 
                 <div className="pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between group/footer">
-                    {language.levelRange
-                        ? <BadgeTag color="gray" className="text-[10px]">{
-                            (() => {
-                                const parts = language.levelRange.split(" → ");
-                                return parts[0] === parts[1] ? parts[0] : language.levelRange;
-                            })()
-                        }</BadgeTag>
-                        : <span />
-                    }
+                    <div className="flex items-center min-h-[26px]">
+                        {language.levelRange && (
+                            <BadgeTag color="gray" className="text-[10px]">
+                                {(() => {
+                                    const parts = language.levelRange.split(" → ");
+                                    return parts[0] === parts[1] ? parts[0] : language.levelRange;
+                                })()}
+                            </BadgeTag>
+                        )}
+                    </div>
                     
                     <div className="flex items-center text-sm font-bold text-brand-600 dark:text-indigo-400 group-hover:text-brand-700 dark:group-hover:text-indigo-300 transition-colors">
                         {isLearning ? (
                             <CheckCircle2 className="w-5 h-5 text-emerald-500" />
                         ) : (
                             <>
-                                <span className="text-xs font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                                <span className="text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
                                     {t("catalog.discover")}
                                 </span>
                                 <ArrowRight className="w-4 h-4 ml-1.5 transform group-hover:translate-x-1.5 transition-transform duration-300" />
