@@ -25,10 +25,10 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white">{t('admin.lessons.form.types.SORTING_EXERCISE')}</h3>
                 <Button 
                     type="button" 
-                    variant="outline" 
+                    variant="pill-green"
                     size="sm" 
                     onClick={() => append({ value: "" })}
-                    className="flex items-center gap-2"
+                    className="gap-2"
                 >
                     <Plus className="w-4 h-4" />
                     {t('admin.lessons.sorting.add')}

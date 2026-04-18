@@ -84,14 +84,14 @@ export function LanguageDetailPage() {
                 <div className="flex-1">
                     <h1 className="text-4xl font-black text-gray-900 dark:text-white">{language.name}</h1>
                     <div className="flex flex-wrap gap-2 mt-3">
-                        <BadgeTag variant="default">{
+                        <BadgeTag color="gray">{
                                 (() => {
                                     const range = language.levelRange ?? "A1-C2";
                                     const parts = range.split(" → ");
                                     return parts[0] === parts[1] ? parts[0] : range;
                                 })()
                             }</BadgeTag>
-                        {language.isPopular && ( <BadgeTag variant="popular"> <Star className="w-3 h-3 text-yellow-500" /> {t("popular")}</BadgeTag> )}
+                        {language.isPopular && ( <BadgeTag color="yellow"> <Star className="w-3 h-3 text-yellow-500" /> {t("popular")}</BadgeTag> )}
                     </div>
                 </div>
 

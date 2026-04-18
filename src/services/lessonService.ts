@@ -8,6 +8,11 @@ export const lessonService = {
         return response.data;
     },
 
+    async getAdminLessonsByTopic(topicId: string): Promise<LessonResponse[]> {
+        const response = await apiClient.get<LessonResponse[]>(`/lessons/admin/topic/${topicId}`);
+        return response.data;
+    },
+
     async getTopicLessonsDetails(topicId: string): Promise<TopicLessonsResponse> {
         const response = await apiClient.get<TopicLessonsResponse>(`/lessons/topic/${topicId}/details`);
         return response.data;
@@ -30,6 +35,11 @@ export const lessonService = {
 
     async deleteLesson(id: string): Promise<void> {
         await apiClient.delete(`/lessons/${id}`);
+    },
+
+    async toggleLessonStatus(id: string): Promise<LessonResponse> {
+        const response = await apiClient.patch<LessonResponse>(`/lessons/${id}/toggle-status`);
+        return response.data;
     },
 
     async startLesson(lessonId: string): Promise<UserLessonProgressSummary> {

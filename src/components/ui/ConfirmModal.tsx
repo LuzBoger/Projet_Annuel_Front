@@ -45,6 +45,7 @@ export function ConfirmModal({
                         variant="outline" 
                         onClick={onCancel} 
                         disabled={isConfirming}
+                        className="w-40"
                     >
                         {cancelText ?? t('common.cancel')}
                     </Button>
@@ -52,6 +53,7 @@ export function ConfirmModal({
                         variant={confirmVariant}
                         onClick={onConfirm}
                         isLoading={isConfirming}
+                        className="w-40"
                     >
                         {confirmText ?? t('common.confirm')}
                     </Button>

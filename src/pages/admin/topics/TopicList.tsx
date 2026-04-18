@@ -16,6 +16,7 @@ import { TableActions } from "@/components/ui/TableActions";
 import { languageService } from "@/services/languageService";
 import { LanguageFlag } from "@/components/languages/LanguageFlag";
 import { MetaData } from "@/components/seo/MetaData";
+import { BadgeTag } from "@/components/ui/BadgeTag";
 
 export default function TopicList() {
     const { t } = useTranslation();
@@ -162,7 +163,7 @@ export default function TopicList() {
                     <h1 className="text-2xl font-bold text-brand-900 dark:text-white">
                         {t('admin.topics.page_title')}
                     </h1>
-                    <Button variant="primary" onClick={handleCreate}>
+                    <Button variant="primary" onClick={handleCreate} className="w-40">
                         {t('common.create')}
                     </Button>
                 </div>
@@ -222,9 +223,9 @@ export default function TopicList() {
                                     )}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
-                                    <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
+                                    <BadgeTag color="blue">
                                         {topic.difficulty}
-                                    </span>
+                                    </BadgeTag>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">{topic.orderIndex}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">

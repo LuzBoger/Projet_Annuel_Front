@@ -24,10 +24,10 @@ export function MatchingPairForm({ control, register, errors }: MatchingPairForm
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white">{t('admin.lessons.form.types.MATCHING_PAIR')}</h3>
                 <Button 
                     type="button" 
-                    variant="outline" 
+                    variant="pill-green"
                     size="sm" 
                     onClick={() => append({ item1: "", item2: "" })}
-                    className="flex items-center gap-2"
+                    className="gap-2"
                 >
                     <Plus className="w-4 h-4" />
                     {t('admin.lessons.matching.add')}

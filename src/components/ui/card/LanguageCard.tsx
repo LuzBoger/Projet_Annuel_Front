@@ -31,7 +31,7 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
                 />
                 
                 {language.isPopular && (
-                    <BadgeTag variant="popular" className="scale-90 origin-right">
+                    <BadgeTag color="yellow" className="scale-90 origin-right">
                         <Star className="w-3 h-3 text-yellow-500" />
                         {t("popular")}
                     </BadgeTag>
@@ -70,7 +70,7 @@ export function LanguageCard({ language, isLearning, onClick }: Readonly<Languag
 
                 <div className="pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between group/footer">
                     {language.levelRange
-                        ? <BadgeTag variant="default" className="text-[10px]">{
+                        ? <BadgeTag color="gray" className="text-[10px]">{
                             (() => {
                                 const parts = language.levelRange.split(" → ");
                                 return parts[0] === parts[1] ? parts[0] : language.levelRange;

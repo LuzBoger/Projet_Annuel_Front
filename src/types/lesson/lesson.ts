@@ -41,7 +41,6 @@ export interface LessonRequest {
     xpReward: number;
     minLevelRequired: number;
     durationMinutes: number;
-    passScorePercentage: number;
     isActive: boolean;
     lessonType: LessonType;
     flashcards?: FlashcardRequest[];
@@ -91,7 +90,6 @@ export interface LessonSummaryResponse {
     isAlreadyFinish: boolean;
     durationMinutes: number;
     xpReward: number;
-    passScorePercentage: number;
 }
 
 export interface TopicLessonsResponse {

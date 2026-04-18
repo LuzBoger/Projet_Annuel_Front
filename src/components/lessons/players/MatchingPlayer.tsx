@@ -148,26 +148,33 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                             </div>
                         </PlayerCard>
 
-                        <PlayerFeedback 
-                            isVisible={isFinished}
-                            isCorrect={true}
-                            title={t('lessons.matching.completed')}
-                            description={errorCount === 0 ? t('lessons.matching.flawless') : t('lessons.matching.with_errors')}
-                        />
+                        {/* Feedback has been moved to the footer */}
                     </div>
                 </div>
             </div>
 
-            <PlayerFooter>
+            <PlayerFooter 
+                isVisible={isFinished}
+                isCorrect={true}
+                feedback={
+                    <div className="space-y-0.5">
+                        <h4 className="font-bold text-lg text-emerald-700 dark:text-emerald-400">
+                            {t('lessons.matching.completed')}
+                        </h4>
+                        <p className="text-xs text-gray-600 dark:text-gray-300">
+                            {errorCount === 0 ? t('lessons.matching.flawless') : t('lessons.matching.with_errors')}
+                        </p>
+                    </div>
+                }
+            >
                 {isFinished && (
                     <Button 
                         onClick={handleFinishClick}
-                        fullWidth
                         size="lg"
-                        className="py-6 !bg-gray-900 dark:!bg-gray-700 hover:!bg-gray-800 dark:hover:!bg-gray-600 text-white rounded-2xl font-medium text-lg shadow-sm"
+                        className="px-12 !bg-gray-100 dark:!bg-gray-800 border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-xl font-bold shadow-md hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center gap-2"
                     >
-                        {t('lessons.finish')}
-                        <ChevronRight className="w-5 h-5 ml-2" />
+                        <span>{t('lessons.finish')}</span>
+                        <ChevronRight className="w-5 h-5" />
                     </Button>
                 )}
             </PlayerFooter>

@@ -112,7 +112,7 @@ export default function LanguageList() {
                     <h1 className="text-2xl font-bold text-brand-900 dark:text-white">
                         {t('admin.languages.page_title')}
                     </h1>
-                    <Button variant="primary" onClick={handleCreate}>
+                    <Button variant="primary" onClick={handleCreate} className="w-40">
                         {t('common.create')}
                     </Button>
                 </div>

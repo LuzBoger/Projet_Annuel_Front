@@ -142,7 +142,7 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                     <Button type="button" variant="outline" onClick={onCancel}>
                         {t('common.cancel')}
                     </Button>
-                    <Button type="submit" variant="primary" isLoading={isLoading}>
+                    <Button type="submit" variant="primary" isLoading={isLoading} className="w-40">
                         {t('common.save')}
                     </Button>
                 </div>

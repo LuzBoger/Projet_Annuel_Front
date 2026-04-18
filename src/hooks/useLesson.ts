@@ -27,6 +27,22 @@ export function useLesson() {
         }
     }, [addToast, t]);
 
+    const fetchAdminLessonsByTopic = useCallback(async (topicId: string) => {
+        try {
+            setLoading(true);
+            setError(null);
+            const data = await lessonService.getAdminLessonsByTopic(topicId);
+            setLessons(data);
+        } catch (err: unknown) {
+            console.error('Error fetching admin lessons:', err);
+            const errorMessage = t('error.fetchLessons');
+            setError(errorMessage);
+            addToast({ type: 'error', message: errorMessage });
+        } finally {
+            setLoading(false);
+        }
+    }, [addToast, t]);
+
     const createLesson = useCallback(async (lessonData: LessonRequest) => {
         try {
             setLoading(true);
@@ -135,14 +151,36 @@ export function useLesson() {
         }
     }, [addToast, t]);
 
+    const toggleLessonStatus = useCallback(async (id: string) => {
+        try {
+            setLoading(true);
+            setError(null);
+            const updatedLesson = await lessonService.toggleLessonStatus(id);
+            setLessons(prev => prev.map(l => l.id === id ? updatedLesson : l));
+            addToast({ type: 'success', message: t('admin.lessons.update_success') });
+            return updatedLesson;
+        } catch (err: unknown) {
+            console.error('Error toggling lesson status:', err);
+            const axiosError = err as { response?: { data?: { message?: string } } };
+            const errorMessage = axiosError.response?.data?.message || t('error.updateLesson');
+            setError(errorMessage);
+            addToast({ type: 'error', message: errorMessage });
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, [addToast, t]);
+
     return {
         lessons,
         loading,
         error,
         fetchLessonsByTopic,
+        fetchAdminLessonsByTopic,
         fetchLessonById,
         createLesson,
         updateLesson,
+        toggleLessonStatus,
         deleteLesson,
         startLesson,
         completeLesson

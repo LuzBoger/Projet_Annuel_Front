@@ -171,13 +171,13 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                 </div>
             </div>
 
-            <PlayerFooter>
-                <div className={`w-full transition-all duration-300 ${isFlipped && transitionState === 'idle' ? 'opacity-100 translate-y-0 scale-100 pb-2' : 'opacity-0 translate-y-4 scale-95 overflow-hidden pointer-events-none'}`}>
-                    <div className="flex gap-4">
+            <PlayerFooter centerActions={true}>
+                <div className={`transition-all duration-300 ${isFlipped && transitionState === 'idle' ? 'opacity-100 translate-y-0 scale-100 pb-2' : 'opacity-0 translate-y-4 scale-95 overflow-hidden pointer-events-none'}`}>
+                    <div className="flex gap-4 justify-center max-w-md mx-auto">
                         <Button
                             variant="outline"
                             onClick={(e) => { e.stopPropagation(); handleAnswer('red'); }}
-                            className="flex-1 py-4 bg-white dark:bg-gray-800 border-2 border-red-50 dark:border-red-900/20 text-red-500 dark:text-red-400 rounded-2xl hover:bg-red-50 dark:hover:bg-red-900/30 hover:border-red-200 dark:hover:border-red-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
+                            className="w-28 sm:w-36 py-5 bg-white dark:bg-gray-800 border-2 border-red-50 dark:border-red-900/20 text-red-500 dark:text-red-400 rounded-2xl hover:bg-red-50 dark:hover:bg-red-900/30 hover:border-red-200 dark:hover:border-red-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold focus:ring-0"
                             title={t('lessons.hard')}
                         >
                             <FaceSad className="w-8 h-8" />
@@ -186,7 +186,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                         <Button
                             variant="outline"
                             onClick={(e) => { e.stopPropagation(); handleAnswer('yellow'); }}
-                            className="flex-1 py-5 bg-white dark:bg-gray-800 border-2 border-yellow-50 dark:border-yellow-900/20 text-amber-500 dark:text-amber-400 rounded-2xl hover:bg-yellow-50 dark:hover:bg-yellow-900/30 hover:border-yellow-200 dark:hover:border-yellow-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
+                            className="w-28 sm:w-36 py-5 bg-white dark:bg-gray-800 border-2 border-yellow-50 dark:border-yellow-900/20 text-amber-500 dark:text-amber-400 rounded-2xl hover:bg-yellow-50 dark:hover:bg-yellow-900/30 hover:border-yellow-200 dark:hover:border-yellow-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold focus:ring-0"
                             title={t('lessons.medium')}
                         >
                             <FaceNeutral className="w-8 h-8" />
@@ -195,7 +195,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                         <Button
                             variant="outline"
                             onClick={(e) => { e.stopPropagation(); handleAnswer('green'); }}
-                            className="flex-1 py-5 bg-white dark:bg-gray-800 border-2 border-emerald-50 dark:border-emerald-900/20 text-emerald-500 dark:text-emerald-400 rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:border-emerald-200 dark:hover:border-emerald-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold"
+                            className="w-28 sm:w-36 py-5 bg-white dark:bg-gray-800 border-2 border-emerald-50 dark:border-emerald-900/20 text-emerald-500 dark:text-emerald-400 rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:border-emerald-200 dark:hover:border-emerald-800 transition-all shadow-sm flex flex-col items-center justify-center font-bold focus:ring-0"
                             title={t('lessons.easy')}
                         >
                             <FaceSmile className="w-8 h-8" />

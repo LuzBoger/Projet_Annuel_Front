@@ -8,7 +8,7 @@ import { FormField } from "@/components/ui/FormField";
 import { TextArea } from "@/components/ui/TextArea";
 import { Select } from "@/components/ui/Select";
 import { Switch } from "@/components/ui/Switch";
-import { ChevronLeft, Info, PlayIcon, Check, Cross } from "@/assets/icons";
+import { ChevronLeft, Info, Eye, Check, Cross } from "@/assets/icons";
 import { useLesson } from "@/hooks/useLesson";
 import { useTopic } from "@/hooks/useTopic";
 import { LessonType, LessonRequest } from "@/types/lesson/lesson";
@@ -40,7 +40,6 @@ export default function LessonForm() {
             xpReward: 50,
             minLevelRequired: 1,
             durationMinutes: 5,
-            passScorePercentage: 80,
             isActive: true,
             lessonType: LessonType.FLASHCARD,
             flashcards: [],
@@ -88,7 +87,6 @@ export default function LessonForm() {
             xpReward: data.xpReward,
             minLevelRequired: data.minLevelRequired,
             durationMinutes: data.durationMinutes,
-            passScorePercentage: data.passScorePercentage,
             isActive: data.isActive,
             lessonType: data.lessonType as LessonType,
         };
@@ -115,15 +113,14 @@ export default function LessonForm() {
     return (
         <div className="min-h-screen bg-gray-50/50 dark:bg-gray-950/50 p-4 sm:p-6 lg:p-8">
             <MetaData title={isEdit ? t('admin.lessons.edit') : t('admin.lessons.create')} robots="noindex, nofollow" />
-            
+
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div className="flex items-center gap-4">
                         <Button
-                            variant="secondary"
+                            variant="pill-gray"
                             size="sm"
                             onClick={() => navigate(`/admin/topics/${topicId}/lessons`)}
-                            className="rounded-xl bg-white dark:bg-gray-800 shadow-sm border-gray-100 dark:border-gray-700"
                         >
                             <ChevronLeft className="w-5 h-5" />
                         </Button>
@@ -138,19 +135,19 @@ export default function LessonForm() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                        <Button 
-                            type="button" 
-                            variant="outline" 
+                        <Button
+                            type="button"
+                            size="sm"
+                            variant="pill-brand"
                             onClick={() => setIsSimulatorOpen(true)}
-                            className="bg-white dark:bg-gray-800 border-brand-200 dark:border-brand-900/30 text-brand-600 dark:text-brand-400 hover:bg-brand-50 dark:hover:bg-brand-900/20"
                         >
-                            <PlayIcon className="w-4 h-4 mr-2" />
+                            <Eye className="w-4 h-4 mr-2" />
                             {t('admin.lessons.preview.simulate_btn')}
                         </Button>
-                        <Button 
-                            variant="ghost" 
+                        <Button
+                            variant="pill-red"
+                            size="sm"
                             onClick={() => navigate(`/admin/topics/${topicId}/lessons`)}
-                            className="text-gray-500"
                         >
                             <Cross className="w-4 h-4 mr-2" />
                             {t('common.cancel')}
@@ -162,9 +159,6 @@ export default function LessonForm() {
                     <div className="lg:col-span-8 space-y-6">
                         <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sm:p-8">
                             <div className="flex items-center gap-2 mb-8">
-                                <div className="w-10 h-10 rounded-2xl bg-brand-50 dark:bg-brand-900/20 flex items-center justify-center text-brand-600 dark:text-brand-400">
-                                    <Info className="w-5 h-5" />
-                                </div>
                                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('admin.lessons.form.sections.basic_info')}</h2>
                             </div>
 
@@ -210,9 +204,6 @@ export default function LessonForm() {
 
                         <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sm:p-8">
                             <div className="flex items-center gap-2 mb-8">
-                                <div className="w-10 h-10 rounded-2xl bg-brand-50 dark:bg-brand-900/20 flex items-center justify-center text-brand-600 dark:text-brand-400">
-                                    <PlayIcon className="w-5 h-5" />
-                                </div>
                                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('admin.lessons.form.sections.lesson_content')}</h2>
                             </div>
 
@@ -225,7 +216,6 @@ export default function LessonForm() {
                                     placeholder={t('admin.lessons.form.type_placeholder')}
                                     required
                                     error={errors.lessonType?.message}
-                                    className="bg-white/50 dark:bg-gray-900/50"
                                 />
                             </div>
 
@@ -241,7 +231,7 @@ export default function LessonForm() {
                     <div className="lg:col-span-4 space-y-6">
                         <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sticky top-8">
                             <h3 className="text-md font-bold text-gray-900 dark:text-white mb-6 uppercase tracking-wider text-xs">{t('admin.lessons.form.sections.basic_info')}</h3>
-                            
+
                             <div className="space-y-6">
                                 <FormField
                                     type="number"
@@ -259,14 +249,7 @@ export default function LessonForm() {
                                     required
                                     className="bg-white/50 dark:bg-gray-900/50"
                                 />
-                                <FormField
-                                    type="number"
-                                    label={t('admin.lessons.form.passScore')}
-                                    {...register("passScorePercentage")}
-                                    error={errors.passScorePercentage?.message}
-                                    required
-                                    className="bg-white/50 dark:bg-gray-900/50"
-                                />
+
 
                                 <div className="flex items-center justify-between p-4 bg-white/50 dark:bg-gray-900/30 rounded-2xl border border-gray-100 dark:border-gray-700/50 group transition-all">
                                     <div className="flex flex-col">
@@ -277,7 +260,7 @@ export default function LessonForm() {
                                 </div>
 
                                 <div className="pt-6 border-t border-gray-100 dark:border-gray-700/50">
-                                    <Button type="submit" variant="primary" isLoading={lessonLoading} className="w-full py-6 rounded-2xl shadow-lg shadow-brand-500/20">
+                                    <Button type="submit" variant="primary" isLoading={lessonLoading} className="w-full py-4 shadow-lg shadow-brand-500/20">
                                         <Check className="w-4 h-4 mr-2" />
                                         {t('common.save')}
                                     </Button>
@@ -288,10 +271,10 @@ export default function LessonForm() {
                 </form>
             </div>
 
-            <LessonSimulatorModal 
-                isOpen={isSimulatorOpen} 
-                onClose={() => setIsSimulatorOpen(false)} 
-                data={formData} 
+            <LessonSimulatorModal
+                isOpen={isSimulatorOpen}
+                onClose={() => setIsSimulatorOpen(false)}
+                data={formData}
             />
         </div>
     );

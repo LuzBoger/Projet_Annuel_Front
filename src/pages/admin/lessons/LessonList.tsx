@@ -11,27 +11,30 @@ import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { LessonResponse } from "@/types/lesson/lesson";
 import { ChevronLeft } from "@/assets/icons";
 import { MetaData } from "@/components/seo/MetaData";
+import { BadgeTag } from "@/components/ui/BadgeTag";
+import { IconFlashcard } from "@/assets/icons";
+import { LessonType } from "@/types/lesson/lesson";
 
 export default function LessonList() {
     const { topicId } = useParams<{ topicId: string }>();
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const { lessons, loading, fetchLessonsByTopic, deleteLesson, updateLesson } = useLesson();
+    const { lessons, loading, fetchAdminLessonsByTopic, deleteLesson, updateLesson, toggleLessonStatus } = useLesson();
     const { topics, fetchAllTopics } = useTopic();
     
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedLesson, setSelectedLesson] = useState<LessonResponse | null>(null);
-
+    
     const currentTopic = topics.find(t => t.id === topicId);
 
     useEffect(() => {
         if (topicId) {
-            fetchLessonsByTopic(topicId);
+            fetchAdminLessonsByTopic(topicId);
         }
         if (topics.length === 0) {
             fetchAllTopics();
         }
-    }, [topicId, fetchLessonsByTopic, fetchAllTopics, topics.length]);
+    }, [topicId, fetchAdminLessonsByTopic, fetchAllTopics, topics.length]);
 
     const handleCreate = () => {
         navigate(`/admin/topics/${topicId}/lessons/new`);
@@ -54,12 +57,9 @@ export default function LessonList() {
         }
     };
 
-    const handleStatusToggle = async (lesson: LessonResponse, isActive: boolean) => {
+    const handleStatusToggle = async (lesson: LessonResponse) => {
         try {
-            await updateLesson(lesson.id, {
-                ...lesson,
-                isActive
-            });
+            await toggleLessonStatus(lesson.id);
         } catch (error) {
             console.error("Failed to update lesson status", error);
         }
@@ -72,7 +72,7 @@ export default function LessonList() {
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center space-x-4">
                         <Button 
-                            variant="secondary" 
+                            variant="pill-gray" 
                             size="sm" 
                             onClick={() => navigate("/admin/topics")}
                             className="p-2"
@@ -88,7 +88,7 @@ export default function LessonList() {
                             </p>
                         </div>
                     </div>
-                    <Button onClick={handleCreate}>
+                    <Button onClick={handleCreate} className="w-40">
                         {t('admin.lessons.create')}
                     </Button>
                 </div>
@@ -103,9 +103,10 @@ export default function LessonList() {
                                 {lesson.title}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
-                                <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-800 dark:text-brand-300">
+                                <BadgeTag color="blue" className="gap-2">
+                                    {lesson.lessonType === LessonType.FLASHCARD && <IconFlashcard className="w-4 h-4" />}
                                     {lesson.lessonType}
-                                </span>
+                                </BadgeTag>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
                                 {lesson.orderIndex}
@@ -113,7 +114,7 @@ export default function LessonList() {
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
                                 <Switch
                                     checked={lesson.isActive}
-                                    onChange={(checked) => handleStatusToggle(lesson, checked)}
+                                    onChange={() => handleStatusToggle(lesson)}
                                 />
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700 text-right">

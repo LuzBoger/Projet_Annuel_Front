@@ -8,7 +8,8 @@ import { MatchingPlayer } from "@/components/lessons/players/MatchingPlayer";
 import { SortingPlayer } from "@/components/lessons/players/SortingPlayer";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { Check, Cross } from "@/assets/icons";
+import { Check, IconFlashcard } from "@/assets/icons";
+import { BadgeTag } from "@/components/ui/BadgeTag";
 
 interface LessonSimulatorModalProps {
   isOpen: boolean;
@@ -35,45 +36,45 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
     switch (data.lessonType) {
       case LessonType.FLASHCARD:
         return (
-          <FlashcardPlayer 
-            flashcards={data.flashcards || []} 
+          <FlashcardPlayer
+            flashcards={data.flashcards || []}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);
-            }} 
+            }}
           />
         );
       case LessonType.QCM:
         return (
-          <QCMPlayer 
-            questions={data.questions || []} 
+          <QCMPlayer
+            questions={data.questions || []}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);
-            }} 
+            }}
           />
         );
       case LessonType.MATCHING_PAIR:
         return (
-          <MatchingPlayer 
-            pairs={data.matchingPairs || []} 
+          <MatchingPlayer
+            pairs={data.matchingPairs || []}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);
-            }} 
+            }}
           />
         );
       case LessonType.SORTING_EXERCISE:
         return (
-          <SortingPlayer 
+          <SortingPlayer
             exercises={data.sortingItems ? [{
               items: data.sortingItems.map(item => item.value || ''),
               correctOrder: data.sortingItems.map((_, i) => i)
-            }] : []} 
+            }] : []}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);
-            }} 
+            }}
           />
         );
       default:
@@ -85,15 +86,23 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
     }
   };
 
+  const getLessonIcon = () => {
+    if (data.lessonType === LessonType.FLASHCARD) {
+      return <IconFlashcard className="w-3.5 h-3.5" />;
+    }
+    return null;
+  };
+
   return (
     <Modal
       isOpen={isOpen}
       onClose={handleClose}
       title={
         <div className="flex items-center gap-3">
-          <span className="px-3 py-1 bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 rounded-full text-[10px] font-black uppercase tracking-wider">
+          <BadgeTag color="blue" className="text-[10px] font-black uppercase tracking-wider gap-2">
+            {getLessonIcon()}
             {t(`admin.lessons.form.types.${data.lessonType}`)}
-          </span>
+          </BadgeTag>
           <span className="text-lg font-bold text-gray-800 dark:text-gray-100">
             {data.title}
           </span>
@@ -103,21 +112,21 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
     >
       <div className="flex flex-col items-center justify-start max-h-[85vh] overflow-y-auto py-2 custom-scrollbar">
         {isFinished ? (
-          <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-3xl p-6 text-center shadow-xl border border-gray-100 dark:border-gray-700 animate-in fade-in zoom-in duration-500">
-            <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Check className="w-10 h-10 text-green-600 dark:text-green-400" />
+          <div className="flex flex-col items-center justify-center text-center py-12 px-6 animate-in fade-in zoom-in duration-500 max-w-lg mx-auto">
+            <div className="w-24 h-24 bg-emerald-50 dark:bg-emerald-500/10 rounded-full flex items-center justify-center mb-8 shadow-inner border border-emerald-100 dark:border-emerald-500/20 backdrop-blur-sm">
+              <Check className="w-12 h-12 text-emerald-600 dark:text-emerald-400" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-3 tracking-tight">
               {t('admin.lessons.preview.simulation_complete')}
             </h2>
-            <p className="text-gray-500 dark:text-gray-400 mb-8">
-              {t('admin.lessons.preview.score_preview')} <span className="font-bold text-brand-600 dark:text-brand-400">{finalScore}%</span>
+            <p className="text-gray-500 dark:text-gray-400 mb-10 text-lg">
+              {t('admin.lessons.preview.score_preview')} <span className="font-black text-brand-600 dark:text-brand-400">{finalScore}%</span>
             </p>
-            <div className="space-y-3">
-              <Button onClick={resetSimulation} variant="primary" className="w-full">
+            <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+              <Button onClick={resetSimulation} variant="pill-brand" className="px-8 py-3 flex-1 flex items-center justify-center">
                 {t('admin.lessons.preview.retry_simulation')}
               </Button>
-              <Button onClick={handleClose} variant="secondary" className="w-full">
+              <Button onClick={handleClose} variant="pill-gray" className="px-8 py-3 flex-1 flex items-center justify-center">
                 {t('common.close')}
               </Button>
             </div>

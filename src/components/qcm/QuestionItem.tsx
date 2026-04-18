@@ -40,27 +40,29 @@ export function QuestionItem({ index, control, register, errors, onRemove }: { i
                 />
 
                 <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                        <label className="text-sm font-medium text-gray-700">{t('admin.lessons.table.actions')}</label>
-                        <Button 
-                            type="button" 
-                            variant="secondary" 
-                            size="sm" 
+                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-gray-100 dark:border-gray-800">
+                        <label className="text-sm font-semibold text-gray-900 dark:text-gray-200">{t('admin.lessons.table.actions')}</label>
+                        <Button
+                            type="button"
+                            variant="pill-brand"
+                            size="sm"
                             onClick={() => appendOption("")}
-                            className="text-xs"
+                            className="text-xs font-medium"
                         >
                             {t('admin.lessons.qcm.add_option')}
                         </Button>
                     </div>
-                    
+
                     <div className="grid gap-3">
                         {options.map((optionField, optIndex) => (
-                            <div key={optionField.id} className="flex items-center gap-3">
-                                <Radio
-                                    value={optIndex}
-                                    checked={Number(correctOptionIndex) === optIndex}
-                                    {...register(`questions.${index}.correctOptionIndex`)}
-                                />
+                            <div key={optionField.id} className="flex items-start gap-3">
+                                <div className="mt-9">
+                                    <Radio
+                                        value={optIndex}
+                                        checked={Number(correctOptionIndex) === optIndex}
+                                        {...register(`questions.${index}.correctOptionIndex`)}
+                                    />
+                                </div>
                                 <div className="flex-1">
                                     <FormField
                                         label={t('admin.lessons.qcm.option', { index: optIndex + 1 })}
@@ -75,7 +77,7 @@ export function QuestionItem({ index, control, register, errors, onRemove }: { i
                                         variant="ghost"
                                         size="sm"
                                         onClick={() => removeOption(optIndex)}
-                                        className="p-2 bg-transparent text-gray-400 dark:text-gray-500 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all"
+                                        className="mt-7 p-2 bg-transparent text-gray-400 dark:text-gray-500 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all"
                                     >
                                         <Trash className="w-4 h-4" />
                                     </Button>

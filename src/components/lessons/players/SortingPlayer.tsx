@@ -151,41 +151,44 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                         </div>
                     </PlayerCard>
 
-                    <PlayerFeedback 
-                        isVisible={isValidated}
-                        isCorrect={isCorrect}
-                        title={isCorrect ? t('lessons.qcm.correct') : t('lessons.qcm.incorrect')}
-                        description={!isCorrect ? (
-                            <>
-                                {t('lessons.sorting.correct_order_prefix')} 
-                                <strong className="font-bold ml-1">{expectedSequenceText}</strong>
-                            </>
-                        ) : undefined}
-                    />
+                        {/* Feedback has been moved to the footer */}
                     </div>
                 </div>
             </div>
 
-            <PlayerFooter>
+            <PlayerFooter 
+                isVisible={isValidated}
+                isCorrect={isCorrect}
+                feedback={
+                    <div className="space-y-0.5">
+                        <h4 className={`font-bold text-lg ${isCorrect ? 'text-emerald-700 dark:text-emerald-400' : 'text-red-700 dark:text-red-400'}`}>
+                            {isCorrect ? t('lessons.qcm.correct') : t('lessons.qcm.incorrect')}
+                        </h4>
+                        {!isCorrect && (
+                            <p className="text-xs text-gray-600 dark:text-gray-300 line-clamp-2">
+                                {t('lessons.sorting.correct_order_prefix')} <strong className="font-bold">{expectedSequenceText}</strong>
+                            </p>
+                        )}
+                    </div>
+                }
+            >
                 {!isValidated ? (
                     <Button 
                         onClick={handleValidationAction}
                         disabled={!isAllSelected}
-                        fullWidth
                         size="lg"
-                        className="py-6 font-medium text-lg shadow-sm rounded-2xl"
+                        className="px-12 rounded-xl font-bold shadow-md"
                     >
                         {t('lessons.sorting.validate')}
                     </Button>
                 ) : (
                     <Button 
                         onClick={handleNextAction}
-                        fullWidth
                         size="lg"
-                        className="py-6 !bg-gray-900 hover:!bg-gray-800 text-white rounded-2xl font-medium text-lg shadow-sm flex items-center justify-center gap-2"
+                        className="px-12 !bg-gray-900 dark:!bg-gray-700 hover:!bg-gray-800 dark:hover:!bg-gray-600 text-white rounded-xl font-bold shadow-md flex items-center justify-center gap-2"
                     >
                         <span>{currentIndex < exercises.length - 1 ? t('lessons.sorting.next') : t('lessons.finish')}</span>
-                        {currentIndex < exercises.length - 1 && <ChevronRight className="w-5 h-5 ml-2" />}
+                        <ChevronRight className="w-5 h-5" />
                     </Button>
                 )}
             </PlayerFooter>

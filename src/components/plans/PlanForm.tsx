@@ -173,7 +173,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                     <Button variant="outline" type="button" onClick={onCancel} disabled={isLoading}>
                         {t('common.cancel')}
                     </Button>
-                    <Button variant="primary" type="submit" disabled={isLoading} isLoading={isLoading}>
+                    <Button variant="primary" type="submit" disabled={isLoading} isLoading={isLoading} className="w-40">
                         {isEditPlan ? t('common.update') : t('common.create')}
                     </Button>
                 </div>

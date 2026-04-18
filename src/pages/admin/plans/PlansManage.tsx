@@ -81,7 +81,7 @@ export default function PlansManage() {
                 <h1 className="text-2xl font-bold text-brand-900 dark:text-white">
                     {t('plans.page_title')}
                 </h1>
-                <Button variant="primary" onClick={handleCreatePlan}>
+                <Button variant="primary" onClick={handleCreatePlan} className="w-40">
                     {t('common.create')}
                 </Button>
             </div>

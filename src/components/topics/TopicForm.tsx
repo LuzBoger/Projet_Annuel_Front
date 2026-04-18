@@ -170,7 +170,7 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                     <Button type="button" variant="outline" onClick={onCancel}>
                         {t('common.cancel')}
                     </Button>
-                    <Button type="submit" variant="primary" isLoading={isLoading}>
+                    <Button type="submit" variant="primary" isLoading={isLoading} className="w-40">
                         {t('common.save')}
                     </Button>
                 </div>
