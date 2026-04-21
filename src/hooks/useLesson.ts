@@ -151,6 +151,24 @@ export function useLesson() {
         }
     }, [addToast, t]);
 
+    const reorderLessons = useCallback(async (topicId: string, reorderRequests: { id: string, orderIndex: number }[]) => {
+        try {
+            setLoading(true);
+            setError(null);
+            await lessonService.reorderLessons(topicId, reorderRequests);
+            addToast({ type: 'success', message: t('admin.lessons.update_success') });
+        } catch (err: unknown) {
+            console.error('Error reordering lessons:', err);
+            const axiosError = err as { response?: { data?: { message?: string } } };
+            const errorMessage = axiosError.response?.data?.message || t('error.updateLesson');
+            setError(errorMessage);
+            addToast({ type: 'error', message: errorMessage });
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, [addToast, t]);
+
     const toggleLessonStatus = useCallback(async (id: string) => {
         try {
             setLoading(true);
@@ -181,6 +199,7 @@ export function useLesson() {
         createLesson,
         updateLesson,
         toggleLessonStatus,
+        reorderLessons,
         deleteLesson,
         startLesson,
         completeLesson

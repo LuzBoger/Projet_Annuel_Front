@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useLesson } from "@/hooks/useLesson";
 import { useTopic } from "@/hooks/useTopic";
 import { Button } from "@/components/ui/Button";
-import { Table } from "@/components/ui/Table";
+import { SortableTable } from "@/components/ui/SortableTable";
 import { Switch } from "@/components/ui/Switch";
 import { TableActions } from "@/components/ui/TableActions";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
@@ -26,7 +26,7 @@ export default function LessonList() {
     const { topicId } = useParams<{ topicId: string }>();
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const { lessons, loading, fetchAdminLessonsByTopic, deleteLesson, updateLesson, toggleLessonStatus } = useLesson();
+    const { lessons, loading, fetchAdminLessonsByTopic, deleteLesson, updateLesson, toggleLessonStatus, reorderLessons } = useLesson();
     const { topics, fetchAllTopics } = useTopic();
     
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -72,6 +72,29 @@ export default function LessonList() {
         }
     };
 
+    const handleReorder = async (newData: LessonResponse[]) => {
+        if (!topicId) return;
+        
+        const reorderRequests = newData.map((lesson, index) => ({
+            id: lesson.id,
+            orderIndex: index + 1 // We use 1-based index or sequential
+        }));
+
+        try {
+            await reorderLessons(topicId, reorderRequests);
+        } catch (error) {
+            console.error("Failed to reorder lessons", error);
+            if (topicId) fetchAdminLessonsByTopic(topicId); // Rollback on error
+        }
+    };
+
+    const columns = [
+        { label: t('admin.lessons.table.title'), key: 'title' },
+        { label: t('admin.lessons.table.type'), key: 'lessonType' },
+        { label: t('admin.lessons.table.active'), key: 'isActive' },
+        { label: t('admin.lessons.table.actions'), key: 'actions', className: 'text-right' }
+    ];
+
     return (
         <>
             <MetaData title={t('admin.lessons.page_title', { topicName: currentTopic?.name || '...' })} robots="noindex, nofollow"  />
@@ -100,16 +123,19 @@ export default function LessonList() {
                     </Button>
                 </div>
 
-                <Table
+                <SortableTable
                     data={lessons}
+                    columns={columns}
                     keyExtractor={(lesson) => lesson.id}
+                    onReorder={handleReorder}
                     emptyMessage={t('admin.lessons.no_lessons')}
+                    isLoading={loading}
                     renderRow={(lesson) => (
                         <>
-                            <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700">
+                            <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">
                                 {lesson.title}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                 <BadgeTag color="blue" className="gap-2">
                                     {(() => {
                                         const Icon = TYPE_ICONS[lesson.lessonType];
@@ -118,16 +144,13 @@ export default function LessonList() {
                                     {t(`admin.lessons.form.types.${lesson.lessonType}`)}
                                 </BadgeTag>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
-                                {lesson.orderIndex}
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                 <Switch
                                     checked={lesson.isActive}
                                     onChange={() => handleStatusToggle(lesson)}
                                 />
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700 text-right">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">
                                 <TableActions
                                     onEdit={() => handleEdit(lesson)}
                                     onDelete={() => handleDeleteClick(lesson)}
@@ -135,13 +158,6 @@ export default function LessonList() {
                             </td>
                         </>
                     )}
-                    columns={[
-                        { label: t('admin.lessons.table.title'), key: 'title' },
-                        { label: t('admin.lessons.table.type'), key: 'lessonType' },
-                        { label: t('admin.lessons.table.order'), key: 'orderIndex' },
-                        { label: t('admin.lessons.table.active'), key: 'isActive' },
-                        { label: t('admin.lessons.table.actions'), key: 'actions', className: 'text-right' }
-                    ]}
                 />
 
                 <ConfirmModal

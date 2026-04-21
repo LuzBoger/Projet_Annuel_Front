@@ -83,7 +83,7 @@ export default function LessonForm() {
             topicId,
             title: data.title,
             description: data.description,
-            orderIndex: data.orderIndex,
+            orderIndex: data.orderIndex || 0,
             xpReward: data.xpReward,
             minLevelRequired: data.minLevelRequired,
             durationMinutes: data.durationMinutes,
@@ -183,14 +183,6 @@ export default function LessonForm() {
                                     />
                                 </div>
 
-                                <FormField
-                                    type="number"
-                                    label={t('admin.lessons.form.order')}
-                                    {...register("orderIndex")}
-                                    error={errors.orderIndex?.message}
-                                    required
-                                    className="bg-white/50 dark:bg-gray-900/50"
-                                />
                                 <FormField
                                     type="number"
                                     label={t('admin.lessons.form.xp')}

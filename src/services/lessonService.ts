@@ -50,5 +50,9 @@ export const lessonService = {
     async completeLesson(lessonId: string, data: CompleteLessonRequest): Promise<CompleteLessonResponse> {
         const response = await apiClient.post<CompleteLessonResponse>(`/lessons/${lessonId}/complete`, data);
         return response.data;
+    },
+
+    async reorderLessons(topicId: string, reorderRequests: { id: string, orderIndex: number }[]): Promise<void> {
+        await apiClient.patch(`/lessons/admin/topic/${topicId}/reorder`, reorderRequests);
     }
 };
