@@ -1,3 +1,4 @@
+import { BadgeTag } from "../ui/BadgeTag";
 import { useTranslation } from "react-i18next";
 import { TopicResponse } from "@/types/topic/topic";
 import { ChevronRight } from "@/assets/icons";
@@ -14,20 +15,6 @@ export function TopicCard({ topic, onClick }: TopicCardProperties) {
         onClick(topic.id);
     }
 
-    const getDifficultyColorClass = (difficulty: string): string => {
-        const uppercaseDifficulty = difficulty.toUpperCase();
-        
-        if (uppercaseDifficulty === "A1" || uppercaseDifficulty === "A2") {
-            return "bg-green-100 text-green-800 border-green-200";
-        }
-        
-        if (uppercaseDifficulty === "B1" || uppercaseDifficulty === "B2") {
-            return "bg-blue-100 text-blue-800 border-blue-200";
-        }
-        
-        return "bg-purple-100 text-purple-800 border-purple-200";
-    }
-
     return (
         <div 
             className="group relative flex flex-col justify-between p-6 bg-white dark:bg-gray-800 bg-opacity-70 backdrop-blur-lg border border-gray-200 dark:border-gray-800 border-opacity-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden"
@@ -36,9 +23,9 @@ export function TopicCard({ topic, onClick }: TopicCardProperties) {
             <div className="absolute inset-0 bg-gradient-to-br from-brand-50/50 to-white/50 dark:from-brand-950/20 dark:to-gray-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
             <div className="relative z-10 flex items-start justify-between mb-4">
-                <span className={`px-3 py-1 text-xs font-semibold rounded-full border ${getDifficultyColorClass(topic.difficulty)}`}>
+                <BadgeTag color="blue">
                     {topic.difficulty}
-                </span>
+                </BadgeTag>
                 
                 <div className="flex bg-gray-100 dark:bg-gray-800 rounded-full px-2 py-1 items-center">
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400">

@@ -227,8 +227,10 @@
     "table": {
       "name": "Name",
       "description": "Description",
+      "type": "Type",
       "price": "Price",
       "interval": "Interval",
+      "status": "Status",
       "actions": "Actions"
     }
   },
@@ -237,7 +239,9 @@
       "title": "Admin Dashboard"
     },
     "plans": {
-      "title": "Plans"
+      "title": "Plans",
+      "status_title": "Change plan status",
+      "status_desc": "Are you sure you want to change the status of this subscription plan?"
     },
     "subscriptions": {
       "title": "Subscriptions management"
@@ -835,10 +839,10 @@
     "topicCard": {
       "lessons": "lessons",
       "completed": "completed",
-      "next": "Next",
-      "hide": "Hide",
-      "show": "Show",
-      "practice": "Practice"
+      "next": "NEXT",
+      "practice": "Practice",
+      "review": "Review",
+      "allLessonsFinished": "All lessons completed!"
     },
     "badgeStatusLanguages": {
       "completed": "Completed",

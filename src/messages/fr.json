@@ -231,8 +231,10 @@
     "table": {
       "name": "Nom",
       "description": "Description",
+      "type": "Type",
       "price": "Prix",
       "interval": "Période de paiement",
+      "status": "Statut",
       "actions": "Actions"
     }
   },
@@ -241,7 +243,9 @@
       "title": "Tableau de bord"
     },
     "plans": {
-      "title": "Plans"
+      "title": "Plans",
+      "status_title": "Changer le statut",
+      "status_desc": "Êtes-vous sûr de vouloir changer le statut de ce plan d'abonnement ?"
     },
     "subscriptions": {
       "title": "Gestion des abonnements"
@@ -840,10 +844,10 @@
     "topicCard": {
       "lessons": "leçons",
       "completed": "complétées",
-      "next": "Prochaine",
-      "hide": "Masquer",
-      "show": "Afficher",
-      "practice": "S'entraîner"
+      "next": "PROCHAINE",
+      "practice": "S'entraîner",
+      "review": "Réviser",
+      "allLessonsFinished": "Toutes les leçons ont été complétées !"
     },
     "badgeStatusLanguages": {
       "completed": "Complété",

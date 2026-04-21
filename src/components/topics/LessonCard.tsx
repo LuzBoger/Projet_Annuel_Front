@@ -82,9 +82,6 @@ export function LessonCard({ lesson, index, onClick }: LessonCardProps) {
                     <span className="flex items-center text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/40 border border-brand-100 dark:border-brand-900/30 px-2.5 py-1.5 rounded-md whitespace-nowrap">
                         {lesson.xpReward} XP
                     </span>
-                    <span className="flex items-center text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-900/30 px-2.5 py-1.5 rounded-md whitespace-nowrap">
-                        ~{lesson.durationMinutes} MIN
-                    </span>
                 </div>
                 
                 <div className="flex items-center justify-end text-sm font-bold text-brand-600 dark:text-indigo-400 group-hover:text-brand-700 dark:group-hover:text-indigo-300 pt-3 border-t border-gray-100 dark:border-gray-800">

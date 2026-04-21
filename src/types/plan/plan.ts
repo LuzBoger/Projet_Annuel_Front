@@ -9,6 +9,7 @@ export interface PlanResponse {
     currency: string;
     paymentInterval: PaymentInterval;
     subscriptionType: SubscriptionType;
+    isActive: boolean;
 }
 
 export interface CreatePlanRequest {

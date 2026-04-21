@@ -8,6 +8,11 @@ export const planService = {
         const response = await apiClient.get<PlanResponse[]>('/plans');
         return response.data;
     },
+
+    async getAllPlansAdmin(): Promise<PlanResponse[]> {
+        const response = await apiClient.get<PlanResponse[]>('/plans/admin');
+        return response.data;
+    },
     
     async createPlan(data: CreatePlanRequest) : Promise<PlanResponse> {
         const response = await apiClient.post<PlanResponse>('/plans/create', data);
@@ -16,6 +21,11 @@ export const planService = {
 
     async updatePlan(planId: string, data: UpdatePlanRequest): Promise<PlanResponse> {
         const response = await apiClient.put<PlanResponse>(`/plans/update/${planId}`, data);
+        return response.data;
+    },
+
+    async togglePlanStatus(planId: string): Promise<PlanResponse> {
+        const response = await apiClient.patch<PlanResponse>(`/plans/${planId}/toggle-status`);
         return response.data;
     },
 

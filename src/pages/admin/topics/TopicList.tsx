@@ -55,7 +55,6 @@ export default function TopicList() {
         { key: 'name', label: t('admin.topics.table.name') },
         { key: 'language', label: t('admin.topics.table.language') },
         { key: 'difficulty', label: t('admin.topics.table.difficulty') },
-        { key: 'orderIndex', label: t('admin.topics.table.order') },
         { key: 'isActive', label: t('admin.topics.table.active') },
         { key: 'actions', label: t('admin.topics.table.actions') },
     ];
@@ -124,7 +123,6 @@ export default function TopicList() {
                 name: selectedTopic.name,
                 description: selectedTopic.description,
                 difficulty: selectedTopic.difficulty,
-                orderIndex: selectedTopic.orderIndex,
                 isActive: pendingStatus
             });
             setShowStatusModal(false);
@@ -227,7 +225,6 @@ export default function TopicList() {
                                         {topic.difficulty}
                                     </BadgeTag>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">{topic.orderIndex}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
                                     <Switch
                                         checked={topic.isActive}

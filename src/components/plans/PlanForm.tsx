@@ -18,10 +18,10 @@ interface PlanFormProps {
     onCancel(): void;
     onSubmit: (data: CreatePlanFormData |  UpdatePlanFormData) => void; 
     isLoading: boolean;
+    apiError: string | null;
 }
 
-
-export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFormProps) {
+export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading, apiError }: PlanFormProps) {
     const { t } = useTranslation();
     const isEditPlan = !!plan;
 
@@ -43,7 +43,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
             currency: plan.currency,
             paymentInterval: plan.paymentInterval,
             subscriptionType: plan.subscriptionType,
-            isActive: true,
+            isActive: plan.isActive,
         })
     } else {
         reset({
@@ -83,6 +83,11 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
             title={isEditPlan ? t('plans.edit.title') : t('plans.create.title')}
         >
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                {apiError && (
+                    <div className="p-3 rounded bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 text-sm">
+                        {apiError}
+                    </div>
+                )}
                 <FormField
                     id="name"
                     label={t('plans.form.name')}
@@ -109,7 +114,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading }: PlanFo
                         type="number"
                         disabled={isLoading}
                         error={errors.price?.message}
-                        {...register('price')}
+                        {...register('price', { valueAsNumber: true })}
                     />
                     <Select
                         id="currency"

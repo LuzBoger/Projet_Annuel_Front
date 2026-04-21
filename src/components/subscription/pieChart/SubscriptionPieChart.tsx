@@ -65,7 +65,7 @@ export function SubscriptionPieChart({ data }: SubscriptionPieChartProps) {
 
       <div className="flex justify-center gap-10 mt-4 pt-4 border-t border-slate-100 dark:border-gray-800">
         <div className="text-center">
-          <p className="text-2xl font-bold text-brand-600 dark:text-brand-400">{data.premiumCount}</p>
+          <p className="text-2xl font-bold text-brand-600 dark:text-brand-300">{data.premiumCount}</p>
           <p className="text-xs font-medium text-slate-400 dark:text-slate-500 mt-1">{t('subscriptions.premium')}</p>
         </div>
         <div className="text-center">

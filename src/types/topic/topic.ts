@@ -10,7 +10,6 @@ export interface TopicResponse {
     name: string;
     description?: string;
     difficulty: ProficiencyLevel;
-    orderIndex: number;
     isActive: boolean;
 }
 
@@ -19,7 +18,6 @@ export interface CreateTopicRequest {
     name: string;
     description?: string;
     difficulty: ProficiencyLevel;
-    orderIndex: number;
     isActive: boolean;
 }
 

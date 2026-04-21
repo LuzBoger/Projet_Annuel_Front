@@ -35,7 +35,6 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
             name: "",
             description: "",
             difficulty: "",
-            orderIndex: 0,
             isActive: true,
         }
     });
@@ -51,7 +50,6 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                 name: topic.name,
                 description: topic.description || "",
                 difficulty: topic.difficulty,
-                orderIndex: topic.orderIndex,
                 isActive: topic.isActive,
             });
         } else {
@@ -60,7 +58,6 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                 name: "",
                 description: "",
                 difficulty: "",
-                orderIndex: 0,
                 isActive: true,
             });
         }
@@ -82,7 +79,6 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
             name: data.name,
             description: data.description,
             difficulty: data.difficulty as ProficiencyLevel,
-            orderIndex: data.orderIndex,
             isActive: data.isActive,
         });
     };
@@ -137,15 +133,6 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
                     />
                 </div>
                 
-                <div>
-                    <FormField
-                        type="number"
-                        label={t('admin.topics.form.order')}
-                        {...register("orderIndex")}
-                        required
-                        error={errors.orderIndex?.message}
-                    />
-                </div>
 
                 <div className="md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">

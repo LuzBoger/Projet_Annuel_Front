@@ -11,6 +11,7 @@ import { SubscriptionPieChart } from "@/components/subscription/pieChart/Subscri
 import { SubscriptionBarChart } from "@/components/subscription/barChart/SubscriptionBarChart";
 import { SubscriptionStats } from "@/components/subscription/SubscriptionStats";
 import { MetaData } from "@/components/seo/MetaData";
+import { BadgeTag } from "@/components/ui/BadgeTag";
 
 export default function SubscriptionsManage() {
     const {t, i18n } = useTranslation();
@@ -94,8 +95,24 @@ export default function SubscriptionsManage() {
                     renderRow={(subscription) => (
                         <>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{subscription.firstName}  {subscription.lastName}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{subscription.plan?.name}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{t(`subscription.status.${subscription.status.toLowerCase()}`)}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                {subscription.plan ? (
+                                    <BadgeTag color={subscription.plan.subscriptionType === 'PREMIUM' ? 'brand' : 'gray'}>
+                                        {subscription.plan.subscriptionType}
+                                    </BadgeTag>
+                                ) : (
+                                    <span className="text-gray-400">-</span>
+                                )}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                <BadgeTag color={
+                                    subscription.status === 'ACTIVE' ? 'green' : 
+                                    subscription.status === 'PENDING' ? 'yellow' : 
+                                    'red'
+                                }>
+                                    {t(`subscription.details.status.${subscription.status.toLowerCase()}`)}
+                                </BadgeTag>
+                            </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{subscription.startDate ? new Date(subscription.startDate).toLocaleDateString(locale) : '-'}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{subscription.endDate ? new Date(subscription.endDate).toLocaleDateString(locale) : '-'}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700">
