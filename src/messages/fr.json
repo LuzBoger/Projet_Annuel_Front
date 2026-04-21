@@ -506,6 +506,8 @@
       "invalid_2fa_code": "Code de vérification invalide."
     },
     "validation": "Les données saisies sont invalides.",
+    "fetchTopics": "Impossible de récupérer les Topics.",
+    "searchTopics": "Impossible de rechercher les Topics.",
     "fetchPlans": "Impossible de récupérer les Plans d'Abonnement.",
     "fetchPlanById": "Impossible de récupérer les détails du Plan d'Abonnement.",
     "fetchPlansByInterval": "Impossible de récupérer les Plans d'Abonnement par intervalle.",

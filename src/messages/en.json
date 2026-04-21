@@ -501,6 +501,11 @@
       "invalid_2fa_code": "Invalid verification code."
     },
     "validation": "The entered data is invalid.",
+    "fetchTopics": "Failed to fetch Topics.",
+    "searchTopics": "Failed to search Topics.",
+    "createTopic": "Failed to create Topic.",
+    "updateTopic": "Failed to update Topic.",
+    "deleteTopic": "Failed to delete Topic.",
     "fetchPlans": "Failed to fetch plans.",
     "fetchPlanById": "Failed to fetch plan details.",
     "fetchPlansByInterval": "Failed to fetch plans by interval.",
