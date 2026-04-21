@@ -92,7 +92,7 @@ export default function LessonList() {
         { label: t('admin.lessons.table.title'), key: 'title' },
         { label: t('admin.lessons.table.type'), key: 'lessonType' },
         { label: t('admin.lessons.table.active'), key: 'isActive' },
-        { label: t('admin.lessons.table.actions'), key: 'actions', className: 'text-right' }
+        { label: t('admin.lessons.table.actions'), key: 'actions', align: 'right' }
     ];
 
     return (

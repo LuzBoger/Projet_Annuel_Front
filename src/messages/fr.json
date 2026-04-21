@@ -261,14 +261,12 @@
       "table": {
         "code": "Code",
         "name": "Nom",
-        "orderIndex": "Ordre",
         "isActive": "Actif",
         "actions": "Actions"
       },
       "form": {
         "code": "Code sélectionné",
         "name": "Libellé affiché",
-        "order": "Index de tri",
         "active": "Langue active",
         "select_placeholder": "Sélectionnez une langue",
         "flag_preview": "Aperçu du Drapeau :"

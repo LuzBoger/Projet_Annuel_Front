@@ -257,14 +257,12 @@
       "table": {
         "code": "Code",
         "name": "Name",
-        "orderIndex": "Order",
         "isActive": "Active",
         "actions": "Actions"
       },
       "form": {
         "code": "Selection code",
         "name": "Display name",
-        "order": "Sorting index",
         "active": "Active language",
         "select_placeholder": "Select a language",
         "flag_preview": "Flag Preview:"

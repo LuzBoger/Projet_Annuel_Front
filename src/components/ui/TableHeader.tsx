@@ -14,7 +14,7 @@ export function TableHeader({ columns, className = "" }: TableHeaderProps) {
           <th
             key={column.key}
             className={`px-6 py-3 text-xs font-semibold text-gray-500 dark:text-white uppercase
-                ${column.align === "center" ? "text-center" : column.align === "right" ? "text-right" : "text-left"} ${column.className || ""}`}
+                ${(column.key === 'actions' || column.align === "right") ? "text-right" : column.align === "center" ? "text-center" : "text-left"} ${column.className || ""}`}
           >
             {column.label}
           </th>

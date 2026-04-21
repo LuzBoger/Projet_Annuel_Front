@@ -115,7 +115,7 @@ export default function SubscriptionsManage() {
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{subscription.startDate ? new Date(subscription.startDate).toLocaleDateString(locale) : '-'}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{subscription.endDate ? new Date(subscription.endDate).toLocaleDateString(locale) : '-'}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right border-b border-gray-200 dark:border-gray-700">
                                 <TableActions
                                     onView={() => handleViewDetails(subscription, subscription.accountId)}
                                     onCancelAction={

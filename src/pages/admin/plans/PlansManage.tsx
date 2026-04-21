@@ -138,7 +138,7 @@ export default function PlansManage() {
                                 disabled={loading}
                             />
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">
                             <TableActions 
                                 onEdit={() => handleEditPlan(plan)}
                                 onDelete={plan.subscriptionType !== "FREE" ? () => handleDeletePlan(plan) : undefined} 

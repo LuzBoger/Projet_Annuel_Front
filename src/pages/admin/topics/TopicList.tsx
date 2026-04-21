@@ -231,7 +231,7 @@ export default function TopicList() {
                                         onChange={(checked) => handleStatusToggle(topic, checked)}
                                     />
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right border-b border-gray-200 dark:border-gray-700">
                                     <TableActions
                                         onEdit={() => handleEdit(topic)}
                                         onDelete={() => handleDelete(topic)}

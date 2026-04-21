@@ -31,7 +31,6 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
         defaultValues: {
             code: "",
             name: "",
-            orderIndex: 0,
             isActive: true,
         }
     });
@@ -45,14 +44,12 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
             reset({
                 code: language.code,
                 name: language.name,
-                orderIndex: language.orderIndex,
                 isActive: language.isActive,
             });
         } else {
             reset({
                 code: "",
                 name: "",
-                orderIndex: 0,
                 isActive: true,
             });
         }
@@ -75,7 +72,7 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
         await onSubmit({
             code: data.code,
             name: data.name,
-            orderIndex: data.orderIndex,
+            orderIndex: 0,
             isActive: data.isActive,
         });
     };
@@ -120,15 +117,6 @@ export function LanguageForm({ isOpen, isLoading, language, onCancel, onSubmit }
                     </div>
                 )}
                 
-                <div>
-                    <FormField
-                        type="number"
-                        label={t('admin.languages.form.order')}
-                        {...register("orderIndex")}
-                        required
-                        error={errors.orderIndex?.message}
-                    />
-                </div>
                 
                 <div className="flex items-center justify-between pt-2">
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('admin.languages.form.active')}</span>
