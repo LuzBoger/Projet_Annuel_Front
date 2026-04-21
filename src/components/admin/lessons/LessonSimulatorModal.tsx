@@ -10,6 +10,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Check, IconFlashcard } from "@/assets/icons";
 import { BadgeTag } from "@/components/ui/BadgeTag";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
+import { useEffect } from "react";
 
 interface LessonSimulatorModalProps {
   isOpen: boolean;
@@ -21,6 +23,13 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
   const { t } = useTranslation();
   const [isFinished, setIsFinished] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
+  const { playSuccess } = useSoundEffects();
+
+  useEffect(() => {
+    if (isFinished && finalScore >= 80) { // On considère 80% comme un succès pour le simulateur
+      playSuccess();
+    }
+  }, [isFinished, finalScore, playSuccess]);
 
   const resetSimulation = () => {
     setIsFinished(false);

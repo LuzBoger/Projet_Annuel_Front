@@ -7,9 +7,9 @@ import { ChevronRight } from "@/assets/icons";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
 import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
-import { PlayerFeedback } from "@/components/lessons/players/common/PlayerFeedback";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { initPool } from "@/lib/utils/sorting";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 interface SortingPlayerProps {
     exercises: SortingExerciseRequest[];
     onFinish: (score: number) => void;
@@ -17,6 +17,7 @@ interface SortingPlayerProps {
 
 export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
     const { t } = useTranslation();
+    const { playCorrect, playIncorrect } = useSoundEffects();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [prevIndex, setPrevIndex] = useState(currentIndex);
     const [prevExercises, setPrevExercises] = useState(exercises);
@@ -82,7 +83,12 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
         newResults[currentIndex] = isOrderCorrect ? 'correct' : 'incorrect';
         setResults(newResults);
 
-        if (isOrderCorrect) setCorrectCount(previous => previous + 1);
+        if (isOrderCorrect) {
+            setCorrectCount(previous => previous + 1);
+            playCorrect();
+        } else {
+            playIncorrect();
+        }
     };
 
     const handleNextAction = () => {

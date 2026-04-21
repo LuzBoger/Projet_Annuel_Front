@@ -24,7 +24,9 @@
     "skip": "Skip",
     "enabled": "Enabled",
     "disabled": "Disabled",
-    "on": "of"
+    "on": "of",
+    "mute": "Mute",
+    "unmute": "Unmute"
   },
   "onBoarding": {
     "selectNativeLanguage": "What is your native language?",

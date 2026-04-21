@@ -10,12 +10,14 @@ import { QCMPlayer } from "@/components/lessons/players/QCMPlayer";
 import { MatchingPlayer } from "@/components/lessons/players/MatchingPlayer";
 import { SortingPlayer } from "@/components/lessons/players/SortingPlayer";
 import { MetaData } from "@/components/seo/MetaData";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 export default function LessonPlayer() {
     const { lessonId } = useParams<{ lessonId: string }>();
     const navigate = useNavigate();
     const { t } = useTranslation();
     const { fetchLessonById, startLesson, completeLesson } = useLesson();
+    const { playSuccess } = useSoundEffects();
 
     const [lesson, setLesson] = useState<LessonResponse | null>(null);
     const [isStarting, setIsStarting] = useState(true);
@@ -66,6 +68,8 @@ export default function LessonPlayer() {
                 score,
                 timeSpentSeconds
             });
+
+            playSuccess();
 
             navigate(`/lessons/${lessonId}/success`, { state: { response, lesson } });
 

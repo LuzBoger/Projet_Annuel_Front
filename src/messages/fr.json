@@ -24,7 +24,9 @@
     "skip": "Passer",
     "enabled": "Activé",
     "disabled": "Désactivé",
-    "on": "sur"
+    "on": "sur",
+    "mute": "Couper le son",
+    "unmute": "Activer le son"
   },
   "onBoarding": {
     "selectNativeLanguage": "Quelle est votre langue maternelle ?",

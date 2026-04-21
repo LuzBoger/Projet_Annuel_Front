@@ -8,6 +8,7 @@ import { PlayerLayout } from "./common/PlayerLayout";
 import { PlayerHeader } from "./common/PlayerHeader";
 
 import { PlayerFooter } from "./common/PlayerFooter";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface FlashcardPlayerProps {
     flashcards: FlashcardRequest[];
@@ -16,6 +17,7 @@ interface FlashcardPlayerProps {
 
 export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) {
     const { t } = useTranslation();
+    const { playCorrect, playIncorrect } = useSoundEffects();
     const [queue, setQueue] = useState<QueuedCard[]>(() =>
         flashcards ? flashcards.map((card, i) => ({ originalIndex: i, card })) : []
     );
@@ -65,9 +67,15 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
             const { originalIndex } = currentItem;
 
             const newScores = [...scores];
-            if (level === 'green') newScores[originalIndex] = 100;
-            else if (level === 'yellow') newScores[originalIndex] = 50;
-            else if (level === 'red') newScores[originalIndex] = 0;
+            if (level === 'green') {
+                newScores[originalIndex] = 100;
+                playCorrect();
+            } else if (level === 'yellow') {
+                newScores[originalIndex] = 50;
+            } else if (level === 'red') {
+                newScores[originalIndex] = 0;
+                playIncorrect();
+            }
             setScores(newScores);
 
             const remainingQueue = queue.slice(1);

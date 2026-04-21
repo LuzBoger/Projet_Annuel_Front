@@ -1,4 +1,7 @@
 import { useTranslation } from "react-i18next";
+import { Volume2, VolumeX } from "lucide-react";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
+import { Button } from "@/components/ui/Button";
 
 export type SegmentStatus = 'correct' | 'medium' | 'incorrect' | 'pending' | 'current';
 
@@ -11,6 +14,7 @@ interface PlayerHeaderProps {
 
 export function PlayerHeader({ current, total, label, statuses }: PlayerHeaderProps) {
     const { t } = useTranslation();
+    const { isMuted, toggleMute } = useSoundEffects();
 
     const getSegmentColor = (status: SegmentStatus) => {
         switch (status) {
@@ -39,10 +43,21 @@ export function PlayerHeader({ current, total, label, statuses }: PlayerHeaderPr
                             {current} {t('common.on')} {total}
                         </span>
                     </div>
-                    <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm px-3 py-1 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm transition-all">
-                        <span className="text-gray-600 dark:text-gray-300 font-bold tabular-nums">
-                            {Math.round((items.filter(s => s === 'correct').length / total) * 100)}%
-                        </span>
+                    <div className="flex items-center gap-3">
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={toggleMute}
+                            className="p-2 h-9 w-9 rounded-xl text-gray-400 hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-brand-900/20"
+                            title={isMuted ? t('common.unmute') : t('common.mute')}
+                        >
+                            {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                        </Button>
+                        <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm px-3 py-1 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm transition-all">
+                            <span className="text-gray-600 dark:text-gray-300 font-bold tabular-nums">
+                                {Math.round((items.filter(s => s === 'correct').length / total) * 100)}%
+                            </span>
+                        </div>
                     </div>
                 </div>
 

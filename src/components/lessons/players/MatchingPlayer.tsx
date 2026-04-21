@@ -10,6 +10,7 @@ import { PlayerFeedback } from "@/components/lessons/players/common/PlayerFeedba
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { ERROR_DISPLAY_DURATION_MS, PENALTY_PER_ERROR } from "@/constants/lesson";
 import { initTiles } from "@/lib/utils/matchingPair";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface MatchingPlayerProps {
     pairs: MatchingPairRequest[];
@@ -18,6 +19,7 @@ interface MatchingPlayerProps {
 
 export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
     const { t } = useTranslation();
+    const { playCorrect, playIncorrect } = useSoundEffects();
     
     const [prevPairs, setPrevPairs] = useState(pairs);
     const [tiles, setTiles] = useState(() => initTiles(pairs));
@@ -76,9 +78,11 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
         if (firstTile && secondTile && firstTile.matchId === secondTile.matchId) {
             setMatchedMatchIds(previous => [...previous, firstTile.matchId]);
             setSelectedIds([]);
+            playCorrect();
         } else {
             setErrorIds(currentSelectedIds);
             setErrorCount(previous => previous + 1);
+            playIncorrect();
 
             setTimeout(() => {
                 setErrorIds([]);

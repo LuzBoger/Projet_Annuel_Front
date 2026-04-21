@@ -8,6 +8,7 @@ import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { PlayerFeedback } from "@/components/lessons/players/common/PlayerFeedback";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface QCMPlayerProps {
     questions: QcmQuestionRequest[];
@@ -16,6 +17,7 @@ interface QCMPlayerProps {
 
 export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
     const { t } = useTranslation();
+    const { playCorrect, playIncorrect } = useSoundEffects();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
     const [isValidated, setIsValidated] = useState(false);
@@ -53,6 +55,9 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
 
         if (isAnswerCorrect) {
             setCorrectCount(prev => prev + 1);
+            playCorrect();
+        } else {
+            playIncorrect();
         }
     };
 

@@ -12,6 +12,7 @@ import { ExamSortingQuestion } from "@/components/topics/ExamSortingQuestion";
 import { UserPairAnswer, Tile } from "@/types/components/examMatching";
 import { shuffleArray } from "@/lib/utils/topic";
 import { MetaData } from "@/components/seo/MetaData";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 type ExamItem =
     | { type: 'QCM', data: QcmQuestionExamResponse }
@@ -25,6 +26,7 @@ export default function TopicExam() {
     const { topicId } = useParams<{ topicId: string }>();
     const navigate = useNavigate();
     const { t } = useTranslation();
+    const { playSuccess } = useSoundEffects();
 
     const [exam, setExam] = useState<ExamResponse | null>(null);
     const [loading, setLoading] = useState(true);
@@ -101,6 +103,9 @@ export default function TopicExam() {
 
             const response = await topicService.submitTopicExam(topicId, resultPayload);
             setExamResult(response);
+            if (response.success) {
+                playSuccess();
+            }
         } catch {
             setError(t('topics.exam_submit_error'));
         } finally {
