@@ -3,6 +3,7 @@ import { MenuItem, SettingsTab } from "@/types/components/menutItem";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "../ui/ThemeToggle";
+import { NotificationToggle } from "../ui/NotificationToggle";
 
 interface SideBarProps {
     activeTab: SettingsTab;
@@ -41,6 +42,10 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-3 flex items-center justify-between">
         <span className="text-sm text-gray-600 dark:text-gray-400">{t('settings.menu.theme')}</span>
         <ThemeToggle />
+      </div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-3 flex items-center justify-between">
+        <NotificationToggle />
+
       </div>
     </aside>
   );
