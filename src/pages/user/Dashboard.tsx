@@ -1,5 +1,6 @@
 import { MetaData } from "@/components/seo/MetaData";
 import { ResumeLessonCard } from "@/components/ui/card/ResumeLessonCard";
+import { StreakCard } from "@/components/ui/card/StreakCard";
 import { XpCard } from "@/components/ui/card/XpCard";
 import { LanguageLevel } from "@/components/user/dashboard/LanguageLevel";
 import { Topics } from "@/components/user/dashboard/Topics";
@@ -11,6 +12,7 @@ import { globalEvents } from "@/lib/utils/eventEmitter";
 import { profileService } from "@/services/profileService";
 import { topicService } from "@/services/topicService";
 import { LanguageResponse } from "@/types/language/language";
+import { StreakResponse } from "@/types/profile/streak";
 import { TopicWithProgressResponse } from "@/types/topic/topic";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -22,7 +24,7 @@ export default function Dashboard() {
 
     const [activeLanguageId, setActiveLanguageId] = useState<string | null>(null);
     const [topics, setTopics] = useState<TopicWithProgressResponse[]>([]);
-
+    const [streak, setStreak] = useState<StreakResponse | null>(null);
     const validLanguageLevels = languageLevels.filter(l => l.languageId && l.languageCode);
 
     const effectiveLanguageId = activeLanguageId ?? validLanguageLevels[0]?.languageId ?? null;
@@ -35,6 +37,7 @@ export default function Dashboard() {
             }
         })
         .catch(() => {});
+        profileService.getStreak().then(setStreak).catch(() => {});
     }, [fetchData]);
 
     useEffect(() => {
@@ -68,28 +71,29 @@ export default function Dashboard() {
     return (
         <>
             <MetaData title={t('dashboard.page_title')}  robots="noindex, nofollow"  /> 
-        <div className="max-w-6xl mx-auto px-4 py-8">
-            <div className="flex gap-8">
+            <div className="max-w-6xl mx-auto px-4 py-8">
+                <div className="flex gap-8">
 
-                <div className="flex-1 min-w-0">
-                    <Welcome username={user?.username ?? ""} />
-                    <Topics topics={topics} activeLanguageId={effectiveLanguageId} />
+                    <div className="flex-1 min-w-0">
+                        <Welcome username={user?.username ?? ""} />
+                        <Topics topics={topics} activeLanguageId={effectiveLanguageId} />
+                    </div>
+
+                    <div className="w-72 flex-shrink-0">
+                        {validLanguageLevels.length > 0 && (
+                            <LanguageLevel
+                                languageLevels={validLanguageLevels}
+                                activeLanguageId={effectiveLanguageId}
+                                onSelect={handleLanguageSelect}
+                            />
+                        )}
+                        {overview && <XpCard overview={overview} />}
+                        {streak && <StreakCard streak={streak} />}
+                        <ResumeLessonCard lesson={lastLesson} />
+                    </div>
+
                 </div>
-
-                <div className="w-72 flex-shrink-0">
-                    {validLanguageLevels.length > 0 && (
-                        <LanguageLevel
-                            languageLevels={validLanguageLevels}
-                            activeLanguageId={effectiveLanguageId}
-                            onSelect={handleLanguageSelect}
-                        />
-                    )}
-                    {overview && <XpCard overview={overview} />}
-                    <ResumeLessonCard lesson={lastLesson} />
-                </div>
-
             </div>
-        </div>
         </>
     );
 }

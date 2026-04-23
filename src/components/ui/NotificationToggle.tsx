@@ -15,19 +15,18 @@ export function NotificationToggle() {
         <Button
             variant="none"
             onClick={isSubscribed ? unsubscribeUser : subscribeUser}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium
-                       bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
-            title={isSubscribed ? t('notifications.disable') : t('notifications.enable')}
+            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
+            title={isSubscribed ? t('settings.notifications.disable') : t('settings.notifications.enable')}
         >
             {isSubscribed ? (
                 <>
                     <Bell className="w-4 h-4 text-indigo-600" />
-                    <span>{t('notifications.enabled')}</span>
+                    <span>{t('settings.notifications.enabled')}</span>
                 </>
             ) : (
                 <>
                     <BellOff className="w-4 h-4 text-gray-500" />
-                    <span>{t('notifications.enable')}</span>
+                    <span>{t('settings.notifications.enable')}</span>
                 </>
             )}
         </Button>

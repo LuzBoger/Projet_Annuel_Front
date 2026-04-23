@@ -441,6 +441,11 @@
         "4": "Apprendre avant de dormir améliore la rétention.",
         "5": "Bonne soirée ! Encore une session aujourd'hui ?"
       }
+    },
+    "streak": {
+      "days": "jours",
+      "best": "Meilleur :",
+      "milestone": "{{days}} jours pour le prochain palier"
     }
   },
   "lesson": {
@@ -638,7 +643,19 @@
       "password": "Mot de passe",
       "2fa": "Double authentification",
       "language": "Langue",
-      "theme": "Thème"
+      "theme": "Thème",
+      "notifications": "Notifications"
+    },
+    "notifications": {
+      "title": "Préférences de notifications",
+      "enable": "Activer les notifications",
+      "enabled": "Notifications activées",
+      "disable": "Désactiver les notifications",
+      "lessonReminders": "Rappel de leçon quotidien",
+      "streakUrgency": "Alerte série en danger",
+      "inactivity": "Rappel d'inactivité",
+      "weeklyGoal": "Objectif hebdomadaire atteint",
+      "reviewReminders": "Rappel de révision"
     },
     "2fa": {
       "title": "Authentification à deux facteurs",

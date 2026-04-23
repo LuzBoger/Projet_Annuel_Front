@@ -7,14 +7,21 @@ export function usePushNotifications() {
     const [isSupported] = useState(() => typeof window !== 'undefined' && 'serviceWorker' in navigator && 'PushManager' in window);
 
     useEffect(() => {
-        if (!isSubscribed) {
+        if (!isSupported) {
             return;
         }
         navigator.serviceWorker.ready.then(async registration => {
-            const isExistingSubscription = await registration.pushManager.getSubscription();
-            setIsSubscribed(!!isExistingSubscription);
+            const subscription = await registration.pushManager.getSubscription();
+            if (!subscription) {
+                setIsSubscribed(false);
+                return;
+            }
+            const { data } = await apiClient.get('/push-notifications/status', {
+                params: { endpoint: subscription.endpoint }
+            });
+            setIsSubscribed(data);
         });
-    }, [isSupported]);
+    }, []);
 
     const subscribeUser = async () => {
 
@@ -47,7 +54,6 @@ export function usePushNotifications() {
                     endpoint: subscription.endpoint
                 }
             });
-            await subscription.unsubscribe();
             setIsSubscribed(false);
         }
      };

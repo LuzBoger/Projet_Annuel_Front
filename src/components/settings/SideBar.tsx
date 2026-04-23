@@ -1,9 +1,9 @@
-import { Globe, Lock, Shield, User } from "lucide-react";
+import { Bell, Globe, Lock, Shield, User } from "lucide-react";
 import { MenuItem, SettingsTab } from "@/types/components/menutItem";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
-import { ThemeToggle } from "../ui/ThemeToggle";
-import { NotificationToggle } from "../ui/NotificationToggle";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { NotificationToggle } from "@/components/ui/NotificationToggle";
 
 interface SideBarProps {
     activeTab: SettingsTab;
@@ -18,6 +18,7 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
         { id: 'password', label: t('settings.menu.password'), icon: <Lock /> },
         { id: '2fa', label: t('settings.menu.2fa'), icon: <Shield /> },
         { id: 'language', label: t('settings.menu.language'), icon: <Globe /> },
+        { id: 'notifications', label: t('settings.menu.notifications'), icon: <Bell /> },
     ];
 
     return (
