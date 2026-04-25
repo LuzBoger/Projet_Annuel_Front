@@ -6,7 +6,8 @@ export const PROFICIENCY_LEVELS: ProficiencyLevel[] = ["A1", "A2", "B1", "B2", "
 
 export interface TopicResponse {
     id: string;
-    languageId: string;
+    targetLanguageId: string;
+    sourceLanguageId: string;
     name: string;
     description?: string;
     difficulty: ProficiencyLevel;
@@ -14,7 +15,8 @@ export interface TopicResponse {
 }
 
 export interface CreateTopicRequest {
-    languageId: string;
+    targetLanguageId: string;
+    sourceLanguageId: string;
     name: string;
     description?: string;
     difficulty: ProficiencyLevel;

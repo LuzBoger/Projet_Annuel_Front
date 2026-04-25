@@ -37,9 +37,6 @@ export default function LessonForm() {
             title: "",
             description: "",
             orderIndex: 0,
-            xpReward: 50,
-            minLevelRequired: 1,
-            durationMinutes: 5,
             isActive: true,
             lessonType: LessonType.FLASHCARD,
             flashcards: [],
@@ -84,9 +81,6 @@ export default function LessonForm() {
             title: data.title,
             description: data.description,
             orderIndex: data.orderIndex || 0,
-            xpReward: data.xpReward,
-            minLevelRequired: data.minLevelRequired,
-            durationMinutes: data.durationMinutes,
             isActive: data.isActive,
             lessonType: data.lessonType as LessonType,
         };
@@ -182,15 +176,6 @@ export default function LessonForm() {
                                         error={errors.description?.message}
                                     />
                                 </div>
-
-                                <FormField
-                                    type="number"
-                                    label={t('admin.lessons.form.xp')}
-                                    {...register("xpReward")}
-                                    error={errors.xpReward?.message}
-                                    required
-                                    className="bg-white/50 dark:bg-gray-900/50"
-                                />
                             </div>
                         </div>
 
@@ -225,22 +210,7 @@ export default function LessonForm() {
                             <h3 className="text-md font-bold text-gray-900 dark:text-white mb-6 uppercase tracking-wider text-xs">{t('admin.lessons.form.sections.basic_info')}</h3>
 
                             <div className="space-y-6">
-                                <FormField
-                                    type="number"
-                                    label={t('admin.lessons.form.minLevel')}
-                                    {...register("minLevelRequired")}
-                                    error={errors.minLevelRequired?.message}
-                                    required
-                                    className="bg-white/50 dark:bg-gray-900/50"
-                                />
-                                <FormField
-                                    type="number"
-                                    label={t('admin.lessons.form.duration')}
-                                    {...register("durationMinutes")}
-                                    error={errors.durationMinutes?.message}
-                                    required
-                                    className="bg-white/50 dark:bg-gray-900/50"
-                                />
+
 
 
                                 <div className="flex items-center justify-between p-4 bg-white/50 dark:bg-gray-900/30 rounded-2xl border border-gray-100 dark:border-gray-700/50 group transition-all">

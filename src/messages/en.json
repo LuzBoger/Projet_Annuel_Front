@@ -296,7 +296,8 @@
         "status_inactive": "Inactive only"
       },
       "form": {
-        "language": "Language",
+        "target_language": "Target Language",
+        "source_language": "Source Language",
         "language_placeholder": "Select a language",
         "name": "Topic name",
         "description": "Description",
@@ -336,9 +337,6 @@
         "title": "Lesson title",
         "description": "Description",
         "order": "Sorting index",
-        "xp": "XP Reward",
-        "minLevel": "Min. required level",
-        "duration": "Duration (min)",
         "passScore": "Passing score (%)",
         "active": "Active lesson",
         "type": "Lesson type",

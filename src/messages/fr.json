@@ -301,7 +301,8 @@
         "status_inactive": "Inactifs uniquement"
       },
       "form": {
-        "language": "Langue",
+        "target_language": "Langue Cible",
+        "source_language": "Langue Source",
         "language_placeholder": "Sélectionnez une langue",
         "name": "Nom du topic",
         "description": "Description",
@@ -341,9 +342,6 @@
         "title": "Titre de la leçon",
         "description": "Description",
         "order": "Index de tri",
-        "xp": "Récompense XP",
-        "minLevel": "Niveau min. requis",
-        "duration": "Durée (min)",
         "passScore": "Score de passage (%)",
         "active": "Leçon active",
         "type": "Type de leçon",

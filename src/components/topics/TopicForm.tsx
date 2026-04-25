@@ -31,7 +31,8 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
     const { register, handleSubmit, reset, setValue, control, formState: { errors } } = useForm<CreateTopicFormData | UpdateTopicFormData>({
         resolver: yupResolver(isEditTopic ? updateTopicSchema(t) : createTopicSchema(t)),
         defaultValues: {
-            languageId: "",
+            targetLanguageId: "",
+            sourceLanguageId: "",
             name: "",
             description: "",
             difficulty: "",
@@ -39,14 +40,16 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
         }
     });
 
-    const languageId = useWatch({ control, name: "languageId" });
+    const targetLanguageId = useWatch({ control, name: "targetLanguageId" });
+    const sourceLanguageId = useWatch({ control, name: "sourceLanguageId" });
     const difficulty = useWatch({ control, name: "difficulty" });
     const isActive = useWatch({ control, name: "isActive" });
 
     useEffect(() => {
         if (topic) {
             reset({
-                languageId: topic.languageId,
+                targetLanguageId: topic.targetLanguageId,
+                sourceLanguageId: topic.sourceLanguageId,
                 name: topic.name,
                 description: topic.description || "",
                 difficulty: topic.difficulty,
@@ -54,7 +57,8 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
             });
         } else {
             reset({
-                languageId: "",
+                targetLanguageId: "",
+                sourceLanguageId: "",
                 name: "",
                 description: "",
                 difficulty: "",
@@ -75,7 +79,8 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
 
     const onFormSubmit = async (data: CreateTopicFormData | UpdateTopicFormData) => {
         await onSubmit({
-            languageId: data.languageId,
+            targetLanguageId: data.targetLanguageId,
+            sourceLanguageId: data.sourceLanguageId,
             name: data.name,
             description: data.description,
             difficulty: data.difficulty as ProficiencyLevel,
@@ -83,7 +88,8 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
         });
     };
 
-    const selectedLanguage = activeLanguages.find(l => l.id === languageId);
+    const selectedTargetLanguage = activeLanguages.find(l => l.id === targetLanguageId);
+    const selectedSourceLanguage = activeLanguages.find(l => l.id === sourceLanguageId);
 
     return (
         <Modal
@@ -95,18 +101,36 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
             <form onSubmit={handleSubmit(onFormSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
                 <div className="space-y-1">
                     <Select
-                        label={t('admin.topics.form.language')}
+                        label={t('admin.topics.form.target_language')}
                         options={languageOptions}
-                        value={languageId}
-                        onChange={(val) => setValue("languageId", val)}
+                        value={targetLanguageId}
+                        onChange={(val) => setValue("targetLanguageId", val)}
                         placeholder={t('admin.topics.form.language_placeholder')}
                         required
-                        error={errors.languageId?.message}
+                        error={errors.targetLanguageId?.message}
                     />
-                    {selectedLanguage && (
+                    {selectedTargetLanguage && (
                         <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400 pl-1">
-                            <LanguageFlag languageCode={selectedLanguage.code} className="w-4 h-4 rounded-sm object-cover shadow-sm" />
-                            <span>{selectedLanguage.name}</span>
+                            <LanguageFlag languageCode={selectedTargetLanguage.code} className="w-4 h-4 rounded-sm object-cover shadow-sm" />
+                            <span>{selectedTargetLanguage.name}</span>
+                        </div>
+                    )}
+                </div>
+
+                <div className="space-y-1">
+                    <Select
+                        label={t('admin.topics.form.source_language')}
+                        options={languageOptions}
+                        value={sourceLanguageId}
+                        onChange={(val) => setValue("sourceLanguageId", val)}
+                        placeholder={t('admin.topics.form.language_placeholder')}
+                        required
+                        error={errors.sourceLanguageId?.message}
+                    />
+                    {selectedSourceLanguage && (
+                        <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400 pl-1">
+                            <LanguageFlag languageCode={selectedSourceLanguage.code} className="w-4 h-4 rounded-sm object-cover shadow-sm" />
+                            <span>{selectedSourceLanguage.name}</span>
                         </div>
                     )}
                 </div>
