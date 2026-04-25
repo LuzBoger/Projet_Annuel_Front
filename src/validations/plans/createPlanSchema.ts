@@ -9,7 +9,7 @@ yup.object({
     paymentInterval: yup.string().oneOf(['MONTHLY', 'YEARLY'], t('validation.planPaymentInterval.oneOf')).optional().nullable(),
     subscriptionType: yup.string().oneOf(['FREE', 'PREMIUM'], t('validation.subscriptionType.oneOf')).required(t('validation.subscriptionType.required')),
     stripePriceId: yup.string().optional().nullable(),
-    isActive: yup.boolean().optional().default(true),
+    isActive: yup.boolean().optional(),
 })
 
 export type CreatePlanFormData = yup.InferType<ReturnType<typeof createPlanSchema>>;

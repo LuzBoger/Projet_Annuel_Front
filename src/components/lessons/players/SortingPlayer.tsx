@@ -5,7 +5,7 @@ import { SortingExerciseRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
 import { ChevronRight } from "@/assets/icons";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
-import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
+import { PlayerHeader, type SegmentStatus } from "@/components/lessons/players/common/PlayerHeader";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { initPool } from "@/lib/utils/sorting";
@@ -26,8 +26,8 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
     const [isValidated, setIsValidated] = useState(false);
     const [isCorrect, setIsCorrect] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
-    const [results, setResults] = useState<('correct' | 'incorrect' | 'pending')[]>(
-        new Array(exercises.length).fill('pending')
+    const [results, setResults] = useState<SegmentStatus[]>(
+        new Array(exercises.length).fill('pending' as SegmentStatus)
     );
 
     if (currentIndex !== prevIndex || exercises !== prevExercises) {
@@ -104,7 +104,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
 
     // Compute statuses for header
     const statuses = exercises.map((_, idx) => {
-        if (idx === currentIndex) return 'current';
+        if (idx === currentIndex) return 'current' as SegmentStatus;
         return results[idx];
     });
 
@@ -113,7 +113,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
             <PlayerHeader 
                 current={currentIndex + 1} 
                 total={exercises.length} 
-                statuses={statuses as any}
+                statuses={statuses}
             />
 
             <div className="flex-1 overflow-y-auto min-h-0 flex flex-col">

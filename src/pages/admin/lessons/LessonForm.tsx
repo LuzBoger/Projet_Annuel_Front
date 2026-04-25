@@ -8,7 +8,7 @@ import { FormField } from "@/components/ui/FormField";
 import { TextArea } from "@/components/ui/TextArea";
 import { Select } from "@/components/ui/Select";
 import { Switch } from "@/components/ui/Switch";
-import { ChevronLeft, Info, Eye, Check, Cross } from "@/assets/icons";
+import { ChevronLeft, Eye, Check, Cross } from "@/assets/icons";
 import { useLesson } from "@/hooks/useLesson";
 import { useTopic } from "@/hooks/useTopic";
 import { LessonType, LessonRequest } from "@/types/lesson/lesson";
@@ -50,8 +50,10 @@ export default function LessonForm() {
     const isActive = useWatch({ control, name: "isActive" });
     const formData = useWatch({ control });
 
+    const topicsLength = topics.length;
+
     useEffect(() => {
-        if (topics.length === 0) fetchAllTopics();
+        if (topicsLength === 0) fetchAllTopics();
 
         if (isEdit && lessonId) {
             const loadLesson = async () => {
@@ -66,7 +68,7 @@ export default function LessonForm() {
             };
             loadLesson();
         }
-    }, [isEdit, lessonId, reset, fetchLessonById, fetchAllTopics, topics ?? []]);
+    }, [isEdit, lessonId, reset, fetchLessonById, fetchAllTopics, topicsLength]);
 
     const lessonTypeOptions = Object.values(LessonType).map(type => ({
         label: t(`admin.lessons.form.types.${type}`),

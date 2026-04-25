@@ -5,7 +5,7 @@ import { QueuedCard } from "@/types/components/flashcard";
 import { Button } from "@/components/ui/Button";
 import { FaceSad, FaceNeutral, FaceSmile } from "@/assets/icons";
 import { PlayerLayout } from "./common/PlayerLayout";
-import { PlayerHeader } from "./common/PlayerHeader";
+import { PlayerHeader, type SegmentStatus } from "./common/PlayerHeader";
 
 import { PlayerFooter } from "./common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
@@ -139,7 +139,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
             <PlayerHeader
                 current={completedCards + 1}
                 total={flashcards.length}
-                statuses={segmentStatuses as any}
+                statuses={segmentStatuses as SegmentStatus[]}
             />
 
             <div className="flex-1 overflow-y-auto min-h-0 py-4 flex flex-col">
@@ -168,11 +168,6 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                             <div className="absolute w-full h-full bg-brand-50 dark:bg-brand-900/10 rounded-3xl shadow-[0_12px_40px_rgba(var(--brand-500-rgb),0.1)] border border-brand-100 dark:border-brand-800/50 flex flex-col items-center justify-center p-6 text-center overflow-hidden" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
                                 <span className="absolute top-6 right-8 text-[10px] font-black text-brand-400/60 dark:text-brand-300 uppercase tracking-[0.2em]">{currentCard.backLanguage}</span>
                                 <h3 className="text-3xl sm:text-5xl font-extrabold text-brand-900 dark:text-white break-words leading-tight tracking-tight">{currentCard.back}</h3>
-                                {currentCard.example && (
-                                    <p className="mt-4 text-sm sm:text-base text-brand-700/70 dark:text-brand-300/60 italic px-4">
-                                        "{currentCard.example}"
-                                    </p>
-                                )}
                             </div>
                         </div>
                     </div>

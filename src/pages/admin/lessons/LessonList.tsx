@@ -8,6 +8,7 @@ import { SortableTable } from "@/components/ui/SortableTable";
 import { Switch } from "@/components/ui/Switch";
 import { TableActions } from "@/components/ui/TableActions";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
+import { TableColumn } from "@/types/components/tableColumn";
 import { LessonResponse } from "@/types/lesson/lesson";
 import { ChevronLeft } from "@/assets/icons";
 import { MetaData } from "@/components/seo/MetaData";
@@ -26,7 +27,7 @@ export default function LessonList() {
     const { topicId } = useParams<{ topicId: string }>();
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const { lessons, loading, fetchAdminLessonsByTopic, deleteLesson, updateLesson, toggleLessonStatus, reorderLessons } = useLesson();
+    const { lessons, loading, fetchAdminLessonsByTopic, deleteLesson, toggleLessonStatus, reorderLessons } = useLesson();
     const { topics, fetchAllTopics } = useTopic();
     
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -88,7 +89,7 @@ export default function LessonList() {
         }
     };
 
-    const columns = [
+    const columns: TableColumn[] = [
         { label: t('admin.lessons.table.title'), key: 'title' },
         { label: t('admin.lessons.table.type'), key: 'lessonType' },
         { label: t('admin.lessons.table.active'), key: 'isActive' },

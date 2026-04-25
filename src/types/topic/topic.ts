@@ -12,6 +12,7 @@ export interface TopicResponse {
     description?: string;
     difficulty: ProficiencyLevel;
     isActive: boolean;
+    orderIndex: number;
 }
 
 export interface CreateTopicRequest {

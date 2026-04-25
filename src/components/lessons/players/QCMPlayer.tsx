@@ -4,9 +4,8 @@ import { QcmQuestionRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
 import { ChevronRight } from "@/assets/icons";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
-import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
+import { PlayerHeader, type SegmentStatus } from "@/components/lessons/players/common/PlayerHeader";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
-import { PlayerFeedback } from "@/components/lessons/players/common/PlayerFeedback";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 
@@ -22,8 +21,8 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
     const [isValidated, setIsValidated] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
-    const [results, setResults] = useState<('correct' | 'incorrect' | 'pending')[]>(
-        new Array(questions.length).fill('pending')
+    const [results, setResults] = useState<SegmentStatus[]>(
+        new Array(questions.length).fill('pending' as SegmentStatus)
     );
 
     if (!questions || questions.length === 0) {
@@ -78,7 +77,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
             <PlayerHeader 
                 current={currentIndex + 1} 
                 total={questions.length} 
-                statuses={results as any}
+                statuses={results}
             />
 
             <div className="flex-1 overflow-y-auto min-h-0 flex flex-col">

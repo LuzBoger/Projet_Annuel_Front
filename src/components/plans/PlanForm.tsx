@@ -26,7 +26,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading, apiError
     const isEditPlan = !!plan;
 
     const {register, handleSubmit, reset, setValue, control, formState: { errors}} = useForm<CreatePlanFormData | UpdatePlanFormData>({
-        resolver: yupResolver(isEditPlan ? updatePlanSchema(t) : createPlanSchema(t)) as Resolver<CreatePlanFormData | UpdatePlanFormData> ,
+        resolver: yupResolver(isEditPlan ? updatePlanSchema(t) : createPlanSchema(t)) as unknown as Resolver<CreatePlanFormData | UpdatePlanFormData> ,
         defaultValues: {
             currency: 'EUR',
             paymentInterval: 'MONTHLY',

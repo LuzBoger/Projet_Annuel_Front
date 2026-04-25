@@ -26,13 +26,13 @@ export default function PlansManage() {
     const [selectedPlan, setSelectedPlan] = useState<PlanResponse | null>(null);
     const [planToToggle, setPlanToToggle] = useState<PlanResponse | null>(null);
 
-    const colums :TableColumn[] = [
-        {key: 'name', label: t('plans.table.name')},
-        {key: 'type', label: t('plans.table.type')},
-        {key: 'price', label: t('plans.table.price')},
-        {key: 'interval', label: t('plans.table.interval')},
-        {key: 'status', label: t('plans.table.status')},
-        {key: 'actions', label: t('plans.table.actions')},
+    const columns: TableColumn[] = [
+        { key: 'name', label: t('plans.table.name') },
+        { key: 'type', label: t('plans.table.type') },
+        { key: 'price', label: t('plans.table.price') },
+        { key: 'interval', label: t('plans.table.interval') },
+        { key: 'status', label: t('plans.table.status') },
+        { key: 'actions', label: t('plans.table.actions') },
     ];
 
     useEffect(() => {
@@ -119,7 +119,7 @@ export default function PlansManage() {
 
             <Table
                 data={plans}
-                columns={colums}
+                columns={columns}
                 keyExtractor={(plan) => plan.id}
                 renderRow={(plan) => (
                     <>

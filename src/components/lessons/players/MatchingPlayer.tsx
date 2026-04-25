@@ -4,9 +4,8 @@ import { MatchingPairRequest } from "@/types/lesson/lesson";
 import { ChevronRight } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
-import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
+import { PlayerHeader, type SegmentStatus } from "@/components/lessons/players/common/PlayerHeader";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
-import { PlayerFeedback } from "@/components/lessons/players/common/PlayerFeedback";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { ERROR_DISPLAY_DURATION_MS, PENALTY_PER_ERROR } from "@/constants/lesson";
 import { initTiles } from "@/lib/utils/matchingPair";
@@ -110,7 +109,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
             <PlayerHeader 
                 current={Math.min(matchedMatchIds.length + 1, pairs.length)} 
                 total={pairs.length} 
-                statuses={statuses as any}
+                statuses={statuses as SegmentStatus[]}
             />
 
             <div className="flex-1 overflow-y-auto min-h-0 flex flex-col">

@@ -38,9 +38,9 @@ export interface LessonRequest {
     title: string;
     description: string;
     orderIndex: number;
-    xpReward: number;
-    minLevelRequired: number;
-    durationMinutes: number;
+    xpReward?: number;
+    minLevelRequired?: number;
+    durationMinutes?: number;
     isActive: boolean;
     lessonType: LessonType;
     flashcards?: FlashcardRequest[];
@@ -88,8 +88,8 @@ export interface LessonSummaryResponse {
     orderIndex: number;
     lessonType: LessonType;
     isAlreadyFinish: boolean;
-    durationMinutes: number;
-    xpReward: number;
+    durationMinutes?: number;
+    xpReward?: number;
 }
 
 export interface TopicLessonsResponse {

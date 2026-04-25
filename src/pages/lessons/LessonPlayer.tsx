@@ -77,7 +77,7 @@ export default function LessonPlayer() {
             setErrorMsg(t('lessons.complete_error'));
             setIsCompleting(false);
         }
-    }, [lessonId, completeLesson, isCompleting, navigate, t, lesson]);
+    }, [lessonId, completeLesson, isCompleting, navigate, t, lesson, playSuccess]);
 
     if (errorMsg) {
         return (

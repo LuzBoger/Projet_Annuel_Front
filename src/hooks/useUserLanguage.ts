@@ -26,7 +26,7 @@ export function useUserLanguage() {
         } finally {
             setLoading(false);
         }
-    }, [t]);
+    }, [t, addToast]);
 
     const addLanguage = async (data: AddUserLanguageRequest): Promise<UserLanguageResponse | null> => {
         setLoading(true);

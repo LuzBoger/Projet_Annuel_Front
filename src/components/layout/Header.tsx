@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { hasRole } from "@/lib/utils/roles";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
 import { ChevronDown } from "@/assets/icons";
 import { Avatar } from "@/components/ui/Avatar";
 import { profileService } from "@/services/profileService";
@@ -22,7 +21,6 @@ export function Header() {
     const { user, isAuthenticated, logout } = useAuth();
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const location = useLocation();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [photoUrl, setPhotoUrl] = useState<string | null>(null);
     const [learningLanguages, setLearningLanguages] = useState<UserLanguageResponse[]>([]);
