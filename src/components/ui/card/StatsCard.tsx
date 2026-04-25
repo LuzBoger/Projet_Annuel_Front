@@ -1,14 +1,5 @@
 import { clsx } from "clsx";
-
-export type StatsCardVariant = 'default' | 'brand' | 'emerald' | 'blue' | 'rose' | 'amber' | 'gray';
-
-interface StatsCardProps {
-    title: string;
-    value: number | string;
-    color?: string;
-    variant?: StatsCardVariant;
-    className?: string;
-}
+import { StatsCardProps, StatsCardVariant } from "@/types/components/stats";
 
 const variantMap: Record<StatsCardVariant, { container: string; title: string; value: string }> = {
     default: {

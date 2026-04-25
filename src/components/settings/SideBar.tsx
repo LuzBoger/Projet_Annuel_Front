@@ -1,7 +1,7 @@
 import { Globe, Lock, Shield, User } from "lucide-react";
 import { MenuItem, SettingsTab } from "@/types/components/menutItem";
 import { useTranslation } from "react-i18next";
-import { ThemeToggle } from "../ui/ThemeToggle";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import clsx from "clsx";
 
 interface SideBarProps {

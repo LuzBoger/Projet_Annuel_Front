@@ -1,4 +1,4 @@
-import { ButtonSize, ButtonVariant } from "@/components/ui/Button";
+import { ButtonSize, ButtonVariant } from "@/types/components/button";
 
 export const variants: Record<ButtonVariant, string> = {
   primary: 'bg-linear-to-b from-brand-600 to-brand-700 dark:from-indigo-600 dark:to-indigo-700 text-white border border-brand-400/50 dark:border-indigo-400/50 shadow-[0_0_15px_rgba(79,70,229,0.3)] dark:shadow-[0_0_20px_rgba(79,70,229,0.2)] hover:from-brand-500 hover:to-brand-600 dark:hover:from-indigo-500 dark:hover:to-indigo-600 focus:ring-brand-500',

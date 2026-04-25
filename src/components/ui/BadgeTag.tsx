@@ -1,10 +1,4 @@
-export type BadgeColor = "brand" | "blue" | "green" | "red" | "yellow" | "gray" | "purple";
-
-interface BadgeTagProps {
-    children: React.ReactNode;
-    color?: BadgeColor;
-    className?: string;
-}
+import { BadgeColor, BadgeTagProps } from "@/types/components/badge";
 
 const colorMap: Record<BadgeColor, string> = {
     brand: "bg-brand-50/80 dark:bg-brand-500/20 border-brand-300/50 dark:border-brand-500/40 text-brand-700 dark:text-brand-400",

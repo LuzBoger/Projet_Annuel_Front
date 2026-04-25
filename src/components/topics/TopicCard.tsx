@@ -1,4 +1,4 @@
-import { BadgeTag } from "../ui/BadgeTag";
+import { BadgeTag } from "@/components/ui/BadgeTag";
 import { useTranslation } from "react-i18next";
 import { TopicResponse } from "@/types/topic/topic";
 import { ChevronRight } from "@/assets/icons";

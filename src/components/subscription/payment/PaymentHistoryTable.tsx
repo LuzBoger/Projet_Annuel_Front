@@ -4,7 +4,8 @@ import { TableColumn } from "@/types/components/tableColumn";
 import { Table } from "@/components/ui/Table";
 import { getFormatForCurrency } from "@/lib/utils/currency";
 import { formDateTime } from "@/lib/utils/date";
-import { BadgeTag, BadgeColor } from "@/components/ui/BadgeTag";
+import { BadgeTag } from "@/components/ui/BadgeTag";
+import { BadgeColor } from "@/types/components/badge";
 
 interface PaymentHistoryTableProps {
     payments: PaymentHistoryResponse[];
