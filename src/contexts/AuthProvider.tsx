@@ -17,13 +17,17 @@ export function AuthProvider({ children }: Readonly<{ children: React.ReactNode 
     const fetchUser = useCallback(async () => {
         try {
             const userInfo = await authService.getCurrentUser();
-            setState({
-                user: userInfo,
-                isAuthenticated: true,
-                isLoading: false,
-                required2FA: false,
-                tempUserId: null,
-            });
+            if (userInfo && userInfo.id) {
+                setState({
+                    user: userInfo,
+                    isAuthenticated: true,
+                    isLoading: false,
+                    required2FA: false,
+                    tempUserId: null,
+                });
+            } else {
+                setState({ ...initialAuthState, isLoading: false });
+            }
         } catch {
             setState({ ...initialAuthState, isLoading: false });
         }
@@ -33,13 +37,17 @@ export function AuthProvider({ children }: Readonly<{ children: React.ReactNode 
         let ignore = false;
         authService.getCurrentUser().then((userInfo) => {
             if (!ignore) {
-                setState({
-                    user: userInfo,
-                    isAuthenticated: true,
-                    isLoading: false,
-                    required2FA: false,
-                    tempUserId: null,
-                });
+                if (userInfo && userInfo.id) {
+                    setState({
+                        user: userInfo,
+                        isAuthenticated: true,
+                        isLoading: false,
+                        required2FA: false,
+                        tempUserId: null,
+                    });
+                } else {
+                    setState({ ...initialAuthState, isLoading: false });
+                }
             }
         }).catch(() => {
             if (!ignore) {

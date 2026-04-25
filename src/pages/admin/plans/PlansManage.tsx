@@ -12,25 +12,31 @@ import { DeletePlanModal } from "@/components/plans/DeletePlanModal";
 import { getFormatForCurrency } from "@/lib/utils/currency";
 import { TableActions } from "@/components/ui/TableActions";
 import { MetaData } from "@/components/seo/MetaData";
+import { BadgeTag } from "@/components/ui/BadgeTag";
+import { Switch } from "@/components/ui/Switch";
+import { ConfirmModal } from "@/components/ui/ConfirmModal";
 
 export default function PlansManage() {
     const { t, i18n } = useTranslation();
     const locale = i18n.language;
-    const { plans, loading, error, createPlan, updatePlan, deletePlan, fetchPlans, } = usePlan();
+    const { plans, loading, error, createPlan, updatePlan, deletePlan, fetchPlans, togglePlanStatus } = usePlan();
     const [showForm, setShowForm] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showStatusModal, setShowStatusModal] = useState(false);
     const [selectedPlan, setSelectedPlan] = useState<PlanResponse | null>(null);
+    const [planToToggle, setPlanToToggle] = useState<PlanResponse | null>(null);
 
-    const colums :TableColumn[] = [
-        {key: 'name', label: t('plans.table.name')},
-        {key: 'description', label: t('plans.table.description')},
-        {key: 'price', label: t('plans.table.price')},
-        {key: 'interval', label: t('plans.table.interval')},
-        {key: 'actions', label: t('plans.table.actions')},
+    const columns: TableColumn[] = [
+        { key: 'name', label: t('plans.table.name') },
+        { key: 'type', label: t('plans.table.type') },
+        { key: 'price', label: t('plans.table.price') },
+        { key: 'interval', label: t('plans.table.interval') },
+        { key: 'status', label: t('plans.table.status') },
+        { key: 'actions', label: t('plans.table.actions') },
     ];
 
     useEffect(() => {
-        fetchPlans();
+        fetchPlans(true);
     }, [fetchPlans]);
 
     const handleCreatePlan = () => {
@@ -56,7 +62,7 @@ export default function PlansManage() {
         }
         setShowForm(false);
         setSelectedPlan(null);
-        fetchPlans();
+        fetchPlans(true);
     }
 
     const onCancelPlanForm = () => {
@@ -69,19 +75,38 @@ export default function PlansManage() {
             await deletePlan(selectedPlan.id);
             setShowDeleteModal(false);
             setSelectedPlan(null);
-            fetchPlans();
+            fetchPlans(true);
         }
     }
+
+    const handleStatusToggle = (plan: PlanResponse) => {
+        setPlanToToggle(plan);
+        setShowStatusModal(true);
+    };
+
+    const confirmStatusToggle = async () => {
+        if (planToToggle) {
+            await togglePlanStatus(planToToggle.id);
+            setShowStatusModal(false);
+            setPlanToToggle(null);
+            fetchPlans(true);
+        }
+    };
+
+    const cancelStatusToggle = () => {
+        setShowStatusModal(false);
+        setPlanToToggle(null);
+    };
 
     return (
         <>
             <MetaData title={t('plans.page_title')} robots="noindex, nofollow"  />
             <div className="w-full space-y-6">
             <div className="flex items-center justify-between mb-6">
-                <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300">
+                <h1 className="text-2xl font-bold text-brand-900 dark:text-white">
                     {t('plans.page_title')}
                 </h1>
-                <Button variant="primary" onClick={handleCreatePlan}>
+                <Button variant="primary" onClick={handleCreatePlan} className="w-40">
                     {t('common.create')}
                 </Button>
             </div>
@@ -94,15 +119,26 @@ export default function PlansManage() {
 
             <Table
                 data={plans}
-                columns={colums}
+                columns={columns}
                 keyExtractor={(plan) => plan.id}
                 renderRow={(plan) => (
                     <>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{plan.name}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{plan.description}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">${getFormatForCurrency(locale, plan.currency, plan.price)}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-medium">{plan.name}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                            <BadgeTag color={plan.subscriptionType === 'PREMIUM' ? 'brand' : 'gray'}>
+                                {plan.subscriptionType}
+                            </BadgeTag>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{getFormatForCurrency(locale, plan.currency, plan.price)}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{plan.paymentInterval ? (t(`payment.intervals.${plan.paymentInterval.toLowerCase()}`)) : '-'}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                            <Switch 
+                                checked={plan.isActive} 
+                                onChange={() => handleStatusToggle(plan)}
+                                disabled={loading}
+                            />
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">
                             <TableActions 
                                 onEdit={() => handleEditPlan(plan)}
                                 onDelete={plan.subscriptionType !== "FREE" ? () => handleDeletePlan(plan) : undefined} 
@@ -115,6 +151,7 @@ export default function PlansManage() {
             <PlanForm
                 isOpen={showForm}
                 isLoading={loading}
+                apiError={error}
                 plan={selectedPlan}
                 onCancel={onCancelPlanForm}
                 onSubmit={onSubmitPlanForm}
@@ -126,6 +163,15 @@ export default function PlansManage() {
                 plan={selectedPlan}
                 onCancel={() => setShowDeleteModal(false)}
                 onDelete={confirmDeletePlan}
+            />
+
+            <ConfirmModal
+                isOpen={showStatusModal}
+                title={t('admin.plans.status_title')}
+                description={t('admin.plans.status_desc')}
+                onConfirm={confirmStatusToggle}
+                onCancel={cancelStatusToggle}
+                isConfirming={loading}
             />
         </div>
         </>

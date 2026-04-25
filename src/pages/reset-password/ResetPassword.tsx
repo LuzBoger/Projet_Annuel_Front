@@ -56,7 +56,7 @@ export default function ResetPassword() {
           </div>
           <Link
             to="/forgot-password"
-            className="text-indigo-600 hover:text-indigo-800 text-sm"
+            className="text-brand-600 hover:text-brand-800 text-sm"
           >
             {t("auth.reset_password.request_new_link")}
           </Link>
@@ -76,7 +76,7 @@ export default function ResetPassword() {
           </div>
           <Link
             to="/login"
-            className="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
+            className="text-brand-600 hover:text-brand-800 text-sm font-medium"
           >
             {t("auth.reset_password.go_to_login")}
           </Link>

@@ -33,7 +33,6 @@ export default function LanguageList() {
     const columns: TableColumn[] = [
         { key: 'code', label: t('admin.languages.table.code') },
         { key: 'name', label: t('admin.languages.table.name') },
-        { key: 'orderIndex', label: t('admin.languages.table.orderIndex') },
         { key: 'isActive', label: t('admin.languages.table.isActive') },
         { key: 'actions', label: t('admin.languages.table.actions') },
     ];
@@ -88,7 +87,7 @@ export default function LanguageList() {
             await updateLanguage(selectedLanguage.id, {
                 code: selectedLanguage.code,
                 name: selectedLanguage.name,
-                orderIndex: selectedLanguage.orderIndex,
+                orderIndex: 0,
                 isActive: pendingStatus
             });
             setShowStatusModal(false);
@@ -109,10 +108,10 @@ export default function LanguageList() {
             <MetaData title={t('languages.page_title')} robots="noindex, nofollow"  />
             <div className="w-full space-y-6">
                 <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300">
+                    <h1 className="text-2xl font-bold text-brand-900 dark:text-white">
                         {t('admin.languages.page_title')}
                     </h1>
-                    <Button variant="primary" onClick={handleCreate}>
+                    <Button variant="primary" onClick={handleCreate} className="w-40">
                         {t('common.create')}
                     </Button>
                 </div>
@@ -136,14 +135,13 @@ export default function LanguageList() {
                                 </div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">{lang.name}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">{lang.orderIndex}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
                                 <Switch
                                     checked={lang.isActive}
                                     onChange={(checked) => handleStatusToggle(lang, checked)}
                                 />
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right border-b border-gray-200 dark:border-gray-700">
                                 <TableActions 
                                     onEdit={() => handleEdit(lang)} 
                                     onDelete={() => handleDelete(lang)} 

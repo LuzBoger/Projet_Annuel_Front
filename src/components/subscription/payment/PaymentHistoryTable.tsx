@@ -4,7 +4,8 @@ import { TableColumn } from "@/types/components/tableColumn";
 import { Table } from "@/components/ui/Table";
 import { getFormatForCurrency } from "@/lib/utils/currency";
 import { formDateTime } from "@/lib/utils/date";
-import { paymentStatusColors } from "@/constants/colors";
+import { BadgeTag } from "@/components/ui/BadgeTag";
+import { BadgeColor } from "@/types/components/badge";
 
 interface PaymentHistoryTableProps {
     payments: PaymentHistoryResponse[];
@@ -37,10 +38,13 @@ export function PaymentHistoryTable({payments} : PaymentHistoryTableProps) {
                     <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400 font-medium">{getFormatForCurrency(locale, payment.currency, payment.amount)}</td>
                     <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{formDateTime(payment.paidAt, locale)}</td>
                     <td className="px-4 py-3 text-center">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium
-                            ${paymentStatusColors[payment.status] || paymentStatusColors.PENDING}`}>
+                        <BadgeTag color={
+                            (payment.status === "SUCCEEDED" ? "green" : 
+                             payment.status === "PENDING" ? "yellow" : 
+                             payment.status === "FAILED" ? "red" : "blue") as BadgeColor
+                        }>
                             {t(`subscription.paymentHistory.status.${payment.status.toLowerCase()}`)}
-                        </span>
+                        </BadgeTag>
                     </td>
                 </>
             )}

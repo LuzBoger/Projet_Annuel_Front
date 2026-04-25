@@ -19,21 +19,22 @@ export function TableActions({ onView, onEdit, onDelete, onCancelAction, onLesso
                 <IconButton 
                     onClick={onView}
                     title={t('common.view')}
-                    icon={<Eye className="w-5 h-5 scale-110" />}
+                    icon={<Eye className="w-6 h-6" />}
                 />
             )}
             {onLessons && (
                 <IconButton 
+                    variant="success"
                     onClick={onLessons}
                     title={t('admin.topics.manage_lessons')}
-                    icon={<BookOpen className="w-5 h-5 text-green-600" />}
+                    icon={<BookOpen className="w-6 h-6" />}
                 />
             )}
             {onEdit && (
                 <IconButton 
                     onClick={onEdit}
                     title={t('common.edit')}
-                    icon={<Edit className="w-5 h-5" />}
+                    icon={<Edit className="w-6 h-6" />}
                 />
             )}
             {onDelete && (
@@ -41,7 +42,7 @@ export function TableActions({ onView, onEdit, onDelete, onCancelAction, onLesso
                     variant="danger"
                     onClick={onDelete}
                     title={t('common.delete')}
-                    icon={<Trash className="w-5 h-5" />}
+                    icon={<Trash className="w-6 h-6" />}
                 />
             )}
             {onCancelAction && (
@@ -49,7 +50,7 @@ export function TableActions({ onView, onEdit, onDelete, onCancelAction, onLesso
                     variant="warning"
                     onClick={onCancelAction}
                     title={t('common.cancel')}
-                    icon={<Ban className="w-5 h-5" />}
+                    icon={<Ban className="w-6 h-6" />}
                 />
             )}
         </div>

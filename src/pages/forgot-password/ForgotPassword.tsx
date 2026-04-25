@@ -51,7 +51,7 @@ export default function ForgotPassword() {
             <p className="text-green-800 text-sm">{t('auth.forgot_password.email_sent')}</p>
           </div>
           <p className="text-sm text-gray-600">{t('auth.forgot_password.check_inbox')}</p>
-          <Link to="/login" className="text-indigo-600 hover:text-indigo-800 text-sm">
+          <Link to="/login" className="text-brand-600 hover:text-brand-800 text-sm">
             {t('auth.forgot_password.back_to_login')}
           </Link>
         </div>
@@ -74,7 +74,7 @@ export default function ForgotPassword() {
           />
 
           <div className="mt-6 text-center">
-            <Link to="/login" className="text-indigo-600 hover:text-indigo-800 text-sm">
+            <Link to="/login" className="text-brand-600 hover:text-brand-800 text-sm">
               {t('auth.forgot_password.back_to_login')}
             </Link>
           </div>

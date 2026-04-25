@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
-import { Fragment } from "react/jsx-runtime";
 import { Button } from "@/components/ui/Button";
 
 export function LocaleLanguageSwitcher() {
@@ -9,21 +8,24 @@ export function LocaleLanguageSwitcher() {
   const locales = Object.keys(i18n.options.resources ?? {}).map(l => l.toUpperCase());
 
   return (
-    <div className="fixed top-4 right-4 flex items-center gap-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full px-3 py-1.5 shadow-sm text-sm font-medium z-50">
-      {locales.map((locale, i) => (
-        <Fragment key={locale}>
-          {i > 0 && <span className="text-gray-300">|</span>}
-          <Button
-            variant="none"
-            onClick={() => {
-              i18n.changeLanguage(locale.toLowerCase());
-              localStorage.setItem('locale', locale.toLowerCase());
-            }}
-            className={clsx('px-1 transition-colors', current === locale ? 'text-indigo-600 font-bold' : 'text-gray-400 hover:text-gray-600')}
-          >
-            {locale}
-          </Button>
-        </Fragment>
+    <div className="flex items-center p-0.5 bg-gray-100/50 dark:bg-gray-800/40 border border-gray-200 dark:border-gray-800 rounded-lg">
+      {locales.map((locale) => (
+        <Button
+          key={locale}
+          variant="none"
+          onClick={() => {
+            i18n.changeLanguage(locale.toLowerCase());
+            localStorage.setItem('locale', locale.toLowerCase());
+          }}
+          className={clsx(
+            'px-2.5 py-1 text-[11px] uppercase font-bold transition-all duration-200 rounded-md', 
+            current === locale 
+              ? 'bg-gray-200/80 dark:bg-gray-950/60 text-brand-700 dark:text-brand-200' 
+              : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+          )}
+        >
+          {locale}
+        </Button>
       ))}
     </div>
   );

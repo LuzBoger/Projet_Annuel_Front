@@ -42,7 +42,7 @@ export function LoginForm({ onSubmit, isLoading }: LoginFormProps) {
             />
 
             <div className="text-right">
-                <Link to="/forgot-password" className="text-sm text-indigo-600 hover:text-indigo-700">
+                <Link to="/forgot-password" className="text-sm text-brand-600 hover:text-brand-700">
                     {t('auth.login.forgot_password')}
                 </Link>
             </div>

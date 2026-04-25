@@ -13,24 +13,28 @@ export function PlayerFeedback({ isVisible, isCorrect, title, description, extra
     if (!isVisible) return null;
 
     return (
-        <div className={`w-full p-5 rounded-2xl mb-6 border-2 flex items-start gap-4 animate-[fade-in-up_0.3s_ease-out] ${
-            isCorrect
-                ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300'
-                : 'bg-red-50 dark:bg-red-900/20 border-red-100 dark:border-red-800 text-red-900 dark:text-red-300'
+        <div className={`w-full p-6 rounded-2xl mb-6 shadow-xl border border-gray-100 dark:border-gray-800 border-l-4 flex items-start gap-5 animate-[fade-in-up_0.3s_ease-out] bg-white dark:bg-gray-900 ${
+            isCorrect ? 'border-l-emerald-500' : 'border-l-red-500'
         }`}>
-            <div className={`mt-0.5 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                isCorrect ? 'bg-emerald-200 dark:bg-emerald-800 text-emerald-800 dark:text-emerald-200' : 'bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200'
+            <div className={`mt-0.5 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm ${
+                isCorrect ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400' : 'bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400'
             }`}>
-                {isCorrect ? <Check className="w-5 h-5 flex-shrink-0" /> : <Cross className="w-5 h-5 flex-shrink-0" />}
+                {isCorrect ? <Check className="w-6 h-6 flex-shrink-0" /> : <Cross className="w-6 h-6 flex-shrink-0" />}
             </div>
-            <div>
-                {title && <h4 className="font-semibold text-lg mb-1 text-gray-900 dark:text-white">{title}</h4>}
-                {description && (
-                    <p className="opacity-90 font-medium text-sm leading-relaxed mt-1 text-gray-700">
-                        {description}
-                    </p>
+            <div className="flex-1">
+                {title && (
+                    <h4 className={`font-bold text-xl mb-1 ${
+                        isCorrect ? 'text-emerald-700 dark:text-emerald-400' : 'text-red-700 dark:text-red-400'
+                    }`}>
+                        {title}
+                    </h4>
                 )}
-                {extra && <div className="mt-2">{extra}</div>}
+                {description && (
+                    <div className="text-[15px] leading-relaxed select-none text-gray-600 dark:text-gray-300">
+                        {description}
+                    </div>
+                )}
+                {extra && <div className="mt-3">{extra}</div>}
             </div>
         </div>
     );

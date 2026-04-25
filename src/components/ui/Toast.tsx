@@ -25,35 +25,35 @@ export function Toast({ toast, onClose }: ToastProps) {
         switch (type) {
             case 'success':
                 return {
-                    bg: 'bg-green-50 dark:bg-green-900/20',
-                    border: 'border-green-200 dark:border-green-700',
-                    text: 'text-green-800 dark:text-green-200',
-                    iconColor: 'text-green-500 dark:text-green-400',
+                    bg: 'bg-green-50/95 dark:bg-green-900/90 backdrop-blur-md',
+                    border: 'border-green-200 dark:border-green-500/50',
+                    text: 'text-green-900 dark:text-green-50',
+                    iconColor: 'text-green-600 dark:text-green-400',
                     Icon: Check,
                 };
             case 'error':
                 return {
-                    bg: 'bg-red-50 dark:bg-red-900/20',
-                    border: 'border-red-200 dark:border-red-700',
-                    text: 'text-red-800 dark:text-red-200',
-                    iconColor: 'text-red-500 dark:text-red-400',
+                    bg: 'bg-red-50/95 dark:bg-red-900/90 backdrop-blur-md',
+                    border: 'border-red-200 dark:border-red-500/50',
+                    text: 'text-red-900 dark:text-red-50',
+                    iconColor: 'text-red-600 dark:text-red-400',
                     Icon: Cross,
                 };
             case 'warning':
                 return {
-                    bg: 'bg-yellow-50 dark:bg-yellow-900/20',
-                    border: 'border-yellow-200 dark:border-yellow-700',
-                    text: 'text-yellow-800 dark:text-yellow-200',
-                    iconColor: 'text-yellow-500 dark:text-yellow-400',
+                    bg: 'bg-yellow-50/95 dark:bg-yellow-900/90 backdrop-blur-md',
+                    border: 'border-yellow-200 dark:border-yellow-500/50',
+                    text: 'text-yellow-900 dark:text-yellow-50',
+                    iconColor: 'text-yellow-600 dark:text-yellow-400',
                     Icon: Warning,
                 };
             case 'info':
             default:
                 return {
-                    bg: 'bg-blue-50 dark:bg-blue-900/20',
-                    border: 'border-blue-200 dark:border-blue-700',
-                    text: 'text-blue-800 dark:text-blue-200',
-                    iconColor: 'text-blue-500 dark:text-blue-400',
+                    bg: 'bg-blue-50/95 dark:bg-blue-900/90 backdrop-blur-md',
+                    border: 'border-blue-200 dark:border-blue-500/50',
+                    text: 'text-blue-900 dark:text-blue-50',
+                    iconColor: 'text-blue-600 dark:text-blue-400',
                     Icon: Info,
                 };
         }

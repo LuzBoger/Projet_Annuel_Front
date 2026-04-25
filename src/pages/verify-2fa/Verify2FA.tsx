@@ -58,7 +58,7 @@ export default function Verify2FA() {
       <Verify2FAForm onSubmit={handleSubmit} isLoading={isLoading} />
 
       <div className="mt-6 text-center">
-        <Link to="/login" className="text-indigo-600 hover:text-indigo-800 text-sm">
+        <Link to="/login" className="text-brand-600 hover:text-brand-800 text-sm">
           {t('auth.back_home')}
         </Link>
       </div>

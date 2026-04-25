@@ -24,10 +24,10 @@ export function FlashcardForm({ control, register, errors }: FlashcardFormProps)
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white">{t('admin.lessons.form.types.FLASHCARD')}</h3>
                 <Button 
                     type="button" 
-                    variant="outline" 
+                    variant="pill-green"
                     size="sm" 
                     onClick={() => append({ front: "", back: "", frontLanguage: "fr", backLanguage: "en" })}
-                    className="flex items-center gap-2"
+                    className="gap-2"
                 >
                     <Plus className="w-4 h-4" />
                     {t('admin.lessons.flashcards.add')}
@@ -36,13 +36,13 @@ export function FlashcardForm({ control, register, errors }: FlashcardFormProps)
 
             <div className="grid gap-6">
                 {fields.map((field, index) => (
-                    <div key={field.id} className="relative p-6 bg-gray-50 dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-700 group">
+                    <div key={field.id} className="relative p-6 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-100 dark:border-gray-800 group transition-all hover:bg-white dark:hover:bg-gray-900/60 hover:shadow-md">
                         <Button
                             type="button"
                             variant="ghost"
                             size="sm"
                             onClick={() => remove(index)}
-                            className="absolute -top-3 -right-3 p-2 bg-white dark:bg-gray-800 shadow-md hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all "
+                            className="absolute -top-3 -right-3 p-2 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all opacity-0 group-hover:opacity-100"
                         >
                             <Trash className="w-4 h-4" />
                         </Button>

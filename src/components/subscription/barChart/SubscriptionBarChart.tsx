@@ -31,7 +31,7 @@ export function SubscriptionBarChart({ monthly, yearly }: SubscriptionBarChartPr
     const isEmpty = data.length === 0;
 
    return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6">
+    <div className="bg-white dark:bg-gray-900 rounded-2xl border border-slate-200 dark:border-gray-800 shadow-sm p-6">
       <SubscriptionsBarChartHeader view={view} onChange={setView} />
 
       {isEmpty ? (
@@ -41,7 +41,7 @@ export function SubscriptionBarChart({ monthly, yearly }: SubscriptionBarChartPr
       ) : (
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data} barCategoryGap="20%">
-            <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#374151' : '#f1f5f9'} vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#1f2937' : '#f1f5f9'} vertical={false} />
             <XAxis
               dataKey="label"
               tick={{ fontSize: 12, fill: isDark ? '#9ca3af' : '#94a3b8' }}
@@ -57,17 +57,17 @@ export function SubscriptionBarChart({ monthly, yearly }: SubscriptionBarChartPr
             <Tooltip
               contentStyle={{
                 borderRadius: '12px',
-                border: `1px solid ${isDark ? '#374151' : '#e2e8f0'}`,
-                backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                border: `1px solid ${isDark ? '#1f2937' : '#e2e8f0'}`,
+                backgroundColor: isDark ? '#030712' : '#ffffff',
                 color: isDark ? '#f9fafb' : '#0f172a',
                 boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
                 fontSize: '13px',
               }}
-              cursor={{ fill: isDark ? '#374151' : '#f8fafc' }}
+              cursor={{ fill: isDark ? '#111827' : '#f8fafc' }}
             />
             <Bar
               dataKey={dataKey}
-              fill="#6366f1"
+              fill={isDark ? '#818cf8' : '#4f46e5'}
               radius={[6, 6, 0, 0]}
               maxBarSize={48}
             />

@@ -16,6 +16,7 @@ import { TableActions } from "@/components/ui/TableActions";
 import { languageService } from "@/services/languageService";
 import { LanguageFlag } from "@/components/languages/LanguageFlag";
 import { MetaData } from "@/components/seo/MetaData";
+import { BadgeTag } from "@/components/ui/BadgeTag";
 
 export default function TopicList() {
     const { t } = useTranslation();
@@ -54,7 +55,6 @@ export default function TopicList() {
         { key: 'name', label: t('admin.topics.table.name') },
         { key: 'language', label: t('admin.topics.table.language') },
         { key: 'difficulty', label: t('admin.topics.table.difficulty') },
-        { key: 'orderIndex', label: t('admin.topics.table.order') },
         { key: 'isActive', label: t('admin.topics.table.active') },
         { key: 'actions', label: t('admin.topics.table.actions') },
     ];
@@ -119,11 +119,11 @@ export default function TopicList() {
     const confirmStatusChange = async () => {
         if (selectedTopic && pendingStatus !== null) {
             await updateTopic(selectedTopic.id, {
-                languageId: selectedTopic.languageId,
+                targetLanguageId: selectedTopic.targetLanguageId,
+                sourceLanguageId: selectedTopic.sourceLanguageId,
                 name: selectedTopic.name,
                 description: selectedTopic.description,
                 difficulty: selectedTopic.difficulty,
-                orderIndex: selectedTopic.orderIndex,
                 isActive: pendingStatus
             });
             setShowStatusModal(false);
@@ -159,10 +159,10 @@ export default function TopicList() {
             <MetaData title={t('admin.topics.page_title')} robots="noindex, nofollow"  />
             <div className="w-full space-y-6">
                 <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300">
+                    <h1 className="text-2xl font-bold text-brand-900 dark:text-white">
                         {t('admin.topics.page_title')}
                     </h1>
-                    <Button variant="primary" onClick={handleCreate}>
+                    <Button variant="primary" onClick={handleCreate} className="w-40">
                         {t('common.create')}
                     </Button>
                 </div>
@@ -204,7 +204,8 @@ export default function TopicList() {
                     columns={columns}
                     keyExtractor={(topic) => topic.id}
                     renderRow={(topic) => {
-                        const lang = getLanguageInfo(topic.languageId);
+                        const targetLang = getLanguageInfo(topic.targetLanguageId);
+                        const sourceLang = getLanguageInfo(topic.sourceLanguageId);
                         return (
                             <>
                                 <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700">
@@ -212,28 +213,40 @@ export default function TopicList() {
                                     {topic.description && <div className="text-xs text-gray-500 dark:text-gray-400 font-normal mt-1 max-w-xs truncate" title={topic.description}>{topic.description}</div>}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200 dark:border-gray-700">
-                                    {lang ? (
-                                        <div className="flex items-center space-x-2">
-                                            <LanguageFlag languageCode={lang.code} className="w-5 h-5 rounded-sm shadow-sm" />
-                                            <span className="text-sm font-medium text-gray-900 dark:text-white">{lang.code.toUpperCase()}</span>
-                                        </div>
-                                    ) : (
-                                        <span className="text-sm text-gray-400 dark:text-gray-500">?</span>
-                                    )}
+                                    <div className="flex items-center space-x-3">
+                                        {targetLang ? (
+                                            <div className="flex items-center space-x-1.5" title={t('admin.topics.form.target_language')}>
+                                                <LanguageFlag languageCode={targetLang.code} className="w-5 h-5 rounded-sm shadow-sm" />
+                                                <span className="text-sm font-semibold text-brand-600 dark:text-brand-400">{targetLang.code.toUpperCase()}</span>
+                                            </div>
+                                        ) : (
+                                            <span className="text-sm text-gray-400">?</span>
+                                        )}
+                                        
+                                        <span className="text-gray-300 dark:text-gray-600">|</span>
+                                        
+                                        {sourceLang ? (
+                                            <div className="flex items-center space-x-1.5" title={t('admin.topics.form.source_language')}>
+                                                <LanguageFlag languageCode={sourceLang.code} className="w-5 h-5 rounded-sm shadow-sm" />
+                                                <span className="text-sm font-medium text-gray-500 dark:text-gray-400">{sourceLang.code.toUpperCase()}</span>
+                                            </div>
+                                        ) : (
+                                            <span className="text-sm text-gray-400">?</span>
+                                        )}
+                                    </div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
-                                    <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
+                                    <BadgeTag color="blue">
                                         {topic.difficulty}
-                                    </span>
+                                    </BadgeTag>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">{topic.orderIndex}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
                                     <Switch
                                         checked={topic.isActive}
                                         onChange={(checked) => handleStatusToggle(topic, checked)}
                                     />
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-200 dark:border-gray-700">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right border-b border-gray-200 dark:border-gray-700">
                                     <TableActions
                                         onEdit={() => handleEdit(topic)}
                                         onDelete={() => handleDelete(topic)}
