@@ -21,10 +21,10 @@ export function Pagination({ currentPage, hasMore, onNext, onPrev }: PaginationP
         `}
       >
         <ChevronLeft className="w-4 h-4" />
-        <span className="hidden sm:inline">{t("previous", "Précédent")}</span>
+        <span className="hidden sm:inline">{t("previous")}</span>
       </button>
 
-      <div className="flex items-center justify-center w-8 h-8 rounded-md bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-semibold text-sm border border-indigo-100 dark:border-indigo-800">
+      <div className="flex items-center justify-center w-8 h-8 rounded-md bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-400 font-semibold text-sm border border-brand-100 dark:border-brand-500/30">
         {currentPage}
       </div>
 
@@ -36,7 +36,7 @@ export function Pagination({ currentPage, hasMore, onNext, onPrev }: PaginationP
           hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed
         `}
       >
-        <span className="hidden sm:inline">{t("next", "Suivant")}</span>
+        <span className="hidden sm:inline">{t("next")}</span>
         <ChevronRight className="w-4 h-4" />
       </button>
     </div>

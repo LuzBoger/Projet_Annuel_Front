@@ -14,13 +14,19 @@
     "locked": "Verrouillé",
     "finish": "Terminer",
     "empty": "Aucune donnée disponible",
-    "no_data": "Aucune donnée disponible",
+    "noData": "Aucune donnée disponible",
     "back": "Retour",
+    "next": "Suivant",
     "quit": "Quitter",
     "home": "Retour à l'accueil",
     "continue": "Continuer",
     "loading": "Chargement...",
-    "skip": "Passer"
+    "skip": "Passer",
+    "enabled": "Activé",
+    "disabled": "Désactivé",
+    "on": "sur",
+    "mute": "Couper le son",
+    "unmute": "Activer le son"
   },
   "onBoarding": {
     "selectNativeLanguage": "Quelle est votre langue maternelle ?",
@@ -227,8 +233,10 @@
     "table": {
       "name": "Nom",
       "description": "Description",
+      "type": "Type",
       "price": "Prix",
       "interval": "Période de paiement",
+      "status": "Statut",
       "actions": "Actions"
     }
   },
@@ -237,7 +245,9 @@
       "title": "Tableau de bord"
     },
     "plans": {
-      "title": "Plans"
+      "title": "Plans",
+      "status_title": "Changer le statut",
+      "status_desc": "Êtes-vous sûr de vouloir changer le statut de ce plan d'abonnement ?"
     },
     "subscriptions": {
       "title": "Gestion des abonnements"
@@ -253,14 +263,12 @@
       "table": {
         "code": "Code",
         "name": "Nom",
-        "orderIndex": "Ordre",
         "isActive": "Actif",
         "actions": "Actions"
       },
       "form": {
         "code": "Code sélectionné",
         "name": "Libellé affiché",
-        "order": "Index de tri",
         "active": "Langue active",
         "select_placeholder": "Sélectionnez une langue",
         "flag_preview": "Aperçu du Drapeau :"
@@ -293,7 +301,8 @@
         "status_inactive": "Inactifs uniquement"
       },
       "form": {
-        "language": "Langue",
+        "target_language": "Langue Cible",
+        "source_language": "Langue Source",
         "language_placeholder": "Sélectionnez une langue",
         "name": "Nom du topic",
         "description": "Description",
@@ -333,9 +342,6 @@
         "title": "Titre de la leçon",
         "description": "Description",
         "order": "Index de tri",
-        "xp": "Récompense XP",
-        "minLevel": "Niveau min. requis",
-        "duration": "Durée (min)",
         "passScore": "Score de passage (%)",
         "active": "Leçon active",
         "type": "Type de leçon",
@@ -367,6 +373,7 @@
         "add_option": "Ajouter une option",
         "correct": "Bonne réponse",
         "explanation": "Explication",
+        "explanation_placeholder": "Expliquez pourquoi cette réponse est la bonne...",
         "add_question": "Ajouter une question"
       },
       "matching": {
@@ -384,11 +391,17 @@
         "note_new": "L'ordre dans lequel vous ajoutez les éléments définit la bonne réponse."
       },
       "preview": {
-        "title": "Aperçu en direct",
+        "title": "Actions rapides",
         "no_data": "Remplissez les informations pour voir l'aperçu",
         "flashcard_label": "Flashcard",
         "sorting_label": "Mise en ordre",
-        "visual_confirm": "Ceci est un aperçu visuel uniquement"
+        "visual_confirm": "Ceci est un aperçu visuel uniquement",
+        "simulate_btn": "Simuler la leçon",
+        "simulate_title": "Simulation de Leçon",
+        "simulation_complete": "Simulation terminée !",
+        "score_preview": "Votre score simulé :",
+        "retry_simulation": "Recommencer",
+        "unsupported_type": "Type de leçon non supporté pour la simulation"
       }
     }
   },
@@ -491,35 +504,40 @@
       "invalid_2fa_code": "Code de vérification invalide."
     },
     "validation": "Les données saisies sont invalides.",
-    "fetchPlans": "Impossible de récupérer les plans.",
-    "fetchPlanById": "Impossible de récupérer les détails du plan.",
-    "fetchPlansByInterval": "Impossible de récupérer les plans par intervalle.",
-    "createPlan": "Impossible de créer le plan.",
-    "updatePlan": "Impossible de mettre à jour le plan.",
-    "deletePlan": "Impossible de supprimer le plan.",
-    "fetchSubscriptions": "Impossible de récupérer les abonnements.",
-    "fetchSubscriptionDetails": "Impossible de récupérer les détails de l'abonnement.",
-    "fetchSubscriptionByAccountId": "Impossible de récupérer l'abonnement.",
-    "subscribeToPlan": "Impossible de souscrire au plan.",
-    "cancelSubscription": "Impossible d'annuler l'abonnement.",
-    "cancelSubscriptionByAdmin": "Impossible d'annuler l'abonnement.",
-    "reactivateSubscription": "Impossible de réactiver l'abonnement.",
-    "changePlan": "Impossible de changer de plan.",
+    "fetchTopics": "Impossible de récupérer les Topics.",
+    "searchTopics": "Impossible de rechercher les Topics.",
+    "fetchPlans": "Impossible de récupérer les Plans d'Abonnement.",
+    "fetchPlanById": "Impossible de récupérer les détails du Plan d'Abonnement.",
+    "fetchPlansByInterval": "Impossible de récupérer les Plans d'Abonnement par intervalle.",
+    "createPlan": "Impossible de créer le Plan d'Abonnement.",
+    "updatePlan": "Impossible de mettre à jour le Plan d'Abonnement.",
+    "deletePlan": "Impossible de supprimer le Plan d'Abonnement.",
+    "fetchSubscriptions": "Impossible de récupérer les Abonnements.",
+    "fetchSubscriptionDetails": "Impossible de récupérer les détails de l'Abonnement.",
+    "fetchSubscriptionByAccountId": "Impossible de récupérer l'Abonnement.",
+    "subscribeToPlan": "Impossible de souscrire au Plan.",
+    "cancelSubscription": "Impossible d'annuler l'Abonnement.",
+    "cancelSubscriptionByAdmin": "Impossible d'annuler l'Abonnement.",
+    "reactivateSubscription": "Impossible de réactiver l'Abonnement.",
+    "changePlan": "Impossible de changer de Plan.",
     "fetchPaymentHistory": "Impossible de récupérer l'historique des paiements.",
     "fetchPaymentHistoryByAccountId": "Impossible de récupérer l'historique des paiements.",
-    "fetchLanguages": "Impossible de récupérer les langues.",
-    "fetchLanguageById": "Impossible de récupérer les détails de la langue.",
-    "fetchLanguageByCode": "Impossible de récupérer la langue par code.",
-    "createLanguage": "Impossible de créer la langue.",
-    "updateLanguage": "Impossible de mettre à jour la langue.",
-    "deleteLanguage": "Impossible de supprimer la langue.",
-    "fetchLessons": "Impossible de récupérer les leçons.",
-    "fetchLessonById": "Impossible de récupérer la leçon.",
-    "createLesson": "Impossible de créer la leçon.",
-    "updateLesson": "Impossible de mettre à jour la leçon.",
-    "deleteLesson": "Impossible de supprimer la leçon.",
-    "startLesson": "Impossible de démarrer la leçon.",
-    "completeLesson": "Impossible de valider la leçon.",
+    "fetchLanguages": "Impossible de récupérer les Langues.",
+    "fetchLanguageById": "Impossible de récupérer les détails de la Langue.",
+    "fetchLanguageByCode": "Impossible de récupérer la Langue par code.",
+    "createLanguage": "Impossible de créer la Langue.",
+    "updateLanguage": "Impossible de mettre à jour la Langue.",
+    "deleteLanguage": "Impossible de supprimer la Langue.",
+    "fetchLessons": "Impossible de récupérer les Leçons.",
+    "fetchLessonById": "Impossible de récupérer la Leçon.",
+    "createLesson": "Impossible de créer la Leçon.",
+    "updateLesson": "Impossible de mettre à jour la Leçon.",
+    "deleteLesson": "Impossible de supprimer la Leçon.",
+    "createTopic": "Impossible de créer le Topic.",
+    "updateTopic": "Impossible de mettre à jour le Topic.",
+    "deleteTopic": "Impossible de supprimer le Topic.",
+    "startLesson": "Impossible de démarrer la Leçon.",
+    "completeLesson": "Impossible de valider la Leçon.",
     "fetchReviews": "Impossible de récupérer les avis.",
     "addReview": "Impossible de soumettre l'avis.",
     "updateReview": "Impossible de mettre à jour l'avis.",
@@ -628,7 +646,6 @@
     "language": {
       "title": "Langue d'interface",
       "page_title": "Paramètres de langue"
-
     },
     "languages": {
       "french": "Français",
@@ -642,7 +659,7 @@
     "menu": {
       "profile": "Profil",
       "password": "Mot de passe",
-      "2fa": "Double authentification",
+      "2fa": "Double Auth",
       "language": "Langue",
       "theme": "Thème"
     },
@@ -728,7 +745,8 @@
     "description": "Cet utilisateur a choisi de garder son profil privé."
   },
   "show": "Afficher",
-  "items": "éléments",
+  "items_one": "élément",
+  "items_other": "éléments",
   "of": "sur",
   "next": "Suivant",
   "previous": "Précédent",
@@ -740,11 +758,13 @@
     "privateDescription": "Ce profil n'est pas visible publiquement.",
     "info": {
       "title": "Votre profil est privé",
+      "section_title": "Informations du profil",
       "description": "Votre profil n'est pas visible publiquement. Mettez à jour vos paramètres pour le rendre visible."
     },
     "edit": "Modifier le profil",
     "settings": {
-      "page_title": "Paramètres du profil"
+      "page_title": "Paramètres du profil",
+      "subtitle": "Gérez les informations de votre profil public."
     },
     "bio": "Bio",
     "bio_placeholder": "Parlez-nous de vous...",
@@ -764,6 +784,7 @@
     },
     "image": {
       "title": "Photo de profil",
+      "edit_label": "Modifier",
       "delete": "Supprimer la photo",
       "upload": "Télécharger une photo",
       "requirements": "JPG, PNG. Max 5 Mo.",
@@ -837,10 +858,10 @@
     "topicCard": {
       "lessons": "leçons",
       "completed": "complétées",
-      "next": "Prochaine",
-      "hide": "Masquer",
-      "show": "Afficher",
-      "practice": "S'entraîner"
+      "next": "PROCHAINE",
+      "practice": "S'entraîner",
+      "review": "Réviser",
+      "allLessonsFinished": "Toutes les leçons ont été complétées !"
     },
     "badgeStatusLanguages": {
       "completed": "Complété",

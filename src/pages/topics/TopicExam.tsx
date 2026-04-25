@@ -12,6 +12,7 @@ import { ExamSortingQuestion } from "@/components/topics/ExamSortingQuestion";
 import { UserPairAnswer, Tile } from "@/types/components/examMatching";
 import { shuffleArray } from "@/lib/utils/topic";
 import { MetaData } from "@/components/seo/MetaData";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 type ExamItem =
     | { type: 'QCM', data: QcmQuestionExamResponse }
@@ -25,6 +26,7 @@ export default function TopicExam() {
     const { topicId } = useParams<{ topicId: string }>();
     const navigate = useNavigate();
     const { t } = useTranslation();
+    const { playSuccess } = useSoundEffects();
 
     const [exam, setExam] = useState<ExamResponse | null>(null);
     const [loading, setLoading] = useState(true);
@@ -101,6 +103,9 @@ export default function TopicExam() {
 
             const response = await topicService.submitTopicExam(topicId, resultPayload);
             setExamResult(response);
+            if (response.success) {
+                playSuccess();
+            }
         } catch {
             setError(t('topics.exam_submit_error'));
         } finally {
@@ -110,8 +115,8 @@ export default function TopicExam() {
 
     if (examResult) {
         return (
-            <div className="min-h-screen bg-indigo-50/50 dark:bg-gray-900 flex flex-col items-center justify-center p-4">
-                <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-[2rem] shadow-xl shadow-indigo-100/50 p-8 sm:p-10 text-center animate-[fade-in-up_0.5s_ease-out]">
+            <div className="min-h-screen bg-brand-50/50 dark:bg-gray-900 flex flex-col items-center justify-center p-4">
+                <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-[2rem] shadow-xl shadow-brand-500/10 dark:shadow-none p-8 sm:p-10 text-center animate-[fade-in-up_0.5s_ease-out]">
                     <div className={`w-24 h-24 ${examResult.success ? 'bg-gradient-to-br from-yellow-300 to-yellow-500' : 'bg-gradient-to-br from-gray-300 to-gray-500'} text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner ring-8 ${examResult.success ? 'ring-yellow-50' : 'ring-gray-50'}`}>
                         {examResult.success ? (
                             <StarIcon className="w-12 h-12" />
@@ -120,7 +125,7 @@ export default function TopicExam() {
                         )}
                     </div>
 
-                    <h2 className={`text-3xl sm:text-4xl font-medium tracking-tight mb-2 ${examResult.success ? 'text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-800' : 'text-gray-800'}`}>
+                    <h2 className={`text-3xl sm:text-4xl font-medium tracking-tight mb-2 ${examResult.success ? 'text-transparent bg-clip-text bg-gradient-to-r from-brand-900 to-brand-800' : 'text-gray-800'}`}>
                         {examResult.success ? t('topics.exam_passed') : t('topics.exam_failed')}
                     </h2>
                     <p className="text-gray-500 font-medium mb-8 bg-gray-50 py-2 px-4 rounded-xl inline-block border border-gray-100">
@@ -128,10 +133,10 @@ export default function TopicExam() {
                     </p>
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
-                        <div className="bg-indigo-50 dark:bg-indigo-900/30 rounded-2xl p-5 border border-indigo-100/50 dark:border-indigo-800 relative overflow-hidden">
+                        <div className="bg-brand-50 dark:bg-brand-900/30 rounded-2xl p-5 border border-brand-100/50 dark:border-brand-800 relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-16 h-16 bg-white opacity-30 transform rotate-45 translate-x-6 -translate-y-6"></div>
-                            <p className="text-indigo-800 text-[10px] font-large uppercase tracking-widest mb-1">{t('lessons.xp_earned')}</p>
-                            <p className="text-3xl font-medium text-indigo-600">+{examResult.xpEarned}</p>
+                            <p className="text-brand-800 text-[10px] font-large uppercase tracking-widest mb-1">{t('lessons.xp_earned')}</p>
+                            <p className="text-3xl font-medium text-brand-600">+{examResult.xpEarned}</p>
                         </div>
 
                         <div className={`rounded-2xl p-5 border relative overflow-hidden ${examResult.success ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-100/50 dark:border-emerald-800' : 'bg-red-50 dark:bg-red-900/20 border-red-100/50 dark:border-red-800'}`}>
@@ -193,7 +198,7 @@ export default function TopicExam() {
             </Button>
 
             <div className="mb-12 text-center">
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-600 tracking-tight">
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-900 to-brand-600 tracking-tight">
                     {t('topics.exam_title')}
                 </h1>
                 <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
@@ -203,7 +208,7 @@ export default function TopicExam() {
 
             {loading ? (
                 <div className="flex justify-center items-center py-24">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"></div>
                 </div>
             ) : error ? (
                 <div className="mb-8 p-6 bg-red-50 dark:bg-red-900/20 rounded-2xl border border-red-100 dark:border-red-800 text-center">
@@ -236,7 +241,7 @@ export default function TopicExam() {
                         <div className="w-full max-w-2xl mx-auto flex flex-col items-center">
                             <div className="w-full mb-8">
                                 <div className="flex justify-between text-sm font-medium text-gray-500 mb-3">
-                                    <span className="uppercase tracking-widest text-[10px] sm:text-xs text-indigo-500">
+                                    <span className="uppercase tracking-widest text-[10px] sm:text-xs text-brand-500">
                                         {t('topics.exam_progress')}
                                     </span>
                                     <span className="bg-white dark:bg-gray-800 px-3 py-1 rounded-full shadow-sm border border-gray-100 dark:border-gray-700">
@@ -245,7 +250,7 @@ export default function TopicExam() {
                                 </div>
                                 <div className="w-full bg-gray-200/50 dark:bg-gray-700/50 rounded-full h-3 shadow-inner overflow-hidden">
                                     <div
-                                        className="bg-indigo-500 h-3 rounded-full transition-all duration-500 ease-out"
+                                        className="bg-brand-500 h-3 rounded-full transition-all duration-500 ease-out"
                                         style={{ width: `${((currentIndex) / mixedQuestions.length) * 100}%` }}
                                     ></div>
                                 </div>

@@ -14,14 +14,16 @@ import { LanguageResponse } from "@/types/language/language";
 import { LanguageSwitcherButton } from "@/components/languages/LanguageSwitcherButton";
 import { userLanguageService } from "@/services/userLanguage";
 import { Button } from "@/components/ui/Button";
+import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Header() {
     const { user, isAuthenticated, logout } = useAuth();
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [photoUrl, setPhotoUrl] = useState<string | null>(null); 
-    const [learningLanguages, setLearningLanguages] = useState<UserLanguageResponse[]>([]); 
+    const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+    const [learningLanguages, setLearningLanguages] = useState<UserLanguageResponse[]>([]);
     const [activeLanguage, setActiveLanguage] = useState<LanguageResponse | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -44,14 +46,14 @@ export function Header() {
                 if (profile.photoUrl) {
                     setPhotoUrl(getProfileImageUrl(profile.photoUrl));
                 }
-                if(profile.activeLanguage) {
+                if (profile.activeLanguage) {
                     setActiveLanguage(profile.activeLanguage);
                 }
             })
-            .catch(() => {});
+            .catch(() => { });
         userLanguageService.getUserLearningLanguages()
             .then(setLearningLanguages)
-            .catch(() => {});
+            .catch(() => { });
     }, [isAuthenticated, user?.hasCompletedOnboarding]);
 
     useEffect(() => {
@@ -96,11 +98,11 @@ export function Header() {
     };
 
     return (
-        <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="bg-gray-100 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40">
+            <div className="max-w-full mx-auto px-4 sm:px-6">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex-shrink-0 flex items-center">
-                        <Link to="/" className="text-2xl font-bold text-indigo-600 hover:text-indigo-500 transition-colors">
+                        <Link to="/" className="text-2xl font-bold text-brand-600 dark:text-white hover:text-brand-500 dark:hover:text-gray-300 transition-colors">
                             Skaldly
                         </Link>
                     </div>
@@ -110,33 +112,33 @@ export function Header() {
                             <>
                                 {!isAdmin && (
                                     <>
-                                        <Link to="/plans" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/plans" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("plans.page_title")}
                                         </Link>
-                                        <Link to="/subscription" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/subscription" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("subscription.title")}
                                         </Link>
-                                        <Link to="/catalog-languages" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/catalog-languages" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("catalogLanguages.title")}
                                         </Link>
                                     </>
                                 )}
-                                
+
                                 {isAdmin && (
                                     <div className="flex items-center space-x-8">
-                                        <Link to="/admin" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/admin" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.dashboard.title")}
                                         </Link>
-                                        <Link to="/admin/languages" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/admin/languages" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.languages.page_title")}
                                         </Link>
-                                        <Link to="/admin/plans" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/admin/plans" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.plans.title")}
                                         </Link>
-                                        <Link to="/admin/subscriptions" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/admin/subscriptions" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.subscriptions.title")}
                                         </Link>
-                                        <Link to="/admin/topics" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                        <Link to="/admin/topics" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.topics.page_title")}
                                         </Link>
                                     </div>
@@ -151,10 +153,10 @@ export function Header() {
                         )}
                         {!isAuthenticated ? (
                             <div className="flex items-center space-x-8">
-                                <Link to="/login" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                <Link to="/login" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                     {t("auth.login.title")}
                                 </Link>
-                                <Link to="/register" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                <Link to="/register" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                     {t("auth.register.title")}
                                 </Link>
                             </div>
@@ -173,17 +175,17 @@ export function Header() {
                                 </Button>
 
                                 {isDropdownOpen && (
-                                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
+                                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 z-50 overflow-hidden">
                                         <Link
                                             to="/profile"
-                                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-indigo-600 transition-colors"
+                                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-brand-600 transition-colors first:rounded-t-md"
                                             onClick={() => setIsDropdownOpen(false)}
                                         >
                                             {t("profile.title")}
                                         </Link>
                                         <Link
                                             to="/settings"
-                                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-indigo-600 transition-colors"
+                                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-brand-600 transition-colors"
                                             onClick={() => setIsDropdownOpen(false)}
                                         >
                                             {t("settings.title")}
@@ -194,7 +196,7 @@ export function Header() {
                                                 setIsDropdownOpen(false);
                                                 handleLogout();
                                             }}
-                                            className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors border-t border-gray-100 dark:border-gray-700"
+                                            className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors border-t border-gray-100 dark:border-gray-700 last:rounded-b-md"
                                         >
                                             {t("auth.logout")}
                                         </Button>
@@ -202,6 +204,10 @@ export function Header() {
                                 )}
                             </div>
                         )}
+                        <div className="flex items-center gap-2 ml-2 mr-1">
+                            <ThemeToggle />
+                            <LocaleLanguageSwitcher />
+                        </div>
                     </div>
                 </div>
             </div>

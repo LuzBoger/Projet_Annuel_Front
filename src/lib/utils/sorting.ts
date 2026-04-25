@@ -5,7 +5,7 @@ export const initPool = (exercises: SortingExerciseRequest[], currentIndex: numb
     if (!exercises || exercises.length === 0 || !exercises[currentIndex]) return [];
     
     const currentExercise = exercises[currentIndex];
-    const items: SortableItem[] = currentExercise.items.map((text, index) => ({
+    const items: SortableItem[] = (currentExercise.items || []).map((text, index) => ({
         id: `item-${currentIndex}-${index}`,
         text,
         originalIndex: index

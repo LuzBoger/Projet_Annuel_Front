@@ -5,9 +5,9 @@ interface PlayerLayoutProps {
     maxWidth?: string;
 }
 
-export function PlayerLayout({ children, maxWidth = "max-w-2xl" }: PlayerLayoutProps) {
+export function PlayerLayout({ children }: PlayerLayoutProps) {
     return (
-        <div className={`flex flex-col items-center ${maxWidth} mx-auto w-full pb-8 px-4 sm:px-0`}>
+        <div className="flex flex-col items-stretch w-full flex-1 min-h-0">
             {children}
         </div>
     );

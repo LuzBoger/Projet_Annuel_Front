@@ -27,7 +27,13 @@ const processRequests = (error: AxiosError | null) => {
 }
 
 apiClient.interceptors.response.use(
-    (response) => response,
+    (response) => {
+        const contentType = response.headers['content-type'];
+        if (typeof response.data === 'string' && contentType && contentType.includes('text/html')) {
+            return Promise.reject(new Error("Format de réponse invalide : HTML reçu au lieu de JSON."));
+        }
+        return response;
+    },
     async (error: AxiosError) => {
         const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
         const isPublic = PUBLIC_ENDPOINTS.some(endpoint => originalRequest.url?.includes(endpoint));

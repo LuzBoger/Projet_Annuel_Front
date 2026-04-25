@@ -13,11 +13,11 @@ export function usePlan() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchPlans = useCallback(async () => {
+    const fetchPlans = useCallback(async (isAdmin: boolean = false) => {
         setLoading(true);
         setError(null);
         try {
-            const response = await planService.getAllPlans();
+            const response = isAdmin ? await planService.getAllPlansAdmin() : await planService.getAllPlans();
             setPlans(response);
         } catch {
             setError(t('error.fetchPlans'));
@@ -80,6 +80,20 @@ export function usePlan() {
         }
     };
 
+    const togglePlanStatus = async (planId: string) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await planService.togglePlanStatus(planId);
+            setPlans(prev => prev.map(p => p.id === planId ? response : p));
+            addToast({ type: 'success', message: t('admin.plans.success.toggle', 'Statut du plan mis à jour') });
+        } catch {
+            setError(t('error.togglePlanStatus', 'Erreur lors du changement de statut'));
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const deletePlan = async (planId: string) => {
         setLoading(true);
         setError(null);
@@ -94,5 +108,5 @@ export function usePlan() {
         }
     };
 
-    return { plans, plan, loading, error, fetchPlans, fetchPlanById, fetchPlansByInterval, createPlan, updatePlan, deletePlan };
+    return { plans, plan, loading, error, fetchPlans, fetchPlanById, fetchPlansByInterval, createPlan, updatePlan, togglePlanStatus, deletePlan };
 }

@@ -62,7 +62,7 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
         <PlayerCard
             instruction={
                 <div className="flex justify-center mb-4">
-                    <span className="px-4 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold tracking-wide uppercase">
+                    <span className="px-4 py-1.5 bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 rounded-full text-sm font-bold tracking-wide uppercase">
                         {t('lessons.matching.instruction')}
                     </span>
                 </div>
@@ -80,9 +80,9 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
                         let buttonClass = "w-full min-h-[90px] p-4 rounded-2xl border-2 transition-all duration-300 font-medium text-[15px] sm:text-lg flex items-center justify-center text-center select-none ";
 
                         if (isSelected) {
-                            buttonClass += "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 scale-[1.03] shadow-lg ring-4 ring-indigo-100/50 dark:ring-indigo-900";
+                            buttonClass += "border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-white scale-[1.03] shadow-lg ring-4 ring-brand-100/50 dark:ring-brand-900";
                         } else {
-                            buttonClass += "border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-200 dark:hover:border-indigo-700 hover:bg-indigo-50/20 dark:hover:bg-indigo-900/20 active:scale-95 shadow-sm hover:shadow-md";
+                            buttonClass += "border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-brand-200 dark:hover:border-brand-700 hover:bg-brand-50/20 dark:hover:bg-brand-900/20 active:scale-95 shadow-sm hover:shadow-md";
                         }
 
                         return (
@@ -102,14 +102,14 @@ export function ExamMatchingQuestion({ shuffledTiles, userPairs, onChange }: Exa
             {userPairs.length > 0 && (
                 <div className="mt-10 border-t border-gray-50 dark:border-gray-700 pt-8">
                     <h4 className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-5 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span>
+                        <span className="w-1.5 h-1.5 bg-brand-400 rounded-full"></span>
                         {t('topics.exam_matching_answers')}
                     </h4>
                     <div className="flex flex-wrap gap-3">
                         {userPairs.map((pair, idx) => (
-                            <div key={idx} className="group flex items-center bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-indigo-100 dark:hover:border-indigo-800 rounded-xl px-4 py-2.5 shadow-[0_2px_10px_rgb(0,0,0,0.02)] transition-all">
+                            <div key={idx} className="group flex items-center bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-brand-100 dark:hover:border-brand-800 rounded-xl px-4 py-2.5 shadow-[0_2px_10px_rgb(0,0,0,0.02)] transition-all">
                                 <span className="font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base">{pair.item1}</span>
-                                <span className="mx-3 text-indigo-300/70 dark:text-indigo-600/70 font-bold">↔</span>
+                                <span className="mx-3 text-brand-300/70 dark:text-brand-600/70 font-bold">↔</span>
                                 <span className="font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base">{pair.item2}</span>
                                 <Button
                                     onClick={() => handleUndoPair(pair)}

@@ -11,7 +11,7 @@ import { topicService } from "@/services/topicService";
 import { LanguageResponse } from "@/types/language/language";
 import { TopicWithProgressResponse } from "@/types/topic/topic";
 import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
-import { Star } from "lucide-react";
+import { ArrowLeft, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
@@ -72,26 +72,27 @@ export function LanguageDetailPage() {
         <>
             <MetaData title={language.name} robots="noindex, nofollow" />
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <Button variant="outline" size="sm" onClick={() => navigate("/catalog-languages")} className="mb-8">
+                <Button variant="pill-red" size="sm" onClick={() => navigate("/catalog-languages")} className="mb-8">
+                    <ArrowLeft className="w-4 h-4 mr-2" />
                     {t("common.back")}
                 </Button>
 
             <div className="flex items-start gap-6 mb-8">
-                <div className="w-16 h-16 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-2xl font-back text-gray-700 dark:text-gray-200 ">
+                <div className="w-16 h-16 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-2xl font-black text-gray-700 dark:text-gray-200 ">
                     {language.code.toUpperCase()}
                 </div>
 
                 <div className="flex-1">
                     <h1 className="text-4xl font-black text-gray-900 dark:text-white">{language.name}</h1>
                     <div className="flex flex-wrap gap-2 mt-3">
-                        <BadgeTag variant="default">{
+                        <BadgeTag color="gray">{
                                 (() => {
                                     const range = language.levelRange ?? "A1-C2";
                                     const parts = range.split(" → ");
                                     return parts[0] === parts[1] ? parts[0] : range;
                                 })()
                             }</BadgeTag>
-                        {language.isPopular && ( <BadgeTag variant="popular"> <Star className="w-3 h-3 text-yellow-500 inline mr-1" /> {t("popular")}</BadgeTag> )}
+                        {language.isPopular && ( <BadgeTag color="yellow"> <Star className="w-3 h-3 text-yellow-500" /> {t("popular")}</BadgeTag> )}
                     </div>
                 </div>
 
@@ -108,8 +109,8 @@ export function LanguageDetailPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-4 mb-10">
-                <StatsCard value={language.topicsCount ?? 0} title={t("pages.languageDetail.topics")}/>
-                <StatsCard value={language.lessonsCount ?? 0} title={t("pages.languageDetail.lessons")}/>
+                <StatsCard variant="blue" value={language.topicsCount ?? 0} title={t("pages.languageDetail.topics")}/>
+                <StatsCard variant="emerald" value={language.lessonsCount ?? 0} title={t("pages.languageDetail.lessons")}/>
             </div>
             <div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">

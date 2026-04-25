@@ -8,6 +8,11 @@ export const lessonService = {
         return response.data;
     },
 
+    async getAdminLessonsByTopic(topicId: string): Promise<LessonResponse[]> {
+        const response = await apiClient.get<LessonResponse[]>(`/lessons/admin/topic/${topicId}`);
+        return response.data;
+    },
+
     async getTopicLessonsDetails(topicId: string): Promise<TopicLessonsResponse> {
         const response = await apiClient.get<TopicLessonsResponse>(`/lessons/topic/${topicId}/details`);
         return response.data;
@@ -32,6 +37,11 @@ export const lessonService = {
         await apiClient.delete(`/lessons/${id}`);
     },
 
+    async toggleLessonStatus(id: string): Promise<LessonResponse> {
+        const response = await apiClient.patch<LessonResponse>(`/lessons/${id}/toggle-status`);
+        return response.data;
+    },
+
     async startLesson(lessonId: string): Promise<UserLessonProgressSummary> {
         const response = await apiClient.post<UserLessonProgressSummary>(`/lessons/${lessonId}/start`);
         return response.data;
@@ -40,5 +50,9 @@ export const lessonService = {
     async completeLesson(lessonId: string, data: CompleteLessonRequest): Promise<CompleteLessonResponse> {
         const response = await apiClient.post<CompleteLessonResponse>(`/lessons/${lessonId}/complete`, data);
         return response.data;
+    },
+
+    async reorderLessons(topicId: string, reorderRequests: { id: string, orderIndex: number }[]): Promise<void> {
+        await apiClient.patch(`/lessons/admin/topic/${topicId}/reorder`, reorderRequests);
     }
 };

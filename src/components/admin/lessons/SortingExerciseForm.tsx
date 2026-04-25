@@ -25,10 +25,10 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white">{t('admin.lessons.form.types.SORTING_EXERCISE')}</h3>
                 <Button 
                     type="button" 
-                    variant="outline" 
+                    variant="pill-green"
                     size="sm" 
                     onClick={() => append({ value: "" })}
-                    className="flex items-center gap-2"
+                    className="gap-2"
                 >
                     <Plus className="w-4 h-4" />
                     {t('admin.lessons.sorting.add')}
@@ -37,8 +37,17 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
 
             <div className="space-y-3">
                 {fields.map((field, index) => (
-                    <div key={field.id} className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-700 group transition-all hover:bg-white dark:hover:bg-gray-800 hover:shadow-sm">
-                        
+                    <div key={field.id} className="relative flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-100 dark:border-gray-800 group transition-all hover:bg-white dark:hover:bg-gray-900/60 hover:shadow-md">
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => remove(index)}
+                            className="absolute -top-3 -right-3 p-2 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all opacity-0 group-hover:opacity-100"
+                        >
+                            <Trash className="w-4 h-4" />
+                        </Button>
+
                         <div className="flex flex-col gap-1 items-center justify-center">
                             <IconButton
                                 icon={<ChevronUp className="w-5 h-5" />}
@@ -47,7 +56,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                                 variant="ghost"
                                 title={t('admin.lessons.sorting.move_up')}
                             />
-                            <span className="text-xs font-bold text-gray-300 dark:text-gray-600 select-none">{index + 1}</span>
+                            <span className="text-xs font-bold text-gray-300 dark:text-gray-700 select-none">{index + 1}</span>
                             <IconButton
                                 icon={<ChevronDown className="w-5 h-5" />}
                                 disabled={index === fields.length - 1}
@@ -64,18 +73,6 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                                 placeholder="ex: Je m'appelle..."
                                 error={(errors.sortingItems?.[index] as Record<string, FieldError | undefined>)?.value?.message}
                                 required/>
-                        </div>
-                        
-                        <div className="mt-6">
-                            <Button
-                                type="button"
-                                variant="secondary"
-                                size="sm"
-                                onClick={() => remove(index)}
-                                className="bg-white dark:bg-gray-800 p-2 !text-gray-400 dark:!text-gray-500 hover:!text-red-600 dark:hover:!text-red-400 hover:!bg-red-50 dark:hover:!bg-red-900/20 border border-gray-100 dark:border-gray-700 shadow-sm opacity-0 group-hover:opacity-100 transition-all"
-                            >
-                                <Trash className="w-4 h-4" />
-                            </Button>
                         </div>
                     </div>
                 ))}
