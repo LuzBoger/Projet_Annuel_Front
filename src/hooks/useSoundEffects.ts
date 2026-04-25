@@ -1,6 +1,6 @@
 import { useRef, useCallback, useState, useEffect } from 'react';
-
-const MUTE_EVENT = 'glotrush_mute_toggle';
+import { MUTE_EVENT } from '@/constants/global';
+import { SoundEffectType } from '@/types/sound';
 
 /**
  * Custom hook to manage sound effects for gamification.
@@ -18,7 +18,7 @@ export function useSoundEffects() {
     const successAudio = useRef<HTMLAudioElement | null>(null);
 
     // Initialize audio objects lazily
-    const getAudio = useCallback((type: 'correct' | 'incorrect' | 'success') => {
+    const getAudio = useCallback((type: SoundEffectType) => {
         if (type === 'correct') {
             if (!correctAudio.current) {
                 correctAudio.current = new Audio('/assets/sounds/correct.mp3');
@@ -57,7 +57,7 @@ export function useSoundEffects() {
         };
     }, []);
 
-    const playSound = useCallback((type: 'correct' | 'incorrect' | 'success') => {
+    const playSound = useCallback((type: SoundEffectType) => {
         if (isMuted) return;
 
         const audio = getAudio(type);

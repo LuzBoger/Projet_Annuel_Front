@@ -2,6 +2,8 @@ import { ReactNode, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Cross } from '@/assets/icons';
 import { clsx, type ClassValue } from 'clsx';
+import { ModalSize } from '@/types/components/modal';
+import { sizeClasses } from '@/constants/modal';
 
 function cn(...inputs: ClassValue[]) {
   return clsx(inputs);
@@ -12,19 +14,11 @@ interface ModalProps {
   onClose: () => void;
   title?: ReactNode;
   children: ReactNode;
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  size?: ModalSize;
   showCloseButton?: boolean;
   closeOnOverlayClick?: boolean;
   className?: string;
 }
-
-const sizeClasses = {
-  sm: 'max-w-md',
-  md: 'max-w-lg',
-  lg: 'max-w-2xl',
-  xl: 'max-w-4xl',
-  full: 'max-w-[95vw]',
-};
 
 export function Modal({
   isOpen,

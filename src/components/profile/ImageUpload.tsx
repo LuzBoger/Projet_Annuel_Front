@@ -7,6 +7,7 @@ import { FileInput } from '@/components/ui/FileInput';
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { Edit, Trash } from "@/assets/icons";
+import { Button } from "@/components/ui/Button";
 
 interface ProfileImageUploadProps {
     currentPhotoUrl?: string;

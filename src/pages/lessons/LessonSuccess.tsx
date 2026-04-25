@@ -7,6 +7,10 @@ import { StarIcon } from "@/assets/icons";
 import { CompleteLessonResponse, LessonResponse } from "@/types/lesson/lesson";
 import { MetaData } from "@/components/seo/MetaData";
 
+/**
+ * Component displayed upon successful completion of a lesson.
+ * Triggers confetti animation and shows rewards (XP, level up).
+ */
 export default function LessonSuccess() {
     const { t } = useTranslation();
     const navigate = useNavigate();
