@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import confetti from "canvas-confetti";
@@ -10,10 +9,6 @@ import { useEffect, useState } from "react";
 import { SubmitReviewModal } from "@/components/reviews/SubmitReviewModal";
 import { reviewService } from "@/services/reviewService";
 
-/**
- * Component displayed upon successful completion of a lesson.
- * Triggers confetti animation and shows rewards (XP, level up).
- */
 export default function LessonSuccess() {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -41,7 +36,6 @@ export default function LessonSuccess() {
             const end = Date.now() + duration;
 
             const frame = () => {
-                // Only fire on some frames to reduce density (approx 30% of frames)
                 if (Math.random() > 0.7) {
                     confetti({
                         particleCount: 1,
