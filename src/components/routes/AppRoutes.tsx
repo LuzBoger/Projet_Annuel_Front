@@ -36,7 +36,6 @@ import { Header } from "@/components/layout/Header";
 import { RoleEnum } from "@/types/enum/roles";
 import { AUTH_PATH } from "@/constants/global";
 import Dashboard from "@/pages/user/Dashboard";
-import { LocaleLanguageSwitcher } from "../ui/LocaleLanguageSwitcher";
 import ReviewManage from "@/pages/admin/reviews/ReviewManage";
 import { useNotifications } from "@/hooks/useNotifications";
 
