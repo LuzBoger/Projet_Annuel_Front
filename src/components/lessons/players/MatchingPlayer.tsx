@@ -4,7 +4,8 @@ import { MatchingPairRequest } from "@/types/lesson/lesson";
 import { ChevronRight } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
-import { PlayerHeader, type SegmentStatus } from "@/components/lessons/players/common/PlayerHeader";
+import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
+import { SegmentStatus } from "@/types/components/player";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { ERROR_DISPLAY_DURATION_MS, PENALTY_PER_ERROR } from "@/constants/lesson";
@@ -97,7 +98,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
         onFinish(finalScore);
     };
 
-    // Compute statuses for the header
+
     const statuses = pairs.map((_, idx) => {
         if (idx < matchedMatchIds.length) return 'correct';
         if (idx === matchedMatchIds.length) return 'current';
@@ -151,7 +152,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                             </div>
                         </PlayerCard>
 
-                        {/* Feedback has been moved to the footer */}
+
                     </div>
                 </div>
             </div>

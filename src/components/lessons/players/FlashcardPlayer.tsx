@@ -5,7 +5,8 @@ import { QueuedCard } from "@/types/components/flashcard";
 import { Button } from "@/components/ui/Button";
 import { FaceSad, FaceNeutral, FaceSmile } from "@/assets/icons";
 import { PlayerLayout } from "./common/PlayerLayout";
-import { PlayerHeader, type SegmentStatus } from "./common/PlayerHeader";
+import { PlayerHeader } from "./common/PlayerHeader";
+import { SegmentStatus } from "@/types/components/player";
 
 import { PlayerFooter } from "./common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";

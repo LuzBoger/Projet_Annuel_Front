@@ -87,25 +87,25 @@ export function ProfileImageUpload({ currentPhotoUrl, onUploadSuccess, onDeleteS
                     size="w-48 h-48" 
                 />
                 
-                <button
-                    type="button"
+                <Button
+                    variant="none"
                     onClick={() => fileInputRef.current?.click()}
                     disabled={uploading}
                     className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-all text-sm font-medium text-gray-700 dark:text-gray-200"
                 >
                     <Edit className="w-4 h-4" />
                     {t('profile.image.edit_label')}
-                </button>
+                </Button>
 
                 {display && !uploading && (
-                     <button
-                        type="button"
+                     <Button
+                        variant="none"
                         onClick={() => setConfirmOpen(true)}
                         className="absolute -top-2 -right-2 p-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-400 hover:text-red-600 transition-colors"
                         title={t('profile.image.delete')}
                     >
                         <Trash className="w-4 h-4" />
-                    </button>
+                    </Button>
                 )}
             </div>
 

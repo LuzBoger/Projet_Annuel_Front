@@ -2,8 +2,8 @@ import { useTranslation } from "react-i18next";
 import { Volume2, VolumeX } from "lucide-react";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 import { Button } from "@/components/ui/Button";
-
-export type SegmentStatus = 'correct' | 'medium' | 'incorrect' | 'pending' | 'current';
+import { SegmentStatus } from "@/types/components/player";
+import { getSegmentColor } from "@/lib/utils/player";
 
 interface PlayerHeaderProps {
     current: number;
@@ -15,16 +15,6 @@ interface PlayerHeaderProps {
 export function PlayerHeader({ current, total, label, statuses }: PlayerHeaderProps) {
     const { t } = useTranslation();
     const { isMuted, toggleMute } = useSoundEffects();
-
-    const getSegmentColor = (status: SegmentStatus) => {
-        switch (status) {
-            case 'correct': return 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.3)]';
-            case 'medium': return 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.3)]';
-            case 'incorrect': return 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.3)]';
-            case 'current': return 'border-2 border-brand-500 dark:border-brand-400 bg-transparent ring-2 ring-brand-500/20 animate-pulse';
-            default: return 'bg-gray-200 dark:bg-gray-700/50';
-        }
-    };
 
 
     const items = statuses || Array.from({ length: total }, (_, i) =>

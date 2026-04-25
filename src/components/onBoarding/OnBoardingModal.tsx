@@ -34,7 +34,7 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
 
   return (
     <Modal
-      isOpen={true} // Controlled by AppRoutes
+      isOpen={true} 
       onClose={skip}
       title={step === "native" ? t("onBoarding.selectNativeLanguage") : t("onBoarding.selectLearningLanguage")}
       size="md"

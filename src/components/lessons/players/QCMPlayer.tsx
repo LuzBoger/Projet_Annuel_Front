@@ -4,7 +4,8 @@ import { QcmQuestionRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
 import { ChevronRight } from "@/assets/icons";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
-import { PlayerHeader, type SegmentStatus } from "@/components/lessons/players/common/PlayerHeader";
+import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
+import { SegmentStatus } from "@/types/components/player";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
@@ -71,7 +72,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
         }
     };
 
-    // Prepare statuses for the header
+
     return (
         <PlayerLayout maxWidth="max-w-2xl">
             <PlayerHeader 
@@ -124,7 +125,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                             </div>
                         </PlayerCard>
 
-                        {/* Feedback has been moved to the footer */}
+
                     </div>
                 </div>
             </div>

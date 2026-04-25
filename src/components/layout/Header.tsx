@@ -14,7 +14,7 @@ import { LanguageResponse } from "@/types/language/language";
 import { LanguageSwitcherButton } from "@/components/languages/LanguageSwitcherButton";
 import { userLanguageService } from "@/services/userLanguage";
 import { Button } from "@/components/ui/Button";
-import { LocaleLanguageSwitcher } from "../ui/LocaleLanguageSwitcher";
+import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Header() {
