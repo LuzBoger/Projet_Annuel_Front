@@ -37,4 +37,4 @@ jobs:
           passphrase: ${{ secrets.SERVER_SSH_PASSPHRASE }}
           script: |
             docker pull arthurbrd/glotrush-front:latest
-            docker service update --image arthurbrd/glotrush-front:latest skaldly_front
+            docker service update --image arthurbrd/glotrush-front:latest --force skaldly_front
