@@ -1,0 +1,931 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "update": "Update",
+    "create": "Create",
+    "close": "Close",
+    "active": "Active",
+    "view": "View",
+    "edit": "Edit",
+    "save": "Save",
+    "confirm": "Confirm",
+    "user": "User",
+    "loading": "Loading...",
+    "locked": "Locked",
+    "finish": "Finish",
+    "empty": "No data available",
+    "noData": "No data available",
+    "back": "Back",
+    "next": "Next",
+    "quit": "Quit",
+    "home": "Back to Home",
+    "continue": "Continue",
+    "skip": "Skip",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "on": "of",
+    "mute": "Mute",
+    "unmute": "Unmute"
+  },
+  "onBoarding": {
+    "selectNativeLanguage": "What is your native language?",
+    "selectLearningLanguage": "Which language do you want to learn?"
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign in",
+      "forgot_password": "Forgot password?",
+      "no_account": "Don't have an account?",
+      "create_account": "Create an account",
+      "secretKey": "Secret Key",
+      "email_placeholder": "paul@example.com"
+    },
+    "register": {
+      "title": "Create an account",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "username": "Username",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "password_hint": "Min. 12 characters, 1 uppercase, 1 lowercase, 1 number, 1 special",
+      "submit": "Create my account",
+      "has_account": "Already have an account?",
+      "login": "Sign in",
+      "success": "Registration successful! You can now sign in.",
+      "email_placeholder": "paul@example.com"
+    },
+    "back_home": "Back to home",
+    "forgot_password": {
+      "title": "Forgot password",
+      "description": "Enter your email address and we'll send you a link to reset your password.",
+      "email": "Email address",
+      "submit": "Send reset link",
+      "email_sent": "Email sent!",
+      "check_inbox": "Check your inbox to reset your password.",
+      "back_to_login": "Back to login"
+    },
+    "reset_password": {
+      "title": "Reset password",
+      "description": "Enter your new password.",
+      "new_password": "New password",
+      "confirm_password": "Confirm password",
+      "submit": "Reset password",
+      "success": "Your password has been reset successfully.",
+      "go_to_login": "Go to login",
+      "token_expired": "The reset link has expired.",
+      "weak_password": "The password is too weak.",
+      "invalid_link": "The reset link is invalid or has expired.",
+      "request_new_link": "Request a new link"
+    },
+    "verify_2fa": {
+      "title": "Two-factor authentication",
+      "description": "Enter the 6-digit code from your authenticator app.",
+      "submit": "Verify"
+    },
+    "logout": "Logout",
+    "illustrations": {
+      "default": {
+        "title_start": "Master languages with ",
+        "title_highlight": "Artificial Intelligence",
+        "description": "Drawing on decades of cognitive science research to etch vocabulary into your long-term memory."
+      },
+      "register": {
+        "title_start": "Join the learning ",
+        "title_highlight": "revolution",
+        "description": "Your personal data is strictly confidential and will never be shared with third parties. Your progress belongs to you."
+      },
+      "login": {
+        "title_start": "Welcome back to your ",
+        "title_highlight": "learning space",
+        "description": "Find your progress, statistics, and personalized reviews all in one place."
+      },
+      "forgot_password": {
+        "title_start": "Account ",
+        "title_highlight": "Security",
+        "description": "Skaldly will never ask for your personal username or password via email or phone."
+      },
+      "admin": {
+        "title_start": "Administration ",
+        "title_highlight": "Area",
+        "description": "This area is strictly reserved for the management and configuration of the Skaldly platform."
+      }
+    }
+  },
+  "subscription": {
+    "stats": {
+      "totalActiveSubscribers": "Total Active Subscribers",
+      "totalRevenue": "Total Revenue"
+    },
+    "title": "Subscription",
+    "page_title": "My subscription",
+    "current_plan": "Current plan",
+    "select_plan": "Select a plan",
+    "view_plans": "View plans",
+    "upgrade_message": "Upgrade your plan to access more features.",
+    "type": {
+      "free": "Free",
+      "premium": "Premium"
+    },
+    "included": "Included",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "interval": {
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    },
+    "paymentHistory": {
+      "method": "Payment method",
+      "amount": "Amount",
+      "date": "Date",
+      "no_payments": "No payments found.",
+      "payments": "Payment{{s}}",
+      "status": {
+        "label": "Status",
+        "pending": "Pending",
+        "succeeded": "Succeeded",
+        "failed": "Failed",
+        "refunded": "Refunded"
+      }
+    },
+    "cancel": {
+      "title": "Cancel subscription",
+      "description": "Are you sure you want to cancel your subscription? You will lose access to premium features.",
+      "reason": "Cancellation reason",
+      "reason_placeholder": "Please provide the reason for your cancellation...",
+      "now": "Cancel now",
+      "warning": "You will immediately lose access to premium features.",
+      "confirm_cancel": "Confirm cancellation"
+    },
+    "keep_subscription": "Keep subscription",
+    "manage": {
+      "title": "Manage subscription",
+      "change_plan": "Change plan",
+      "reactivate": "Reactivate subscription",
+      "cancel": "Cancel subscription"
+    },
+    "details": {
+      "title": "Subscription details",
+      "my_subscription": "My subscription",
+      "plan_name": "Plan name",
+      "type": "Type",
+      "status": {
+        "ACTIVE": "Active",
+        "EXPIRED": "Expired",
+        "CANCELED": "Canceled",
+        "PENDING": "Pending",
+        "active": "Active",
+        "expired": "Expired",
+        "canceled": "Canceled",
+        "pending": "Pending"
+      },
+      "current_period": "Current period",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "canceled_at": "Canceled at",
+      "days": "days",
+      "days_remaining": "Days remaining",
+      "cancel_at_period_end_warning": "Your subscription will be canceled at the end of the current period.",
+      "payment_history_title": "Payment history"
+    },
+    "plans": {
+      "title": "Plans",
+      "description": "Choose the plan that suits you best.",
+      "keywords": "plans, pricing, subscription, premium, free, Skaldly"
+    },
+    "payment_history_title": "Payment history"
+  },
+  "plans": {
+    "title": "Plans",
+    "page_title": "Plans management",
+    "create": {
+      "title": "Create a plan"
+    },
+    "edit": {
+      "title": "Edit plan"
+    },
+    "delete": {
+      "title": "Delete plan",
+      "description": "Are you sure you want to delete this plan? This action cannot be undone."
+    },
+    "form": {
+      "name": "Plan name",
+      "description": "Plan description",
+      "price": "Price",
+      "currency": "Currency",
+      "payment_interval": "Payment interval",
+      "stripe_price_id": "Stripe price ID",
+      "subscription_type": "Subscription type"
+    },
+    "types": {
+      "Free": "Free",
+      "Premium": "Premium"
+    },
+    "is_active": "Active",
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "type": "Type",
+      "price": "Price",
+      "interval": "Interval",
+      "status": "Status",
+      "actions": "Actions"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Admin Dashboard"
+    },
+    "plans": {
+      "title": "Plans",
+      "status_title": "Change plan status",
+      "status_desc": "Are you sure you want to change the status of this subscription plan?"
+    },
+    "subscriptions": {
+      "title": "Subscriptions management"
+    },
+    "languages": {
+      "page_title": "Languages management",
+      "create": "Create a language",
+      "edit": "Edit language",
+      "delete_title": "Delete language",
+      "delete_desc": "Are you sure you want to delete this language? This action cannot be undone.",
+      "status_title": "Change language status",
+      "status_desc": "Are you sure you want to change the status of this language?",
+      "table": {
+        "code": "Code",
+        "name": "Name",
+        "isActive": "Active",
+        "actions": "Actions"
+      },
+      "form": {
+        "code": "Selection code",
+        "name": "Display name",
+        "active": "Active language",
+        "select_placeholder": "Select a language",
+        "flag_preview": "Flag Preview:"
+      }
+    },
+    "topics": {
+      "page_title": "Topics management",
+      "create": "Create a topic",
+      "edit": "Edit topic",
+      "delete_title": "Delete topic",
+      "delete_desc": "Are you sure you want to delete this topic? This action cannot be undone.",
+      "create_success": "Topic created successfully.",
+      "update_success": "Topic updated successfully.",
+      "delete_success": "Topic deleted successfully.",
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "difficulty": "Difficulty",
+        "language": "Language",
+        "order": "Order",
+        "active": "Active",
+        "actions": "Actions"
+      },
+      "filters": {
+        "search_name": "Search by name...",
+        "all_difficulties": "All difficulties",
+        "status_all": "All statuses",
+        "status_active": "Active only",
+        "status_inactive": "Inactive only"
+      },
+      "form": {
+        "target_language": "Target Language",
+        "source_language": "Source Language",
+        "language_placeholder": "Select a language",
+        "name": "Topic name",
+        "description": "Description",
+        "difficulty": "Proficiency Level",
+        "difficulty_placeholder": "Select a level",
+        "order": "Sorting index",
+        "active": "Active topic",
+        "levels": {
+          "A1": "A1 - Beginner",
+          "A2": "A2 - Elementary",
+          "B1": "B1 - Intermediate",
+          "B2": "B2 - Upper Intermediate",
+          "C1": "C1 - Advanced",
+          "C2": "C2 - Proficient"
+        }
+      }
+    },
+    "lessons": {
+      "page_title": "Lessons management - {{topicName}}",
+      "create": "Create a lesson",
+      "edit": "Edit lesson",
+      "delete_title": "Delete lesson",
+      "delete_desc": "Are you sure you want to delete this lesson? This action cannot be undone.",
+      "list_title": "Lessons for topic: {{topicName}}",
+      "no_lessons": "No lessons for this topic.",
+      "create_success": "Lesson created successfully.",
+      "update_success": "Lesson updated successfully.",
+      "delete_success": "Lesson deleted successfully.",
+      "table": {
+        "title": "Title",
+        "type": "Type",
+        "order": "Order",
+        "active": "Active",
+        "actions": "Actions"
+      },
+      "form": {
+        "title": "Lesson title",
+        "description": "Description",
+        "order": "Sorting index",
+        "passScore": "Passing score (%)",
+        "active": "Active lesson",
+        "type": "Lesson type",
+        "type_placeholder": "Choose a type",
+        "types": {
+          "FLASHCARD": "Flashcard",
+          "QCM": "QCM",
+          "MATCHING_PAIR": "Matching Pairs",
+          "SORTING_EXERCISE": "Sorting Exercise"
+        },
+        "sections": {
+          "basic_info": "Basic Information",
+          "lesson_content": "Lesson Content"
+        },
+        "topic_label": "Topic:",
+        "untitled": "Untitled Lesson",
+        "no_description": "No description provided."
+      },
+      "flashcards": {
+        "front": "Front face",
+        "back": "Back face",
+        "frontLang": "Front Language",
+        "backLang": "Back Language",
+        "add": "Add a Flashcard"
+      },
+      "qcm": {
+        "question": "Question",
+        "option": "Option {{index}}",
+        "add_option": "Add an option",
+        "correct": "Correct answer",
+        "explanation": "Explanation",
+        "explanation_placeholder": "Explain why this answer is correct...",
+        "add_question": "Add a question"
+      },
+      "matching": {
+        "item1": "Item 1",
+        "item2": "Item 2",
+        "add": "Add a pair"
+      },
+      "sorting": {
+        "items": "Items to sort (comma separated)",
+        "order": "Correct order (comma separated indices, e.g.: 0,1,2)",
+        "note": "Note: Items and order are managed by comma-separated strings in this simplified form.",
+        "add": "Add an item",
+        "move_up": "Move up",
+        "move_down": "Move down",
+        "note_new": "The order in which you add the items defines the correct answer."
+      },
+      "preview": {
+        "title": "Quick Actions",
+        "no_data": "Fill in the information to see the preview",
+        "flashcard_label": "Flashcard",
+        "sorting_label": "Sorting Exercise",
+        "visual_confirm": "This is a visual preview only",
+        "simulate_btn": "Simulate lesson",
+        "simulate_title": "Lesson Simulation",
+        "simulation_complete": "Simulation complete!",
+        "score_preview": "Your simulated score:",
+        "retry_simulation": "Restart",
+        "unsupported_type": "Lesson type not supported for simulation"
+      }
+    }
+  },
+  "payment": {
+    "intervals": {
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    }
+  },
+  "dashboard": {
+    "page_title": "Dashboard",
+    "subscriptionsOverTime": "Subscriptions over time",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "subscriptions": "Subscriptions",
+    "freeVsPremium": " Free and Premium subscribers",
+    "topics": "Topics",
+    "view_all": "View all",
+    "language": {
+      "active": "Active language",
+      "level": "Level {{level}}"
+    },
+    "xp": {
+      "level": "Level"
+    },
+    "welcome": {
+      "subtitle": "Your dashboard",
+      "greeting": "Hello,",
+      "morning": {
+        "0": "A great morning to learn something new!",
+        "1": "Start strong — your brain is at its sharpest.",
+        "2": "Morning is the best time to build new habits.",
+        "3": "Rise and learn! Every session counts.",
+        "4": "Good morning! Let's make progress today.",
+        "5": "A fresh start. Make it count!"
+      },
+      "afternoon": {
+        "0": "Keep the momentum going this afternoon.",
+        "1": "A great time for a quick session!",
+        "2": "Mid-day boost — your progress awaits.",
+        "3": "Stay consistent. Every bit adds up.",
+        "4": "Afternoon review is great for retention.",
+        "5": "Halfway through the day — keep it up!"
+      },
+      "evening": {
+        "0": "Wind down with a learning session tonight.",
+        "1": "Evening review helps cement your memory.",
+        "2": "End the day on a high note!",
+        "3": "A perfect time to reflect and review.",
+        "4": "Learning before sleep boosts retention.",
+        "5": "Good evening! One more session today?"
+      }
+    }
+  },
+  "lesson": {
+    "resume": "Resume lesson",
+    "start_first_lesson": "Start your first lesson to get going!",
+    "completed": "completed"
+  },
+  "subscriptions": {
+    "title": "Subscriptions",
+    "page_title": "Subscriptions management",
+    "free": "Free",
+    "premium": "Premium",
+    "table": {
+      "account": "Account",
+      "plan": "Plan",
+      "status": "Status",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "actions": "Actions"
+    }
+  },
+  "checkout": {
+    "success": {
+      "title": "Payment successful!",
+      "description": "Your subscription has been activated successfully."
+    },
+    "cancel": {
+      "title": "Payment canceled",
+      "description": "Your payment has been canceled. You can try again at any time."
+    },
+    "view_subscription": "View my subscription"
+  },
+  "error": {
+    "generic": "An error occurred. Please try again.",
+    "unknown": "An unknown error occurred.",
+    "auth": {
+      "invalid_credentials": "Invalid credentials.",
+      "account_locked": "Account locked due to too many attempts. Try again in 30 minutes.",
+      "account_locked_until": "Account is locked until: {{until}}.",
+      "account_locked_attempts": "Account locked due to too many failed login attempts.",
+      "account_not_found": "Account not found.",
+      "email_already_registered": "Email already registered.",
+      "username_already_taken": "Username already taken.",
+      "password_expired": "Password expired, please change your password.",
+      "invalid_token": "Invalid or expired refresh token.",
+      "invalid_reset_token": "Invalid or expired reset token.",
+      "already_exists": "An account already exists with this information.",
+      "invalid_2fa_code": "Invalid verification code."
+    },
+    "validation": "The entered data is invalid.",
+    "fetchTopics": "Failed to fetch Topics.",
+    "searchTopics": "Failed to search Topics.",
+    "createTopic": "Failed to create Topic.",
+    "updateTopic": "Failed to update Topic.",
+    "deleteTopic": "Failed to delete Topic.",
+    "fetchPlans": "Failed to fetch plans.",
+    "fetchPlanById": "Failed to fetch plan details.",
+    "fetchPlansByInterval": "Failed to fetch plans by interval.",
+    "createPlan": "Failed to create plan.",
+    "updatePlan": "Failed to update plan.",
+    "deletePlan": "Failed to delete plan.",
+    "fetchSubscriptions": "Failed to fetch subscriptions.",
+    "fetchSubscriptionDetails": "Failed to fetch subscription details.",
+    "fetchSubscriptionByAccountId": "Failed to fetch subscription.",
+    "subscribeToPlan": "Failed to subscribe to plan.",
+    "cancelSubscription": "Failed to cancel subscription.",
+    "cancelSubscriptionByAdmin": "Failed to cancel subscription.",
+    "reactivateSubscription": "Failed to reactivate subscription.",
+    "changePlan": "Failed to change plan.",
+    "fetchPaymentHistory": "Failed to fetch payment history.",
+    "fetchPaymentHistoryByAccountId": "Failed to fetch payment history.",
+    "fetchLanguages": "Failed to fetch languages.",
+    "fetchLanguageById": "Failed to fetch language details.",
+    "fetchLanguageByCode": "Unable to fetch language by code.",
+    "createLanguage": "Unable to create language.",
+    "updateLanguage": "Unable to update language.",
+    "deleteLanguage": "Unable to delete language.",
+    "fetchLessons": "Unable to fetch lessons.",
+    "fetchLessonById": "Unable to fetch lesson.",
+    "createLesson": "Unable to create lesson.",
+    "updateLesson": "Failed to update lesson.",
+    "deleteLesson": "Failed to delete lesson.",
+    "startLesson": "Failed to start lesson.",
+    "completeLesson": "Failed to complete lesson."
+  },
+  "topics": {
+    "page_title": "Available Topics",
+    "lessons_page_title": "Lessons",
+    "exam_page_title": "Topic Exam",
+    "page_desc": "Select a subject to start practicing.",
+    "error_load": "Unable to load topics at this moment.",
+    "empty_title": "No topics found",
+    "empty_desc": "Try modifying your search filters.",
+    "search_placeholder": "Search topics by name...",
+    "all_levels": "All levels",
+    "level": "Level {{level}}",
+    "no_desc": "No description provided",
+    "practice_btn": "Practice now",
+    "order": "Order: {{orderIndex}}",
+    "lessons_title": "Lessons Playground",
+    "lessons_desc": "Explore the lessons below in chronological order to progress and master this topic.",
+    "exam_status": "Exam Status",
+    "exam_attempts": "Attempts",
+    "last_accuracy": "Last Accuracy",
+    "exam_matching_title": "Matching Challenge",
+    "exam_sorting_title": "Sorting Challenge",
+    "exam_qcm_title": "QCM Challenge",
+    "exam_flashcard_title": "Flashcard Challenge",
+    "exam_pairs_selected": "Pairs selected",
+    "exam_clear_pair": "Cancel",
+    "replay_lesson_btn": "Replay lesson",
+    "start_lesson_btn": "Start lesson",
+    "passed": "Passed",
+    "not_passed": "To pass",
+    "no_lessons_title": "No lessons available",
+    "no_lessons_desc": "Come back later!",
+    "translate_or_answer": "Translate or answer",
+    "type_answer_here": "Type your answer here...",
+    "exam_matching_finished": "All pairs have been matched. You can continue or undo a pair.",
+    "exam_matching_answers": "Formed pairs",
+    "final_exam_title": "Final Exam",
+    "final_exam_desc": "Evaluate your new knowledge globally.",
+    "take_exam": "Take the exam",
+    "exam_locked": "Complete all lessons first",
+    "progress": "Progress",
+    "lessons_count_label": "Lessons completed",
+    "exam_load_error": "Error while loading the exam.",
+    "exam_submit_error": "Error while submitting the exam.",
+    "exam_passed": "Exam passed!",
+    "exam_failed": "Exam failed",
+    "accuracy": "Accuracy",
+    "no_questions": "No questions for this exam.",
+    "exam_completed_title": "All questions answered!",
+    "exam_completed_desc": "You can now submit your answers to discover your final result.",
+    "exam_submit": "Submit the exam",
+    "exam_progress": "Exam progress"
+  },
+  "lessons": {
+    "progress": "Exercise Progress",
+    "click_to_flip": "Tap to reveal",
+    "computing_score": "Computing score...",
+    "hard": "Hard - Review needed",
+    "medium": "Medium - Getting there",
+    "easy": "Easy - Acquired",
+    "finish": "Finish",
+    "matching": {
+      "title": "Matching Game",
+      "instruction": "Match the correct pairs",
+      "matches_found": "Matches found",
+      "errors": "Errors",
+      "completed": "Excellent !",
+      "flawless": "You found everything on the first try !",
+      "with_errors": "All pairs have been found."
+    },
+    "sorting": {
+      "title": "Sorting Exercise",
+      "instruction": "Put the items in the correct order",
+      "empty_target": "Select items in the correct order",
+      "correct_order_prefix": "Solution: ",
+      "validate": "Check answer",
+      "next": "Continue"
+    },
+    "qcm": {
+      "title": "Questionnaire",
+      "validate": "Validate",
+      "next": "Next",
+      "correct": "Correct answer!",
+      "incorrect": "Wrong answer"
+    },
+    "starting": "Preparing the lesson...",
+    "session_invalid": "Session not found or expired.",
+    "lesson_completed": "Lesson completed!",
+    "xp_earned": "XP Earned",
+    "status": "Result",
+    "success": "Passed",
+    "failed": "Failed",
+    "level_up": "Leveled Up! Level {{level}}",
+    "not_found": "Lesson not found.",
+    "start_error": "Error while starting the lesson.",
+    "complete_error": "Connection error during validation."
+  },
+  "settings": {
+    "title": "Settings",
+    "language": {
+      "title": "Interface Language",
+      "page_title": "Language settings"
+    },
+    "languages": {
+      "french": "French",
+      "english": "English"
+    },
+    "password": {
+      "title": "Password",
+      "page_title": "Password settings",
+      "description": "Manage your account password."
+    },
+    "menu": {
+      "profile": "Profile",
+      "password": "Password",
+      "2fa": "Two-factor auth",
+      "language": "Language",
+      "theme": "Theme"
+    },
+    "2fa": {
+      "title": "Two-factor authentication",
+      "page_title": "Two-factor authentication",
+      "not_enabled": "Two-factor authentication is not enabled.",
+      "enable_button": "Enable 2FA",
+      "enabled_status": "Two-factor authentication is enabled.",
+      "disable_button": "Disable 2FA",
+      "enter_code_disable": "Enter a code to disable 2FA",
+      "cancel": "Cancel",
+      "confirm_disable": "Confirm disable",
+      "enable_success": "Two-factor authentication has been enabled.",
+      "disable_success": "Two-factor authentication has been disabled.",
+      "scan_qr": "Scan this QR code with your authenticator app",
+      "manual_key": "Or enter this key manually:",
+      "enter_code": "Enter the verification code",
+      "verify_button": "Verify"
+    }
+  },
+  "validation": {
+    "email": {
+      "required": "Email is required",
+      "invalid": "Invalid email format"
+    },
+    "password": {
+      "required": "Password is required",
+      "min": "Minimum 12 characters",
+      "pattern": "Must contain uppercase, lowercase, number and special character (@#$%^&+=!)"
+    },
+    "confirmPassword": {
+      "required": "Confirmation is required",
+      "match": "Passwords do not match"
+    },
+    "firstName": {
+      "required": "First name is required"
+    },
+    "lastName": {
+      "required": "Last name is required"
+    },
+    "username": {
+      "required": "Username is required",
+      "min": "Minimum 3 characters",
+      "max": "Maximum 50 characters"
+    },
+    "code": {
+      "required": "Code is required",
+      "length": "Code must contain 6 digits",
+      "digits": "Code must only contain digits"
+    },
+    "cancellationReason": {
+      "max": "Maximum 500 characters"
+    },
+    "planName": {
+      "required": "Plan name is required",
+      "min": "Minimum 2 characters",
+      "max": "Maximum 100 characters"
+    },
+    "planDescription": {
+      "max": "Maximum 500 characters"
+    },
+    "planPrice": {
+      "required": "Price is required",
+      "min": "Price must be greater than 0"
+    },
+    "planCurrency": {
+      "required": "Currency is required",
+      "length": "Currency must be 3 characters"
+    },
+    "planPaymentInterval": {
+      "required": "Payment interval is required",
+      "oneOf": "Must be monthly or yearly"
+    }
+  },
+  "info": {
+    "title": "This profile is private",
+    "description": "This user has chosen to keep their profile private."
+  },
+  "show": "Show",
+  "items_one": "item",
+  "items_other": "items",
+  "of": "of",
+  "next": "Next",
+  "previous": "Previous",
+  "empty": "No data available",
+  "token": "Token",
+  "profile": {
+    "title": "My profile",
+    "privateTitle": "Private profile",
+    "privateDescription": "This profile is not publicly visible.",
+    "info": {
+      "title": "Your profile is private",
+      "section_title": "Profile information",
+      "description": "Your profile is not publicly visible. Update your settings to make it visible."
+    },
+    "edit": "Edit profile",
+    "settings": {
+      "page_title": "Profile settings",
+      "subtitle": "Manage your public profile information."
+    },
+    "bio": "Bio",
+    "bio_placeholder": "Tell us about yourself...",
+    "username": "Username",
+    "username_placeholder": "Your username",
+    "countryCode": "Country",
+    "countryCode_placeholder": "e.g. FR",
+    "timezone": "Timezone",
+    "timezone_placeholder": "e.g. Europe/Paris",
+    "isPublic": "Public profile",
+    "updateButton": "Update profile",
+    "error": {
+      "loadFailed": "Failed to load profile."
+    },
+    "update": {
+      "success": "Profile updated successfully."
+    },
+    "image": {
+      "title": "Profile picture",
+      "edit_label": "Edit",
+      "delete": "Delete photo",
+      "upload": "Upload photo",
+      "requirements": "JPG, PNG. Max 5 MB.",
+      "confirmDelete": {
+        "title": "Delete profile photo",
+        "message": "Are you sure you want to delete your profile photo?"
+      },
+      "error": {
+        "tooLarge": "File is too large. Maximum size is 5 MB.",
+        "invalidType": "Invalid file type. Only JPG and PNG are accepted.",
+        "uploadFailed": "Upload failed. Please try again.",
+        "deleteFailed": "Delete failed. Please try again."
+      }
+    },
+    "password": {
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm new password",
+      "change": "Change password",
+      "successMessage": "Password changed successfully.",
+      "error": {
+        "mismatch": "Passwords do not match.",
+        "invalidCurrent": "Current password is incorrect.",
+        "generic": "An error occurred. Please try again."
+      }
+    },
+    "languageSection": {
+      "learningLanguages": "Languages I'm learning",
+      "addLanguage": "Add a language",
+      "noLearningLanguages": "No languages added yet.",
+      "chooseLanguage": "Choose a language"
+    }
+  },
+  "popular": "Popular",
+  "catalog": {
+    "search": "Search a language…",
+    "topics": "topics",
+    "lessons": "lessons",
+    "currentlyLearning": "Currently learning",
+    "discover": "Discover",
+    "noResults": "No language found."
+  },
+  "catalogLanguages": {
+    "title": "Languages"
+  },
+  "languages": {
+    "available": "languages available",
+    "chooseYour": "Choose your",
+    "nextLanguage": "next language",
+    "clickToExplore": "Click on a language to explore its topics and lessons.",
+    "inLearning": "In Learning",
+    "regions": {
+      "all": "All",
+      "europe": "Europe",
+      "amériques": "Americas",
+      "asie": "Asia",
+      "afrique": "Africa",
+      "populaires": "Popular"
+    }
+  },
+  "pages": {
+    "languageDetail": {
+      "remove": "Remove from my languages",
+      "start": "Start learning",
+      "topics": "Topics",
+      "lessons": "Lessons",
+      "topicsAndLessons": "Topics & Lessons"
+    }
+  },
+  "components": {
+    "topicCard": {
+      "lessons": "lessons",
+      "completed": "completed",
+      "next": "NEXT",
+      "practice": "Practice",
+      "review": "Review",
+      "allLessonsFinished": "All lessons completed!"
+    },
+    "badgeStatusLanguages": {
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "notStarted": "Not Started"
+    }
+  },
+  "home": {
+    "page_title": " Skaldly -Speak fluently. Think differently.",
+    "page_description": "Skaldly uses artificial intelligence to adapt every lesson to your level. Personalized lessons, natural learning, real results.",
+    "page_keywords": "language learning, AI, personalized lessons, natural learning, vocabulary, grammar, Skaldly",
+    "hero": {
+      "title_start": "Master a new language with ",
+      "title_highlight": "Artificial Intelligence",
+      "description": "Skaldly leverages cognitive science and cutting-edge algorithms to create the ultimate learning journey. Spaced repetition, custom lessons, and total immersion.",
+      "logged_in_as": "Logged in as ",
+      "continue_learning": "Continue learning",
+      "start_free": "Start for free"
+    },
+    "features": {
+      "scientific": {
+        "title": "Scientific Learning",
+        "description": "Our lessons are based on proven cognitive studies. Spaced repetition ensures long-term memory retention."
+      },
+      "ai": {
+        "title": "Omnipresent AI",
+        "description": "Pedagogy that adapts in real time. Artificial intelligence evaluates your weaknesses and generates perfect content to help you progress."
+      },
+      "variety": {
+        "title": "Diverse Tools",
+        "description": "A multitude of varied interactive exercises, specifically designed to maximize linguistic retention and total immersion."
+      }
+    },
+    "science": {
+      "title": "Proven by Science",
+      "subtitle": "The effectiveness of our tools is backed by decades of research in cognitive science and linguistics.",
+      "spaced_repetition": {
+        "title": "1. Flashcards & Spacing Effect",
+        "description": "Without review, the brain naturally forgets 78% of information (Ebbinghaus forgetting curve). Spaced repetition forces active recall just before forgetting, maximizing memorization via long-term potentiation.",
+        "stat1": "+200% to +400%",
+        "stat1_desc": " improvement compared to cramming.",
+        "chart_title": "Retention rate at 1 year",
+        "classic": "Classic Learning",
+        "glotrush": "Spaced Learning (Skaldly)"
+      },
+      "dual_coding": {
+        "title": "2. Visual Pairs & Dual Coding Theory",
+        "description": "Processing information simultaneously through visual and verbal channels (like in pair-matching games) creates multiple retrieval pathways in the brain.",
+        "stat1": "Decreased cognitive overload.",
+        "stat2": "+65%",
+        "stat2_desc": " retention compared to text without visual context (Paivio, 1971).",
+        "chart_title": "Memory Pathways",
+        "text_only": "Text Only",
+        "dual_coding": "Dual Coding"
+      },
+      "testing_effect": {
+        "title": "3. Quizzes & Testing Effect",
+        "description": "Retrieval Practice is superior to passive study. Well-calibrated quizzes force information discrimination, directly consolidating memory traces well beyond simple assessment.",
+        "stat1_start": "Up to ",
+        "stat1_highlight": "340%",
+        "stat1_end": " faster vocabulary access.",
+        "chart_title": "Memory access speed gained",
+        "chart_desc": "thanks to recurring quizzes"
+      },
+      "chunking": {
+        "title": "4. Conceptual Sorting & Chunking",
+        "description": "Natural working memory caps around 7 items (Miller's Law). Sorting exercises require strong semantic encoding, allowing information grouping (Chunking).",
+        "stat1": "Transfers information from saturated short-term memory to structured semantic memory.",
+        "chunk_word": "CHUNK"
+      },
+      "sources": {
+        "title": "Sources & Study References:",
+        "source1": "(1885). Memory: A Contribution to Experimental Psychology. The Spacing Effect consistently prevents forgetting at rates of 80%+ versus less than 25% without repetitions.",
+        "source2": "(1971). Imagery and verbal processes. Dual coding theory. Evidence shows text-imagery pairs stimulate crossed memory pathways.",
+        "source3": "(2006). Test-enhanced learning. The Testing Effect using quizzes produces better retrieval capacities than simple re-reading.",
+        "source4": "(1956). The magical number seven, plus or minus two, and Semantic Encoding (Craik & Lockhart, 1972). Chunking changes the hierarchy of mental storage regarding language learning."
+      }
+    }
+  },
+  "catalog_languages": {
+    "page_title": "Language Catalog"
+  }
+}

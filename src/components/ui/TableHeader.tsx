@@ -1,0 +1,25 @@
+import { TableColumn } from "@/types/components/tableColumn";
+
+
+interface TableHeaderProps {
+  columns: TableColumn[];
+  className?: string;
+}
+
+export function TableHeader({ columns, className = "" }: TableHeaderProps) {
+  return (
+    <thead className={`bg-gray-50 dark:bg-gray-800 ${className}`}>
+      <tr>
+        {columns.map((column) => (
+          <th
+            key={column.key}
+            className={`px-6 py-3 text-xs font-semibold text-gray-500 dark:text-white uppercase
+                ${(column.key === 'actions' || column.align === "right") ? "text-right" : column.align === "center" ? "text-center" : "text-left"} ${column.className || ""}`}
+          >
+            {column.label}
+          </th>
+        ))}
+      </tr>
+    </thead>
+  );
+}
