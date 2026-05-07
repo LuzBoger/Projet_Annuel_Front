@@ -35,7 +35,7 @@ jobs:
         run: npm run build
 
       - name: SonarQube Scan
-        if: github.ref == 'refs/heads/main'
+        if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop'
         uses: SonarSource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
