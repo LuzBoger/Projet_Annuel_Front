@@ -14,10 +14,10 @@ export function Header({ nbLanguages }: HeaderProps) {
             <h1 className="text-5xl font-black text-gray-900 dark:text-white leading-tight">
                 {t('languages.chooseYour')}
             </h1>
-            <h1 className="text-5xl font-black italic text-gray-400 dark:text-gray-500 leading-tight">
+            <h1 className="text-5xl font-black italic text-gray-400 dark:text-gray-400 leading-tight">
                 {t('languages.nextLanguage')}
             </h1>
-            <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm max-w-sm">
+            <p className="mt-4 text-gray-500 dark:text-gray-300 text-sm max-w-sm">
                 {t('languages.clickToExplore')}
             </p>
         </div>

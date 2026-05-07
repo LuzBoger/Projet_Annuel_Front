@@ -2,6 +2,15 @@
 
 Application React avec TypeScript et Vite.
 
+## Configuration
+
+Créer un fichier `.env` à la racine du projet avec les variables suivantes :
+
+```env
+VITE_API_URL=http://localhost:8080/api/v1
+VITE_API_BASE_URL=http://localhost:8080
+```
+
 ## Installation
 
 ```bash

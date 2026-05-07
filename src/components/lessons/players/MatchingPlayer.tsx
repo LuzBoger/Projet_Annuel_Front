@@ -5,11 +5,12 @@ import { ChevronRight } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
 import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
+import { SegmentStatus } from "@/types/components/player";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
-import { PlayerFeedback } from "@/components/lessons/players/common/PlayerFeedback";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { ERROR_DISPLAY_DURATION_MS, PENALTY_PER_ERROR } from "@/constants/lesson";
 import { initTiles } from "@/lib/utils/matchingPair";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface MatchingPlayerProps {
     pairs: MatchingPairRequest[];
@@ -18,6 +19,7 @@ interface MatchingPlayerProps {
 
 export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
     const { t } = useTranslation();
+    const { playCorrect, playIncorrect } = useSoundEffects();
     
     const [prevPairs, setPrevPairs] = useState(pairs);
     const [tiles, setTiles] = useState(() => initTiles(pairs));
@@ -39,7 +41,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
         return (
             <PlayerLayout maxWidth="max-w-3xl">
                 <div className="text-center p-8 text-gray-500 dark:text-gray-400 font-medium bg-white dark:bg-gray-800 rounded-2xl shadow-sm w-full">
-                    {t('common.no_data')}
+                    {t('common.noData')}
                 </div>
             </PlayerLayout>
         );
@@ -76,9 +78,11 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
         if (firstTile && secondTile && firstTile.matchId === secondTile.matchId) {
             setMatchedMatchIds(previous => [...previous, firstTile.matchId]);
             setSelectedIds([]);
+            playCorrect();
         } else {
             setErrorIds(currentSelectedIds);
             setErrorCount(previous => previous + 1);
+            playIncorrect();
 
             setTimeout(() => {
                 setErrorIds([]);
@@ -94,66 +98,87 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
         onFinish(finalScore);
     };
 
+
+    const statuses = pairs.map((_, idx) => {
+        if (idx < matchedMatchIds.length) return 'correct';
+        if (idx === matchedMatchIds.length) return 'current';
+        return 'pending';
+    });
+
     return (
         <PlayerLayout maxWidth="max-w-3xl">
             <PlayerHeader 
-                current={matchedMatchIds.length} 
+                current={Math.min(matchedMatchIds.length + 1, pairs.length)} 
                 total={pairs.length} 
+                statuses={statuses as SegmentStatus[]}
             />
 
-            <PlayerCard 
-                instruction={<p className="text-gray-500 font-medium mb-1">{t('lessons.matching.instruction')}</p>}
-            >
-                <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-3 gap-3 sm:gap-4">
-                    {tiles.map(tile => {
-                        const isSelected = selectedIds.includes(tile.id);
-                        const isMatched = matchedMatchIds.includes(tile.matchId);
-                        const isError = errorIds.includes(tile.id);
+            <div className="flex-1 overflow-y-auto min-h-0 flex flex-col">
+                <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 my-auto">
+                    <div className="space-y-6">
+                        <PlayerCard 
+                            instruction={<p className="text-gray-500 dark:text-gray-400 font-medium mb-1">{t('lessons.matching.instruction')}</p>}
+                        >
+                            <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-3 gap-3 sm:gap-4">
+                                {tiles.map(tile => {
+                                    const isSelected = selectedIds.includes(tile.id);
+                                    const isMatched = matchedMatchIds.includes(tile.matchId);
+                                    const isError = errorIds.includes(tile.id);
 
-                        let buttonClass = "w-full min-h-[80px] p-4 rounded-xl border-2 transition-all duration-200 font-medium text-[15px] sm:text-lg flex items-center justify-center text-center select-none ";
+                                    let buttonClass = "w-full min-h-[80px] p-4 rounded-xl border-2 transition-all duration-200 font-medium text-[15px] sm:text-lg flex items-center justify-center text-center select-none ";
 
-                        if (isMatched) {
-                            buttonClass += "border-emerald-200 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-400 opacity-50 cursor-default scale-95";
-                        } else if (isError) {
-                            buttonClass += "border-red-400 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400";
-                        } else if (isSelected) {
-                            buttonClass += "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 scale-105 shadow-md ring-2 ring-indigo-100 dark:ring-indigo-900";
-                        } else {
-                            buttonClass += "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-200 dark:hover:border-indigo-700 hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm hover:shadow-md";
-                        }
+                                    if (isMatched) {
+                                        buttonClass += "border-emerald-200 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 opacity-80 cursor-default scale-95";
+                                    } else if (isError) {
+                                        buttonClass += "border-red-400 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400";
+                                    } else if (isSelected) {
+                                        buttonClass += "border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-white scale-105 shadow-md ring-2 ring-brand-100 dark:ring-brand-900";
+                                    } else {
+                                        buttonClass += "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-brand-200 dark:hover:border-brand-700 hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm hover:shadow-md";
+                                    }
 
-                        return (
-                            <Button
-                                key={tile.id}
-                                variant="none"
-                                onClick={() => handleTileSelection(tile.id)}
-                                disabled={isMatched || errorIds.length > 0}
-                                className={buttonClass}
-                            >
-                                {tile.text}
-                            </Button>
-                        );
-                    })}
+                                    return (
+                                        <Button
+                                            key={tile.id}
+                                            variant="none"
+                                            onClick={() => handleTileSelection(tile.id)}
+                                            disabled={isMatched || errorIds.length > 0}
+                                            className={buttonClass}
+                                        >
+                                            {tile.text}
+                                        </Button>
+                                    );
+                                })}
+                            </div>
+                        </PlayerCard>
+
+
+                    </div>
                 </div>
-            </PlayerCard>
+            </div>
 
-            <PlayerFeedback 
+            <PlayerFooter 
                 isVisible={isFinished}
                 isCorrect={true}
-                title={t('lessons.matching.completed')}
-                description={errorCount === 0 ? t('lessons.matching.flawless') : t('lessons.matching.with_errors')}
-            />
-
-            <PlayerFooter>
+                feedback={
+                    <div className="space-y-0.5">
+                        <h4 className="font-bold text-lg text-emerald-700 dark:text-emerald-400">
+                            {t('lessons.matching.completed')}
+                        </h4>
+                        <p className="text-xs text-gray-600 dark:text-gray-300">
+                            {errorCount === 0 ? t('lessons.matching.flawless') : t('lessons.matching.with_errors')}
+                        </p>
+                    </div>
+                }
+            >
                 {isFinished && (
                     <Button 
                         onClick={handleFinishClick}
-                        fullWidth
                         size="lg"
-                        className="py-6 !bg-gray-900 dark:!bg-gray-700 hover:!bg-gray-800 dark:hover:!bg-gray-600 text-white rounded-2xl font-medium text-lg shadow-sm"
+                        className="px-12 !bg-gray-100 dark:!bg-gray-800 border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-xl font-bold shadow-md hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center gap-2"
                     >
-                        {t('lessons.finish')}
-                        <ChevronRight className="w-5 h-5 ml-2" />
+                        <span>{t('lessons.finish')}</span>
+                        <ChevronRight className="w-5 h-5" />
                     </Button>
                 )}
             </PlayerFooter>

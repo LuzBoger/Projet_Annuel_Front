@@ -15,7 +15,7 @@ export function SubscriptionsBarChartHeader({ view, onChange }: SubscriptionsBar
 
     return(
         <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200">
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">
                 {t('dashboard.subscriptionsOverTime')}
             </h3>
             <div className="flex gap-2">
@@ -23,7 +23,7 @@ export function SubscriptionsBarChartHeader({ view, onChange }: SubscriptionsBar
                     <Button
                         key={v}
                         onClick={() => onChange(v)}
-                        variant={view === v ? 'primary' : 'outline'}
+                        variant={view === v ? 'primary' : 'ghost'}
                         size="sm"
                     >
                         {t(`dashboard.${v}`)}

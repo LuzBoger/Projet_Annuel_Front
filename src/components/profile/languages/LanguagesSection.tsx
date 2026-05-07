@@ -36,7 +36,7 @@ export function LanguagesSection({ languages, onRemove }: LanguagesSectionProps)
                     variant="ghost"
                     size="sm"
                     onClick={() => navigate("/catalog-languages")}
-                    className="inline-flex items-center gap-1 text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 rounded-full border-0"
+                    className="inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/20 hover:bg-brand-100 dark:hover:bg-brand-900/30 rounded-full border-0"
                 >
                     <Plus className="w-3 h-3" />
                     {t("common.add")}

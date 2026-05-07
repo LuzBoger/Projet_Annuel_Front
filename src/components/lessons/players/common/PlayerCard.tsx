@@ -7,7 +7,7 @@ interface PlayerCardProps {
 
 export function PlayerCard({ children, instruction }: PlayerCardProps) {
     return (
-        <div className="w-full bg-white dark:bg-gray-800 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 dark:border-gray-700 p-6 sm:p-10 mb-6 transition-all">
+        <div className="w-full bg-white dark:bg-gray-900 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 dark:border-gray-800 p-6 sm:p-10 mb-6 transition-all">
             {instruction && (
                 <div className="mb-8 text-center">
                     {typeof instruction === "string" ? (

@@ -36,20 +36,18 @@ import { Header } from "@/components/layout/Header";
 import { RoleEnum } from "@/types/enum/roles";
 import { AUTH_PATH } from "@/constants/global";
 import Dashboard from "@/pages/user/Dashboard";
-import { LocaleLanguageSwitcher } from "../ui/LocaleLanguageSwitcher";
 
 export function AppRoutes() {
   const { user, isAuthenticated, fetchUser } = useContext(AuthContext)!;
   const location = useLocation();
-  
+
+  const isImmersiveRoute = location.pathname.endsWith('/play') || location.pathname.endsWith('/exam') || location.pathname.endsWith('/success');
   const showOnBoarding = isAuthenticated && !!user && !user.hasCompletedOnboarding && user.role !== RoleEnum.ADMIN && !AUTH_PATH.includes(location.pathname);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
-      <Header />
+      {!isImmersiveRoute && <Header />}
       <main className="flex-1">
-              {!isAuthenticated && <LocaleLanguageSwitcher />}
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

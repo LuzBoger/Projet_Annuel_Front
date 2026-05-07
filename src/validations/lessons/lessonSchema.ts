@@ -4,11 +4,6 @@ import { LessonType } from "@/types/lesson/lesson";
 export const lessonSchema = (t: (key: string) => string) => yup.object({
   title: yup.string().required(t('common.required')),
   description: yup.string().required(t('common.required')),
-  orderIndex: yup.number().min(0).required(t('common.required')),
-  xpReward: yup.number().min(0).required(t('common.required')),
-  minLevelRequired: yup.number().min(0).required(t('common.required')),
-  durationMinutes: yup.number().min(1).required(t('common.required')),
-  passScorePercentage: yup.number().min(1).max(100).required(t('common.required')),
   isActive: yup.boolean().required(),
   lessonType: yup.string().oneOf(Object.values(LessonType)).required(t('common.required')),
   
@@ -64,4 +59,4 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
   }),
 });
 
-export type LessonFormData = yup.InferType<ReturnType<typeof lessonSchema>>;
+export type LessonFormData = Omit<yup.InferType<ReturnType<typeof lessonSchema>>, 'orderIndex'> & { orderIndex?: number };

@@ -92,9 +92,9 @@ export  function Profile() {
       {isProfile && !profile.isPublic && <InfoPrivateBanner />}
 
       <div className="max-w-5xl mx-auto px-4 py-8">
-        <div className="flex gap-6 items-start">
+        <div className="flex flex-col md:flex-row gap-6 items-start">
 
-          <aside className="w-56 flex-shrink-0 flex flex-col gap-4 sticky top-8">
+          <aside className="w-full md:w-56 flex-shrink-0 flex flex-col gap-4 md:sticky md:top-8">
 
             <div className="bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-5 py-5 flex flex-col items-center gap-3 text-center">
             <div className="relative inline-block">

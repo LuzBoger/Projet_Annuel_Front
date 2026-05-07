@@ -7,29 +7,30 @@ export interface PlanResponse {
     description: string;
     price: number;
     currency: string;
-    paymentInterval: PaymentInterval;
+    paymentInterval?: PaymentInterval | null;
     subscriptionType: SubscriptionType;
+    isActive: boolean;
 }
 
 export interface CreatePlanRequest {
     name: string;
-    description?: string;
+    description?: string | null;
     price: number;
-    currency?: string;
-    paymentInterval: PaymentInterval;
+    currency?: string | null;
+    paymentInterval?: PaymentInterval | null;
     subscriptionType: SubscriptionType;
-    stripePriceId?: string;
+    stripePriceId?: string | null;
 }
 
 export interface UpdatePlanRequest {
-    name?: string;
-    description?: string;
-    price?: number;
-    currency?: string;
-    paymentInterval?: PaymentInterval;
-    subscriptionType?: SubscriptionType;
-    stripePriceId?: string;
-    isActive?: boolean;
+    name?: string | null;
+    description?: string | null;
+    price?: number | null;
+    currency?: string | null;
+    paymentInterval?: PaymentInterval | null;
+    subscriptionType?: SubscriptionType | null;
+    stripePriceId?: string | null;
+    isActive?: boolean | null;
 }
 
 export interface SubscribePlanRequest {

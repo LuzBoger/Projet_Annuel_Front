@@ -44,14 +44,14 @@ export function Table<T>({data,columns,renderRow,keyExtractor,emptyMessage,initi
 
   return (
     <div
-      className={`bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden ${className}`}
+      className={`bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-200 dark:border-gray-800 overflow-hidden ${className}`}
     >
       {/* Contenu principal */}
 
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
           <TableHeader columns={columns} />
-          <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+          <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
             {paginatedData.length === 0 ? (
               <tr>
                 <td
@@ -66,7 +66,7 @@ export function Table<T>({data,columns,renderRow,keyExtractor,emptyMessage,initi
               </tr>
             ) : (
               paginatedData.map((item, index) => (
-                <tr key={keyExtractor(item)} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                <tr key={keyExtractor(item)}>
                   {renderRow(item, index)}
                 </tr>
               ))
@@ -76,7 +76,7 @@ export function Table<T>({data,columns,renderRow,keyExtractor,emptyMessage,initi
       </div>
 
       {(showControls || data.length > 0) && (
-        <div className="flex flex-col sm:flex-row items-center justify-between px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between px-6 py-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 gap-4">
           {/* Bloc Select (Nombre d'éléments affichés) */}
           {showControls ? (
             <div className="flex items-center gap-3">

@@ -6,10 +6,11 @@ import { Button } from "@/components/ui/Button";
 import { ChevronRight } from "@/assets/icons";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
 import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
+import { SegmentStatus } from "@/types/components/player";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
-import { PlayerFeedback } from "@/components/lessons/players/common/PlayerFeedback";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { initPool } from "@/lib/utils/sorting";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 interface SortingPlayerProps {
     exercises: SortingExerciseRequest[];
     onFinish: (score: number) => void;
@@ -17,6 +18,7 @@ interface SortingPlayerProps {
 
 export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
     const { t } = useTranslation();
+    const { playCorrect, playIncorrect } = useSoundEffects();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [prevIndex, setPrevIndex] = useState(currentIndex);
     const [prevExercises, setPrevExercises] = useState(exercises);
@@ -25,6 +27,9 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
     const [isValidated, setIsValidated] = useState(false);
     const [isCorrect, setIsCorrect] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
+    const [results, setResults] = useState<SegmentStatus[]>(
+        new Array(exercises.length).fill('pending' as SegmentStatus)
+    );
 
     if (currentIndex !== prevIndex || exercises !== prevExercises) {
         setPrevIndex(currentIndex);
@@ -47,9 +52,12 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
 
     const currentExercise = exercises[currentIndex];
 
-    const expectedSequenceText = currentExercise.correctOrder
-        ? currentExercise.correctOrder.map(idx => currentExercise.items[idx]).join(" ")
-        : currentExercise.items.join(" ");
+    const expectedSequenceText = currentExercise?.items 
+        ? (currentExercise.correctOrder
+            ? currentExercise.correctOrder.map(idx => currentExercise.items[idx])
+            : currentExercise.items
+          ).join(" ")
+        : "";
 
     const handlePoolSelection = (item: SortableItem) => {
         if (isValidated) return;
@@ -67,11 +75,21 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
         if (selectedItems.length === 0) return;
         setIsValidated(true);
 
-        const expectedOrder = currentExercise.correctOrder || currentExercise.items.map((_, i) => i);
+        const expectedOrder = currentExercise.correctOrder || (currentExercise.items?.map((_, i) => i) || []);
         const isOrderCorrect = selectedItems.length === expectedOrder.length && selectedItems.every((item, index) => item.originalIndex === expectedOrder[index]);
         
         setIsCorrect(isOrderCorrect);
-        if (isOrderCorrect) setCorrectCount(previous => previous + 1);
+        
+        const newResults = [...results];
+        newResults[currentIndex] = isOrderCorrect ? 'correct' : 'incorrect';
+        setResults(newResults);
+
+        if (isOrderCorrect) {
+            setCorrectCount(previous => previous + 1);
+            playCorrect();
+        } else {
+            playIncorrect();
+        }
     };
 
     const handleNextAction = () => {
@@ -85,80 +103,99 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
 
     const isAllSelected = pool.length === 0;
 
+    // Compute statuses for header
+    const statuses = exercises.map((_, idx) => {
+        if (idx === currentIndex) return 'current' as SegmentStatus;
+        return results[idx];
+    });
+
     return (
         <PlayerLayout>
-            <PlayerHeader current={currentIndex + 1} total={exercises.length} />
-
-            <PlayerCard instruction={t('lessons.sorting.instruction')}>
-                <div className="space-y-8">
-                    <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-200 dark:border-gray-600 py-6 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 dark:bg-gray-700/30 rounded-xl">
-                        {selectedItems.length === 0 && (
-                            <span className="text-gray-400 font-medium select-none text-sm sm:text-base text-center">
-                                {t('lessons.sorting.empty_target')}
-                            </span>
-                        )}
-                        
-                        {selectedItems.map(item => (
-                            <Button
-                                key={item.id}
-                                variant="none"
-                                onClick={() => handleTargetDeselection(item)}
-                                disabled={isValidated}
-                                className="px-4 py-2.5 bg-white border-2 border-indigo-200 shadow-sm rounded-xl text-indigo-900 font-medium text-[15px] sm:text-lg hover:bg-red-50 hover:border-red-200 hover:text-red-700 transition-all active:scale-95 disabled:hover:scale-100 disabled:opacity-90 disabled:cursor-default"
-                            >
-                                {item.text}
-                            </Button>
-                        ))}
-                    </div>
-
-                    <div className="flex flex-wrap gap-2.5 justify-center min-h-[100px] content-start">
-                        {pool.map(item => (
-                            <Button
-                                key={item.id}
-                                variant="none"
-                                onClick={() => handlePoolSelection(item)}
-                                disabled={isValidated}
-                                className="px-4 py-2.5 bg-white border-2 border-gray-200 shadow-sm rounded-xl text-gray-800 font-medium text-[15px] sm:text-lg hover:border-indigo-400 hover:text-indigo-800 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                {item.text}
-                            </Button>
-                        ))}
-                    </div>
-                </div>
-            </PlayerCard>
-
-            <PlayerFeedback 
-                isVisible={isValidated}
-                isCorrect={isCorrect}
-                title={isCorrect ? t('lessons.qcm.correct') : t('lessons.qcm.incorrect')}
-                description={!isCorrect ? (
-                    <>
-                        {t('lessons.sorting.correct_order_prefix')} 
-                        <strong className="font-bold ml-1">{expectedSequenceText}</strong>
-                    </>
-                ) : undefined}
+            <PlayerHeader 
+                current={currentIndex + 1} 
+                total={exercises.length} 
+                statuses={statuses}
             />
 
-            <PlayerFooter>
+            <div className="flex-1 overflow-y-auto min-h-0 flex flex-col">
+                <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 my-auto">
+                    <div className="space-y-4">
+                        <PlayerCard instruction={t('lessons.sorting.instruction')}>
+                        <div className="space-y-8">
+                            <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-200 dark:border-gray-600 py-6 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 dark:bg-gray-700/30 rounded-xl">
+                                {selectedItems.length === 0 && (
+                                    <span className="text-gray-400 font-medium select-none text-sm sm:text-base text-center">
+                                        {t('lessons.sorting.empty_target')}
+                                    </span>
+                                )}
+                                
+                                {selectedItems.map(item => (
+                                    <Button
+                                        key={item.id}
+                                        variant="none"
+                                        onClick={() => handleTargetDeselection(item)}
+                                        disabled={isValidated}
+                                        className="px-4 py-2.5 bg-white dark:bg-gray-800 border-2 border-brand-200 dark:border-brand-900/50 shadow-sm rounded-xl text-brand-900 dark:text-brand-300 font-medium text-[15px] sm:text-lg hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-200 dark:hover:border-red-900/30 hover:text-red-700 dark:hover:text-red-400 transition-all active:scale-95 disabled:hover:scale-100 disabled:opacity-90 disabled:cursor-default"
+                                    >
+                                        {item.text}
+                                    </Button>
+                                ))}
+                            </div>
+
+                            <div className="flex flex-wrap gap-2.5 justify-center min-h-[100px] content-start">
+                                {pool.map(item => (
+                                    <Button
+                                        key={item.id}
+                                        variant="none"
+                                        onClick={() => handlePoolSelection(item)}
+                                        disabled={isValidated}
+                                        className="px-4 py-2.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-sm rounded-xl text-gray-800 dark:text-gray-200 font-medium text-[15px] sm:text-lg hover:border-brand-400 dark:hover:border-brand-500 hover:text-brand-800 dark:hover:text-brand-300 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {item.text}
+                                    </Button>
+                                ))}
+                            </div>
+                        </div>
+                    </PlayerCard>
+
+                        {/* Feedback has been moved to the footer */}
+                    </div>
+                </div>
+            </div>
+
+            <PlayerFooter 
+                isVisible={isValidated}
+                isCorrect={isCorrect}
+                feedback={
+                    <div className="space-y-0.5">
+                        <h4 className={`font-bold text-lg ${isCorrect ? 'text-emerald-700 dark:text-emerald-400' : 'text-red-700 dark:text-red-400'}`}>
+                            {isCorrect ? t('lessons.qcm.correct') : t('lessons.qcm.incorrect')}
+                        </h4>
+                        {!isCorrect && (
+                            <p className="text-xs text-gray-600 dark:text-gray-300 line-clamp-2">
+                                {t('lessons.sorting.correct_order_prefix')} <strong className="font-bold">{expectedSequenceText}</strong>
+                            </p>
+                        )}
+                    </div>
+                }
+            >
                 {!isValidated ? (
                     <Button 
                         onClick={handleValidationAction}
                         disabled={!isAllSelected}
-                        fullWidth
                         size="lg"
-                        className="py-6 font-medium text-lg shadow-sm rounded-2xl"
+                        className="px-12 rounded-xl font-bold shadow-md"
                     >
                         {t('lessons.sorting.validate')}
                     </Button>
                 ) : (
                     <Button 
                         onClick={handleNextAction}
-                        fullWidth
                         size="lg"
-                        className="py-6 !bg-gray-900 hover:!bg-gray-800 text-white rounded-2xl font-medium text-lg shadow-sm flex items-center justify-center gap-2"
+                        className="px-12 !bg-gray-900 dark:!bg-gray-700 hover:!bg-gray-800 dark:hover:!bg-gray-600 text-white rounded-xl font-bold shadow-md flex items-center justify-center gap-2"
                     >
                         <span>{currentIndex < exercises.length - 1 ? t('lessons.sorting.next') : t('lessons.finish')}</span>
-                        {currentIndex < exercises.length - 1 && <ChevronRight className="w-5 h-5 ml-2" />}
+                        <ChevronRight className="w-5 h-5" />
                     </Button>
                 )}
             </PlayerFooter>

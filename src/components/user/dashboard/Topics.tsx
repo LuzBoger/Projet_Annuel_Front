@@ -1,3 +1,4 @@
+import { ChevronRight } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { TopicCard } from "@/components/ui/card/TopicCard";
 import { TopicWithProgressResponse } from "@/types/topic/topic";
@@ -19,11 +20,13 @@ export function Topics({ topics, activeLanguageId }: Readonly<TopicsProps>) {
                 <h2 className="text-base font-semibold text-gray-900 dark:text-white">{t("dashboard.topics")}</h2>
                 {activeLanguageId && (
                     <Button
-                        variant="none"
+                        variant="pill-purple"
+                        size="sm"
                         onClick={() => navigate(`/language/${activeLanguageId}/topics`)}
-                        className="text-xs text-gray-700 dark:text-gray-300 transition-colors cursor-pointer "
+                        className="gap-2 group"
                     >
-                        {t("dashboard.view_all")} →
+                        <span>{t("dashboard.view_all")}</span>
+                        <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                     </Button>
                 )}
             </div>

@@ -17,7 +17,7 @@ export function PasswordSettings() {
         </p>
       </div>
 
-      <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+      <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
         <PasswordForm />
       </div>
     </div>

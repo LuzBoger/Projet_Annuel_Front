@@ -10,28 +10,31 @@ interface DeletePlanModalProps {
     isLoading: boolean;
 }
 
+import { Modal } from "@/components/ui/Modal";
+
 export function DeletePlanModal({ plan, onCancel, onDelete, isOpen, isLoading }: DeletePlanModalProps) {
     const { t } = useTranslation();
 
-    if (!isOpen || !plan) {
-        return null;
-    }
-
+    if (!plan) return null;
     
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('plans.delete.title')}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{t('plans.delete.description', { name: plan.name })}</p>
-                <div className="flex gap-3 justify-end">
-                    <Button variant="outline" onClick={onCancel} disabled={isLoading}>
-                        {t('common.cancel')}
-                    </Button>
-                    <Button variant="danger" isLoading={isLoading} disabled={isLoading} onClick={() => onDelete(plan.id)}>
-                        {t('common.delete')}
-                    </Button>
-                </div>
+        <Modal
+            isOpen={isOpen}
+            onClose={onCancel}
+            title={t('plans.delete.title')}
+            size="sm"
+        >
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                {t('plans.delete.description', { name: plan.name })}
+            </p>
+            <div className="flex gap-3 justify-end">
+                <Button variant="pill-red" onClick={onCancel} disabled={isLoading}>
+                    {t('common.cancel')}
+                </Button>
+                <Button variant="danger" isLoading={isLoading} disabled={isLoading} onClick={() => onDelete(plan.id)} className="rounded-xl">
+                    {t('common.delete')}
+                </Button>
             </div>
-        </div>
+        </Modal>
     );
 }

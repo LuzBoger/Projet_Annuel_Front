@@ -11,7 +11,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
                 <input
                     type="radio"
                     ref={ref}
-                    className={`w-4 h-4 text-indigo-600 border-gray-300 dark:border-gray-600 focus:ring-indigo-500 focus:ring-offset-gray-50 ${className}`}
+                    className={`w-4 h-4 text-brand-600 border-gray-300 dark:border-gray-600 focus:ring-brand-500 focus:ring-offset-gray-50 ${className}`}
                     {...props}
                 />
                 {label && (
