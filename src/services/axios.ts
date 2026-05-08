@@ -55,7 +55,8 @@ apiClient.interceptors.response.use(
                 return apiClient(originalRequest);
             } catch (refreshError) {
                 processRequests(refreshError as AxiosError);
-                if (window.location.pathname !== '/login' && window.location.pathname !== '/admin/login') {
+                const isAuthCheck = originalRequest.url?.includes('/auth/me');
+                if (!isAuthCheck && window.location.pathname !== '/login' && window.location.pathname !== '/admin/login') {
                     window.location.href = '/login';
                 }
                 return Promise.reject(refreshError);
