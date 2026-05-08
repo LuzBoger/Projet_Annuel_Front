@@ -1,7 +1,6 @@
 import { Bell, Globe, Lock, Shield, User } from "lucide-react";
 import { MenuItem, SettingsTab } from "@/types/components/menutItem";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/Button";
 import { NotificationToggle } from "@/components/ui/NotificationToggle";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import clsx from "clsx";
