@@ -532,7 +532,9 @@
     "updateLesson": "Failed to update lesson.",
     "deleteLesson": "Failed to delete lesson.",
     "startLesson": "Failed to start lesson.",
-    "completeLesson": "Failed to complete lesson."
+    "completeLesson": "Failed to complete lesson.",
+    "fetchGlobalRanking": "Failed to fetch global ranking.",
+    "fetchLanguageRanking": "Failed to fetch language ranking."
   },
   "topics": {
     "page_title": "Available Topics",
@@ -927,5 +929,28 @@
   },
   "catalog_languages": {
     "page_title": "Language Catalog"
+  },
+  "ranking": {
+    "title": "Ranking",
+    "info": {
+      "label": "How does it work?",
+      "title": "Be the best. Win rewards every month.",
+      "description": "Earn XP by completing your lessons, climb the ranking and win exclusive rewards reserved for the top learners of the month."
+    },
+    "tab": {
+      "global": "Global",
+      "language": "By language"
+    },
+    "you": "you",
+    "to_pass": "to pass #{{rank}}",
+    "neighborhood": "Around you",
+    "empty": "No participants yet.",
+    "total": "{{count}} participants total",
+    "user": "User",
+    "level": "Lvl. {{level}}",
+    "motivation": {
+      "leader": "You're in the lead 🔥",
+      "close": "Only {{xp}} XP to beat #{{rank}}!"
+    }
   }
 }

@@ -36,6 +36,7 @@ import { Header } from "@/components/layout/Header";
 import { RoleEnum } from "@/types/enum/roles";
 import { AUTH_PATH } from "@/constants/global";
 import Dashboard from "@/pages/user/Dashboard";
+import Ranking from "@/pages/ranking/Ranking";
 
 export function AppRoutes() {
   const { user, isAuthenticated, fetchUser } = useContext(AuthContext)!;
@@ -67,6 +68,7 @@ export function AppRoutes() {
           <Route path="/lessons/:lessonId/play" element={<ProtectedRoute><LessonPlayer /></ProtectedRoute>} />
           <Route path="/lessons/:lessonId/success" element={<ProtectedRoute><LessonSuccess /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} />
+          <Route path="/ranking" element={<ProtectedRoute><Ranking /></ProtectedRoute>} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
             <Route index element={<AdminDashboard />} />

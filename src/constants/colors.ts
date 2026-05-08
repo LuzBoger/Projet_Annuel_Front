@@ -28,3 +28,15 @@ export const FLAG_BADGE_COLORS: Record<number, FlagBadgeColors> = {
 
 export const COLORS = ["#4F8EF7", "#F7634F", "#F7A84F", "#A84FF7", "#4FF7A8", "#F74FA8", "#4FF7F7", "#A8F74F", "#F74F4F", "#4F4FF7"];
 export const COLORS_PIE_CHART = ['#4f46e5', '#06b6d4'];
+
+
+export const MEDALS_COLORS: Record<number, string> = {
+    1: 'text-yellow-400',
+    2: 'text-gray-400',
+    3: 'text-orange-400',
+}
+export const TOP_RANK_COLORS: Record<number, string> = {
+    1: 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-700/50',
+    2: 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-600/50',
+    3: 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-700/50',
+};

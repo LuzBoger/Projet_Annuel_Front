@@ -537,7 +537,9 @@
     "updateTopic": "Impossible de mettre à jour le Topic.",
     "deleteTopic": "Impossible de supprimer le Topic.",
     "startLesson": "Impossible de démarrer la Leçon.",
-    "completeLesson": "Impossible de valider la Leçon."
+    "completeLesson": "Impossible de valider la Leçon.",
+    "fetchGlobalRanking": "Impossible de récupérer le classement mondial.",
+    "fetchLanguageRanking": "Impossible de récupérer le classement par langue."
   },
   "topics": {
     "page_title": "Topics disponibles",
@@ -932,5 +934,28 @@
   },
   "catalog_languages": {
     "page_title": "Catalogue des langues"
+  },
+  "ranking": {
+    "title": "Classement",
+    "info": {
+      "label": "Comment ça marche ?",
+      "title": "Sois le meilleur. Décroche des récompenses chaque mois.",
+      "description": "Accumule des XP en complétant tes leçons, grimpe dans le classement et remporte des récompenses exclusives réservées aux meilleurs apprenants du mois."
+    },
+    "tab": {
+      "global": "Mondial",
+      "language": "Par langue"
+    },
+    "you": "vous",
+    "to_pass": "pour dépasser le #{{rank}}",
+    "neighborhood": "Autour de vous",
+    "empty": "Aucun participant pour le moment.",
+    "total": "{{count}} participants au total",
+    "user": "Utilisateur",
+    "level": "Niv. {{level}}",
+    "motivation": {
+      "leader": "Tu es en tête 🔥",
+      "close": "Plus que {{xp}} XP pour dépasser le #{{rank}} !"
+    }
   }
 }
