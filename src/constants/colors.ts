@@ -1,3 +1,4 @@
+import { ChallengeStatus } from "@/types/challenges/challenge";
 import { FlagBadgeColors } from "@/types/components/flag";
 
 
@@ -28,3 +29,13 @@ export const FLAG_BADGE_COLORS: Record<number, FlagBadgeColors> = {
 
 export const COLORS = ["#4F8EF7", "#F7634F", "#F7A84F", "#A84FF7", "#4FF7A8", "#F74FA8", "#4FF7F7", "#A8F74F", "#F74F4F", "#4F4FF7"];
 export const COLORS_PIE_CHART = ['#4f46e5', '#06b6d4'];
+
+
+export const STATUS_COLORS: Record<ChallengeStatus, string> = {
+    ACTIVE: 'text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-400/10 border-emerald-300 dark:border-emerald-400/30',
+    PENDING: 'text-yellow-700 dark:text-yellow-400 bg-yellow-100 dark:bg-yellow-400/10 border-yellow-300 dark:border-yellow-400/30',
+    COMPLETED: 'text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-400/10 border-gray-300 dark:border-gray-400/30',
+    EXPIRED: 'text-orange-700 dark:text-orange-400 bg-orange-100 dark:bg-orange-400/10 border-orange-300 dark:border-orange-400/30',
+    DECLINED: 'text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-400/10 border-red-300 dark:border-red-400/30',
+    CANCELLED: 'text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-400/10 border-red-300 dark:border-red-400/30',
+  };

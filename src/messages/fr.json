@@ -486,6 +486,145 @@
     },
     "view_subscription": "Voir mon abonnement"
   },
+  "challenge": {
+    "title": "Défis",
+    "create_title": "Créer un défi",
+    "createSuccess": "Défi créé avec succès.",
+    "joinSuccess": "Vous avez rejoint le défi.",
+    "submitSuccess": "Score soumis avec succès.",
+    "acceptSuccess": "Défi accepté.",
+    "declineSuccess": "Défi refusé.",
+    "author": "Par {{username}}",
+    "time_left_hours": "{{count}} heure(s) restante(s)",
+    "time_left_minutes": "{{count}} minute(s) restante(s)",
+    "time_left_seconds": "{{count}} seconde(s) restante(s)",
+    "participants": {
+      "count": "{{count}} participant",
+      "counts": "{{count}} participants"
+    },
+    "user": {
+      "my_challenges": "Mes défis",
+      "empty": "Vous n'avez aucun défi pour l'instant."
+    },
+    "public": {
+      "challenges": "Défis publics",
+      "empty": "Aucun défi public disponible."
+    },
+    "details": {
+      "accept": "Accepter",
+      "decline": "Refuser",
+      "play": "Commencer le défi",
+      "already_played": "Vous avez déjà effectué ce défi"
+    },
+    "duel": {
+      "pending": "Duel en attente",
+      "challenged_by": "Défié par {{username}}"
+    },
+    "lobby": {
+      "waiting": "En attente que {{username}} accepte...",
+      "cancel": "Annuler le défi"
+    },
+    "notification": {
+      "invite": "{{from}} vous a défié !"
+    },
+    "ranking": {
+      "live": "Classement",
+      "results": "Résultats",
+      "score": {
+        "hidden": "Le score de {{username}} est caché jusqu'à la fin du défi."
+      },
+      "in-progress": "Votre adversaire réalise le défi actuellement...",
+      "not_played": "Votre adversaire n'a pas encore effectué ce défi.",
+      "empty": "Aucun participant pour l'instant."
+    },
+    "form": {
+      "title": "Titre du défi",
+      "placeholder": "Ex : Verbes irréguliers en anglais",
+      "language": "Langue",
+      "language_placeholder": "Sélectionnez une langue",
+      "mode": "Type de défi",
+      "opponent": {
+        "label": "Adversaire",
+        "select": "Sélectionner un adversaire",
+        "change": "Changer d'adversaire",
+        "empty": "Aucun adversaire trouvé"
+      },
+      "topic": "Thème",
+      "topic_placeholder": "Sélectionnez un thème",
+      "lesson": "Leçon",
+      "lesson_placeholder": "Sélectionnez une leçon",
+      "question_count": "Nombre de questions",
+      "question_count_placeholder": "Laisser vide pour avoir toutes les questions",
+      "lesson_type": "Type de leçon",
+      "summary": "Récapitulatif",
+      "submit": "Créer le défi"
+    },
+    "type": {
+        "public" : {
+          "type": "Public",
+          "description": "Ouvert à tous les joueurs"
+        },
+        "duel" : {
+          "type": "Duel",
+          "description": "Défier un adversaire spécifique"
+        },
+      "qcm": { 
+        "type": "QCM"
+      },
+      "flashcard": {
+        "type": "Flashcard"
+      },
+      "matching_pair": {
+        "type": "Paires à relier"
+      },
+      "sorting_exercise": {
+        "type": "Mise en ordre"
+      }
+    },
+    "validation": {
+      "title": "Le titre est requis",
+      "title_max": "Maximum 200 caractères",
+      "title.max": "Maximum 200 caractères",
+      "challengeType": "Le type de défi est requis",
+      "lessonId": "Veuillez sélectionner une leçon",
+      "lessonId.duel": "Veuillez sélectionner une leçon pour ce duel",
+      "lessonType": "Le type de leçon est requis",
+      "languageId": "Veuillez sélectionner une langue",
+      "challengedId": {
+        "required": "L'identifiant de l'adversaire est requis pour un duel"
+      },
+      "qcm": {
+        "question": "La question est requise",
+        "options": "L'option est requise",
+        "options.min": "Au moins 2 options sont requises",
+        "correctOptionIndex.required": "La bonne réponse est requise",
+        "min": "Au moins 1 question est requise"
+      },
+      "flashcard": {
+        "front": "Le recto est requis",
+        "back": "Le verso est requis"
+      },
+      "flashcards": {
+        "min": "Au moins 1 flashcard est requise"
+      },
+      "matchingPair": {
+        "item1": "L'élément 1 est requis",
+        "item2": "L'élément 2 est requis"
+      },
+      "matchingPairs": {
+        "min": "Au moins 1 paire est requise"
+      },
+      "sortingExercise": {
+        "items": "L'élément est requis",
+        "items.min": "Au moins 2 éléments sont requis",
+        "correctOrder": "L'ordre correct est requis",
+        "correctOrder.min": "Au moins 2 éléments sont requis"
+      },
+      "sortingExercises": {
+        "min": "Au moins 1 exercice de tri est requis"
+      }
+    }
+  },
   "error": {
     "generic": "Une erreur est survenue. Veuillez réessayer.",
     "unknown": "Une erreur inconnue est survenue.",
@@ -537,7 +676,17 @@
     "updateTopic": "Impossible de mettre à jour le Topic.",
     "deleteTopic": "Impossible de supprimer le Topic.",
     "startLesson": "Impossible de démarrer la Leçon.",
-    "completeLesson": "Impossible de valider la Leçon."
+    "completeLesson": "Impossible de valider la Leçon.",
+    "createChallenge": "Impossible de créer le défi.",
+    "joinChallenge": "Impossible de rejoindre le défi.",
+    "submitChallenge": "Impossible de soumettre le score.",
+    "fetchChallenge": "Impossible de récupérer le défi.",
+    "fetchChallenges": "Impossible de récupérer les défis.",
+    "fetchPublicChallenges": "Impossible de récupérer les défis publics.",
+    "acceptChallenge": "Impossible d'accepter le défi.",
+    "declineChallenge": "Impossible de refuser le défi.",
+    "cancelChallenge": "Impossible d'annuler le défi.",
+    "fetchParticipants": "Impossible de récupérer les participants."
   },
   "topics": {
     "page_title": "Topics disponibles",
