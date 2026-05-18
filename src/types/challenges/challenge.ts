@@ -5,7 +5,8 @@ export type ChallengeType  = 'DUEL' | 'PUBLIC';
 export type ChallengeStatus = 'PENDING' | 'ACTIVE' | 'COMPLETED' | 'EXPIRED' | 'DECLINED' | 'CANCELLED';
 export type ExamItem = | { type: 'QCM'; data: ChallengeQcmQuestion } | { type: 'FLASHCARD'; data: ChallengeFlashcard }
     | { type: 'MATCHING'; data: ChallengeMatchingPair[]; shuffledTiles: Tile[] } | { type: 'SORTING'; data: ChallengeSortingExercise; shuffledIndices: number[] };
-export interface ChallengeUser {
+export type UnitTime = 'hours' | 'minutes' | 'seconds';
+    export interface ChallengeUser {
     id: string;
     username: string;
     photoUrl: string | null;
@@ -116,4 +117,9 @@ export interface ChallengeNotification {
   lessonTitle: string;
   lessonType: LessonType;
   expiresAt: string;
+}
+
+export interface ChallengeTime {
+  time: number;
+  unit: UnitTime;
 }

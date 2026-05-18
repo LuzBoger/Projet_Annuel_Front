@@ -57,7 +57,7 @@ export default function ChallengeDetail() {
     }
 
     const isChallengeExpired = challenge ? checkIfChallengeExpired(challenge.expiresAt) : false;
-    const timeLeft = challenge ? getTimeLeft(challenge.expiresAt) : { value: 0, unit: 'hours' as const };
+    const timeLeft = challenge ? getTimeLeft(challenge.expiresAt) : { time: 0, unit: 'hours'};
     const alreadyPlayed = challenge?.participants.some(p => p.accountId === user?.id && p.hasCompleted) ?? false;
 
     if (loading) {
@@ -113,7 +113,7 @@ export default function ChallengeDetail() {
             {!isChallengeExpired && challenge.challengeType === 'PUBLIC' && (
               <div className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400">
                 <Clock className="w-3.5 h-3.5" />
-                {t(`challenge.time_left_${timeLeft.unit}`, { count: timeLeft.value })}
+                {t(`challenge.time_left_${timeLeft.unit}`, { count: timeLeft.time })}
               </div>
             )}
           </div>

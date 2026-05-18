@@ -498,6 +498,13 @@
     "time_left_hours": "{{count}} heure(s) restante(s)",
     "time_left_minutes": "{{count}} minute(s) restante(s)",
     "time_left_seconds": "{{count}} seconde(s) restante(s)",
+    "status": {
+      "ACTIVE": "Actif",
+      "COMPLETED": "Terminé",
+      "EXPIRED": "Expiré",
+      "PENDING": "En attente",
+      "CANCELLED": "Annulé"
+    },
     "participants": {
       "count": "{{count}} participant",
       "counts": "{{count}} participants"

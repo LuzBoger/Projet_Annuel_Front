@@ -24,11 +24,11 @@ export function ChallengeCard({ challenge, onClick }: ChallengeCardProps) {
                 {timeLeft !== null && (
                     <span className="inline-flex items-center gap-1 text-xs font-bold text-red-500 dark:text-red-400">
                         <Clock className="w-3 h-3" />
-                        {t(`challenge.time_left_${timeLeft.unit}`, { count: timeLeft.value })}
+                        {t(`challenge.time_left_${timeLeft.unit}`, { count: timeLeft.time })}
                     </span>
                 )}
                 <BadgeTag color={challengeStatusBadgeColor(challenge.challengeStatus)}>
-                    {challenge.challengeStatus}
+                    {t(`challenge.status.${challenge.challengeStatus}`, challenge.challengeStatus)}
                 </BadgeTag>
             </div>
 

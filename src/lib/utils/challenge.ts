@@ -1,5 +1,5 @@
 import { PAGE_SIZE } from "@/constants/challenge";
-import { Challenge, ChallengeParticipant, ChallengeProgress, ExamItem } from "@/types/challenges/challenge";
+import { Challenge, ChallengeParticipant, ChallengeProgress, ChallengeTime, ExamItem } from "@/types/challenges/challenge";
 import { UserPairAnswer } from "@/types/components/examMatching";
 
 export function updateParticipantProgress(participants: ChallengeParticipant[], progressChallenge: ChallengeProgress[]) {
@@ -31,15 +31,15 @@ export function sortParticipants(participants: ChallengeParticipant[]) {
     })
 }
 
-export function getTimeLeft(expiresAt: string): { value: number; unit: 'hours' | 'minutes' | 'seconds' } {
+export function getTimeLeft(expiresAt: string): ChallengeTime {
     const totalSeconds = Math.max(0, Math.floor((new Date(expiresAt).getTime() - Date.now()) / 1000));
     if (totalSeconds >= 3600){
-        return { value: Math.floor(totalSeconds / 3600), unit: 'hours' };
+        return { time: Math.floor(totalSeconds / 3600), unit: 'hours' };
     }
     if (totalSeconds >= 60) {
-        return { value: Math.floor(totalSeconds / 60), unit: 'minutes' };
+        return { time: Math.floor(totalSeconds / 60), unit: 'minutes' };
     }
-    return { value: totalSeconds, unit: 'seconds' };
+    return { time: totalSeconds, unit: 'seconds' };
 }
 
 export function checkIfChallengeExpired(expiresAt: string): boolean {
