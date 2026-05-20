@@ -8,10 +8,10 @@ import { FormField } from "@/components/ui/FormField";
 import { TextArea } from "@/components/ui/TextArea";
 import { Select } from "@/components/ui/Select";
 import { Switch } from "@/components/ui/Switch";
-import { ChevronLeft, Eye, Check, Cross } from "@/assets/icons";
+import { ChevronLeft, Eye, Check, Cross, Sparkles } from "@/assets/icons";
 import { useLesson } from "@/hooks/useLesson";
 import { useTopic } from "@/hooks/useTopic";
-import { LessonType, LessonRequest } from "@/types/lesson/lesson";
+import { LessonType, LessonRequest, AILessonGenerateRequest, FlashcardRequest, QcmQuestionRequest, MatchingPairRequest } from "@/types/lesson/lesson";
 import { lessonSchema, type LessonFormData } from "@/validations/lessons/lessonSchema";
 import { FlashcardForm } from "@/components/admin/lessons/FlashcardForm";
 import { QCMForm } from "@/components/admin/lessons/QCMForm";
@@ -19,6 +19,7 @@ import { MatchingPairForm } from "@/components/admin/lessons/MatchingPairForm";
 import { SortingExerciseForm } from "@/components/admin/lessons/SortingExerciseForm";
 import { LessonSimulatorModal } from "@/components/admin/lessons/LessonSimulatorModal";
 import { MetaData } from "@/components/seo/MetaData";
+import { Modal } from "@/components/ui/Modal";
 
 export default function LessonForm() {
     const { topicId, lessonId } = useParams<{ topicId: string, lessonId?: string }>();
@@ -26,8 +27,11 @@ export default function LessonForm() {
     const { t } = useTranslation();
     const isEdit = !!lessonId;
     const [isSimulatorOpen, setIsSimulatorOpen] = useState(false);
+    const [isGeneratingLesson, setIsGeneratingLesson] = useState(false);
+    const [aiGenerationDescription, setAiGenerationDescription] = useState("");
+    const [aiItemCount, setAiItemCount] = useState<number | undefined>(undefined);
 
-    const { loading: lessonLoading, createLesson, updateLesson, fetchLessonById } = useLesson();
+    const { loading: lessonLoading, createLesson, updateLesson, fetchLessonById, generateLessonWithAI, modifyLessonWithAI } = useLesson();
     const { topics, fetchAllTopics } = useTopic();
     const currentTopic = topics.find(t => t.id === topicId);
 
@@ -49,6 +53,19 @@ export default function LessonForm() {
     const lessonType = useWatch({ control, name: "lessonType" });
     const isActive = useWatch({ control, name: "isActive" });
     const formData = useWatch({ control });
+
+    const flashcardsCount = formData.flashcards?.length;
+    const questionsCount = formData.questions?.length;
+
+    useEffect(() => {
+        if (lessonType === LessonType.FLASHCARD) {
+            setAiItemCount(flashcardsCount || undefined);
+        } else if (lessonType === LessonType.QCM) {
+            setAiItemCount(questionsCount || undefined);
+        } else {
+            setAiItemCount(undefined);
+        }
+    }, [lessonType, flashcardsCount, questionsCount]);
 
     const topicsLength = topics.length;
 
@@ -74,6 +91,85 @@ export default function LessonForm() {
         label: t(`admin.lessons.form.types.${type}`),
         value: type,
     }));
+
+    const handleAiGenerationOrModification = async () => {
+        if (!topicId) {
+            return;
+        }
+
+        if (!aiGenerationDescription.trim()) {
+            alert(isEdit ? t("admin.lessons.form.ai_generate.empty_description_modify") : t("admin.lessons.form.ai_generate.empty_description"));
+            return;
+        }
+
+        setIsGeneratingLesson(true);
+
+        try {
+            let generatedLessonData;
+
+            if (isEdit && lessonId) {
+                const currentLessonRequest: LessonRequest = {
+                    topicId,
+                    title: formData.title || "",
+                    description: formData.description || "",
+                    orderIndex: formData.orderIndex || 0,
+                    isActive: formData.isActive ?? true,
+                    lessonType: lessonType as LessonType,
+                };
+
+                if (lessonType === LessonType.FLASHCARD) {
+                    currentLessonRequest.flashcards = formData.flashcards as FlashcardRequest[];
+                } else if (lessonType === LessonType.QCM) {
+                    currentLessonRequest.questions = formData.questions as QcmQuestionRequest[];
+                } else if (lessonType === LessonType.MATCHING_PAIR) {
+                    currentLessonRequest.matchingPairs = formData.matchingPairs as MatchingPairRequest[];
+                } else if (lessonType === LessonType.SORTING_EXERCISE && formData.sortingItems) {
+                    currentLessonRequest.sortingExercise = [{
+                        items: formData.sortingItems.map((item) => item?.value || ""),
+                        correctOrder: formData.sortingItems.map((_, idx) => idx)
+                    }];
+                }
+
+                const modificationRequest = {
+                    lessonId,
+                    prompt: aiGenerationDescription,
+                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD) ? aiItemCount : undefined,
+                    lesson: currentLessonRequest
+                };
+
+                generatedLessonData = await modifyLessonWithAI(modificationRequest);
+            } else {
+                const generationRequest: AILessonGenerateRequest = {
+                    lessonType: lessonType,
+                    topicId: topicId,
+                    description: aiGenerationDescription,
+                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD) ? aiItemCount : undefined
+                };
+
+                generatedLessonData = await generateLessonWithAI(generationRequest);
+            }
+
+            if (generatedLessonData) {
+                setValue("title", generatedLessonData.title || "");
+                setValue("description", generatedLessonData.description || "");
+
+                if (generatedLessonData.lessonType === LessonType.FLASHCARD) {
+                    setValue("flashcards", generatedLessonData.flashcards || []);
+                } else if (generatedLessonData.lessonType === LessonType.QCM) {
+                    setValue("questions", generatedLessonData.questions || []);
+                } else if (generatedLessonData.lessonType === LessonType.MATCHING_PAIR) {
+                    setValue("matchingPairs", generatedLessonData.matchingPairs || []);
+                } else if (generatedLessonData.lessonType === LessonType.SORTING_EXERCISE && generatedLessonData.sortingExercise && generatedLessonData.sortingExercise.length > 0) {
+                    const sortedItems = generatedLessonData.sortingExercise[0].items.map((item: string) => ({ value: item }));
+                    setValue("sortingItems", sortedItems);
+                }
+            }
+        } catch (error: unknown) {
+            console.error("AI Lesson generation/modification failed", error);
+        } finally {
+            setIsGeneratingLesson(false);
+        }
+    };
 
     const onFormSubmit = async (data: LessonFormData) => {
         if (!topicId) return;
@@ -153,61 +249,146 @@ export default function LessonForm() {
 
                 <form onSubmit={handleSubmit(onFormSubmit)} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     <div className="lg:col-span-8 space-y-6">
-                        <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sm:p-8">
-                            <div className="flex items-center gap-2 mb-8">
-                                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('admin.lessons.form.sections.basic_info')}</h2>
+                        <div className="bg-linear-to-br from-indigo-500/10 to-brand-500/10 backdrop-blur-xl rounded-3xl shadow-sm border border-indigo-500/20 dark:border-indigo-500/30 p-6 sm:p-8 transition-all duration-500">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="p-2.5 bg-indigo-50 dark:bg-indigo-950/50 rounded-2xl border border-indigo-100/50 dark:border-indigo-500/20 transition-all">
+                                    <Sparkles className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                                </div>
+                                <div>
+                                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                                        {isEdit ? t('admin.lessons.form.ai_generate.title_modify') : t('admin.lessons.form.ai_generate.title')}
+                                    </h2>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                                        {isEdit ? t('admin.lessons.form.ai_generate.subtitle_modify') : t('admin.lessons.form.ai_generate.subtitle')}
+                                    </p>
+                                </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                                <div className="md:col-span-2">
-                                    <FormField
-                                        label={t('admin.lessons.form.title')}
-                                        {...register("title")}
-                                        error={errors.title?.message}
-                                        required
-                                        className="bg-white/50 dark:bg-gray-900/50"
-                                    />
+                            <div className="space-y-4">
+                                <div className={`transition-all duration-300 ${isGeneratingLesson ? "pointer-events-none opacity-40" : ""}`}>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                        <div className="md:col-span-1 space-y-4">
+                                            <div>
+                                                <Select
+                                                    label={t('admin.lessons.form.type')}
+                                                    options={lessonTypeOptions}
+                                                    value={lessonType}
+                                                    onChange={(val) => setValue("lessonType", val as LessonType)}
+                                                    placeholder={t('admin.lessons.form.type_placeholder')}
+                                                    required
+                                                    error={errors.lessonType?.message}
+                                                />
+                                                <p className="mt-2 text-xs text-brand-600 dark:text-brand-400 font-semibold tracking-wide">
+                                                    {t('admin.lessons.form.ai_generate.type_helper')}
+                                                </p>
+                                            </div>
+
+                                            {(lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD) && (
+                                                <div>
+                                                    <FormField
+                                                        label={t('admin.lessons.form.ai_generate.item_count_label')}
+                                                        type="number"
+                                                        min={1}
+                                                        max={50}
+                                                        value={aiItemCount ?? ""}
+                                                        onChange={(e) => {
+                                                            const parsedValue = e.target.value ? parseInt(e.target.value, 10) : undefined;
+                                                            setAiItemCount(parsedValue);
+                                                        }}
+                                                        placeholder={t('admin.lessons.form.ai_generate.item_count_placeholder')}
+                                                        className="bg-white/50 dark:bg-gray-900/50"
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
+                                                {isEdit ? t('admin.lessons.form.ai_generate.description_label_modify') : t('admin.lessons.form.ai_generate.description_label')}
+                                            </label>
+                                            <TextArea
+                                                value={aiGenerationDescription}
+                                                onChange={(e) => setAiGenerationDescription(e.target.value)}
+                                                placeholder={isEdit ? t('admin.lessons.form.ai_generate.description_placeholder_modify') : t('admin.lessons.form.ai_generate.description_placeholder')}
+                                                className="min-h-[160px] bg-white/50 dark:bg-gray-900/50 rounded-2xl"
+                                                disabled={isGeneratingLesson}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="md:col-span-2">
-                                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
-                                        {t('admin.lessons.form.description')}
-                                    </label>
-                                    <TextArea
-                                        {...register("description")}
-                                        className="min-h-[120px] bg-white/50 dark:bg-gray-900/50 rounded-2xl"
-                                        error={errors.description?.message}
-                                    />
+                                <div className="flex justify-end">
+                                    <Button
+                                        type="button"
+                                        variant="primary"
+                                        isLoading={isGeneratingLesson}
+                                        onClick={handleAiGenerationOrModification}
+                                        className="shadow-md shadow-brand-500/20"
+                                    >
+                                        <Sparkles className="w-4 h-4 mr-2" />
+                                        {isEdit ? t('admin.lessons.form.ai_generate.trigger_btn_modify') : t('admin.lessons.form.ai_generate.trigger_btn')}
+                                    </Button>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sm:p-8">
-                            <div className="flex items-center gap-2 mb-8">
-                                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('admin.lessons.form.sections.lesson_content')}</h2>
+                        <div className={`space-y-6 transition-all duration-500 ${isGeneratingLesson ? "pointer-events-none opacity-50" : ""}`}>
+                            <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sm:p-8">
+                                <div className="flex items-center gap-2 mb-8">
+                                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('admin.lessons.form.sections.basic_info')}</h2>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                                    <div className="md:col-span-2">
+                                        <FormField
+                                            label={t('admin.lessons.form.title')}
+                                            {...register("title")}
+                                            error={errors.title?.message}
+                                            required
+                                            className="bg-white/50 dark:bg-gray-900/50"
+                                        />
+                                    </div>
+                                    <div className="md:col-span-2">
+                                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
+                                            {t('admin.lessons.form.description')}
+                                        </label>
+                                        <TextArea
+                                            {...register("description")}
+                                            className="min-h-[120px] bg-white/50 dark:bg-gray-900/50 rounded-2xl"
+                                            error={errors.description?.message}
+                                        />
+                                    </div>
+                                </div>
                             </div>
 
-                            <div className="max-w-md mb-8">
-                                <Select
-                                    label={t('admin.lessons.form.type')}
-                                    options={lessonTypeOptions}
-                                    value={lessonType}
-                                    onChange={(val) => setValue("lessonType", val as LessonType)}
-                                    placeholder={t('admin.lessons.form.type_placeholder')}
-                                    required
-                                    error={errors.lessonType?.message}
-                                />
-                            </div>
+                            <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sm:p-8">
+                                <div className="flex items-center gap-2 mb-8">
+                                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('admin.lessons.form.sections.lesson_content')}</h2>
+                                </div>
 
-                            <div className="pt-8 border-t border-gray-100 dark:border-gray-700/50">
-                                {lessonType === LessonType.FLASHCARD && <FlashcardForm control={control} register={register} errors={errors} />}
-                                {lessonType === LessonType.QCM && <QCMForm control={control} register={register} errors={errors} />}
-                                {lessonType === LessonType.MATCHING_PAIR && <MatchingPairForm control={control} register={register} errors={errors} />}
-                                {lessonType === LessonType.SORTING_EXERCISE && <SortingExerciseForm control={control} register={register} errors={errors} />}
+                                {isEdit && (
+                                    <div className="max-w-md mb-8">
+                                        <Select
+                                            label={t('admin.lessons.form.type')}
+                                            options={lessonTypeOptions}
+                                            value={lessonType}
+                                            onChange={(val) => setValue("lessonType", val as LessonType)}
+                                            placeholder={t('admin.lessons.form.type_placeholder')}
+                                            required
+                                            error={errors.lessonType?.message}
+                                        />
+                                    </div>
+                                )}
+
+                                <div className="pt-8 border-t border-gray-100 dark:border-gray-700/50">
+                                    {lessonType === LessonType.FLASHCARD && <FlashcardForm control={control} register={register} errors={errors} />}
+                                    {lessonType === LessonType.QCM && <QCMForm control={control} register={register} errors={errors} />}
+                                    {lessonType === LessonType.MATCHING_PAIR && <MatchingPairForm control={control} register={register} errors={errors} />}
+                                    {lessonType === LessonType.SORTING_EXERCISE && <SortingExerciseForm control={control} register={register} errors={errors} />}
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="lg:col-span-4 space-y-6">
+                    <div className={`lg:col-span-4 space-y-6 transition-all duration-500 ${isGeneratingLesson ? "pointer-events-none opacity-50" : ""}`}>
                         <div className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/20 dark:border-gray-700/50 p-6 sticky top-8">
                             <h3 className="text-md font-bold text-gray-900 dark:text-white mb-6 uppercase tracking-wider text-xs">{t('admin.lessons.form.sections.basic_info')}</h3>
 
@@ -240,6 +421,33 @@ export default function LessonForm() {
                 onClose={() => setIsSimulatorOpen(false)}
                 data={formData}
             />
+
+            <Modal
+                isOpen={isGeneratingLesson}
+                onClose={() => {}}
+                showCloseButton={false}
+                closeOnOverlayClick={false}
+                size="sm"
+                className="overflow-hidden"
+            >
+                <div className="flex flex-col items-center justify-center text-center p-6 my-4 select-none">
+                    <div className="relative w-24 h-24 flex items-center justify-center mb-8">
+                        <div className="absolute inset-0 rounded-full border-4 border-t-brand-500 border-r-indigo-500 border-b-transparent border-l-transparent animate-spin duration-1000" />
+                        <div className="absolute inset-2 rounded-full border-4 border-b-violet-500 border-l-pink-500 border-t-transparent border-r-transparent animate-spin duration-700" style={{ animationDirection: "reverse" }} />
+                        <div className="absolute inset-4 bg-indigo-50 dark:bg-indigo-950/40 rounded-full flex items-center justify-center shadow-lg border border-indigo-100/50 dark:border-indigo-500/20">
+                            <Sparkles className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
+                        </div>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+                        {isEdit ? t('admin.lessons.form.ai_generate.generating_title_modify') : t('admin.lessons.form.ai_generate.generating_title')}
+                    </h3>
+
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs">
+                        {t('admin.lessons.form.ai_generate.generating_subtitle')}
+                    </p>
+                </div>
+            </Modal>
         </div>
     );
 }

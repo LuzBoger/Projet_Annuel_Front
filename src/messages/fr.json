@@ -358,7 +358,31 @@
         },
         "topic_label": "Topic :",
         "untitled": "Leçon sans titre",
-        "no_description": "Aucune description fournie."
+        "no_description": "Aucune description fournie.",
+        "ai_generate": {
+          "title": "Génération assistée par IA",
+          "title_modify": "Modification assistée par IA",
+          "subtitle": "Laissez l'intelligence artificielle concevoir la structure de votre leçon en un clic.",
+          "subtitle_modify": "Donnez des consignes à l'IA pour enrichir ou adapter le contenu existant.",
+          "description_label": "Description de la leçon pour l'IA",
+          "description_label_modify": "Consignes de modification pour l'IA",
+          "description_placeholder": "Ex : Crée un QCM sur le vocabulaire des fruits pour débutants.",
+          "description_placeholder_modify": "Ex : Ajoute 3 nouvelles questions difficiles sur le sujet.",
+          "trigger_btn": "Générer avec IA",
+          "trigger_btn_modify": "Modifier avec IA",
+          "success": "Leçon générée avec succès par l'IA !",
+          "success_modify": "Leçon modifiée avec succès par l'IA !",
+          "error": "Échec de la génération de la leçon par l'IA.",
+          "error_modify": "Échec de la modification de la leçon par l'IA.",
+          "empty_description": "Veuillez saisir une description avant de lancer la génération.",
+          "empty_description_modify": "Veuillez saisir des consignes avant de lancer la modification.",
+          "type_helper": "* Détermine le format de leçon (requis pour la génération par IA et la configuration manuelle).",
+          "item_count_label": "Nombre d'éléments à générer (optionnel)",
+          "item_count_placeholder": "Ex : 5",
+          "generating_title": "Conception de la leçon...",
+          "generating_title_modify": "Modification de la leçon...",
+          "generating_subtitle": "L'IA structure vos exercices et vos contenus. Veuillez patienter quelques instants."
+        }
       },
       "flashcards": {
         "front": "Recto (Front)",
