@@ -107,6 +107,19 @@ export interface TopicLessonsResponse {
     lastAccuracy: number;
     topicName: string;
     userProgress?: UserLessonProgressSummary;
+}
 
+export interface AILessonGenerateRequest {
+    lessonType: LessonType;
+    topicId: string;
+    description: string;
+    itemCount?: number;
+}
+
+export interface AILessonModifyRequest {
+    lessonId: string;
+    prompt: string;
+    itemCount?: number;
+    lesson: LessonRequest;
 }
 
