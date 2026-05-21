@@ -17,7 +17,9 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
         frontLanguage: yup.string().required(t('common.required')),
         backLanguage: yup.string().required(t('common.required')),
       })
-    ).min(1, t('common.required')),
+    )
+    .min(5, t('admin.lessons.form.validation.flashcards_min'))
+    .max(20, t('admin.lessons.form.validation.flashcards_max')),
     otherwise: (schema) => schema.notRequired(),
   }),
 
@@ -31,7 +33,9 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
         correctOptionIndex: yup.number().required(t('common.required')),
         explanation: yup.string(),
       })
-    ).min(1, t('common.required')),
+    )
+    .min(5, t('admin.lessons.form.validation.questions_min'))
+    .max(20, t('admin.lessons.form.validation.questions_max')),
     otherwise: (schema) => schema.notRequired(),
   }),
 
@@ -43,7 +47,9 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
         item1: yup.string().required(t('common.required')),
         item2: yup.string().required(t('common.required')),
       })
-    ).min(1, t('common.required')),
+    )
+    .min(3, t('admin.lessons.form.validation.matching_min'))
+    .max(10, t('admin.lessons.form.validation.matching_max')),
     otherwise: (schema) => schema.notRequired(),
   }),
 
@@ -54,9 +60,47 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
       yup.object({
         value: yup.string().required(t('common.required'))
       })
-    ).min(2, t('common.required')),
+    )
+    .min(3, t('admin.lessons.form.validation.sorting_min'))
+    .max(10, t('admin.lessons.form.validation.sorting_max')),
     otherwise: (schema) => schema.notRequired(),
   }),
 });
+
+export const aiGenerationSchema = (t: (key: string) => string, lessonType: LessonType, isEdit: boolean) => {
+  const isFlashcardOrQcm = lessonType === LessonType.FLASHCARD || lessonType === LessonType.QCM;
+  const minItems = isFlashcardOrQcm ? 5 : 3;
+  const maxItems = isFlashcardOrQcm ? 20 : 10;
+
+  return yup.object({
+    aiGenerationDescription: yup
+      .string()
+      .trim()
+      .required(
+        isEdit
+          ? t("admin.lessons.form.ai_generate.empty_description_modify")
+          : t("admin.lessons.form.ai_generate.empty_description")
+      ),
+    aiItemCount: yup
+      .number()
+      .transform((value, originalValue) => (originalValue === "" || originalValue === undefined || originalValue === null) ? undefined : value)
+      .nullable()
+      .optional()
+      .test("is-valid-range", function (value) {
+        if (value === undefined || value === null || isNaN(value)) {
+          return true;
+        }
+
+        if (value < minItems || value > maxItems) {
+          const errorMessage = isFlashcardOrQcm
+            ? t("admin.lessons.form.ai_generate.item_count_error_flashcard_qcm")
+            : t("admin.lessons.form.ai_generate.item_count_error_matching_sorting");
+          return this.createError({ message: errorMessage });
+        }
+
+        return true;
+      })
+  });
+};
 
 export type LessonFormData = Omit<yup.InferType<ReturnType<typeof lessonSchema>>, 'orderIndex'> & { orderIndex?: number };
