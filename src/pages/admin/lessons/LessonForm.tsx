@@ -8,11 +8,12 @@ import { FormField } from "@/components/ui/FormField";
 import { TextArea } from "@/components/ui/TextArea";
 import { Select } from "@/components/ui/Select";
 import { Switch } from "@/components/ui/Switch";
-import { ChevronLeft, Eye, Check, Cross, Sparkles } from "@/assets/icons";
+import { ChevronLeft, Eye, Check, Cross, Sparkles, Warning } from "@/assets/icons";
 import { useLesson } from "@/hooks/useLesson";
 import { useTopic } from "@/hooks/useTopic";
 import { LessonType, LessonRequest, AILessonGenerateRequest, FlashcardRequest, QcmQuestionRequest, MatchingPairRequest } from "@/types/lesson/lesson";
-import { lessonSchema, type LessonFormData } from "@/validations/lessons/lessonSchema";
+import * as yup from "yup";
+import { lessonSchema, aiGenerationSchema, type LessonFormData } from "@/validations/lessons/lessonSchema";
 import { FlashcardForm } from "@/components/admin/lessons/FlashcardForm";
 import { QCMForm } from "@/components/admin/lessons/QCMForm";
 import { MatchingPairForm } from "@/components/admin/lessons/MatchingPairForm";
@@ -28,8 +29,17 @@ export default function LessonForm() {
     const isEdit = !!lessonId;
     const [isSimulatorOpen, setIsSimulatorOpen] = useState(false);
     const [isGeneratingLesson, setIsGeneratingLesson] = useState(false);
+    const [isQuotaModalOpen, setIsQuotaModalOpen] = useState(false);
     const [aiGenerationDescription, setAiGenerationDescription] = useState("");
     const [aiItemCount, setAiItemCount] = useState<number | undefined>(undefined);
+    const [aiErrors, setAiErrors] = useState<{
+        aiGenerationDescription?: string;
+        aiItemCount?: string;
+    }>({});
+    const [aiTouched, setAiTouched] = useState<{
+        aiGenerationDescription?: boolean;
+        aiItemCount?: boolean;
+    }>({});
 
     const { loading: lessonLoading, createLesson, updateLesson, fetchLessonById, generateLessonWithAI, modifyLessonWithAI } = useLesson();
     const { topics, fetchAllTopics } = useTopic();
@@ -54,18 +64,47 @@ export default function LessonForm() {
     const isActive = useWatch({ control, name: "isActive" });
     const formData = useWatch({ control });
 
+    useEffect(() => {
+        const schema = aiGenerationSchema(t, lessonType as LessonType, isEdit);
+        schema.validate({ aiGenerationDescription, aiItemCount }, { abortEarly: false })
+            .then(() => {
+                setAiErrors({});
+            })
+            .catch((err: unknown) => {
+                if (err instanceof yup.ValidationError) {
+                    const newErrors: typeof aiErrors = {};
+                    err.inner.forEach((error) => {
+                        if (error.path) {
+                            newErrors[error.path as keyof typeof aiErrors] = error.message;
+                        }
+                    });
+                    setAiErrors(newErrors);
+                }
+            });
+    }, [aiGenerationDescription, aiItemCount, lessonType, isEdit, t]);
+
+    const isFlashcardOrQcm = lessonType === LessonType.FLASHCARD || lessonType === LessonType.QCM;
+    const minItems = isFlashcardOrQcm ? 5 : 3;
+    const maxItems = isFlashcardOrQcm ? 20 : 10;
+
     const flashcardsCount = formData.flashcards?.length;
     const questionsCount = formData.questions?.length;
+    const matchingPairsCount = formData.matchingPairs?.length;
+    const sortingItemsCount = formData.sortingItems?.length;
 
     useEffect(() => {
         if (lessonType === LessonType.FLASHCARD) {
             setAiItemCount(flashcardsCount || undefined);
         } else if (lessonType === LessonType.QCM) {
             setAiItemCount(questionsCount || undefined);
+        } else if (lessonType === LessonType.MATCHING_PAIR) {
+            setAiItemCount(matchingPairsCount || undefined);
+        } else if (lessonType === LessonType.SORTING_EXERCISE) {
+            setAiItemCount(sortingItemsCount || undefined);
         } else {
             setAiItemCount(undefined);
         }
-    }, [lessonType, flashcardsCount, questionsCount]);
+    }, [lessonType, flashcardsCount, questionsCount, matchingPairsCount, sortingItemsCount]);
 
     const topicsLength = topics.length;
 
@@ -97,8 +136,21 @@ export default function LessonForm() {
             return;
         }
 
-        if (!aiGenerationDescription.trim()) {
-            alert(isEdit ? t("admin.lessons.form.ai_generate.empty_description_modify") : t("admin.lessons.form.ai_generate.empty_description"));
+        setAiTouched({ aiGenerationDescription: true, aiItemCount: true });
+
+        const schema = aiGenerationSchema(t, lessonType as LessonType, isEdit);
+        try {
+            await schema.validate({ aiGenerationDescription, aiItemCount }, { abortEarly: false });
+        } catch (err: unknown) {
+            if (err instanceof yup.ValidationError) {
+                const newErrors: typeof aiErrors = {};
+                err.inner.forEach((error) => {
+                    if (error.path) {
+                        newErrors[error.path as keyof typeof aiErrors] = error.message;
+                    }
+                });
+                setAiErrors(newErrors);
+            }
             return;
         }
 
@@ -166,6 +218,10 @@ export default function LessonForm() {
             }
         } catch (error: unknown) {
             console.error("AI Lesson generation/modification failed", error);
+            const axiosError = error as { response?: { status?: number } };
+            if (axiosError?.response?.status === 429) {
+                setIsQuotaModalOpen(true);
+            }
         } finally {
             setIsGeneratingLesson(false);
         }
@@ -283,36 +339,45 @@ export default function LessonForm() {
                                                 </p>
                                             </div>
 
-                                            {(lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD) && (
-                                                <div>
-                                                    <FormField
-                                                        label={t('admin.lessons.form.ai_generate.item_count_label')}
-                                                        type="number"
-                                                        min={1}
-                                                        max={50}
-                                                        value={aiItemCount ?? ""}
-                                                        onChange={(e) => {
-                                                            const parsedValue = e.target.value ? parseInt(e.target.value, 10) : undefined;
-                                                            setAiItemCount(parsedValue);
-                                                        }}
-                                                        placeholder={t('admin.lessons.form.ai_generate.item_count_placeholder')}
-                                                        className="bg-white/50 dark:bg-gray-900/50"
-                                                    />
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div className="md:col-span-2">
-                                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
-                                                {isEdit ? t('admin.lessons.form.ai_generate.description_label_modify') : t('admin.lessons.form.ai_generate.description_label')}
-                                            </label>
-                                            <TextArea
-                                                value={aiGenerationDescription}
-                                                onChange={(e) => setAiGenerationDescription(e.target.value)}
-                                                placeholder={isEdit ? t('admin.lessons.form.ai_generate.description_placeholder_modify') : t('admin.lessons.form.ai_generate.description_placeholder')}
-                                                className="min-h-[160px] bg-white/50 dark:bg-gray-900/50 rounded-2xl"
-                                                disabled={isGeneratingLesson}
-                                            />
-                                        </div>
+                                             <div>
+                                                  <FormField
+                                                      label={t('admin.lessons.form.ai_generate.item_count_label')}
+                                                      type="number"
+                                                      min={minItems}
+                                                      max={maxItems}
+                                                      value={aiItemCount ?? ""}
+                                                      onChange={(e) => {
+                                                          const parsedValue = e.target.value ? parseInt(e.target.value, 10) : undefined;
+                                                          setAiItemCount(parsedValue);
+                                                          setAiTouched((prev) => ({ ...prev, aiItemCount: true }));
+                                                      }}
+                                                      onBlur={() => setAiTouched((prev) => ({ ...prev, aiItemCount: true }))}
+                                                      placeholder={t('admin.lessons.form.ai_generate.item_count_placeholder') + ` (${minItems}-${maxItems})`}
+                                                      className="bg-white/50 dark:bg-gray-900/50"
+                                                      error={aiTouched.aiItemCount ? aiErrors.aiItemCount : undefined}
+                                                  />
+                                              </div>
+                                         </div>
+                                         <div className="md:col-span-2">
+                                             <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
+                                                 {isEdit ? t('admin.lessons.form.ai_generate.description_label_modify') : t('admin.lessons.form.ai_generate.description_label')}
+                                             </label>
+                                             <TextArea
+                                                 value={aiGenerationDescription}
+                                                 onChange={(e) => {
+                                                     setAiGenerationDescription(e.target.value);
+                                                     setAiTouched((prev) => ({ ...prev, aiGenerationDescription: true }));
+                                                 }}
+                                                 onBlur={() => setAiTouched((prev) => ({ ...prev, aiGenerationDescription: true }))}
+                                                 placeholder={isEdit ? t('admin.lessons.form.ai_generate.description_placeholder_modify') : t('admin.lessons.form.ai_generate.description_placeholder')}
+                                                 className="min-h-[160px] bg-white/50 dark:bg-gray-900/50 rounded-2xl"
+                                                 disabled={isGeneratingLesson}
+                                                 error={aiTouched.aiGenerationDescription ? aiErrors.aiGenerationDescription : undefined}
+                                             />
+                                             {aiTouched.aiGenerationDescription && aiErrors.aiGenerationDescription && (
+                                                 <p className="mt-1 text-sm text-red-600">{aiErrors.aiGenerationDescription}</p>
+                                             )}
+                                         </div>
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
@@ -446,6 +511,40 @@ export default function LessonForm() {
                     <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs">
                         {t('admin.lessons.form.ai_generate.generating_subtitle')}
                     </p>
+                </div>
+            </Modal>
+
+            <Modal
+                isOpen={isQuotaModalOpen}
+                onClose={() => setIsQuotaModalOpen(false)}
+                size="sm"
+                className="overflow-hidden"
+            >
+                <div className="flex flex-col items-center justify-center text-center p-6 my-4 select-none">
+                    <div className="relative w-24 h-24 flex items-center justify-center mb-8">
+                        <div className="absolute inset-0 rounded-full border-4 border-red-500/20 dark:border-red-500/10" />
+                        <div className="absolute inset-2 rounded-full border-4 border-red-500/40 dark:border-red-500/25 animate-pulse" />
+                        <div className="absolute inset-4 bg-red-50 dark:bg-red-950/40 rounded-full flex items-center justify-center shadow-lg border border-red-100/50 dark:border-red-500/20">
+                            <Warning className="w-8 h-8 text-red-600 dark:text-red-400" />
+                        </div>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
+                        {t('admin.lessons.form.ai_generate.quota_exceeded_title')}
+                    </h3>
+
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs mb-8">
+                        {t('admin.lessons.form.ai_generate.quota_exceeded_message')}
+                    </p>
+
+                    <Button
+                        type="button"
+                        variant="pill-gray"
+                        onClick={() => setIsQuotaModalOpen(false)}
+                        className="w-full py-3.5 font-bold"
+                    >
+                        {t('admin.lessons.form.ai_generate.quota_exceeded_cta')}
+                    </Button>
                 </div>
             </Modal>
         </div>
