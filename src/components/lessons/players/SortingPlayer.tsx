@@ -13,7 +13,7 @@ import { initPool } from "@/lib/utils/sorting";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 interface SortingPlayerProps {
     exercises: SortingExerciseRequest[];
-    onFinish: (score: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number) => void;
 }
 
 export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
@@ -97,7 +97,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
             setCurrentIndex(previous => previous + 1);
         } else {
             const finalScore = Math.round((correctCount / exercises.length) * 100);
-            onFinish(finalScore);
+            onFinish(finalScore, correctCount, exercises.length);
         }
     };
 

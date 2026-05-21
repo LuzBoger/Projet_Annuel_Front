@@ -14,7 +14,7 @@ import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface MatchingPlayerProps {
     pairs: MatchingPairRequest[];
-    onFinish: (score: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number) => void;
 }
 
 export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
@@ -95,7 +95,8 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
 
     const handleFinishClick = () => {
         const finalScore = Math.max(0, 100 - (errorCount * PENALTY_PER_ERROR));
-        onFinish(finalScore);
+        const correctAnswers = Math.max(0, pairs.length - errorCount);
+        onFinish(finalScore, correctAnswers, pairs.length);
     };
 
 

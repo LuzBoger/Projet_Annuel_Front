@@ -57,7 +57,7 @@ export default function LessonPlayer() {
         return () => { mounted = false; };
     }, [lessonId, fetchLessonById, startLesson, t]);
 
-    const handleLessonComplete = useCallback(async (score: number) => {
+    const handleLessonComplete = useCallback(async (score: number, correctAnswers: number, totalAnswers: number) => {
         if (!lessonId || isCompleting) return;
 
         try {
@@ -66,7 +66,9 @@ export default function LessonPlayer() {
 
             const response = await completeLesson(lessonId, {
                 score,
-                timeSpentSeconds
+                timeSpentSeconds,
+                correctAnswers,
+                totalAnswers
             });
 
             playSuccess();

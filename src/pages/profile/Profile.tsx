@@ -1,3 +1,4 @@
+import { LessonSessionTable } from "@/components/lessonSession/LessonSessionTable";
 import InfoAccountPrivate from "@/components/profile/InfoAccountPrivate";
 import { InfoPrivateBanner } from "@/components/profile/InfoPrivateBanner";
 import { ProfileLanguageSection } from "@/components/profile/LanguageSection";
@@ -123,8 +124,18 @@ export  function Profile() {
 
           </aside>
 
-          <main className="flex-1 min-w-0 flex flex-col gap-4">
-            <ProfileLanguageSection languages={languages} onLanguageRemove={handleLanguageRemoved} />
+          <main className="flex-1 min-w-0 flex flex-col gap-6">
+
+            <section className="bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-6 py-5 space-y-4">
+              <h2 className="text-[10px] font-medium text-[#8a7a60] dark:text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                {t("profile.languageSection.learningLanguages")}
+                <span className="flex-1 h-px bg-[#e8dcc8] dark:bg-gray-700" />
+              </h2>
+              <ProfileLanguageSection languages={languages} onLanguageRemove={handleLanguageRemoved} />
+            </section>
+
+            {isProfile && <LessonSessionTable />}
+
           </main>
 
         </div>

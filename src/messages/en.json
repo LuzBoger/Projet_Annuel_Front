@@ -532,7 +532,8 @@
     "updateLesson": "Failed to update lesson.",
     "deleteLesson": "Failed to delete lesson.",
     "startLesson": "Failed to start lesson.",
-    "completeLesson": "Failed to complete lesson."
+    "completeLesson": "Failed to complete lesson.",
+    "fetchLessonSessions": "Failed to fetch lesson sessions."
   },
   "topics": {
     "page_title": "Available Topics",
@@ -927,5 +928,43 @@
   },
   "catalog_languages": {
     "page_title": "Language Catalog"
-  }
+  },
+  "lessonSession": {
+    "sessions": "Sessions",
+    "averageAccuracy": "Average Accuracy",
+    "correctAnswers": "Correct Answers",
+    "totalTime": "Total Time",
+    "noSessions": "No sessions yet.",
+    "status": {
+      "completed": "Completed",
+      "failed": "Failed"
+    },
+    "details": {
+      "title": "Session Details",
+      "correctAnswers": "Correct Answers",
+      "errors": "Errors",
+      "totalQuestions": "Total Questions",
+      "accuracy": "Accuracy",
+      "review": "Review Lesson"
+    },
+    "table": {
+      "lesson": "Lesson",
+      "topic": "Topic",
+      "date": "Date",
+      "correct": "Correct",
+      "errors": "Errors",
+      "total": "Total",
+      "accuracy": "Accuracy",
+      "duration": "Duration",
+      "status": "Status"
+    }
+  },
+  "topic": "Topic",
+  "date": "Date",
+  "correct": "Correct",
+  "errors": "Errors",
+  "total": "Total",
+  "accuracy": "Accuracy",
+  "duration": "Duration",
+  "status": "Status"
 }

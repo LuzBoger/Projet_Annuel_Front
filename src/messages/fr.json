@@ -537,7 +537,8 @@
     "updateTopic": "Impossible de mettre à jour le Topic.",
     "deleteTopic": "Impossible de supprimer le Topic.",
     "startLesson": "Impossible de démarrer la Leçon.",
-    "completeLesson": "Impossible de valider la Leçon."
+    "completeLesson": "Impossible de valider la Leçon.",
+    "fetchLessonSessions": "Impossible de récupérer les sessions de leçon."
   },
   "topics": {
     "page_title": "Topics disponibles",
@@ -932,5 +933,43 @@
   },
   "catalog_languages": {
     "page_title": "Catalogue des langues"
-  }
+  },
+  "lessonSession": {
+    "sessions": "Sessions",
+    "averageAccuracy": "Précision Moyenne",
+    "correctAnswers": "Réponses Correctes",
+    "totalTime": "Temps Total",
+    "noSessions": "Aucune session pour le moment.",
+    "status": {
+      "completed": "Terminé",
+      "failed": "Échoué"
+    },
+    "details": {
+      "title": "Détails de la Session",
+      "correctAnswers": "Réponses Correctes",
+      "errors": "Erreurs",
+      "totalQuestions": "Questions Totales",
+      "accuracy": "Précision",
+      "review": "Revoir la Leçon"
+    },
+    "table": {
+      "lesson": "Leçon",
+      "topic": "Sujet",
+      "date": "Date",
+      "correct": "Correct",
+      "errors": "Erreurs",
+      "total": "Total",
+      "accuracy": "Précision",
+      "duration": "Durée",
+      "status": "Statut"
+    }
+  },
+  "topic": "Sujet",
+  "date": "Date",
+  "correct": "Correct",
+  "errors": "Erreurs",
+  "total": "Total",
+  "accuracy": "Précision",
+  "duration": "Durée",
+  "status": "Statut"
 }
