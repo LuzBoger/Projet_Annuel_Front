@@ -537,7 +537,13 @@
     "updateTopic": "Impossible de mettre à jour le Topic.",
     "deleteTopic": "Impossible de supprimer le Topic.",
     "startLesson": "Impossible de démarrer la Leçon.",
-    "completeLesson": "Impossible de valider la Leçon."
+    "completeLesson": "Impossible de valider la Leçon.",
+    "fetchReviews": "Impossible de récupérer les avis.",
+    "addReview": "Impossible de soumettre l'avis.",
+    "updateReview": "Impossible de mettre à jour l'avis.",
+    "deleteReview": "Impossible de supprimer l'avis.",
+    "approveReview": "Impossible d'approuver l'avis.",
+    "rejectReview": "Impossible de rejeter l'avis."
   },
   "topics": {
     "page_title": "Topics disponibles",
@@ -727,6 +733,11 @@
     "planPaymentInterval": {
       "required": "L'intervalle de paiement est requis",
       "oneOf": "Doit être mensuel ou annuel"
+    },
+    "review": {
+      "rating_required": "Veuillez sélectionner une note",
+      "rating_max": "La note ne peut pas dépasser 5",
+      "comment_max": "Le commentaire ne peut pas dépasser 1000 caractères"
     }
   },
   "info": {
@@ -932,5 +943,66 @@
   },
   "catalog_languages": {
     "page_title": "Catalogue des langues"
+  },
+  "reviews": {
+    "formHeader": {
+      "add": "Laisser un avis",
+      "edit": "Modifier votre avis"
+    },
+    "rating": {
+      "label": "Note"
+    },
+    "section_title": "Avis",
+    "total": "avis",
+    "no_reviews": "Aucun avis pour l'instant.",
+    "no_comment": "Aucun commentaire",
+    "pending_badge": "En attente",
+    "rejected_badge": "Rejeté",
+    "your_review": "Votre avis",
+    "pending_message": "Votre avis est en attente de modération.",
+    "rejected_message": "Votre avis a été rejeté par la modération.",
+    "edit": "Modifier",
+    "rate_and_continue": "Noter et continuer",
+    "modal_title": "Noter ce topic",
+    "submit": "Soumettre",
+    "update": "Mettre à jour",
+    "comment_placeholder": "Écrivez votre commentaire (optionnel)...",
+    "success_title": "Merci !",
+    "success_subtitle": "Votre avis a été soumis pour",
+    "approve": "Approuver",
+    "reject": "Rejeter",
+    "approved_success": "Avis approuvé.",
+    "rejected_success": "Avis rejeté.",
+    "reject_error": "Impossible de rejeter l'avis.",
+    "add_error": "Impossible de soumettre l'avis.",
+    "update_error": "Impossible de mettre à jour l'avis.",
+    "delete_title": "Supprimer l'avis",
+    "delete_description": "Êtes-vous sûr de vouloir supprimer cet avis ? Cette action est irréversible.",
+    "admin_title": "Gestion des avis",
+    "tab_pending": "En attente",
+    "tab_all": "Tous",
+    "tab_published": "Publiés",
+    "tab_rejected": "Rejetés",
+    "col_user": "Utilisateur",
+    "col_topic": "Topic",
+    "col_rating": "Note",
+    "col_comment": "Commentaire",
+    "col_status": "Statut",
+    "col_date": "Date",
+    "rating_1": "Médiocre",
+    "rating_2": "Passable",
+    "rating_3": "Bien",
+    "rating_4": "Très bien",
+    "rating_5": "Excellent",
+    "status_pending": "En attente",
+    "status_published": "Publié",
+    "status_rejected": "Rejeté",
+    "edit_title": "Modifier votre avis",
+    "notif_new_pending": "Un nouvel avis est en attente de modération.",
+    "notif_pending": "Votre avis est en attente de modération.",
+    "notif_approved": "Votre avis a été approuvé !",
+    "notif_rejected": "Votre avis a été rejeté.",
+    "notif_auto_rejected": "Votre avis a été automatiquement rejeté.",
+    "notif_banned": "Vous avez été banni de l'espace commentaire."
   }
 }
