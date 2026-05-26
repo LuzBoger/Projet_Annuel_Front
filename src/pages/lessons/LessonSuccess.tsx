@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import confetti from "canvas-confetti";
@@ -6,17 +5,30 @@ import { Button } from "@/components/ui/Button";
 import { StarIcon } from "@/assets/icons";
 import { CompleteLessonResponse, LessonResponse } from "@/types/lesson/lesson";
 import { MetaData } from "@/components/seo/MetaData";
+import { useEffect, useState } from "react";
+import { SubmitReviewModal } from "@/components/reviews/SubmitReviewModal";
+import { reviewService } from "@/services/reviewService";
 
-/**
- * Component displayed upon successful completion of a lesson.
- * Triggers confetti animation and shows rewards (XP, level up).
- */
 export default function LessonSuccess() {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
+    const [showReviewModal, setShowReviewModal] = useState(false);
+    const [isAlreadyReviewed,setIsAlreadyReviewed] = useState(false);
 
     const state = location.state as { response?: CompleteLessonResponse, lesson?: LessonResponse } | null;
+
+    const allLessonCompleted = state?.response?.progress?.completionPercentage === 100;
+    
+    useEffect(() => {
+        if(allLessonCompleted && state?.lesson?.topicId) {
+            reviewService.getUserReview(state.lesson?.topicId).then((review) => {
+                if(review) {
+                    setIsAlreadyReviewed(true);
+                }
+            }).catch(() => {}); 
+        }
+    }, []);
 
     useEffect(() => {
         if (state?.response) {
@@ -24,7 +36,6 @@ export default function LessonSuccess() {
             const end = Date.now() + duration;
 
             const frame = () => {
-                // Only fire on some frames to reduce density (approx 30% of frames)
                 if (Math.random() > 0.7) {
                     confetti({
                         particleCount: 1,
@@ -64,6 +75,19 @@ export default function LessonSuccess() {
 
     const { response, lesson } = state;
 
+    const handleContinue = () => {
+        if(allLessonCompleted && !isAlreadyReviewed) {
+            setShowReviewModal(true);
+        } else {
+            navigate(`/topics/${lesson.topicId}`);
+        }
+
+    };
+
+    const handleReviewClose = () => {
+        setShowReviewModal(false);
+        navigate(`/topics/${lesson.topicId}`);
+    }
     return (
         <>
         <MetaData title={t('lessons.lesson_completed')} robots="noindex, nofollow"  />
@@ -100,15 +124,17 @@ export default function LessonSuccess() {
                     </div>
                 )}
 
-                <Button
-                    onClick={() => navigate(`/topics/${lesson.topicId}`)}
-                    className="w-full text-lg shadow-sm py-4 rounded-2xl"
-                    size="lg"
-                >
-                    {t('common.continue')}
-                </Button>
+                  <Button onClick={handleContinue} className="w-full text-lg shadow-sm py-4 rounded-2xl" size="lg">
+                        {allLessonCompleted && !isAlreadyReviewed ? t("reviews.rate_and_continue") : t("common.continue")}
+                    </Button>
             </div>
         </div>
+         <SubmitReviewModal
+                isOpen={showReviewModal}
+                topicId={lesson.topicId!}
+                topicName={lesson.topicName ?? ""}
+                onClose={handleReviewClose}
+            />
         </>
     );
 }
