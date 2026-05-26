@@ -36,11 +36,15 @@ import { Header } from "@/components/layout/Header";
 import { RoleEnum } from "@/types/enum/roles";
 import { AUTH_PATH } from "@/constants/global";
 import Dashboard from "@/pages/user/Dashboard";
+import ReviewManage from "@/pages/admin/reviews/ReviewManage";
+import { useNotifications } from "@/hooks/useNotifications";
+import Ranking from "@/pages/ranking/Ranking";
 import Challenge from "@/pages/challenge/Challenge";
 import NewChallenge from "@/pages/challenge/new/NewChallenge";
 import ChallengeDetail from "@/pages/challenge/details/ChallengeDetail";
 
 export function AppRoutes() {
+  useNotifications();
   const { user, isAuthenticated, fetchUser } = useContext(AuthContext)!;
   const location = useLocation();
 
@@ -74,12 +78,14 @@ export function AppRoutes() {
           <Route path="/challenges/new" element={<NewChallenge />} />
           <Route path="/challenges/:challengeId" element={<ChallengeDetail />} />  
           <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} />
+          <Route path="/ranking" element={<ProtectedRoute><Ranking /></ProtectedRoute>} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
             <Route index element={<AdminDashboard />} />
             <Route path="plans" element={<PlansManage />} />
             <Route path="subscriptions" element={<SubscriptionsManage />} />
             <Route path="languages" element={<LanguageList />} />
+            <Route path="reviews" element={<ReviewManage />} />
             <Route path="topics" element={<TopicList />} />
             <Route path="topics/:topicId/lessons" element={<LessonList />} />
             <Route path="topics/:topicId/lessons/new" element={<LessonForm />} />

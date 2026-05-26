@@ -31,6 +31,17 @@ export const COLORS = ["#4F8EF7", "#F7634F", "#F7A84F", "#A84FF7", "#4FF7A8", "#
 export const COLORS_PIE_CHART = ['#4f46e5', '#06b6d4'];
 
 
+export const MEDALS_COLORS: Record<number, string> = {
+    1: 'text-yellow-400',
+    2: 'text-gray-400',
+    3: 'text-orange-400',
+}
+export const TOP_RANK_COLORS: Record<number, string> = {
+    1: 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-700/50',
+    2: 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-600/50',
+    3: 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-700/50',
+};
+
 export const STATUS_COLORS: Record<ChallengeStatus, string> = {
     ACTIVE: 'text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-400/10 border-emerald-300 dark:border-emerald-400/30',
     PENDING: 'text-yellow-700 dark:text-yellow-400 bg-yellow-100 dark:bg-yellow-400/10 border-yellow-300 dark:border-yellow-400/30',
