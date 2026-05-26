@@ -449,6 +449,11 @@
         "4": "Learning before sleep boosts retention.",
         "5": "Good evening! One more session today?"
       }
+    },
+    "streak": {
+      "days": "days",
+      "best": "Best:",
+      "milestone": "{{days}} days to next milestone"
     }
   },
   "lesson": {
@@ -656,7 +661,19 @@
       "password": "Password",
       "2fa": "Two-factor auth",
       "language": "Language",
-      "theme": "Theme"
+      "theme": "Theme",
+      "notifications": "Notifications"
+    },
+    "notifications": {
+      "title": "Notification preferences",
+      "enable": "Enable notifications",
+      "enabled": "Notifications enabled",
+      "disable": "Disable notifications",
+      "lessonReminders": "Daily lesson reminder",
+      "streakUrgency": "Streak at risk alert",
+      "inactivity": "Inactivity reminder",
+      "weeklyGoal": "Weekly goal achieved",
+      "reviewReminders": "Review reminder"
     },
     "2fa": {
       "title": "Two-factor authentication",

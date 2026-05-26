@@ -1,4 +1,5 @@
 import { LanguagesSettings } from "@/components/settings/languages/LanguagesSettings";
+import { NotificationPreferences } from "@/components/settings/notifications/NotificationPreferences";
 import { SideBar } from "@/components/settings/SideBar";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { PasswordSettings } from "@/pages/settings/PasswordSettings";
@@ -29,6 +30,7 @@ export function SettingsLayout() {
             {activeTab === '2fa' && <TwoFactorSettings />}
             {activeTab === 'language' && <LanguagesSettings />}
             {activeTab === 'theme' && <ThemeToggle />}
+            {activeTab === 'notifications' && <NotificationPreferences />}
           </main>
         </div>
       </div>
