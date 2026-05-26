@@ -543,7 +543,9 @@
     "updateReview": "Failed to update review.",
     "deleteReview": "Failed to delete review.",
     "approveReview": "Failed to approve review.",
-    "rejectReview": "Failed to reject review."
+    "rejectReview": "Failed to reject review.",
+    "fetchGlobalRanking": "Failed to fetch global ranking.",
+    "fetchLanguageRanking": "Failed to fetch language ranking."
   },
   "topics": {
     "page_title": "Available Topics",
@@ -1016,5 +1018,28 @@
     "notif_rejected": "Your review has been rejected.",
     "notif_auto_rejected": "Your review was automatically rejected.",
     "notif_banned": "You have been banned from the comment section."
+  },
+  "ranking": {
+    "title": "Ranking",
+    "info": {
+      "label": "How does it work?",
+      "title": "Be the best. Win rewards every month.",
+      "description": "Earn XP by completing your lessons, climb the ranking and win exclusive rewards reserved for the top learners of the month."
+    },
+    "tab": {
+      "global": "Global",
+      "language": "By language"
+    },
+    "you": "you",
+    "to_pass": "to pass #{{rank}}",
+    "neighborhood": "Around you",
+    "empty": "No participants yet.",
+    "total": "{{count}} participants total",
+    "user": "User",
+    "level": "Lvl. {{level}}",
+    "motivation": {
+      "leader": "You're in the lead 🔥",
+      "close": "Only {{xp}} XP to beat #{{rank}}!"
+    }
   }
 }

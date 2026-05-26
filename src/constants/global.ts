@@ -19,3 +19,9 @@ export const SSE_EVENT: Record<string, { key: string; type: "info" | "success" |
 // Event name for synchronizing mute state across the application
 export const MUTE_EVENT = 'glotrush_mute_toggle';
 
+
+
+
+export const WS_BASE_URL = (API_URL as string)?.replace('https://', 'wss://')?.replace('http://', 'ws://')?.replace('/api/v1', '') ?? 'ws://localhost:8080';
+export const WS_GLOBAl_RANKING = '/topic/ranking/global';
+export const WS_LANGUAGE_RANKING = '/topic/ranking/language/';

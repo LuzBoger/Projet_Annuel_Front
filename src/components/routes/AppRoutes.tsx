@@ -38,6 +38,7 @@ import { AUTH_PATH } from "@/constants/global";
 import Dashboard from "@/pages/user/Dashboard";
 import ReviewManage from "@/pages/admin/reviews/ReviewManage";
 import { useNotifications } from "@/hooks/useNotifications";
+import Ranking from "@/pages/ranking/Ranking";
 
 export function AppRoutes() {
   useNotifications();
@@ -70,6 +71,7 @@ export function AppRoutes() {
           <Route path="/lessons/:lessonId/play" element={<ProtectedRoute><LessonPlayer /></ProtectedRoute>} />
           <Route path="/lessons/:lessonId/success" element={<ProtectedRoute><LessonSuccess /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} />
+          <Route path="/ranking" element={<ProtectedRoute><Ranking /></ProtectedRoute>} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
             <Route index element={<AdminDashboard />} />

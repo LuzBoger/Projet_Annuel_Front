@@ -548,7 +548,9 @@
     "updateReview": "Impossible de mettre à jour l'avis.",
     "deleteReview": "Impossible de supprimer l'avis.",
     "approveReview": "Impossible d'approuver l'avis.",
-    "rejectReview": "Impossible de rejeter l'avis."
+    "rejectReview": "Impossible de rejeter l'avis.",
+    "fetchGlobalRanking": "Impossible de récupérer le classement mondial.",
+    "fetchLanguageRanking": "Impossible de récupérer le classement par langue."
   },
   "topics": {
     "page_title": "Topics disponibles",
@@ -1021,5 +1023,28 @@
     "notif_rejected": "Votre avis a été rejeté.",
     "notif_auto_rejected": "Votre avis a été automatiquement rejeté.",
     "notif_banned": "Vous avez été banni de l'espace commentaire."
+  },
+  "ranking": {
+    "title": "Classement",
+    "info": {
+      "label": "Comment ça marche ?",
+      "title": "Sois le meilleur. Décroche des récompenses chaque mois.",
+      "description": "Accumule des XP en complétant tes leçons, grimpe dans le classement et remporte des récompenses exclusives réservées aux meilleurs apprenants du mois."
+    },
+    "tab": {
+      "global": "Mondial",
+      "language": "Par langue"
+    },
+    "you": "vous",
+    "to_pass": "pour dépasser le #{{rank}}",
+    "neighborhood": "Autour de vous",
+    "empty": "Aucun participant pour le moment.",
+    "total": "{{count}} participants au total",
+    "user": "Utilisateur",
+    "level": "Niv. {{level}}",
+    "motivation": {
+      "leader": "Tu es en tête 🔥",
+      "close": "Plus que {{xp}} XP pour dépasser le #{{rank}} !"
+    }
   }
 }
