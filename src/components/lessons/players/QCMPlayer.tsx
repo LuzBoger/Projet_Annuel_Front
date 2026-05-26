@@ -12,7 +12,7 @@ import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface QCMPlayerProps {
     questions: QcmQuestionRequest[];
-    onFinish: (score: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number) => void;
 }
 
 export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
@@ -68,7 +68,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
             setCurrentIndex(prev => prev + 1);
         } else {
             const finalScore = Math.round((correctCount / questions.length) * 100);
-            onFinish(finalScore);
+            onFinish(finalScore, correctCount, questions.length);
         }
     };
 

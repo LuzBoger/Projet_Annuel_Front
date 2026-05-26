@@ -700,7 +700,9 @@
     "acceptChallenge": "Failed to accept challenge.",
     "declineChallenge": "Failed to decline challenge.",
     "cancelChallenge": "Failed to cancel challenge.",
-    "fetchParticipants": "Failed to fetch participants."
+    "fetchParticipants": "Failed to fetch participants.",
+    "fetchLessonSessions": "Failed to fetch lesson sessions."
+
   },
   "topics": {
     "page_title": "Available Topics",
@@ -1196,5 +1198,43 @@
       "leader": "You're in the lead 🔥",
       "close": "Only {{xp}} XP to beat #{{rank}}!"
     }
-  }
+  },
+  "lessonSession": {
+    "sessions": "Sessions",
+    "averageAccuracy": "Average Accuracy",
+    "correctAnswers": "Correct Answers",
+    "totalTime": "Total Time",
+    "noSessions": "No sessions yet.",
+    "status": {
+      "completed": "Completed",
+      "failed": "Failed"
+    },
+    "details": {
+      "title": "Session Details",
+      "correctAnswers": "Correct Answers",
+      "errors": "Errors",
+      "totalQuestions": "Total Questions",
+      "accuracy": "Accuracy",
+      "review": "Review Lesson"
+    },
+    "table": {
+      "lesson": "Lesson",
+      "topic": "Topic",
+      "date": "Date",
+      "correct": "Correct",
+      "errors": "Errors",
+      "total": "Total",
+      "accuracy": "Accuracy",
+      "duration": "Duration",
+      "status": "Status"
+    }
+  },
+  "topic": "Topic",
+  "date": "Date",
+  "correct": "Correct",
+  "errors": "Errors",
+  "total": "Total",
+  "accuracy": "Accuracy",
+  "duration": "Duration",
+  "status": "Status"
 }

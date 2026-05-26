@@ -13,7 +13,7 @@ import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface FlashcardPlayerProps {
     flashcards: FlashcardRequest[];
-    onFinish: (score: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number) => void;
 }
 
 export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) {
@@ -105,7 +105,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                 // Calculate final score: only count cards that were correctly answered (Green)
                 const correctCount = newScores.filter(s => s === 100).length;
                 const finalScore = Math.round((correctCount / flashcards.length) * 100);
-                setTimeout(() => onFinish(finalScore), 400);
+                setTimeout(() => onFinish(finalScore, correctCount, flashcards.length), 400);
             } else {
                 setTransitionState('entering');
                 setTimeout(() => {

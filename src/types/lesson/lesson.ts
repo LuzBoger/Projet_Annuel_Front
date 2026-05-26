@@ -68,6 +68,8 @@ export interface LessonResponse extends LessonRequest {
 export interface CompleteLessonRequest {
     score: number;
     timeSpentSeconds: number;
+    correctAnswers?: number;
+    totalAnswers?: number;
 }
 
 export interface UserProgressResponse {
