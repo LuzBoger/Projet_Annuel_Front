@@ -5,6 +5,7 @@ import { AuthProvider } from '@/contexts/AuthProvider'
 import { ToastProvider } from '@/contexts/ToastProvider'
 import { AppRoutes } from '@/components/routes/AppRoutes'
 import { ThemeProvider } from '@/contexts/ThemeProvider'
+import { ChallengeNotification } from '@/components/challenge/ChallengeNotificaiton'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <ThemeProvider>
       <AuthProvider>
         <ToastProvider>
+          <ChallengeNotification />
           <AppRoutes />
         </ToastProvider>
       </AuthProvider>

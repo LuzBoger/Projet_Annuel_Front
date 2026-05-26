@@ -486,6 +486,151 @@
     },
     "view_subscription": "View my subscription"
   },
+  "challenge": {
+    "title": "Challenges",
+    "create_title": "Create a challenge",
+    "createSuccess": "Challenge created successfully.",
+    "joinSuccess": "You joined the challenge.",
+    "submitSuccess": "Score submitted successfully.",
+    "acceptSuccess": "Challenge accepted.",
+    "declineSuccess": "Challenge declined.",
+    "author": "By {{username}}",
+    "time_left_hours": "{{count}} hour(s) left",
+    "time_left_minutes": "{{count}} minute(s) left",
+    "time_left_seconds": "{{count}} second(s) left",
+    "status": {
+      "ACTIVE": "Active",
+      "COMPLETED": "Completed",
+      "EXPIRED": "Expired",
+      "PENDING": "Pending",
+      "CANCELLED": "Cancelled"
+    },
+    "participants": {
+      "count": "{{count}} participant",
+      "counts": "{{count}} participants"
+    },
+    "user": {
+      "my_challenges": "My challenges",
+      "empty": "You have no challenges yet."
+    },
+    "public": {
+      "challenges": "Public challenges",
+      "empty": "No public challenges available."
+    },
+    "details": {
+      "accept": "Accept",
+      "decline": "Decline",
+      "play": "Start challenge",
+      "already_played": "You have already completed this challenge"
+    },
+    "duel": {
+      "pending": "Pending duel",
+      "challenged_by": "Challenged by {{username}}"
+    },
+    "lobby": {
+      "waiting": "Waiting for {{username}} to accept...",
+      "cancel": "Cancel challenge"
+    },
+    "notification": {
+      "invite": "{{from}} challenged you!"
+    },
+    "ranking": {
+      "live": "Ranking",
+      "results": "Results",
+      "score": {
+          "hidden": "The score of {{username}} is hidden until the end of the challenge."
+        },
+      "in-progress": "Your opponent is currently taking the challenge...",
+      "not_played": "Your opponent has not yet taken this challenge.",
+      "empty": "No participants yet."
+    },
+    "form": {
+      "title": "Challenge title",
+      "placeholder": "E.g. Irregular verbs in English",
+      "language": "Language",
+      "language_placeholder": "Select a language",
+      "mode": "Challenge type",
+      "opponent": {
+        "label": "Opponent",
+        "select": "Select an opponent",
+        "change": "Change opponent",
+        "empty": "No opponents found"
+      },
+      "topic": "Topic",
+      "topic_placeholder": "Select a topic",
+      "lesson": "Lesson",
+      "lesson_placeholder": "Select a lesson",
+      "question_count": "Number of questions",
+      "question_count_placeholder": "Leave empty to include all questions",
+      "lesson_type": "Lesson type",
+      "summary": "Summary",
+      "submit": "Create challenge"
+    },
+    "type": {
+        "public" : {
+          "type": "Public",
+          "description": "Open to all players"
+        },
+        "duel": {
+            "type": "Duel",
+            "description": "Challenge a specific opponent"
+          },
+      "qcm": { 
+        "type": "QCM"
+        },
+      "flashcard": {
+        "type": "Flashcard"
+      },
+      "matching_pair": {
+        "type": "Matching Pairs"
+      },
+      "sorting_exercise": {
+        "type": "Sorting Exercise" }
+    },
+    "validation": {
+      "title": "Title is required",
+      "title_max": "Maximum 200 characters",
+      "title.max": "Maximum 200 characters",
+      "challengeType": "Challenge type is required",
+      "lessonId": "Please select a lesson",
+      "lessonId.duel": "Please select a lesson for this duel",
+      "lessonType": "Lesson type is required",
+      "languageId": "Please select a language",
+      "challengedId": {
+        "required": "Opponent ID is required for a duel"
+      },
+      "qcm": {
+        "question": "Question is required",
+        "options": "Option is required",
+        "options.min": "At least 2 options are required",
+        "correctOptionIndex.required": "Correct answer is required",
+        "min": "At least 1 question is required"
+      },
+      "flashcard": {
+        "front": "Front is required",
+        "back": "Back is required"
+      },
+      "flashcards": {
+        "min": "At least 1 flashcard is required"
+      },
+      "matchingPair": {
+        "item1": "Item 1 is required",
+        "item2": "Item 2 is required"
+      },
+      "matchingPairs": {
+        "min": "At least 1 pair is required"
+      },
+      "sortingExercise": {
+        "items": "Item is required",
+        "items.min": "At least 2 items are required",
+        "correctOrder": "Correct order is required",
+        "correctOrder.min": "At least 2 items are required"
+      },
+      "sortingExercises": {
+        "min": "At least 1 sorting exercise is required"
+      }
+    }
+  },
   "error": {
     "generic": "An error occurred. Please try again.",
     "unknown": "An unknown error occurred.",
@@ -545,7 +690,17 @@
     "approveReview": "Failed to approve review.",
     "rejectReview": "Failed to reject review.",
     "fetchGlobalRanking": "Failed to fetch global ranking.",
-    "fetchLanguageRanking": "Failed to fetch language ranking."
+    "fetchLanguageRanking": "Failed to fetch language ranking.",
+    "createChallenge": "Failed to create challenge.",
+    "joinChallenge": "Failed to join challenge.",
+    "submitChallenge": "Failed to submit score.",
+    "fetchChallenge": "Failed to fetch challenge.",
+    "fetchChallenges": "Failed to fetch challenges.",
+    "fetchPublicChallenges": "Failed to fetch public challenges.",
+    "acceptChallenge": "Failed to accept challenge.",
+    "declineChallenge": "Failed to decline challenge.",
+    "cancelChallenge": "Failed to cancel challenge.",
+    "fetchParticipants": "Failed to fetch participants."
   },
   "topics": {
     "page_title": "Available Topics",

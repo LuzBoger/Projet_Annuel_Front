@@ -39,6 +39,9 @@ import Dashboard from "@/pages/user/Dashboard";
 import ReviewManage from "@/pages/admin/reviews/ReviewManage";
 import { useNotifications } from "@/hooks/useNotifications";
 import Ranking from "@/pages/ranking/Ranking";
+import Challenge from "@/pages/challenge/Challenge";
+import NewChallenge from "@/pages/challenge/new/NewChallenge";
+import ChallengeDetail from "@/pages/challenge/details/ChallengeDetail";
 
 export function AppRoutes() {
   useNotifications();
@@ -70,6 +73,10 @@ export function AppRoutes() {
           <Route path="/topics/:topicId/exam" element={<ProtectedRoute><TopicExam /></ProtectedRoute>} />
           <Route path="/lessons/:lessonId/play" element={<ProtectedRoute><LessonPlayer /></ProtectedRoute>} />
           <Route path="/lessons/:lessonId/success" element={<ProtectedRoute><LessonSuccess /></ProtectedRoute>} />
+                    
+          <Route path="/challenges" element={<Challenge/>} />
+          <Route path="/challenges/new" element={<NewChallenge />} />
+          <Route path="/challenges/:challengeId" element={<ChallengeDetail />} />  
           <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} />
           <Route path="/ranking" element={<ProtectedRoute><Ranking /></ProtectedRoute>} />
           <Route path="/admin/login" element={<AdminLogin />} />
