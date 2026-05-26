@@ -1,0 +1,1 @@
+export const MILESTONES = [0, 7, 30, 100];

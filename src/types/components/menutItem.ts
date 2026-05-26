@@ -1,4 +1,4 @@
-export type SettingsTab = 'profile' | 'password' | '2fa' | 'language' | 'theme';
+export type SettingsTab = 'profile' | 'password' | '2fa' | 'language' | 'theme' | 'notifications';
 
 export interface MenuItem {
   id: SettingsTab;

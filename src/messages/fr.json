@@ -454,6 +454,11 @@
         "4": "Apprendre avant de dormir améliore la rétention.",
         "5": "Bonne soirée ! Encore une session aujourd'hui ?"
       }
+    },
+    "streak": {
+      "days": "jours",
+      "best": "Meilleur :",
+      "milestone": "{{days}} jours pour le prochain palier"
     }
   },
   "lesson": {
@@ -485,6 +490,152 @@
       "description": "Votre paiement a été annulé. Vous pouvez réessayer à tout moment."
     },
     "view_subscription": "Voir mon abonnement"
+  },
+  "challenge": {
+    "title": "Défis",
+    "create_title": "Créer un défi",
+    "createSuccess": "Défi créé avec succès.",
+    "joinSuccess": "Vous avez rejoint le défi.",
+    "submitSuccess": "Score soumis avec succès.",
+    "acceptSuccess": "Défi accepté.",
+    "declineSuccess": "Défi refusé.",
+    "author": "Par {{username}}",
+    "time_left_hours": "{{count}} heure(s) restante(s)",
+    "time_left_minutes": "{{count}} minute(s) restante(s)",
+    "time_left_seconds": "{{count}} seconde(s) restante(s)",
+    "status": {
+      "ACTIVE": "Actif",
+      "COMPLETED": "Terminé",
+      "EXPIRED": "Expiré",
+      "PENDING": "En attente",
+      "CANCELLED": "Annulé"
+    },
+    "participants": {
+      "count": "{{count}} participant",
+      "counts": "{{count}} participants"
+    },
+    "user": {
+      "my_challenges": "Mes défis",
+      "empty": "Vous n'avez aucun défi pour l'instant."
+    },
+    "public": {
+      "challenges": "Défis publics",
+      "empty": "Aucun défi public disponible."
+    },
+    "details": {
+      "accept": "Accepter",
+      "decline": "Refuser",
+      "play": "Commencer le défi",
+      "already_played": "Vous avez déjà effectué ce défi"
+    },
+    "duel": {
+      "pending": "Duel en attente",
+      "challenged_by": "Défié par {{username}}"
+    },
+    "lobby": {
+      "waiting": "En attente que {{username}} accepte...",
+      "cancel": "Annuler le défi"
+    },
+    "notification": {
+      "invite": "{{from}} vous a défié !"
+    },
+    "ranking": {
+      "live": "Classement",
+      "results": "Résultats",
+      "score": {
+        "hidden": "Le score de {{username}} est caché jusqu'à la fin du défi."
+      },
+      "in-progress": "Votre adversaire réalise le défi actuellement...",
+      "not_played": "Votre adversaire n'a pas encore effectué ce défi.",
+      "empty": "Aucun participant pour l'instant."
+    },
+    "form": {
+      "title": "Titre du défi",
+      "placeholder": "Ex : Verbes irréguliers en anglais",
+      "language": "Langue",
+      "language_placeholder": "Sélectionnez une langue",
+      "mode": "Type de défi",
+      "opponent": {
+        "label": "Adversaire",
+        "select": "Sélectionner un adversaire",
+        "change": "Changer d'adversaire",
+        "empty": "Aucun adversaire trouvé"
+      },
+      "topic": "Thème",
+      "topic_placeholder": "Sélectionnez un thème",
+      "lesson": "Leçon",
+      "lesson_placeholder": "Sélectionnez une leçon",
+      "question_count": "Nombre de questions",
+      "question_count_placeholder": "Laisser vide pour avoir toutes les questions",
+      "lesson_type": "Type de leçon",
+      "summary": "Récapitulatif",
+      "submit": "Créer le défi"
+    },
+    "type": {
+        "public" : {
+          "type": "Public",
+          "description": "Ouvert à tous les joueurs"
+        },
+        "duel" : {
+          "type": "Duel",
+          "description": "Défier un adversaire spécifique"
+        },
+      "qcm": { 
+        "type": "QCM"
+      },
+      "flashcard": {
+        "type": "Flashcard"
+      },
+      "matching_pair": {
+        "type": "Paires à relier"
+      },
+      "sorting_exercise": {
+        "type": "Mise en ordre"
+      }
+    },
+    "validation": {
+      "title": "Le titre est requis",
+      "title_max": "Maximum 200 caractères",
+      "title.max": "Maximum 200 caractères",
+      "challengeType": "Le type de défi est requis",
+      "lessonId": "Veuillez sélectionner une leçon",
+      "lessonId.duel": "Veuillez sélectionner une leçon pour ce duel",
+      "lessonType": "Le type de leçon est requis",
+      "languageId": "Veuillez sélectionner une langue",
+      "challengedId": {
+        "required": "L'identifiant de l'adversaire est requis pour un duel"
+      },
+      "qcm": {
+        "question": "La question est requise",
+        "options": "L'option est requise",
+        "options.min": "Au moins 2 options sont requises",
+        "correctOptionIndex.required": "La bonne réponse est requise",
+        "min": "Au moins 1 question est requise"
+      },
+      "flashcard": {
+        "front": "Le recto est requis",
+        "back": "Le verso est requis"
+      },
+      "flashcards": {
+        "min": "Au moins 1 flashcard est requise"
+      },
+      "matchingPair": {
+        "item1": "L'élément 1 est requis",
+        "item2": "L'élément 2 est requis"
+      },
+      "matchingPairs": {
+        "min": "Au moins 1 paire est requise"
+      },
+      "sortingExercise": {
+        "items": "L'élément est requis",
+        "items.min": "Au moins 2 éléments sont requis",
+        "correctOrder": "L'ordre correct est requis",
+        "correctOrder.min": "Au moins 2 éléments sont requis"
+      },
+      "sortingExercises": {
+        "min": "Au moins 1 exercice de tri est requis"
+      }
+    }
   },
   "error": {
     "generic": "Une erreur est survenue. Veuillez réessayer.",
@@ -538,7 +689,26 @@
     "deleteTopic": "Impossible de supprimer le Topic.",
     "startLesson": "Impossible de démarrer la Leçon.",
     "completeLesson": "Impossible de valider la Leçon.",
+    "fetchReviews": "Impossible de récupérer les avis.",
+    "addReview": "Impossible de soumettre l'avis.",
+    "updateReview": "Impossible de mettre à jour l'avis.",
+    "deleteReview": "Impossible de supprimer l'avis.",
+    "approveReview": "Impossible d'approuver l'avis.",
+    "rejectReview": "Impossible de rejeter l'avis.",
+    "fetchGlobalRanking": "Impossible de récupérer le classement mondial.",
+    "fetchLanguageRanking": "Impossible de récupérer le classement par langue.",
+    "createChallenge": "Impossible de créer le défi.",
+    "joinChallenge": "Impossible de rejoindre le défi.",
+    "submitChallenge": "Impossible de soumettre le score.",
+    "fetchChallenge": "Impossible de récupérer le défi.",
+    "fetchChallenges": "Impossible de récupérer les défis.",
+    "fetchPublicChallenges": "Impossible de récupérer les défis publics.",
+    "acceptChallenge": "Impossible d'accepter le défi.",
+    "declineChallenge": "Impossible de refuser le défi.",
+    "cancelChallenge": "Impossible d'annuler le défi.",
+    "fetchParticipants": "Impossible de récupérer les participants.",
     "fetchLessonSessions": "Impossible de récupérer les sessions de leçon."
+
   },
   "topics": {
     "page_title": "Topics disponibles",
@@ -656,7 +826,19 @@
       "password": "Mot de passe",
       "2fa": "Double Auth",
       "language": "Langue",
-      "theme": "Thème"
+      "theme": "Thème",
+      "notifications": "Notifications"
+    },
+    "notifications": {
+      "title": "Préférences de notifications",
+      "enable": "Activer les notifications",
+      "enabled": "Notifications activées",
+      "disable": "Désactiver les notifications",
+      "lessonReminders": "Rappel de leçon quotidien",
+      "streakUrgency": "Alerte série en danger",
+      "inactivity": "Rappel d'inactivité",
+      "weeklyGoal": "Objectif hebdomadaire atteint",
+      "reviewReminders": "Rappel de révision"
     },
     "2fa": {
       "title": "Authentification à deux facteurs",
@@ -728,6 +910,11 @@
     "planPaymentInterval": {
       "required": "L'intervalle de paiement est requis",
       "oneOf": "Doit être mensuel ou annuel"
+    },
+    "review": {
+      "rating_required": "Veuillez sélectionner une note",
+      "rating_max": "La note ne peut pas dépasser 5",
+      "comment_max": "Le commentaire ne peut pas dépasser 1000 caractères"
     }
   },
   "info": {
@@ -933,6 +1120,90 @@
   },
   "catalog_languages": {
     "page_title": "Catalogue des langues"
+  },
+  "reviews": {
+    "formHeader": {
+      "add": "Laisser un avis",
+      "edit": "Modifier votre avis"
+    },
+    "rating": {
+      "label": "Note"
+    },
+    "section_title": "Avis",
+    "total": "avis",
+    "no_reviews": "Aucun avis pour l'instant.",
+    "no_comment": "Aucun commentaire",
+    "pending_badge": "En attente",
+    "rejected_badge": "Rejeté",
+    "your_review": "Votre avis",
+    "pending_message": "Votre avis est en attente de modération.",
+    "rejected_message": "Votre avis a été rejeté par la modération.",
+    "edit": "Modifier",
+    "rate_and_continue": "Noter et continuer",
+    "modal_title": "Noter ce topic",
+    "submit": "Soumettre",
+    "update": "Mettre à jour",
+    "comment_placeholder": "Écrivez votre commentaire (optionnel)...",
+    "success_title": "Merci !",
+    "success_subtitle": "Votre avis a été soumis pour",
+    "approve": "Approuver",
+    "reject": "Rejeter",
+    "approved_success": "Avis approuvé.",
+    "rejected_success": "Avis rejeté.",
+    "reject_error": "Impossible de rejeter l'avis.",
+    "add_error": "Impossible de soumettre l'avis.",
+    "update_error": "Impossible de mettre à jour l'avis.",
+    "delete_title": "Supprimer l'avis",
+    "delete_description": "Êtes-vous sûr de vouloir supprimer cet avis ? Cette action est irréversible.",
+    "admin_title": "Gestion des avis",
+    "tab_pending": "En attente",
+    "tab_all": "Tous",
+    "tab_published": "Publiés",
+    "tab_rejected": "Rejetés",
+    "col_user": "Utilisateur",
+    "col_topic": "Topic",
+    "col_rating": "Note",
+    "col_comment": "Commentaire",
+    "col_status": "Statut",
+    "col_date": "Date",
+    "rating_1": "Médiocre",
+    "rating_2": "Passable",
+    "rating_3": "Bien",
+    "rating_4": "Très bien",
+    "rating_5": "Excellent",
+    "status_pending": "En attente",
+    "status_published": "Publié",
+    "status_rejected": "Rejeté",
+    "edit_title": "Modifier votre avis",
+    "notif_new_pending": "Un nouvel avis est en attente de modération.",
+    "notif_pending": "Votre avis est en attente de modération.",
+    "notif_approved": "Votre avis a été approuvé !",
+    "notif_rejected": "Votre avis a été rejeté.",
+    "notif_auto_rejected": "Votre avis a été automatiquement rejeté.",
+    "notif_banned": "Vous avez été banni de l'espace commentaire."
+  },
+  "ranking": {
+    "title": "Classement",
+    "info": {
+      "label": "Comment ça marche ?",
+      "title": "Sois le meilleur. Décroche des récompenses chaque mois.",
+      "description": "Accumule des XP en complétant tes leçons, grimpe dans le classement et remporte des récompenses exclusives réservées aux meilleurs apprenants du mois."
+    },
+    "tab": {
+      "global": "Mondial",
+      "language": "Par langue"
+    },
+    "you": "vous",
+    "to_pass": "pour dépasser le #{{rank}}",
+    "neighborhood": "Autour de vous",
+    "empty": "Aucun participant pour le moment.",
+    "total": "{{count}} participants au total",
+    "user": "Utilisateur",
+    "level": "Niv. {{level}}",
+    "motivation": {
+      "leader": "Tu es en tête 🔥",
+      "close": "Plus que {{xp}} XP pour dépasser le #{{rank}} !"
+    }
   },
   "lessonSession": {
     "sessions": "Sessions",
