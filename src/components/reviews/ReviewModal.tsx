@@ -5,6 +5,7 @@ import { ReviewSuccess } from "@/components/reviews/ReviewSuccess";
 import { FormHeader } from "@/components/reviews/FormHeader";
 import { StarRating } from "@/components/ui/reviews/StarRating";
 import { Button } from "@/components/ui/Button";
+import { TextArea } from "@/components/ui/TextArea";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import { ReviewFormData } from "@/validations/reviews/reviewSchema";
 import { RatingValue } from "@/constants/review";
@@ -70,18 +71,15 @@ export function ReviewModal({ isOpen, mode, title, topicName, submitLabel, cance
                                 name="comment"
                                 control={control}
                                 render={({ field }) => (
-                                    <textarea
+                                    <TextArea
                                         {...field}
                                         placeholder={t("reviews.comment_placeholder")}
                                         maxLength={1000}
                                         rows={3}
-                                        className="w-full rounded-xl border border-white/10 bg-[#2c2c2e] text-white placeholder-gray-500 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 resize-none"
+                                        error={errors.comment?.message}
                                     />
                                 )}
                             />
-                            {errors.comment && (
-                                <p className="text-xs text-red-400 mt-1">{errors.comment.message}</p>
-                            )}
                             <Controller
                                 name="comment"
                                 control={control}

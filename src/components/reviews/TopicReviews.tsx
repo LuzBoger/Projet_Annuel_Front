@@ -3,10 +3,11 @@ import { reviewService } from "@/services/reviewService";
 import { TopicReviewResponse, TopicReviewsResponse } from "@/types/review/review";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { StarRating } from "../ui/reviews/StarRating";
+import { StarRating } from "@/components/ui/reviews/StarRating";
 import { REVIEWS_PER_PAGE, RatingValue } from "@/constants/review";
-import { Pagination } from "../ui/Pagination";
-import { EditReviewModal } from "./EditReviewModal";
+import { Pagination } from "@/components/ui/Pagination";
+import { EditReviewModal } from "@/components/reviews/EditReviewModal";
+import { Button } from "@/components/ui/Button";
 
 interface TopicReviewsProps {
     topicId: string;
@@ -123,11 +124,12 @@ return (
                                     </div>
                                 </div>
                                 {user?.id === review.accountId && (
-                                    <button
+                                    <Button
+                                        variant='none'
                                         onClick={() => setReviewToEdit(review)}
                                         className="text-xs text-indigo-500 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
                                         {t("reviews.edit")}
-                                    </button>
+                                    </Button>
                                 )}
                             </div>
                             {review.comment && (

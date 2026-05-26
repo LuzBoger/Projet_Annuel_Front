@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { ReviewModal } from "./ReviewModal";
+import { ReviewModal } from "@/components/reviews/ReviewModal";
 import { RatingValue } from "@/constants/review";
 
 interface SubmitReviewModalProps {

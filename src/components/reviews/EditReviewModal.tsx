@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/useToast";
 import { reviewService } from "@/services/reviewService";
 import { ReviewFormData, reviewSchema } from "@/validations/reviews/reviewSchema";
 import { RatingValue } from "@/constants/review";
-import { ReviewModal } from "./ReviewModal";
+import { ReviewModal } from "@/components/reviews/ReviewModal";
 
 interface EditReviewModalProps {
     isOpen: boolean;
