@@ -4,16 +4,21 @@ import { InfoPrivateBanner } from "@/components/profile/InfoPrivateBanner";
 import { ProfileLanguageSection } from "@/components/profile/LanguageSection";
 import { MetaData } from "@/components/seo/MetaData";
 import { Avatar } from "@/components/ui/Avatar";
+import { FriendsModal } from "@/components/friends/FriendsModal";
 import { useAuth } from "@/hooks/useAuth";
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { profileService } from "@/services/profileService";
+import { friendsService } from "@/services/friendsService";
+import { FriendshipStatus } from "@/types/friends/friends";
 import { UserProfileResponse } from "@/types/profile/profile";
 import { StreakResponse } from "@/types/profile/streak";
 import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { isAxiosError } from "axios";
+import { Users, UserPlus, UserCheck, Clock } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
+import { Button } from "@/components/ui/Button";
 
 export  function Profile() {
     const {t} = useTranslation();
@@ -25,8 +30,29 @@ export  function Profile() {
     const [error, setError] = useState<string | null>(null);
     const [isPrivate, setIsPrivate] = useState(false);
     const [streak, setStreak] = useState<StreakResponse | null>(null);
+    const [friendsOpen, setFriendsOpen] = useState(false);
+    const [friendshipStatus, setFriendshipStatus] = useState<FriendshipStatus>('NONE');
+    const [sendingRequest, setSendingRequest] = useState(false);
 
     const isProfile = !userId || userId === user?.id;
+
+    useEffect(() => {
+        if (!isProfile && userId) {
+            friendsService.searchUsers('').then(results => {
+                const match = results.find(r => r.accountId === userId);
+                if (match) setFriendshipStatus(match.status);
+            }).catch(() => {});
+        }
+    }, [isProfile, userId]);
+
+    const handleAddFriend = async () => {
+        if (!userId || sendingRequest) return;
+        setSendingRequest(true);
+        await friendsService.sendFriendRequest(userId)
+            .then(() => setFriendshipStatus('PENDING_SENT'))
+            .catch(() => {})
+            .finally(() => setSendingRequest(false));
+    };
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -97,7 +123,17 @@ export  function Profile() {
 
           <aside className="w-full md:w-56 flex-shrink-0 flex flex-col gap-4 md:sticky md:top-8">
 
-            <div className="bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-5 py-5 flex flex-col items-center gap-3 text-center">
+            <div className="relative bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-5 py-5 flex flex-col items-center gap-3 text-center">
+              {isProfile && (
+                <Button
+                  onClick={() => setFriendsOpen(true)}
+                  variant="none"
+                  className="absolute top-3 right-3 p-1.5 rounded-lg text-[#8a7a60] dark:text-gray-400 hover:bg-[#f5ede0] dark:hover:bg-gray-700 transition-colors"
+                  title={t('friends.manage')}
+                >
+                  <Users className="w-4 h-4" />
+                </Button>
+              )}
             <div className="relative inline-block">
                 <div className="flex-shrink-0 border-2 border-[#e8dcc8] rounded-full">
                     <Avatar
@@ -110,6 +146,30 @@ export  function Profile() {
                         <span>🔥</span>
                         <span>{streak.currentStreak}</span>
                     </div>
+                )}
+                {!isProfile && (
+                    <Button
+                        onClick={friendshipStatus === 'NONE' ? handleAddFriend : undefined}
+                        variant="none"
+                        disabled={sendingRequest || friendshipStatus !== 'NONE'}
+                        className={`absolute -bottom-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-800 transition-colors
+                            ${friendshipStatus === 'NONE' ? 'bg-[#c8a97e] hover:bg-[#b8926a] text-white cursor-pointer' : ''}
+                            ${friendshipStatus === 'PENDING_SENT' ? 'bg-gray-400 text-white cursor-default' : ''}
+                            ${friendshipStatus === 'PENDING_RECEIVED' ? 'bg-blue-500 text-white cursor-default' : ''}
+                            ${friendshipStatus === 'FRIENDS' ? 'bg-green-500 text-white cursor-default' : ''}
+                        `}
+                        title={
+                            friendshipStatus === 'NONE' ? t('friends.addFriend') :
+                            friendshipStatus === 'PENDING_SENT' ? t('friends.pending') :
+                            friendshipStatus === 'PENDING_RECEIVED' ? t('friends.incoming') :
+                            t('friends.alreadyFriends')
+                        }
+                    >
+                        {friendshipStatus === 'NONE' && <UserPlus className="w-3 h-3" />}
+                        {friendshipStatus === 'PENDING_SENT' && <Clock className="w-3 h-3" />}
+                        {friendshipStatus === 'PENDING_RECEIVED' && <UserPlus className="w-3 h-3" />}
+                        {friendshipStatus === 'FRIENDS' && <UserCheck className="w-3 h-3" />}
+                    </Button>
                 )}
             </div>
               <div className="min-w-0">
@@ -154,6 +214,7 @@ export  function Profile() {
         </div>
       </div>
     </div>
+      <FriendsModal isOpen={friendsOpen} onClose={() => setFriendsOpen(false)} />
       </>
   );
 
