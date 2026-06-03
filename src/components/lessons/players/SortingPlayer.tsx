@@ -11,12 +11,15 @@ import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { initPool } from "@/lib/utils/sorting";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
+import { MemorizationHelpButton } from "./common/MemorizationHelpButton";
+
 interface SortingPlayerProps {
+    lessonId?: string;
     exercises: SortingExerciseRequest[];
     onFinish: (score: number) => void;
 }
 
-export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
+export function SortingPlayer({ lessonId, exercises, onFinish }: SortingPlayerProps) {
     const { t } = useTranslation();
     const { playCorrect, playIncorrect } = useSoundEffects();
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -121,7 +124,16 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                 <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 my-auto">
                     <div className="space-y-4">
                         <PlayerCard instruction={t('lessons.sorting.instruction')}>
-                        <div className="space-y-8">
+                            {lessonId && (
+                                <div className="flex justify-end mb-6 -mt-4">
+                                    <MemorizationHelpButton
+                                        lessonId={lessonId}
+                                        exerciseId={currentExercise.id}
+                                        exerciseType="SORTING_EXERCISE"
+                                    />
+                                </div>
+                            )}
+                            <div className="space-y-8">
                             <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-200 dark:border-gray-600 py-6 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 dark:bg-gray-700/30 rounded-xl">
                                 {selectedItems.length === 0 && (
                                     <span className="text-gray-400 font-medium select-none text-sm sm:text-base text-center">

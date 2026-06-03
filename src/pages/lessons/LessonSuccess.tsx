@@ -19,6 +19,12 @@ export default function LessonSuccess() {
     const state = location.state as { response?: CompleteLessonResponse, lesson?: LessonResponse } | null;
 
     useEffect(() => {
+        if (!state || !state.response || !state.lesson) {
+            navigate('/dashboard', { replace: true });
+        }
+    }, [state, navigate]);
+
+    useEffect(() => {
         if (state?.response) {
             const duration = 1 * 1000;
             const end = Date.now() + duration;
@@ -101,7 +107,7 @@ export default function LessonSuccess() {
                 )}
 
                 <Button
-                    onClick={() => navigate(`/topics/${lesson.topicId}`)}
+                    onClick={() => navigate(`/topics/${lesson.topicId}`, { replace: true })}
                     className="w-full text-lg shadow-sm py-4 rounded-2xl"
                     size="lg"
                 >

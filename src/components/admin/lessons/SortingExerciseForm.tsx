@@ -35,6 +35,12 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                 </Button>
             </div>
 
+            {errors.sortingItems?.message && (
+                <div className="p-3.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 text-xs font-semibold rounded-2xl border border-red-100 dark:border-red-900/50">
+                    {errors.sortingItems.message}
+                </div>
+            )}
+
             <div className="space-y-3">
                 {fields.map((field, index) => (
                     <div key={field.id} className="relative flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-100 dark:border-gray-800 group transition-all hover:bg-white dark:hover:bg-gray-900/60 hover:shadow-md">

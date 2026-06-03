@@ -381,7 +381,22 @@
           "item_count_placeholder": "Ex : 5",
           "generating_title": "Conception de la leçon...",
           "generating_title_modify": "Modification de la leçon...",
-          "generating_subtitle": "L'IA structure vos exercices et vos contenus. Veuillez patienter quelques instants."
+          "generating_subtitle": "L'IA structure vos exercices et vos contenus. Veuillez patienter quelques instants.",
+          "item_count_error_flashcard_qcm": "Le nombre d'éléments pour ce type de leçon doit être compris entre 5 et 20.",
+          "item_count_error_matching_sorting": "Le nombre d'éléments pour ce type de leçon doit être compris entre 3 et 10.",
+          "quota_exceeded_title": "Quota d'IA dépassé",
+          "quota_exceeded_message": "Vous avez atteint la limite de générations ou modifications par intelligence artificielle allouée à votre compte pour cette période. Votre quota sera réinitialisé à la date indiquée dans votre profil.",
+          "quota_exceeded_cta": "Compris"
+        },
+        "validation": {
+          "flashcards_min": "Une leçon Flashcard doit contenir au moins 5 flashcards.",
+          "flashcards_max": "Une leçon Flashcard ne peut pas contenir plus de 20 flashcards.",
+          "questions_min": "Une leçon QCM doit contenir au moins 5 questions.",
+          "questions_max": "Une leçon QCM ne peut pas contenir plus de 20 questions.",
+          "matching_min": "Un exercice d'association doit contenir au moins 3 paires.",
+          "matching_max": "Un exercice d'association ne peut pas contenir plus de 10 paires.",
+          "sorting_min": "Un exercice de tri doit contenir au moins 3 éléments.",
+          "sorting_max": "Un exercice de tri ne peut pas contenir plus de 10 éléments."
         }
       },
       "flashcards": {
@@ -617,6 +632,23 @@
   },
   "lessons": {
     "progress": "Progression de l'exercice",
+    "help": {
+      "trigger_button": "Aide IA",
+      "modal_title": "Aide à la Mémorisation par IA",
+      "modal_subtitle": "Choisissez le type d'assistance dont vous avez besoin :",
+      "option_structure_and_rule": "Structure & Règles",
+      "option_association_and_mnemonic": "Moyen mémotechnique",
+      "option_trap_warning": "Pièges à éviter",
+      "option_usage_context": "Exemple en contexte",
+      "loading": "Génération de l'aide par l'IA...",
+      "error_generic": "Impossible de charger l'aide IA pour le moment. Veuillez réessayer.",
+      "quota_exceeded_title": "Limite d'aide IA atteinte",
+      "quota_exceeded_message": "Vous avez épuisé vos crédits d'intelligence artificielle pour cette période. Passez à la formule Premium pour obtenir des explications illimitées !",
+      "quota_exceeded_cta": "Découvrir l'offre Premium",
+      "section_visual_anchor": "Ancre Mentale / Visualisation",
+      "section_examples": "Exemples en Contexte",
+      "section_warning": "Attention au piège !"
+    },
     "click_to_flip": "Appuyez pour révéler",
     "computing_score": "Calcul du score en cours...",
     "hard": "Difficile - À revoir",
@@ -794,6 +826,11 @@
     },
     "update": {
       "success": "Profil mis à jour avec succès."
+    },
+    "ai_quota": {
+      "title": "Quota d'IA",
+      "usage": "Générations utilisées",
+      "renews_on": "Renouvellement le {{date}}"
     },
     "image": {
       "title": "Photo de profil",

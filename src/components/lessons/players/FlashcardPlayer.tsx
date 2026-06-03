@@ -7,16 +7,17 @@ import { FaceSad, FaceNeutral, FaceSmile } from "@/assets/icons";
 import { PlayerLayout } from "./common/PlayerLayout";
 import { PlayerHeader } from "./common/PlayerHeader";
 import { SegmentStatus } from "@/types/components/player";
-
 import { PlayerFooter } from "./common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
+import { MemorizationHelpButton } from "./common/MemorizationHelpButton";
 
 interface FlashcardPlayerProps {
+    lessonId?: string;
     flashcards: FlashcardRequest[];
     onFinish: (score: number) => void;
 }
 
-export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) {
+export function FlashcardPlayer({ lessonId, flashcards, onFinish }: FlashcardPlayerProps) {
     const { t } = useTranslation();
     const { playCorrect, playIncorrect } = useSoundEffects();
     const [queue, setQueue] = useState<QueuedCard[]>(() =>
@@ -145,6 +146,15 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
 
             <div className="flex-1 overflow-y-auto min-h-0 py-4 flex flex-col">
                 <div className="my-auto w-full py-4">
+                    {lessonId && (
+                        <div className="flex justify-center mb-6">
+                            <MemorizationHelpButton
+                                lessonId={lessonId}
+                                exerciseId={currentCard.id}
+                                exerciseType="FLASHCARD"
+                            />
+                        </div>
+                    )}
                     <div
                         className={`relative w-full aspect-[4/3] sm:aspect-[3/2] max-w-lg cursor-pointer group transition-all duration-300 ease-out mx-auto ${getTransitionClasses()}`}
                         style={{ perspective: '1200px' }}

@@ -376,7 +376,22 @@
           "item_count_placeholder": "E.g., 5",
           "generating_title": "Designing your lesson...",
           "generating_title_modify": "Modifying your lesson...",
-          "generating_subtitle": "The AI is structuring your exercises and contents. Please wait a few moments."
+          "generating_subtitle": "The AI is structuring your exercises and contents. Please wait a few moments.",
+          "item_count_error_flashcard_qcm": "The number of items for this lesson type must be between 5 and 20.",
+          "item_count_error_matching_sorting": "The number of items for this lesson type must be between 3 and 10.",
+          "quota_exceeded_title": "AI Quota Exceeded",
+          "quota_exceeded_message": "You have reached the limit of AI generations or modifications allowed for your account during this period. Your quota will be reset at the date indicated on your profile.",
+          "quota_exceeded_cta": "Got it"
+        },
+        "validation": {
+          "flashcards_min": "A Flashcard lesson must contain at least 5 flashcards.",
+          "flashcards_max": "A Flashcard lesson cannot contain more than 20 flashcards.",
+          "questions_min": "An MCQ lesson must contain at least 5 questions.",
+          "questions_max": "An MCQ lesson cannot contain more than 20 questions.",
+          "matching_min": "A matching pairs exercise must contain at least 3 pairs.",
+          "matching_max": "A matching pairs exercise cannot contain more than 10 pairs.",
+          "sorting_min": "A sorting exercise must contain at least 3 items.",
+          "sorting_max": "A sorting exercise cannot contain more than 10 items."
         }
       },
       "flashcards": {
@@ -612,6 +627,23 @@
   },
   "lessons": {
     "progress": "Exercise Progress",
+    "help": {
+      "trigger_button": "AI Help",
+      "modal_title": "AI Memorization Help",
+      "modal_subtitle": "Choose the type of assistance you need:",
+      "option_structure_and_rule": "Structure & Rules",
+      "option_association_and_mnemonic": "Mnemonic Device",
+      "option_trap_warning": "Traps to avoid",
+      "option_usage_context": "Example in context",
+      "loading": "Generating help with AI...",
+      "error_generic": "Unable to load AI help right now. Please try again.",
+      "quota_exceeded_title": "AI Help Limit Reached",
+      "quota_exceeded_message": "You have run out of AI credits for this period. Upgrade to Premium for unlimited explanations!",
+      "quota_exceeded_cta": "Discover Premium",
+      "section_visual_anchor": "Mental Anchor / Visualization",
+      "section_examples": "Examples in Context",
+      "section_warning": "Watch out for the trap!"
+    },
     "click_to_flip": "Tap to reveal",
     "computing_score": "Computing score...",
     "hard": "Hard - Review needed",
@@ -789,6 +821,11 @@
     },
     "update": {
       "success": "Profile updated successfully."
+    },
+    "ai_quota": {
+      "title": "AI Quota",
+      "usage": "AI generations used",
+      "renews_on": "Renews on {{date}}"
     },
     "image": {
       "title": "Profile picture",
