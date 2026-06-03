@@ -64,7 +64,7 @@ export function FriendActionButton({ user, loading, onSendRequest, onAcceptReque
                     </Button>
                 </div>
             );
-        case 'FRIENDS':
+        case 'ACCEPTED':
             return (
                 <Button
                     variant="pill-gray"

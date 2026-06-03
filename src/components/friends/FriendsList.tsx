@@ -6,9 +6,10 @@ interface FriendsListProps {
     friends: FriendResponse[];
     loading: boolean;
     onRemove: (id: string) => void;
+    onNavigate?: () => void;
 }
 
-export function FriendsList({ friends, loading, onRemove }: FriendsListProps) {
+export function FriendsList({ friends, loading, onRemove, onNavigate }: FriendsListProps) {
     const { t } = useTranslation();
 
     if (friends.length === 0) {
@@ -22,7 +23,7 @@ export function FriendsList({ friends, loading, onRemove }: FriendsListProps) {
     return (
         <>
             {friends.map(f => (
-                <FriendCard key={f.id} friend={f} loading={loading} onRemove={onRemove} />
+                <FriendCard key={f.id} friend={f} loading={loading} onRemove={onRemove} onNavigate={onNavigate} />
             ))}
         </>
     );

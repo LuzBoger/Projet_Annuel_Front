@@ -3,6 +3,7 @@ import { Avatar } from '@/components/ui/Avatar';
 import { Button } from '@/components/ui/Button';
 import { FriendsRequestResponse, RequestType } from '@/types/friends/friends';
 import { getProfileImageUrl } from '@/lib/utils/image';
+import { ViewProfileButton } from '@/components/ui/ViewProfileButton';
 
 interface FriendRequestCardProps {
     request: FriendsRequestResponse;
@@ -11,9 +12,10 @@ interface FriendRequestCardProps {
     onAccept?: (id: string) => void;
     onDecline?: (id: string) => void;
     onCancel?: (id: string) => void;
+    onNavigate?: () => void;
 }
 
-export function FriendRequestCard({ request, loading, type, onAccept, onDecline, onCancel }: FriendRequestCardProps) {
+export function FriendRequestCard({ request, loading, type, onAccept, onDecline, onCancel, onNavigate }: FriendRequestCardProps) {
     const { t } = useTranslation();
 
     return (
@@ -26,23 +28,26 @@ export function FriendRequestCard({ request, loading, type, onAccept, onDecline,
                         {request.username[0].toUpperCase()}
                     </div>
                 )}
-                <p className="font-medium text-gray-900 dark:text-white text-sm">{request.username}</p>
+                <span className="font-medium text-gray-900 dark:text-white text-sm">{request.username}</span>
             </div>
 
-            {type === 'incoming' ? (
-                <div className="flex gap-2">
-                    <Button variant="pill-green" size="sm" disabled={loading} onClick={() => onAccept?.(request.id)}>
-                        {t('friends.accept')}
+            <div className="flex items-center gap-2">
+                <ViewProfileButton accountId={request.accountId} onClick={onNavigate} />
+                {type === 'incoming' ? (
+                    <div className="flex gap-2">
+                        <Button variant="pill-green" size="sm" disabled={loading} onClick={() => onAccept?.(request.id)}>
+                            {t('friends.accept')}
+                        </Button>
+                        <Button variant="pill-red" size="sm" disabled={loading} onClick={() => onDecline?.(request.id)}>
+                            {t('friends.decline')}
+                        </Button>
+                    </div>
+                ) : (
+                    <Button variant="pill-gray" size="sm" disabled={loading} onClick={() => onCancel?.(request.id)}>
+                        {t('friends.cancel')}
                     </Button>
-                    <Button variant="pill-red" size="sm" disabled={loading} onClick={() => onDecline?.(request.id)}>
-                        {t('friends.decline')}
-                    </Button>
-                </div>
-            ) : (
-                <Button variant="pill-gray" size="sm" disabled={loading} onClick={() => onCancel?.(request.id)}>
-                    {t('friends.cancel')}
-                </Button>
-            )}
+                )}
+            </div>
         </div>
     );
 }

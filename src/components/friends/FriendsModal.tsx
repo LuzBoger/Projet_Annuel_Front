@@ -32,6 +32,18 @@ export function FriendsModal({ isOpen, onClose }: FriendsModalProps) {
     }, [isOpen, fetchFriends, fetchPendingRequests, fetchSentRequests]);
 
     useEffect(() => {
+        const onRequestReceived = () => fetchPendingRequests();
+        const onRequestAccepted = () => { fetchFriends(); fetchSentRequests(); };
+
+        window.addEventListener('FRIEND_REQUEST_RECEIVED', onRequestReceived);
+        window.addEventListener('FRIEND_REQUEST_ACCEPTED', onRequestAccepted);
+        return () => {
+            window.removeEventListener('FRIEND_REQUEST_RECEIVED', onRequestReceived);
+            window.removeEventListener('FRIEND_REQUEST_ACCEPTED', onRequestAccepted);
+        };
+    }, [fetchFriends, fetchPendingRequests, fetchSentRequests]);
+
+    useEffect(() => {
         if (activeTab !== 'search') return;
         const timeout = setTimeout(() => searchUsers(query), 400);
         return () => clearTimeout(timeout);
@@ -48,7 +60,7 @@ export function FriendsModal({ isOpen, onClose }: FriendsModalProps) {
 
             <div className="overflow-y-auto max-h-[60vh] space-y-3 pr-1">
                 {activeTab === 'friends' && (
-                    <FriendsList friends={friends} loading={loading} onRemove={removeFriend} />
+                    <FriendsList friends={friends} loading={loading} onRemove={removeFriend} onNavigate={onClose} />
                 )}
                 {activeTab === 'requests' && (
                     <RequestsList
@@ -58,6 +70,7 @@ export function FriendsModal({ isOpen, onClose }: FriendsModalProps) {
                         onAccept={acceptFriendRequest}
                         onDecline={declineFriendRequest}
                         onCancel={cancelFriendRequest}
+                        onNavigate={onClose}
                     />
                 )}
                 {activeTab === 'search' && (
@@ -70,6 +83,7 @@ export function FriendsModal({ isOpen, onClose }: FriendsModalProps) {
                         onAccept={acceptFriendRequest}
                         onDecline={declineFriendRequest}
                         onRemove={removeFriend}
+                        onNavigate={onClose}
                     />
                 )}
             </div>

@@ -1,4 +1,5 @@
-export type FriendshipStatus = 'NONE' | 'PENDING_SENT' | 'PENDING_RECEIVED' | 'FRIENDS';
+export type FriendShipStatus = 'NONE' | 'PENDING_SENT' | 'PENDING_RECEIVED' | 'ACCEPTED';
+export type FriendshipStatus = FriendShipStatus;
 
 export interface FriendResponse {
     id: string;
@@ -22,7 +23,7 @@ export interface AccountSearchResponse{
     username: string;
     photoUrl?: string;
     bio?: string;
-    status: FriendshipStatus;
+    status: FriendShipStatus;
     friendRequestId?: string;
 }
 export type Tab = 'friends' | 'requests' | 'search';

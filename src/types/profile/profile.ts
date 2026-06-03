@@ -1,5 +1,6 @@
-import { LanguageResponse } from "../language/language";
-import { UserLanguageResponse } from "../userLanguage/userLanguage";
+import { FriendShipStatus } from "@/types/friends/friends";
+import { LanguageResponse } from "@/types/language/language";
+import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 export interface UpdateProfileRequest {
     photoUrl?: string;
     bio?: string;
@@ -36,6 +37,9 @@ export interface UserProfileResponse {
   activeLanguage?: LanguageResponse | null;
   createdAt?: string;
   updatedAt?: string;
+  isAccountPrivate: boolean;
+  friendsViewStatus?: FriendShipStatus;
+  friendRequestId?: string;
 }
 
 

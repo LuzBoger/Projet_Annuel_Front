@@ -9,9 +9,10 @@ interface RequestsListProps {
     onAccept: (id: string) => void;
     onDecline: (id: string) => void;
     onCancel: (id: string) => void;
+    onNavigate?: () => void;
 }
 
-export function RequestsList({ pendingRequests, sentRequests, loading, onAccept, onDecline, onCancel }: RequestsListProps) {
+export function RequestsList({ pendingRequests, sentRequests, loading, onAccept, onDecline, onCancel, onNavigate }: RequestsListProps) {
     const { t } = useTranslation();
 
     return (
@@ -32,6 +33,7 @@ export function RequestsList({ pendingRequests, sentRequests, loading, onAccept,
                                 type="incoming"
                                 onAccept={onAccept}
                                 onDecline={onDecline}
+                                onNavigate={onNavigate}
                             />
                         ))}
                     </div>
@@ -53,6 +55,7 @@ export function RequestsList({ pendingRequests, sentRequests, loading, onAccept,
                                 loading={loading}
                                 type="sent"
                                 onCancel={onCancel}
+                                onNavigate={onNavigate}
                             />
                         ))}
                     </div>

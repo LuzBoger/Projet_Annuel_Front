@@ -7,6 +7,7 @@
     "close": "Fermer",
     "active": "Actif",
     "view": "Voir",
+    "viewProfile": "Voir le profil",
     "edit": "Modifier",
     "save": "Sauvegarder",
     "confirm": "Confirmer",
@@ -1281,11 +1282,18 @@
     "acceptRequest": {
       "success": "Demande d'ami acceptée !"
     },
+    "cancelRequest": {
+      "success": "Demande d'ami annulée."
+    },
     "declineRequest": {
       "success": "Demande d'ami refusée."
     },
     "removeFriend": {
       "success": "Ami supprimé."
+    },
+    "notif": {
+      "request_received": "Vous avez une nouvelle demande d'ami",
+      "request_accepted": "Votre demande d'ami a été acceptée"
     }
   }
 }

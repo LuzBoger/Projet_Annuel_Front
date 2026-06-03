@@ -12,9 +12,10 @@ interface SearchUsersProps {
     onAccept: (id: string) => void;
     onDecline: (id: string) => void;
     onRemove: (id: string) => void;
+    onNavigate?: () => void;
 }
 
-export function SearchUsers({ query, onChange, results, loading, onSend, onAccept, onDecline, onRemove }: SearchUsersProps) {
+export function SearchUsers({ query, onChange, results, loading, onSend, onAccept, onDecline, onRemove, onNavigate }: SearchUsersProps) {
     const { t } = useTranslation();
 
     return (
@@ -51,6 +52,7 @@ export function SearchUsers({ query, onChange, results, loading, onSend, onAccep
                         onAccept={onAccept}
                         onDecline={onDecline}
                         onRemove={onRemove}
+                        onNavigate={onNavigate}
                     />
                 ))}
             </div>

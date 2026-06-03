@@ -7,6 +7,7 @@
     "close": "Close",
     "active": "Active",
     "view": "View",
+    "viewProfile": "View profile",
     "edit": "Edit",
     "save": "Save",
     "confirm": "Confirm",
@@ -1275,11 +1276,18 @@
     "acceptRequest": {
       "success": "Friend request accepted!"
     },
+    "cancelRequest": {
+      "success": "Friend request cancelled."
+    },
     "declineRequest": {
       "success": "Friend request declined."
     },
     "removeFriend": {
       "success": "Friend removed."
+    },
+    "notif": {
+      "request_received": "You have a new friend request",
+      "request_accepted": "Your friend request was accepted"
     }
   }
 }

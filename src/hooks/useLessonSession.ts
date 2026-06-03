@@ -26,5 +26,19 @@ export function useLessonSession() {
         }
     }, [addToast, t]);
 
-    return {lessonSessions,loading,error,fetchAllUserLessonSessions};
+    const fetchUserLessonSessionsByUserId = useCallback(async (userId: string) => {
+        try {
+            setLoading(true);
+            setError(null);
+            const data = await lessonSessionService.getUserLessonSessions(userId);
+            setLessonSessions(data);
+        } catch {
+            setError(t('error.fetchLessonSessions'));
+            setLessonSessions([]);
+        } finally {
+            setLoading(false);
+        }
+    }, [t]);
+
+    return {lessonSessions, setLessonSessions, loading, error, fetchAllUserLessonSessions, fetchUserLessonSessionsByUserId};
 }
