@@ -29,9 +29,11 @@ const processRequests = (error: AxiosError | null) => {
 apiClient.interceptors.response.use(
     (response) => {
         const contentType = response.headers['content-type'];
-        if (typeof response.data === 'string' && contentType && contentType.includes('text/html')) {
+
+        if (typeof response.data === 'string' && typeof contentType === 'string' && contentType.includes('text/html')) {
             return Promise.reject(new Error("Format de réponse invalide : HTML reçu au lieu de JSON."));
         }
+
         return response;
     },
     async (error: AxiosError) => {

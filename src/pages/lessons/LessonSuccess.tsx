@@ -18,11 +18,23 @@ export default function LessonSuccess() {
 
     const state = location.state as { response?: CompleteLessonResponse, lesson?: LessonResponse } | null;
 
+    const allLessonCompleted = state?.response?.progress?.completionPercentage === 100;
+
     useEffect(() => {
         if (!state || !state.response || !state.lesson) {
             navigate('/dashboard', { replace: true });
         }
     }, [state, navigate]);
+
+    useEffect(() => {
+        if (allLessonCompleted && state?.lesson?.topicId) {
+            reviewService.getUserReview(state.lesson?.topicId).then((review) => {
+                if (review) {
+                    setIsAlreadyReviewed(true);
+                }
+            }).catch(() => {});
+        }
+    }, [allLessonCompleted, state?.lesson?.topicId]);
 
     useEffect(() => {
         if (state?.response) {
@@ -70,18 +82,17 @@ export default function LessonSuccess() {
     const { response, lesson } = state;
 
     const handleContinue = () => {
-        if(allLessonCompleted && !isAlreadyReviewed) {
+        if (allLessonCompleted && !isAlreadyReviewed) {
             setShowReviewModal(true);
         } else {
-            navigate(`/topics/${lesson.topicId}`);
+            navigate(`/topics/${lesson.topicId}`, { replace: true });
         }
-
     };
 
     const handleReviewClose = () => {
         setShowReviewModal(false);
-        navigate(`/topics/${lesson.topicId}`);
-    }
+        navigate(`/topics/${lesson.topicId}`, { replace: true });
+    };
     return (
         <>
         <MetaData title={t('lessons.lesson_completed')} robots="noindex, nofollow"  />
@@ -119,11 +130,11 @@ export default function LessonSuccess() {
                 )}
 
                 <Button
-                    onClick={() => navigate(`/topics/${lesson.topicId}`, { replace: true })}
+                    onClick={handleContinue}
                     className="w-full text-lg shadow-sm py-4 rounded-2xl"
                     size="lg"
                 >
-                    {t('common.continue')}
+                    {allLessonCompleted && !isAlreadyReviewed ? t("reviews.rate_and_continue") : t("common.continue")}
                 </Button>
             </div>
         </div>
