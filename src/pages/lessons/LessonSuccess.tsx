@@ -18,17 +18,11 @@ export default function LessonSuccess() {
 
     const state = location.state as { response?: CompleteLessonResponse, lesson?: LessonResponse } | null;
 
-    const allLessonCompleted = state?.response?.progress?.completionPercentage === 100;
-    
     useEffect(() => {
-        if(allLessonCompleted && state?.lesson?.topicId) {
-            reviewService.getUserReview(state.lesson?.topicId).then((review) => {
-                if(review) {
-                    setIsAlreadyReviewed(true);
-                }
-            }).catch(() => {}); 
+        if (!state || !state.response || !state.lesson) {
+            navigate('/dashboard', { replace: true });
         }
-    }, []);
+    }, [state, navigate]);
 
     useEffect(() => {
         if (state?.response) {
@@ -124,9 +118,13 @@ export default function LessonSuccess() {
                     </div>
                 )}
 
-                  <Button onClick={handleContinue} className="w-full text-lg shadow-sm py-4 rounded-2xl" size="lg">
-                        {allLessonCompleted && !isAlreadyReviewed ? t("reviews.rate_and_continue") : t("common.continue")}
-                    </Button>
+                <Button
+                    onClick={() => navigate(`/topics/${lesson.topicId}`, { replace: true })}
+                    className="w-full text-lg shadow-sm py-4 rounded-2xl"
+                    size="lg"
+                >
+                    {t('common.continue')}
+                </Button>
             </div>
         </div>
          <SubmitReviewModal

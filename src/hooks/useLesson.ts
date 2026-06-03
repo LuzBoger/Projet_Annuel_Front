@@ -198,10 +198,14 @@ export function useLesson() {
             return generatedLessonData;
         } catch (error: unknown) {
             console.error('Error generating lesson with AI:', error);
-            const axiosResponseError = error as { response?: { data?: { message?: string } } };
-            const resolvedErrorMessage = axiosResponseError.response?.data?.message || t('admin.lessons.form.ai_generate.error');
-            setError(resolvedErrorMessage);
-            addToast({ type: 'error', message: resolvedErrorMessage });
+            const axiosResponseError = error as { response?: { status?: number; data?: { message?: string } } };
+            if (axiosResponseError.response?.status !== 429) {
+                const resolvedErrorMessage = axiosResponseError.response?.data?.message || t('admin.lessons.form.ai_generate.error');
+                setError(resolvedErrorMessage);
+                addToast({ type: 'error', message: resolvedErrorMessage });
+            } else {
+                setError('QUOTA_EXCEEDED');
+            }
             throw error;
         } finally {
             setLoading(false);
@@ -217,10 +221,14 @@ export function useLesson() {
             return modifiedLessonData;
         } catch (error: unknown) {
             console.error('Error modifying lesson with AI:', error);
-            const axiosResponseError = error as { response?: { data?: { message?: string } } };
-            const resolvedErrorMessage = axiosResponseError.response?.data?.message || t('admin.lessons.form.ai_generate.error_modify');
-            setError(resolvedErrorMessage);
-            addToast({ type: 'error', message: resolvedErrorMessage });
+            const axiosResponseError = error as { response?: { status?: number; data?: { message?: string } } };
+            if (axiosResponseError.response?.status !== 429) {
+                const resolvedErrorMessage = axiosResponseError.response?.data?.message || t('admin.lessons.form.ai_generate.error_modify');
+                setError(resolvedErrorMessage);
+                addToast({ type: 'error', message: resolvedErrorMessage });
+            } else {
+                setError('QUOTA_EXCEEDED');
+            }
             throw error;
         } finally {
             setLoading(false);

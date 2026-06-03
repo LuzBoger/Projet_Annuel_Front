@@ -7,9 +7,11 @@ import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/hooks/useAuth";
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { profileService } from "@/services/profileService";
+import { aiService } from "@/services/aiService";
 import { UserProfileResponse } from "@/types/profile/profile";
 import { StreakResponse } from "@/types/profile/streak";
 import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
+import { AIQuotaResponse } from "@/types/ai/ai";
 import { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -25,8 +27,17 @@ export  function Profile() {
     const [error, setError] = useState<string | null>(null);
     const [isPrivate, setIsPrivate] = useState(false);
     const [streak, setStreak] = useState<StreakResponse | null>(null);
+    const [aiQuota, setAiQuota] = useState<AIQuotaResponse | null>(null);
 
     const isProfile = !userId || userId === user?.id;
+
+    useEffect(() => {
+        if (isProfile) {
+            aiService.getQuota()
+                .then((data) => setAiQuota(data))
+                .catch(() => {});
+        }
+    }, [isProfile]);
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -132,6 +143,33 @@ export  function Profile() {
                   <span className="flex-1 h-px bg-[#e8dcc8]" />
                 </h2>
                 <p className="text-[15px] text-[#3a2e1e] dark:text-gray-300 leading-relaxed font-light">{profile.bio}</p>
+              </div>
+            )}
+
+            {isProfile && aiQuota && (
+              <div className="bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-6 py-5 flex flex-col gap-3">
+                <h2 className="text-[10px] font-medium text-[#8a7a60] dark:text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                  {t("profile.ai_quota.title")}
+                  <span className="flex-1 h-px bg-[#e8dcc8] dark:bg-[#e8dcc8]" />
+                </h2>
+                
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs text-[#3a2e1e] dark:text-gray-300">
+                    <span className="font-medium">{t("profile.ai_quota.usage")}</span>
+                    <span className="font-semibold">{aiQuota.currentUsage} / {aiQuota.maxQuota}</span>
+                  </div>
+                  
+                  <div className="w-full bg-[#faf7f2] dark:bg-gray-900 rounded-full h-2.5 overflow-hidden border border-[#e8dcc8]/40 dark:border-gray-700">
+                    <div 
+                      className="bg-indigo-600 dark:bg-indigo-500 h-full rounded-full transition-all duration-500" 
+                      style={{ width: `${Math.min(100, Math.round((aiQuota.currentUsage / aiQuota.maxQuota) * 100))}%` }}
+                    />
+                  </div>
+                </div>
+
+                <p className="text-[11px] text-[#8a7a60] dark:text-gray-400 leading-normal">
+                  {t("profile.ai_quota.renews_on", { date: new Date(aiQuota.periodEnd).toLocaleDateString() })}
+                </p>
               </div>
             )}
 
