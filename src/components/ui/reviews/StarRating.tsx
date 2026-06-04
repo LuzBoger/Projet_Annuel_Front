@@ -19,7 +19,7 @@ export function StarRating({ rating, onRatingChange, disabled = false }: StarRat
 
     return (
         <div>
-            <p className="text-xs font-medium text-gray-500 dark:text-gray-600 tracking-widest mb-2">
+            <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 tracking-wider mb-2">
                 {t('reviews.rating.label')}
             </p>
             <div className="flex gap-1 mb-1">
@@ -38,15 +38,15 @@ export function StarRating({ rating, onRatingChange, disabled = false }: StarRat
                         
                         >
                             <StarIcon
-                                className={`w-8 h-8 transition-colors ${
-                                    active ? "text-yellow-400" : "text-gray-700 dark:text-gray-700"
+                                className={`w-10 h-10 transition-colors ${
+                                    active ? "text-yellow-400" : "text-gray-200 dark:text-gray-700"
                                 }`}
                             />
                         </Button>
                     );
                 })}
             </div>
-            <p className="text-xs font-medium text-amber-600 dark:text-amber-400 min-h-[16px]">
+            <p className="text-sm font-bold text-amber-600 dark:text-amber-400 min-h-[20px]">
                 {(hoveredRating || rating) > 0 ? labels[(hoveredRating || rating) as RatingValue] : ''}
             </p>
         </div>
