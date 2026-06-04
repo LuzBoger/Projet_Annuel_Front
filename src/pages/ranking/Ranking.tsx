@@ -6,31 +6,72 @@ import { Pagination } from "@/components/ui/Pagination";
 import { WS_GLOBAl_RANKING, WS_LANGUAGE_RANKING } from "@/constants/global";
 import { useRanking } from "@/hooks/useRanking";
 import { useRankingSocket } from "@/hooks/useRankingSocket";
+import { useAuth } from "@/hooks/useAuth";
+import { languageService } from "@/services/languageService";
 import { userLanguageService } from "@/services/userLanguage";
 import { RankingType } from "@/types/ranking/ranking";
 import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
+import { hasRole } from "@/lib/utils/roles";
 import { useCallback, useEffect, useState } from "react";
 import { Trophy, Info } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
 export default function Ranking() {
     const {t} = useTranslation();
     const {data, loading, fetchGlobalRanking, fetchByLanguageRanking} = useRanking();
-    const [selectedTab, setSelectedTab] = useState<RankingType>('global');
+    const {user} = useAuth();
+    const [searchParams] = useSearchParams();
+
+    const queryTab = searchParams.get('tab') as RankingType | null;
+    const queryLanguageId = searchParams.get('languageId');
+    const isAdmin = hasRole(user?.role, "ADMIN");
+
+    const [selectedTab, setSelectedTab] = useState<RankingType>(queryTab === 'language' ? 'language' : 'global');
     const [languages, setLanguages] = useState<UserLanguageResponse[]>([]);
-    const [selectedLanguageId, setSelectedLanguageId] = useState<string>('');
+    const [selectedLanguageId, setSelectedLanguageId] = useState<string>(queryLanguageId || '');
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        userLanguageService.getUserLearningLanguages()
-            .then((langs) => {
-                setLanguages(langs);
-                if (langs.length > 0){
-                    setSelectedLanguageId(langs[0].languageId);
+        const loadLanguages = async () => {
+            try {
+                if (isAdmin) {
+                    const activeLangs = await languageService.getAllActiveLanguages();
+                    // Les administrateurs doivent pouvoir visualiser tous les classements actifs.
+                    const formattedLangs: UserLanguageResponse[] = activeLangs.map((lang) => ({
+                        id: lang.id,
+                        accountId: user?.id ?? "",
+                        languageId: lang.id,
+                        languageCode: lang.code,
+                        languageName: lang.name,
+                        isActive: lang.isActive,
+                        joinedAt: "",
+                        totalXP: 0,
+                        currentLevel: 1,
+                        currentLevelProgressPercentage: 0,
+                    }));
+                    setLanguages(formattedLangs);
+                    if (queryLanguageId) {
+                        setSelectedLanguageId(queryLanguageId);
+                    } else if (formattedLangs.length > 0) {
+                        setSelectedLanguageId(formattedLangs[0].languageId);
+                    }
+                } else {
+                    const learningLangs = await userLanguageService.getUserLearningLanguages();
+                    setLanguages(learningLangs);
+                    if (queryLanguageId) {
+                        setSelectedLanguageId(queryLanguageId);
+                    } else if (learningLangs.length > 0) {
+                        setSelectedLanguageId(learningLangs[0].languageId);
+                    }
                 }
-            })
-            .catch(() => {});
-    }, []);
+            } catch (error) {
+                console.error("Failed to load languages for ranking", error);
+            }
+        };
+
+        loadLanguages();
+    }, [isAdmin, queryLanguageId, user?.id]);
 
     const handleTabChange = (tab: RankingType) => {
         setSelectedTab(tab);

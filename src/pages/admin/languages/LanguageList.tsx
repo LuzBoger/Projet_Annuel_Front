@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/hooks/useLanguage";
 import { LanguageResponse, CreateLanguageRequest, UpdateLanguageRequest } from "@/types/language/language";
 import { TableColumn } from "@/types/components/tableColumn";
@@ -11,9 +12,12 @@ import { LanguageForm } from "@/components/languages/LanguageForm";
 import { TableActions } from "@/components/ui/TableActions";
 import { LanguageFlag } from "@/components/languages/LanguageFlag";
 import { MetaData } from "@/components/seo/MetaData";
+import { IconButton } from "@/components/ui/IconButton";
+import { Trophy } from "lucide-react";
 
 export default function LanguageList() {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const { 
         languages, 
         loading, 
@@ -33,6 +37,8 @@ export default function LanguageList() {
     const columns: TableColumn[] = [
         { key: 'code', label: t('admin.languages.table.code') },
         { key: 'name', label: t('admin.languages.table.name') },
+        { key: 'topicsCount', label: t('admin.languages.table.topicsCount') },
+        { key: 'lessonsCount', label: t('admin.languages.table.lessonsCount') },
         { key: 'isActive', label: t('admin.languages.table.isActive') },
         { key: 'actions', label: t('admin.languages.table.actions') },
     ];
@@ -136,16 +142,29 @@ export default function LanguageList() {
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">{lang.name}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                                {lang.topicsCount ?? 0}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                                {lang.lessonsCount ?? 0}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
                                 <Switch
                                     checked={lang.isActive}
                                     onChange={(checked) => handleStatusToggle(lang, checked)}
                                 />
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right border-b border-gray-200 dark:border-gray-700">
-                                <TableActions 
-                                    onEdit={() => handleEdit(lang)} 
-                                    onDelete={() => handleDelete(lang)} 
-                                />
+                                <div className="flex items-center space-x-3 justify-end">
+                                    <IconButton 
+                                        onClick={() => navigate(`/ranking?tab=language&languageId=${lang.id}`)}
+                                        title={t('ranking.title')}
+                                        icon={<Trophy className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />}
+                                    />
+                                    <TableActions 
+                                        onEdit={() => handleEdit(lang)} 
+                                        onDelete={() => handleDelete(lang)} 
+                                    />
+                                </div>
                             </td>
                         </>
                     )}
