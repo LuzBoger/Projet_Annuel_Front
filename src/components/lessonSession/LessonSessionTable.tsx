@@ -34,9 +34,6 @@ export function LessonSessionTable() {
         { key: 'lesson', label: t('lessonSession.table.lesson') },
         { key: 'topic', label: t('lessonSession.table.topic') },
         { key: 'date', label: t('lessonSession.table.date'), align: 'center' },
-        { key: 'correct', label: t('lessonSession.table.correct'), align: 'center' },
-        { key: 'errors', label: t('lessonSession.table.errors'), align: 'center' },
-        { key: 'total', label: t('lessonSession.table.total'), align: 'center' },
         { key: 'accuracy', label: t('lessonSession.table.accuracy'), align: 'center' },
         { key: 'duration', label: t('lessonSession.table.duration'), align: 'center' },
         { key: 'status', label: t('lessonSession.table.status'), align: 'center' },
@@ -46,43 +43,42 @@ export function LessonSessionTable() {
     const renderRow = (session: LessonSessionResponse) => {
         const accuracy = calculateAccuracy(session.correctAnswers, session.totalQuestions);
         const { label, color } = STATUS_LESSON_SESSION[session.status];
+
         return (
             <>
                 <td className="px-6 py-4 text-sm font-medium text-[#3a2e1e] dark:text-white max-w-[180px] truncate">
                     {session.lessonTitle}
                 </td>
+
                 <td className="px-6 py-4 text-sm text-[#8a7a60] dark:text-gray-400">
                     {session.topicName}
                 </td>
+
                 <td className="px-6 py-4 text-sm text-[#8a7a60] dark:text-gray-400 text-center whitespace-nowrap">
                     {formatDate(session.completedAt)}
                 </td>
-                <td className="px-6 py-4 text-center">
-                    <span className="text-sm font-semibold text-green-600 dark:text-green-400">
-                        {session.correctAnswers}
-                    </span>
+
+                <td className="px-6 py-4 text-center whitespace-nowrap">
+                    <div className="flex flex-col items-center">
+                        <span className={`text-sm font-bold ${
+                            accuracy >= 70 ? 'text-green-600 dark:text-green-400' : accuracy >= 40 ? 'text-amber-500 dark:text-amber-400' : 'text-red-500 dark:text-red-400'
+                        }`}>
+                            {accuracy}%
+                        </span>
+                        <span className="text-xs text-[#8a7a60] dark:text-gray-400">
+                            ({session.correctAnswers}/{session.totalQuestions})
+                        </span>
+                    </div>
                 </td>
-                <td className="px-6 py-4 text-center">
-                    <span className="text-sm font-semibold text-red-500 dark:text-red-400">
-                        {session.wrongAnswers}
-                    </span>
-                </td>
-                <td className="px-6 py-4 text-center text-sm text-[#8a7a60] dark:text-gray-400">
-                    {session.totalQuestions}
-                </td>
-                <td className="px-6 py-4 text-center">
-                    <span className={`text-sm font-bold ${
-                        accuracy >= 70 ? 'text-green-600 dark:text-green-400' : accuracy >= 40 ? 'text-amber-500 dark:text-amber-400' : 'text-red-500 dark:text-red-400'
-                    }`}>
-                        {accuracy}%
-                    </span>
-                </td>
+
                 <td className="px-6 py-4 text-center text-sm text-[#8a7a60] dark:text-gray-400">
                     {formatTotalTime(session.totalTime)}
                 </td>
+
                 <td className="px-6 py-4 text-center">
                     <BadgeTag color={color}>{label(t)}</BadgeTag>
                 </td>
+
                 <td className="px-6 py-4 text-right">
                     <Button
                         variant="none"

@@ -12,6 +12,7 @@ import { UserProfileResponse } from "@/types/profile/profile";
 import { StreakResponse } from "@/types/profile/streak";
 import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { AIQuotaResponse } from "@/types/ai/ai";
+import { RoleEnum } from "@/types/enum/roles";
 import { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -185,7 +186,7 @@ export  function Profile() {
               <ProfileLanguageSection languages={languages} onLanguageRemove={handleLanguageRemoved} />
             </section>
 
-            {isProfile && <LessonSessionTable />}
+            {isProfile && user?.role !== RoleEnum.ADMIN && <LessonSessionTable />}
 
           </main>
 

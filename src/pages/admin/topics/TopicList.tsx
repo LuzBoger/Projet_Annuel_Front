@@ -61,7 +61,7 @@ export default function TopicList() {
 
     useEffect(() => {
         languageService.getAllActiveLanguages().then(setActiveLanguages).catch(console.error);
-    }, []);
+    }, [showForm]);
 
     useEffect(() => {
         let isActiveBool: boolean | undefined = undefined;
