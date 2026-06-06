@@ -1,7 +1,7 @@
 import { render, type RenderOptions } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import { AuthContext } from '../contexts/AuthContext'
-import type { AuthContextType } from '../types/auth/context'
+import { AuthContext } from '@/contexts/AuthContext'
+import type { AuthContextType } from '@/types/auth/context'
 import type { ReactElement } from 'react'
 
 const defaultAuthContext: AuthContextType = {

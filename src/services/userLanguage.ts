@@ -1,5 +1,5 @@
 import { AddUserLanguageRequest, UpdateUserLanguageRequest, UserLanguageResponse } from "@/types/userLanguage/userLanguage";
-import apiClient from "./axios";
+import apiClient from "@/services/axios";
 
 export const userLanguageService = {
     async getUserLanguages(): Promise<UserLanguageResponse[]> {

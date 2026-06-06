@@ -1,5 +1,5 @@
 import { LessonType } from "@/types/lesson/lesson";
-import { Tile } from "../components/examMatching";
+import { Tile } from "@/types/components/examMatching";
 
 export type ChallengeType  = 'DUEL' | 'PUBLIC';
 export type ChallengeStatus = 'PENDING' | 'ACTIVE' | 'COMPLETED' | 'EXPIRED' | 'DECLINED' | 'CANCELLED';

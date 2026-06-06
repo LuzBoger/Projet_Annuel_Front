@@ -1,5 +1,5 @@
 import { UpdatePasswordRequest, UpdateProfileRequest, UploadResponse, UserProfileResponse } from "@/types/profile/profile";
-import apiClient from "./axios";
+import apiClient from "@/services/axios";
 import { ApiResponse } from "@/types/api/response";
 import { CompleteOnboardingRequest } from "@/types/account";
 import { StreakResponse } from "@/types/profile/streak";

@@ -1,8 +1,8 @@
 import { ReviewStatus } from "@/types/review/review";
 import { useTranslation } from "react-i18next";
-import { IconButton } from "../ui/IconButton";
+import { IconButton } from "@/components/ui/IconButton";
 import { Ban, Check } from "@/assets/icons";
-import { TableActions } from "../ui/TableActions";
+import { TableActions } from "@/components/ui/TableActions";
 
 interface ReviewActionsProps {
     status: ReviewStatus;

@@ -1,6 +1,6 @@
 import { LanguageLevelResponse, LastLessonResponse, ProgressOverviewResponse } from "@/types/progress/progress";
 import { useCallback, useState } from "react";
-import { useToast } from "./useToast";
+import { useToast } from "@/hooks/useToast";
 import { useTranslation } from "react-i18next";
 import { userProgressService } from "@/services/userProgressService";
 
