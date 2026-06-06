@@ -1,9 +1,10 @@
 import { RankedUserResponse } from "@/types/ranking/ranking";
 import { clsx } from "clsx";
-import { RankBadge } from "../ui/RankBadge";
-import { Avatar } from "../ui/Avatar";
+import { RankBadge } from "@/components/ui/RankBadge";
+import { Avatar } from "@/components/ui/Avatar";
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { useTranslation } from 'react-i18next';
+import { ViewProfileButton } from "@/components/ui/ViewProfileButton";
 
 interface UserRankedProps {
     userRanked: RankedUserResponse;
@@ -38,6 +39,9 @@ export function UserRanked({ userRanked }: UserRankedProps) {
                 </p>
                 <p className="text-xs text-gray-400">XP</p>
             </div>
+            {!userRanked.isCurrentUser && (
+                <ViewProfileButton accountId={userRanked.accountId} iconOnly />
+            )}
         </div>
     );
 }

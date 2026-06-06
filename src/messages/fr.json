@@ -7,6 +7,7 @@
     "close": "Fermer",
     "active": "Actif",
     "view": "Voir",
+    "viewProfile": "Voir le profil",
     "edit": "Modifier",
     "save": "Sauvegarder",
     "confirm": "Confirmer",
@@ -707,7 +708,16 @@
     "declineChallenge": "Impossible de refuser le défi.",
     "cancelChallenge": "Impossible d'annuler le défi.",
     "fetchParticipants": "Impossible de récupérer les participants.",
-    "fetchLessonSessions": "Impossible de récupérer les sessions de leçon."
+    "fetchLessonSessions": "Impossible de récupérer les sessions de leçon.",
+    "fetchFriends": "Impossible de récupérer les amis.",
+    "fetchPendingRequests": "Impossible de récupérer les demandes reçues.",
+    "fetchSentRequests": "Impossible de récupérer les demandes envoyées.",
+    "searchUsers": "Impossible de rechercher des utilisateurs.",
+    "sendFriendRequest": "Impossible d'envoyer la demande d'ami.",
+    "acceptFriendRequest": "Impossible d'accepter la demande d'ami.",
+    "declineFriendRequest": "Impossible de refuser la demande d'ami.",
+    "removeFriend": "Impossible de supprimer l'ami.",
+    "cancelFriendRequest": "Impossible d'annuler la demande d'ami."
 
   },
   "topics": {
@@ -1242,5 +1252,48 @@
   "total": "Total",
   "accuracy": "Précision",
   "duration": "Durée",
-  "status": "Statut"
+  "status": "Statut",
+  "friends": {
+    "title": "Amis",
+    "manage": "Gérer les amis",
+    "tabs": {
+      "friends": "Amis",
+      "requests": "Demandes",
+      "search": "Rechercher"
+    },
+    "noFriends": "Vous n'avez pas encore d'amis.",
+    "streak": "jours de série",
+    "remove": "Supprimer",
+    "incoming": "Reçues",
+    "noRequests": "Aucune demande reçue.",
+    "sent": "Envoyées",
+    "noSentRequests": "Aucune demande envoyée.",
+    "searchPlaceholder": "Rechercher par nom d'utilisateur...",
+    "noResults": "Aucun utilisateur trouvé.",
+    "accept": "Accepter",
+    "decline": "Refuser",
+    "cancel": "Annuler",
+    "addFriend": "Ajouter",
+    "pending": "En attente",
+    "alreadyFriends": "Amis",
+    "sendRequest": {
+      "success": "Demande d'ami envoyée !"
+    },
+    "acceptRequest": {
+      "success": "Demande d'ami acceptée !"
+    },
+    "cancelRequest": {
+      "success": "Demande d'ami annulée."
+    },
+    "declineRequest": {
+      "success": "Demande d'ami refusée."
+    },
+    "removeFriend": {
+      "success": "Ami supprimé."
+    },
+    "notif": {
+      "request_received": "Vous avez une nouvelle demande d'ami",
+      "request_accepted": "Votre demande d'ami a été acceptée"
+    }
+  }
 }

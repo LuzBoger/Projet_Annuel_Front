@@ -31,7 +31,7 @@ import TopicLessons from "@/pages/topics/TopicLessons";
 import TopicExam from "@/pages/topics/TopicExam";
 import LessonPlayer from "@/pages/lessons/LessonPlayer";
 import LessonSuccess from "@/pages/lessons/LessonSuccess";
-import { OnBoardingModal } from "../onBoarding/OnBoardingModal";
+import { OnBoardingModal } from "@/components/onBoarding/OnBoardingModal";
 import { Header } from "@/components/layout/Header";
 import { RoleEnum } from "@/types/enum/roles";
 import { AUTH_PATH } from "@/constants/global";
@@ -68,6 +68,7 @@ export function AppRoutes() {
           <Route path="/languages/:languageId" element={<ProtectedRoute><LanguageDetailPage /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute userOnly><Dashboard /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/profile/:userId" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
           <Route path="/topics/:topicId" element={<ProtectedRoute><TopicLessons /></ProtectedRoute>} />
           <Route path="/topics/:topicId/exam" element={<ProtectedRoute><TopicExam /></ProtectedRoute>} />

@@ -7,6 +7,7 @@
     "close": "Close",
     "active": "Active",
     "view": "View",
+    "viewProfile": "View profile",
     "edit": "Edit",
     "save": "Save",
     "confirm": "Confirm",
@@ -701,7 +702,16 @@
     "declineChallenge": "Failed to decline challenge.",
     "cancelChallenge": "Failed to cancel challenge.",
     "fetchParticipants": "Failed to fetch participants.",
-    "fetchLessonSessions": "Failed to fetch lesson sessions."
+    "fetchLessonSessions": "Failed to fetch lesson sessions.",
+    "fetchFriends": "Failed to fetch friends.",
+    "fetchPendingRequests": "Failed to fetch pending requests.",
+    "fetchSentRequests": "Failed to fetch sent requests.",
+    "searchUsers": "Failed to search users.",
+    "sendFriendRequest": "Failed to send friend request.",
+    "acceptFriendRequest": "Failed to accept friend request.",
+    "declineFriendRequest": "Failed to decline friend request.",
+    "removeFriend": "Failed to remove friend.",
+    "cancelFriendRequest": "Failed to cancel friend request."
 
   },
   "topics": {
@@ -1236,5 +1246,48 @@
   "total": "Total",
   "accuracy": "Accuracy",
   "duration": "Duration",
-  "status": "Status"
+  "status": "Status",
+  "friends": {
+    "title": "Friends",
+    "manage": "Manage friends",
+    "tabs": {
+      "friends": "Friends",
+      "requests": "Requests",
+      "search": "Search"
+    },
+    "noFriends": "You have no friends yet.",
+    "streak": "day streak",
+    "remove": "Remove",
+    "incoming": "Incoming",
+    "noRequests": "No incoming requests.",
+    "sent": "Sent",
+    "noSentRequests": "No sent requests.",
+    "searchPlaceholder": "Search by username...",
+    "noResults": "No users found.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "cancel": "Cancel",
+    "addFriend": "Add friend",
+    "pending": "Pending",
+    "alreadyFriends": "Friends",
+    "sendRequest": {
+      "success": "Friend request sent!"
+    },
+    "acceptRequest": {
+      "success": "Friend request accepted!"
+    },
+    "cancelRequest": {
+      "success": "Friend request cancelled."
+    },
+    "declineRequest": {
+      "success": "Friend request declined."
+    },
+    "removeFriend": {
+      "success": "Friend removed."
+    },
+    "notif": {
+      "request_received": "You have a new friend request",
+      "request_accepted": "Your friend request was accepted"
+    }
+  }
 }

@@ -8,13 +8,14 @@ export const API_URL = import.meta.env.VITE_API_URL;
 export const PUBLIC_ENDPOINTS = ['/auth/login', '/auth/register', '/auth/refresh', '/auth/forgot-password', '/auth/reset-password', '/auth/verify-2fa', '/auth/admin/login'];
 export const AUTH_PATH = ['/login', '/register', '/forgot-password', '/reset-password', '/verify-2fa', '/admin/login'];
 export const SSE_EVENT: Record<string, { key: string; type: "info" | "success" | "warning" | "error" }> = {
-    REVIEW_PENDING:       { key: "reviews.notif_pending",       type: "info"    },
-    NEW_PENDING_REVIEW:   { key: "reviews.notif_new_pending",   type: "info"    },
-    REVIEW_APPROVED:      { key: "reviews.notif_approved",      type: "success" },
-    REVIEW_REJECTED:      { key: "reviews.notif_rejected",      type: "warning" },
+    REVIEW_PENDING: { key: "reviews.notif_pending", type: "info" },
+    NEW_PENDING_REVIEW: { key: "reviews.notif_new_pending", type: "info" },
+    REVIEW_APPROVED: { key: "reviews.notif_approved", type: "success" },
+    REVIEW_REJECTED: { key: "reviews.notif_rejected", type: "warning" },
     REVIEW_AUTO_REJECTED: { key: "reviews.notif_auto_rejected", type: "warning" },
-    REVIEW_BANNED:        { key: "reviews.notif_banned",        type: "error"   },
-
+    REVIEW_BANNED: { key: "reviews.notif_banned", type: "error" },
+    FRIEND_REQUEST_RECEIVED: { key: "friends.notif.request_received", type: "info" },
+    FRIEND_REQUEST_ACCEPTED: { key: "friends.notif.request_accepted", type: "success" },
 };
 // Event name for synchronizing mute state across the application
 export const MUTE_EVENT = 'glotrush_mute_toggle';
