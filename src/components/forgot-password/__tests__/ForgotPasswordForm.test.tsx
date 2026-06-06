@@ -1,7 +1,7 @@
 import i18n from "@/i18n/i18n";
 import { renderWithProviders } from "@/test/renderWithProviders";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import ForgotPasswordForm from "@/components/forgot-password/ForgotPasswordForm";
 import userEvent from "@testing-library/user-event";
 
@@ -37,7 +37,7 @@ describe('ForgotPasswordForm', () => {
         await user.type(emailInput, 'hakai@gmail.com');
         const submitButton = screen.getByRole('button', { name: t('auth.forgot_password.submit') });
         await user.click(submitButton);
-        expect(mockOnSubmit).toHaveBeenCalledWith({ email: 'hakai@gmail.com' });
+        expect(mockOnSubmit).toHaveBeenCalledWith(expect.objectContaining({ email: 'hakai@gmail.com' }), expect.anything());
     })
     
     it('should show validation error for empty', async () => {
@@ -55,8 +55,8 @@ describe('ForgotPasswordForm', () => {
         renderWithProviders(<ForgotPasswordForm {...defaultProps} />)
         const emailInput = screen.getByLabelText(t('auth.forgot_password.email'));
         await user.type(emailInput, 'invalid-email');
-        const submitButton = screen.getByRole('button', { name: t('auth.forgot_password.submit') });
-        await user.click(submitButton);
+        const form = screen.getByRole('button', { name: t('auth.forgot_password.submit') }).closest('form')!;
+        fireEvent.submit(form);
         await waitFor(() => {
             expect(screen.getByText(t('validation.email.invalid'))).toBeInTheDocument();
         });

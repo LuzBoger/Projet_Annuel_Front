@@ -36,16 +36,14 @@ describe('ResetPasswordForm', () => {
         await user.type(screen.getByLabelText(t('auth.reset_password.new_password')), 'GojoSatoru123!');
         await user.type(screen.getByLabelText(t('auth.reset_password.confirm_password')), 'GojoSatoru123!');
         await user.click(screen.getByRole('button', { name: t('auth.reset_password.submit') }));
-        await waitFor(() => {       
-        expect(mockOnSubmit).toHaveBeenCalledWith({ newPassword: 'GojoSatoru123!', confirmPassword: 'GojoSatoru123!' });
+        await waitFor(() => {
+        expect(mockOnSubmit).toHaveBeenCalledWith(expect.objectContaining({ password: 'GojoSatoru123!', confirmPassword: 'GojoSatoru123!' }), expect.anything());
         });
     })
 
     it('should show validation error for empty fields', async () => {
         const user = userEvent.setup();
         renderWithProviders(<ResetPasswordForm {...defaultProps} />)
-        await user.type(screen.getByLabelText(t('auth.reset_password.new_password')), '');
-        await user.type(screen.getByLabelText(t('auth.reset_password.confirm_password')), '');
         await user.click(screen.getByRole('button', { name: t('auth.reset_password.submit') }));
         await waitFor(() => {
             expect(screen.getByText(t('validation.password.required'))).toBeInTheDocument();

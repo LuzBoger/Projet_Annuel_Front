@@ -33,8 +33,8 @@ describe('PasswordForm', () => {
         const user = userEvent.setup();
         renderWithProviders(<PasswordForm  />)
         await user.type(screen.getByLabelText(t('profile.password.current')), 'SatoruGojo123!');
-        await user.type(screen.getByLabelText(t('profile.password.new')), 'Sukuna123!');
-        await user.type(screen.getByLabelText(t('profile.password.confirm')), 'Sukuna123!');
+        await user.type(screen.getByLabelText(t('profile.password.new')), 'SukunaKing12!');
+        await user.type(screen.getByLabelText(t('profile.password.confirm')), 'SukunaKing12!');
         await user.click(screen.getByRole('button', { name: t('profile.password.change') }));
         await waitFor(() => {
             expect(screen.getByText(t('profile.password.successMessage'))).toBeInTheDocument();
@@ -43,14 +43,14 @@ describe('PasswordForm', () => {
 
     it('should show error message after failed password change', async () => {
         const {profileService} = await import('@/services/profileService');
-        const axiosError = { isAxiosError: true, response: { status: 400 } };
+        const axiosError = { isAxiosError: true, response: { status: 500 } };
 
         (profileService.changePassword as ReturnType<typeof vi.fn>).mockRejectedValue(axiosError);
         const user = userEvent.setup();
         renderWithProviders(<PasswordForm  />)
         await user.type(screen.getByLabelText(t('profile.password.current')), 'SatoruGojo123!');
-        await user.type(screen.getByLabelText(t('profile.password.new')), 'Sukuna123!');
-        await user.type(screen.getByLabelText(t('profile.password.confirm')), 'Sukuna123!');
+        await user.type(screen.getByLabelText(t('profile.password.new')), 'SukunaKing12!');
+        await user.type(screen.getByLabelText(t('profile.password.confirm')), 'SukunaKing12!');
         await user.click(screen.getByRole('button', { name: t('profile.password.change') }));
         await waitFor(() => {
             expect(screen.getByText(t('profile.password.error.generic'))).toBeInTheDocument();

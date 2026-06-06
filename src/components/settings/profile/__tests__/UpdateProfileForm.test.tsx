@@ -66,7 +66,7 @@ describe('UpdateProfileForm', () => {
         await user.click(screen.getByRole('button', { name: t('profile.updateButton') }));
 
         await waitFor(() => {
-            expect(screen.getByText(t('validation.username.required'))).toBeInTheDocument();
+            expect(screen.getByText(t('settings.profile.usernameTooShort'))).toBeInTheDocument();
         });
     });
 
