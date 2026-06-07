@@ -53,5 +53,5 @@ export const friendsService = {
         await apiClient.delete('/friends/remove', {
             params: { friendId },
         });
-    },
+    }
 };
