@@ -44,12 +44,6 @@ export default function Contact() {
                       {t('contact.info.emailValue')}
                     </a>
                   </div>
-                  <div>
-                    <p className="font-medium text-gray-900 dark:text-white">{t('contact.info.rgpdLabel')}</p>
-                    <a href="mailto:contact@skaldly.fr" className="text-brand-600 dark:text-brand-400 hover:underline">
-                      {t('contact.info.rgpdValue')}
-                    </a>
-                  </div>
                   <p className="text-xs text-gray-400 dark:text-gray-500">
                     {t('contact.info.responseTime')}
                   </p>
