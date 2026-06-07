@@ -75,7 +75,7 @@ export function Table<T>({data,columns,renderRow,keyExtractor,emptyMessage,initi
         </table>
       </div>
 
-      {(showControls || data.length > 0) && (
+      {showControls && (
         <div className="flex flex-col sm:flex-row items-center justify-between px-6 py-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 gap-4">
           {/* Bloc Select (Nombre d'éléments affichés) */}
           {showControls ? (

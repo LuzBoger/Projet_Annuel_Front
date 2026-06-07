@@ -42,6 +42,12 @@ import Ranking from "@/pages/ranking/Ranking";
 import Challenge from "@/pages/challenge/Challenge";
 import NewChallenge from "@/pages/challenge/new/NewChallenge";
 import ChallengeDetail from "@/pages/challenge/details/ChallengeDetail";
+import MentionsLegales from "@/pages/legal/MentionsLegales";
+import CGU from "@/pages/legal/CGU";
+import CGV from "@/pages/legal/CGV";
+import PolitiqueConfidentialite from "@/pages/legal/PolitiqueConfidentialite";
+import PolitiqueCookies from "@/pages/legal/PolitiqueCookie";
+import Contact from "@/pages/contact/Contact";
 
 export function AppRoutes() {
   useNotifications();
@@ -50,6 +56,7 @@ export function AppRoutes() {
 
   const isImmersiveRoute = location.pathname.endsWith('/play') || location.pathname.endsWith('/exam') || location.pathname.endsWith('/success');
   const showOnBoarding = isAuthenticated && !!user && !user.hasCompletedOnboarding && user.role !== RoleEnum.ADMIN && !AUTH_PATH.includes(location.pathname);
+
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
@@ -92,6 +99,12 @@ export function AppRoutes() {
             <Route path="topics/:topicId/lessons/new" element={<LessonForm />} />
             <Route path="topics/:topicId/lessons/:lessonId/edit" element={<LessonForm />} />
           </Route>
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/legal/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/legal/cgu" element={<CGU />} />
+          <Route path="/legal/cgv" element={<CGV />} />
+          <Route path="/legal/politique-de-confidentialite" element={<PolitiqueConfidentialite />} />
+          <Route path="/legal/politique-de-cookies" element={<PolitiqueCookies />} />
           <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
             <Route path="success" element={<CheckoutSuccess />} />
             <Route path="cancel" element={<CheckoutCancel />} />
