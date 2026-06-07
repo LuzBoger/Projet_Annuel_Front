@@ -1,5 +1,5 @@
 import { LanguageLevelResponse, LastLessonResponse, ProgressOverviewResponse } from "@/types/progress/progress";
-import apiClient from "./axios";
+import apiClient from "@/services/axios";
 
 export const userProgressService = {
     async getProgress() : Promise<ProgressOverviewResponse> {

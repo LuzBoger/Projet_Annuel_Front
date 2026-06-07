@@ -7,7 +7,7 @@ import ResetPassword from "@/pages/reset-password/ResetPassword";
 import Verify2FA from "@/pages/verify-2fa/Verify2FA";
 import { useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { ProtectedRoute } from "./ProtectedRoute";
+import { ProtectedRoute } from "@/components/routes/ProtectedRoute";
 import Subscription from "@/pages/subscription/Subscription";
 import Plans from "@/pages/plans/Plans";
 import { LanguageCatalog } from "@/pages/catalog-languages/LanguageCatalog";

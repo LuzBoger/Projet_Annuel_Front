@@ -1,4 +1,4 @@
-import { LessonType } from "../lesson/lesson";
+import { LessonType } from "@/types/lesson/lesson";
 
 export interface UserProgressResponse {
     id: string;
