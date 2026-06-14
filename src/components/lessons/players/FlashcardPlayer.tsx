@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { FlashcardRequest } from "@/types/lesson/lesson";
 import { QueuedCard } from "@/types/components/flashcard";
@@ -13,7 +13,7 @@ import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface FlashcardPlayerProps {
     flashcards: FlashcardRequest[];
-    onFinish: (score: number, correctAnswers: number, totalAnswers: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakeIds: string[]) => void;
 }
 
 export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) {
@@ -28,6 +28,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
     const [isFlipped, setIsFlipped] = useState(false);
     const [completedCards, setCompletedCards] = useState(0);
     const [transitionState, setTransitionState] = useState<'idle' | 'exiting' | 'entering'>('idle');
+    const mistakeIds = useRef<string[]>([]);
 
     if (!flashcards || flashcards.length === 0) {
         return (
@@ -76,6 +77,9 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
             } else if (level === 'red') {
                 newScores[originalIndex] = 0;
                 playIncorrect();
+                if (currentCard.id && !mistakeIds.current.includes(currentCard.id)) {
+                    mistakeIds.current.push(currentCard.id);
+                }
             }
             setScores(newScores);
 
@@ -105,7 +109,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                 // Calculate final score: only count cards that were correctly answered (Green)
                 const correctCount = newScores.filter(s => s === 100).length;
                 const finalScore = Math.round((correctCount / flashcards.length) * 100);
-                setTimeout(() => onFinish(finalScore, correctCount, flashcards.length), 400);
+                setTimeout(() => onFinish(finalScore, correctCount, flashcards.length, mistakeIds.current), 400);
             } else {
                 setTransitionState('entering');
                 setTimeout(() => {

@@ -10,6 +10,7 @@ export type LessonStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED";
 export type DifficultyFeedback = 'VERY_GOOD' | 'GOOD' | 'MEDIUM' | 'HARD';
 
 export interface FlashcardRequest {
+    id?: string;
     front: string;
     back: string;
     frontLanguage: string;
@@ -17,6 +18,7 @@ export interface FlashcardRequest {
 }
 
 export interface QcmQuestionRequest {
+    id?: string;
     question: string;
     options: string[];
     correctOptionIndex: number;
@@ -24,11 +26,13 @@ export interface QcmQuestionRequest {
 }
 
 export interface MatchingPairRequest {
+    id?: string;
     item1: string;
     item2: string;
 }
 
 export interface SortingExerciseRequest {
+    id?: string;
     items: string[];
     correctOrder: number[];
 }
@@ -66,10 +70,14 @@ export interface LessonResponse extends LessonRequest {
 }
 
 export interface CompleteLessonRequest {
-    score: number;
+    score?: number;
     timeSpentSeconds: number;
     correctAnswers?: number;
     totalAnswers?: number;
+    mistakeFlashCardIds?: string[];
+    mistakeMatchingPairIds?: string[];
+    mistakeQcmIds?: string[];
+    mistakeSortingIds?: string[];
 }
 
 export interface UserProgressResponse {

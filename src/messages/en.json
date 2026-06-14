@@ -27,7 +27,8 @@
     "disabled": "Disabled",
     "on": "of",
     "mute": "Mute",
-    "unmute": "Unmute"
+    "unmute": "Unmute",
+    "validate": "Validate"
   },
   "onBoarding": {
     "selectNativeLanguage": "What is your native language?",
@@ -1531,6 +1532,82 @@
         "p1": "These legal notices are governed by French law. In the event of a dispute, the French courts shall have sole jurisdiction."
       }
     }
+  },
+  "mistake": {
+    "filters": {
+      "ALL": "All",
+      "FLASHCARD": "Flashcard",
+      "QCM": "Quiz",
+      "MATCHING_PAIR": "Matching",
+      "SORTING_EXERCISE": "Sorting"
+    },
+    "liste": {
+      "page_title": "My mistakes",
+      "title": "My mistakes",
+      "subtitle": "{{count}} mistake(s) pending review",
+      "practice_cta": "Review now",
+      "empty_title": "No mistakes pending",
+      "empty_subtitle": "Keep practicing to keep improving!"
+    },
+    "daily_check": {
+      "label": "Daily review",
+      "title": "Today's review",
+      "subtitle": "{{total}} question(s) to review",
+      "progress": "Progress",
+      "all_done": "All questions answered!",
+      "submit_desc": "Submit your answers to see your results.",
+      "submit": "See my results"
+    },
+    "result": {
+      "title": "Results",
+      "score": "Score",
+      "resolved": "Mastered",
+      "remaining": "{{count}} mistake(s) still pending",
+      "mastered": "Mastered!",
+      "dashboard": "Dashboard",
+      "list": "See my mistakes",
+      "daily_check": {
+        "label": "Daily review",
+        "subtitle": "{{total}} question(s) to review",
+        "progress": "Progress",
+        "all_done": "All questions answered!",
+        "submit_desc": "Submit your answers to see your results.",
+        "submit": "See my results"
+      }
+    },
+    "empty": {
+      "title": "All caught up!",
+      "subtitle": "No questions to review today. Come back tomorrow!"
+    },
+    "banner": {
+      "title": "Daily review",
+      "subtitle": "{{count}} question(s) to review",
+      "cta": "Review"
+    },
+    "detail": {
+      "title": "Mistake detail",
+      "question": "Question",
+      "your_answer": "Your answer",
+      "correct_answer": "Correct answer",
+      "next_review": "Next review",
+      "streak": "Streak"
+    }
+  },
+  "training": {
+    "nav": {
+      "liste": "My mistakes"
+    }
+  },
+  "source": {
+    "exam": "Exam",
+    "lesson": "Lesson"
+  },
+  "queue": {
+    "streak": "{{count}}/2 correct"
+  },
+  "matching": {
+    "instruction": "What is the matching word?",
+    "placeholder": "Type your answer..."
   },
   "friends": {
     "title": "Friends",

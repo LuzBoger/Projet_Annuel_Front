@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { MatchingPairRequest } from "@/types/lesson/lesson";
 import { ChevronRight } from "@/assets/icons";
@@ -14,7 +14,7 @@ import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface MatchingPlayerProps {
     pairs: MatchingPairRequest[];
-    onFinish: (score: number, correctAnswers: number, totalAnswers: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakeIds: string[]) => void;
 }
 
 export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
@@ -27,6 +27,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
     const [matchedMatchIds, setMatchedMatchIds] = useState<string[]>([]);
     const [errorIds, setErrorIds] = useState<string[]>([]);
     const [errorCount, setErrorCount] = useState(0);
+    const mistakePairIds = useRef<string[]>([]);
 
     if (pairs !== prevPairs) {
         setPrevPairs(pairs);
@@ -83,6 +84,11 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
             setErrorIds(currentSelectedIds);
             setErrorCount(previous => previous + 1);
             playIncorrect();
+            [firstTile?.matchId, secondTile?.matchId].forEach(matchId => {
+                if (matchId && !matchId.startsWith('pair-') && !mistakePairIds.current.includes(matchId)) {
+                    mistakePairIds.current.push(matchId);
+                }
+            });
 
             setTimeout(() => {
                 setErrorIds([]);
@@ -96,7 +102,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
     const handleFinishClick = () => {
         const finalScore = Math.max(0, 100 - (errorCount * PENALTY_PER_ERROR));
         const correctAnswers = Math.max(0, pairs.length - errorCount);
-        onFinish(finalScore, correctAnswers, pairs.length);
+        onFinish(finalScore, correctAnswers, pairs.length, mistakePairIds.current);
     };
 
 
