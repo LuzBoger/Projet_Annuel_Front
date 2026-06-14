@@ -13,7 +13,7 @@ interface DailyCheckSessionProps {
 
 export function DailyCheckSession({ dailyQuestion, onSubmit }: DailyCheckSessionProps) {
   const { t } = useTranslation();
-  const { currentIndex, isLast, allDone, answered, goNext, questionRendererProps, buildAnswers } = useDailyCheckSession(dailyQuestion.mistakeQuestions);
+  const { currentIndex, isLast, allDone, answered, nextIndex, questionRendererProps, buildAnswers } = useDailyCheckSession(dailyQuestion.mistakeQuestions);
   const [submitting, setSubmitting] = useState(false);
   const questions = dailyQuestion.mistakeQuestions;
 
@@ -69,7 +69,7 @@ export function DailyCheckSession({ dailyQuestion, onSubmit }: DailyCheckSession
             <Button
               variant="none"
               className="w-full py-4 text-lg mt-4 shadow-sm"
-              onClick={goNext}
+              onClick={nextIndex}
               disabled={!answered}
             >
               {isLast ? t("common.validate") : t("common.next")}

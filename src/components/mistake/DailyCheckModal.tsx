@@ -17,7 +17,7 @@ interface DailyCheckModalProps {
 export function DailyCheckModal({isOpen, dailyQuestion, onClose, onComplete,}: DailyCheckModalProps) {
   const { t } = useTranslation();
   const questions = dailyQuestion.mistakeQuestions;
-  const { currentIndex, isLast, allDone: allAnswered, answered, goNext, questionRendererProps, buildAnswers } = useDailyCheckSession(questions);
+  const { currentIndex, isLast, allDone: allAnswered, answered, nextIndex, questionRendererProps, buildAnswers } = useDailyCheckSession(questions);
   const [result, setResult] = useState<UserResultResponse | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -121,7 +121,7 @@ export function DailyCheckModal({isOpen, dailyQuestion, onClose, onComplete,}: D
               {questionRendererProps && <QuestionRenderer {...questionRendererProps} />}
               <Button
                 className="w-full mt-4"
-                onClick={goNext}
+                onClick={nextIndex}
                 disabled={!answered}
               >
                 {isLast ? t("common.finish") : t("common.next")}
