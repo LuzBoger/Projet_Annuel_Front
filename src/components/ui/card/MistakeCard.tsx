@@ -58,7 +58,7 @@ export function MistakeCard({ mistake, onClick }: MistakeCardProps) {
 
       <div className="mt-3 flex items-center gap-2">
         <div className="flex gap-1">
-          {[0, 1].map((i) => (
+          {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
               className={clsx("w-3 h-3 rounded-full transition-colors", i < mistake.nbCorrectResponses ? "bg-brand-500" : "bg-gray-200 dark:bg-gray-600")}

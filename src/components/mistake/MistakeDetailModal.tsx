@@ -86,7 +86,7 @@ export function MistakeDetailModal({ mistake, onClose }: MistakeDetailModalProps
             {t("mistake.detail.next_review")}: <strong>{mistake.nextReviewIndication}</strong>
           </span>
           <span>
-            {t("mistake.detail.streak")}: <strong>{mistake.nbCorrectResponses}/2</strong>
+            {t("mistake.detail.streak")}: <strong>{mistake.nbCorrectResponses}/4</strong>
           </span>
         </div>
 

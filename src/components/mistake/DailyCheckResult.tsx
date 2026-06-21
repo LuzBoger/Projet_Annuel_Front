@@ -55,7 +55,7 @@ export function DailyCheckResult({ result }: DailyCheckResultProps) {
                 {detail.isLessonMastered ? t("mistake.result.mastered") : detail.nextReviewIndication}
               </span>
               <div className="flex gap-1">
-                {[0, 1].map((i) => (
+                {[0, 1, 2, 3].map((i) => (
                   <div
                     key={i}
                     className={`w-2.5 h-2.5 rounded-full ${i < detail.nbCorrectResponses ? "bg-brand-500" : "bg-gray-200 dark:bg-gray-600"}`}
