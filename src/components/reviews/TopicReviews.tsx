@@ -35,24 +35,6 @@ export function TopicReviews({ topicId }: TopicReviewsProps) {
     const locale = i18n.language;
     const labels = RATING_LABELS(t);
 
-    const getAvatarGradient = (username: string) => {
-        const charCode = username.charCodeAt(0) || 0;
-        const index = charCode % 5;
-        if (index === 0) {
-            return "bg-gradient-to-br from-pink-500 to-rose-600 text-white";
-        }
-        if (index === 1) {
-            return "bg-gradient-to-br from-indigo-500 to-purple-600 text-white";
-        }
-        if (index === 2) {
-            return "bg-gradient-to-br from-cyan-500 to-blue-600 text-white";
-        }
-        if (index === 3) {
-            return "bg-gradient-to-br from-emerald-500 to-teal-600 text-white";
-        }
-        return "bg-gradient-to-br from-amber-500 to-orange-600 text-white";
-    };
-
     const getRatingBreakdown = () => {
         const counts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
         if (!data) {

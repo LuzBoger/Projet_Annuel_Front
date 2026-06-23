@@ -16,7 +16,6 @@ interface ReviewModalProps {
     title: string;
     topicName: string;
     submitLabel: string;
-    cancelLabel: string;
     isSubmitting: boolean;
     control: Control<ReviewFormData>;
     errors: FieldErrors<ReviewFormData>;
@@ -31,7 +30,6 @@ export function ReviewModal({
     title,
     topicName,
     submitLabel,
-    cancelLabel,
     isSubmitting,
     control,
     errors,

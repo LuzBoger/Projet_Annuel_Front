@@ -59,7 +59,6 @@ export function EditReviewModal({ isOpen, reviewId, topicName, initialRating, in
             title={t("reviews.edit_title")}
             topicName={topicName}
             submitLabel={t("reviews.update")}
-            cancelLabel={t("common.cancel")}
             isSubmitting={isSubmitting}
             control={control}
             errors={errors}

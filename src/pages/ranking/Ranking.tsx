@@ -40,15 +40,10 @@ export default function Ranking() {
                     // Les administrateurs doivent pouvoir visualiser tous les classements actifs.
                     const formattedLangs: UserLanguageResponse[] = activeLangs.map((lang) => ({
                         id: lang.id,
-                        accountId: user?.id ?? "",
                         languageId: lang.id,
                         languageCode: lang.code,
                         languageName: lang.name,
-                        isActive: lang.isActive,
-                        joinedAt: "",
-                        totalXP: 0,
-                        currentLevel: 1,
-                        currentLevelProgressPercentage: 0,
+                        languageType: "LEARNING",
                     }));
                     setLanguages(formattedLangs);
                     if (queryLanguageId) {
