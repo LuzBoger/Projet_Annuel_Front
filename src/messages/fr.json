@@ -7,6 +7,7 @@
     "close": "Fermer",
     "active": "Actif",
     "view": "Voir",
+    "viewProfile": "Voir le profil",
     "edit": "Modifier",
     "save": "Sauvegarder",
     "confirm": "Confirmer",
@@ -748,7 +749,16 @@
     "declineChallenge": "Impossible de refuser le défi.",
     "cancelChallenge": "Impossible d'annuler le défi.",
     "fetchParticipants": "Impossible de récupérer les participants.",
-    "fetchLessonSessions": "Impossible de récupérer les sessions de leçon."
+    "fetchLessonSessions": "Impossible de récupérer les sessions de leçon.",
+    "fetchFriends": "Impossible de récupérer les amis.",
+    "fetchPendingRequests": "Impossible de récupérer les demandes reçues.",
+    "fetchSentRequests": "Impossible de récupérer les demandes envoyées.",
+    "searchUsers": "Impossible de rechercher des utilisateurs.",
+    "sendFriendRequest": "Impossible d'envoyer la demande d'ami.",
+    "acceptFriendRequest": "Impossible d'accepter la demande d'ami.",
+    "declineFriendRequest": "Impossible de refuser la demande d'ami.",
+    "removeFriend": "Impossible de supprimer l'ami.",
+    "cancelFriendRequest": "Impossible d'annuler la demande d'ami."
   },
   "topics": {
     "page_title": "Topics disponibles",
@@ -972,6 +982,21 @@
       "rating_required": "Veuillez sélectionner une note",
       "rating_max": "La note ne peut pas dépasser 5",
       "comment_max": "Le commentaire ne peut pas dépasser 1000 caractères"
+    },
+    "contactName": {
+      "required": "Le nom est requis",
+      "max": "Maximum 100 caractères"
+    },
+    "contactEmail": {
+      "required": "L'adresse e-mail est requise",
+      "invalid": "Format d'e-mail invalide"
+    },
+    "contactSubject": {
+      "required": "Le sujet est requis"
+    },
+    "contactMessage": {
+      "required": "Le message est requis",
+      "min": "Minimum 10 caractères"
     }
   },
   "info": {
@@ -1305,5 +1330,350 @@
   "total": "Total",
   "accuracy": "Précision",
   "duration": "Durée",
-  "status": "Statut"
+  "status": "Statut",
+  "footer": {
+    "mentionsLegales": "Mentions légales",
+    "cgu": "CGU",
+    "cgv": "CGV",
+    "privacy": "Politique de confidentialité",
+    "cookies": "Politique de cookies",
+    "contact": "Contact",
+    "manageCookies": "Gérer mes cookies",
+    "rights": "Tous droits réservés."
+  },
+  "legal": {
+    "cookies": {
+      "title": "Politique de Cookies",
+      "description": "Politique de cookies du service Skaldly.",
+      "lastUpdate": "Dernière mise à jour : 7 juin 2025",
+      "what": {
+        "title": "1. Qu'est-ce qu'un cookie ?",
+        "p1": "Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, smartphone, tablette) lors de la visite d'un site web. Il permet de mémoriser des informations relatives à votre navigation et à vos préférences."
+      },
+      "used": {
+        "title": "2. Cookies utilisés par Skaldly",
+        "intro": "Skaldly utilise uniquement des cookies strictement nécessaires au fonctionnement du service. Aucun cookie analytique ou marketing n'est déposé.",
+        "always_active": "Toujours actifs",
+        "col_name": "Nom",
+        "col_purpose": "Finalité",
+        "col_duration": "Durée",
+        "access_token_purpose": "JWT d'authentification (HttpOnly, SameSite=Lax)",
+        "access_token_duration": "15 minutes",
+        "refresh_token_purpose": "Renouvellement de session (HttpOnly, SameSite=Lax)",
+        "refresh_token_duration": "7 jours",
+        "locale_purpose": "Mémorisation de la langue choisie (fr/en)",
+        "locale_duration": "30 jours"
+      },
+      "manage": {
+        "title": "3. Gérer vos préférences",
+        "p1": "Les cookies utilisés par Skaldly étant strictement nécessaires au fonctionnement du service, ils ne peuvent pas être désactivés. Vous pouvez néanmoins réinitialiser vos préférences de consentement en cliquant ci-dessous.",
+        "reset_btn": "Réinitialiser mes préférences"
+      },
+      "more": {
+        "title": "4. Pour en savoir plus",
+        "p1": "Pour plus d'informations sur les cookies, consultez le site de la",
+        "cnil_link": "CNIL"
+      },
+      "categories": {
+        "essential": {
+          "title": "Cookies essentiels",
+          "description": "Ces cookies sont indispensables au fonctionnement de la plateforme. Ils gèrent votre authentification et vos préférences de session."
+        }
+      }
+    },
+    "cgv": {
+      "title": "Conditions Générales de Vente",
+      "description": "Conditions Générales de Vente du service Skaldly.",
+      "lastUpdate": "Dernière mise à jour : 7 juin 2025",
+      "object": {
+        "title": "1. Objet",
+        "p1": "Les présentes Conditions Générales de Vente (CGV) définissent les droits et obligations de Skaldly et de ses clients dans le cadre de la souscription aux abonnements Skaldly."
+      },
+      "products": {
+        "title": "2. Produits et services",
+        "p1": "Skaldly propose des abonnements mensuels et annuels donnant accès à l'ensemble des fonctionnalités premium de la plateforme. Les caractéristiques de chaque offre sont disponibles sur la page",
+        "plans_link": "Plans"
+      },
+      "pricing": {
+        "title": "3. Prix et paiement",
+        "item1": "Les prix sont indiqués en euros TTC.",
+        "item2": "Le paiement est effectué en ligne via notre prestataire sécurisé Stripe.",
+        "item3": "L'abonnement est renouvelé automatiquement à chaque échéance.",
+        "item4": "Skaldly se réserve le droit de modifier ses tarifs avec un préavis de 30 jours."
+      },
+      "withdrawal": {
+        "title": "4. Droit de rétractation",
+        "p1_before": "Conformément à l'article L.221-18 du Code de la consommation, le consommateur dispose d'un délai de",
+        "days": "14 jours",
+        "p1_after": "à compter de la souscription pour exercer son droit de rétractation, sans avoir à justifier de motifs.",
+        "p2": "Pour exercer ce droit, contactez-nous à :",
+        "note": "Nota : si vous avez commencé à utiliser le service pendant ce délai en ayant expressément renoncé à votre droit de rétractation, un remboursement partiel proportionnel sera calculé."
+      },
+      "termination": {
+        "title": "5. Résiliation",
+        "p1": "L'abonnement peut être résilié à tout moment depuis les paramètres du compte. La résiliation prend effet à la fin de la période en cours. Aucun remboursement ne sera effectué pour la période déjà payée, sauf exercice du droit de rétractation."
+      },
+      "liability": {
+        "title": "6. Responsabilité",
+        "p1": "Skaldly s'engage à fournir le service avec le meilleur niveau de disponibilité possible mais ne peut garantir un accès ininterrompu. En cas d'indisponibilité prolongée imputable à Skaldly, une compensation (prolongation d'abonnement) pourra être accordée."
+      },
+      "law": {
+        "title": "7. Droit applicable et litiges",
+        "p1": "Les présentes CGV sont régies par le droit français. En cas de litige, une solution amiable sera recherchée en priorité. À défaut, les tribunaux français seront compétents.",
+        "p2": "Plateforme de règlement en ligne des litiges (UE) :"
+      }
+    },
+    "cgu": {
+      "title": "Conditions Générales d'Utilisation",
+      "description": "Conditions Générales d'Utilisation du service Skaldly.",
+      "lastUpdate": "Dernière mise à jour : 7 juin 2025",
+      "object": {
+        "title": "1. Objet",
+        "p1": "Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation du service Skaldly, plateforme d'apprentissage des langues assistée par intelligence artificielle, accessible à l'adresse"
+      },
+      "acceptance": {
+        "title": "2. Acceptation",
+        "p1": "L'utilisation du service implique l'acceptation pleine et entière des présentes CGU. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser le service."
+      },
+      "account": {
+        "title": "3. Inscription et compte utilisateur",
+        "intro": "Pour accéder aux fonctionnalités du service, l'utilisateur doit :",
+        "item1": "Être âgé d'au moins 15 ans (ou disposer du consentement parental)",
+        "item2": "Fournir des informations exactes lors de l'inscription",
+        "item3": "Maintenir la confidentialité de ses identifiants de connexion",
+        "item4": "Notifier immédiatement tout accès non autorisé à son compte"
+      },
+      "usage": {
+        "title": "4. Utilisation du service",
+        "intro": "L'utilisateur s'engage à ne pas :",
+        "item1": "Utiliser le service à des fins illicites ou contraires aux présentes CGU",
+        "item2": "Tenter d'accéder à des zones non autorisées de la plateforme",
+        "item3": "Reproduire, copier ou revendre tout ou partie du service",
+        "item4": "Publier des contenus offensants, diffamatoires ou portant atteinte aux droits de tiers",
+        "item5": "Utiliser des robots, scripts ou autres outils automatisés sans autorisation"
+      },
+      "subscription": {
+        "title": "5. Abonnements et paiement",
+        "p1": "Certaines fonctionnalités de Skaldly sont accessibles via un abonnement payant. Les conditions tarifaires sont détaillées sur la page",
+        "plans_link": "Plans",
+        "p2": "Les modalités de vente sont précisées dans nos",
+        "cgv_link": "CGV"
+      },
+      "privacy": {
+        "title": "6. Données personnelles",
+        "p1": "Le traitement de vos données personnelles est décrit dans notre",
+        "privacy_link": "Politique de Confidentialité"
+      },
+      "suspension": {
+        "title": "7. Suspension et résiliation",
+        "p1": "Skaldly se réserve le droit de suspendre ou de résilier l'accès au service de tout utilisateur qui ne respecterait pas les présentes CGU, sans préavis ni indemnité.",
+        "p2": "L'utilisateur peut supprimer son compte à tout moment depuis ses paramètres ou en contactant notre équipe à"
+      },
+      "modification": {
+        "title": "8. Modification des CGU",
+        "p1": "Skaldly se réserve le droit de modifier les présentes CGU à tout moment. Les utilisateurs seront informés par email ou notification dans l'application. La poursuite de l'utilisation du service après modification vaut acceptation des nouvelles CGU."
+      },
+      "law": {
+        "title": "9. Droit applicable",
+        "p1": "Les présentes CGU sont soumises au droit français. Tout litige sera porté devant les tribunaux compétents du ressort du siège social de Skaldly, situé à Paris."
+      }
+    },
+    "privacy": {
+      "title": "Politique de Confidentialité",
+      "description": "Politique de confidentialité du service Skaldly.",
+      "lastUpdate": "Dernière mise à jour : 7 juin 2025",
+      "controller": {
+        "title": "1. Responsable du traitement",
+        "p1": "Le responsable du traitement de vos données personnelles est Skaldly (SASU — SIRET 988 091 575 00387), dont le siège est situé 142 Rue de Rivoli, 75001 Paris. Contact :"
+      },
+      "data": {
+        "title": "2. Données collectées",
+        "intro": "Nous collectons les données suivantes :",
+        "identity": "Données d'identité",
+        "identity_val": "nom, prénom, nom d'utilisateur, adresse email",
+        "profile": "Données de profil",
+        "profile_val": "biographie, pays, fuseau horaire, photo de profil",
+        "social": "Données sociales",
+        "social_val": "relations d'amitié entre utilisateurs",
+        "learning": "Données d'apprentissage",
+        "learning_val": "progression, leçons complétées, scores, streaks, XP",
+        "payment": "Données de paiement",
+        "payment_val": "gérées exclusivement par Stripe (nous ne stockons pas vos coordonnées bancaires), historique d'abonnements",
+        "contact": "Données de contact",
+        "contact_val": "nom, email, message (formulaire de contact)",
+        "technical": "Données techniques",
+        "technical_val": "logs de connexion, tokens de session",
+        "security": "Sécurité",
+        "security_val": "les mots de passe sont hashés (bcrypt) et ne sont jamais lisibles, même par notre équipe"
+      },
+      "purposes": {
+        "title": "3. Finalités et bases légales",
+        "col_purpose": "Finalité",
+        "col_basis": "Base légale",
+        "account_mgmt": "Gestion du compte et du service",
+        "payment": "Traitement des paiements",
+        "social": "Gestion des relations sociales",
+        "security": "Sécurité et lutte contre la fraude",
+        "contact": "Traitement des demandes de contact",
+        "legal_obligations": "Obligations légales (comptabilité)",
+        "basis_contract": "Exécution du contrat (Art. 6.1.b)",
+        "basis_legitimate": "Intérêt légitime (Art. 6.1.f)",
+        "basis_legal": "Obligation légale (Art. 6.1.c)"
+      },
+      "retention": {
+        "title": "4. Durée de conservation",
+        "active": "Données de compte actif",
+        "active_val": "pendant toute la durée de la relation contractuelle",
+        "deleted": "Données après suppression du compte",
+        "deleted_val": "30 jours (puis suppression définitive)",
+        "billing": "Données de facturation",
+        "billing_val": "10 ans (obligation légale comptable)",
+        "contact": "Messages de contact",
+        "contact_val": "1 an (puis suppression définitive)",
+        "tokens": "Tokens de session",
+        "tokens_val": "révoqués immédiatement à la déconnexion ou suppression du compte"
+      },
+      "recipients": {
+        "title": "5. Destinataires des données",
+        "intro": "Vos données peuvent être transmises à nos sous-traitants dans le cadre de la fourniture du service :",
+        "stripe": "traitement des paiements (USA — SCCs)",
+        "ionos": "hébergement VPS (France — UE)",
+        "google": "envoi d'emails transactionnels (USA — SCCs)",
+        "closing": "Tous nos sous-traitants sont liés par contrat et s'engagent à respecter le RGPD."
+      },
+      "rights": {
+        "title": "6. Vos droits",
+        "intro": "Conformément au RGPD, vous disposez des droits suivants :",
+        "access": "Droit d'accès",
+        "access_val": "(Art. 15) — obtenir une copie de vos données",
+        "rectification": "Droit de rectification",
+        "rectification_val": "(Art. 16) — corriger des données inexactes",
+        "erasure": "Droit à l'effacement",
+        "erasure_val": "(Art. 17) — supprimer vos données",
+        "portability": "Droit à la portabilité",
+        "portability_val": "(Art. 20) — recevoir vos données dans un format structuré",
+        "opposition": "Droit d'opposition",
+        "opposition_val": "(Art. 21) — vous opposer à certains traitements",
+        "limitation": "Droit à la limitation",
+        "limitation_val": "(Art. 18) — restreindre l'utilisation de vos données",
+        "exercise": "Pour exercer ces droits :",
+        "settings_link": "Paramètres → Mes données",
+        "email_or": "ou par email à",
+        "delay": "(réponse sous 30 jours).",
+        "cnil": "Vous avez également le droit d'introduire une réclamation auprès de la"
+      }
+    },
+    "mentionsLegales": {
+      "title": "Mentions Légales",
+      "description": "Mentions légales du site Skaldly.",
+      "lastUpdate": "Dernière mise à jour : 7 juin 2025",
+      "editor": {
+        "title": "1. Éditeur du site",
+        "intro": "Le site Skaldly est édité par :",
+        "companyName": "Raison sociale",
+        "siret": "SIRET",
+        "legalForm": "Forme juridique",
+        "address": "Adresse",
+        "capital": "Capital social",
+        "email": "Email",
+        "phone": "Numéro de téléphone",
+        "directors": "Directeurs de la publication"
+      },
+      "host": {
+        "title": "2. Hébergeur",
+        "name": "Nom",
+        "address": "Adresse",
+        "site": "Site",
+        "infrastructure": "Infrastructure"
+      },
+      "ip": {
+        "title": "3. Propriété intellectuelle",
+        "p1": "L'ensemble du contenu présent sur le site Skaldly (textes, images, graphismes, logo, icônes, logiciels, etc.) est la propriété exclusive de ses auteurs et est protégé par les lois françaises et internationales relatives à la propriété intellectuelle.",
+        "p2": "Toute reproduction, représentation, modification ou publication, quel que soit le moyen utilisé, est interdite sans autorisation écrite préalable."
+      },
+      "liability": {
+        "title": "4. Limitation de responsabilité",
+        "p1": "L'équipe Skaldly s'efforce d'assurer l'exactitude des informations publiées sur ce site. Cependant, elle ne peut garantir leur exhaustivité ou actualité et décline toute responsabilité pour toute erreur ou omission."
+      },
+      "law": {
+        "title": "5. Droit applicable",
+        "p1": "Les présentes mentions légales sont régies par le droit français. En cas de litige, les tribunaux français seront seuls compétents."
+      }
+    }
+  },
+  "friends": {
+    "title": "Amis",
+    "manage": "Gérer les amis",
+    "tabs": {
+      "friends": "Amis",
+      "requests": "Demandes",
+      "search": "Rechercher"
+    },
+    "noFriends": "Vous n'avez pas encore d'amis.",
+    "streak": "jours de série",
+    "remove": "Supprimer",
+    "incoming": "Reçues",
+    "noRequests": "Aucune demande reçue.",
+    "sent": "Envoyées",
+    "noSentRequests": "Aucune demande envoyée.",
+    "searchPlaceholder": "Rechercher par nom d'utilisateur...",
+    "noResults": "Aucun utilisateur trouvé.",
+    "accept": "Accepter",
+    "decline": "Refuser",
+    "cancel": "Annuler",
+    "addFriend": "Ajouter",
+    "pending": "En attente",
+    "alreadyFriends": "Amis",
+    "sendRequest": {
+      "success": "Demande d'ami envoyée !"
+    },
+    "acceptRequest": {
+      "success": "Demande d'ami acceptée !"
+    },
+    "cancelRequest": {
+      "success": "Demande d'ami annulée."
+    },
+    "declineRequest": {
+      "success": "Demande d'ami refusée."
+    },
+    "removeFriend": {
+      "success": "Ami supprimé."
+    },
+    "notif": {
+      "request_received": "Vous avez une nouvelle demande d'ami",
+      "request_accepted": "Votre demande d'ami a été acceptée"
+    }
+  },
+  "contact": {
+    "title": "Nous contacter",
+    "subtitle": "Une question ? Nous vous répondons sous 48h.",
+    "success": "Message envoyé avec succès.",
+    "error": "Une erreur est survenue. Veuillez réessayer.",
+    "form": {
+      "name": "Nom complet",
+      "email": "Adresse e-mail",
+      "subject": "Sujet",
+      "message": "Message",
+      "messagePlaceholder": "Décrivez votre demande...",
+      "send": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "success": "Votre message a bien été envoyé ! Nous vous répondrons sous peu.",
+      "subjects": {
+        "general": "Question générale",
+        "technical": "Problème technique",
+        "billing": "Facturation",
+        "privacy": "Vie privée / RGPD",
+        "other": "Autre"
+      }
+    },
+    "info": {
+      "title": "Informations",
+      "emailLabel": "Contact général",
+      "emailValue": "contact@skaldly.fr",
+      "rgpdLabel": "Protection des données",
+      "rgpdValue": "contact@skaldly.fr",
+      "responseTime": "Nous répondons sous 48h ouvrées.",
+      "usefulLinks": "Liens utiles"
+    }
+  }
 }

@@ -4,6 +4,8 @@ import { Avatar } from "@/components/ui/Avatar";
 import { useTranslation } from "react-i18next";
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { RANKING_COLORS_POSITIONS } from "@/constants/rankingChallenge";
+import { ViewProfileButton } from "@/components/ui/ViewProfileButton";
+import { useAuth } from "@/hooks/useAuth";
 
 interface RankingProps {
     participants: ChallengeParticipant[];
@@ -13,6 +15,7 @@ interface RankingProps {
 
 export default function Ranking({ participants, progressChallenge }: RankingProps) {
     const { t } = useTranslation();
+    const { user } = useAuth();
     const sorted = sortParticipants(updateParticipantProgress(participants, progressChallenge));
 
     if (sorted.length === 0) {
@@ -39,6 +42,10 @@ export default function Ranking({ participants, progressChallenge }: RankingProp
                         <Avatar imageUrl={participant.photoUrl ? getProfileImageUrl(participant.photoUrl) : undefined} size="w-9 h-9"/>
 
                         <span className="flex-1 text-sm font-semibold text-gray-900 dark:text-white truncate">{participant.username}</span>
+
+                        {participant.accountId !== user?.id && (
+                            <ViewProfileButton accountId={participant.accountId} iconOnly />
+                        )}
 
                         {participant.hasCompleted ? (
                             <div className="shrink-0 text-right">

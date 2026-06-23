@@ -1,5 +1,5 @@
 import { TopicReviewRequest, TopicReviewResponse, TopicReviewsResponse } from "@/types/review/review"
-import apiClient from "./axios"
+import apiClient from "@/services/axios"
 
 export const reviewService = {
 

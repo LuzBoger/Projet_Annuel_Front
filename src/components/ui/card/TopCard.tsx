@@ -5,6 +5,7 @@ import { getProfileImageUrl } from "@/lib/utils/image";
 import { clsx } from "clsx";
 import { Medal } from "lucide-react";
 import { MEDALS_COLORS, TOP_RANK_COLORS } from "@/constants/colors";
+import { ViewProfileButton } from "@/components/ui/ViewProfileButton";
 
 interface TopCardProps {
     user: RankedUserResponse;
@@ -13,7 +14,12 @@ interface TopCardProps {
 export function TopCard({ user }: TopCardProps) {
     const { t } = useTranslation();
     return (
-        <div className={clsx('flex flex-col items-center gap-2 p-3 rounded-2xl border text-center', user.isCurrentUser ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-200 dark:border-indigo-700/50' : TOP_RANK_COLORS[user.rank])}>
+        <div className={clsx('relative flex flex-col items-center gap-2 p-3 rounded-2xl border text-center', user.isCurrentUser ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-200 dark:border-indigo-700/50' : TOP_RANK_COLORS[user.rank])}>
+            {!user.isCurrentUser && (
+                <div className="absolute top-1.5 right-1.5">
+                    <ViewProfileButton accountId={user.accountId} iconOnly />
+                </div>
+            )}
             <Medal className={clsx('w-7 h-7', MEDALS_COLORS[user.rank])} />
             <Avatar imageUrl={user.photoUrl ? getProfileImageUrl(user.photoUrl) : undefined} size="w-10 h-10"/>
             <div className="min-w-0 w-full">

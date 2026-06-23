@@ -14,14 +14,22 @@ import { BarChart2, CheckCircle, Clock, Target } from "lucide-react";
 import { Table } from "@/components/ui/Table";
 import { LessonSessionDetails } from "@/components/lessonSession/LessonSessionDetails";
 
-export function LessonSessionTable() {
+interface LessonSessionTableProps {
+    userId?: string;
+}
+
+export function LessonSessionTable({ userId }: LessonSessionTableProps) {
     const {t} = useTranslation();
-    const {lessonSessions, loading, fetchAllUserLessonSessions} = useLessonSession();
+    const {lessonSessions, loading, fetchAllUserLessonSessions, fetchUserLessonSessionsByUserId} = useLessonSession();
     const [selectedSession, setSelectedSession] = useState<LessonSessionResponse | null>(null);
 
-   useEffect(() => {
-        fetchAllUserLessonSessions();
-    }, [fetchAllUserLessonSessions]);
+    useEffect(() => {
+        if (userId) {
+            fetchUserLessonSessionsByUserId(userId);
+        } else {
+            fetchAllUserLessonSessions();
+        }
+    }, [userId, fetchAllUserLessonSessions, fetchUserLessonSessionsByUserId]);
     
     const completedSessions = lessonSessions.filter(lessonSession => lessonSession.status === 'COMPLETED');
     const averageAccuracy = completedSessions.length > 0 ? Math.round(completedSessions.reduce((acc, session) => acc + calculateAccuracy(session.correctAnswers, session.totalQuestions), 0) / completedSessions.length) : 0;    

@@ -1,5 +1,6 @@
 import { ChallengeStatus } from "@/types/challenges/challenge";
 import { FlagBadgeColors } from "@/types/components/flag";
+import { FriendshipStatus } from "@/types/friends/friends";
 
 
 export const statusColors: Record<string, string> = {
@@ -50,3 +51,10 @@ export const STATUS_COLORS: Record<ChallengeStatus, string> = {
     DECLINED: 'text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-400/10 border-red-300 dark:border-red-400/30',
     CANCELLED: 'text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-400/10 border-red-300 dark:border-red-400/30',
   };
+
+export const FRIENDS_STATUS_COLORS: Record<FriendshipStatus, string> = {
+  NONE: 'bg-[#c8a97e] hover:bg-[#b8926a] text-white cursor-pointer',
+  PENDING_SENT: 'bg-gray-400 hover:bg-gray-500 text-white cursor-pointer',
+  PENDING_RECEIVED: 'bg-blue-500 text-white cursor-default',
+  ACCEPTED: 'bg-green-500 text-white cursor-default'
+}

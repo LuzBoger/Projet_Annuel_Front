@@ -1,5 +1,5 @@
 import { SubscriptionStats } from "@/types/subscription/stats";
-import { StatsCard } from "../ui/card/StatsCard";
+import { StatsCard } from "@/components/ui/card/StatsCard";
 import { useTranslation } from "react-i18next";
 
 interface SubscriptionStatsProps {

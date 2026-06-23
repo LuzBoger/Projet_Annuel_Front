@@ -4,10 +4,10 @@ import { FlashcardRequest } from "@/types/lesson/lesson";
 import { QueuedCard } from "@/types/components/flashcard";
 import { Button } from "@/components/ui/Button";
 import { FaceSad, FaceNeutral, FaceSmile } from "@/assets/icons";
-import { PlayerLayout } from "./common/PlayerLayout";
-import { PlayerHeader } from "./common/PlayerHeader";
+import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
+import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
 import { SegmentStatus } from "@/types/components/player";
-import { PlayerFooter } from "./common/PlayerFooter";
+import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 import { MemorizationHelpButton } from "./common/MemorizationHelpButton";
 

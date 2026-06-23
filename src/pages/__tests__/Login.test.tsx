@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { screen } from '@testing-library/react'
-import { renderWithProviders } from '../../test/renderWithProviders'
-import i18n from '../../i18n/i18n'
-import Login from '../login/Login'
+import { renderWithProviders } from '@/test/renderWithProviders'
+import i18n from '@/i18n/i18n'
+import Login from '@/pages/login/Login'
 
 const t = i18n.t.bind(i18n)
 

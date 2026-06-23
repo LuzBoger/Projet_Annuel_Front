@@ -11,9 +11,10 @@ import { AddIcon, RemoveIcon } from "@/assets/icons";
 interface ProfileLanguageSectionProps {
     languages: UserLanguageResponse[];
     onLanguageRemove: (userLanguageId: string) => void;
+    isProfileOwner?: boolean;
 }
 
-export function ProfileLanguageSection({ languages, onLanguageRemove }: ProfileLanguageSectionProps) {
+export function ProfileLanguageSection({ languages, onLanguageRemove, isProfileOwner = false }: ProfileLanguageSectionProps) {
     const {t} = useTranslation();
     const navigate = useNavigate();
 
@@ -36,23 +37,27 @@ export function ProfileLanguageSection({ languages, onLanguageRemove }: ProfileL
                         {learningLanguages.length} {t("profile.languageSection.learningLanguages").toLowerCase()}
                     </p>
                 </div>
-                <Button
-                    variant="primary"
-                    size="sm"
-                    onClick={() => navigate("/catalog-languages")}
-                    className="flex-shrink-0 flex items-center gap-1.5 text-xs"
-                >
-                    <AddIcon className="text-white" />
-                    {t("profile.languageSection.addLanguage")}
-                </Button>
+                {isProfileOwner && (
+                    <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={() => navigate("/catalog-languages")}
+                        className="flex-shrink-0 flex items-center gap-1.5 text-xs"
+                    >
+                        <AddIcon className="text-white" />
+                        {t("profile.languageSection.addLanguage")}
+                    </Button>
+                )}
             </div>
 
             {learningLanguages.length === 0 ? (
                 <p className="text-sm text-neutral-500">
                     {t("profile.languageSection.noLearningLanguages")}.{" "}
-                    <Button onClick={() => navigate("/catalog-languages")} className="text-neutral-400 underline hover:text-white transition-colors">
-                        {t("profile.languageSection.chooseLanguage")}
-                    </Button>
+                    {isProfileOwner && (
+                        <Button onClick={() => navigate("/catalog-languages")} className="text-neutral-400 underline hover:text-white transition-colors">
+                            {t("profile.languageSection.chooseLanguage")}
+                        </Button>
+                    )}
                 </p>
             ) : (
                 <div className="flex flex-wrap gap-2">
@@ -75,13 +80,15 @@ export function ProfileLanguageSection({ languages, onLanguageRemove }: ProfileL
                             <span className="text-xs text-neutral-300 whitespace-nowrap">
                                 {lang.languageName}
                             </span>
-                            <Button
-                                variant="none"
-                                onClick={() => handleRemoveLanguage(lang)}
-                                className="w-4 h-4 rounded-full bg-neutral-700 hover:bg-red-900/30 flex items-center justify-center flex-shrink-0 ml-0.5 transition-colors group"
-                            >
-                                <RemoveIcon className="text-neutral-500 group-hover:text-red-400" />
-                            </Button>
+                            {isProfileOwner && (
+                                <Button
+                                    variant="none"
+                                    onClick={() => handleRemoveLanguage(lang)}
+                                    className="w-4 h-4 rounded-full bg-neutral-700 hover:bg-red-900/30 flex items-center justify-center flex-shrink-0 ml-0.5 transition-colors group"
+                                >
+                                    <RemoveIcon className="text-neutral-500 group-hover:text-red-400" />
+                                </Button>
+                            )}
                         </div>
                     ))}
                 </div>

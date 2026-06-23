@@ -1,7 +1,7 @@
 import { AccordionContext } from "@/contexts/AccordionContext";
 import { ChevronRight } from "lucide-react";
 import { ReactNode, useContext } from "react";
-import { Button } from "../Button";
+import { Button } from "@/components/ui/Button";
 
 interface AccordionItemProps {
     id: string;
