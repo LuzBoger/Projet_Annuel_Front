@@ -77,7 +77,7 @@ export default function LessonPlayer() {
 
             playSuccess();
 
-            navigate(`/lessons/${lessonId}/success`, { state: { response, lesson } });
+            navigate(`/lessons/${lessonId}/success`, { state: { response, lesson }, replace: true });
 
         } catch {
             setErrorMsg(t('lessons.complete_error'));
@@ -132,16 +132,16 @@ export default function LessonPlayer() {
                 <main className="flex-1 w-full h-screen overflow-hidden flex flex-col">
                     <div className="w-full flex-1 flex flex-col min-h-0">
                         {lesson.lessonType === LessonType.FLASHCARD && (
-                            <FlashcardPlayer flashcards={lesson.flashcards || []} onFinish={handleLessonComplete} />
+                            <FlashcardPlayer lessonId={lesson.id} flashcards={lesson.flashcards || []} onFinish={handleLessonComplete} />
                         )}
                         {lesson.lessonType === LessonType.QCM && (
-                            <QCMPlayer questions={lesson.questions || []} onFinish={handleLessonComplete} />
+                            <QCMPlayer lessonId={lesson.id} questions={lesson.questions || []} onFinish={handleLessonComplete} />
                         )}
                         {lesson.lessonType === LessonType.MATCHING_PAIR && (
-                            <MatchingPlayer pairs={lesson.matchingPairs || []} onFinish={handleLessonComplete} />
+                            <MatchingPlayer lessonId={lesson.id} pairs={lesson.matchingPairs || []} onFinish={handleLessonComplete} />
                         )}
                         {lesson.lessonType === LessonType.SORTING_EXERCISE && (
-                            <SortingPlayer exercises={lesson.sortingExercise || []} onFinish={handleLessonComplete} />
+                            <SortingPlayer lessonId={lesson.id} exercises={lesson.sortingExercise || []} onFinish={handleLessonComplete} />
                         )}
                     </div>
                 </main>

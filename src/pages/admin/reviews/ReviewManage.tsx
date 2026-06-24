@@ -22,7 +22,7 @@ export default function ReviewManage() {
 
     useEffect(() => {
         fetchAllReviews();
-    }, []);
+    }, [fetchAllReviews]);
 
     useEffect(() => {
         const handler = () => fetchAllReviews();

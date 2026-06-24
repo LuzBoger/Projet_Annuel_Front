@@ -20,7 +20,7 @@ export function ChallengeNotification() {
             message: t('challenge.notification.invite', { from: notif.username }),
         });
         clearInvite();
-    }, [notif]);
+    }, [notif, addToast, clearInvite, t]);
 
     return null;
 }

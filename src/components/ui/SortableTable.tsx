@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
 import { Menu } from "lucide-react";
@@ -31,11 +31,13 @@ export function SortableTable<T>({
 }: SortableTableProps<T>) {
   const { t } = useTranslation();
   const actualEmptyMessage = emptyMessage || t('empty');
+  const [prevData, setPrevData] = useState<T[]>(data);
   const [localData, setLocalData] = useState<T[]>(data);
 
-  useEffect(() => {
+  if (data !== prevData) {
+    setPrevData(data);
     setLocalData(data);
-  }, [data]);
+  }
 
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;

@@ -121,6 +121,9 @@ export function Header() {
                                         <Link to="/catalog-languages" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("catalogLanguages.title")}
                                         </Link>
+                                        <Link to="/ranking" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                                            {t("ranking.title")}
+                                        </Link>
                                         <Link to="/training/list" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("training.nav.liste")}
                                         </Link>
@@ -143,6 +146,9 @@ export function Header() {
                                         </Link>
                                         <Link to="/admin/topics" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {t("admin.topics.page_title")}
+                                        </Link>
+                                        <Link to="/ranking" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                                            {t("ranking.title")}
                                         </Link>
                                     </div>
                                 )}
