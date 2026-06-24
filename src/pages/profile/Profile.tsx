@@ -52,12 +52,15 @@ export function Profile() {
         }
     }, [isProfile]);
 
-    useEffect(() => {
+    const [prevProfile, setPrevProfile] = useState<UserProfileResponse | null>(null);
+
+    if (profile !== prevProfile) {
+        setPrevProfile(profile);
         if (profile && !isProfile) {
             setFriendshipStatus((profile.friendsViewStatus as FriendshipStatus) ?? 'NONE');
             setFriendRequestId(profile.friendRequestId ?? undefined);
         }
-    }, [profile, isProfile]);
+    }
 
     const handleAddFriend = () => {
         if (!userId || sendingRequest) return;

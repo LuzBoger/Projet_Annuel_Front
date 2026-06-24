@@ -93,19 +93,41 @@ export default function LessonForm() {
     const matchingPairsCount = formData.matchingPairs?.length;
     const sortingItemsCount = formData.sortingItems?.length;
 
-    useEffect(() => {
+    const [prevValues, setPrevValues] = useState({
+        lessonType,
+        flashcardsCount,
+        questionsCount,
+        matchingPairsCount,
+        sortingItemsCount
+    });
+
+    if (
+        lessonType !== prevValues.lessonType ||
+        flashcardsCount !== prevValues.flashcardsCount ||
+        questionsCount !== prevValues.questionsCount ||
+        matchingPairsCount !== prevValues.matchingPairsCount ||
+        sortingItemsCount !== prevValues.sortingItemsCount
+    ) {
+        setPrevValues({
+            lessonType,
+            flashcardsCount,
+            questionsCount,
+            matchingPairsCount,
+            sortingItemsCount
+        });
+
+        let newCount: number | undefined = undefined;
         if (lessonType === LessonType.FLASHCARD) {
-            setAiItemCount(flashcardsCount || undefined);
+            newCount = flashcardsCount || undefined;
         } else if (lessonType === LessonType.QCM) {
-            setAiItemCount(questionsCount || undefined);
+            newCount = questionsCount || undefined;
         } else if (lessonType === LessonType.MATCHING_PAIR) {
-            setAiItemCount(matchingPairsCount || undefined);
+            newCount = matchingPairsCount || undefined;
         } else if (lessonType === LessonType.SORTING_EXERCISE) {
-            setAiItemCount(sortingItemsCount || undefined);
-        } else {
-            setAiItemCount(undefined);
+            newCount = sortingItemsCount || undefined;
         }
-    }, [lessonType, flashcardsCount, questionsCount, matchingPairsCount, sortingItemsCount]);
+        setAiItemCount(newCount);
+    }
 
     const topicsLength = topics.length;
 

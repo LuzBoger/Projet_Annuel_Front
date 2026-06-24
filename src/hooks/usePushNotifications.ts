@@ -21,7 +21,7 @@ export function usePushNotifications() {
             });
             setIsSubscribed(data);
         });
-    }, []);
+    }, [isSupported]);
 
     const subscribeUser = async () => {
 

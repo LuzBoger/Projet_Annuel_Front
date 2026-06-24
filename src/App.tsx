@@ -5,7 +5,7 @@ import { AuthProvider } from '@/contexts/AuthProvider'
 import { ToastProvider } from '@/contexts/ToastProvider'
 import { AppRoutes } from '@/components/routes/AppRoutes'
 import { ThemeProvider } from '@/contexts/ThemeProvider'
-import { ChallengeNotification } from '@/components/challenge/ChallengeNotificaiton'
+import { ChallengeNotification } from '@/components/challenge/ChallengeNotification'
 
 function App() {
   return (
