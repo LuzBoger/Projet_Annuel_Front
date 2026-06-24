@@ -34,6 +34,12 @@ export function QCMForm({ control, register, errors }: QCMFormProps) {
                 </Button>
             </div>
 
+            {errors.questions?.message && (
+                <div className="p-3.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 text-xs font-semibold rounded-2xl border border-red-100 dark:border-red-900/50">
+                    {errors.questions.message}
+                </div>
+            )}
+
             <div className="space-y-8">
                 {fields.map((field, index) => (
                     <QuestionItem 

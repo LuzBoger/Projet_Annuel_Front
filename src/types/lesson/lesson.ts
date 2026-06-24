@@ -10,6 +10,7 @@ export type LessonStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED";
 export type DifficultyFeedback = 'VERY_GOOD' | 'GOOD' | 'MEDIUM' | 'HARD';
 
 export interface FlashcardRequest {
+    id?: string;
     front: string;
     back: string;
     frontLanguage: string;
@@ -17,6 +18,7 @@ export interface FlashcardRequest {
 }
 
 export interface QcmQuestionRequest {
+    id?: string;
     question: string;
     options: string[];
     correctOptionIndex: number;
@@ -24,11 +26,13 @@ export interface QcmQuestionRequest {
 }
 
 export interface MatchingPairRequest {
+    id?: string;
     item1: string;
     item2: string;
 }
 
 export interface SortingExerciseRequest {
+    id?: string;
     items: string[];
     correctOrder: number[];
 }
@@ -107,6 +111,37 @@ export interface TopicLessonsResponse {
     lastAccuracy: number;
     topicName: string;
     userProgress?: UserLessonProgressSummary;
-
 }
+
+export interface AILessonGenerateRequest {
+    lessonType: LessonType;
+    topicId: string;
+    description: string;
+    itemCount?: number;
+}
+
+export interface AILessonModifyRequest {
+    lessonId: string;
+    prompt: string;
+    itemCount?: number;
+    lesson: LessonRequest;
+}
+
+export type HelpType = "STRUCTURE_AND_RULE" | "ASSOCIATION_AND_MNEMONIC" | "TRAP_WARNING" | "USAGE_CONTEXT";
+
+export interface AIMemorizationHelpRequest {
+    lessonId: string;
+    exerciseId?: string;
+    exerciseType: LessonType;
+    helpType: HelpType;
+}
+
+export interface AIMemorizationHelpResponse {
+    title: string;
+    explanation: string;
+    visualAnchor: string | null;
+    examples: string[] | null;
+    warning: string | null;
+}
+
 

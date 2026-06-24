@@ -9,13 +9,15 @@ import { SegmentStatus } from "@/types/components/player";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
+import { MemorizationHelpButton } from "@/components/lessons/players/common/MemorizationHelpButton";
 
 interface QCMPlayerProps {
+    lessonId?: string;
     questions: QcmQuestionRequest[];
     onFinish: (score: number, correctAnswers: number, totalAnswers: number) => void;
 }
 
-export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
+export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
     const { t } = useTranslation();
     const { playCorrect, playIncorrect } = useSoundEffects();
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -85,6 +87,15 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                 <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 my-auto">
                     <div className="space-y-6">
                         <PlayerCard instruction={currentQ.question}>
+                            {lessonId && (
+                                <div className="flex justify-end mb-6 -mt-4">
+                                    <MemorizationHelpButton
+                                        lessonId={lessonId}
+                                        exerciseId={currentQ.id}
+                                        exerciseType="QCM"
+                                    />
+                                </div>
+                            )}
                             <div className="space-y-4">
                                 {currentQ.options.map((option, idx) => {
                                     let buttonClass = "w-full p-4 rounded-xl border-2 text-left transition-all duration-200 flex items-center group relative ";

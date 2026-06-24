@@ -109,3 +109,36 @@ input:-webkit-autofill:active {
 .animate-medal-shine {
   animation: medal-shine 2s infinite;
 }
+
+@keyframes ai-glow {
+  0%, 100% {
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.15), 0 0 30px rgba(139, 92, 246, 0.05), inset 0 0 12px rgba(99, 102, 241, 0.05);
+    background-color: rgba(99, 102, 241, 0.04);
+  }
+  50% {
+    border-color: rgba(139, 92, 246, 0.6);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.4), 0 0 50px rgba(99, 102, 241, 0.2), inset 0 0 20px rgba(139, 92, 246, 0.1);
+    background-color: rgba(139, 92, 246, 0.08);
+  }
+}
+
+@keyframes ai-icon-pulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.5));
+  }
+  50% {
+    transform: scale(1.15) rotate(15deg);
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.9));
+  }
+}
+
+.animate-ai-glow {
+  animation: ai-glow 3s infinite ease-in-out;
+}
+
+.animate-ai-icon-pulse {
+  animation: ai-icon-pulse 1.5s infinite ease-in-out;
+}
+

@@ -57,7 +57,6 @@ export function SubmitReviewModal({ isOpen, topicId, topicName, onClose }: Submi
             title={t("reviews.modal_title")}
             topicName={topicName}
             submitLabel={t("reviews.submit")}
-            cancelLabel={t("common.skip")}
             isSubmitting={isSubmitting}
             control={control}
             errors={errors}

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { TopicResponse } from "@/types/topic/topic";
@@ -28,32 +28,49 @@ export default function LanguageTopics() {
         return () => clearTimeout(timer);
     }, [searchName]);
 
-    const fetchTopics = useCallback(async () => {
+    useEffect(() => {
         if (!languageId) {
             return;
         }
-        
-        setIsLoading(true);
-        setError(null);
-        
-        try {
-            const data = await topicService.searchActiveTopics(
-                languageId,
-                debouncedSearchName || undefined,
-                searchDifficulty || undefined
-            );
-            setTopics(data);
-        } catch (err) {
-            console.error("Erreur de recuperation", err);
-            setError(t('topics.error_load'));
-        } finally {
-            setIsLoading(false);
-        }
-    }, [languageId, debouncedSearchName, searchDifficulty, t]);
 
-    useEffect(() => {
-        fetchTopics();
-    }, [fetchTopics]);
+        let active = true;
+
+        const loadTopics = async () => {
+            await Promise.resolve();
+            if (!active) {
+                return;
+            }
+
+            setIsLoading(true);
+            setError(null);
+
+            try {
+                const data = await topicService.searchActiveTopics(
+                    languageId,
+                    debouncedSearchName || undefined,
+                    searchDifficulty || undefined
+                );
+                if (active) {
+                    setTopics(data);
+                }
+            } catch (err) {
+                console.error("Erreur de recuperation", err);
+                if (active) {
+                    setError(t('topics.error_load'));
+                }
+            } finally {
+                if (active) {
+                    setIsLoading(false);
+                }
+            }
+        };
+
+        loadTopics();
+
+        return () => {
+            active = false;
+        };
+    }, [languageId, debouncedSearchName, searchDifficulty, t]);
 
     function handleTopicClick(topicId: string) {
         navigate(`/topics/${topicId}`);

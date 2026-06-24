@@ -51,9 +51,8 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
         <span className="text-sm font-medium text-gray-600 dark:text-gray-400">{t('settings.menu.theme')}</span>
         <ThemeToggle />
       </div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-3 flex items-center justify-between">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-3 flex items-center justify-between">
         <NotificationToggle />
-
       </div>
     </aside>
   );

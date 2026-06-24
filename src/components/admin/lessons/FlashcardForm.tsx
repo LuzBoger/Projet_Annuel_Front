@@ -34,6 +34,12 @@ export function FlashcardForm({ control, register, errors }: FlashcardFormProps)
                 </Button>
             </div>
 
+            {errors.flashcards?.message && (
+                <div className="p-3.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 text-xs font-semibold rounded-2xl border border-red-100 dark:border-red-900/50">
+                    {errors.flashcards.message}
+                </div>
+            )}
+
             <div className="grid gap-6">
                 {fields.map((field, index) => (
                     <div key={field.id} className="relative p-6 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-100 dark:border-gray-800 group transition-all hover:bg-white dark:hover:bg-gray-900/60 hover:shadow-md">

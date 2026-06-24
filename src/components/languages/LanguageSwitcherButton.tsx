@@ -19,12 +19,7 @@ export function LanguageSwitcherButton({ learningLanguage, activeLanguage }: Lan
     const {t} = useTranslation();
     const {addToast} = useToast();
     const [isOpen, setIsOpen] = useState(false);
-    const [currentLanguage, setCurrentLanguage] = useState<LanguageResponse | null | undefined>(activeLanguage);
     const languageRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        setCurrentLanguage(activeLanguage);
-    }, [activeLanguage]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -41,7 +36,6 @@ export function LanguageSwitcherButton({ learningLanguage, activeLanguage }: Lan
 
         try {
             const selectNewLanguage = await profileService.addActiveLanguage(lang.languageId);
-            setCurrentLanguage(selectNewLanguage.activeLanguage ?? null);
             globalEvents.emit(EVENT_ACTIVE_LANGUAGE_CHANGED, selectNewLanguage.activeLanguage);
         } catch {
                 addToast({ type: 'error', message: t('error.language.change')});
@@ -50,7 +44,7 @@ export function LanguageSwitcherButton({ learningLanguage, activeLanguage }: Lan
 
     const items = learningLanguage.map(lang => ({
         key: lang.languageId,
-        isActive: currentLanguage?.id === lang.languageId,
+        isActive: activeLanguage?.id === lang.languageId,
         onClick: () => handleLanguageSelect(lang),
         label: (
             <>
@@ -67,10 +61,10 @@ export function LanguageSwitcherButton({ learningLanguage, activeLanguage }: Lan
     return (
         <div className="relative" ref={languageRef}>
             <SelectedLanguagesButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-                {currentLanguage ? (
+                {activeLanguage ? (
                     <>
-                        <LanguageFlag languageCode={currentLanguage.code} className="w-5 h-4 rounded-sm object-cover" />
-                        <span>{currentLanguage.name}</span>
+                        <LanguageFlag languageCode={activeLanguage.code} className="w-5 h-4 rounded-sm object-cover" />
+                        <span>{activeLanguage.name}</span>
                     </>
                 ) : (
                     <span className="text-gray-400">{t("common.selectLanguage")}</span>

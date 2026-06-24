@@ -8,11 +8,14 @@ import { FriendsModal } from "@/components/friends/FriendsModal";
 import { useAuth } from "@/hooks/useAuth";
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { profileService } from "@/services/profileService";
+import { aiService } from "@/services/aiService";
 import { friendsService } from "@/services/friendsService";
 import { FriendshipStatus } from "@/types/friends/friends";
 import { UserProfileResponse } from "@/types/profile/profile";
 import { StreakResponse } from "@/types/profile/streak";
 import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
+import { AIQuotaResponse } from "@/types/ai/ai";
+import { RoleEnum } from "@/types/enum/roles";
 import { isAxiosError } from "axios";
 import { Users, UserPlus, UserCheck, Clock } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -33,6 +36,7 @@ export function Profile() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [streak, setStreak] = useState<StreakResponse | null>(null);
+    const [aiQuota, setAiQuota] = useState<AIQuotaResponse | null>(null);
     const [friendsOpen, setFriendsOpen] = useState(false);
     const [friendshipStatus, setFriendshipStatus] = useState<FriendshipStatus>('NONE');
     const [friendRequestId, setFriendRequestId] = useState<string | undefined>(undefined);
@@ -41,11 +45,22 @@ export function Profile() {
     const isProfile = !userId || userId === user?.id;
 
     useEffect(() => {
+        if (isProfile) {
+            aiService.getQuota()
+                .then((data) => setAiQuota(data))
+                .catch(() => {});
+        }
+    }, [isProfile]);
+
+    const [prevProfile, setPrevProfile] = useState<UserProfileResponse | null>(null);
+
+    if (profile !== prevProfile) {
+        setPrevProfile(profile);
         if (profile && !isProfile) {
             setFriendshipStatus((profile.friendsViewStatus as FriendshipStatus) ?? 'NONE');
             setFriendRequestId(profile.friendRequestId ?? undefined);
         }
-    }, [profile, isProfile]);
+    }
 
     const handleAddFriend = () => {
         if (!userId || sendingRequest) return;
@@ -208,6 +223,33 @@ export function Profile() {
                                 </div>
                             )}
 
+                            {isProfile && aiQuota && (
+                                <div className="bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-6 py-5 flex flex-col gap-3">
+                                    <h2 className="text-[10px] font-medium text-[#8a7a60] dark:text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                                        {t("profile.ai_quota.title")}
+                                        <span className="flex-1 h-px bg-[#e8dcc8] dark:bg-[#e8dcc8]" />
+                                    </h2>
+                                    
+                                    <div className="space-y-2">
+                                        <div className="flex justify-between text-xs text-[#3a2e1e] dark:text-gray-300">
+                                            <span className="font-medium">{t("profile.ai_quota.usage")}</span>
+                                            <span className="font-semibold">{aiQuota.currentUsage} / {aiQuota.maxQuota}</span>
+                                        </div>
+                                        
+                                        <div className="w-full bg-[#faf7f2] dark:bg-gray-900 rounded-full h-2.5 overflow-hidden border border-[#e8dcc8]/40 dark:border-gray-700">
+                                            <div 
+                                                className="bg-indigo-600 dark:bg-indigo-500 h-full rounded-full transition-all duration-500" 
+                                                style={{ width: `${Math.min(100, Math.round((aiQuota.currentUsage / aiQuota.maxQuota) * 100))}%` }}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <p className="text-[11px] text-[#8a7a60] dark:text-gray-400 leading-normal">
+                                        {t("profile.ai_quota.renews_on", { date: new Date(aiQuota.periodEnd).toLocaleDateString() })}
+                                    </p>
+                                </div>
+                            )}
+
                         </aside>
 
                         <main className="flex-1 min-w-0 flex flex-col gap-6">
@@ -220,7 +262,7 @@ export function Profile() {
                                 <ProfileLanguageSection languages={languages} onLanguageRemove={handleLanguageRemoved} isProfileOwner={isProfile} />
                             </section>
 
-                            {(isProfile || !profile.isAccountPrivate) && (
+                            {((isProfile && user?.role !== RoleEnum.ADMIN) || (!isProfile && !profile.isAccountPrivate)) && (
                                 <LessonSessionTable userId={isProfile ? undefined : userId} />
                             )}
 

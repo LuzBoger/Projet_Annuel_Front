@@ -23,6 +23,7 @@ export interface TopicReviewResponse {
     topicName?: string;
     topicId?: string;
     status: ReviewStatus;
+    photoUrl?: string;
 }
 
 export interface TopicReviewsResponse {
