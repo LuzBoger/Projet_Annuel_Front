@@ -19,7 +19,7 @@ export function DailyCheckResult({ result }: DailyCheckResultProps) {
         <div className="w-24 h-24 bg-gradient-to-br from-brand-400 to-brand-600 rounded-full flex items-center justify-center mx-auto mb-6 text-5xl shadow-inner ring-8 ring-brand-50">
           <Brain />
         </div>
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-900 to-brand-600 mb-2">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
           {t("mistake.result.title")}
         </h2>
 
@@ -58,7 +58,7 @@ export function DailyCheckResult({ result }: DailyCheckResultProps) {
                 {[0, 1, 2, 3].map((i) => (
                   <div
                     key={i}
-                    className={`w-2.5 h-2.5 rounded-full ${i < detail.nbCorrectResponses ? "bg-brand-500" : "bg-gray-200 dark:bg-gray-600"}`}
+                    className={`w-2.5 h-2.5 rounded-full ${i < detail.nbCorrectResponses ? "bg-emerald-500" : "bg-gray-200 dark:bg-gray-600"}`}
                   />
                 ))}
               </div>

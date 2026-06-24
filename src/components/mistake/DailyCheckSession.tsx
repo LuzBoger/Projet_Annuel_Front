@@ -3,7 +3,9 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { QuestionRenderer } from "@/components/mistake/QuestionRenderer";
 import { useDailyCheckSession } from "@/hooks/useDailyCheckSession";
-import { Brain } from "@/assets/icons";
+import { Brain, ChevronRight } from "@/assets/icons";
+import { getSegmentColor } from "@/lib/utils/player";
+import { SegmentStatus } from "@/types/components/player";
 import type { UserAnswerRequest, UserDailyQuestion } from "@/types/mistakes/userMistakes";
 
 interface DailyCheckSessionProps {
@@ -29,7 +31,7 @@ export function DailyCheckSession({ dailyQuestion, onSubmit }: DailyCheckSession
         <p className="text-xs uppercase tracking-widest text-brand-500 font-semibold mb-2">
           <Brain /> {t("mistake.daily_check.label")}
         </p>
-        <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-900 to-brand-600">
+        <h1 className="text-3xl font-extrabold text-white">
           {t("mistake.daily_check.title")}
         </h1>
         <p className="mt-2 text-gray-500 text-sm">
@@ -44,11 +46,16 @@ export function DailyCheckSession({ dailyQuestion, onSubmit }: DailyCheckSession
             {Math.min(currentIndex + 1, questions.length)} / {questions.length}
           </span>
         </div>
-        <div className="w-full bg-gray-200/50 dark:bg-gray-700/50 rounded-full h-3 overflow-hidden">
-          <div
-            className="bg-brand-500 h-3 rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${(currentIndex / questions.length) * 100}%` }}
-          />
+        <div className="flex gap-1.5 sm:gap-2 h-2.5 sm:h-3">
+          {Array.from({ length: questions.length }, (_, idx) => {
+            const status = idx < currentIndex ? "correct" : idx === currentIndex ? "current" : "pending";
+            return (
+              <div
+                key={idx}
+                className={`flex-1 rounded-full transition-all duration-300 ease-out ${getSegmentColor(status as SegmentStatus)}`}
+              />
+            );
+          })}
         </div>
       </div>
 
@@ -67,12 +74,13 @@ export function DailyCheckSession({ dailyQuestion, onSubmit }: DailyCheckSession
           <>
             <QuestionRenderer {...questionRendererProps} />
             <Button
-              variant="none"
-              className="w-full py-4 text-lg mt-4 shadow-sm"
               onClick={nextIndex}
               disabled={!answered}
+              size="lg"
+              className="w-full py-4 text-lg mt-4 !bg-gray-900 dark:!bg-gray-700 hover:!bg-gray-800 dark:hover:!bg-gray-600 text-white rounded-xl font-bold shadow-md flex items-center justify-center gap-2"
             >
-              {isLast ? t("common.validate") : t("common.next")}
+              <span>{isLast ? t("common.validate") : t("common.next")}</span>
+              <ChevronRight className="w-5 h-5" />
             </Button>
           </>
         ) : null}

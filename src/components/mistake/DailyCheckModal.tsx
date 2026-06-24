@@ -65,7 +65,7 @@ export function DailyCheckModal({isOpen, dailyQuestion, onClose, onComplete,}: D
                 <span>{res.isAnswerCorrect ? <Check /> : <Cross />} {res.isLessonMastered ? t("mistake.result.mastered") : res.nextReviewIndication}</span>
                 <div className="flex gap-1">
                   {[0, 1, 2, 3].map((i) => (
-                    <div key={i} className={`w-2 h-2 rounded-full ${i < res.nbCorrectResponses ? "bg-brand-500" : "bg-gray-200 dark:bg-gray-600"}`} />
+                    <div key={i} className={`w-2 h-2 rounded-full ${i < res.nbCorrectResponses ? "bg-emerald-500" : "bg-gray-200 dark:bg-gray-600"}`} />
                   ))}
                 </div>
               </div>
