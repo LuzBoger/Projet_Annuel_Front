@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { QcmQuestionRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
@@ -14,7 +14,7 @@ import { MemorizationHelpButton } from "@/components/lessons/players/common/Memo
 interface QCMPlayerProps {
     lessonId?: string;
     questions: QcmQuestionRequest[];
-    onFinish: (score: number, correctAnswers: number, totalAnswers: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakeIds: string[]) => void;
 }
 
 export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
@@ -27,6 +27,7 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
     const [results, setResults] = useState<SegmentStatus[]>(
         new Array(questions.length).fill('pending' as SegmentStatus)
     );
+    const mistakeIds = useRef<string[]>([]);
 
     if (!questions || questions.length === 0) {
         return (
@@ -38,7 +39,7 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
         );
     }
 
-    const currentQ = questions[currentIndex];
+    const currentQ = questions[currentIndex]; 
     const isCorrect = Number(selectedOption) === Number(currentQ.correctOptionIndex);
 
     const handleSelect = (index: number) => {
@@ -60,6 +61,9 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
             playCorrect();
         } else {
             playIncorrect();
+            if (currentQ.id && !mistakeIds.current.includes(currentQ.id)) {
+                mistakeIds.current.push(currentQ.id);
+            }
         }
     };
 
@@ -70,7 +74,7 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
             setCurrentIndex(prev => prev + 1);
         } else {
             const finalScore = Math.round((correctCount / questions.length) * 100);
-            onFinish(finalScore, correctCount, questions.length);
+            onFinish(finalScore, correctCount, questions.length, mistakeIds.current);
         }
     };
 

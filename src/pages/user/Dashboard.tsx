@@ -5,13 +5,17 @@ import { XpCard } from "@/components/ui/card/XpCard";
 import { LanguageLevel } from "@/components/user/dashboard/LanguageLevel";
 import { Topics } from "@/components/user/dashboard/Topics";
 import { Welcome } from "@/components/user/dashboard/Welcome";
+import { DailyCheckBanner } from "@/components/mistake/DailyCheckBanner";
+import { DailyCheckModal } from "@/components/mistake/DailyCheckModal";
 import { EVENT_ACTIVE_LANGUAGE_CHANGED } from "@/constants/event";
 import { useAuth } from "@/hooks/useAuth";
 import { useProgress } from "@/hooks/useProgress";
 import { globalEvents } from "@/lib/utils/eventEmitter";
 import { profileService } from "@/services/profileService";
 import { topicService } from "@/services/topicService";
+import { userMistakesService } from "@/services/userMistakesService";
 import { LanguageResponse } from "@/types/language/language";
+import type { UserDailyQuestion } from "@/types/mistakes/userMistakes";
 import { StreakResponse } from "@/types/profile/streak";
 import { TopicWithProgressResponse } from "@/types/topic/topic";
 import { useEffect, useState } from "react";
@@ -25,9 +29,20 @@ export default function Dashboard() {
     const [activeLanguageId, setActiveLanguageId] = useState<string | null>(null);
     const [topics, setTopics] = useState<TopicWithProgressResponse[]>([]);
     const [streak, setStreak] = useState<StreakResponse | null>(null);
+    const [dailyQuestion, setDailyQuestion] = useState<UserDailyQuestion | null>(null);
+    const [showModal, setShowModal] = useState(false);
     const validLanguageLevels = languageLevels.filter(l => l.languageId && l.languageCode);
 
     const effectiveLanguageId = activeLanguageId ?? validLanguageLevels[0]?.languageId ?? null;
+
+    useEffect(() => {
+        userMistakesService.getDailyQuestion()
+            .then((data) => {
+                setDailyQuestion(data);
+                if (data.hasQuestionToday) setShowModal(true);
+            })
+            .catch(() => {});
+    }, []);
 
     useEffect(() => {
         fetchData();
@@ -76,6 +91,7 @@ export default function Dashboard() {
 
                     <div className="flex-1 min-w-0">
                         <Welcome username={user?.username ?? ""} />
+                        <DailyCheckBanner totalAvailableNow={dailyQuestion?.totalAvailableNow ?? 0} />
                         <Topics topics={topics} activeLanguageId={effectiveLanguageId} />
                     </div>
 
@@ -94,6 +110,19 @@ export default function Dashboard() {
 
                 </div>
             </div>
+            {dailyQuestion?.hasQuestionToday && (
+                <DailyCheckModal
+                    isOpen={showModal}
+                    dailyQuestion={dailyQuestion}
+                    onClose={() => setShowModal(false)}
+                    onComplete={() => {
+                        setShowModal(false);
+                        userMistakesService.getDailyQuestion()
+                            .then(setDailyQuestion)
+                            .catch(() => {});
+                    }}
+                />
+            )}
         </>
     );
 }

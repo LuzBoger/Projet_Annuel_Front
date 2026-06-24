@@ -48,6 +48,8 @@ import CGV from "@/pages/legal/CGV";
 import PolitiqueConfidentialite from "@/pages/legal/PolitiqueConfidentialite";
 import PolitiqueCookies from "@/pages/legal/PolitiqueCookie";
 import Contact from "@/pages/contact/Contact";
+import DailyCheck from "@/pages/mistake/DailyCheck";
+import MistakeListe from "@/pages/mistake/MistakeListe";
 
 export function AppRoutes() {
   useNotifications();
@@ -105,6 +107,8 @@ export function AppRoutes() {
           <Route path="/legal/cgv" element={<CGV />} />
           <Route path="/legal/politique-de-confidentialite" element={<PolitiqueConfidentialite />} />
           <Route path="/legal/politique-de-cookies" element={<PolitiqueCookies />} />
+          <Route path="/training/daily-check" element={<ProtectedRoute userOnly><DailyCheck /></ProtectedRoute>} />
+          <Route path="/training/list" element={<ProtectedRoute userOnly><MistakeListe /></ProtectedRoute>} />
           <Route path="/checkout" element={<ProtectedRoute><CheckoutLayout /></ProtectedRoute>}>
             <Route path="success" element={<CheckoutSuccess />} />
             <Route path="cancel" element={<CheckoutCancel />} />

@@ -6,7 +6,7 @@ export const initTiles = (pairs: MatchingPairRequest[]): Tile[] => {
     
     const newTiles: Tile[] = [];
     pairs.forEach((pair, index) => {
-        const matchId = `pair-${index}`;
+        const matchId = pair.id ?? `pair-${index}`;
         newTiles.push({ id: `item1-${index}`, text: pair.item1, matchId });
         newTiles.push({ id: `item2-${index}`, text: pair.item2, matchId });
     });

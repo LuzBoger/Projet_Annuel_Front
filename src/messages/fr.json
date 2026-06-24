@@ -27,7 +27,8 @@
     "disabled": "Désactivé",
     "on": "sur",
     "mute": "Couper le son",
-    "unmute": "Activer le son"
+    "unmute": "Activer le son",
+    "validate": "Valider"
   },
   "onBoarding": {
     "selectNativeLanguage": "Quelle est votre langue maternelle ?",
@@ -1600,6 +1601,82 @@
         "p1": "Les présentes mentions légales sont régies par le droit français. En cas de litige, les tribunaux français seront seuls compétents."
       }
     }
+  },
+  "mistake": {
+    "filters": {
+      "ALL": "Tout",
+      "FLASHCARD": "Flashcard",
+      "QCM": "QCM",
+      "MATCHING_PAIR": "Association",
+      "SORTING_EXERCISE": "Tri"
+    },
+    "liste": {
+      "page_title": "Mes erreurs",
+      "title": "Mes erreurs",
+      "subtitle": "{{count}} erreur(s) en attente de révision",
+      "practice_cta": "Réviser maintenant",
+      "empty_title": "Aucune erreur en attente",
+      "empty_subtitle": "Continuez à vous entraîner pour progresser !"
+    },
+    "daily_check": {
+      "label": "Révision quotidienne",
+      "title": "Révision du jour",
+      "subtitle": "{{total}} question(s) à réviser",
+      "progress": "Progression",
+      "all_done": "Toutes les questions sont répondues !",
+      "submit_desc": "Soumettez vos réponses pour voir vos résultats.",
+      "submit": "Voir mes résultats"
+    },
+    "result": {
+      "title": "Résultats",
+      "score": "Score",
+      "resolved": "Maîtrisés",
+      "remaining": "{{count}} erreur(s) encore en attente",
+      "mastered": "Maîtrisé !",
+      "dashboard": "Tableau de bord",
+      "list": "Voir mes erreurs",
+      "daily_check": {
+        "label": "Révision quotidienne",
+        "subtitle": "{{total}} question(s) à réviser",
+        "progress": "Progression",
+        "all_done": "Toutes les questions sont répondues !",
+        "submit_desc": "Soumettez vos réponses pour voir vos résultats.",
+        "submit": "Voir mes résultats"
+      }
+    },
+    "empty": {
+      "title": "Tout est à jour !",
+      "subtitle": "Aucune question à réviser aujourd'hui. Revenez demain !"
+    },
+    "banner": {
+      "title": "Révision quotidienne",
+      "subtitle": "{{count}} question(s) à réviser",
+      "cta": "Réviser"
+    },
+    "detail": {
+      "title": "Détail de l'erreur",
+      "question": "Question",
+      "your_answer": "Votre réponse",
+      "correct_answer": "Bonne réponse",
+      "next_review": "Prochaine révision",
+      "streak": "Série"
+    }
+  },
+  "training": {
+    "nav": {
+      "liste": "Mes erreurs"
+    }
+  },
+  "source": {
+    "exam": "Examen",
+    "lesson": "Leçon"
+  },
+  "queue": {
+    "streak": "{{count}}/2 correct(s)"
+  },
+  "matching": {
+    "instruction": "Quel est le mot correspondant ?",
+    "placeholder": "Tapez votre réponse..."
   },
   "friends": {
     "title": "Amis",

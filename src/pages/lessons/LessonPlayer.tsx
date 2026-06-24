@@ -57,7 +57,7 @@ export default function LessonPlayer() {
         return () => { mounted = false; };
     }, [lessonId, fetchLessonById, startLesson, t]);
 
-    const handleLessonComplete = useCallback(async (score: number, correctAnswers: number, totalAnswers: number) => {
+    const handleLessonComplete = useCallback(async (score: number, correctAnswers: number, totalAnswers: number, mistakeIds: string[]) => {
         if (!lessonId || isCompleting) return;
 
         try {
@@ -68,7 +68,11 @@ export default function LessonPlayer() {
                 score,
                 timeSpentSeconds,
                 correctAnswers,
-                totalAnswers
+                totalAnswers,
+                mistakeFlashCardIds: lesson?.lessonType === LessonType.FLASHCARD ? mistakeIds : undefined,
+                mistakeQcmIds: lesson?.lessonType === LessonType.QCM ? mistakeIds : undefined,
+                mistakeMatchingPairIds: lesson?.lessonType === LessonType.MATCHING_PAIR ? mistakeIds : undefined,
+                mistakeSortingIds: lesson?.lessonType === LessonType.SORTING_EXERCISE ? mistakeIds : undefined,
             });
 
             playSuccess();

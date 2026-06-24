@@ -70,10 +70,14 @@ export interface LessonResponse extends LessonRequest {
 }
 
 export interface CompleteLessonRequest {
-    score: number;
+    score?: number;
     timeSpentSeconds: number;
     correctAnswers?: number;
     totalAnswers?: number;
+    mistakeFlashCardIds?: string[];
+    mistakeMatchingPairIds?: string[];
+    mistakeQcmIds?: string[];
+    mistakeSortingIds?: string[];
 }
 
 export interface UserProgressResponse {
