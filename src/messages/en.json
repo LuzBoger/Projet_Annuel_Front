@@ -735,6 +735,7 @@
     "rejectReview": "Failed to reject review.",
     "fetchGlobalRanking": "Failed to fetch global ranking.",
     "fetchLanguageRanking": "Failed to fetch language ranking.",
+    "fetchFriendsRanking": "Could not load friends ranking.",
     "createChallenge": "Failed to create challenge.",
     "joinChallenge": "Failed to join challenge.",
     "submitChallenge": "Failed to submit score.",
@@ -1275,7 +1276,11 @@
     },
     "tab": {
       "global": "Global",
-      "language": "By language"
+      "language": "By language",
+      "friends": "Friends"
+    },
+    "friends": {
+      "empty": "Add friends to see how you rank against each other!"
     },
     "you": "you",
     "to_pass": "to pass #{{rank}}",
