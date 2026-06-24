@@ -62,7 +62,16 @@ export function DailyCheckModal({isOpen, dailyQuestion, onClose, onComplete,}: D
                   res.isAnswerCorrect ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700" : "bg-red-50 dark:bg-red-900/20 text-red-700"
                 }`}
               >
-                <span>{res.isAnswerCorrect ? <Check /> : <Cross />} {res.isLessonMastered ? t("mistake.result.mastered") : res.nextReviewIndication}</span>
+                <span className="flex items-center gap-2">
+                  {res.isAnswerCorrect ? <Check className="w-4 h-4" /> : <Cross className="w-4 h-4" />}
+                  {res.isLessonMastered ? (
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-extrabold bg-emerald-500 text-white dark:bg-emerald-500/20 dark:text-emerald-400 border border-emerald-500/30 shadow-sm">
+                      {t("mistake.result.mastered")}
+                    </span>
+                  ) : (
+                    <span className="opacity-90">{res.nextReviewIndication}</span>
+                  )}
+                </span>
                 <div className="flex gap-1">
                   {[0, 1, 2, 3].map((i) => (
                     <div key={i} className={`w-2 h-2 rounded-full ${i < res.nbCorrectResponses ? "bg-emerald-500" : "bg-gray-200 dark:bg-gray-600"}`} />
