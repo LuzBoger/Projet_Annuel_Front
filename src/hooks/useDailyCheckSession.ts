@@ -31,6 +31,12 @@ export function useDailyCheckSession(questions: MistakeQuestionResponse[]) {
       if (question.lessonType === "MATCHING_PAIR"){
         return { userMistakeId: question.userMistakeId, item2: matchingAnswers[question.questionId] || "" };
       }
+      if (question.lessonType === "INTERACTIVE"){
+        if (question.systemType === "MULTIPLE_CHOICE") {
+          return { userMistakeId: question.userMistakeId, selectedResponseIndex: qcmAnswers[question.questionId] };
+        }
+        return { userMistakeId: question.userMistakeId, translateAnswer: flashcardAnswers[question.questionId] || "" };
+      }
       return { userMistakeId: question.userMistakeId, userOrderedResponseIndexes: sortingAnswers[question.questionId] || [] };
     });
 

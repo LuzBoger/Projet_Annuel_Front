@@ -9,6 +9,7 @@ import { FlashcardPlayer } from "@/components/lessons/players/FlashcardPlayer";
 import { QCMPlayer } from "@/components/lessons/players/QCMPlayer";
 import { MatchingPlayer } from "@/components/lessons/players/MatchingPlayer";
 import { SortingPlayer } from "@/components/lessons/players/SortingPlayer";
+import { InteractivePlayer } from "@/components/lessons/players/InteractivePlayer";
 import { MetaData } from "@/components/seo/MetaData";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 
@@ -73,6 +74,7 @@ export default function LessonPlayer() {
                 mistakeQcmList: lesson?.lessonType === LessonType.QCM ? mistakes : undefined,
                 mistakeMatchingList: lesson?.lessonType === LessonType.MATCHING_PAIR ? mistakes : undefined,
                 mistakeSortingList: lesson?.lessonType === LessonType.SORTING_EXERCISE ? mistakes : undefined,
+                mistakeInteractiveList: lesson?.lessonType === LessonType.INTERACTIVE ? mistakes : undefined,
             });
 
             playSuccess();
@@ -142,6 +144,9 @@ export default function LessonPlayer() {
                         )}
                         {lesson.lessonType === LessonType.SORTING_EXERCISE && (
                             <SortingPlayer lessonId={lesson.id} exercises={lesson.sortingExercise || []} onFinish={handleLessonComplete} />
+                        )}
+                        {lesson.lessonType === LessonType.INTERACTIVE && (
+                            <InteractivePlayer lessonId={lesson.id} questions={lesson.interactiveQuestions || []} onFinish={handleLessonComplete} />
                         )}
                     </div>
                 </main>

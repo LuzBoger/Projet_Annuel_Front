@@ -65,6 +65,33 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
     .max(10, t('admin.lessons.form.validation.sorting_max')),
     otherwise: (schema) => schema.notRequired(),
   }),
+
+  // Interactive specific
+  interactiveQuestions: yup.array().when('lessonType', {
+    is: LessonType.INTERACTIVE,
+    then: (schema) => schema.of(
+      yup.object({
+        questionText: yup.string().required(t('common.required')),
+        imagePaths: yup.array().of(yup.string().required()).default([]),
+        audioPaths: yup.array().of(yup.string().required()).default([]),
+        systemType: yup.string().oneOf(["MULTIPLE_CHOICE", "OPEN_TEXT"]).required(t('common.required')),
+        options: yup.array().of(yup.string().required(t('common.required'))).default([]),
+        correctOptionIndex: yup.number().nullable().when('systemType', {
+          is: "MULTIPLE_CHOICE",
+          then: (s) => s.required(t('common.required')),
+          otherwise: (s) => s.nullable().notRequired()
+        }),
+        correctWord: yup.string().nullable().when('systemType', {
+          is: "OPEN_TEXT",
+          then: (s) => s.required(t('common.required')),
+          otherwise: (s) => s.nullable().notRequired()
+        })
+      })
+    )
+    .min(3, t('admin.lessons.form.validation.matching_min'))
+    .max(20, t('admin.lessons.form.validation.matching_max')),
+    otherwise: (schema) => schema.notRequired(),
+  }),
 });
 
 export type LessonFormData = Omit<yup.InferType<ReturnType<typeof lessonSchema>>, 'orderIndex'> & { orderIndex?: number };

@@ -447,7 +447,8 @@
           "FLASHCARD": "Flashcard",
           "QCM": "QCM",
           "MATCHING_PAIR": "Paires à relier",
-          "SORTING_EXERCISE": "Mise en ordre"
+          "SORTING_EXERCISE": "Mise en ordre",
+          "INTERACTIVE": "Leçon Interactive"
         },
         "sections": {
           "basic_info": "Informations de base",
@@ -1736,7 +1737,8 @@
       "FLASHCARD": "Flashcard",
       "QCM": "QCM",
       "MATCHING_PAIR": "Association",
-      "SORTING_EXERCISE": "Tri"
+      "SORTING_EXERCISE": "Tri",
+      "INTERACTIVE": "Interactif"
     },
     "liste": {
       "page_title": "Mes erreurs",
