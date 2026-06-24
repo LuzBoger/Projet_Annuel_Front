@@ -11,7 +11,7 @@ import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { ERROR_DISPLAY_DURATION_MS, PENALTY_PER_ERROR } from "@/constants/lesson";
 import { initTiles } from "@/lib/utils/matchingPair";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
-import { MemorizationHelpButton } from "./common/MemorizationHelpButton";
+import { MemorizationHelpButton } from "@/components/lessons/players/common/MemorizationHelpButton";
 
 interface MatchingPlayerProps {
     lessonId?: string;

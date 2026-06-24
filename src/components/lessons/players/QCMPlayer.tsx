@@ -9,7 +9,7 @@ import { SegmentStatus } from "@/types/components/player";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
-import { MemorizationHelpButton } from "./common/MemorizationHelpButton";
+import { MemorizationHelpButton } from "@/components/lessons/players/common/MemorizationHelpButton";
 
 interface QCMPlayerProps {
     lessonId?: string;

@@ -9,7 +9,7 @@ import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
 import { SegmentStatus } from "@/types/components/player";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
-import { MemorizationHelpButton } from "./common/MemorizationHelpButton";
+import { MemorizationHelpButton } from "@/components/lessons/players/common/MemorizationHelpButton";
 
 interface FlashcardPlayerProps {
     lessonId?: string;

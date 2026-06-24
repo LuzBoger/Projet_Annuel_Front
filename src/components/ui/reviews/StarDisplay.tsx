@@ -1,9 +1,10 @@
 import { StarIcon } from "@/assets/icons";
 import { RATING_VALUES } from "@/constants/review";
+import { SizeStar } from "@/types/components/sizeStar";
 
 interface StarDisplayProps {
     rating: number;
-    size?: "sm" | "md" | "lg" | "xl";
+    size?: SizeStar;
 }
 
 export function StarDisplay({ rating, size = "md" }: StarDisplayProps) {

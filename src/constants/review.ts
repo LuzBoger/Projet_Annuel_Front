@@ -4,6 +4,16 @@ export type RatingValue = 0 | 1 | 2 | 3 | 4 | 5;
 
 export const RATING_VALUES: RatingValue[] = [1, 2, 3, 4, 5];
 
+export const RATING_VALUES_DESC: RatingValue[] = [5, 4, 3, 2, 1];
+
+export const INITIAL_RATING_BREAKDOWN: Record<Exclude<RatingValue, 0>, number> = {
+    5: 0,
+    4: 0,
+    3: 0,
+    2: 0,
+    1: 0,
+};
+
 export const RATING_LABELS: (t: (key: string) => string) => Record<RatingValue, string> = (t) => ({
     0: '',
     1: t("reviews.rating_1"),

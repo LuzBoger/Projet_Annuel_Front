@@ -4,7 +4,7 @@ import { TopicReviewResponse, TopicReviewsResponse } from "@/types/review/review
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StarDisplay } from "@/components/ui/reviews/StarDisplay";
-import { REVIEWS_PER_PAGE, RatingValue, RATING_LABELS } from "@/constants/review";
+import { REVIEWS_PER_PAGE, RatingValue, RATING_LABELS, INITIAL_RATING_BREAKDOWN, RATING_VALUES_DESC } from "@/constants/review";
 import { Pagination } from "@/components/ui/Pagination";
 import { EditReviewModal } from "@/components/reviews/EditReviewModal";
 import { Button } from "@/components/ui/Button";
@@ -36,7 +36,7 @@ export function TopicReviews({ topicId }: TopicReviewsProps) {
     const labels = RATING_LABELS(t);
 
     const getRatingBreakdown = () => {
-        const counts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+        const counts = { ...INITIAL_RATING_BREAKDOWN };
         if (!data) {
             return counts;
         }
@@ -143,7 +143,7 @@ return (
                     </div>
 
                     <div className="md:col-span-2 flex flex-col justify-center gap-2">
-                        {[5, 4, 3, 2, 1].map((stars) => {
+                        {RATING_VALUES_DESC.map((stars) => {
                             const count = ratingBreakdown[stars as keyof typeof ratingBreakdown] || 0;
                             const percentage = data.totalReviews > 0 ? (count / data.totalReviews) * 100 : 0;
                             return (
