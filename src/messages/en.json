@@ -168,7 +168,10 @@
       "title": "Manage subscription",
       "change_plan": "Change plan",
       "reactivate": "Reactivate subscription",
-      "cancel": "Cancel subscription"
+      "renew": "Renew subscription",
+      "cancel": "Cancel subscription",
+      "enable_auto_renewal": "Enable automatic renewal",
+      "disable_auto_renewal": "Disable automatic renewal"
     },
     "details": {
       "title": "Subscription details",

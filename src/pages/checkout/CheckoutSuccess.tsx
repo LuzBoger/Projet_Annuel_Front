@@ -3,16 +3,25 @@ import { MetaData } from "@/components/seo/MetaData";
 import { Button } from "@/components/ui/Button";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { subscriptionService } from "@/services/subscriptionService";
 
 export default function CheckoutSuccess() {
     const {t} = useTranslation();
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+
+    useEffect(() => {
+        const sessionId = searchParams.get('session_id');
+        if (sessionId) {
+            subscriptionService.verifyCheckoutSession(sessionId).catch(() => {});
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             navigate('/checkout');
-        }, 5000);   
+        }, 5000);
         return () => clearTimeout(timer);
     }, [navigate]);
 

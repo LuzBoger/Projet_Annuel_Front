@@ -60,5 +60,9 @@ export const subscriptionService = {
     async getSubscriptionStats(): Promise<SubscriptionStats> {
         const response = await apiClient.get<SubscriptionStats>('/subscriptions/stats');
         return response.data;
+    },
+
+    async verifyCheckoutSession(sessionId: string): Promise<void> {
+        await apiClient.get(`/stripe/verify/${sessionId}`);
     }
 }

@@ -168,7 +168,10 @@
       "title": "Gérer l'abonnement",
       "change_plan": "Changer de plan",
       "reactivate": "Réactiver l'abonnement",
-      "cancel": "Annuler l'abonnement"
+      "renew": "Renouveler l'abonnement",
+      "cancel": "Annuler l'abonnement",
+      "enable_auto_renewal": "Activer le renouvellement automatique",
+      "disable_auto_renewal": "Désactiver le renouvellement automatique"
     },
     "details": {
       "title": "Détails de l'abonnement",
