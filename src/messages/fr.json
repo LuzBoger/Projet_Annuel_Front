@@ -778,6 +778,8 @@
       "account_locked": "Compte verrouillé suite à trop de tentatives. Réessayez dans 30 minutes.",
       "account_locked_until": "Le compte est verrouillé jusqu'à : {{until}}.",
       "account_locked_attempts": "Compte verrouillé en raison de trop nombreuses tentatives de connexion échouées.",
+      "account_locked_admin": "Votre compte a été verrouillé par un administrateur. Contactez le support pour plus d'informations.",
+      "account_suspended": "Votre compte a été suspendu par un administrateur. Contactez le support pour plus d'informations.",
       "account_not_found": "Compte non trouvé.",
       "email_already_registered": "Email déjà existant.",
       "username_already_taken": "Nom d'utilisateur déjà pris.",

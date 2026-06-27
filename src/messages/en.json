@@ -773,6 +773,8 @@
       "account_locked": "Account locked due to too many attempts. Try again in 30 minutes.",
       "account_locked_until": "Account is locked until: {{until}}.",
       "account_locked_attempts": "Account locked due to too many failed login attempts.",
+      "account_locked_admin": "Your account has been locked by an administrator. Contact support for more information.",
+      "account_suspended": "Your account has been suspended by an administrator. Contact support for more information.",
       "account_not_found": "Account not found.",
       "email_already_registered": "Email already registered.",
       "username_already_taken": "Username already taken.",

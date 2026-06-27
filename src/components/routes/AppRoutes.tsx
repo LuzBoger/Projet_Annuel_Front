@@ -59,12 +59,13 @@ export function AppRoutes() {
 
   const isImmersiveRoute = location.pathname.endsWith('/play') || location.pathname.endsWith('/exam') || location.pathname.endsWith('/success');
   const isAdminRoute = location.pathname.startsWith('/admin') && location.pathname !== '/admin/login';
+  const isAdminSettings = location.pathname === '/settings' && user?.role === RoleEnum.ADMIN;
   const showOnBoarding = isAuthenticated && !!user && !user.hasCompletedOnboarding && user.role !== RoleEnum.ADMIN && !AUTH_PATH.includes(location.pathname);
 
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
-      {!isImmersiveRoute && !isAdminRoute && <Header />}
+      {!isImmersiveRoute && !isAdminRoute && !isAdminSettings && <Header />}
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
