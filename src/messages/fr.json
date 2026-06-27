@@ -832,6 +832,7 @@
     "rejectReview": "Impossible de rejeter l'avis.",
     "fetchGlobalRanking": "Impossible de récupérer le classement mondial.",
     "fetchLanguageRanking": "Impossible de récupérer le classement par langue.",
+    "fetchFriendsRanking": "Impossible de charger le classement des amis.",
     "createChallenge": "Impossible de créer le défi.",
     "joinChallenge": "Impossible de rejoindre le défi.",
     "submitChallenge": "Impossible de soumettre le score.",
@@ -1372,7 +1373,11 @@
     },
     "tab": {
       "global": "Mondial",
-      "language": "Par langue"
+      "language": "Par langue",
+      "friends": "Amis"
+    },
+    "friends": {
+      "empty": "Ajoutez des amis pour voir votre classement entre vous !"
     },
     "you": "vous",
     "to_pass": "pour dépasser le #{{rank}}",
