@@ -34,7 +34,7 @@ export default function Login() {
 
       if (status === 423) {
         setIsAccountLocked(true);
-        setError(t('error.auth.account_locked'));
+        setError(axiosError.response?.data?.message ?? t('error.auth.account_locked'));
       } else if (status === 401) {
         setError(t('error.auth.invalid_credentials'));
       } else {
