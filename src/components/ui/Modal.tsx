@@ -56,22 +56,21 @@ export function Modal({
       aria-modal="true"
       role="dialog"
     >
-      <div 
+      <div
         className={cn(
-          "relative w-full bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-800 animate-in zoom-in-95 duration-200",
+          "relative w-full bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-800 animate-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]",
           sizeClasses[size],
           className
         )}
       >
-        {/* Header */}
         {(title || showCloseButton) && (
-          <div className="flex items-center justify-between p-6 pb-0">
+          <div className="flex items-center justify-between px-6 pt-6 pb-4 shrink-0">
             {title ? (
               <div className="text-xl font-bold text-gray-900 dark:text-white">
                 {title}
               </div>
             ) : <div />}
-            
+
             {showCloseButton && (
               <button
                 onClick={onClose}
@@ -84,8 +83,7 @@ export function Modal({
           </div>
         )}
 
-        {/* Content */}
-        <div className="px-6 py-4">
+        <div className="px-6 pb-6 overflow-y-auto flex-1">
           {children}
         </div>
       </div>

@@ -40,3 +40,26 @@ export function formatDate(date: string): string {
     });
 }
 
+export function formatMinutes(minutes: number): string {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    if (hours === 0) {
+        return `${mins}m`;
+    }
+    return mins > 0 ? `${hours}h ${mins}m` : `${hours}h`;
+}
+
+export function formatSeconds(seconds: number): string {
+    if (seconds === 0){
+        return '0m';
+    }
+    if (seconds < 60){
+        return '< 1m';
+    }
+    const hours = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    if (hours === 0){
+        return `${mins}m`;
+    }
+    return mins > 0 ? `${hours}h ${mins}m` : `${hours}h`;
+}
