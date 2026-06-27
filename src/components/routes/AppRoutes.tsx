@@ -36,6 +36,7 @@ import { Header } from "@/components/layout/Header";
 import { RoleEnum } from "@/types/enum/roles";
 import { AUTH_PATH } from "@/constants/global";
 import Dashboard from "@/pages/user/Dashboard";
+import AdminUserStats from "@/pages/admin/stats/AdminUserStats";
 import ReviewManage from "@/pages/admin/reviews/ReviewManage";
 import { useNotifications } from "@/hooks/useNotifications";
 import Ranking from "@/pages/ranking/Ranking";
@@ -57,12 +58,13 @@ export function AppRoutes() {
   const location = useLocation();
 
   const isImmersiveRoute = location.pathname.endsWith('/play') || location.pathname.endsWith('/exam') || location.pathname.endsWith('/success');
+  const isAdminRoute = location.pathname.startsWith('/admin') && location.pathname !== '/admin/login';
   const showOnBoarding = isAuthenticated && !!user && !user.hasCompletedOnboarding && user.role !== RoleEnum.ADMIN && !AUTH_PATH.includes(location.pathname);
 
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
-      {!isImmersiveRoute && <Header />}
+      {!isImmersiveRoute && !isAdminRoute && <Header />}
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -92,6 +94,7 @@ export function AppRoutes() {
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
             <Route index element={<AdminDashboard />} />
+            <Route path="stats" element={<AdminUserStats />} />
             <Route path="plans" element={<PlansManage />} />
             <Route path="subscriptions" element={<SubscriptionsManage />} />
             <Route path="languages" element={<LanguageList />} />
