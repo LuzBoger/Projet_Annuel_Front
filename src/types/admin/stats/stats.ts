@@ -12,8 +12,8 @@ export interface LearningMetricsResponse {
 
 export interface UserEngagementResponse {
     totalUsers: number;
-    newUsersLast7Days: number;
-    activeUsersLast7Days: number;
+    newUsersLastSevenDays: number;
+    activeUsersLastSevenDays: number;
     usersWithActiveStreak: number;
     newUsersByMonth: UserGrowthByMonthResponse[];
 }

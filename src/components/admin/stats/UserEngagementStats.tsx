@@ -30,22 +30,22 @@ export function UserEngagementStats() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <StatsCard
                     title={t('admin.stats.totalUsers')}
-                    value={engagement.totalUsers.toLocaleString()}
+                    value={(engagement.totalUsers ?? 0).toLocaleString()}
                     variant="brand"
                 />
                 <StatsCard
                     title={t('admin.stats.newUsers7d')}
-                    value={engagement.newUsersLast7Days.toLocaleString()}
+                    value={(engagement.newUsersLastSevenDays ?? 0).toLocaleString()}
                     variant="emerald"
                 />
                 <StatsCard
                     title={t('admin.stats.activeUsers7d')}
-                    value={engagement.activeUsersLast7Days.toLocaleString()}
+                    value={(engagement.activeUsersLastSevenDays ?? 0).toLocaleString()}
                     variant="emerald"
                 />
                 <StatsCard
                     title={t('admin.stats.activeStreaks')}
-                    value={engagement.usersWithActiveStreak.toLocaleString()}
+                    value={(engagement.usersWithActiveStreak ?? 0).toLocaleString()}
                     variant="rose"
                 />
             </div>

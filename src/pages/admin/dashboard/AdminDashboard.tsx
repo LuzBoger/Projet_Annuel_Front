@@ -49,8 +49,8 @@ export default function AdminDashboard() {
                     ) : (
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                             <StatsCard title={t('admin.stats.totalUsers')} value={engagement.totalUsers.toLocaleString()} variant="brand" />
-                            <StatsCard title={t('admin.stats.newUsers7d')} value={engagement.newUsersLast7Days.toLocaleString()} variant="emerald" />
-                            <StatsCard title={t('admin.stats.activeUsers7d')} value={engagement.activeUsersLast7Days.toLocaleString()} variant="emerald" />
+                            <StatsCard title={t('admin.stats.newUsers7d')} value={(engagement.newUsersLastSevenDays ?? 0).toLocaleString()} variant="emerald" />
+                            <StatsCard title={t('admin.stats.activeUsers7d')} value={(engagement.activeUsersLastSevenDays ?? 0).toLocaleString()} variant="emerald" />
                             <StatsCard title={t('admin.stats.activeStreaks')} value={engagement.usersWithActiveStreak.toLocaleString()} variant="rose" />
                         </div>
                     )}
