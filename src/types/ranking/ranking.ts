@@ -18,4 +18,4 @@ export interface RankingResponse {
     xpToNextRank: number | null;
 }
 
-export type RankingType = 'global' | 'language';
+export type RankingType = 'global' | 'language' | 'friends';

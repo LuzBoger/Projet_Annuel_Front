@@ -19,7 +19,7 @@ import { useSearchParams } from "react-router-dom";
 
 export default function Ranking() {
     const {t} = useTranslation();
-    const {data, loading, fetchGlobalRanking, fetchByLanguageRanking} = useRanking();
+    const {data, loading, fetchGlobalRanking, fetchByLanguageRanking, fetchFriendsRanking} = useRanking();
     const {user} = useAuth();
     const [searchParams] = useSearchParams();
 
@@ -27,7 +27,7 @@ export default function Ranking() {
     const queryLanguageId = searchParams.get('languageId');
     const isAdmin = hasRole(user?.role, "ADMIN");
 
-    const [selectedTab, setSelectedTab] = useState<RankingType>(queryTab === 'language' ? 'language' : 'global');
+    const [selectedTab, setSelectedTab] = useState<RankingType>(queryTab === 'language' ? 'language' : queryTab === 'friends' ? 'friends' : 'global');
     const [languages, setLanguages] = useState<UserLanguageResponse[]>([]);
     const [selectedLanguageId, setSelectedLanguageId] = useState<string>(queryLanguageId || '');
     const [currentPage, setCurrentPage] = useState(0);
@@ -37,7 +37,6 @@ export default function Ranking() {
             try {
                 if (isAdmin) {
                     const activeLangs = await languageService.getAllActiveLanguages();
-                    // Les administrateurs doivent pouvoir visualiser tous les classements actifs.
                     const formattedLangs: UserLanguageResponse[] = activeLangs.map((lang) => ({
                         id: lang.id,
                         languageId: lang.id,
@@ -79,24 +78,25 @@ export default function Ranking() {
     };
 
     useEffect(() => {
-        if (selectedTab === 'global'){
+        if (selectedTab === 'global') {
             fetchGlobalRanking(currentPage);
-        } else if (selectedTab === 'language' && selectedLanguageId){
+        } else if (selectedTab === 'language' && selectedLanguageId) {
             fetchByLanguageRanking(selectedLanguageId, currentPage);
+        } else if (selectedTab === 'friends') {
+            fetchFriendsRanking(currentPage);
         }
-    }, [selectedTab, selectedLanguageId, currentPage, fetchGlobalRanking, fetchByLanguageRanking]);
+    }, [selectedTab, selectedLanguageId, currentPage, fetchGlobalRanking, fetchByLanguageRanking, fetchFriendsRanking]);
 
     const handleSocketMessage = useCallback(() => {
-        if (selectedTab === 'global'){
+        if (selectedTab === 'global') {
             fetchGlobalRanking(currentPage);
-        }
-        else if (selectedTab === 'language' && selectedLanguageId){
+        } else if (selectedTab === 'language' && selectedLanguageId) {
             fetchByLanguageRanking(selectedLanguageId, currentPage);
         }
     }, [selectedTab, selectedLanguageId, currentPage, fetchGlobalRanking, fetchByLanguageRanking]);
 
-    const wsTarget = selectedTab === 'global'? WS_GLOBAl_RANKING : selectedLanguageId ? `${WS_LANGUAGE_RANKING}${selectedLanguageId}` : '';
-
+    const wsTarget = selectedTab === 'global' ? WS_GLOBAl_RANKING : selectedTab === 'language' && selectedLanguageId ? `${WS_LANGUAGE_RANKING}${selectedLanguageId}` : '';
+    
     useRankingSocket(wsTarget, handleSocketMessage);
 
     const ranking = data?.rankedUser ?? [];
@@ -145,6 +145,13 @@ export default function Ranking() {
             </div>
 
             {data && <UserRankBanner rank={data} />}
+            {selectedTab === 'friends' && data && data.totalParticipants === 1 && (
+                <div className="flex flex-col items-center gap-3 py-12 text-center">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {t('ranking.friends.empty')}
+                    </p>
+                </div>
+            )}
             <RankingList rankingAbove={rankingAbove} rankingFromUser={rankingFromUser} showSeparator={showSeparator} loading={loading} />
             {data && (
                 <div className="mt-6">

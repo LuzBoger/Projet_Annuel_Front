@@ -6,6 +6,7 @@
     "create": "Créer",
     "close": "Fermer",
     "active": "Actif",
+    "inactive": "Inactif",
     "view": "Voir",
     "viewProfile": "Voir le profil",
     "edit": "Modifier",
@@ -16,6 +17,7 @@
     "finish": "Terminer",
     "empty": "Aucune donnée disponible",
     "noData": "Aucune donnée disponible",
+    "search": "Rechercher...",
     "back": "Retour",
     "next": "Suivant",
     "quit": "Quitter",
@@ -28,7 +30,8 @@
     "on": "sur",
     "mute": "Couper le son",
     "unmute": "Activer le son",
-    "validate": "Valider"
+    "validate": "Valider",
+    "actions": "Action"
   },
   "onBoarding": {
     "selectNativeLanguage": "Quelle est votre langue maternelle ?",
@@ -246,8 +249,95 @@
     }
   },
   "admin": {
+    "nav": {
+      "overview": "Vue d'ensemble",
+      "stats": "Statistiques utilisateurs",
+      "subscriptions": "Abonnements",
+      "plans": "Plans",
+      "languages": "Langues",
+      "topics": "Topics",
+      "reviews": "Avis"
+    },
     "dashboard": {
-      "title": "Tableau de bord"
+      "title": "Tableau de bord",
+      "subtitle": "Vue d'ensemble de la plateforme et métriques clés",
+      "activeSubscribers": "Abonnés actifs",
+      "totalRevenue": "Revenu total",
+      "sections": "Accès rapide",
+      "statsDesc": "Engagement, progression, streaks",
+      "subscriptionsDesc": "Gérer et suivre les abonnements",
+      "plansDesc": "Créer et configurer les plans",
+      "languagesDesc": "Langues d'apprentissage disponibles",
+      "topicsDesc": "Gestion des topics et leçons",
+      "reviewsDesc": "Modérer les avis utilisateurs"
+    },
+    "stats": {
+      "pageTitle": "Statistiques utilisateurs",
+      "engagement": "Engagement",
+      "learningMetrics": "Métriques pédagogiques",
+      "totalUsers": "Utilisateurs",
+      "newUsers7d": "Nouveaux (7j)",
+      "activeUsers7d": "Actifs (7j)",
+      "activeStreaks": "Streaks actifs",
+      "avgAccuracy": "Précision moy.",
+      "avgCompletion": "Complétion moy.",
+      "totalStudyTime": "Temps d'étude total",
+      "mostPopularLanguage": "Langue la + étudiée",
+      "newUsers": "Nouveaux utilisateurs",
+      "userGrowthTitle": "Nouveaux utilisateurs (12 derniers mois)",
+      "studyTime": "Temps d'étude",
+      "totalXP": "XP total",
+      "currentStreak": "Streak actuel",
+      "longestStreak": "Streak max",
+      "lessons": "Leçons",
+      "topicsCompleted": "Topics complétés",
+      "topicBreakdown": "Progression par topic",
+      "statsOf": "Statistiques —",
+      "topic": "Topic",
+      "completion": "Complétion",
+      "accuracy": "Précision",
+      "time": "Temps",
+      "usersTitle": "Utilisateurs",
+      "usersCount": "utilisateur(s)",
+      "fetchEngagementError": "Impossible de charger les stats d'engagement.",
+      "fetchMetricsError": "Impossible de charger les métriques pédagogiques.",
+      "fetchUsersError": "Impossible de charger la liste des utilisateurs.",
+      "fetchUserDetailError": "Impossible de charger le détail de l'utilisateur.",
+      "table": {
+        "user": "Utilisateur",
+        "status": "Statut",
+        "lastActivity": "Dernière activité"
+      }
+    },
+    "users": {
+      "fetchError": "Impossible de charger la liste des utilisateurs.",
+      "actionError": "Une erreur est survenue lors de l'action.",
+      "statusUpdated": "Statut mis à jour.",
+      "unlocked": "Compte déverrouillé.",
+      "deleted": "Utilisateur supprimé.",
+      "suspend": "Suspendre",
+      "activate": "Activer",
+      "unlock": "Déverrouiller",
+      "suspendTitle": "Suspendre l'utilisateur",
+      "suspendDesc": "Êtes-vous sûr de vouloir suspendre {{username}} ?",
+      "activateTitle": "Activer l'utilisateur",
+      "activateDesc": "Êtes-vous sûr de vouloir réactiver {{username}} ?",
+      "lockTitle": "Verrouiller l'utilisateur",
+      "lockDesc": "Êtes-vous sûr de vouloir verrouiller {{username}} ?",
+      "editTitle": "Gérer l'utilisateur",
+      "newPassword": "Nouveau mot de passe",
+      "passwordPlaceholder": "12 caractères minimum",
+      "passwordMinLength": "Le mot de passe doit contenir au moins 12 caractères.",
+      "passwordReset": "Mot de passe réinitialisé.",
+      "deleteArea": "Supprimer le compte utilisateur",
+      "deleteTitle": "Supprimer l'utilisateur",
+      "deleteDesc": "Êtes-vous sûr de vouloir supprimer {{username}} ? Cette action est irréversible.",
+      "status": {
+        "active": "Actif",
+        "locked": "Verrouillé",
+        "suspended": "Suspendu",
+        "pending_verification": "En attente"
+      }
     },
     "plans": {
       "title": "Plans",
@@ -691,6 +781,8 @@
       "account_locked": "Compte verrouillé suite à trop de tentatives. Réessayez dans 30 minutes.",
       "account_locked_until": "Le compte est verrouillé jusqu'à : {{until}}.",
       "account_locked_attempts": "Compte verrouillé en raison de trop nombreuses tentatives de connexion échouées.",
+      "account_locked_admin": "Votre compte a été verrouillé par un administrateur. Contactez le support pour plus d'informations.",
+      "account_suspended": "Votre compte a été suspendu par un administrateur. Contactez le support pour plus d'informations.",
       "account_not_found": "Compte non trouvé.",
       "email_already_registered": "Email déjà existant.",
       "username_already_taken": "Nom d'utilisateur déjà pris.",
@@ -743,6 +835,7 @@
     "rejectReview": "Impossible de rejeter l'avis.",
     "fetchGlobalRanking": "Impossible de récupérer le classement mondial.",
     "fetchLanguageRanking": "Impossible de récupérer le classement par langue.",
+    "fetchFriendsRanking": "Impossible de charger le classement des amis.",
     "createChallenge": "Impossible de créer le défi.",
     "joinChallenge": "Impossible de rejoindre le défi.",
     "submitChallenge": "Impossible de soumettre le score.",
@@ -1283,7 +1376,11 @@
     },
     "tab": {
       "global": "Mondial",
-      "language": "Par langue"
+      "language": "Par langue",
+      "friends": "Amis"
+    },
+    "friends": {
+      "empty": "Ajoutez des amis pour voir votre classement entre vous !"
     },
     "you": "vous",
     "to_pass": "pour dépasser le #{{rank}}",
