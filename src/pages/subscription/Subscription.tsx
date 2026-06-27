@@ -24,10 +24,14 @@ export default function Subscription() {
     const handleCancel = async (isCancelNow: boolean, reason: string) => {
         await cancelSubscription({
             isCancelAtPeriodEnd: !isCancelNow,
-            cancellationReason: reason 
+            cancellationReason: reason
         });
 
         setShowModal(false);
+    };
+
+    const handleDisableAutoRenewal = async () => {
+        await cancelSubscription({ isCancelAtPeriodEnd: true, cancellationReason: "" });
     };
 
     if (isLoading && !subscription) {
@@ -74,6 +78,7 @@ export default function Subscription() {
                                 isLoading={isLoading}
                                 onCancel={() => setShowModal(true)}
                                 onReactivate={reactivateSubscription}
+                                onDisableAutoRenewal={handleDisableAutoRenewal}
                                 onChangePlan={() => navigate('/plans')}
                             />
                         )}
