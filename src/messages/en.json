@@ -442,7 +442,8 @@
           "FLASHCARD": "Flashcard",
           "QCM": "QCM",
           "MATCHING_PAIR": "Matching Pairs",
-          "SORTING_EXERCISE": "Sorting Exercise"
+          "SORTING_EXERCISE": "Sorting Exercise",
+          "INTERACTIVE": "Interactive Lesson"
         },
         "sections": {
           "basic_info": "Basic Information",
@@ -864,6 +865,8 @@
     "page_title": "Available Topics",
     "lessons_page_title": "Lessons",
     "exam_page_title": "Topic Exam",
+    "exam_title": "Topic Exam",
+    "exam_desc": "Evaluate your knowledge on this topic.",
     "page_desc": "Select a subject to start practicing.",
     "error_load": "Unable to load topics at this moment.",
     "empty_title": "No topics found",
@@ -1731,7 +1734,8 @@
       "FLASHCARD": "Flashcard",
       "QCM": "Quiz",
       "MATCHING_PAIR": "Matching",
-      "SORTING_EXERCISE": "Sorting"
+      "SORTING_EXERCISE": "Sorting",
+      "INTERACTIVE": "Interactive"
     },
     "liste": {
       "page_title": "My mistakes",

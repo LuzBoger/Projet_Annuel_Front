@@ -6,6 +6,7 @@ import { FlashcardPlayer } from "@/components/lessons/players/FlashcardPlayer";
 import { QCMPlayer } from "@/components/lessons/players/QCMPlayer";
 import { MatchingPlayer } from "@/components/lessons/players/MatchingPlayer";
 import { SortingPlayer } from "@/components/lessons/players/SortingPlayer";
+import { InteractivePlayer } from "@/components/lessons/players/InteractivePlayer";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Check, IconFlashcard } from "@/assets/icons";
@@ -80,6 +81,16 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
               items: data.sortingItems.map(item => item.value || ''),
               correctOrder: data.sortingItems.map((_, i) => i)
             }] : []}
+            onFinish={(score) => {
+              setFinalScore(score);
+              setIsFinished(true);
+            }}
+          />
+        );
+      case LessonType.INTERACTIVE:
+        return (
+          <InteractivePlayer
+            questions={data.interactiveQuestions || []}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);

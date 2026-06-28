@@ -870,6 +870,8 @@
     "page_title": "Topics disponibles",
     "lessons_page_title": "Leçons",
     "exam_page_title": "Examen du topic",
+    "exam_title": "Examen du topic",
+    "exam_desc": "Évaluez vos connaissances sur ce sujet.",
     "page_desc": "Sélectionnez un sujet pour commencer votre entraînement.",
     "error_load": "Impossible de charger les topics pour le moment.",
     "empty_title": "Aucun topic trouvé",

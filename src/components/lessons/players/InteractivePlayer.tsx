@@ -160,8 +160,8 @@ export function InteractivePlayer({ questions, onFinish }: InteractivePlayerProp
             {currentQ.imagePaths && currentQ.imagePaths.length > 0 && (
               <div
                 className={clsx(
-                  "grid gap-4 max-w-md mx-auto mb-8",
-                  currentQ.imagePaths.length === 1 ? "grid-cols-1" : "grid-cols-2"
+                  "grid gap-4 mx-auto mb-6",
+                  currentQ.imagePaths.length === 1 ? "grid-cols-1 max-w-[200px]" : "grid-cols-2 max-w-md"
                 )}
               >
                 {currentQ.imagePaths.map((path, idx) => (
@@ -184,7 +184,7 @@ export function InteractivePlayer({ questions, onFinish }: InteractivePlayerProp
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto">
                 {currentQ.options.map((option, idx) => {
                   const isSelected = selectedOption === idx;
-                  const isCorrectOption = idx === currentQ.correctOptionIndex;
+                  const isCorrectOption = currentQ.correctOptionIndex !== null && idx === Number(currentQ.correctOptionIndex);
 
                   let optionStyle = "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white hover:border-brand-500 dark:hover:border-brand-500 hover:bg-brand-50/20 dark:hover:bg-brand-900/10";
                   if (isValidated) {

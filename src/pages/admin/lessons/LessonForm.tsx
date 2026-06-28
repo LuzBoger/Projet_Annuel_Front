@@ -93,7 +93,7 @@ export default function LessonForm() {
     const isFlashcardOrQcm = lessonType === LessonType.FLASHCARD || lessonType === LessonType.QCM;
     const isInteractive = lessonType === LessonType.INTERACTIVE;
     const minItems = isFlashcardOrQcm ? 5 : 3;
-    const maxItems = (isFlashcardOrQcm || isInteractive) ? 20 : 10;
+    const maxItems = isFlashcardOrQcm ? 20 : 10;
 
     const flashcardsCount = formData.flashcards?.length;
     const questionsCount = formData.questions?.length;
@@ -219,12 +219,14 @@ export default function LessonForm() {
                         items: formData.sortingItems.map((item) => item?.value || ""),
                         correctOrder: formData.sortingItems.map((_, idx) => idx)
                     }];
+                } else if (lessonType === LessonType.INTERACTIVE) {
+                    currentLessonRequest.questions = formData.interactiveQuestions as InteractiveQuestion[];
                 }
 
                 const modificationRequest = {
                     lessonId,
                     prompt: aiGenerationDescription,
-                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD) ? aiItemCount : undefined,
+                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD || lessonType === LessonType.INTERACTIVE) ? aiItemCount : undefined,
                     lesson: currentLessonRequest
                 };
 
@@ -234,7 +236,7 @@ export default function LessonForm() {
                     lessonType: lessonType,
                     topicId: topicId,
                     description: aiGenerationDescription,
-                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD) ? aiItemCount : undefined
+                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD || lessonType === LessonType.INTERACTIVE) ? aiItemCount : undefined
                 };
 
                 generatedLessonData = await generateLessonWithAI(generationRequest);
@@ -253,6 +255,8 @@ export default function LessonForm() {
                 } else if (generatedLessonData.lessonType === LessonType.SORTING_EXERCISE && generatedLessonData.sortingExercise && generatedLessonData.sortingExercise.length > 0) {
                     const sortedItems = generatedLessonData.sortingExercise[0].items.map((item: string) => ({ value: item }));
                     setValue("sortingItems", sortedItems);
+                } else if (generatedLessonData.lessonType === LessonType.INTERACTIVE) {
+                    setValue("interactiveQuestions", generatedLessonData.questions || []);
                 }
             }
         } catch (error: unknown) {
