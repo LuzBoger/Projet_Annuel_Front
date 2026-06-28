@@ -91,6 +91,20 @@ export function calculateScore(items: ExamItem[], qcmAnswers: Record<string, num
                 }
             }
         }
+        if (item.type === 'INTERACTIVE') {
+            total++;
+            if (item.data.systemType === 'MULTIPLE_CHOICE') {
+                if (qcmAnswers[item.data.id] === Number(item.data.correctOptionIndex)) {
+                    correct++;
+                }
+            } else {
+                const user = (flashcardAnswers[item.data.id] ?? '').trim().toLowerCase();
+                const correctWord = (item.data.correctWord ?? '').trim().toLowerCase();
+                if (user === correctWord) {
+                    correct++;
+                }
+            }
+        }
     }
 
     return total === 0 ? 100 : Math.round((correct / total) * 100);
