@@ -1,7 +1,7 @@
 import { UserMistakeRetryListResponse } from "@/types/mistakes/userMistakes";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
-import { Check, Cross } from "@/assets/icons";
+import { Cross } from "@/assets/icons";
 
 interface MistakeDetailModalProps {
     mistake: UserMistakeRetryListResponse;
@@ -67,19 +67,6 @@ export function MistakeDetailModal({ mistake, onClose }: MistakeDetailModalProps
           </div>
         )}
 
-        {mistake.correctAnswer && (
-          <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800 rounded-2xl p-4 mb-6 flex items-center gap-3">
-            <span className="text-2xl"><Check /></span>
-            <div>
-              <p className="text-xs text-emerald-500 font-semibold uppercase tracking-wider mb-0.5">
-                {t("mistake.detail.correct_answer")}
-              </p>
-              <p className="text-emerald-700 dark:text-emerald-400 font-bold text-lg">
-                {mistake.correctAnswer}
-              </p>
-            </div>
-          </div>
-        )}
 
         <div className="flex items-center justify-between text-sm text-gray-500 mb-6">
           <span>

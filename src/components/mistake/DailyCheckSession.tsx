@@ -33,7 +33,7 @@ export function DailyCheckSession({ dailyQuestion, onSubmit }: DailyCheckSession
           {t("mistake.daily_check.title")}
         </h1>
         <p className="mt-2 text-gray-500 text-sm">
-          {t("mistake.daily_check.subtitle", { total: dailyQuestion.totalQuestions })}
+          {t("mistake.daily_check.subtitle", { total: questions.length })}
         </p>
       </div>
 

@@ -39,7 +39,11 @@ export default function Dashboard() {
         userMistakesService.getDailyQuestion()
             .then((data) => {
                 setDailyQuestion(data);
-                if (data.hasQuestionToday) setShowModal(true);
+                const isAlreadyShown = sessionStorage.getItem("dailyModalShown");
+                if (data.hasQuestionToday && !isAlreadyShown) {
+                    setShowModal(true);
+                }
+                sessionStorage.setItem("dailyModalShown", "true");
             })
             .catch(() => {});
     }, []);
