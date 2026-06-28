@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLesson } from "@/hooks/useLesson";
-import { LessonResponse, LessonType } from "@/types/lesson/lesson";
+import { LessonMistake, LessonResponse, LessonType } from "@/types/lesson/lesson";
 import { ChevronLeft } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { FlashcardPlayer } from "@/components/lessons/players/FlashcardPlayer";
@@ -57,7 +57,7 @@ export default function LessonPlayer() {
         return () => { mounted = false; };
     }, [lessonId, fetchLessonById, startLesson, t]);
 
-    const handleLessonComplete = useCallback(async (score: number, correctAnswers: number, totalAnswers: number, mistakeIds: string[]) => {
+    const handleLessonComplete = useCallback(async (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => {
         if (!lessonId || isCompleting) return;
 
         try {
@@ -69,10 +69,10 @@ export default function LessonPlayer() {
                 timeSpentSeconds,
                 correctAnswers,
                 totalAnswers,
-                mistakeFlashCardIds: lesson?.lessonType === LessonType.FLASHCARD ? mistakeIds : undefined,
-                mistakeQcmIds: lesson?.lessonType === LessonType.QCM ? mistakeIds : undefined,
-                mistakeMatchingPairIds: lesson?.lessonType === LessonType.MATCHING_PAIR ? mistakeIds : undefined,
-                mistakeSortingIds: lesson?.lessonType === LessonType.SORTING_EXERCISE ? mistakeIds : undefined,
+                mistakeFlashCardIds: lesson?.lessonType === LessonType.FLASHCARD ? mistakes.map(mistake => mistake.id) : undefined,
+                mistakeQcmList: lesson?.lessonType === LessonType.QCM ? mistakes : undefined,
+                mistakeMatchingList: lesson?.lessonType === LessonType.MATCHING_PAIR ? mistakes : undefined,
+                mistakeSortingList: lesson?.lessonType === LessonType.SORTING_EXERCISE ? mistakes : undefined,
             });
 
             playSuccess();
