@@ -211,7 +211,8 @@ function InteractiveQuestionItem({
               Type de question
             </label>
             <Select
-              {...register(`interactiveQuestions.${index}.systemType`)}
+              value={systemType || "MULTIPLE_CHOICE"}
+              onChange={(val) => setValue(`interactiveQuestions.${index}.systemType`, val as "MULTIPLE_CHOICE" | "OPEN_TEXT")}
               options={[
                 { value: "MULTIPLE_CHOICE", label: "Choix multiples (QCM)" },
                 { value: "OPEN_TEXT", label: "Saisie de texte libre" }

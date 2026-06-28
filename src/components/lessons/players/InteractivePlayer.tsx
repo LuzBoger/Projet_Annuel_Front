@@ -13,6 +13,7 @@ import { getImageUrl, getAudioUrl } from "@/lib/utils/media";
 import clsx from "clsx";
 
 interface InteractivePlayerProps {
+  lessonId?: string;
   questions: InteractiveQuestion[];
   onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => void;
 }

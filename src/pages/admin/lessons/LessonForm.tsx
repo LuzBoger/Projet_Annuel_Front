@@ -91,7 +91,6 @@ export default function LessonForm() {
     }, [aiGenerationDescription, aiItemCount, lessonType, isEdit, t]);
 
     const isFlashcardOrQcm = lessonType === LessonType.FLASHCARD || lessonType === LessonType.QCM;
-    const isInteractive = lessonType === LessonType.INTERACTIVE;
     const minItems = isFlashcardOrQcm ? 5 : 3;
     const maxItems = isFlashcardOrQcm ? 20 : 10;
 
@@ -156,7 +155,7 @@ export default function LessonForm() {
                     if (lesson.lessonType === LessonType.SORTING_EXERCISE && lesson.sortingExercise && lesson.sortingExercise.length > 0) {
                         initialData.sortingItems = lesson.sortingExercise[0].items.map((item: string) => ({ value: item }));
                     } else if (lesson.lessonType === LessonType.INTERACTIVE) {
-                        initialData.interactiveQuestions = lesson.questions as InteractiveQuestion[];
+                        initialData.interactiveQuestions = lesson.interactiveQuestions;
                     }
                     reset(initialData);
                 }
@@ -220,7 +219,7 @@ export default function LessonForm() {
                         correctOrder: formData.sortingItems.map((_, idx) => idx)
                     }];
                 } else if (lessonType === LessonType.INTERACTIVE) {
-                    currentLessonRequest.questions = formData.interactiveQuestions as InteractiveQuestion[];
+                    currentLessonRequest.interactiveQuestions = formData.interactiveQuestions as InteractiveQuestion[];
                 }
 
                 const modificationRequest = {
@@ -291,7 +290,7 @@ export default function LessonForm() {
                 correctOrder: data.sortingItems.map((_, idx) => idx)
             }];
         } else if (data.lessonType === LessonType.INTERACTIVE) {
-            request.questions = data.interactiveQuestions as InteractiveQuestion[];
+            request.interactiveQuestions = data.interactiveQuestions as InteractiveQuestion[];
         }
 
         try {
