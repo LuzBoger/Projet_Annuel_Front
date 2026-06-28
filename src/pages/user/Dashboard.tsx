@@ -99,15 +99,15 @@ export default function Dashboard() {
         <>
             <MetaData title={t('dashboard.page_title')}  robots="noindex, nofollow"  /> 
             <div className="max-w-6xl mx-auto px-4 py-8">
-                <div className="flex gap-8">
+                <div className="flex flex-col lg:flex-row gap-8">
 
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 order-2 lg:order-1">
                         <Welcome username={user?.username ?? ""} />
                         <DailyCheckBanner totalAvailableNow={dailyQuestion?.totalAvailableNow ?? 0} />
                         <Topics topics={topics} activeLanguageId={effectiveLanguageId} />
                     </div>
 
-                    <div className="w-72 flex-shrink-0">
+                    <div className="w-full lg:w-72 lg:flex-shrink-0 order-1 lg:order-2">
                         {validLanguageLevels.length > 0 && (
                             <LanguageLevel
                                 languageLevels={validLanguageLevels}

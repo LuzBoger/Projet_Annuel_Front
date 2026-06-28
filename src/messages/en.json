@@ -1430,12 +1430,30 @@
   "duration": "Duration",
   "status": "Status",
   "footer": {
+    "tagline": "Learn languages naturally, at your own pace.",
+    "cta": "Get started for free",
+    "product": "Product",
+    "links": {
+      "plans": "Plans",
+      "login": "Log in",
+      "register": "Sign up"
+    },
+    "support": "Support",
+    "contact": "Contact",
+    "legal": "Legal",
+    "legalLinks": {
+      "mentions": "Legal Notice",
+      "cgu": "Terms of Use",
+      "cgv": "Terms of Sale",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Policy"
+    },
+    "copyright": "© {{year}} Skaldly. All rights reserved.",
     "mentionsLegales": "Legal Notice",
     "cgu": "Terms of Use",
     "cgv": "Terms of Sale",
     "privacy": "Privacy Policy",
     "cookies": "Cookie Policy",
-    "contact": "Contact",
     "manageCookies": "Manage cookies",
     "rights": "All rights reserved."
   },

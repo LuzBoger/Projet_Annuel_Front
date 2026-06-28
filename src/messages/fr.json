@@ -1435,12 +1435,30 @@
   "duration": "Durée",
   "status": "Statut",
   "footer": {
+    "tagline": "Apprenez les langues naturellement, à votre rythme.",
+    "cta": "Commencer gratuitement",
+    "product": "Produit",
+    "links": {
+      "plans": "Offres",
+      "login": "Connexion",
+      "register": "Inscription"
+    },
+    "support": "Support",
+    "contact": "Contact",
+    "legal": "Légal",
+    "legalLinks": {
+      "mentions": "Mentions légales",
+      "cgu": "CGU",
+      "cgv": "CGV",
+      "privacy": "Politique de confidentialité",
+      "cookies": "Politique de cookies"
+    },
+    "copyright": "© {{year}} Skaldly. Tous droits réservés.",
     "mentionsLegales": "Mentions légales",
     "cgu": "CGU",
     "cgv": "CGV",
     "privacy": "Politique de confidentialité",
     "cookies": "Politique de cookies",
-    "contact": "Contact",
     "manageCookies": "Gérer mes cookies",
     "rights": "Tous droits réservés."
   },

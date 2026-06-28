@@ -109,7 +109,7 @@ export default function Ranking() {
 
     return (
         <div className="max-w-2xl mx-auto px-4 py-8">
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex flex-wrap items-center gap-3 mb-6">
                 <div className="p-2 bg-indigo-100 dark:bg-indigo-900/40 rounded-xl">
                     <Trophy size={22} className="text-indigo-600 dark:text-indigo-400" />
                 </div>
@@ -121,7 +121,7 @@ export default function Ranking() {
                 )}
                 <div className="relative group ml-1">
                     <Info size={16} className="text-gray-400 cursor-help hover:text-indigo-500 transition-colors" />
-                    <div className="absolute left-0 top-6 z-20 invisible group-hover:visible w-64 rounded-xl bg-indigo-600 dark:bg-indigo-700 px-4 py-3 shadow-lg">
+                    <div className="absolute right-0 top-6 z-20 invisible group-hover:visible w-64 rounded-xl bg-indigo-600 dark:bg-indigo-700 px-4 py-3 shadow-lg">
                         <p className="text-[10px] font-semibold text-indigo-200 uppercase tracking-widest mb-1">
                             {t('ranking.info.label')}
                         </p>
