@@ -89,7 +89,7 @@ export function DailyCheckModal({isOpen, dailyQuestion, onClose, onComplete,}: D
               <Brain /> {t("mistake.result.daily_check.label")}
             </p>
             <p className="text-sm text-gray-400">
-              {t("mistake.result.daily_check.subtitle", { total: dailyQuestion.totalQuestions })}
+              {t("mistake.result.daily_check.subtitle", { total: questions.length })}
             </p>
           </div>
 

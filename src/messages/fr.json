@@ -892,6 +892,8 @@
     "type_answer_here": "Tapez votre réponse ici...",
     "exam_matching_finished": "Toutes les paires ont été associées. Vous pouvez continuer ou annuler une paire.",
     "exam_matching_answers": "Paires formées",
+    "exam_title": "Examen",
+    "exam_desc": "Répondez aux questions pour valider vos connaissances.",
     "final_exam_title": "Examen Final",
     "final_exam_desc": "Évaluez globalement vos nouvelles connaissances.",
     "take_exam": "Passer l'examen",
@@ -1746,7 +1748,7 @@
     },
     "empty": {
       "title": "Tout est à jour !",
-      "subtitle": "Aucune question à réviser aujourd'hui. Revenez demain !"
+      "subtitle": "Aucune question disponible pour l'instant. Revenez plus tard !"
     },
     "banner": {
       "title": "Révision quotidienne",
@@ -1772,7 +1774,7 @@
     "lesson": "Leçon"
   },
   "queue": {
-    "streak": "{{count}}/2 correct(s)"
+    "streak": "{{count}}/4 correct(s)"
   },
   "matching": {
     "instruction": "Quel est le mot correspondant ?",

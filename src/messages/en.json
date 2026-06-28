@@ -887,6 +887,8 @@
     "type_answer_here": "Type your answer here...",
     "exam_matching_finished": "All pairs have been matched. You can continue or undo a pair.",
     "exam_matching_answers": "Formed pairs",
+    "exam_title": "Exam",
+    "exam_desc": "Answer the questions to validate your knowledge.",
     "final_exam_title": "Final Exam",
     "final_exam_desc": "Evaluate your new knowledge globally.",
     "take_exam": "Take the exam",
@@ -1767,7 +1769,7 @@
     "lesson": "Lesson"
   },
   "queue": {
-    "streak": "{{count}}/2 correct"
+    "streak": "{{count}}/4 correct"
   },
   "matching": {
     "instruction": "What is the matching word?",

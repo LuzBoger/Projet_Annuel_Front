@@ -41,6 +41,7 @@ export function useAuth() {
 
     const logout = useCallback(async () => {
         await authService.logout();
+        sessionStorage.removeItem("dailyModalShown");
         setState({
             user: null,
             isAuthenticated: false,
