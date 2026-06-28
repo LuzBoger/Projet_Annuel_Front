@@ -121,7 +121,7 @@ export function AppRoutes() {
           </Route>
         </Routes>
       </main>
-      {!isAuthenticated && <Footer />}
+      {!isAuthenticated && !AUTH_PATH.includes(location.pathname) && <Footer />}
       {showOnBoarding && <OnBoardingModal onClose={fetchUser} />}
     </div>
   );
