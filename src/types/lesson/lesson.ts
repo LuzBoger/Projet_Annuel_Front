@@ -69,15 +69,20 @@ export interface LessonResponse extends LessonRequest {
     userProgress?: UserLessonProgressSummary;
 }
 
+export interface LessonMistake {
+    id: string;
+    userAnswer?: string;
+}
+
 export interface CompleteLessonRequest {
     score?: number;
     timeSpentSeconds: number;
     correctAnswers?: number;
     totalAnswers?: number;
     mistakeFlashCardIds?: string[];
-    mistakeMatchingPairIds?: string[];
-    mistakeQcmIds?: string[];
-    mistakeSortingIds?: string[];
+    mistakeQcmList?: LessonMistake[];
+    mistakeMatchingList?: LessonMistake[];
+    mistakeSortingList?: LessonMistake[];
 }
 
 export interface UserProgressResponse {

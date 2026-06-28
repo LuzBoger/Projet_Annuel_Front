@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { FlashcardRequest } from "@/types/lesson/lesson";
+import { FlashcardRequest, LessonMistake } from "@/types/lesson/lesson";
 import { QueuedCard } from "@/types/components/flashcard";
 import { Button } from "@/components/ui/Button";
 import { FaceSad, FaceNeutral, FaceSmile } from "@/assets/icons";
@@ -14,7 +14,7 @@ import { MemorizationHelpButton } from "@/components/lessons/players/common/Memo
 interface FlashcardPlayerProps {
     lessonId?: string;
     flashcards: FlashcardRequest[];
-    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakeIds: string[]) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => void;
 }
 
 export function FlashcardPlayer({ lessonId, flashcards, onFinish }: FlashcardPlayerProps) {
@@ -29,7 +29,7 @@ export function FlashcardPlayer({ lessonId, flashcards, onFinish }: FlashcardPla
     const [isFlipped, setIsFlipped] = useState(false);
     const [completedCards, setCompletedCards] = useState(0);
     const [transitionState, setTransitionState] = useState<'idle' | 'exiting' | 'entering'>('idle');
-    const mistakeIds = useRef<string[]>([]);
+    const mistakeIds = useRef<LessonMistake[]>([]);
 
     if (!flashcards || flashcards.length === 0) {
         return (
@@ -65,7 +65,6 @@ export function FlashcardPlayer({ lessonId, flashcards, onFinish }: FlashcardPla
 
         setTransitionState('exiting');
 
-        // Wait for exit animation (300ms)
         setTimeout(() => {
             const { originalIndex } = currentItem;
 
@@ -78,8 +77,8 @@ export function FlashcardPlayer({ lessonId, flashcards, onFinish }: FlashcardPla
             } else if (level === 'red') {
                 newScores[originalIndex] = 0;
                 playIncorrect();
-                if (currentCard.id && !mistakeIds.current.includes(currentCard.id)) {
-                    mistakeIds.current.push(currentCard.id);
+                if (currentCard.id && !mistakeIds.current.some(mistake => mistake.id === currentCard.id)) {
+                    mistakeIds.current.push({ id: currentCard.id });
                 }
             }
             setScores(newScores);

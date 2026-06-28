@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { QcmQuestionRequest } from "@/types/lesson/lesson";
+import { LessonMistake, QcmQuestionRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
 import { ChevronRight } from "@/assets/icons";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
@@ -14,7 +14,7 @@ import { MemorizationHelpButton } from "@/components/lessons/players/common/Memo
 interface QCMPlayerProps {
     lessonId?: string;
     questions: QcmQuestionRequest[];
-    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakeIds: string[]) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => void;
 }
 
 export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
@@ -24,10 +24,10 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
     const [isValidated, setIsValidated] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
-    const [results, setResults] = useState<SegmentStatus[]>(
+    const [results, setResults] = useState<SegmentStatus[]>(() =>
         new Array(questions.length).fill('pending' as SegmentStatus)
     );
-    const mistakeIds = useRef<string[]>([]);
+    const mistakeIds = useRef<LessonMistake[]>([]);
 
     if (!questions || questions.length === 0) {
         return (
@@ -61,8 +61,8 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
             playCorrect();
         } else {
             playIncorrect();
-            if (currentQ.id && !mistakeIds.current.includes(currentQ.id)) {
-                mistakeIds.current.push(currentQ.id);
+            if (currentQ.id && !mistakeIds.current.some(mistake => mistake.id === currentQ.id)) {
+                mistakeIds.current.push({ id: currentQ.id, userAnswer: selectedOption !== null ? currentQ.options[selectedOption] : undefined });
             }
         }
     };

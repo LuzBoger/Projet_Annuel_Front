@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { SortableItem } from "@/types/components/sorting";
-import { SortingExerciseRequest } from "@/types/lesson/lesson";
+import { LessonMistake, SortingExerciseRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
 import { ChevronRight } from "@/assets/icons";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
@@ -16,7 +16,7 @@ import { MemorizationHelpButton } from "@/components/lessons/players/common/Memo
 interface SortingPlayerProps {
     lessonId?: string;
     exercises: SortingExerciseRequest[];
-    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakeIds: string[]) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => void;
 }
 
 export function SortingPlayer({ lessonId, exercises, onFinish }: SortingPlayerProps) {
@@ -33,7 +33,7 @@ export function SortingPlayer({ lessonId, exercises, onFinish }: SortingPlayerPr
     const [results, setResults] = useState<SegmentStatus[]>(
         new Array(exercises.length).fill('pending' as SegmentStatus)
     );
-    const mistakeIds = useRef<string[]>([]);
+    const mistakeIds = useRef<LessonMistake[]>([]);
 
     if (currentIndex !== prevIndex || exercises !== prevExercises) {
         setPrevIndex(currentIndex);
@@ -93,8 +93,8 @@ export function SortingPlayer({ lessonId, exercises, onFinish }: SortingPlayerPr
             playCorrect();
         } else {
             playIncorrect();
-            if (currentExercise.id && !mistakeIds.current.includes(currentExercise.id)) {
-                mistakeIds.current.push(currentExercise.id);
+            if (currentExercise.id && !mistakeIds.current.some(mistake => mistake.id === currentExercise.id)) {
+                mistakeIds.current.push({ id: currentExercise.id, userAnswer: selectedItems.map(item => item.text).join(' → ') });
             }
         }
     };

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { MatchingPairRequest } from "@/types/lesson/lesson";
+import { LessonMistake, MatchingPairRequest } from "@/types/lesson/lesson";
 import { ChevronRight } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
@@ -16,7 +16,7 @@ import { MemorizationHelpButton } from "@/components/lessons/players/common/Memo
 interface MatchingPlayerProps {
     lessonId?: string;
     pairs: MatchingPairRequest[];
-    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakeIds: string[]) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => void;
 }
 
 export function MatchingPlayer({ lessonId, pairs, onFinish }: MatchingPlayerProps) {
@@ -29,7 +29,7 @@ export function MatchingPlayer({ lessonId, pairs, onFinish }: MatchingPlayerProp
     const [matchedMatchIds, setMatchedMatchIds] = useState<string[]>([]);
     const [errorIds, setErrorIds] = useState<string[]>([]);
     const [errorCount, setErrorCount] = useState(0);
-    const mistakePairIds = useRef<string[]>([]);
+    const mistakePairIds = useRef<LessonMistake[]>([]);
 
     if (pairs !== prevPairs) {
         setPrevPairs(pairs);
@@ -86,11 +86,12 @@ export function MatchingPlayer({ lessonId, pairs, onFinish }: MatchingPlayerProp
             setErrorIds(currentSelectedIds);
             setErrorCount(previous => previous + 1);
             playIncorrect();
-            [firstTile?.matchId, secondTile?.matchId].forEach(matchId => {
-                if (matchId && !matchId.startsWith('pair-') && !mistakePairIds.current.includes(matchId)) {
-                    mistakePairIds.current.push(matchId);
-                }
-            });
+            if (firstTile?.matchId && !firstTile.matchId.startsWith('pair-') && !mistakePairIds.current.some(mistake => mistake.id === firstTile.matchId)) {
+                mistakePairIds.current.push({ id: firstTile.matchId, userAnswer: secondTile?.text });
+            }
+            if (secondTile?.matchId && !secondTile.matchId.startsWith('pair-') && !mistakePairIds.current.some(mistake => mistake.id === secondTile.matchId)) {
+                mistakePairIds.current.push({ id: secondTile.matchId, userAnswer: firstTile?.text });
+            }
 
             setTimeout(() => {
                 setErrorIds([]);
