@@ -7,7 +7,7 @@ import { Topics } from "@/components/user/dashboard/Topics";
 import { Welcome } from "@/components/user/dashboard/Welcome";
 import { DailyCheckBanner } from "@/components/mistake/DailyCheckBanner";
 import { DailyCheckModal } from "@/components/mistake/DailyCheckModal";
-import { EVENT_ACTIVE_LANGUAGE_CHANGED } from "@/constants/event";
+import { EVENT_ACTIVE_LANGUAGE_CHANGED, EVENT_USER_LANGUAGE_REMOVED } from "@/constants/event";
 import { useAuth } from "@/hooks/useAuth";
 import { useProgress } from "@/hooks/useProgress";
 import { globalEvents } from "@/lib/utils/eventEmitter";
@@ -65,15 +65,23 @@ export default function Dashboard() {
     }, [effectiveLanguageId]);
 
     useEffect(() => {
-    const handler = (...args: unknown[]) => {
-        const lang = args[0] as LanguageResponse | null | undefined;
-        if (lang?.id) {
-            setActiveLanguageId(lang.id);
-        }
-    };
+        const handler = (...args: unknown[]) => {
+            const lang = args[0] as LanguageResponse | null | undefined;
+            if (lang?.id) {
+                setActiveLanguageId(lang.id);
+            }
+        };
         globalEvents.on(EVENT_ACTIVE_LANGUAGE_CHANGED, handler);
         return () => globalEvents.off(EVENT_ACTIVE_LANGUAGE_CHANGED, handler);
     }, []);
+
+    useEffect(() => {
+        const handler = () => {
+            fetchData();
+        };
+        globalEvents.on(EVENT_USER_LANGUAGE_REMOVED, handler);
+        return () => globalEvents.off(EVENT_USER_LANGUAGE_REMOVED, handler);
+    }, [fetchData]);
 
     const handleLanguageSelect = async (languageId: string) => {
         setActiveLanguageId(languageId);

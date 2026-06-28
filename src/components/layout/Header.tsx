@@ -80,7 +80,21 @@ export function Header() {
         };
 
         const onRemoved = (...args: unknown[]) => {
-            setLearningLanguages((prev) => prev.filter(ul => ul.languageId !== (args[0] as string)));
+            const removedLanguageId = args[0] as string;
+            setLearningLanguages((prev) => prev.filter(userLanguage => userLanguage.languageId !== removedLanguageId));
+            setActiveLanguage((prev) => {
+                if (prev?.id !== removedLanguageId) return prev;
+                const remaining = learningLanguages.filter(userLanguage => userLanguage.languageId !== removedLanguageId);
+                if (remaining.length === 0) return null;
+                const next = remaining[0];
+                return {
+                    id: next.languageId,
+                    name: next.languageName,
+                    code: next.languageCode,
+                    orderIndex: 0,
+                    isActive: true
+                } as LanguageResponse;
+            });
         };
 
         globalEvents.on(EVENT_USER_LANGUAGE_ADDED, onAdded);
@@ -90,7 +104,7 @@ export function Header() {
             globalEvents.off(EVENT_USER_LANGUAGE_ADDED, onAdded);
             globalEvents.off(EVENT_USER_LANGUAGE_REMOVED, onRemoved);
         };
-    }, []);
+    }, [learningLanguages]);
 
     const handleLogout = async () => {
         await logout();

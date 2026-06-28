@@ -22,7 +22,7 @@ export function ProfileLanguageSection({ languages, onLanguageRemove, isProfileO
 
     const handleRemoveLanguage = async (language: UserLanguageResponse) => {
         await userLanguageService.deleteUserLanguage(language.id);
-        globalEvents.emit(EVENT_USER_LANGUAGE_REMOVED, language.id);
+        globalEvents.emit(EVENT_USER_LANGUAGE_REMOVED, language.languageId);
         onLanguageRemove(language.id);
     }
 

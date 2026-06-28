@@ -49,7 +49,7 @@ export function LanguageDetailPage() {
         try {
             if (isLearning && userLanguage) {
                 await deleteLanguage(userLanguage.id);
-                globalEvents.emit(EVENT_USER_LANGUAGE_REMOVED, language?.id);
+                globalEvents.emit(EVENT_USER_LANGUAGE_REMOVED, userLanguage.languageId);
             } else if (language) {
                 const addedLanguage = await addLanguage({ languageId: language.id, languageType: "LEARNING" });
                 if (addedLanguage) {
