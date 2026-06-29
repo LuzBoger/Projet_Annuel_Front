@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/Input";
 import { ExamSortingQuestion } from "@/components/topics/ExamSortingQuestion";
 import { getImageUrl, getAudioUrl } from "@/lib/utils/media";
 import { PlayIcon } from "@/assets/icons";
+import { Button } from "@/components/ui/Button";
 import { clsx } from "clsx";
 
 interface QuestionRendererProps {
@@ -73,17 +74,18 @@ export function QuestionRenderer({question, flashCardAnswer, qcmAnswer, matching
 
                 {question.audioPaths && question.audioPaths.length > 0 && (
                     <div className="flex justify-center mb-6">
-                        <button
+                        <Button
                             type="button"
+                            variant="none"
                             onClick={() => {
                                 const audio = new Audio(getAudioUrl(question.audioPaths![0]));
                                 audio.play().catch(e => console.error("Audio playback error:", e));
                             }}
-                            className="flex items-center gap-2 px-4 py-2 text-xs font-semibold bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400 border border-brand-100 dark:border-brand-500/10 rounded-full shadow-sm"
+                            className="flex items-center gap-2 px-4 py-2 text-xs font-semibold bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400 border border-brand-100 dark:border-brand-500/10 rounded-full shadow-sm flex items-center justify-center"
                         >
-                            <PlayIcon className="w-4 h-4" />
+                            <PlayIcon className="w-4 h-4 text-brand-600 dark:text-brand-400" />
                             <span>Prononciation</span>
-                        </button>
+                        </Button>
                     </div>
                 )}
 
@@ -102,19 +104,20 @@ export function QuestionRenderer({question, flashCardAnswer, qcmAnswer, matching
                         {question.options.map((option, idx) => {
                             const isSelected = qcmAnswer === idx;
                             return (
-                                <button
+                                <Button
                                     key={idx}
                                     type="button"
+                                    variant="none"
                                     onClick={() => onQcmSelect(idx)}
                                     className={clsx(
-                                        "w-full px-4 py-3 text-center rounded-xl border text-sm font-semibold transition-all shadow-sm",
+                                        "w-full px-4 py-3 text-center rounded-xl border text-sm font-semibold transition-all shadow-sm flex items-center justify-center",
                                         isSelected
                                             ? "bg-brand-50 dark:bg-brand-900/20 border-brand-500 text-brand-700 dark:text-brand-400 ring-2 ring-brand-500/20"
                                             : "bg-white dark:bg-gray-850 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white hover:border-brand-500"
                                     )}
                                 >
                                     {option}
-                                </button>
+                                </Button>
                             );
                         })}
                     </div>

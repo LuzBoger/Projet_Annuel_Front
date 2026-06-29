@@ -527,6 +527,25 @@
         "move_down": "Descendre",
         "note_new": "L'ordre dans lequel vous ajoutez les éléments définit la bonne réponse."
       },
+      "interactive": {
+        "title": "Question Interactive",
+        "add_question": "Ajouter une question",
+        "questionText": "Consigne / Question",
+        "questionTextPlaceholder": "ex: Écoutez l'audio et sélectionnez la bonne réponse...",
+        "systemType": "Type de question",
+        "multipleChoice": "Choix multiples (QCM)",
+        "openText": "Saisie de texte libre",
+        "imagesLabel": "Images (Visuals)",
+        "addImage": "Ajouter une image",
+        "noImage": "Aucune image téléversée",
+        "audiosLabel": "Audios (Voix)",
+        "addAudio": "Ajouter un audio",
+        "noAudio": "Aucun audio téléversé",
+        "optionsLabel": "Choix multiples (Options)",
+        "addOption": "Ajouter une option",
+        "correctWordLabel": "Mot correct attendu",
+        "correctWordPlaceholder": "ex: cat"
+      },
       "preview": {
         "title": "Actions rapides",
         "no_data": "Remplissez les informations pour voir l'aperçu",
@@ -963,6 +982,13 @@
       "correct_order_prefix": "Solution : ",
       "validate": "Vérifier la réponse",
       "next": "Continuer"
+    },
+    "interactive": {
+      "listen_pronunciation": "Écouter la prononciation",
+      "type_answer_placeholder": "Tapez votre réponse ici...",
+      "correct": "Correct !",
+      "incorrect": "Incorrect !",
+      "correct_answer_prefix": "La bonne réponse est : "
     },
     "qcm": {
       "title": "Questionnaire",

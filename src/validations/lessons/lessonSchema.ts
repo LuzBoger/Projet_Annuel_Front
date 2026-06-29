@@ -7,7 +7,6 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
   isActive: yup.boolean().required(),
   lessonType: yup.string().oneOf(Object.values(LessonType)).required(t('common.required')),
   
-  // Flashcard specific
   flashcards: yup.array().when('lessonType', {
     is: LessonType.FLASHCARD,
     then: (schema) => schema.of(
@@ -23,7 +22,6 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
     otherwise: (schema) => schema.notRequired(),
   }),
 
-  // QCM specific
   questions: yup.array().when('lessonType', {
     is: LessonType.QCM,
     then: (schema) => schema.of(
@@ -39,7 +37,6 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
     otherwise: (schema) => schema.notRequired(),
   }),
 
-  // Matching Pair specific
   matchingPairs: yup.array().when('lessonType', {
     is: LessonType.MATCHING_PAIR,
     then: (schema) => schema.of(
@@ -53,7 +50,6 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
     otherwise: (schema) => schema.notRequired(),
   }),
 
-  // Sorting Exercise specific
   sortingItems: yup.array().when('lessonType', {
     is: LessonType.SORTING_EXERCISE,
     then: (schema) => schema.of(
@@ -66,7 +62,6 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
     otherwise: (schema) => schema.notRequired(),
   }),
 
-  // Interactive specific
   interactiveQuestions: yup.array().when('lessonType', {
     is: LessonType.INTERACTIVE,
     then: (schema) => schema.of(

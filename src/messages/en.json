@@ -522,6 +522,25 @@
         "move_down": "Move down",
         "note_new": "The order in which you add the items defines the correct answer."
       },
+      "interactive": {
+        "title": "Interactive Question",
+        "add_question": "Add a question",
+        "questionText": "Instruction / Question",
+        "questionTextPlaceholder": "e.g., Listen to the audio and select the correct option...",
+        "systemType": "Question type",
+        "multipleChoice": "Multiple choice (MCQ)",
+        "openText": "Free text input",
+        "imagesLabel": "Images (Visuals)",
+        "addImage": "Add an image",
+        "noImage": "No image uploaded",
+        "audiosLabel": "Audios (Voice)",
+        "addAudio": "Add an audio",
+        "noAudio": "No audio uploaded",
+        "optionsLabel": "Multiple choice (Options)",
+        "addOption": "Add an option",
+        "correctWordLabel": "Expected correct word",
+        "correctWordPlaceholder": "e.g., cat"
+      },
       "preview": {
         "title": "Quick Actions",
         "no_data": "Fill in the information to see the preview",
@@ -958,6 +977,13 @@
       "correct_order_prefix": "Solution: ",
       "validate": "Check answer",
       "next": "Continue"
+    },
+    "interactive": {
+      "listen_pronunciation": "Listen to pronunciation",
+      "type_answer_placeholder": "Type your answer here...",
+      "correct": "Correct!",
+      "incorrect": "Incorrect!",
+      "correct_answer_prefix": "The correct answer is: "
     },
     "qcm": {
       "title": "Questionnaire",

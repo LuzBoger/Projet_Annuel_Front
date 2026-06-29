@@ -167,4 +167,12 @@ export interface AIMemorizationHelpResponse {
     warning: string | null;
 }
 
+export interface InteractiveQuestionError {
+  questionText?: { message?: string };
+  systemType?: { message?: string };
+  correctOptionIndex?: { message?: string };
+  correctWord?: { message?: string };
+  options?: Array<{ message?: string } | undefined>;
+}
+
 

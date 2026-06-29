@@ -18,6 +18,30 @@ interface InteractivePlayerProps {
   onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => void;
 }
 
+const OPTION_STYLES = {
+  default: "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white hover:border-brand-500 dark:hover:border-brand-500 hover:bg-brand-50/20 dark:hover:bg-brand-900/10",
+  selected: "bg-brand-50 dark:bg-brand-900/20 border-brand-500 text-brand-700 dark:text-brand-400 ring-2 ring-brand-500/20",
+  correct: "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-500 text-emerald-700 dark:text-emerald-400",
+  incorrect: "bg-red-50 dark:bg-red-950/20 border-red-500 text-red-700 dark:text-red-400",
+  disabled: "bg-gray-50 dark:bg-gray-850/50 border-gray-200 dark:border-gray-800 text-gray-400 dark:text-gray-600 opacity-60"
+};
+
+function getOptionStyle(isSelected: boolean, isCorrectOption: boolean, isValidated: boolean): string {
+  if (isValidated) {
+    if (isCorrectOption) {
+      return OPTION_STYLES.correct;
+    }
+    if (isSelected) {
+      return OPTION_STYLES.incorrect;
+    }
+    return OPTION_STYLES.disabled;
+  }
+  if (isSelected) {
+    return OPTION_STYLES.selected;
+  }
+  return OPTION_STYLES.default;
+}
+
 function levenshteinDistance(a: string, b: string): number {
   const tmp = [];
   let i, j;
@@ -143,7 +167,6 @@ export function InteractivePlayer({ questions, onFinish }: InteractivePlayerProp
               </h2>
             </div>
 
-            {/* Audio Section */}
             {currentQ.audioPaths && currentQ.audioPaths.length > 0 && (
               <div className="flex justify-center mb-6">
                 <Button
@@ -152,12 +175,11 @@ export function InteractivePlayer({ questions, onFinish }: InteractivePlayerProp
                   className="gap-2 px-6 py-3 rounded-full shadow hover:scale-105 transition-transform"
                 >
                   <PlayIcon className="w-5 h-5" />
-                  <span>Écouter la prononciation</span>
+                  <span>{t("lessons.interactive.listen_pronunciation")}</span>
                 </Button>
               </div>
             )}
 
-            {/* Images Grid */}
             {currentQ.imagePaths && currentQ.imagePaths.length > 0 && (
               <div
                 className={clsx(
@@ -180,38 +202,26 @@ export function InteractivePlayer({ questions, onFinish }: InteractivePlayerProp
               </div>
             )}
 
-            {/* Interactive Layout Selection */}
             {currentQ.systemType === "MULTIPLE_CHOICE" ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto">
                 {currentQ.options.map((option, idx) => {
                   const isSelected = selectedOption === idx;
                   const isCorrectOption = currentQ.correctOptionIndex !== null && idx === Number(currentQ.correctOptionIndex);
-
-                  let optionStyle = "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white hover:border-brand-500 dark:hover:border-brand-500 hover:bg-brand-50/20 dark:hover:bg-brand-900/10";
-                  if (isValidated) {
-                    if (isCorrectOption) {
-                      optionStyle = "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-500 text-emerald-700 dark:text-emerald-400";
-                    } else if (isSelected) {
-                      optionStyle = "bg-red-50 dark:bg-red-950/20 border-red-500 text-red-700 dark:text-red-400";
-                    } else {
-                      optionStyle = "bg-gray-50 dark:bg-gray-850/50 border-gray-200 dark:border-gray-800 text-gray-400 dark:text-gray-600 opacity-60";
-                    }
-                  } else if (isSelected) {
-                    optionStyle = "bg-brand-50 dark:bg-brand-900/20 border-brand-500 text-brand-700 dark:text-brand-400 ring-2 ring-brand-500/20";
-                  }
+                  const optionStyle = getOptionStyle(isSelected, isCorrectOption, isValidated);
 
                   return (
-                    <button
+                    <Button
                       key={idx}
                       onClick={() => handleSelectOption(idx)}
                       disabled={isValidated}
+                      variant="none"
                       className={clsx(
                         "w-full px-5 py-4 text-center rounded-xl border text-sm font-semibold transition-all duration-200 shadow-sm flex items-center justify-center gap-2",
                         optionStyle
                       )}
                     >
                       <span>{option}</span>
-                    </button>
+                    </Button>
                   );
                 })}
               </div>
@@ -219,7 +229,7 @@ export function InteractivePlayer({ questions, onFinish }: InteractivePlayerProp
               <div className="max-w-md mx-auto">
                 <input
                   type="text"
-                  placeholder="Tapez votre réponse ici..."
+                  placeholder={t("lessons.interactive.type_answer_placeholder")}
                   value={textInput}
                   onChange={(e) => setTextInput(e.target.value)}
                   disabled={isValidated}
@@ -249,11 +259,11 @@ export function InteractivePlayer({ questions, onFinish }: InteractivePlayerProp
                 isCorrect ? "text-emerald-700 dark:text-emerald-400" : "text-red-700 dark:text-red-400"
               )}
             >
-              {isCorrect ? "Correct !" : "Incorrect !"}
+              {isCorrect ? t("lessons.interactive.correct") : t("lessons.interactive.incorrect")}
             </h4>
             {!isCorrect && (
               <p className="text-sm font-medium text-red-600 dark:text-red-300">
-                La bonne réponse est :{" "}
+                {t("lessons.interactive.correct_answer_prefix")}{" "}
                 {currentQ.systemType === "MULTIPLE_CHOICE"
                   ? currentQ.options[Number(currentQ.correctOptionIndex)]
                   : currentQ.correctWord}
@@ -273,7 +283,7 @@ export function InteractivePlayer({ questions, onFinish }: InteractivePlayerProp
             size="lg"
             className="px-12 rounded-xl font-bold shadow-md w-full sm:w-auto"
           >
-            Valider
+            {t("common.validate")}
           </Button>
         ) : (
           <Button
@@ -281,7 +291,7 @@ export function InteractivePlayer({ questions, onFinish }: InteractivePlayerProp
             size="lg"
             className="px-12 !bg-gray-900 dark:!bg-gray-700 hover:!bg-gray-800 dark:hover:!bg-gray-600 text-white rounded-xl font-bold shadow-md flex items-center justify-center gap-2 w-full sm:w-auto"
           >
-            <span>{currentIndex < questions.length - 1 ? t("common.next") : "Terminer"}</span>
+            <span>{currentIndex < questions.length - 1 ? t("common.next") : t("common.finish")}</span>
             <ChevronRight className="w-5 h-5" />
           </Button>
         )}
