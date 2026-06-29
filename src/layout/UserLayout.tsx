@@ -5,6 +5,7 @@ import { profileService } from "@/services/profileService";
 import { getProfileImageUrl } from "@/lib/utils/image";
 import { UserSidebar } from "@/components/layout/UserSidebar";
 import { Button } from "@/components/ui/Button";
+import { LogoSk } from "@/assets/icons";
 
 export function UserLayout() {
     const { logout } = useAuth();
@@ -60,8 +61,8 @@ export function UserLayout() {
                             <span className="block h-0.5 bg-current rounded" />
                         </div>
                     </Button>
-                    <Link to="/dashboard" className="text-lg font-bold text-brand-600 dark:text-white">
-                        Skaldly
+                    <Link to="/dashboard" className="flex items-center text-brand-600 dark:text-white">
+                        <LogoSk className="h-8 w-8 shrink-0" />
                     </Link>
                 </div>
 

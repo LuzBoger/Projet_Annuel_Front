@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
+import { LogoSk, LogoSkaldly } from "@/assets/icons";
 
 export function Header() {
     const { t } = useTranslation();
@@ -11,8 +12,9 @@ export function Header() {
             <div className="max-w-full mx-auto px-4 sm:px-6">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex-shrink-0 flex items-center">
-                        <Link to="/" className="text-2xl font-bold text-brand-600 dark:text-white hover:text-brand-500 dark:hover:text-gray-300 transition-colors">
-                            Skaldly
+                        <Link to="/" className="flex items-center text-brand-600 dark:text-white hover:text-brand-500 dark:hover:text-gray-300 transition-colors">
+                            <LogoSkaldly className="hidden md:block h-8 w-auto shrink-0" />
+                            <LogoSk className="block md:hidden h-8 w-8 shrink-0" />
                         </Link>
                     </div>
 

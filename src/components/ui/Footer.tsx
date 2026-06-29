@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {  Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { LogoSkaldly } from "@/assets/icons";
 
 export function Footer() {
   const { t } = useTranslation();
@@ -11,8 +12,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-14">
 
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <span className="text-white font-extrabold text-xl tracking-tight">Skaldly</span>
+            <div className="flex items-center gap-2.5 mb-4 text-white hover:text-gray-300 transition-colors">
+              <LogoSkaldly className="h-8 w-auto shrink-0" />
             </div>
             <p className="text-sm text-gray-400 leading-relaxed mb-6">
               {t("footer.tagline")}

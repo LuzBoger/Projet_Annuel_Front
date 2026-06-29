@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { User, StarIcon, BookOpen, Brain, Eye, Sparkles, Cross } from "@/assets/icons";
+import { User, StarIcon, BookOpen, Brain, Eye, Sparkles, Cross, LogoSkaldly } from "@/assets/icons";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
 import { Avatar } from "@/components/ui/Avatar";
@@ -34,9 +34,9 @@ export function Sidebar({ onClose, photoUrl, handleLogout }: SidebarProps) {
                     <Link
                         to="/admin"
                         onClick={onClose}
-                        className="text-xl font-bold text-brand-600 dark:text-white hover:text-brand-500 transition-colors"
+                        className="flex items-center text-brand-600 dark:text-white hover:text-brand-500 transition-colors"
                     >
-                        Skaldly
+                        <LogoSkaldly className="h-8 w-auto shrink-0" />
                     </Link>
                     <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mt-0.5">
                         Admin

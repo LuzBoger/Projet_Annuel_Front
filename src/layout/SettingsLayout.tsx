@@ -8,6 +8,7 @@ import { RoleEnum } from "@/types/enum/roles";
 import { Sidebar } from "@/components/ui/Sidebar";
 import { UserSidebar } from "@/components/layout/UserSidebar";
 import { Button } from "@/components/ui/Button";
+import { LogoSk } from "@/assets/icons";
 import { LanguagesSettings } from "@/components/settings/languages/LanguagesSettings";
 import { NotificationPreferences } from "@/components/settings/notifications/NotificationPreferences";
 import { SideBar } from "@/components/settings/SideBar";
@@ -69,8 +70,9 @@ export function SettingsLayout() {
                             <span className="block h-0.5 bg-current rounded" />
                         </div>
                     </Button>
-                    <Link to={isAdmin ? "/admin" : "/dashboard"} className="text-lg font-bold text-brand-600 dark:text-white">
-                        Skaldly {isAdmin && <span className="text-xs font-normal text-gray-400">Admin</span>}
+                    <Link to={isAdmin ? "/admin" : "/dashboard"} className="flex items-center gap-2 text-brand-600 dark:text-white">
+                        <LogoSk className="h-8 w-8 shrink-0" />
+                        {isAdmin && <span className="text-xs font-normal text-gray-400">Admin</span>}
                     </Link>
                 </div>
 

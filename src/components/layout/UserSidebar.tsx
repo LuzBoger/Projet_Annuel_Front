@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import { Sparkles, Brain, StarIcon, BookOpen, Eye, User, Cross } from "@/assets/icons";
+import { Sparkles, Brain, StarIcon, BookOpen, Eye, User, Cross, LogoSkaldly } from "@/assets/icons";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
 import { Avatar } from "@/components/ui/Avatar";
@@ -78,9 +78,9 @@ export function UserSidebar({ onClose, photoUrl, handleLogout }: UserSidebarProp
                 <Link
                     to="/dashboard"
                     onClick={onClose}
-                    className="text-xl font-bold text-brand-600 dark:text-white hover:text-brand-500 transition-colors"
+                    className="flex items-center text-brand-600 dark:text-white hover:text-brand-500 transition-colors"
                 >
-                    Skaldly
+                    <LogoSkaldly className="h-8 w-auto shrink-0" />
                 </Link>
                 {onClose && (
                     <Button variant="none" onClick={onClose} className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors md:hidden">
