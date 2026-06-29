@@ -7,28 +7,32 @@ import { Select } from "@/components/ui/Select";
 import { Trash, Plus } from "@/assets/icons";
 import { LessonFormData } from "@/validations/lessons/lessonSchema";
 import { languageService } from "@/services/languageService";
-import { LanguageResponse } from "@/types/language/language";
+import { LanguageOptions, LanguageResponse } from "@/types/language/language";
 
 interface FlashcardFormProps {
     control: Control<LessonFormData>;
     register: UseFormRegister<LessonFormData>;
     errors: FieldErrors<LessonFormData>;
+    options?: LanguageOptions[];
 }
 
-export function FlashcardForm({ control, register, errors }: FlashcardFormProps) {
+export function FlashcardForm({ control, register, errors, options }: FlashcardFormProps) {
     const { t } = useTranslation();
     const [languages, setLanguages] = useState<LanguageResponse[]>([]);
 
     useEffect(() => {
+        if(options) {
+            return;
+        }
         languageService.getAllActiveLanguages().then(setLanguages).catch(() => {});
-    }, []);
+    }, [options]);
 
-    const { fields, append, remove } = useFieldArray({
-        control,
-        name: "flashcards"
-    });
+    const { fields, append, remove } = useFieldArray({control,name: "flashcards"});
 
-    const languageOptions = languages.map(language => ({ value: language.code, label: language.name }));
+    const languageOptions = options ? options.map(language => ({ value: language.code, label: language.name })) : languages.map(language => ({ value: language.code, label: language.name }));
+
+    const defaultFront = languageOptions[0]?.value ?? '';
+    const defaultBack = languageOptions[1]?.value ?? '';
 
     return (
         <div className="space-y-6">
@@ -38,7 +42,7 @@ export function FlashcardForm({ control, register, errors }: FlashcardFormProps)
                     type="button"
                     variant="pill-green"
                     size="sm"
-                    onClick={() => append({ front: "", back: "", frontLanguage: languages[0]?.code ?? '', backLanguage: languages[1]?.code ?? '' })}
+                    onClick={() => append({ front: "", back: "", frontLanguage: defaultFront, backLanguage: defaultBack })}
                     className="gap-2"
                 >
                     <Plus className="w-4 h-4" />
