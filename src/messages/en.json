@@ -1102,7 +1102,8 @@
     },
     "planPrice": {
       "required": "Price is required",
-      "min": "Price must be greater than 0"
+      "min": "Price must be greater than 0",
+      "typeError": "Price must be a valid number"
     },
     "planCurrency": {
       "required": "Currency is required",

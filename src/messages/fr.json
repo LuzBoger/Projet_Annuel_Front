@@ -1107,7 +1107,8 @@
     },
     "planPrice": {
       "required": "Le prix est requis",
-      "min": "Le prix doit être supérieur à 0"
+      "min": "Le prix doit être supérieur à 0",
+      "typeError": "Le prix doit être un nombre valide"
     },
     "planCurrency": {
       "required": "La devise est requise",
