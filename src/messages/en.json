@@ -749,6 +749,9 @@
       },
       "sorting_exercise": {
         "type": "Sorting Exercise"
+      },
+      "interactive": {
+        "type": "Interactive Questions"
       }
     },
     "validation": {

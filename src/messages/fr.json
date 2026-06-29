@@ -754,6 +754,9 @@
       },
       "sorting_exercise": {
         "type": "Mise en ordre"
+      },
+      "interactive": {
+        "type": "Questions Interactives"
       }
     },
     "validation": {
