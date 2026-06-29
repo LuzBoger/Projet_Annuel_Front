@@ -25,4 +25,8 @@ export interface UpdateLanguageRequest {
     isActive: boolean;
 }
 
+export interface LanguageOptions {
+    code: string;
+    name: string;
+}
 export type StepOnBoarding = 'native' | 'learning' ;

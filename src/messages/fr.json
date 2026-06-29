@@ -695,7 +695,9 @@
         "label": "Adversaire",
         "select": "Sélectionner un adversaire",
         "change": "Changer d'adversaire",
-        "empty": "Aucun adversaire trouvé"
+        "empty": "Aucun adversaire trouvé",
+        "friends": "Amis",
+        "all": "Apprenants"
       },
       "topic": "Thème",
       "topic_placeholder": "Sélectionnez un thème",
@@ -706,6 +708,11 @@
       "lesson_type": "Type de leçon",
       "summary": "Récapitulatif",
       "submit": "Créer le défi"
+    },
+    "create": {
+      "source_language": "Langue de rédaction",
+      "target_language": "Langue à apprendre",
+      "select_language": "Sélectionner une langue"
     },
     "type": {
       "public": {
@@ -734,12 +741,13 @@
       "title_max": "Maximum 200 caractères",
       "title.max": "Maximum 200 caractères",
       "challengeType": "Le type de défi est requis",
-      "lessonId": "Veuillez sélectionner une leçon",
-      "lessonId.duel": "Veuillez sélectionner une leçon pour ce duel",
+      "lessonId": "Veuillez choisir une leçon",
+      "lessonId.duel": "Veuillez choisir une leçon pour ce duel",
       "lessonType": "Le type de leçon est requis",
       "languageId": "Veuillez sélectionner une langue",
+      "sourceLanguageId": "Veuillez sélectionner la langue de rédaction",
       "challengedId": {
-        "required": "L'identifiant de l'adversaire est requis pour un duel"
+        "required": "Veuillez ajouter un adversaire"
       },
       "qcm": {
         "question": "La question est requise",

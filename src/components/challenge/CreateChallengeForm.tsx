@@ -6,11 +6,11 @@ import { FormField } from "@/components/ui/FormField";
 import { Select } from "@/components/ui/Select";
 import { CHALLENGE_TYPES, PUBLIC_LESSON_TYPES } from "@/constants/challenge";
 import { useChallenge } from "@/hooks/useChallenge";
-import { languageService } from "@/services/languageService";
 import { lessonService } from "@/services/lessonService";
 import { topicService } from "@/services/topicService";
+import { userLanguageService } from "@/services/userLanguage";
 import { ChallengeType, ChallengeUser } from "@/types/challenges/challenge";
-import { LanguageResponse } from "@/types/language/language";
+import { UserLanguageResponse } from "@/types/userLanguage/userLanguage";
 import { LessonResponse, LessonType } from "@/types/lesson/lesson";
 import { TopicResponse } from "@/types/topic/topic";
 import { ChallengeFormData, challengeSchema } from "@/validations/challenges/challengeSchema";
@@ -44,11 +44,12 @@ export function CreateChallengeForm() {
     const [challengeType, setChallengeType] = useState<ChallengeType>('PUBLIC');
     const [topics, setTopics] = useState<TopicResponse[]>([]);
     const [lessons, setLessons] = useState<LessonResponse[]>([]);
-    const [languages, setLanguages] = useState<LanguageResponse[]>([]);
     const [selectedTopicId, setSelectedTopicId] = useState('');
     const [lessonType, setLessonType] = useState<LessonType>('QCM');
     const [selectedParticipant, setSelectedParticipant] = useState<ChallengeUser | null>(null);
     const [isParticipantModalOpen, setIsParticipantModalOpen] = useState(false);
+    const [learningLanguages, setLearningLanguages] = useState<UserLanguageResponse[]>([]);
+    const [nativeLanguages, setNativeLanguages] = useState<UserLanguageResponse[]>([]);
 
     const { register, control, handleSubmit, setValue, formState: { errors } } = useForm<ChallengeFormData>({
         resolver: yupResolver(challengeSchema(t)) as Resolver<ChallengeFormData>,
@@ -57,6 +58,7 @@ export function CreateChallengeForm() {
             challengeType: 'PUBLIC',
             lessonId: '',
             languageId: '',
+            sourceLanguageId: '',
             lessonType: 'QCM' as LessonType,
             questionCount: undefined,
             challengedId: '',
@@ -80,10 +82,12 @@ export function CreateChallengeForm() {
     const selectedLessonId = useWatch({ control, name: 'lessonId' });
     const selectedLanguageId = topics.find(topic => topic.id === selectedTopicId)?.targetLanguageId ?? '';
     const selectedLanguageIdPublic = useWatch({ control, name: 'languageId' }) ?? '';
+    const selectedSourceLanguageId = useWatch({ control, name: 'sourceLanguageId' }) ?? '';
 
     useEffect(() => {
         topicService.getAllTopicsByActive().then(setTopics);
-        languageService.getAllActiveLanguages().then(setLanguages);
+        userLanguageService.getUserLearningLanguages().then(setLearningLanguages).catch(() => {});
+        userLanguageService.getUserNativeLanguages().then(setNativeLanguages).catch(() => {});
     }, []);
 
     useEffect(() => {
@@ -106,6 +110,7 @@ export function CreateChallengeForm() {
                 title: data.title,
                 challengeType: 'PUBLIC',
                 languageId: data.languageId,
+                sourceLanguageId: data.sourceLanguageId || undefined,
                 lessonType,
                 questionCount: data.questionCount || undefined,
                 qcm: lessonType === 'QCM' ? lessonData.questions : undefined,
@@ -248,13 +253,21 @@ export function CreateChallengeForm() {
 
             {challengeType === 'PUBLIC' && (
                 <div className={"bg-white dark:bg-gray-800/60 rounded-2xl border border-gray-200 dark:border-gray-700/60 p-6"}>
-                    <div className="max-w-xs mb-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                         <Select
-                            label={t('challenge.form.language')}
+                            label={t('challenge.create.source_language')}
+                            value={selectedSourceLanguageId}
+                            options={nativeLanguages.map(language => ({ value: language.languageId, label: language.languageName }))}
+                            onChange={(value) => setValue('sourceLanguageId', value)}
+                            placeholder={t('challenge.create.select_language')}
+                            error={errors.sourceLanguageId?.message}
+                        />
+                        <Select
+                            label={t('challenge.create.target_language')}
                             value={selectedLanguageIdPublic}
-                            options={languages.map(language => ({ value: language.id, label: language.name }))}
+                            options={learningLanguages.map(language => ({ value: language.languageId, label: language.languageName }))}
                             onChange={(value) => setValue('languageId', value)}
-                            placeholder={t('challenge.form.language_placeholder')}
+                            placeholder={t('challenge.create.select_language')}
                             error={errors.languageId?.message}
                         />
                     </div>
@@ -266,6 +279,10 @@ export function CreateChallengeForm() {
                             errors={lessonErrors}
                             availableTypes={PUBLIC_LESSON_TYPES}
                             onLessonTypeChange={(type) => { setLessonType(type); setValue('lessonType', type); }}
+                            languageOptions={[
+                                ...nativeLanguages.filter(language => language.languageId === selectedSourceLanguageId).map(lang => ({ code: lang.languageCode, name: lang.languageName })),
+                                ...learningLanguages.filter(language => language.languageId === selectedLanguageIdPublic).map(lang => ({ code: lang.languageCode, name: lang.languageName })),
+                            ]}
                         />
                     </div>
                 </div>

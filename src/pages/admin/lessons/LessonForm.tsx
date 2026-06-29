@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { languageService } from "@/services/languageService";
+import { LanguageResponse } from "@/types/language/language";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useForm, useWatch } from "react-hook-form";
@@ -28,6 +30,7 @@ export default function LessonForm() {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const isEdit = !!lessonId;
+    const [languages, setLanguages] = useState<LanguageResponse[]>([]);
     const [isSimulatorOpen, setIsSimulatorOpen] = useState(false);
     const [isGeneratingLesson, setIsGeneratingLesson] = useState(false);
     const [isQuotaModalOpen, setIsQuotaModalOpen] = useState(false);
@@ -45,6 +48,8 @@ export default function LessonForm() {
     const { loading: lessonLoading, createLesson, updateLesson, fetchLessonById, generateLessonWithAI, modifyLessonWithAI } = useLesson();
     const { topics, fetchAllTopics } = useTopic();
     const currentTopic = topics.find(t => t.id === topicId);
+
+    const topicLanguageOptions = currentTopic ? languages.filter(language => language.id === currentTopic.sourceLanguageId || language.id === currentTopic.targetLanguageId).map(language => ({ code: language.code, name: language.name })): [];
 
     const { register, handleSubmit, reset, setValue, control, formState: { errors } } = useForm<LessonFormData>({
         resolver: yupResolver(lessonSchema(t)) as unknown as import("react-hook-form").Resolver<LessonFormData>,
@@ -133,6 +138,7 @@ export default function LessonForm() {
 
     useEffect(() => {
         if (topicsLength === 0) fetchAllTopics();
+        languageService.getAllActiveLanguages().then(setLanguages).catch(() => {});
 
         if (isEdit && lessonId) {
             const loadLesson = async () => {
@@ -467,7 +473,14 @@ export default function LessonForm() {
                                 )}
 
                                 <div className="pt-8 border-t border-gray-100 dark:border-gray-700/50">
-                                    {lessonType === LessonType.FLASHCARD && <FlashcardForm control={control} register={register} errors={errors} />}
+                                    {lessonType === LessonType.FLASHCARD && (
+                                        <FlashcardForm
+                                            control={control}
+                                            register={register}
+                                            errors={errors}
+                                            options={topicLanguageOptions.length > 0 ? topicLanguageOptions : undefined}
+                                        />
+                                    )}
                                     {lessonType === LessonType.QCM && <QCMForm control={control} register={register} errors={errors} />}
                                     {lessonType === LessonType.MATCHING_PAIR && <MatchingPairForm control={control} register={register} errors={errors} />}
                                     {lessonType === LessonType.SORTING_EXERCISE && <SortingExerciseForm control={control} register={register} errors={errors} />}
