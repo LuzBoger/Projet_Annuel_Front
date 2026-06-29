@@ -1,4 +1,4 @@
-import { FlashcardForm } from "@/components/admin/lessons/FlashcardForm";
+import { ChallengeFlashcardForm } from "@/components/challenge/ChallengeFlashcardForm";
 import { MatchingPairForm } from "@/components/admin/lessons/MatchingPairForm";
 import { QCMForm } from "@/components/admin/lessons/QCMForm";
 import { SortingExerciseForm } from "@/components/admin/lessons/SortingExerciseForm";
@@ -7,6 +7,7 @@ import { LessonType } from "@/types/lesson/lesson";
 import { LessonFormData } from "@/validations/lessons/lessonSchema";
 import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { LanguageOptions } from "@/types/language/language";
 
 interface ChallengeLessonFormProps {
     lessonType: LessonType;
@@ -15,9 +16,10 @@ interface ChallengeLessonFormProps {
     errors: FieldErrors<LessonFormData>;
     availableTypes: LessonType[];
     onLessonTypeChange: (type: LessonType) => void;
+    languageOptions?: LanguageOptions[];
 }
 
-export function ChallengeLessonForm({ lessonType, control, register, errors, availableTypes, onLessonTypeChange }: ChallengeLessonFormProps) {
+export function ChallengeLessonForm({ lessonType, control, register, errors, availableTypes, onLessonTypeChange, languageOptions }: ChallengeLessonFormProps) {
     const { t } = useTranslation();
 
     return (
@@ -39,7 +41,7 @@ export function ChallengeLessonForm({ lessonType, control, register, errors, ava
             </div>
 
             {lessonType === LessonType.QCM && <QCMForm control={control} register={register} errors={errors} />}
-            {lessonType === LessonType.FLASHCARD && <FlashcardForm control={control} register={register} errors={errors} />}
+            {lessonType === LessonType.FLASHCARD && <ChallengeFlashcardForm control={control} register={register} errors={errors} languageOptions={languageOptions ?? []} />}
             {lessonType === LessonType.MATCHING_PAIR && <MatchingPairForm control={control} register={register} errors={errors} />}
             {lessonType === LessonType.SORTING_EXERCISE && <SortingExerciseForm control={control} register={register} errors={errors} />}
         </div>

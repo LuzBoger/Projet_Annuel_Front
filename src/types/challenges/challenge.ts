@@ -6,6 +6,9 @@ export type ChallengeStatus = 'PENDING' | 'ACTIVE' | 'COMPLETED' | 'EXPIRED' | '
 export type ExamItem = | { type: 'QCM'; data: ChallengeQcmQuestion } | { type: 'FLASHCARD'; data: ChallengeFlashcard }
     | { type: 'MATCHING'; data: ChallengeMatchingPair[]; shuffledTiles: Tile[] } | { type: 'SORTING'; data: ChallengeSortingExercise; shuffledIndices: number[] };
 export type UnitTime = 'hours' | 'minutes' | 'seconds';
+
+export type ChallengeTabType = 'all' | 'friends';
+
     export interface ChallengeUser {
     id: string;
     username: string;
@@ -61,6 +64,9 @@ export interface Challenge {
     lessonType: LessonType;
     challengeStatus: ChallengeStatus;
     languageId: string;
+    sourceLanguageId: string | null;
+    sourceLanguageCode: string | null;
+    sourceLanguageName: string | null;
     challenger: ChallengeUser;
     challenged: ChallengeUser | null;
     qcm: ChallengeQcmQuestion[];
@@ -78,6 +84,7 @@ export interface CreateChallengeRequest {
     lessonId?: string;
     lessonType?: LessonType;
     languageId?: string;
+    sourceLanguageId?: string;
     challengedId?: string;
     questionCount?: number;
     qcm?: Omit<ChallengeQcmQuestion, 'id'>[];

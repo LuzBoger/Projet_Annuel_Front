@@ -690,7 +690,9 @@
         "label": "Opponent",
         "select": "Select an opponent",
         "change": "Change opponent",
-        "empty": "No opponents found"
+        "empty": "No opponents found",
+        "friends": "Friends",
+        "all": "Learners"
       },
       "topic": "Topic",
       "topic_placeholder": "Select a topic",
@@ -701,6 +703,11 @@
       "lesson_type": "Lesson type",
       "summary": "Summary",
       "submit": "Create challenge"
+    },
+    "create": {
+      "source_language": "Written-in language",
+      "target_language": "Language to learn",
+      "select_language": "Select a language"
     },
     "type": {
       "public": {
@@ -729,12 +736,13 @@
       "title_max": "Maximum 200 characters",
       "title.max": "Maximum 200 characters",
       "challengeType": "Challenge type is required",
-      "lessonId": "Please select a lesson",
-      "lessonId.duel": "Please select a lesson for this duel",
+      "lessonId": "Please choose a lesson",
+      "lessonId.duel": "Please choose a lesson for this duel",
       "lessonType": "Lesson type is required",
       "languageId": "Please select a language",
+      "sourceLanguageId": "Please select the written-in language",
       "challengedId": {
-        "required": "Opponent ID is required for a duel"
+        "required": "Please add an opponent"
       },
       "qcm": {
         "question": "Question is required",

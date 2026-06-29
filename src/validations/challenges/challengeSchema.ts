@@ -12,7 +12,7 @@ export const challengeSchema = (t: (key: string) => string) => yup.object({
 
     lessonId: yup.string().when('challengeType', {
         is: 'DUEL',
-        then: (schema) => schema.uuid().required(t('challenge.validation.lessonId')),
+        then: (schema) => schema.uuid(t('challenge.validation.lessonId')).required(t('challenge.validation.lessonId')),
         otherwise: (schema) => schema.notRequired()
     }),
 
@@ -28,9 +28,15 @@ export const challengeSchema = (t: (key: string) => string) => yup.object({
         otherwise: (schema) => schema.notRequired()
     }),
 
+    sourceLanguageId: yup.string().when('challengeType', {
+        is: 'PUBLIC',
+        then: (schema) => schema.uuid().required(t('challenge.validation.sourceLanguageId')),
+        otherwise: (schema) => schema.notRequired()
+    }),
+
     challengedId: yup.string().when('challengeType', {
         is: 'DUEL',
-        then: (schema) => schema.uuid().required(t('challenge.validation.challengedId.required')),
+        then: (schema) => schema.uuid(t('challenge.validation.challengedId.required')).required(t('challenge.validation.challengedId.required')),
         otherwise: (schema) => schema.notRequired()
     }),
 });

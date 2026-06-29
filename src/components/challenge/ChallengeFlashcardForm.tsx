@@ -1,34 +1,25 @@
 import { Control, useFieldArray, UseFormRegister, FieldErrors, FieldError, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
 import { Select } from "@/components/ui/Select";
 import { Trash, Plus } from "@/assets/icons";
 import { LessonFormData } from "@/validations/lessons/lessonSchema";
-import { languageService } from "@/services/languageService";
-import { LanguageResponse } from "@/types/language/language";
+import { LanguageOptions } from "@/types/language/language";
 
-interface FlashcardFormProps {
+interface ChallengeFlashcardFormProps {
     control: Control<LessonFormData>;
     register: UseFormRegister<LessonFormData>;
     errors: FieldErrors<LessonFormData>;
+    languageOptions: LanguageOptions[];
 }
 
-export function FlashcardForm({ control, register, errors }: FlashcardFormProps) {
+export function ChallengeFlashcardForm({ control, register, errors, languageOptions }: ChallengeFlashcardFormProps) {
     const { t } = useTranslation();
-    const [languages, setLanguages] = useState<LanguageResponse[]>([]);
+    const defaultFrontLanguage = languageOptions[0]?.code ?? '';
+    const defaultBackLanguage = languageOptions[1]?.code ?? '';
 
-    useEffect(() => {
-        languageService.getAllActiveLanguages().then(setLanguages).catch(() => {});
-    }, []);
-
-    const { fields, append, remove } = useFieldArray({
-        control,
-        name: "flashcards"
-    });
-
-    const languageOptions = languages.map(language => ({ value: language.code, label: language.name }));
+    const { fields, append, remove } = useFieldArray({control,name: "flashcards"});
 
     return (
         <div className="space-y-6">
@@ -38,7 +29,7 @@ export function FlashcardForm({ control, register, errors }: FlashcardFormProps)
                     type="button"
                     variant="pill-green"
                     size="sm"
-                    onClick={() => append({ front: "", back: "", frontLanguage: languages[0]?.code ?? '', backLanguage: languages[1]?.code ?? '' })}
+                    onClick={() => append({ front: "", back: "", frontLanguage: defaultFrontLanguage, backLanguage: defaultBackLanguage })}
                     className="gap-2"
                 >
                     <Plus className="w-4 h-4" />
@@ -90,9 +81,10 @@ export function FlashcardForm({ control, register, errors }: FlashcardFormProps)
                                     <Select
                                         label={t('admin.lessons.flashcards.frontLang')}
                                         value={field.value}
-                                        options={languageOptions}
+                                        options={languageOptions.map(lang => ({ value: lang.code, label: lang.name }))}
                                         onChange={field.onChange}
-                                        placeholder={t('challenge.create.select_language')}
+                                        placeholder={languageOptions.length === 0 ? t('challenge.create.select_language') : undefined}
+                                        disabled={languageOptions.length === 0}
                                     />
                                 )}
                             />
@@ -103,9 +95,10 @@ export function FlashcardForm({ control, register, errors }: FlashcardFormProps)
                                     <Select
                                         label={t('admin.lessons.flashcards.backLang')}
                                         value={field.value}
-                                        options={languageOptions}
+                                        options={languageOptions.map(lang => ({ value: lang.code, label: lang.name }))}
                                         onChange={field.onChange}
-                                        placeholder={t('challenge.create.select_language')}
+                                        placeholder={languageOptions.length === 0 ? t('challenge.create.select_language') : undefined}
+                                        disabled={languageOptions.length === 0}
                                     />
                                 )}
                             />
