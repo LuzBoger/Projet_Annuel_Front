@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ChallengeFlashcard, ChallengeMatchingPair, ChallengeQcmQuestion, ChallengeSortingExercise, ExamItem } from "@/types/challenges/challenge";
+import { ChallengeFlashcard, ChallengeMatchingPair, ChallengeQcmQuestion, ChallengeSortingExercise, ExamItem, ChallengeInteractive } from "@/types/challenges/challenge";
 import { ExamFlashcardQuestion } from "@/components/topics/ExamFlashcardQuestion";
 import { ExamMatchingQuestion } from "@/components/topics/ExamMatchingQuestion";
 import { ExamQcmQuestion } from "@/components/topics/ExamQcmQuestion";
 import { ExamSortingQuestion } from "@/components/topics/ExamSortingQuestion";
+import { ExamInteractiveQuestion } from "@/components/challenge/ExamInteractiveQuestion";
 import { Button } from "@/components/ui/Button";
 import { UserPairAnswer, Tile } from "@/types/components/examMatching";
 import { shuffleArray } from "@/lib/utils/topic";
@@ -17,11 +18,12 @@ interface ChallengeExamProps {
     flashcards: ChallengeFlashcard[];
     matchingPairs: ChallengeMatchingPair[];
     sortingExercises: ChallengeSortingExercise[];
+    interactives?: ChallengeInteractive[];
     onFinish: (score: number) => void;
 }
 
 
-export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sortingExercises, onFinish }: ChallengeExamProps) {
+export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sortingExercises, interactives = [], onFinish }: ChallengeExamProps) {
     const { t } = useTranslation();
 
     const items = useMemo<ExamItem[]>(() => {
@@ -42,8 +44,11 @@ export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sor
             ]);
             return [{ type: 'MATCHING', data: matchingPairs, shuffledTiles: shuffleArray(tiles) }];
         }
+        if (lessonType === 'INTERACTIVE') {
+            return interactives.map(interactive => ({ type: 'INTERACTIVE', data: interactive }));
+        }
         return [];
-    }, [lessonType, qcms, flashcards, matchingPairs, sortingExercises]);
+    }, [lessonType, qcms, flashcards, matchingPairs, sortingExercises, interactives]);
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [qcmAnswers, setQcmAnswers] = useState<Record<string, number>>({});
@@ -67,6 +72,13 @@ export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sor
         }
         if (current.type === 'MATCHING') {
             return matchingAnswers.length < current.shuffledTiles.length / 2;
+        }
+        if (current.type === 'INTERACTIVE') {
+            if (current.data.systemType === 'MULTIPLE_CHOICE') {
+                return qcmAnswers[current.data.id] === undefined;
+            } else {
+                return !flashcardAnswers[current.data.id]?.trim();
+            }
         }
         return false;
     };
@@ -126,6 +138,15 @@ export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sor
                     shuffledTiles={current.shuffledTiles}
                     userPairs={matchingAnswers}
                     onChange={setMatchingAnswers}
+                />
+            )}
+            {current.type === 'INTERACTIVE' && (
+                <ExamInteractiveQuestion
+                    question={current.data}
+                    selectedValue={qcmAnswers[current.data.id] ?? null}
+                    onSelect={(val) => setQcmAnswers(prev => ({ ...prev, [current.data.id]: val }))}
+                    textValue={flashcardAnswers[current.data.id] ?? ''}
+                    onTextChange={(val) => setFlashcardAnswers(prev => ({ ...prev, [current.data.id]: val }))}
                 />
             )}
 

@@ -442,7 +442,8 @@
           "FLASHCARD": "Flashcard",
           "QCM": "QCM",
           "MATCHING_PAIR": "Matching Pairs",
-          "SORTING_EXERCISE": "Sorting Exercise"
+          "SORTING_EXERCISE": "Sorting Exercise",
+          "INTERACTIVE": "Interactive Lesson"
         },
         "sections": {
           "basic_info": "Basic Information",
@@ -520,6 +521,25 @@
         "move_up": "Move up",
         "move_down": "Move down",
         "note_new": "The order in which you add the items defines the correct answer."
+      },
+      "interactive": {
+        "title": "Interactive Question",
+        "add_question": "Add a question",
+        "questionText": "Instruction / Question",
+        "questionTextPlaceholder": "e.g., Listen to the audio and select the correct option...",
+        "systemType": "Question type",
+        "multipleChoice": "Multiple choice (MCQ)",
+        "openText": "Free text input",
+        "imagesLabel": "Images (Visuals)",
+        "addImage": "Add an image",
+        "noImage": "No image uploaded",
+        "audiosLabel": "Audios (Voice)",
+        "addAudio": "Add an audio",
+        "noAudio": "No audio uploaded",
+        "optionsLabel": "Multiple choice (Options)",
+        "addOption": "Add an option",
+        "correctWordLabel": "Expected correct word",
+        "correctWordPlaceholder": "e.g., cat"
       },
       "preview": {
         "title": "Quick Actions",
@@ -729,6 +749,9 @@
       },
       "sorting_exercise": {
         "type": "Sorting Exercise"
+      },
+      "interactive": {
+        "type": "Interactive Questions"
       }
     },
     "validation": {
@@ -864,6 +887,8 @@
     "page_title": "Available Topics",
     "lessons_page_title": "Lessons",
     "exam_page_title": "Topic Exam",
+    "exam_title": "Topic Exam",
+    "exam_desc": "Evaluate your knowledge on this topic.",
     "page_desc": "Select a subject to start practicing.",
     "error_load": "Unable to load topics at this moment.",
     "empty_title": "No topics found",
@@ -955,6 +980,13 @@
       "correct_order_prefix": "Solution: ",
       "validate": "Check answer",
       "next": "Continue"
+    },
+    "interactive": {
+      "listen_pronunciation": "Listen to pronunciation",
+      "type_answer_placeholder": "Type your answer here...",
+      "correct": "Correct!",
+      "incorrect": "Incorrect!",
+      "correct_answer_prefix": "The correct answer is: "
     },
     "qcm": {
       "title": "Questionnaire",
@@ -1070,7 +1102,8 @@
     },
     "planPrice": {
       "required": "Price is required",
-      "min": "Price must be greater than 0"
+      "min": "Price must be greater than 0",
+      "typeError": "Price must be a valid number"
     },
     "planCurrency": {
       "required": "Currency is required",
@@ -1731,7 +1764,8 @@
       "FLASHCARD": "Flashcard",
       "QCM": "Quiz",
       "MATCHING_PAIR": "Matching",
-      "SORTING_EXERCISE": "Sorting"
+      "SORTING_EXERCISE": "Sorting",
+      "INTERACTIVE": "Interactive"
     },
     "liste": {
       "page_title": "My mistakes",

@@ -13,6 +13,12 @@ export interface MistakeQuestionResponse {
     options?: string[];
     item1?: string;
     items?: string[];
+    questionText?: string;
+    imagePaths?: string[];
+    audioPaths?: string[];
+    systemType?: "MULTIPLE_CHOICE" | "OPEN_TEXT";
+    correctOptionIndex?: number | null;
+    correctWord?: string | null;
 }
 
 export interface UserDailyQuestion {

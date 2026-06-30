@@ -181,6 +181,7 @@ export default function ChallengeDetail() {
               flashcards={challenge.flashcards}
               matchingPairs={challenge.matchingPairs}
               sortingExercises={challenge.sortingExercises}
+              interactives={challenge.interactives || []}
               onFinish={handleFinishChallenge}
             />
           )}

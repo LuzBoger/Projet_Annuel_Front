@@ -32,3 +32,6 @@ export { default as FaceSad } from "@/assets/icons/face-sad.svg?react";
 export { default as FaceNeutral } from "@/assets/icons/face-neutral.svg?react";
 export { default as FaceSmile } from "@/assets/icons/face-smile.svg?react";
 export { default as StarIcon } from "@/assets/icons/starIcon.svg?react";
+export { default as LogoSk } from "@/assets/icons/sk.svg?react";
+export { default as LogoSkaldly } from "@/assets/icons/skaldly.svg?react";
+

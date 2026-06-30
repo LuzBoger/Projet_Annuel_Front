@@ -32,7 +32,7 @@ export default function MistakeListe() {
         <Button
           variant="ghost"
           size="sm"
-          className="mb-6 font-bold flex items-center text-gray-500 hover:text-gray-900"
+          className="mb-6 font-bold flex items-center text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           onClick={() => navigate(-1)}
         >
           <ChevronLeft className="w-5 h-5 mr-1" />
@@ -40,8 +40,9 @@ export default function MistakeListe() {
         </Button>
 
         <div className="flex items-center justify-between mb-2">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-900 to-brand-600">
-            <Brain /> {t("mistake.liste.title")}
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2">
+            <Brain className="w-6 h-6 text-brand-500 dark:text-brand-400" />
+            <span>{t("mistake.liste.title")}</span>
           </h1>
           {mistakeList && mistakeList.totalPendingMistakes > 0 && (
             <Button size="sm" onClick={() => navigate("/training/daily-check")}>
@@ -49,7 +50,7 @@ export default function MistakeListe() {
             </Button>
           )}
         </div>
-        <p className="text-gray-500 text-sm mb-8">
+        <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">
           {mistakeList ? t("mistake.liste.subtitle", { count: mistakeList.totalPendingMistakes }) : t("common.loading")}
         </p>
 
@@ -62,12 +63,19 @@ export default function MistakeListe() {
             <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-brand-600" />
           </div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700">
-            <div className="text-6xl mb-4"><Check /></div>
+          <div className="text-center py-16 px-6 bg-white/80 dark:bg-gray-800/40 backdrop-blur-md rounded-3xl border border-gray-200 dark:border-gray-700/50 shadow-xl max-w-lg mx-auto flex flex-col items-center">
+            <div className="relative mb-6">
+              <div className="absolute inset-0 bg-emerald-500/20 dark:bg-emerald-500/30 rounded-full blur-xl animate-pulse" />
+              <div className="relative p-5 bg-gradient-to-tr from-emerald-500/10 to-teal-500/10 dark:from-emerald-500/20 dark:to-teal-500/20 text-emerald-600 dark:text-emerald-400 rounded-full ring-8 ring-emerald-500/5 dark:ring-emerald-500/10 flex items-center justify-center">
+                <Check className="w-12 h-12 stroke-[2.5]" />
+              </div>
+            </div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
               {t("mistake.liste.empty_title")}
             </h3>
-            <p className="text-gray-500">{t("mistake.liste.empty_subtitle")}</p>
+            <p className="text-gray-500 dark:text-gray-400 max-w-sm">
+              {t("mistake.liste.empty_subtitle")}
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

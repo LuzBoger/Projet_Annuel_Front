@@ -61,7 +61,7 @@ export function MistakeCard({ mistake, onClick }: MistakeCardProps) {
           {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
-              className={clsx("w-3 h-3 rounded-full transition-colors", i < mistake.nbCorrectResponses ? "bg-brand-500" : "bg-gray-200 dark:bg-gray-600")}
+              className={clsx("w-3 h-3 rounded-full transition-colors", i < mistake.nbCorrectResponses ? "bg-emerald-500" : "bg-gray-200 dark:bg-gray-600")}
             />
           ))}
         </div>

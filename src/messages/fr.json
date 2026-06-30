@@ -447,7 +447,8 @@
           "FLASHCARD": "Flashcard",
           "QCM": "QCM",
           "MATCHING_PAIR": "Paires à relier",
-          "SORTING_EXERCISE": "Mise en ordre"
+          "SORTING_EXERCISE": "Mise en ordre",
+          "INTERACTIVE": "Leçon Interactive"
         },
         "sections": {
           "basic_info": "Informations de base",
@@ -525,6 +526,25 @@
         "move_up": "Monter",
         "move_down": "Descendre",
         "note_new": "L'ordre dans lequel vous ajoutez les éléments définit la bonne réponse."
+      },
+      "interactive": {
+        "title": "Question Interactive",
+        "add_question": "Ajouter une question",
+        "questionText": "Consigne / Question",
+        "questionTextPlaceholder": "ex: Écoutez l'audio et sélectionnez la bonne réponse...",
+        "systemType": "Type de question",
+        "multipleChoice": "Choix multiples (QCM)",
+        "openText": "Saisie de texte libre",
+        "imagesLabel": "Images (Visuals)",
+        "addImage": "Ajouter une image",
+        "noImage": "Aucune image téléversée",
+        "audiosLabel": "Audios (Voix)",
+        "addAudio": "Ajouter un audio",
+        "noAudio": "Aucun audio téléversé",
+        "optionsLabel": "Choix multiples (Options)",
+        "addOption": "Ajouter une option",
+        "correctWordLabel": "Mot correct attendu",
+        "correctWordPlaceholder": "ex: cat"
       },
       "preview": {
         "title": "Actions rapides",
@@ -734,6 +754,9 @@
       },
       "sorting_exercise": {
         "type": "Mise en ordre"
+      },
+      "interactive": {
+        "type": "Questions Interactives"
       }
     },
     "validation": {
@@ -869,6 +892,8 @@
     "page_title": "Topics disponibles",
     "lessons_page_title": "Leçons",
     "exam_page_title": "Examen du topic",
+    "exam_title": "Examen du topic",
+    "exam_desc": "Évaluez vos connaissances sur ce sujet.",
     "page_desc": "Sélectionnez un sujet pour commencer votre entraînement.",
     "error_load": "Impossible de charger les topics pour le moment.",
     "empty_title": "Aucun topic trouvé",
@@ -960,6 +985,13 @@
       "correct_order_prefix": "Solution : ",
       "validate": "Vérifier la réponse",
       "next": "Continuer"
+    },
+    "interactive": {
+      "listen_pronunciation": "Écouter la prononciation",
+      "type_answer_placeholder": "Tapez votre réponse ici...",
+      "correct": "Correct !",
+      "incorrect": "Incorrect !",
+      "correct_answer_prefix": "La bonne réponse est : "
     },
     "qcm": {
       "title": "Questionnaire",
@@ -1075,7 +1107,8 @@
     },
     "planPrice": {
       "required": "Le prix est requis",
-      "min": "Le prix doit être supérieur à 0"
+      "min": "Le prix doit être supérieur à 0",
+      "typeError": "Le prix doit être un nombre valide"
     },
     "planCurrency": {
       "required": "La devise est requise",
@@ -1736,7 +1769,8 @@
       "FLASHCARD": "Flashcard",
       "QCM": "QCM",
       "MATCHING_PAIR": "Association",
-      "SORTING_EXERCISE": "Tri"
+      "SORTING_EXERCISE": "Tri",
+      "INTERACTIVE": "Interactif"
     },
     "liste": {
       "page_title": "Mes erreurs",

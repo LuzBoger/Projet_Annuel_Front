@@ -6,6 +6,7 @@ export const LESSON_TYPE: Record<string, string> = {
     QCM: "Quiz",
     MATCHING_PAIR: "Paires",
     SORTING_EXERCISE: "Ordre",
+    INTERACTIVE: "Interactif",
 };
 
 export const PENALTY_PER_ERROR = 10;
@@ -15,6 +16,7 @@ export const LESSON_TYPE_COLORS: Record<string, string> = {
     QCM: "bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-950/30 dark:text-purple-400 dark:border-purple-800/30",
     MATCHING_PAIR: "bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-950/30 dark:text-pink-400 dark:border-pink-800/30",
     SORTING_EXERCISE: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-800/30",
+    INTERACTIVE: "bg-teal-100 text-teal-700 border-teal-200 dark:bg-teal-950/30 dark:text-teal-400 dark:border-teal-800/30",
 };
 
 export const DIFFICULTY_COLORS: Record<string, string> = {
@@ -32,5 +34,6 @@ export const FILTERS: Array<{ value: MistakeFilterValue; label: string; labelKey
   { value: LessonType.QCM, label: "QCM", labelKey: "mistake.filters.QCM" },
   { value: LessonType.MATCHING_PAIR, label: "Association", labelKey: "mistake.filters.MATCHING_PAIR" },
   { value: LessonType.SORTING_EXERCISE, label: "Tri", labelKey: "mistake.filters.SORTING_EXERCISE" },
+  { value: LessonType.INTERACTIVE, label: "Interactif", labelKey: "mistake.filters.INTERACTIVE" },
 ];
 

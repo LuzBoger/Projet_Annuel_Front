@@ -19,22 +19,22 @@ export function DailyCheckResult({ result }: DailyCheckResultProps) {
         <div className="w-24 h-24 bg-gradient-to-br from-brand-400 to-brand-600 rounded-full flex items-center justify-center mx-auto mb-6 text-5xl shadow-inner ring-8 ring-brand-50">
           <Brain />
         </div>
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-900 to-brand-600 mb-2">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
           {t("mistake.result.title")}
         </h2>
 
         <div className="grid grid-cols-2 gap-4 my-8">
-          <div className="bg-brand-50 dark:bg-brand-900/30 rounded-2xl p-5 border border-brand-100/50">
-            <p className="text-brand-800 text-[10px] font-semibold uppercase tracking-widest mb-1">
+          <div className="bg-brand-50 dark:bg-brand-950/30 rounded-2xl p-5 border border-brand-100/50 dark:border-brand-500/20 shadow-sm shadow-brand-500/5">
+            <p className="text-brand-800 dark:text-brand-300 text-[10px] font-semibold uppercase tracking-widest mb-1">
               {t("mistake.result.score")}
             </p>
-            <p className="text-3xl font-bold text-brand-600">{rate}%</p>
+            <p className="text-3xl font-bold text-brand-600 dark:text-brand-400">{rate}%</p>
           </div>
-          <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 border border-emerald-100/50">
-            <p className="text-emerald-800 text-[10px] font-semibold uppercase tracking-widest mb-1">
+          <div className="bg-emerald-50 dark:bg-emerald-950/30 rounded-2xl p-5 border border-emerald-100/50 dark:border-emerald-500/20 shadow-sm shadow-emerald-500/5">
+            <p className="text-emerald-800 dark:text-emerald-300 text-[10px] font-semibold uppercase tracking-widest mb-1">
               {t("mistake.result.resolved")}
             </p>
-            <p className="text-3xl font-bold text-emerald-600">{result.totalMasteredLessons}</p>
+            <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">{result.totalMasteredLessons}</p>
           </div>
         </div>
 
@@ -50,15 +50,21 @@ export function DailyCheckResult({ result }: DailyCheckResultProps) {
                 detail.isAnswerCorrect ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300" : "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300"
               }`}
             >
-              <span>
-                {detail.isAnswerCorrect ? <Check /> : <Cross />}{" "}
-                {detail.isLessonMastered ? t("mistake.result.mastered") : detail.nextReviewIndication}
+              <span className="flex items-center gap-2">
+                {detail.isAnswerCorrect ? <Check className="w-4 h-4" /> : <Cross className="w-4 h-4" />}
+                {detail.isLessonMastered ? (
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-extrabold bg-emerald-500 text-white dark:bg-emerald-500/20 dark:text-emerald-400 border border-emerald-500/30 shadow-sm">
+                    {t("mistake.result.mastered")}
+                  </span>
+                ) : (
+                  <span className="opacity-90">{detail.nextReviewIndication}</span>
+                )}
               </span>
               <div className="flex gap-1">
                 {[0, 1, 2, 3].map((i) => (
                   <div
                     key={i}
-                    className={`w-2.5 h-2.5 rounded-full ${i < detail.nbCorrectResponses ? "bg-brand-500" : "bg-gray-200 dark:bg-gray-600"}`}
+                    className={`w-2.5 h-2.5 rounded-full ${i < detail.nbCorrectResponses ? "bg-emerald-500" : "bg-gray-200 dark:bg-gray-600"}`}
                   />
                 ))}
               </div>

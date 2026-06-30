@@ -2,7 +2,8 @@ export const LessonType = {
     FLASHCARD: "FLASHCARD",
     QCM: "QCM",
     MATCHING_PAIR: "MATCHING_PAIR",
-    SORTING_EXERCISE: "SORTING_EXERCISE"
+    SORTING_EXERCISE: "SORTING_EXERCISE",
+    INTERACTIVE: "INTERACTIVE"
 } as const;
 
 export type LessonType = typeof LessonType[keyof typeof LessonType];
@@ -37,6 +38,17 @@ export interface SortingExerciseRequest {
     correctOrder: number[];
 }
 
+export interface InteractiveQuestion {
+    id?: string;
+    questionText: string;
+    imagePaths: string[];
+    audioPaths: string[];
+    systemType: "MULTIPLE_CHOICE" | "OPEN_TEXT";
+    options: string[];
+    correctOptionIndex: number | null;
+    correctWord: string | null;
+}
+
 export interface LessonRequest {
     topicId: string;
     title: string;
@@ -51,6 +63,7 @@ export interface LessonRequest {
     questions?: QcmQuestionRequest[];
     matchingPairs?: MatchingPairRequest[];
     sortingExercise?: SortingExerciseRequest[];
+    interactiveQuestions?: InteractiveQuestion[];
 }
 export interface UserLessonProgressSummary {
     status: LessonStatus;
@@ -83,6 +96,7 @@ export interface CompleteLessonRequest {
     mistakeQcmList?: LessonMistake[];
     mistakeMatchingList?: LessonMistake[];
     mistakeSortingList?: LessonMistake[];
+    mistakeInteractiveList?: LessonMistake[];
 }
 
 export interface UserProgressResponse {
@@ -151,6 +165,14 @@ export interface AIMemorizationHelpResponse {
     visualAnchor: string | null;
     examples: string[] | null;
     warning: string | null;
+}
+
+export interface InteractiveQuestionError {
+  questionText?: { message?: string };
+  systemType?: { message?: string };
+  correctOptionIndex?: { message?: string };
+  correctWord?: { message?: string };
+  options?: Array<{ message?: string } | undefined>;
 }
 
 

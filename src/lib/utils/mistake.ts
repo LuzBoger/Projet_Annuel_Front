@@ -22,5 +22,11 @@ export function isUserAnswered(question: MistakeQuestionResponse, flashcard: Rec
   if (question.lessonType === "SORTING_EXERCISE"){
     return (sorting[question.questionId]?.length ?? 0) === (question.items?.length ?? 0);
   }
+  if (question.lessonType === "INTERACTIVE"){
+    if (question.systemType === "MULTIPLE_CHOICE") {
+      return qcm[question.questionId] !== undefined;
+    }
+    return !!flashcard[question.questionId]?.trim();
+  }
   return false;
 }

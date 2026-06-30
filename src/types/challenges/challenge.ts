@@ -3,8 +3,23 @@ import { Tile } from "@/types/components/examMatching";
 
 export type ChallengeType  = 'DUEL' | 'PUBLIC';
 export type ChallengeStatus = 'PENDING' | 'ACTIVE' | 'COMPLETED' | 'EXPIRED' | 'DECLINED' | 'CANCELLED';
-export type ExamItem = | { type: 'QCM'; data: ChallengeQcmQuestion } | { type: 'FLASHCARD'; data: ChallengeFlashcard }
-    | { type: 'MATCHING'; data: ChallengeMatchingPair[]; shuffledTiles: Tile[] } | { type: 'SORTING'; data: ChallengeSortingExercise; shuffledIndices: number[] };
+export type ExamItem = 
+    | { type: 'QCM'; data: ChallengeQcmQuestion } 
+    | { type: 'FLASHCARD'; data: ChallengeFlashcard }
+    | { type: 'MATCHING'; data: ChallengeMatchingPair[]; shuffledTiles: Tile[] } 
+    | { type: 'SORTING'; data: ChallengeSortingExercise; shuffledIndices: number[] }
+    | { type: 'INTERACTIVE'; data: ChallengeInteractive };
+
+export interface ChallengeInteractive {
+  id: string;
+  questionText?: string;
+  imagePaths?: string[];
+  audioPaths?: string[];
+  systemType: "MULTIPLE_CHOICE" | "OPEN_TEXT";
+  options?: string[];
+  correctOptionIndex?: number | null;
+  correctWord?: string | null;
+}
 export type UnitTime = 'hours' | 'minutes' | 'seconds';
 
 export type ChallengeTabType = 'all' | 'friends';
@@ -73,6 +88,7 @@ export interface Challenge {
     flashcards: ChallengeFlashcard[];
     matchingPairs: ChallengeMatchingPair[];
     sortingExercises: ChallengeSortingExercise[];
+    interactives: ChallengeInteractive[];
     participants: ChallengeParticipant[];
     expiresAt: string;
     createdAt: string;
@@ -91,6 +107,7 @@ export interface CreateChallengeRequest {
     flashcards?: Omit<ChallengeFlashcard, 'id'>[];
     matchingPairs?: Omit<ChallengeMatchingPair, 'id'>[];
     sortingExercises?: Omit<ChallengeSortingExercise, 'id'>[];
+    interactives?: ChallengeInteractive[];
 }
 
 export interface SubmitChallengeRequest {

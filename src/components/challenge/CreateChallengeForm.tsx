@@ -65,7 +65,7 @@ export function CreateChallengeForm() {
         },
     });
 
-    const { register: lessonRegister, control: lessonControl, formState: { errors: lessonErrors }, getValues: getLessonValues } = useForm<LessonFormData>({
+    const { register: lessonRegister, control: lessonControl, formState: { errors: lessonErrors }, getValues: getLessonValues, setValue: setLessonValue } = useForm<LessonFormData>({
         resolver: yupResolver(lessonSchema(t)) as Resolver<LessonFormData>,
         defaultValues: {
             title: '',
@@ -76,6 +76,15 @@ export function CreateChallengeForm() {
             flashcards: [{ front: '', back: '', frontLanguage: 'fr', backLanguage: 'en' }],
             matchingPairs: [{ item1: '', item2: '' }],
             sortingItems: [{ value: '' }, { value: '' }],
+            interactiveQuestions: [{
+                questionText: "",
+                imagePaths: [],
+                audioPaths: [],
+                systemType: "MULTIPLE_CHOICE",
+                options: ["", ""],
+                correctOptionIndex: 0,
+                correctWord: ""
+            }],
         },
     });
 
@@ -119,6 +128,7 @@ export function CreateChallengeForm() {
                 sortingExercises: lessonType === 'SORTING_EXERCISE' && lessonData.sortingItems 
                     ? [{ items: lessonData.sortingItems.map(i => i.value), correctOrder: lessonData.sortingItems.map((_, idx) => idx) }]
                     : undefined,
+                interactives: lessonType === 'INTERACTIVE' ? lessonData.interactiveQuestions : undefined,
             });
         }
         if (result) {
@@ -283,6 +293,7 @@ export function CreateChallengeForm() {
                                 ...nativeLanguages.filter(language => language.languageId === selectedSourceLanguageId).map(lang => ({ code: lang.languageCode, name: lang.languageName })),
                                 ...learningLanguages.filter(language => language.languageId === selectedLanguageIdPublic).map(lang => ({ code: lang.languageCode, name: lang.languageName })),
                             ]}
+                            setValue={setLessonValue}
                         />
                     </div>
                 </div>

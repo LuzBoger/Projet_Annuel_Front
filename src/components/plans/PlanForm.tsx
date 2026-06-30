@@ -112,9 +112,10 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading, apiError
                         id="price"
                         label={t('plans.form.price')}
                         type="number"
+                        step="0.01"
                         disabled={isLoading}
                         error={errors.price?.message}
-                        {...register('price', { valueAsNumber: true })}
+                        {...register('price')}
                     />
                     <Select
                         id="currency"

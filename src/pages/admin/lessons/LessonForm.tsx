@@ -13,7 +13,7 @@ import { Switch } from "@/components/ui/Switch";
 import { ChevronLeft, Eye, Check, Cross, Sparkles, Warning } from "@/assets/icons";
 import { useLesson } from "@/hooks/useLesson";
 import { useTopic } from "@/hooks/useTopic";
-import { LessonType, LessonRequest, AILessonGenerateRequest, FlashcardRequest, QcmQuestionRequest, MatchingPairRequest } from "@/types/lesson/lesson";
+import { LessonType, LessonRequest, AILessonGenerateRequest, FlashcardRequest, QcmQuestionRequest, MatchingPairRequest, InteractiveQuestion } from "@/types/lesson/lesson";
 import * as yup from "yup";
 import { lessonSchema, type LessonFormData } from "@/validations/lessons/lessonSchema";
 import { aiGenerationSchema } from "@/validations/lessons/aiGenerationSchema";
@@ -21,6 +21,7 @@ import { FlashcardForm } from "@/components/admin/lessons/FlashcardForm";
 import { QCMForm } from "@/components/admin/lessons/QCMForm";
 import { MatchingPairForm } from "@/components/admin/lessons/MatchingPairForm";
 import { SortingExerciseForm } from "@/components/admin/lessons/SortingExerciseForm";
+import { InteractiveForm } from "@/components/admin/lessons/InteractiveForm";
 import { LessonSimulatorModal } from "@/components/admin/lessons/LessonSimulatorModal";
 import { MetaData } from "@/components/seo/MetaData";
 import { Modal } from "@/components/ui/Modal";
@@ -97,13 +98,15 @@ export default function LessonForm() {
     const questionsCount = formData.questions?.length;
     const matchingPairsCount = formData.matchingPairs?.length;
     const sortingItemsCount = formData.sortingItems?.length;
+    const interactiveQuestionsCount = formData.interactiveQuestions?.length;
 
     const [prevValues, setPrevValues] = useState({
         lessonType,
         flashcardsCount,
         questionsCount,
         matchingPairsCount,
-        sortingItemsCount
+        sortingItemsCount,
+        interactiveQuestionsCount
     });
 
     if (
@@ -111,14 +114,16 @@ export default function LessonForm() {
         flashcardsCount !== prevValues.flashcardsCount ||
         questionsCount !== prevValues.questionsCount ||
         matchingPairsCount !== prevValues.matchingPairsCount ||
-        sortingItemsCount !== prevValues.sortingItemsCount
+        sortingItemsCount !== prevValues.sortingItemsCount ||
+        interactiveQuestionsCount !== prevValues.interactiveQuestionsCount
     ) {
         setPrevValues({
             lessonType,
             flashcardsCount,
             questionsCount,
             matchingPairsCount,
-            sortingItemsCount
+            sortingItemsCount,
+            interactiveQuestionsCount
         });
 
         let newCount: number | undefined = undefined;
@@ -130,6 +135,8 @@ export default function LessonForm() {
             newCount = matchingPairsCount || undefined;
         } else if (lessonType === LessonType.SORTING_EXERCISE) {
             newCount = sortingItemsCount || undefined;
+        } else if (lessonType === LessonType.INTERACTIVE) {
+            newCount = interactiveQuestionsCount || undefined;
         }
         setAiItemCount(newCount);
     }
@@ -147,6 +154,8 @@ export default function LessonForm() {
                     const initialData: Partial<LessonFormData> = { ...lesson };
                     if (lesson.lessonType === LessonType.SORTING_EXERCISE && lesson.sortingExercise && lesson.sortingExercise.length > 0) {
                         initialData.sortingItems = lesson.sortingExercise[0].items.map((item: string) => ({ value: item }));
+                    } else if (lesson.lessonType === LessonType.INTERACTIVE) {
+                        initialData.interactiveQuestions = lesson.interactiveQuestions;
                     }
                     reset(initialData);
                 }
@@ -209,12 +218,14 @@ export default function LessonForm() {
                         items: formData.sortingItems.map((item) => item?.value || ""),
                         correctOrder: formData.sortingItems.map((_, idx) => idx)
                     }];
+                } else if (lessonType === LessonType.INTERACTIVE) {
+                    currentLessonRequest.interactiveQuestions = formData.interactiveQuestions as InteractiveQuestion[];
                 }
 
                 const modificationRequest = {
                     lessonId,
                     prompt: aiGenerationDescription,
-                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD) ? aiItemCount : undefined,
+                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD || lessonType === LessonType.INTERACTIVE) ? aiItemCount : undefined,
                     lesson: currentLessonRequest
                 };
 
@@ -224,7 +235,7 @@ export default function LessonForm() {
                     lessonType: lessonType,
                     topicId: topicId,
                     description: aiGenerationDescription,
-                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD) ? aiItemCount : undefined
+                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD || lessonType === LessonType.INTERACTIVE) ? aiItemCount : undefined
                 };
 
                 generatedLessonData = await generateLessonWithAI(generationRequest);
@@ -243,6 +254,8 @@ export default function LessonForm() {
                 } else if (generatedLessonData.lessonType === LessonType.SORTING_EXERCISE && generatedLessonData.sortingExercise && generatedLessonData.sortingExercise.length > 0) {
                     const sortedItems = generatedLessonData.sortingExercise[0].items.map((item: string) => ({ value: item }));
                     setValue("sortingItems", sortedItems);
+                } else if (generatedLessonData.lessonType === LessonType.INTERACTIVE) {
+                    setValue("interactiveQuestions", generatedLessonData.questions || []);
                 }
             }
         } catch (error: unknown) {
@@ -276,6 +289,8 @@ export default function LessonForm() {
                 items: data.sortingItems.map((i) => i.value),
                 correctOrder: data.sortingItems.map((_, idx) => idx)
             }];
+        } else if (data.lessonType === LessonType.INTERACTIVE) {
+            request.interactiveQuestions = data.interactiveQuestions as InteractiveQuestion[];
         }
 
         try {
@@ -484,6 +499,7 @@ export default function LessonForm() {
                                     {lessonType === LessonType.QCM && <QCMForm control={control} register={register} errors={errors} />}
                                     {lessonType === LessonType.MATCHING_PAIR && <MatchingPairForm control={control} register={register} errors={errors} />}
                                     {lessonType === LessonType.SORTING_EXERCISE && <SortingExerciseForm control={control} register={register} errors={errors} />}
+                                    {lessonType === LessonType.INTERACTIVE && <InteractiveForm control={control} register={register} errors={errors} setValue={setValue} />}
                                 </div>
                             </div>
                         </div>
