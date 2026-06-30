@@ -9,7 +9,7 @@ export function useChallengeNotificationSocket(accountId: string) {
 
     useEffect(() => {
         const client = new Client({
-            brokerURL: `${WS_BASE_URL}/ws`,
+            brokerURL: `${WS_BASE_URL}/api/ws`,
             reconnectDelay: 5000,
             onConnect: () => {
                 client.subscribe(`/topic/user/${accountId}/notification/duel`, (message) => {

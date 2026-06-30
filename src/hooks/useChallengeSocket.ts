@@ -15,7 +15,7 @@ export function useChallengeSocket(challengeId: string) {
         }
         
         const client = new Client({
-            brokerURL: `${WS_BASE_URL}/ws`,
+            brokerURL: `${WS_BASE_URL}/api/ws`,
             reconnectDelay: 5000,
             onConnect: () => {
                 client.subscribe(`/topic/challenge/${challengeId}/progress`, (message) => {
