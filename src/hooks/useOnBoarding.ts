@@ -37,17 +37,17 @@ export function useOnBoarding(onClose: () => void) {
             setIsLoading(false);
         }
     }
-    const skip = async () => {
-        try {
+    // const skip = async () => {
+    //     try {
 
-                await profileService.completeOnboarding({ nativeLanguageId: null, learningLanguageId: null });
-                onClose();
-        }catch {
-            setErr(t('error.onboarding'));
-        }finally {
-            setIsLoading(false);
-        }
-    }
-    return {step, nativeLanguageId, setNativeLanguageId, learningLanguageId, setLearningLanguageId, isLoading, nextStep, previousStep, confirm, skip};
+    //             await profileService.completeOnboarding({ nativeLanguageId: null, learningLanguageId: null });
+    //             onClose();
+    //     }catch {
+    //         setErr(t('error.onboarding'));
+    //     }finally {
+    //         setIsLoading(false);
+    //     }
+    // }
+    return {step, nativeLanguageId, setNativeLanguageId, learningLanguageId, setLearningLanguageId, isLoading, nextStep, previousStep, confirm};
 
 }

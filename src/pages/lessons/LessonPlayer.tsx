@@ -2,13 +2,14 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLesson } from "@/hooks/useLesson";
-import { LessonResponse, LessonType } from "@/types/lesson/lesson";
+import { LessonMistake, LessonResponse, LessonType } from "@/types/lesson/lesson";
 import { ChevronLeft } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { FlashcardPlayer } from "@/components/lessons/players/FlashcardPlayer";
 import { QCMPlayer } from "@/components/lessons/players/QCMPlayer";
 import { MatchingPlayer } from "@/components/lessons/players/MatchingPlayer";
 import { SortingPlayer } from "@/components/lessons/players/SortingPlayer";
+import { InteractivePlayer } from "@/components/lessons/players/InteractivePlayer";
 import { MetaData } from "@/components/seo/MetaData";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 
@@ -57,7 +58,7 @@ export default function LessonPlayer() {
         return () => { mounted = false; };
     }, [lessonId, fetchLessonById, startLesson, t]);
 
-    const handleLessonComplete = useCallback(async (score: number) => {
+    const handleLessonComplete = useCallback(async (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => {
         if (!lessonId || isCompleting) return;
 
         try {
@@ -66,12 +67,19 @@ export default function LessonPlayer() {
 
             const response = await completeLesson(lessonId, {
                 score,
-                timeSpentSeconds
+                timeSpentSeconds,
+                correctAnswers,
+                totalAnswers,
+                mistakeFlashCardIds: lesson?.lessonType === LessonType.FLASHCARD ? mistakes.map(mistake => mistake.id) : undefined,
+                mistakeQcmList: lesson?.lessonType === LessonType.QCM ? mistakes : undefined,
+                mistakeMatchingList: lesson?.lessonType === LessonType.MATCHING_PAIR ? mistakes : undefined,
+                mistakeSortingList: lesson?.lessonType === LessonType.SORTING_EXERCISE ? mistakes : undefined,
+                mistakeInteractiveList: lesson?.lessonType === LessonType.INTERACTIVE ? mistakes : undefined,
             });
 
             playSuccess();
 
-            navigate(`/lessons/${lessonId}/success`, { state: { response, lesson } });
+            navigate(`/lessons/${lessonId}/success`, { state: { response, lesson }, replace: true });
 
         } catch {
             setErrorMsg(t('lessons.complete_error'));
@@ -126,16 +134,19 @@ export default function LessonPlayer() {
                 <main className="flex-1 w-full h-screen overflow-hidden flex flex-col">
                     <div className="w-full flex-1 flex flex-col min-h-0">
                         {lesson.lessonType === LessonType.FLASHCARD && (
-                            <FlashcardPlayer flashcards={lesson.flashcards || []} onFinish={handleLessonComplete} />
+                            <FlashcardPlayer lessonId={lesson.id} flashcards={lesson.flashcards || []} onFinish={handleLessonComplete} />
                         )}
                         {lesson.lessonType === LessonType.QCM && (
-                            <QCMPlayer questions={lesson.questions || []} onFinish={handleLessonComplete} />
+                            <QCMPlayer lessonId={lesson.id} questions={lesson.questions || []} onFinish={handleLessonComplete} />
                         )}
                         {lesson.lessonType === LessonType.MATCHING_PAIR && (
-                            <MatchingPlayer pairs={lesson.matchingPairs || []} onFinish={handleLessonComplete} />
+                            <MatchingPlayer lessonId={lesson.id} pairs={lesson.matchingPairs || []} onFinish={handleLessonComplete} />
                         )}
                         {lesson.lessonType === LessonType.SORTING_EXERCISE && (
-                            <SortingPlayer exercises={lesson.sortingExercise || []} onFinish={handleLessonComplete} />
+                            <SortingPlayer lessonId={lesson.id} exercises={lesson.sortingExercise || []} onFinish={handleLessonComplete} />
+                        )}
+                        {lesson.lessonType === LessonType.INTERACTIVE && (
+                            <InteractivePlayer lessonId={lesson.id} questions={lesson.interactiveQuestions || []} onFinish={handleLessonComplete} />
                         )}
                     </div>
                 </main>

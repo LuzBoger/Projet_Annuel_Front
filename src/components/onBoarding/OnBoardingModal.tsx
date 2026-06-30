@@ -24,7 +24,6 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
     nextStep,
     previousStep,
     confirm,
-    skip,
     isLoading,
   } = useOnBoarding(onClose);
 
@@ -34,8 +33,9 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
 
   return (
     <Modal
-      isOpen={true} 
-      onClose={skip}
+      isOpen={true}
+      onClose={() => {}}
+      showCloseButton={false}
       title={step === "native" ? t("onBoarding.selectNativeLanguage") : t("onBoarding.selectLearningLanguage")}
       size="md"
     >
@@ -47,10 +47,6 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
         ) : (
           <div />
         )}
-
-        <Button onClick={skip} variant="ghost" size="sm" className="text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors border-none font-medium">
-          {t("common.skip")}
-        </Button>
       </div>
 
       <div className="grid grid-cols-2 gap-4 mb-10">

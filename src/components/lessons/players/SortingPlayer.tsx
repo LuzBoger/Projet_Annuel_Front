@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { SortableItem } from "@/types/components/sorting";
-import { SortingExerciseRequest } from "@/types/lesson/lesson";
+import { LessonMistake, SortingExerciseRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
 import { ChevronRight } from "@/assets/icons";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
@@ -11,12 +11,15 @@ import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { initPool } from "@/lib/utils/sorting";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
+import { MemorizationHelpButton } from "@/components/lessons/players/common/MemorizationHelpButton";
+
 interface SortingPlayerProps {
+    lessonId?: string;
     exercises: SortingExerciseRequest[];
-    onFinish: (score: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => void;
 }
 
-export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
+export function SortingPlayer({ lessonId, exercises, onFinish }: SortingPlayerProps) {
     const { t } = useTranslation();
     const { playCorrect, playIncorrect } = useSoundEffects();
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,6 +33,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
     const [results, setResults] = useState<SegmentStatus[]>(
         new Array(exercises.length).fill('pending' as SegmentStatus)
     );
+    const mistakeIds = useRef<LessonMistake[]>([]);
 
     if (currentIndex !== prevIndex || exercises !== prevExercises) {
         setPrevIndex(currentIndex);
@@ -89,6 +93,9 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
             playCorrect();
         } else {
             playIncorrect();
+            if (currentExercise.id && !mistakeIds.current.some(mistake => mistake.id === currentExercise.id)) {
+                mistakeIds.current.push({ id: currentExercise.id, userAnswer: selectedItems.map(item => item.text).join(' → ') });
+            }
         }
     };
 
@@ -97,7 +104,7 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
             setCurrentIndex(previous => previous + 1);
         } else {
             const finalScore = Math.round((correctCount / exercises.length) * 100);
-            onFinish(finalScore);
+            onFinish(finalScore, correctCount, exercises.length, mistakeIds.current);
         }
     };
 
@@ -121,7 +128,16 @@ export function SortingPlayer({ exercises, onFinish }: SortingPlayerProps) {
                 <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 my-auto">
                     <div className="space-y-4">
                         <PlayerCard instruction={t('lessons.sorting.instruction')}>
-                        <div className="space-y-8">
+                            {lessonId && (
+                                <div className="flex justify-end mb-6 -mt-4">
+                                    <MemorizationHelpButton
+                                        lessonId={lessonId}
+                                        exerciseId={currentExercise.id}
+                                        exerciseType="SORTING_EXERCISE"
+                                    />
+                                </div>
+                            )}
+                            <div className="space-y-8">
                             <div className="min-h-[140px] w-full border-t-2 border-b-2 border-dashed border-gray-200 dark:border-gray-600 py-6 px-4 flex flex-wrap gap-2 items-center justify-center content-start transition-all bg-gray-50/50 dark:bg-gray-700/30 rounded-xl">
                                 {selectedItems.length === 0 && (
                                     <span className="text-gray-400 font-medium select-none text-sm sm:text-base text-center">

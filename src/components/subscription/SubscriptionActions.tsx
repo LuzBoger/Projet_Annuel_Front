@@ -6,11 +6,12 @@ interface SubscriptionActionsProps {
     subscription: SubscriptionDetailResponse;
     onCancel: () => void;
     onReactivate: () => void;
+    onDisableAutoRenewal: () => void;
     onChangePlan: () => void;
     isLoading: boolean;
 }
 
-export function SubscriptionActions({ subscription, onCancel, onReactivate, onChangePlan, isLoading }: SubscriptionActionsProps) {
+export function SubscriptionActions({ subscription, onCancel, onReactivate, onDisableAutoRenewal, onChangePlan, isLoading }: SubscriptionActionsProps) {
     const { t } = useTranslation();
 
     if (subscription.plan?.subscriptionType !== 'PREMIUM') {
@@ -33,13 +34,17 @@ export function SubscriptionActions({ subscription, onCancel, onReactivate, onCh
 
                 {subscription.cancelAtPeriodEnd ? (
                     <Button variant='primary' fullWidth disabled={isLoading} onClick={onReactivate}>
-                        {t('subscription.manage.reactivate')}
+                        {t('subscription.manage.enable_auto_renewal')}
                     </Button>
                 ) : (
-                    <Button variant='danger' fullWidth disabled={isLoading} onClick={onCancel}>
-                        {t('subscription.manage.cancel')}
+                    <Button variant='outline' fullWidth disabled={isLoading} onClick={onDisableAutoRenewal}>
+                        {t('subscription.manage.disable_auto_renewal')}
                     </Button>
                 )}
+
+                <Button variant='danger' fullWidth disabled={isLoading} onClick={onCancel}>
+                    {t('subscription.manage.cancel')}
+                </Button>
             </div>
 
         </div>

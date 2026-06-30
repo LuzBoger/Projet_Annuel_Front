@@ -2,7 +2,7 @@ import { TopicWithProgressResponse } from "@/types/topic/topic";
 import { LESSON_TYPE, LESSON_TYPE_COLORS } from "@/constants/lesson";
 import { useTranslation } from "react-i18next";
 import { ChevronRight, CheckCircle2 } from "lucide-react";
-import { BadgeTag } from "../BadgeTag";
+import { BadgeTag } from "@/components/ui/BadgeTag";
 
 interface TopicCardProps {
     topic: TopicWithProgressResponse;

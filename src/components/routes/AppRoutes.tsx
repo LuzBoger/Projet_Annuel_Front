@@ -7,7 +7,7 @@ import ResetPassword from "@/pages/reset-password/ResetPassword";
 import Verify2FA from "@/pages/verify-2fa/Verify2FA";
 import { useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { ProtectedRoute } from "./ProtectedRoute";
+import { ProtectedRoute } from "@/components/routes/ProtectedRoute";
 import Subscription from "@/pages/subscription/Subscription";
 import Plans from "@/pages/plans/Plans";
 import { LanguageCatalog } from "@/pages/catalog-languages/LanguageCatalog";
@@ -31,22 +31,39 @@ import TopicLessons from "@/pages/topics/TopicLessons";
 import TopicExam from "@/pages/topics/TopicExam";
 import LessonPlayer from "@/pages/lessons/LessonPlayer";
 import LessonSuccess from "@/pages/lessons/LessonSuccess";
-import { OnBoardingModal } from "../onBoarding/OnBoardingModal";
+import { OnBoardingModal } from "@/components/onBoarding/OnBoardingModal";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/ui/Footer";
+import { UserLayout } from "@/layout/UserLayout";
 import { RoleEnum } from "@/types/enum/roles";
 import { AUTH_PATH } from "@/constants/global";
 import Dashboard from "@/pages/user/Dashboard";
+import AdminUserStats from "@/pages/admin/stats/AdminUserStats";
+import ReviewManage from "@/pages/admin/reviews/ReviewManage";
+import { useNotifications } from "@/hooks/useNotifications";
+import Ranking from "@/pages/ranking/Ranking";
+import Challenge from "@/pages/challenge/Challenge";
+import NewChallenge from "@/pages/challenge/new/NewChallenge";
+import ChallengeDetail from "@/pages/challenge/details/ChallengeDetail";
+import MentionsLegales from "@/pages/legal/MentionsLegales";
+import CGU from "@/pages/legal/CGU";
+import CGV from "@/pages/legal/CGV";
+import PolitiqueConfidentialite from "@/pages/legal/PolitiqueConfidentialite";
+import PolitiqueCookies from "@/pages/legal/PolitiqueCookie";
+import Contact from "@/pages/contact/Contact";
+import DailyCheck from "@/pages/mistake/DailyCheck";
+import MistakeListe from "@/pages/mistake/MistakeListe";
 
 export function AppRoutes() {
+  useNotifications();
   const { user, isAuthenticated, fetchUser } = useContext(AuthContext)!;
   const location = useLocation();
 
-  const isImmersiveRoute = location.pathname.endsWith('/play') || location.pathname.endsWith('/exam') || location.pathname.endsWith('/success');
   const showOnBoarding = isAuthenticated && !!user && !user.hasCompletedOnboarding && user.role !== RoleEnum.ADMIN && !AUTH_PATH.includes(location.pathname);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
-      {!isImmersiveRoute && <Header />}
+      {!isAuthenticated && <Header />}
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -55,24 +72,44 @@ export function AppRoutes() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/verify-2fa" element={<Verify2FA />} />
-          <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
           <Route path="/plans" element={<Plans />} />
-          <Route path="/catalog-languages" element={<ProtectedRoute><LanguageCatalog /></ProtectedRoute>} />
-          <Route path="/languages/:languageId" element={<ProtectedRoute><LanguageDetailPage /></ProtectedRoute>} />
-          <Route path="/dashboard" element={<ProtectedRoute userOnly><Dashboard /></ProtectedRoute>} />
-          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-          <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
-          <Route path="/topics/:topicId" element={<ProtectedRoute><TopicLessons /></ProtectedRoute>} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/legal/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/legal/cgu" element={<CGU />} />
+          <Route path="/legal/cgv" element={<CGV />} />
+          <Route path="/legal/politique-de-confidentialite" element={<PolitiqueConfidentialite />} />
+          <Route path="/legal/politique-de-cookies" element={<PolitiqueCookies />} />
+
+          <Route element={<UserLayout />}>
+            <Route path="/dashboard" element={<ProtectedRoute userOnly><Dashboard /></ProtectedRoute>} />
+            <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
+            <Route path="/catalog-languages" element={<ProtectedRoute><LanguageCatalog /></ProtectedRoute>} />
+            <Route path="/languages/:languageId" element={<ProtectedRoute><LanguageDetailPage /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/profile/:userId" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/language/:languageId/topics" element={<ProtectedRoute><LanguageTopics /></ProtectedRoute>} />
+            <Route path="/topics/:topicId" element={<ProtectedRoute><TopicLessons /></ProtectedRoute>} />
+            <Route path="/ranking" element={<ProtectedRoute><Ranking /></ProtectedRoute>} />
+            <Route path="/challenges" element={<Challenge />} />
+            <Route path="/challenges/new" element={<NewChallenge />} />
+            <Route path="/challenges/:challengeId" element={<ChallengeDetail />} />
+            <Route path="/training/daily-check" element={<ProtectedRoute userOnly><DailyCheck /></ProtectedRoute>} />
+            <Route path="/training/list" element={<ProtectedRoute userOnly><MistakeListe /></ProtectedRoute>} />
+          </Route>
+
           <Route path="/topics/:topicId/exam" element={<ProtectedRoute><TopicExam /></ProtectedRoute>} />
           <Route path="/lessons/:lessonId/play" element={<ProtectedRoute><LessonPlayer /></ProtectedRoute>} />
           <Route path="/lessons/:lessonId/success" element={<ProtectedRoute><LessonSuccess /></ProtectedRoute>} />
+
           <Route path="/settings" element={<ProtectedRoute><SettingsLayout /></ProtectedRoute>} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute>}>
             <Route index element={<AdminDashboard />} />
+            <Route path="stats" element={<AdminUserStats />} />
             <Route path="plans" element={<PlansManage />} />
             <Route path="subscriptions" element={<SubscriptionsManage />} />
             <Route path="languages" element={<LanguageList />} />
+            <Route path="reviews" element={<ReviewManage />} />
             <Route path="topics" element={<TopicList />} />
             <Route path="topics/:topicId/lessons" element={<LessonList />} />
             <Route path="topics/:topicId/lessons/new" element={<LessonForm />} />
@@ -84,6 +121,7 @@ export function AppRoutes() {
           </Route>
         </Routes>
       </main>
+      {!isAuthenticated && !AUTH_PATH.includes(location.pathname) && <Footer />}
       {showOnBoarding && <OnBoardingModal onClose={fetchUser} />}
     </div>
   );

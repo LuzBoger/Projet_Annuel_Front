@@ -21,6 +21,7 @@ const TYPE_ICONS: Record<LessonType, React.ElementType> = {
     [LessonType.QCM]: IconQcm,
     [LessonType.MATCHING_PAIR]: IconMatching,
     [LessonType.SORTING_EXERCISE]: IconSorting,
+    [LessonType.INTERACTIVE]: IconQcm,
 };
 
 export default function LessonList() {

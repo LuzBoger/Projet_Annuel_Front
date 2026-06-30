@@ -1,22 +1,23 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { FlashcardRequest } from "@/types/lesson/lesson";
+import { FlashcardRequest, LessonMistake } from "@/types/lesson/lesson";
 import { QueuedCard } from "@/types/components/flashcard";
 import { Button } from "@/components/ui/Button";
 import { FaceSad, FaceNeutral, FaceSmile } from "@/assets/icons";
-import { PlayerLayout } from "./common/PlayerLayout";
-import { PlayerHeader } from "./common/PlayerHeader";
+import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
+import { PlayerHeader } from "@/components/lessons/players/common/PlayerHeader";
 import { SegmentStatus } from "@/types/components/player";
-
-import { PlayerFooter } from "./common/PlayerFooter";
+import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
+import { MemorizationHelpButton } from "@/components/lessons/players/common/MemorizationHelpButton";
 
 interface FlashcardPlayerProps {
+    lessonId?: string;
     flashcards: FlashcardRequest[];
-    onFinish: (score: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => void;
 }
 
-export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) {
+export function FlashcardPlayer({ lessonId, flashcards, onFinish }: FlashcardPlayerProps) {
     const { t } = useTranslation();
     const { playCorrect, playIncorrect } = useSoundEffects();
     const [queue, setQueue] = useState<QueuedCard[]>(() =>
@@ -28,6 +29,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
     const [isFlipped, setIsFlipped] = useState(false);
     const [completedCards, setCompletedCards] = useState(0);
     const [transitionState, setTransitionState] = useState<'idle' | 'exiting' | 'entering'>('idle');
+    const mistakeIds = useRef<LessonMistake[]>([]);
 
     if (!flashcards || flashcards.length === 0) {
         return (
@@ -63,7 +65,6 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
 
         setTransitionState('exiting');
 
-        // Wait for exit animation (300ms)
         setTimeout(() => {
             const { originalIndex } = currentItem;
 
@@ -76,6 +77,9 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
             } else if (level === 'red') {
                 newScores[originalIndex] = 0;
                 playIncorrect();
+                if (currentCard.id && !mistakeIds.current.some(mistake => mistake.id === currentCard.id)) {
+                    mistakeIds.current.push({ id: currentCard.id });
+                }
             }
             setScores(newScores);
 
@@ -105,7 +109,7 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
                 // Calculate final score: only count cards that were correctly answered (Green)
                 const correctCount = newScores.filter(s => s === 100).length;
                 const finalScore = Math.round((correctCount / flashcards.length) * 100);
-                setTimeout(() => onFinish(finalScore), 400);
+                setTimeout(() => onFinish(finalScore, correctCount, flashcards.length, mistakeIds.current), 400);
             } else {
                 setTransitionState('entering');
                 setTimeout(() => {
@@ -145,6 +149,15 @@ export function FlashcardPlayer({ flashcards, onFinish }: FlashcardPlayerProps) 
 
             <div className="flex-1 overflow-y-auto min-h-0 py-4 flex flex-col">
                 <div className="my-auto w-full py-4">
+                    {lessonId && (
+                        <div className="flex justify-center mb-6">
+                            <MemorizationHelpButton
+                                lessonId={lessonId}
+                                exerciseId={currentCard.id}
+                                exerciseType="FLASHCARD"
+                            />
+                        </div>
+                    )}
                     <div
                         className={`relative w-full aspect-[4/3] sm:aspect-[3/2] max-w-lg cursor-pointer group transition-all duration-300 ease-out mx-auto ${getTransitionClasses()}`}
                         style={{ perspective: '1200px' }}

@@ -2,7 +2,8 @@ export const LessonType = {
     FLASHCARD: "FLASHCARD",
     QCM: "QCM",
     MATCHING_PAIR: "MATCHING_PAIR",
-    SORTING_EXERCISE: "SORTING_EXERCISE"
+    SORTING_EXERCISE: "SORTING_EXERCISE",
+    INTERACTIVE: "INTERACTIVE"
 } as const;
 
 export type LessonType = typeof LessonType[keyof typeof LessonType];
@@ -10,6 +11,7 @@ export type LessonStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED";
 export type DifficultyFeedback = 'VERY_GOOD' | 'GOOD' | 'MEDIUM' | 'HARD';
 
 export interface FlashcardRequest {
+    id?: string;
     front: string;
     back: string;
     frontLanguage: string;
@@ -17,6 +19,7 @@ export interface FlashcardRequest {
 }
 
 export interface QcmQuestionRequest {
+    id?: string;
     question: string;
     options: string[];
     correctOptionIndex: number;
@@ -24,13 +27,26 @@ export interface QcmQuestionRequest {
 }
 
 export interface MatchingPairRequest {
+    id?: string;
     item1: string;
     item2: string;
 }
 
 export interface SortingExerciseRequest {
+    id?: string;
     items: string[];
     correctOrder: number[];
+}
+
+export interface InteractiveQuestion {
+    id?: string;
+    questionText: string;
+    imagePaths: string[];
+    audioPaths: string[];
+    systemType: "MULTIPLE_CHOICE" | "OPEN_TEXT";
+    options: string[];
+    correctOptionIndex: number | null;
+    correctWord: string | null;
 }
 
 export interface LessonRequest {
@@ -47,6 +63,7 @@ export interface LessonRequest {
     questions?: QcmQuestionRequest[];
     matchingPairs?: MatchingPairRequest[];
     sortingExercise?: SortingExerciseRequest[];
+    interactiveQuestions?: InteractiveQuestion[];
 }
 export interface UserLessonProgressSummary {
     status: LessonStatus;
@@ -65,9 +82,26 @@ export interface LessonResponse extends LessonRequest {
     userProgress?: UserLessonProgressSummary;
 }
 
+export interface LessonMistake {
+    id: string;
+    userAnswer?: string;
+}
+
 export interface CompleteLessonRequest {
-    score: number;
+    score?: number;
     timeSpentSeconds: number;
+    correctAnswers?: number;
+    totalAnswers?: number;
+    mistakeFlashCardIds?: string[];
+    mistakeQcmList?: LessonMistake[];
+    mistakeMatchingList?: LessonMistake[];
+    mistakeSortingList?: LessonMistake[];
+    mistakeInteractiveList?: LessonMistake[];
+}
+
+export interface UserProgressResponse {
+    completedLessons: number;
+    completionPercentage: number;
 }
 
 export interface CompleteLessonResponse {
@@ -78,7 +112,7 @@ export interface CompleteLessonResponse {
     currentLevel: number;
     leveledUp: boolean;
     newLevel?: number;
-    progress?: UserLessonProgressSummary;
+    progress?: UserProgressResponse;
 }
 
 export interface LessonSummaryResponse {
@@ -100,6 +134,45 @@ export interface TopicLessonsResponse {
     lastAccuracy: number;
     topicName: string;
     userProgress?: UserLessonProgressSummary;
-
 }
+
+export interface AILessonGenerateRequest {
+    lessonType: LessonType;
+    topicId: string;
+    description: string;
+    itemCount?: number;
+}
+
+export interface AILessonModifyRequest {
+    lessonId: string;
+    prompt: string;
+    itemCount?: number;
+    lesson: LessonRequest;
+}
+
+export type HelpType = "STRUCTURE_AND_RULE" | "ASSOCIATION_AND_MNEMONIC" | "TRAP_WARNING" | "USAGE_CONTEXT";
+
+export interface AIMemorizationHelpRequest {
+    lessonId: string;
+    exerciseId?: string;
+    exerciseType: LessonType;
+    helpType: HelpType;
+}
+
+export interface AIMemorizationHelpResponse {
+    title: string;
+    explanation: string;
+    visualAnchor: string | null;
+    examples: string[] | null;
+    warning: string | null;
+}
+
+export interface InteractiveQuestionError {
+  questionText?: { message?: string };
+  systemType?: { message?: string };
+  correctOptionIndex?: { message?: string };
+  correctWord?: { message?: string };
+  options?: Array<{ message?: string } | undefined>;
+}
+
 

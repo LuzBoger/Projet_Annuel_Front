@@ -1,16 +1,22 @@
 import { MetaData } from "@/components/seo/MetaData";
 import { ResumeLessonCard } from "@/components/ui/card/ResumeLessonCard";
+import { StreakCard } from "@/components/ui/card/StreakCard";
 import { XpCard } from "@/components/ui/card/XpCard";
 import { LanguageLevel } from "@/components/user/dashboard/LanguageLevel";
 import { Topics } from "@/components/user/dashboard/Topics";
 import { Welcome } from "@/components/user/dashboard/Welcome";
-import { EVENT_ACTIVE_LANGUAGE_CHANGED } from "@/constants/event";
+import { DailyCheckBanner } from "@/components/mistake/DailyCheckBanner";
+import { DailyCheckModal } from "@/components/mistake/DailyCheckModal";
+import { EVENT_ACTIVE_LANGUAGE_CHANGED, EVENT_USER_LANGUAGE_REMOVED } from "@/constants/event";
 import { useAuth } from "@/hooks/useAuth";
 import { useProgress } from "@/hooks/useProgress";
 import { globalEvents } from "@/lib/utils/eventEmitter";
 import { profileService } from "@/services/profileService";
 import { topicService } from "@/services/topicService";
+import { userMistakesService } from "@/services/userMistakesService";
 import { LanguageResponse } from "@/types/language/language";
+import type { UserDailyQuestion } from "@/types/mistakes/userMistakes";
+import { StreakResponse } from "@/types/profile/streak";
 import { TopicWithProgressResponse } from "@/types/topic/topic";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -22,10 +28,25 @@ export default function Dashboard() {
 
     const [activeLanguageId, setActiveLanguageId] = useState<string | null>(null);
     const [topics, setTopics] = useState<TopicWithProgressResponse[]>([]);
-
+    const [streak, setStreak] = useState<StreakResponse | null>(null);
+    const [dailyQuestion, setDailyQuestion] = useState<UserDailyQuestion | null>(null);
+    const [showModal, setShowModal] = useState(false);
     const validLanguageLevels = languageLevels.filter(l => l.languageId && l.languageCode);
 
     const effectiveLanguageId = activeLanguageId ?? validLanguageLevels[0]?.languageId ?? null;
+
+    useEffect(() => {
+        userMistakesService.getDailyQuestion()
+            .then((data) => {
+                setDailyQuestion(data);
+                const isAlreadyShown = sessionStorage.getItem("dailyModalShown");
+                if (data.hasQuestionToday && !isAlreadyShown) {
+                    setShowModal(true);
+                }
+                sessionStorage.setItem("dailyModalShown", "true");
+            })
+            .catch(() => {});
+    }, []);
 
     useEffect(() => {
         fetchData();
@@ -35,6 +56,7 @@ export default function Dashboard() {
             }
         })
         .catch(() => {});
+        profileService.getStreak().then(setStreak).catch(() => {});
     }, [fetchData]);
 
     useEffect(() => {
@@ -43,15 +65,23 @@ export default function Dashboard() {
     }, [effectiveLanguageId]);
 
     useEffect(() => {
-    const handler = (...args: unknown[]) => {
-        const lang = args[0] as LanguageResponse | null | undefined;
-        if (lang?.id) {
-            setActiveLanguageId(lang.id);
-        }
-    };
+        const handler = (...args: unknown[]) => {
+            const lang = args[0] as LanguageResponse | null | undefined;
+            if (lang?.id) {
+                setActiveLanguageId(lang.id);
+            }
+        };
         globalEvents.on(EVENT_ACTIVE_LANGUAGE_CHANGED, handler);
         return () => globalEvents.off(EVENT_ACTIVE_LANGUAGE_CHANGED, handler);
     }, []);
+
+    useEffect(() => {
+        const handler = () => {
+            fetchData();
+        };
+        globalEvents.on(EVENT_USER_LANGUAGE_REMOVED, handler);
+        return () => globalEvents.off(EVENT_USER_LANGUAGE_REMOVED, handler);
+    }, [fetchData]);
 
     const handleLanguageSelect = async (languageId: string) => {
         setActiveLanguageId(languageId);
@@ -68,28 +98,43 @@ export default function Dashboard() {
     return (
         <>
             <MetaData title={t('dashboard.page_title')}  robots="noindex, nofollow"  /> 
-        <div className="max-w-6xl mx-auto px-4 py-8">
-            <div className="flex gap-8">
+            <div className="max-w-6xl mx-auto px-4 py-8">
+                <div className="flex flex-col lg:flex-row gap-8">
 
-                <div className="flex-1 min-w-0">
-                    <Welcome username={user?.username ?? ""} />
-                    <Topics topics={topics} activeLanguageId={effectiveLanguageId} />
+                    <div className="flex-1 min-w-0 order-2 lg:order-1">
+                        <Welcome username={user?.username ?? ""} />
+                        <DailyCheckBanner totalAvailableNow={dailyQuestion?.totalAvailableNow ?? 0} />
+                        <Topics topics={topics} activeLanguageId={effectiveLanguageId} />
+                    </div>
+
+                    <div className="w-full lg:w-72 lg:flex-shrink-0 order-1 lg:order-2">
+                        {validLanguageLevels.length > 0 && (
+                            <LanguageLevel
+                                languageLevels={validLanguageLevels}
+                                activeLanguageId={effectiveLanguageId}
+                                onSelect={handleLanguageSelect}
+                            />
+                        )}
+                        {overview && <XpCard overview={overview} />}
+                        {streak && <StreakCard streak={streak} />}
+                        <ResumeLessonCard lesson={lastLesson} />
+                    </div>
+
                 </div>
-
-                <div className="w-72 flex-shrink-0">
-                    {validLanguageLevels.length > 0 && (
-                        <LanguageLevel
-                            languageLevels={validLanguageLevels}
-                            activeLanguageId={effectiveLanguageId}
-                            onSelect={handleLanguageSelect}
-                        />
-                    )}
-                    {overview && <XpCard overview={overview} />}
-                    <ResumeLessonCard lesson={lastLesson} />
-                </div>
-
             </div>
-        </div>
+            {dailyQuestion?.hasQuestionToday && (
+                <DailyCheckModal
+                    isOpen={showModal}
+                    dailyQuestion={dailyQuestion}
+                    onClose={() => setShowModal(false)}
+                    onComplete={() => {
+                        setShowModal(false);
+                        userMistakesService.getDailyQuestion()
+                            .then(setDailyQuestion)
+                            .catch(() => {});
+                    }}
+                />
+            )}
         </>
     );
 }

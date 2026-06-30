@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { QcmQuestionRequest } from "@/types/lesson/lesson";
+import { LessonMistake, QcmQuestionRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
 import { ChevronRight } from "@/assets/icons";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
@@ -9,22 +9,25 @@ import { SegmentStatus } from "@/types/components/player";
 import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
+import { MemorizationHelpButton } from "@/components/lessons/players/common/MemorizationHelpButton";
 
 interface QCMPlayerProps {
+    lessonId?: string;
     questions: QcmQuestionRequest[];
-    onFinish: (score: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => void;
 }
 
-export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
+export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
     const { t } = useTranslation();
     const { playCorrect, playIncorrect } = useSoundEffects();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
     const [isValidated, setIsValidated] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
-    const [results, setResults] = useState<SegmentStatus[]>(
+    const [results, setResults] = useState<SegmentStatus[]>(() =>
         new Array(questions.length).fill('pending' as SegmentStatus)
     );
+    const mistakeIds = useRef<LessonMistake[]>([]);
 
     if (!questions || questions.length === 0) {
         return (
@@ -36,7 +39,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
         );
     }
 
-    const currentQ = questions[currentIndex];
+    const currentQ = questions[currentIndex]; 
     const isCorrect = Number(selectedOption) === Number(currentQ.correctOptionIndex);
 
     const handleSelect = (index: number) => {
@@ -58,6 +61,9 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
             playCorrect();
         } else {
             playIncorrect();
+            if (currentQ.id && !mistakeIds.current.some(mistake => mistake.id === currentQ.id)) {
+                mistakeIds.current.push({ id: currentQ.id, userAnswer: selectedOption !== null ? currentQ.options[selectedOption] : undefined });
+            }
         }
     };
 
@@ -68,7 +74,7 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
             setCurrentIndex(prev => prev + 1);
         } else {
             const finalScore = Math.round((correctCount / questions.length) * 100);
-            onFinish(finalScore);
+            onFinish(finalScore, correctCount, questions.length, mistakeIds.current);
         }
     };
 
@@ -85,6 +91,15 @@ export function QCMPlayer({ questions, onFinish }: QCMPlayerProps) {
                 <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 my-auto">
                     <div className="space-y-6">
                         <PlayerCard instruction={currentQ.question}>
+                            {lessonId && (
+                                <div className="flex justify-end mb-6 -mt-4">
+                                    <MemorizationHelpButton
+                                        lessonId={lessonId}
+                                        exerciseId={currentQ.id}
+                                        exerciseType="QCM"
+                                    />
+                                </div>
+                            )}
                             <div className="space-y-4">
                                 {currentQ.options.map((option, idx) => {
                                     let buttonClass = "w-full p-4 rounded-xl border-2 text-left transition-all duration-200 flex items-center group relative ";

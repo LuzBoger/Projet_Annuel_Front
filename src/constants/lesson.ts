@@ -1,8 +1,12 @@
+import { LessonType } from "@/types/lesson/lesson";
+import { MistakeFilterValue } from "@/types/mistakes/userMistakes";
+
 export const LESSON_TYPE: Record<string, string> = {
     FLASHCARD: "Flashcards",
     QCM: "Quiz",
     MATCHING_PAIR: "Paires",
     SORTING_EXERCISE: "Ordre",
+    INTERACTIVE: "Interactif",
 };
 
 export const PENALTY_PER_ERROR = 10;
@@ -12,6 +16,7 @@ export const LESSON_TYPE_COLORS: Record<string, string> = {
     QCM: "bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-950/30 dark:text-purple-400 dark:border-purple-800/30",
     MATCHING_PAIR: "bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-950/30 dark:text-pink-400 dark:border-pink-800/30",
     SORTING_EXERCISE: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-800/30",
+    INTERACTIVE: "bg-teal-100 text-teal-700 border-teal-200 dark:bg-teal-950/30 dark:text-teal-400 dark:border-teal-800/30",
 };
 
 export const DIFFICULTY_COLORS: Record<string, string> = {
@@ -22,3 +27,13 @@ export const DIFFICULTY_COLORS: Record<string, string> = {
     C1: "bg-red-100 text-red-700 border-red-200 dark:bg-red-950/30 dark:text-red-400 dark:border-red-800/30",
     C2: "bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-950/30 dark:text-purple-400 dark:border-purple-800/30",
 };
+
+export const FILTERS: Array<{ value: MistakeFilterValue; label: string; labelKey: string }> = [
+  { value: "ALL", label: "Tout", labelKey: "mistake.filters.ALL" },
+  { value: LessonType.FLASHCARD, label: "Flashcard", labelKey: "mistake.filters.FLASHCARD" },
+  { value: LessonType.QCM, label: "QCM", labelKey: "mistake.filters.QCM" },
+  { value: LessonType.MATCHING_PAIR, label: "Association", labelKey: "mistake.filters.MATCHING_PAIR" },
+  { value: LessonType.SORTING_EXERCISE, label: "Tri", labelKey: "mistake.filters.SORTING_EXERCISE" },
+  { value: LessonType.INTERACTIVE, label: "Interactif", labelKey: "mistake.filters.INTERACTIVE" },
+];
+

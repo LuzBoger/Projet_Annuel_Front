@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { resetPasswordSchema, type ResetPasswordFormData } from "../../validations/auth/resetPasswordSchema";
+import { resetPasswordSchema, type ResetPasswordFormData } from "@/validations/auth/resetPasswordSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/src/index.js";
 import { FormField } from "@/components/ui/FormField";

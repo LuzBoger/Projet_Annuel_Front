@@ -9,6 +9,7 @@ import { TopicProgressBar } from "@/components/topics/TopicProgressBar";
 import { FinalExamCard } from "@/components/topics/FinalExamCard";
 import { Button } from "@/components/ui/Button";
 import { MetaData } from "@/components/seo/MetaData";
+import { TopicReviews } from "@/components/reviews/TopicReviews";
 
 export default function TopicLessons() {
     const { topicId } = useParams<{ topicId: string }>();
@@ -164,6 +165,7 @@ export default function TopicLessons() {
                     )}
                 </div>
             ) : null}
+            {topicId && <TopicReviews topicId={topicId} />}
         </div>
         </>
     );

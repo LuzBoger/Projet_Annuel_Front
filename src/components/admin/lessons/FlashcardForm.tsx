@@ -1,38 +1,60 @@
-import { Control, useFieldArray, UseFormRegister, FieldErrors, FieldError } from "react-hook-form";
+import { Control, useFieldArray, UseFormRegister, FieldErrors, FieldError, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
+import { Select } from "@/components/ui/Select";
 import { Trash, Plus } from "@/assets/icons";
 import { LessonFormData } from "@/validations/lessons/lessonSchema";
+import { languageService } from "@/services/languageService";
+import { LanguageOptions, LanguageResponse } from "@/types/language/language";
 
 interface FlashcardFormProps {
     control: Control<LessonFormData>;
     register: UseFormRegister<LessonFormData>;
     errors: FieldErrors<LessonFormData>;
+    options?: LanguageOptions[];
 }
 
-export function FlashcardForm({ control, register, errors }: FlashcardFormProps) {
+export function FlashcardForm({ control, register, errors, options }: FlashcardFormProps) {
     const { t } = useTranslation();
-    const { fields, append, remove } = useFieldArray({
-        control,
-        name: "flashcards"
-    });
+    const [languages, setLanguages] = useState<LanguageResponse[]>([]);
+
+    useEffect(() => {
+        if(options) {
+            return;
+        }
+        languageService.getAllActiveLanguages().then(setLanguages).catch(() => {});
+    }, [options]);
+
+    const { fields, append, remove } = useFieldArray({control,name: "flashcards"});
+
+    const languageOptions = options ? options.map(language => ({ value: language.code, label: language.name })) : languages.map(language => ({ value: language.code, label: language.name }));
+
+    const defaultFront = languageOptions[0]?.value ?? '';
+    const defaultBack = languageOptions[1]?.value ?? '';
 
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white">{t('admin.lessons.form.types.FLASHCARD')}</h3>
-                <Button 
-                    type="button" 
+                <Button
+                    type="button"
                     variant="pill-green"
-                    size="sm" 
-                    onClick={() => append({ front: "", back: "", frontLanguage: "fr", backLanguage: "en" })}
+                    size="sm"
+                    onClick={() => append({ front: "", back: "", frontLanguage: defaultFront, backLanguage: defaultBack })}
                     className="gap-2"
                 >
                     <Plus className="w-4 h-4" />
                     {t('admin.lessons.flashcards.add')}
                 </Button>
             </div>
+
+            {errors.flashcards?.message && (
+                <div className="p-3.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 text-xs font-semibold rounded-2xl border border-red-100 dark:border-red-900/50">
+                    {errors.flashcards.message}
+                </div>
+            )}
 
             <div className="grid gap-6">
                 {fields.map((field, index) => (
@@ -64,25 +86,38 @@ export function FlashcardForm({ control, register, errors }: FlashcardFormProps)
                             />
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <FormField
-                                label={t('admin.lessons.flashcards.frontLang')}
-                                {...register(`flashcards.${index}.frontLanguage`)}
-                                placeholder="ex: fr"
-                                error={(errors.flashcards?.[index] as Record<string, FieldError | undefined>)?.frontLanguage?.message}
+                        <div className="grid grid-cols-2 gap-4 mt-4">
+                            <Controller
+                                control={control}
+                                name={`flashcards.${index}.frontLanguage`}
+                                render={({ field }) => (
+                                    <Select
+                                        label={t('admin.lessons.flashcards.frontLang')}
+                                        value={field.value}
+                                        options={languageOptions}
+                                        onChange={field.onChange}
+                                        placeholder={t('challenge.create.select_language')}
+                                    />
+                                )}
                             />
-                            <FormField
-                                label={t('admin.lessons.flashcards.backLang')}
-                                {...register(`flashcards.${index}.backLanguage`)}
-                                placeholder="ex: en"
-                                error={(errors.flashcards?.[index] as Record<string, FieldError | undefined>)?.backLanguage?.message}
-                                required
+                            <Controller
+                                control={control}
+                                name={`flashcards.${index}.backLanguage`}
+                                render={({ field }) => (
+                                    <Select
+                                        label={t('admin.lessons.flashcards.backLang')}
+                                        value={field.value}
+                                        options={languageOptions}
+                                        onChange={field.onChange}
+                                        placeholder={t('challenge.create.select_language')}
+                                    />
+                                )}
                             />
                         </div>
                     </div>
                 ))}
             </div>
-            
+
             {fields.length === 0 && (
                 <div className="text-center py-12 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl">
                     <p className="text-gray-500 dark:text-gray-400">{t('admin.lessons.no_lessons')}</p>

@@ -7,7 +7,6 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
   isActive: yup.boolean().required(),
   lessonType: yup.string().oneOf(Object.values(LessonType)).required(t('common.required')),
   
-  // Flashcard specific
   flashcards: yup.array().when('lessonType', {
     is: LessonType.FLASHCARD,
     then: (schema) => schema.of(
@@ -17,11 +16,12 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
         frontLanguage: yup.string().required(t('common.required')),
         backLanguage: yup.string().required(t('common.required')),
       })
-    ).min(1, t('common.required')),
+    )
+    .min(5, t('admin.lessons.form.validation.flashcards_min'))
+    .max(20, t('admin.lessons.form.validation.flashcards_max')),
     otherwise: (schema) => schema.notRequired(),
   }),
 
-  // QCM specific
   questions: yup.array().when('lessonType', {
     is: LessonType.QCM,
     then: (schema) => schema.of(
@@ -31,11 +31,12 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
         correctOptionIndex: yup.number().required(t('common.required')),
         explanation: yup.string(),
       })
-    ).min(1, t('common.required')),
+    )
+    .min(5, t('admin.lessons.form.validation.questions_min'))
+    .max(20, t('admin.lessons.form.validation.questions_max')),
     otherwise: (schema) => schema.notRequired(),
   }),
 
-  // Matching Pair specific
   matchingPairs: yup.array().when('lessonType', {
     is: LessonType.MATCHING_PAIR,
     then: (schema) => schema.of(
@@ -43,18 +44,47 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
         item1: yup.string().required(t('common.required')),
         item2: yup.string().required(t('common.required')),
       })
-    ).min(1, t('common.required')),
+    )
+    .min(3, t('admin.lessons.form.validation.matching_min'))
+    .max(10, t('admin.lessons.form.validation.matching_max')),
     otherwise: (schema) => schema.notRequired(),
   }),
 
-  // Sorting Exercise specific
   sortingItems: yup.array().when('lessonType', {
     is: LessonType.SORTING_EXERCISE,
     then: (schema) => schema.of(
       yup.object({
         value: yup.string().required(t('common.required'))
       })
-    ).min(2, t('common.required')),
+    )
+    .min(3, t('admin.lessons.form.validation.sorting_min'))
+    .max(10, t('admin.lessons.form.validation.sorting_max')),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+
+  interactiveQuestions: yup.array().when('lessonType', {
+    is: LessonType.INTERACTIVE,
+    then: (schema) => schema.of(
+      yup.object({
+        questionText: yup.string().required(t('common.required')),
+        imagePaths: yup.array().of(yup.string().required()).default([]),
+        audioPaths: yup.array().of(yup.string().required()).default([]),
+        systemType: yup.string().oneOf(["MULTIPLE_CHOICE", "OPEN_TEXT"]).required(t('common.required')),
+        options: yup.array().of(yup.string().required(t('common.required'))).default([]),
+        correctOptionIndex: yup.number().nullable().when('systemType', {
+          is: "MULTIPLE_CHOICE",
+          then: (s) => s.required(t('common.required')),
+          otherwise: (s) => s.nullable().notRequired()
+        }),
+        correctWord: yup.string().nullable().when('systemType', {
+          is: "OPEN_TEXT",
+          then: (s) => s.required(t('common.required')),
+          otherwise: (s) => s.nullable().notRequired()
+        })
+      })
+    )
+    .min(3, t('admin.lessons.form.validation.matching_min'))
+    .max(20, t('admin.lessons.form.validation.matching_max')),
     otherwise: (schema) => schema.notRequired(),
   }),
 });

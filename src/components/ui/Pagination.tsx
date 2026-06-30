@@ -9,7 +9,7 @@ interface PaginationProps {
 }
 
 export function Pagination({ currentPage, hasMore, onNext, onPrev }: PaginationProps) {
-  const { t } = useTranslation('common.actions');
+  const { t } = useTranslation();
   return (
     <div className="flex justify-center items-center gap-2">
       <button

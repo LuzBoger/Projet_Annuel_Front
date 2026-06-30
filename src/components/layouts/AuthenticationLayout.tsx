@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Brain, Sparkles, BookOpen } from '@/assets/icons';
-import { MetaData } from '../seo/MetaData';
+import { MetaData } from '@/components/seo/MetaData';
 
 interface AuthenticationLayoutProps {
   children: ReactNode;

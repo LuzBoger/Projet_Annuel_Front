@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { MatchingPairRequest } from "@/types/lesson/lesson";
+import { LessonMistake, MatchingPairRequest } from "@/types/lesson/lesson";
 import { ChevronRight } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { PlayerLayout } from "@/components/lessons/players/common/PlayerLayout";
@@ -11,13 +11,15 @@ import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { ERROR_DISPLAY_DURATION_MS, PENALTY_PER_ERROR } from "@/constants/lesson";
 import { initTiles } from "@/lib/utils/matchingPair";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
+import { MemorizationHelpButton } from "@/components/lessons/players/common/MemorizationHelpButton";
 
 interface MatchingPlayerProps {
+    lessonId?: string;
     pairs: MatchingPairRequest[];
-    onFinish: (score: number) => void;
+    onFinish: (score: number, correctAnswers: number, totalAnswers: number, mistakes: LessonMistake[]) => void;
 }
 
-export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
+export function MatchingPlayer({ lessonId, pairs, onFinish }: MatchingPlayerProps) {
     const { t } = useTranslation();
     const { playCorrect, playIncorrect } = useSoundEffects();
     
@@ -27,6 +29,7 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
     const [matchedMatchIds, setMatchedMatchIds] = useState<string[]>([]);
     const [errorIds, setErrorIds] = useState<string[]>([]);
     const [errorCount, setErrorCount] = useState(0);
+    const mistakePairIds = useRef<LessonMistake[]>([]);
 
     if (pairs !== prevPairs) {
         setPrevPairs(pairs);
@@ -83,6 +86,12 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
             setErrorIds(currentSelectedIds);
             setErrorCount(previous => previous + 1);
             playIncorrect();
+            if (firstTile?.matchId && !firstTile.matchId.startsWith('pair-') && !mistakePairIds.current.some(mistake => mistake.id === firstTile.matchId)) {
+                mistakePairIds.current.push({ id: firstTile.matchId, userAnswer: secondTile?.text });
+            }
+            if (secondTile?.matchId && !secondTile.matchId.startsWith('pair-') && !mistakePairIds.current.some(mistake => mistake.id === secondTile.matchId)) {
+                mistakePairIds.current.push({ id: secondTile.matchId, userAnswer: firstTile?.text });
+            }
 
             setTimeout(() => {
                 setErrorIds([]);
@@ -95,7 +104,8 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
 
     const handleFinishClick = () => {
         const finalScore = Math.max(0, 100 - (errorCount * PENALTY_PER_ERROR));
-        onFinish(finalScore);
+        const correctAnswers = Math.max(0, pairs.length - errorCount);
+        onFinish(finalScore, correctAnswers, pairs.length, mistakePairIds.current);
     };
 
 
@@ -117,7 +127,20 @@ export function MatchingPlayer({ pairs, onFinish }: MatchingPlayerProps) {
                 <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 my-auto">
                     <div className="space-y-6">
                         <PlayerCard 
-                            instruction={<p className="text-gray-500 dark:text-gray-400 font-medium mb-1">{t('lessons.matching.instruction')}</p>}
+                            instruction={
+                                lessonId ? (
+                                    <div className="flex justify-between items-center w-full mb-6 -mt-2">
+                                        <p className="text-gray-500 dark:text-gray-400 font-medium">{t('lessons.matching.instruction')}</p>
+                                        <MemorizationHelpButton
+                                            lessonId={lessonId}
+                                            exerciseId={pairs[0]?.id}
+                                            exerciseType="MATCHING_PAIR"
+                                        />
+                                    </div>
+                                ) : (
+                                    <p className="text-gray-500 dark:text-gray-400 font-medium mb-1">{t('lessons.matching.instruction')}</p>
+                                )
+                            }
                         >
                             <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-3 gap-3 sm:gap-4">
                                 {tiles.map(tile => {

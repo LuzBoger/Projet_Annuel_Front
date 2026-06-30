@@ -1,5 +1,5 @@
 import apiClient from "@/services/axios";
-import type { LessonRequest, LessonResponse, UserLessonProgressSummary, CompleteLessonRequest, CompleteLessonResponse, TopicLessonsResponse } from "@/types/lesson/lesson";
+import type { LessonRequest, LessonResponse, UserLessonProgressSummary, CompleteLessonRequest, CompleteLessonResponse, TopicLessonsResponse, AILessonGenerateRequest, AILessonModifyRequest } from "@/types/lesson/lesson";
 
 export const lessonService = {
 
@@ -54,5 +54,37 @@ export const lessonService = {
 
     async reorderLessons(topicId: string, reorderRequests: { id: string, orderIndex: number }[]): Promise<void> {
         await apiClient.patch(`/lessons/admin/topic/${topicId}/reorder`, reorderRequests);
+    },
+
+    async generateLessonWithAI(data: AILessonGenerateRequest): Promise<LessonRequest> {
+        const response = await apiClient.post<LessonRequest>('/admin/lessons/generate', data);
+        return response.data;
+    },
+
+    async modifyLessonWithAI(data: AILessonModifyRequest): Promise<LessonRequest> {
+        const response = await apiClient.post<LessonRequest>('/admin/lessons/modify', data);
+        return response.data;
+    },
+
+    async uploadImage(file: File): Promise<{ message: string; pathFile: string }> {
+        const formData = new FormData();
+        formData.append("file", file);
+        const response = await apiClient.post<{ message: string; pathFile: string }>('/lessons/media/images/upload', formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response.data;
+    },
+
+    async uploadAudio(file: File): Promise<{ message: string; pathFile: string }> {
+        const formData = new FormData();
+        formData.append("file", file);
+        const response = await apiClient.post<{ message: string; pathFile: string }>('/lessons/media/audios/upload', formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response.data;
     }
 };
