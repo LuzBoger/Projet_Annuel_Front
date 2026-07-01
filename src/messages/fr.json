@@ -1343,6 +1343,70 @@
         "source3": "(2006). Test-enhanced learning. L'application du QCM (\"Testing Effect\") produit de meilleures capacités de récupération que le simple temps de relecture.",
         "source4": "(1956). The magical number seven, plus or minus two, and Semantic Encoding (Craik & Lockhart, 1972). Le chunking modifie la hiérarchie du stockage mental vis-à-vis des apprentissages linguistiques."
       }
+    },
+    "ai_demo": {
+      "assistant_label": "Assistant IA",
+      "assistant_subtitle": "Besoin d'aide sur cet exercice ?",
+      "help_btn": "Besoin d'aide ?",
+      "loading_text": "L'IA analyse l'exercice…",
+      "help_options": {
+        "rule": "Règle & Structure",
+        "memo": "Association & Mémo",
+        "trap": "Piège à éviter",
+        "usage": "Contexte d'usage"
+      },
+      "demos": {
+        "0": {
+          "context": "Vocabulaire japonais",
+          "title": "Astuce mnémotechnique",
+          "explanation": "Imaginez un samouraï vous saluant au milieu de la journée. Le mot se décompose : \"Kon\" (cet) + \"nichi\" (jour) + \"wa\" (particule). Littéralement : \"Quant à ce jour…\"",
+          "visual_anchor": "Un samouraï sous le soleil de midi qui dit \"Konnichiwa\" en s'inclinant"
+        },
+        "1": {
+          "context": "Vocabulaire espagnol",
+          "title": "Contexte d'utilisation",
+          "explanation": "\"Manzana\" désigne la pomme mais aussi un îlot de maisons en Amérique latine. Très courant dans les deux sens selon le contexte.",
+          "examples": ["Me gustaría una ___ por favor", "Vivo a dos ___ de aquí"]
+        },
+        "2": {
+          "context": "Politesse japonaise",
+          "title": "Règle & Structure",
+          "explanation": "\"Arigatou\" (ありがとう) est la forme familière. Pour être poli, dites \"Arigatou gozaimasu\". Le niveau de politesse dépend du contexte et de votre interlocuteur.",
+          "examples": ["Arigatou ! (entre amis)", "Arigatou gozaimasu (formel / poli)"]
+        }
+      }
+    },
+    "flashcard_demo": {
+      "hard": "Difficile",
+      "medium": "Moyen",
+      "easy": "Facile"
+    },
+    "qcm_demo": {
+      "question": "Comment dit-on 'Thank you' en japonais ?",
+      "options": ["Sayonara", "Konnichiwa", "Arigatou", "Hai"],
+      "feedback": "Arigatou (ありがとう) signifie \"Merci\" en japonais."
+    },
+    "sorting_demo": {
+      "placeholder": "Remettez les mots dans l'ordre…",
+      "correct": "✓ Correct !"
+    },
+    "interactive_demo": {
+      "instruction": "Complétez la phrase :",
+      "sentence_before": "Je",
+      "sentence_after": "apprendre les langues.",
+      "success": "Bonne réponse ! « Je veux apprendre les langues. »"
+    },
+    "exercise_section": {
+      "title_start": "5 types d'exercices pour ",
+      "title_highlight": "progresser vite",
+      "subtitle": "Chaque méthode stimule un aspect différent de la mémorisation",
+      "tabs": {
+        "flashcard": { "label": "Flashcards", "desc": "Cartes recto-verso avec répétition espacée" },
+        "qcm":       { "label": "Quiz",       "desc": "Questions à choix multiples avec explication" },
+        "matching":  { "label": "Paires",     "desc": "Associez les mots à leurs traductions" },
+        "sorting":   { "label": "Ordre",      "desc": "Remettez les éléments dans le bon ordre" },
+        "interactive": { "label": "Interactif", "desc": "Répondez librement par écrit" }
+      }
     }
   },
   "catalog_languages": {
@@ -1913,6 +1977,13 @@
       "rgpdValue": "contact@skaldly.fr",
       "responseTime": "Nous répondons sous 48h ouvrées.",
       "usefulLinks": "Liens utiles"
+    }
+  },
+  "header": {
+    "nav": {
+      "lessons": "Nos leçons",
+      "plans": "Offres",
+      "contact": "Contact"
     }
   }
 }

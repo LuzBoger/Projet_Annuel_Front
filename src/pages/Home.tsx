@@ -1,10 +1,14 @@
-import { Link,  Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { useAuth } from '@/hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { Brain, Sparkles, BookOpen } from '@/assets/icons';
 import { RoleEnum } from '@/types/enum/roles';
 import { MetaData } from '@/components/seo/MetaData';
+import { AICourseDemo } from '@/components/home/AICourseDemo';
+import { ExerciseDemoSection } from '@/components/home/ExerciseDemoSection';
+
+
 
 export default function Home() {
     const { isAuthenticated, user } = useAuth();
@@ -13,52 +17,71 @@ export default function Home() {
     return <Navigate to={user?.role === RoleEnum.ADMIN ? "/admin" : "/dashboard"} replace />;
     } 
 
-
     return (
         <>
+        <style>{`
+            @keyframes fadeUp {
+                from { opacity:0; transform:translateY(24px); }
+                to   { opacity:1; transform:translateY(0); }
+            }
+        `}</style>
+
         <MetaData title={t('home.page_title')} description={t('home.page_description')} keywords={t('home.page_keywords')} robots='index, follow' url='https://skaldly.fr' />
         <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col relative">
-            <main className="flex-grow flex flex-col justify-center py-20">
+            <main className="flex-grow flex items-center py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    
-                    <div className="text-center md:max-w-3xl md:mx-auto mb-20">
-                        <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl mb-6">
-                            {t('home.hero.title_start')}<span className="text-brand-600">{t('home.hero.title_highlight')}</span>
-                        </h1>
-                        <p className="mt-3 text-base text-gray-600 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
-                            {t('home.hero.description')}
-                        </p>
-                        
-                        <div className="mt-10 sm:flex sm:justify-center">
-                            {isAuthenticated ? (
-                                <div className="space-y-4">
-                                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                                        {t('home.hero.logged_in_as')}<span className="text-brand-800 dark:text-brand-400">{user?.username || user?.email}</span>
-                                    </p>
-                                    <Link
-                                        to="/subscription"
-                                        className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700 md:py-4 md:text-lg md:px-10 transition-colors shadow-sm"
-                                    >
-                                        {t('home.hero.continue_learning')}
-                                    </Link>
-                                </div>
-                            ) : (
-                                <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-                                    <Link to="/register" className="w-full sm:w-auto">
-                                        <Button 
-                                            variant="primary" 
-                                            size="lg" 
-                                            fullWidth
-                                            className="bg-purple-600 hover:bg-purple-700"
+
+                    <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
+                        <div style={{ animation: 'fadeUp 0.7s ease both' }}>
+                            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-6">
+                                {t('home.hero.title_start')}<span className="text-brand-600">{t('home.hero.title_highlight')}</span>
+                            </h1>
+                            <p className="mt-3 text-base text-gray-600 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl md:mt-5 md:text-xl">
+                                {t('home.hero.description')}
+                            </p>
+
+                            <div className="mt-10 sm:flex sm:justify-start">
+                                {isAuthenticated ? (
+                                    <div className="space-y-4">
+                                        <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                                            {t('home.hero.logged_in_as')}<span className="text-brand-800 dark:text-brand-400">{user?.username || user?.email}</span>
+                                        </p>
+                                        <Link
+                                            to="/subscription"
+                                            className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700 md:py-4 md:text-lg md:px-10 transition-colors shadow-sm"
                                         >
-                                            {t('home.hero.start_free')}
-                                        </Button>
-                                    </Link>
-                                    <Link to="/login" className="flex items-center justify-center font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors w-full sm:w-auto h-full px-4">
-                                        {t('auth.login.title')}
-                                    </Link>
-                                </div>
-                            )}
+                                            {t('home.hero.continue_learning')}
+                                        </Link>
+                                    </div>
+                                ) : (
+                                    <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-start">
+                                        <Link to="/register" className="w-full sm:w-auto">
+                                            <Button variant="primary" size="lg" fullWidth className="bg-purple-600 hover:bg-purple-700">
+                                                {t('home.hero.start_free')}
+                                            </Button>
+                                        </Link>
+                                        <Link to="/login" className="flex items-center justify-center font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors w-full sm:w-auto h-full px-4">
+                                            {t('auth.login.title')}
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="mt-10 flex flex-wrap gap-3">
+                                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-800">
+                                    <Brain className="w-4 h-4" />{t('home.features.scientific.title')}
+                                </span>
+                                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border border-purple-100 dark:border-purple-800">
+                                    <Sparkles className="w-4 h-4" />{t('home.features.ai.title')}
+                                </span>
+                                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border border-rose-100 dark:border-rose-800">
+                                    <BookOpen className="w-4 h-4" />{t('home.features.variety.title')}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div style={{ animation: 'fadeUp 0.9s ease both' }}>
+                            <AICourseDemo />
                         </div>
                     </div>
 
@@ -106,6 +129,8 @@ export default function Home() {
                     
                 </div>
             </main>
+
+            <ExerciseDemoSection />
 
             <section className="bg-white dark:bg-gray-900/50 py-20 border-t border-gray-200 dark:border-gray-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
