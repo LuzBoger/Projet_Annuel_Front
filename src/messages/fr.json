@@ -1274,9 +1274,9 @@
     }
   },
   "home": {
-    "page_title": "Skaldly - Parlez couramment. Pensez autrement.",
-    "page_description": "Skaldly utilise l'intelligence artificielle pour adapter chaque leçon à votre niveau. Leçons sur-mesure, apprentissage naturel, résultats réels.",
-    "page_keywords": "apprentissage des langues, IA, leçons sur-mesure, apprentissage naturel, vocabulaire, grammaire, Skaldly",
+    "page_title": "Skaldly - Maîtrise une nouvelle langue avec l'IA comme assistant personnel",
+    "page_description": "Skaldly vous aide à apprendre une nouvelle langue grâce à des cours structurés et des exercices variés : flashcards, quiz, associations de paires, remise en ordre et exercices interactifs. Bloquez sur un mot ou une règle ? Une assistance IA est là pour vous expliquer en temps réel. Progressez à votre rythme sur de nombreuses langues du monde entier.",
+    "page_keywords": "apprentissage des langues, flashcards, exercices de langue, assistance IA, japonais, espagnol, anglais, vocabulaire, grammaire, Skaldly",
     "hero": {
       "title_start": "Maîtrisez une langue avec ",
       "title_highlight": "l'Intelligence Artificielle",
