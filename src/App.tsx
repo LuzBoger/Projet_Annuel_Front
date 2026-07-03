@@ -6,6 +6,7 @@ import { ToastProvider } from '@/contexts/ToastProvider'
 import { AppRoutes } from '@/components/routes/AppRoutes'
 import { ThemeProvider } from '@/contexts/ThemeProvider'
 import { ChallengeNotification } from '@/components/challenge/ChallengeNotification'
+import { AccessibilityControls } from './components/ui/accessibility/AccessibilityControls'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <ToastProvider>
           <ChallengeNotification />
           <AppRoutes />
+          <AccessibilityControls />
         </ToastProvider>
       </AuthProvider>
       </ThemeProvider>

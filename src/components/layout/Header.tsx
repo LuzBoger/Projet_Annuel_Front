@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
 import { LogoSk, LogoSkaldly } from "@/assets/icons";
 
@@ -38,7 +37,7 @@ export function Header() {
                     <nav className="hidden md:flex flex-1 justify-center space-x-8">
                         <button
                             onClick={handleLessonsClick}
-                            className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+                            className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors cursor-pointer"
                         >
                             {t("header.nav.lessons")}
                         </button>
@@ -57,14 +56,10 @@ export function Header() {
                         <Link to="/register" className="text-sm font-medium px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white transition-colors">
                             {t("auth.register.title")}
                         </Link>
-                        <div className="flex items-center gap-2">
-                            <ThemeToggle />
-                            <LocaleLanguageSwitcher />
-                        </div>
+                        <LocaleLanguageSwitcher />
                     </div>
 
                     <div className="flex md:hidden items-center gap-2">
-                        <ThemeToggle />
                         <LocaleLanguageSwitcher />
                         <button
                             onClick={() => setMenuOpen(o => !o)}
