@@ -1,19 +1,31 @@
 import { ProfileImageUpload } from "@/components/profile/ImageUpload";
+import { DeleteModal } from "@/components/profile/DeleteModal";
 import { MetaData } from "@/components/seo/MetaData";
 import { UpdateProfileForm } from "@/components/settings/profile/UpdateProfileForm";
 import { EVENT_PROFILE_UPDATED } from "@/constants/event";
 import { globalEvents } from "@/lib/utils/eventEmitter";
 import { profileService } from "@/services/profileService";
+import { useDataProfile } from "@/hooks/useDataProfile";
 import { UserProfileResponse } from "@/types/profile/profile";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/Button";
 
 export function ProfileSettings() {
-    const {t} = useTranslation();
-  const [profile, setProfile] = useState<UserProfileResponse | null>(null);
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+    const { exportData, deleteAccount, exportLoading } = useDataProfile();
+    const [profile, setProfile] = useState<UserProfileResponse | null>(null);
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+    const handleDeleteAccount = async (password: string) => {
+        await deleteAccount(password);
+        navigate('/login');
+    };
 
 
   useEffect(() => {
@@ -85,6 +97,44 @@ export function ProfileSettings() {
           </section>
         </div>
       </div>
+      <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+          <h2 className="text-lg font-semibold mb-2 dark:text-white">
+              {t('data.export.title')}
+          </h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+              {t('data.export.subtitle')}
+          </p>
+          <Button
+              variant="outline"
+              onClick={exportData}
+              isLoading={exportLoading}
+              disabled={exportLoading}
+          >
+              {t('data.export.btn')}
+          </Button>
+      </div>
+
+      <div className="mt-8 pt-8 border-t border-red-200 dark:border-red-900/40">
+          <h2 className="text-lg font-semibold mb-2 text-red-600 dark:text-red-400">
+              {t('data.danger_zone.title')}
+          </h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+              {t('data.danger_zone.subtitle')}
+          </p>
+          <Button
+              variant="pill-red"
+              onClick={() => setShowDeleteModal(true)}
+              className="whitespace-nowrap"
+          >
+              {t('data.delete.btn')}
+          </Button>
+      </div>
+
+      <DeleteModal
+          isOpen={showDeleteModal}
+          onClose={() => setShowDeleteModal(false)}
+          onConfirm={handleDeleteAccount}
+      />
     </div>
     </>
   );

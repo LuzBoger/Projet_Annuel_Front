@@ -4,6 +4,7 @@ import { ApiResponse } from "@/types/api/response";
 import { CompleteOnboardingRequest } from "@/types/account";
 import { StreakResponse } from "@/types/profile/streak";
 import { NotificationPreferencesResponse } from "@/types/profile/notificationPreferences";
+import { FILENAME_REGEX } from "@/constants/global";
 
 export const profileService = {
 
@@ -62,5 +63,18 @@ export const profileService = {
     async updateNotificationPreferences(data: NotificationPreferencesResponse): Promise<NotificationPreferencesResponse> {
         const response = await apiClient.put<NotificationPreferencesResponse>('/profile/notification-preferences', data);
         return response.data;
+    },
+
+    async exportData(): Promise<{ blob: Blob; filename: string }> {
+        const response = await apiClient.get('/data-privacy/export', { responseType: 'blob' });
+        const disposition = response.headers['content-disposition'] ?? '';
+        const match = disposition.match(FILENAME_REGEX);
+        const filename = match?.[1] ?? 'data.json';
+        return { blob: response.data, filename };
+    },
+
+    async deleteAccount(password: string): Promise<void> {
+        await apiClient.delete('/data-privacy/delete', { data: { password } });
     }
+
 }

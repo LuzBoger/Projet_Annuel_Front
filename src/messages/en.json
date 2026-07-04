@@ -2056,5 +2056,28 @@
     "aria_font_group": "Font size",
     "aria_font_size_section": "Font size",
     "aria_visual_section": "Visual options"
+  },
+  "data": {
+    "exportSuccess": "Your data has been exported successfully.",
+    "exportError": "An error occurred while exporting your data.",
+    "deleteError": "An error occurred while deleting your account.",
+    "danger_zone": {
+      "title": "Danger zone",
+      "subtitle": "These actions are irreversible. Please proceed with caution."
+    },
+    "export": {
+      "title": "My data",
+      "subtitle": "Download a copy of all your personal data.",
+      "btn": "Export my data"
+    },
+    "delete": {
+      "btn": "Delete my account",
+      "modal_title": "Delete account",
+      "modal_warning": "This action is permanent and cannot be undone. All your data will be deleted. Please enter your password to confirm.",
+      "password_label": "Current password",
+      "password_required": "Password is required",
+      "confirm_btn": "Delete my account",
+      "error": "An error occurred. Please try again."
+    }
   }
 }

@@ -2061,5 +2061,28 @@
     "aria_font_group": "Taille de police",
     "aria_font_size_section": "Taille de police",
     "aria_visual_section": "Options visuelles"
+  },
+  "data": {
+    "exportSuccess": "Vos données ont été exportées avec succès.",
+    "exportError": "Une erreur est survenue lors de l'exportation de vos données.",
+    "deleteError": "Une erreur est survenue lors de la suppression de votre compte.",
+    "danger_zone": {
+      "title": "Zone dangereuse",
+      "subtitle": "Ces actions sont irréversibles. Veuillez procéder avec prudence."
+    },
+    "export": {
+      "title": "Mes données",
+      "subtitle": "Téléchargez une copie de toutes vos données personnelles.",
+      "btn": "Exporter mes données"
+    },
+    "delete": {
+      "btn": "Supprimer mon compte",
+      "modal_title": "Supprimer le compte",
+      "modal_warning": "Cette action est permanente et irréversible. Toutes vos données seront supprimées. Entrez votre mot de passe pour confirmer.",
+      "password_label": "Mot de passe actuel",
+      "password_required": "Le mot de passe est requis",
+      "confirm_btn": "Supprimer mon compte",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    }
   }
 }
