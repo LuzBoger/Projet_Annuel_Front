@@ -6,11 +6,13 @@ import { ToastProvider } from '@/contexts/ToastProvider'
 import { AppRoutes } from '@/components/routes/AppRoutes'
 import { ThemeProvider } from '@/contexts/ThemeProvider'
 import { ChallengeNotification } from '@/components/challenge/ChallengeNotification'
-import { AccessibilityControls } from './components/ui/accessibility/AccessibilityControls'
+import { AccessibilityControls } from '@/components/ui/accessibility/AccessibilityControls'
+import { Scroll } from '@/components/ui/Scroll'
 
 function App() {
   return (
     <BrowserRouter>
+      <Scroll />
       <Helmet defaultTitle="Skaldly" titleTemplate="%s | Skaldly" />
       <ThemeProvider>
       <AuthProvider>
