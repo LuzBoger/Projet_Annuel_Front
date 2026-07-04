@@ -31,7 +31,30 @@
     "mute": "Mute",
     "unmute": "Unmute",
     "validate": "Validate",
-    "actions": "Action"
+    "actions": "Action",
+    "accept": "Accept",
+    "learn_more": "Learn more"
+  },
+  "cookie_banner": {
+    "title": "This website uses cookies",
+    "text": "We use strictly necessary cookies to ensure the proper functioning of the service. No advertising or tracking cookies are placed.",
+    "decline": "Decline",
+    "deny": "Deny",
+    "allow_all": "Allow all",
+    "tabs": {
+      "consent": "Consent",
+      "details": "Details",
+      "about": "About"
+    },
+    "details": {
+      "necessary_title": "Necessary",
+      "necessary_desc": "Necessary cookies help make a website usable by enabling basic functions like page navigation and access to secure areas of the website. The website cannot function properly without these cookies.",
+      "always_active": "Always active"
+    },
+    "about": {
+      "title": "About cookies",
+      "text": "Cookies are small text files placed on your device when you visit a website. Skaldly only uses strictly necessary cookies — no tracking or advertising."
+    }
   },
   "onBoarding": {
     "selectNativeLanguage": "What is your native language?",

@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/contexts/ThemeProvider'
 import { ChallengeNotification } from '@/components/challenge/ChallengeNotification'
 import { AccessibilityControls } from '@/components/ui/accessibility/AccessibilityControls'
 import { Scroll } from '@/components/ui/Scroll'
+import { CookieBanner } from '@/components/ui/CookieBanner'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <ToastProvider>
           <ChallengeNotification />
           <AppRoutes />
+          <CookieBanner />
           <AccessibilityControls />
         </ToastProvider>
       </AuthProvider>
