@@ -887,8 +887,8 @@
     "page_title": "Available Topics",
     "lessons_page_title": "Lessons",
     "exam_page_title": "Topic Exam",
-    "exam_title": "Topic Exam",
-    "exam_desc": "Evaluate your knowledge on this topic.",
+    "exam_title": "Exam",
+    "exam_desc": "Answer the questions to validate your knowledge.",
     "page_desc": "Select a subject to start practicing.",
     "error_load": "Unable to load topics at this moment.",
     "empty_title": "No topics found",
@@ -920,8 +920,6 @@
     "type_answer_here": "Type your answer here...",
     "exam_matching_finished": "All pairs have been matched. You can continue or undo a pair.",
     "exam_matching_answers": "Formed pairs",
-    "exam_title": "Exam",
-    "exam_desc": "Answer the questions to validate your knowledge.",
     "final_exam_title": "Final Exam",
     "final_exam_desc": "Evaluate your new knowledge globally.",
     "take_exam": "Take the exam",
@@ -1361,13 +1359,19 @@
           "context": "Spanish vocabulary",
           "title": "Usage context",
           "explanation": "\"Manzana\" means apple but also a city block in Latin America. Very common in both senses depending on context.",
-          "examples": ["Me gustaría una ___ por favor", "Vivo a dos ___ de aquí"]
+          "examples": [
+            "Me gustaría una ___ por favor",
+            "Vivo a dos ___ de aquí"
+          ]
         },
         "2": {
           "context": "Japanese politeness",
           "title": "Rule & Structure",
           "explanation": "\"Arigatou\" (ありがとう) is the informal form. To be polite, say \"Arigatou gozaimasu\". The level of politeness depends on the context and your interlocutor.",
-          "examples": ["Arigatou! (between friends)", "Arigatou gozaimasu (formal / polite)"]
+          "examples": [
+            "Arigatou! (between friends)",
+            "Arigatou gozaimasu (formal / polite)"
+          ]
         }
       }
     },
@@ -1378,7 +1382,12 @@
     },
     "qcm_demo": {
       "question": "How do you say 'Thank you' in Japanese?",
-      "options": ["Sayonara", "Konnichiwa", "Arigatou", "Hai"],
+      "options": [
+        "Sayonara",
+        "Konnichiwa",
+        "Arigatou",
+        "Hai"
+      ],
       "feedback": "Arigatou (ありがとう) means \"Thank you\" in Japanese."
     },
     "sorting_demo": {
@@ -1396,11 +1405,26 @@
       "title_highlight": "progress fast",
       "subtitle": "Each method stimulates a different aspect of memorisation",
       "tabs": {
-        "flashcard": { "label": "Flashcards",   "desc": "Two-sided cards with spaced repetition" },
-        "qcm":       { "label": "Quiz",          "desc": "Multiple choice questions with explanation" },
-        "matching":  { "label": "Pairs",         "desc": "Match words to their translations" },
-        "sorting":   { "label": "Order",         "desc": "Put elements back in the right order" },
-        "interactive": { "label": "Interactive", "desc": "Answer freely in writing" }
+        "flashcard": {
+          "label": "Flashcards",
+          "desc": "Two-sided cards with spaced repetition"
+        },
+        "qcm": {
+          "label": "Quiz",
+          "desc": "Multiple choice questions with explanation"
+        },
+        "matching": {
+          "label": "Pairs",
+          "desc": "Match words to their translations"
+        },
+        "sorting": {
+          "label": "Order",
+          "desc": "Put elements back in the right order"
+        },
+        "interactive": {
+          "label": "Interactive",
+          "desc": "Answer freely in writing"
+        }
       }
     }
   },
@@ -1980,5 +2004,34 @@
       "plans": "Plans",
       "contact": "Contact"
     }
+  },
+  "accessibility": {
+    "title": "Accessibility",
+    "subtitle_none": "Customize your reading",
+    "subtitle_active_one": "1 option active",
+    "subtitle_active_other": "{{count}} options active",
+    "open": "Open accessibility options",
+    "close": "Close",
+    "reset": "Reset all",
+    "reset_label": "Reset accessibility settings",
+    "hint": "Tap a card to enable",
+    "text_size": "Text size",
+    "visual_options": "Visual options",
+    "font_normal": "Normal",
+    "font_large": "Large",
+    "font_xlarge": "X-Large",
+    "high_contrast_label": "Contrast",
+    "high_contrast_desc": "Improves readability",
+    "reduced_motion_label": "Animations",
+    "reduced_motion_desc": "Disables effects",
+    "underline_links_label": "Links",
+    "underline_links_desc": "Underline links",
+    "dyslexia_label": "Dyslexia",
+    "dyslexia_desc": "Font + spacing",
+    "dark_mode_label": "Dark mode",
+    "dark_mode_desc": "Dark theme for the eyes",
+    "aria_font_group": "Font size",
+    "aria_font_size_section": "Font size",
+    "aria_visual_section": "Visual options"
   }
 }

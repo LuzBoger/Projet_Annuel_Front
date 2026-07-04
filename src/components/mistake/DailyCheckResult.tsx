@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
-import { Brain, Check, Cross } from "@/assets/icons";
+import { Check, Cross } from "@/assets/icons";
 import type { UserResultResponse } from "@/types/mistakes/userMistakes";
 
 interface DailyCheckResultProps {
@@ -16,9 +16,6 @@ export function DailyCheckResult({ result }: DailyCheckResultProps) {
   return (
     <div className="min-h-screen bg-brand-50/50 dark:bg-gray-900 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-[2rem] shadow-xl shadow-brand-500/10 p-8 text-center animate-[fade-in-up_0.5s_ease-out]">
-        <div className="w-24 h-24 bg-gradient-to-br from-brand-400 to-brand-600 rounded-full flex items-center justify-center mx-auto mb-6 text-5xl shadow-inner ring-8 ring-brand-50">
-          <Brain />
-        </div>
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
           {t("mistake.result.title")}
         </h2>

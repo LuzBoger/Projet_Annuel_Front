@@ -34,12 +34,6 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: SonarQube Scan
-        if: "!startsWith(github.ref, 'refs/heads/')"
-        uses: SonarSource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4

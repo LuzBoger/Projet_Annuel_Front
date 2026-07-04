@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { QuestionRenderer } from "@/components/mistake/QuestionRenderer";
 import { useDailyCheckSession } from "@/hooks/useDailyCheckSession";
-import { Brain, ChevronRight } from "@/assets/icons";
+import { ChevronRight } from "@/assets/icons";
 import { getSegmentColor } from "@/lib/utils/player";
 import { SegmentStatus } from "@/types/components/player";
 import type { UserAnswerRequest, UserDailyQuestion } from "@/types/mistakes/userMistakes";
@@ -29,7 +29,7 @@ export function DailyCheckSession({ dailyQuestion, onSubmit }: DailyCheckSession
     <div className="min-h-screen pb-32 pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="mb-10 text-center">
         <p className="text-xs uppercase tracking-widest text-brand-500 font-semibold mb-2">
-          <Brain /> {t("mistake.daily_check.label")}
+          {t("mistake.daily_check.label")}
         </p>
         <h1 className="text-3xl font-extrabold text-white">
           {t("mistake.daily_check.title")}
