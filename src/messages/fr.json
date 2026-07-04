@@ -892,8 +892,8 @@
     "page_title": "Topics disponibles",
     "lessons_page_title": "Leçons",
     "exam_page_title": "Examen du topic",
-    "exam_title": "Examen du topic",
-    "exam_desc": "Évaluez vos connaissances sur ce sujet.",
+    "exam_title": "Examen",
+    "exam_desc": "Répondez aux questions pour valider vos connaissances.",
     "page_desc": "Sélectionnez un sujet pour commencer votre entraînement.",
     "error_load": "Impossible de charger les topics pour le moment.",
     "empty_title": "Aucun topic trouvé",
@@ -925,8 +925,6 @@
     "type_answer_here": "Tapez votre réponse ici...",
     "exam_matching_finished": "Toutes les paires ont été associées. Vous pouvez continuer ou annuler une paire.",
     "exam_matching_answers": "Paires formées",
-    "exam_title": "Examen",
-    "exam_desc": "Répondez aux questions pour valider vos connaissances.",
     "final_exam_title": "Examen Final",
     "final_exam_desc": "Évaluez globalement vos nouvelles connaissances.",
     "take_exam": "Passer l'examen",
@@ -1366,13 +1364,19 @@
           "context": "Vocabulaire espagnol",
           "title": "Contexte d'utilisation",
           "explanation": "\"Manzana\" désigne la pomme mais aussi un îlot de maisons en Amérique latine. Très courant dans les deux sens selon le contexte.",
-          "examples": ["Me gustaría una ___ por favor", "Vivo a dos ___ de aquí"]
+          "examples": [
+            "Me gustaría una ___ por favor",
+            "Vivo a dos ___ de aquí"
+          ]
         },
         "2": {
           "context": "Politesse japonaise",
           "title": "Règle & Structure",
           "explanation": "\"Arigatou\" (ありがとう) est la forme familière. Pour être poli, dites \"Arigatou gozaimasu\". Le niveau de politesse dépend du contexte et de votre interlocuteur.",
-          "examples": ["Arigatou ! (entre amis)", "Arigatou gozaimasu (formel / poli)"]
+          "examples": [
+            "Arigatou ! (entre amis)",
+            "Arigatou gozaimasu (formel / poli)"
+          ]
         }
       }
     },
@@ -1383,7 +1387,12 @@
     },
     "qcm_demo": {
       "question": "Comment dit-on 'Thank you' en japonais ?",
-      "options": ["Sayonara", "Konnichiwa", "Arigatou", "Hai"],
+      "options": [
+        "Sayonara",
+        "Konnichiwa",
+        "Arigatou",
+        "Hai"
+      ],
       "feedback": "Arigatou (ありがとう) signifie \"Merci\" en japonais."
     },
     "sorting_demo": {
@@ -1401,11 +1410,26 @@
       "title_highlight": "progresser vite",
       "subtitle": "Chaque méthode stimule un aspect différent de la mémorisation",
       "tabs": {
-        "flashcard": { "label": "Flashcards", "desc": "Cartes recto-verso avec répétition espacée" },
-        "qcm":       { "label": "Quiz",       "desc": "Questions à choix multiples avec explication" },
-        "matching":  { "label": "Paires",     "desc": "Associez les mots à leurs traductions" },
-        "sorting":   { "label": "Ordre",      "desc": "Remettez les éléments dans le bon ordre" },
-        "interactive": { "label": "Interactif", "desc": "Répondez librement par écrit" }
+        "flashcard": {
+          "label": "Flashcards",
+          "desc": "Cartes recto-verso avec répétition espacée"
+        },
+        "qcm": {
+          "label": "Quiz",
+          "desc": "Questions à choix multiples avec explication"
+        },
+        "matching": {
+          "label": "Paires",
+          "desc": "Associez les mots à leurs traductions"
+        },
+        "sorting": {
+          "label": "Ordre",
+          "desc": "Remettez les éléments dans le bon ordre"
+        },
+        "interactive": {
+          "label": "Interactif",
+          "desc": "Répondez librement par écrit"
+        }
       }
     }
   },
@@ -1985,5 +2009,34 @@
       "plans": "Offres",
       "contact": "Contact"
     }
+  },
+  "accessibility": {
+    "title": "Accessibilité",
+    "subtitle_none": "Personnalisez votre lecture",
+    "subtitle_active_one": "1 option active",
+    "subtitle_active_other": "{{count}} options actives",
+    "open": "Ouvrir les options d'accessibilité",
+    "close": "Fermer",
+    "reset": "Réinitialiser tout",
+    "reset_label": "Réinitialiser les paramètres d'accessibilité",
+    "hint": "Appuyez sur une carte pour activer",
+    "text_size": "Taille du texte",
+    "visual_options": "Options visuelles",
+    "font_normal": "Normal",
+    "font_large": "Grand",
+    "font_xlarge": "Très grand",
+    "high_contrast_label": "Contraste",
+    "high_contrast_desc": "Renforce la lisibilité",
+    "reduced_motion_label": "Animations",
+    "reduced_motion_desc": "Désactive les effets",
+    "underline_links_label": "Liens",
+    "underline_links_desc": "Souligne les liens",
+    "dyslexia_label": "Dyslexie",
+    "dyslexia_desc": "Police + espacement",
+    "dark_mode_label": "Mode sombre",
+    "dark_mode_desc": "Thème sombre pour les yeux",
+    "aria_font_group": "Taille de police",
+    "aria_font_size_section": "Taille de police",
+    "aria_visual_section": "Options visuelles"
   }
 }
