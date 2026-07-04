@@ -6,14 +6,15 @@ import { Table } from "@/components/ui/Table";
 import { TableColumn } from "@/types/components/tableColumn";
 import { COOKIE_ROWS } from "@/constants/legal";
 import { CookieRow } from "@/types/legal/legal";
+import { COOKIE_CONSENT_KEY } from "@/constants/global";
 
 
 export default function PolitiqueCookies() {
   const { t } = useTranslation();
 
   const cookieColumns: TableColumn[] = [
-    { key: "name",     label: t("legal.cookies.used.col_name") },
-    { key: "purpose",  label: t("legal.cookies.used.col_purpose") },
+    { key: "name", label: t("legal.cookies.used.col_name") },
+    { key: "purpose", label: t("legal.cookies.used.col_purpose") },
     { key: "duration", label: t("legal.cookies.used.col_duration") },
   ];
 
@@ -88,7 +89,7 @@ export default function PolitiqueCookies() {
               <Button
                 variant="outline"
                 onClick={() => {
-                  localStorage.removeItem("cookie-consent");
+                  localStorage.removeItem(COOKIE_CONSENT_KEY);
                   window.location.reload();
                 }}
               >
