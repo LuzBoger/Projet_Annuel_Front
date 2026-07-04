@@ -16,6 +16,7 @@
     "loading": "Loading...",
     "locked": "Locked",
     "finish": "Finish",
+    "remove": "Remove",
     "empty": "No data available",
     "noData": "No data available",
     "search": "Search...",
@@ -160,6 +161,10 @@
       "premium": "Premium"
     },
     "included": "Included",
+    "ai_quota": {
+      "limited": "{{count}} AI request included",
+      "morelimited": "{{count}} AI requests included"
+    },
     "enabled": "Enabled",
     "disabled": "Disabled",
     "interval": {
@@ -250,7 +255,12 @@
       "currency": "Currency",
       "payment_interval": "Payment interval",
       "stripe_price_id": "Stripe price ID",
-      "subscription_type": "Subscription type"
+      "subscription_type": "Subscription type",
+      "ai_quota": "AI quota",
+      "ai_quota_hint": "Number of AI requests included in this plan.",
+      "features": "Features",
+      "add_feature": "Add feature",
+      "feature_placeholder": "Feature description"
     },
     "types": {
       "Free": "Free",
@@ -1133,6 +1143,19 @@
     "planPaymentInterval": {
       "required": "Payment interval is required",
       "oneOf": "Must be monthly or yearly"
+    },
+    "subscriptionType": {
+      "required": "Subscription type is required",
+      "oneOf": "Must be Free or Premium"
+    },
+    "planAiQuota": {
+      "required": "AI quota is required",
+      "min": "Minimum 5",
+      "integer": "Must be a whole number"
+    },
+    "planFeatureLabel": {
+      "required": "Feature label is required",
+      "max": "Maximum 255 characters"
     },
     "review": {
       "rating_required": "Please select a rating",

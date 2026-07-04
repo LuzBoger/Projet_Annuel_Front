@@ -22,6 +22,13 @@ yup.object({
     subscriptionType: yup.string().oneOf(['FREE', 'PREMIUM'], t('validation.subscriptionType.oneOf')).required(t('validation.subscriptionType.required')),
     stripePriceId: yup.string().optional().nullable(),
     isActive: yup.boolean().optional(),
+    aiQuota: yup.number().required(t('validation.planAiQuota.required')).min(5, t('validation.planAiQuota.min')).integer(t('validation.planAiQuota.integer')),
+    features: yup.array().of(
+        yup.object({
+            label: yup.string().required(t('validation.planFeatureLabel.required')).max(255, t('validation.planFeatureLabel.max')),
+            orderIndex: yup.number().optional().nullable(),
+        })
+    ).optional(),
 })
 
 export type CreatePlanFormData = yup.InferType<ReturnType<typeof createPlanSchema>>;

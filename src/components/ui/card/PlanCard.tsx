@@ -54,6 +54,25 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
                 </p>
             )}
 
+
+            {plan.features && plan.features.length > 0 && (
+                 <ul className="space-y-2 mb-6">
+                    {plan.features.map((feature) => (
+                        <li key={feature.id} className="flex items-start gap-2">
+                            <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.subscriptionType === 'FREE' ? 'text-brand-500' : 'text-white'}`} />
+                            <span className={`text-sm ${plan.subscriptionType === 'FREE' ? 'text-gray-600 dark:text-gray-300' : 'text-brand-100'}`}>
+                                {feature.label}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            {plan.aiQuota !== undefined && (
+                    <p className={`text-xs mb-4 ${plan.subscriptionType === 'FREE' ? 'text-gray-400 dark:text-gray-500' : 'text-brand-300'}`}>
+                {t('subscription.ai_quota.limited', { count: plan.aiQuota })}
+            </p>   
+            )}
             <div className="mt-auto">
                 {isCurrentUserPlan ? (
                     <p className={`text-sm font-semibold ${plan.subscriptionType === 'FREE' ? 'text-gray-400 dark:text-gray-500' : 'text-brand-200'}`}>
