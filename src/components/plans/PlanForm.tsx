@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { PlanFormValues, PlanResponse } from "@/types/plan/plan";
 import { CreatePlanFormData, createPlanSchema } from "@/validations/plans/createPlanSchema";
 import { UpdatePlanFormData, updatePlanSchema } from "@/validations/plans/updatePlanSchema";
-import { Resolver, useFieldArray, useForm, useWatch } from "react-hook-form";
+import { Resolver, useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { FormField } from "@/components/ui/FormField";
@@ -11,6 +11,7 @@ import { Select } from "@/components/ui/Select";
 import { PaymentInterval } from "@/types/payment/payment";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
+import { AddInput } from "@/components/ui/AddInput";
 
 interface PlanFormProps {
     plan?: PlanResponse | null;
@@ -60,11 +61,6 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading, apiError
         })
     }
     }, [plan, reset])
-
-    const { fields: featureFields, append: appendFeature, remove: removeFeature } = useFieldArray({
-        control,
-        name: 'features',
-    });
 
     const subscriptionType = useWatch({ control, name: 'subscriptionType' });
     const currency = useWatch({ control, name: 'currency' });
@@ -182,42 +178,16 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading, apiError
                 />
                 <p className="text-xs text-gray-400 -mt-2">{t('plans.form.ai_quota_hint')}</p>
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        {t('plans.form.features')}
-                    </label>
-                    <div className="space-y-2">
-                        {featureFields.map((field, index) => (
-                            <div key={field.id} className="flex gap-2 items-center">
-                                <input
-                                    {...register(`features.${index}.label`)}
-                                    placeholder={t('plans.form.feature_placeholder')}
-                                    className="flex-1 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
-                                    disabled={isLoading}
-                                />
-                                <Button
-                                    variant='none'
-                                    type="button"
-                                    onClick={() => removeFeature(index)}
-                                    disabled={isLoading}
-                                    className="text-red-500 hover:text-red-700 text-lg leading-none px-1"
-                                    aria-label={t('common.remove')}
-                                >
-                                    &times;
-                                </Button>
-                            </div>
-                        ))}
-                    </div>
-                    <Button
-                        variant='none'
-                        type="button"
-                        onClick={() => appendFeature({ label: '', orderIndex: featureFields.length })}
-                        disabled={isLoading}
-                        className="mt-2 text-sm text-brand-600 dark:text-brand-400 hover:underline"
-                    >
-                        + {t('plans.form.add_feature')}
-                    </Button>
-                </div>
+                <AddInput
+                    control={control}
+                    register={register}
+                    name="features"
+                    label={t('plans.form.features')}
+                    placeholder={t('plans.form.feature_placeholder')}
+                    addLabel={t('plans.form.add_feature')}
+                    removeLabel={t('common.remove')}
+                    isLoading={isLoading}
+                />
 
                 {isEditPlan && (
                     <div className="flex items-center gap-2">
