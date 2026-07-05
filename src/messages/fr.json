@@ -2078,9 +2078,16 @@
     "delete": {
       "btn": "Supprimer mon compte",
       "modal_title": "Supprimer le compte",
-      "modal_warning": "Cette action est permanente et irréversible. Toutes vos données seront supprimées. Entrez votre mot de passe pour confirmer.",
+      "modal_warning": "Cette action est permanente et irréversible. Toutes vos données seront supprimées. Un code de confirmation vous sera envoyé par email.",
       "password_label": "Mot de passe actuel",
       "password_required": "Le mot de passe est requis",
+      "code_required": "Le code est requis",
+      "code_length": "Le code doit contenir 6 chiffres",
+      "code_digits": "Le code ne doit contenir que des chiffres",
+      "send_code_btn": "Envoyer le code de confirmation",
+      "code_sent_info": "Un code de confirmation a été envoyé à votre adresse email. Entrez-le ci-dessous pour confirmer la suppression.",
+      "resend_wait": "Renvoi disponible dans {{time}}",
+      "resend_btn": "Renvoyer le code",
       "confirm_btn": "Supprimer mon compte",
       "error": "Une erreur est survenue. Veuillez réessayer."
     }

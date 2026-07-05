@@ -33,3 +33,5 @@ export const MAX_2FA_CODE_LENGTH = 6;
 
 export const COOKIE_CONSENT_KEY = 'cookie_consent';
 export const FILENAME_REGEX = /filename="?([^"]+)"?/;
+export const RESEND_CODE_DELAY = 15 * 60;
+export const CODE_REGEX = /^\d{6}$/;

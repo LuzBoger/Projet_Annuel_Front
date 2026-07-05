@@ -1,5 +1,5 @@
 import { ProfileImageUpload } from "@/components/profile/ImageUpload";
-import { DeleteModal } from "@/components/profile/DeleteModal";
+import { DeleteAccountModal } from "@/components/profile/DeleteModal";
 import { MetaData } from "@/components/seo/MetaData";
 import { UpdateProfileForm } from "@/components/settings/profile/UpdateProfileForm";
 import { EVENT_PROFILE_UPDATED } from "@/constants/event";
@@ -15,15 +15,14 @@ import { Button } from "@/components/ui/Button";
 export function ProfileSettings() {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const { exportData, deleteAccount, exportLoading } = useDataProfile();
+    const { exportData, exportLoading } = useDataProfile();
     const [profile, setProfile] = useState<UserProfileResponse | null>(null);
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-    const handleDeleteAccount = async (password: string) => {
-        await deleteAccount(password);
+    const handleDeleted = () => {
         navigate('/login');
     };
 
@@ -130,10 +129,10 @@ export function ProfileSettings() {
           </Button>
       </div>
 
-      <DeleteModal
+      <DeleteAccountModal
           isOpen={showDeleteModal}
           onClose={() => setShowDeleteModal(false)}
-          onConfirm={handleDeleteAccount}
+          onDeleted={handleDeleted}
       />
     </div>
     </>

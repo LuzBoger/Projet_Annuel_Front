@@ -73,8 +73,12 @@ export const profileService = {
         return { blob: response.data, filename };
     },
 
-    async deleteAccount(password: string): Promise<void> {
-        await apiClient.delete('/data-privacy/delete', { data: { password } });
+    async deleteAccount(code: string): Promise<void> {
+        await apiClient.delete('/data-privacy/delete', { data: { code } });
+    },
+
+    async generateCode(): Promise<void> {
+        await apiClient.post('/data-privacy/generate-deletion-code');
     }
 
 }

@@ -2073,9 +2073,16 @@
     "delete": {
       "btn": "Delete my account",
       "modal_title": "Delete account",
-      "modal_warning": "This action is permanent and cannot be undone. All your data will be deleted. Please enter your password to confirm.",
+      "modal_warning": "This action is permanent and cannot be undone. All your data will be deleted. A confirmation code will be sent to your email address.",
       "password_label": "Current password",
       "password_required": "Password is required",
+      "code_required": "The code is required",
+      "code_length": "The code must be 6 digits",
+      "code_digits": "The code must only contain digits",
+      "send_code_btn": "Send confirmation code",
+      "code_sent_info": "A confirmation code has been sent to your email address. Enter it below to confirm the deletion.",
+      "resend_wait": "Resend available in {{time}}",
+      "resend_btn": "Resend the code",
       "confirm_btn": "Delete my account",
       "error": "An error occurred. Please try again."
     }
