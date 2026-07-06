@@ -27,15 +27,17 @@ export default function LanguageTopics() {
     const size = 9;
 
     useEffect(() => {
-        setPage(0);
-    }, [debouncedSearchName, searchDifficulty]);
-
-    useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedSearchName(searchName);
+            setPage(0);
         }, 500);
         return () => clearTimeout(timer);
     }, [searchName]);
+
+    const handleSearchDifficultyChange = (difficulty: string) => {
+        setSearchDifficulty(difficulty);
+        setPage(0);
+    };
 
     useEffect(() => {
         if (!languageId) {
@@ -111,7 +113,7 @@ export default function LanguageTopics() {
                 searchName={searchName}
                 onSearchNameChange={setSearchName}
                 searchDifficulty={searchDifficulty}
-                onSearchDifficultyChange={setSearchDifficulty}
+                onSearchDifficultyChange={handleSearchDifficultyChange}
             />
 
             {isLoading ? (
