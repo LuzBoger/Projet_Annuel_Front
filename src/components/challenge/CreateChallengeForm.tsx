@@ -66,11 +66,14 @@ export function CreateChallengeForm() {
     const minItems = isQcmOrFlashcard ? 5 : 3;
     const maxItems = isQcmOrFlashcard ? 20 : 10;
 
-    useEffect(() => {
-        if (aiItemCount !== undefined && aiItemCount > maxItems) {
-            setAiItemCount(maxItems);
+    const handleLessonTypeChange = (newType: LessonType) => {
+        setLessonType(newType);
+        setValue('lessonType', newType);
+        const newMaxItems = (newType === 'QCM' || newType === 'FLASHCARD') ? 20 : 10;
+        if (aiItemCount !== undefined && aiItemCount > newMaxItems) {
+            setAiItemCount(newMaxItems);
         }
-    }, [lessonType, maxItems, aiItemCount]);
+    };
     const [learningLanguages, setLearningLanguages] = useState<UserLanguageResponse[]>([]);
     const [nativeLanguages, setNativeLanguages] = useState<UserLanguageResponse[]>([]);
 
@@ -437,11 +440,7 @@ export function CreateChallengeForm() {
                                             value: type,
                                             label: t(`challenge.type.${type.toLowerCase()}.type`) || type
                                         }))}
-                                        onChange={(val) => {
-                                            const newType = val as LessonType;
-                                            setLessonType(newType);
-                                            setValue('lessonType', newType);
-                                        }}
+                                        onChange={(val) => handleLessonTypeChange(val as LessonType)}
                                     />
                                     <FormField
                                         label={t("challenge.ai.items_count") || "Nombre de questions"}
@@ -525,7 +524,7 @@ export function CreateChallengeForm() {
                                 register={lessonRegister}
                                 errors={lessonErrors}
                                 availableTypes={PUBLIC_LESSON_TYPES}
-                                onLessonTypeChange={(type) => { setLessonType(type); setValue('lessonType', type); }}
+                                onLessonTypeChange={handleLessonTypeChange}
                                 languageOptions={[
                                     ...nativeLanguages.filter(language => language.languageId === selectedSourceLanguageId).map(lang => ({ code: lang.languageCode, name: lang.languageName })),
                                     ...learningLanguages.filter(language => language.languageId === selectedLanguageIdPublic).map(lang => ({ code: lang.languageCode, name: lang.languageName })),
