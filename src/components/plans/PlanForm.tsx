@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { PlanResponse } from "@/types/plan/plan";
+import { PlanFormValues, PlanResponse } from "@/types/plan/plan";
 import { CreatePlanFormData, createPlanSchema } from "@/validations/plans/createPlanSchema";
 import { UpdatePlanFormData, updatePlanSchema } from "@/validations/plans/updatePlanSchema";
 import { Resolver, useForm, useWatch } from "react-hook-form";
@@ -11,12 +11,13 @@ import { Select } from "@/components/ui/Select";
 import { PaymentInterval } from "@/types/payment/payment";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
+import { AddInput } from "@/components/ui/AddInput";
 
 interface PlanFormProps {
     plan?: PlanResponse | null;
     isOpen: boolean;
     onCancel(): void;
-    onSubmit: (data: CreatePlanFormData |  UpdatePlanFormData) => void; 
+    onSubmit: (data: CreatePlanFormData | UpdatePlanFormData) => void;
     isLoading: boolean;
     apiError: string | null;
 }
@@ -25,13 +26,13 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading, apiError
     const { t } = useTranslation();
     const isEditPlan = !!plan;
 
-    const {register, handleSubmit, reset, setValue, control, formState: { errors}} = useForm<CreatePlanFormData | UpdatePlanFormData>({
-        resolver: yupResolver(isEditPlan ? updatePlanSchema(t) : createPlanSchema(t)) as unknown as Resolver<CreatePlanFormData | UpdatePlanFormData> ,
+    const { register, handleSubmit, reset, setValue, control, formState: { errors } } = useForm<PlanFormValues>({
+        resolver: yupResolver(isEditPlan ? updatePlanSchema(t) : createPlanSchema(t)) as Resolver<PlanFormValues>,
         defaultValues: {
             currency: 'EUR',
             paymentInterval: 'MONTHLY',
-            subscriptionType: 'FREE'
-        }
+            subscriptionType: 'FREE',
+        },
     })
 
   useEffect(() => {
@@ -44,6 +45,8 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading, apiError
             paymentInterval: plan.paymentInterval,
             subscriptionType: plan.subscriptionType,
             isActive: plan.isActive,
+            aiQuota: plan.aiQuota ?? 5,
+            features: plan.features?.map(feature => ({ label: feature.label, orderIndex: feature.orderIndex })) ?? [],
         })
     } else {
         reset({
@@ -53,6 +56,8 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading, apiError
             currency: 'EUR',
             paymentInterval: 'MONTHLY',
             subscriptionType: 'FREE',
+            aiQuota: 5,
+            features: [],
         })
     }
     }, [plan, reset])
@@ -82,7 +87,7 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading, apiError
             onClose={onCancel}
             title={isEditPlan ? t('plans.edit.title') : t('plans.create.title')}
         >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={handleSubmit((data) => onSubmit(data as CreatePlanFormData | UpdatePlanFormData))} className="space-y-4">
                 {apiError && (
                     <div className="p-3 rounded bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 text-sm">
                         {apiError}
@@ -160,6 +165,29 @@ export function PlanForm({ plan, isOpen, onCancel, onSubmit, isLoading, apiError
                         {...register('stripePriceId')}
                     />
                 )}
+
+                <FormField
+                    id="aiQuota"
+                    label={t('plans.form.ai_quota')}
+                    type="number"
+                    step="1"
+                    min="1"
+                    disabled={isLoading}
+                    error={(errors as Record<string, { message?: string }>).aiQuota?.message}
+                    {...register('aiQuota' as keyof (CreatePlanFormData | UpdatePlanFormData))}
+                />
+                <p className="text-xs text-gray-400 -mt-2">{t('plans.form.ai_quota_hint')}</p>
+
+                <AddInput
+                    control={control}
+                    register={register}
+                    name="features"
+                    label={t('plans.form.features')}
+                    placeholder={t('plans.form.feature_placeholder')}
+                    addLabel={t('plans.form.add_feature')}
+                    removeLabel={t('common.remove')}
+                    isLoading={isLoading}
+                />
 
                 {isEditPlan && (
                     <div className="flex items-center gap-2">

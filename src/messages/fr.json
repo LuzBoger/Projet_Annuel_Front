@@ -15,6 +15,7 @@
     "user": "Utilisateur",
     "locked": "Verrouillé",
     "finish": "Terminer",
+    "remove": "Supprimer",
     "empty": "Aucune donnée disponible",
     "noData": "Aucune donnée disponible",
     "search": "Rechercher...",
@@ -160,6 +161,10 @@
       "premium": "Premium"
     },
     "included": "Inclus",
+    "ai_quota": {
+      "limited": "{{count}} requête IA incluse",
+      "morelimited": "{{count}} requêtes IA incluses"
+    },
     "enabled": "Activé",
     "disabled": "Désactivé",
     "interval": {
@@ -250,7 +255,12 @@
       "currency": "Devise",
       "payment_interval": "Période de paiement",
       "stripe_price_id": "ID du prix Stripe",
-      "subscription_type": "Type d'abonnement"
+      "subscription_type": "Type d'abonnement",
+      "ai_quota": "Quota IA",
+      "ai_quota_hint": "Nombre de requêtes IA incluses dans ce plan.",
+      "features": "Fonctionnalités",
+      "add_feature": "Ajouter une fonctionnalité",
+      "feature_placeholder": "Description de la fonctionnalité"
     },
     "types": {
       "Free": "Gratuit",
@@ -1138,6 +1148,19 @@
     "planPaymentInterval": {
       "required": "L'intervalle de paiement est requis",
       "oneOf": "Doit être mensuel ou annuel"
+    },
+    "subscriptionType": {
+      "required": "Le type d'abonnement est requis",
+      "oneOf": "Doit être Gratuit ou Premium"
+    },
+    "planAiQuota": {
+      "required": "Le quota IA est requis",
+      "min": "Minimum 5",
+      "integer": "Doit être un nombre entier"
+    },
+    "planFeatureLabel": {
+      "required": "Le libellé de la fonctionnalité est requis",
+      "max": "Maximum 255 caractères"
     },
     "review": {
       "rating_required": "Veuillez sélectionner une note",
