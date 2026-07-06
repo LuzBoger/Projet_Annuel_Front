@@ -10,9 +10,11 @@ const colorMap: Record<BadgeColor, string> = {
     purple: "bg-purple-50/80 dark:bg-purple-500/20 border-purple-300/50 dark:border-purple-500/40 text-purple-700 dark:text-purple-400"
 };
 
-export function BadgeTag({ children, color = "gray", className = "" }: BadgeTagProps) {
+export function BadgeTag({ children, color = "gray", className = "", title }: BadgeTagProps) {
+    const isIconOnly = className.includes("w-") || className.includes("h-");
     return (
-        <span className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-xl border ${colorMap[color]} transition-all duration-200 ${className}`}>
+        <span className={`inline-flex items-center justify-center gap-1.5 font-semibold border ${colorMap[color]} transition-all duration-200
+            ${isIconOnly ? 'rounded-full' : 'px-3 py-1 text-xs rounded-xl'} ${className}`} title={title}>
             {children}
         </span>
     );

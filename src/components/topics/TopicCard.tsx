@@ -26,12 +26,6 @@ export function TopicCard({ topic, onClick }: TopicCardProperties) {
                 <BadgeTag color="blue">
                     {topic.difficulty}
                 </BadgeTag>
-                
-                <div className="flex bg-gray-100 dark:bg-gray-800 rounded-full px-2 py-1 items-center">
-                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                        {t('topics.order', { orderIndex: topic.orderIndex })}
-                    </span>
-                </div>
             </div>
 
             <div className="relative z-10 flex-grow">

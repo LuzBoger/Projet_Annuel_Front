@@ -129,16 +129,16 @@ export function CookieBanner() {
 
                 <div className="flex gap-2 px-5 pb-5">
                     <Button
-                        variant="none"
+                        variant="outline"
                         onClick={() => saveResponse(false)}
-                        className="flex-1 py-2 text-sm font-medium rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white transition-colors cursor-pointer"
+                        className="flex-1 py-2 cursor-pointer"
                     >
                         {t("cookie_banner.deny")}
                     </Button>
                     <Button
-                        variant="none"
+                        variant="primary"
                         onClick={() => saveResponse(true)}
-                        className="flex-1 py-2 text-sm font-medium rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white transition-colors cursor-pointer"
+                        className="flex-1 py-2 cursor-pointer"
                     >
                         {t("cookie_banner.allow_all")}
                     </Button>

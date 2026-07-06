@@ -61,7 +61,9 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (!effectiveLanguageId) return;
-        topicService.getTopicsByLanguage(effectiveLanguageId).then(setTopics);
+        topicService.getActiveProgressTopicsPaginated(effectiveLanguageId, 0, 3)
+            .then((data) => setTopics(data.content))
+            .catch(() => {});
     }, [effectiveLanguageId]);
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import { Challenge, ChallengeUser, CreateChallengeRequest, SubmitChallengeRequest } from "@/types/challenges/challenge";
+import { Challenge, ChallengeUser, CreateChallengeRequest, SubmitChallengeRequest, AIChallengeGenerateRequest, AIChallengeContentResponse } from "@/types/challenges/challenge";
 import apiClient from "@/services/axios";
 
 export const challengeService = {
@@ -55,5 +55,10 @@ export const challengeService = {
 
     async startChallenge(challengeId: string) : Promise<void> {
         await apiClient.post(`/challenges/${challengeId}/start`);
+    },
+
+    async generateChallengeContent(data: AIChallengeGenerateRequest): Promise<AIChallengeContentResponse> {
+        const response = await apiClient.post<AIChallengeContentResponse>('/challenges/generate-content', data);
+        return response.data;
     }
 }

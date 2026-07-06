@@ -8,6 +8,12 @@ const apiClient = axios.create({
     withCredentials: true,
 });
 
+const initLocaleCookie = () => {
+    const locale = localStorage.getItem('locale') || 'fr';
+    document.cookie = `myAppLocaleCookie=${locale.toLowerCase()};path=/;max-age=31536000;SameSite=Lax`;
+};
+initLocaleCookie();
+
 let isRefreshing = false;
 let pendingRequests: Array<{
     resolve: (value: undefined ) => void;
