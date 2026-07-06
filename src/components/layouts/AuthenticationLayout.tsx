@@ -21,7 +21,7 @@ export function AuthenticationLayout({ children, title, illustrationTitle, illus
   return (
     <>
     <MetaData title={title} robots="noindex, nofollow"  />
-    <div className="min-h-[calc(100vh-65px)] flex bg-white dark:bg-gray-900">
+    <div className="min-h-screen flex bg-white dark:bg-gray-900">
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:w-1/2 xl:w-5/12 mx-auto">
         <div className="mx-auto w-full max-w-lg">
           <div className="mb-10 text-center lg:text-left">
