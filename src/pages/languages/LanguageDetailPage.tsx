@@ -35,13 +35,33 @@ export function LanguageDetailPage() {
             return;
         }
 
-        setLoading(true);
-        Promise.all([
-            languageService.getLanguageById(languageId),
-            fetchLearningLanguages()
-        ]).then(([languageData]) => {
-            setLanguage(languageData);
-        }).finally(() => setLoading(false));
+        let active = true;
+
+        const load = async () => {
+            await Promise.resolve();
+            if (!active) return;
+
+            setLoading(true);
+            try {
+                const [languageData] = await Promise.all([
+                    languageService.getLanguageById(languageId),
+                    fetchLearningLanguages()
+                ]);
+                if (active) {
+                    setLanguage(languageData);
+                }
+            } finally {
+                if (active) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        load();
+
+        return () => {
+            active = false;
+        };
     }, [languageId, fetchLearningLanguages]);
 
     useEffect(() => {
