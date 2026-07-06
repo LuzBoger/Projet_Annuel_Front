@@ -2,6 +2,7 @@ import { MetaData } from "@/components/seo/MetaData";
 import { ResumeLessonCard } from "@/components/ui/card/ResumeLessonCard";
 import { StreakCard } from "@/components/ui/card/StreakCard";
 import { XpCard } from "@/components/ui/card/XpCard";
+import { Pagination } from "@/components/ui/Pagination";
 import { LanguageLevel } from "@/components/user/dashboard/LanguageLevel";
 import { Topics } from "@/components/user/dashboard/Topics";
 import { Welcome } from "@/components/user/dashboard/Welcome";
@@ -28,6 +29,8 @@ export default function Dashboard() {
 
     const [activeLanguageId, setActiveLanguageId] = useState<string | null>(null);
     const [topics, setTopics] = useState<TopicWithProgressResponse[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [hasMore, setHasMore] = useState(false);
     const [streak, setStreak] = useState<StreakResponse | null>(null);
     const [dailyQuestion, setDailyQuestion] = useState<UserDailyQuestion | null>(null);
     const [showModal, setShowModal] = useState(false);
@@ -39,6 +42,7 @@ export default function Dashboard() {
         userMistakesService.getDailyQuestion()
             .then((data) => {
                 setDailyQuestion(data);
+                
                 const isAlreadyShown = sessionStorage.getItem("dailyModalShown");
                 if (data.hasQuestionToday && !isAlreadyShown) {
                     setShowModal(true);
@@ -61,16 +65,20 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (!effectiveLanguageId) return;
-        topicService.getActiveProgressTopicsPaginated(effectiveLanguageId, 0, 3)
-            .then((data) => setTopics(data.content))
+        topicService.getActiveProgressTopicsPaginated(effectiveLanguageId, currentPage - 1, 3)
+            .then((data) => {
+                setTopics(data.content);
+                setHasMore(!data.last);
+            })
             .catch(() => {});
-    }, [effectiveLanguageId]);
+    }, [effectiveLanguageId, currentPage]);
 
     useEffect(() => {
         const handler = (...args: unknown[]) => {
             const lang = args[0] as LanguageResponse | null | undefined;
             if (lang?.id) {
                 setActiveLanguageId(lang.id);
+                setCurrentPage(1);
             }
         };
         globalEvents.on(EVENT_ACTIVE_LANGUAGE_CHANGED, handler);
@@ -87,6 +95,7 @@ export default function Dashboard() {
 
     const handleLanguageSelect = async (languageId: string) => {
         setActiveLanguageId(languageId);
+        setCurrentPage(1);
         try {
             const updated = await profileService.addActiveLanguage(languageId);
             globalEvents.emit(EVENT_ACTIVE_LANGUAGE_CHANGED, updated.activeLanguage);
@@ -103,10 +112,18 @@ export default function Dashboard() {
             <div className="max-w-6xl mx-auto px-4 py-8">
                 <div className="flex flex-col lg:flex-row gap-8">
 
-                    <div className="flex-1 min-w-0 order-2 lg:order-1">
+                    <div className="flex-1 min-w-0 order-2 lg:order-1 flex flex-col gap-8">
                         <Welcome username={user?.username ?? ""} />
                         <DailyCheckBanner totalAvailableNow={dailyQuestion?.totalAvailableNow ?? 0} />
                         <Topics topics={topics} activeLanguageId={effectiveLanguageId} />
+                        {(currentPage > 1 || hasMore) && (
+                            <Pagination
+                                currentPage={currentPage}
+                                hasMore={hasMore}
+                                onNext={() => setCurrentPage(p => p + 1)}
+                                onPrev={() => setCurrentPage(p => p - 1)}
+                            />
+                        )}
                     </div>
 
                     <div className="w-full lg:w-72 lg:flex-shrink-0 order-1 lg:order-2">
