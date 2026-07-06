@@ -2084,5 +2084,35 @@
     "aria_font_group": "Taille de police",
     "aria_font_size_section": "Taille de police",
     "aria_visual_section": "Options visuelles"
+  },
+  "data": {
+    "exportSuccess": "Vos données ont été exportées avec succès.",
+    "exportError": "Une erreur est survenue lors de l'exportation de vos données.",
+    "deleteError": "Une erreur est survenue lors de la suppression de votre compte.",
+    "danger_zone": {
+      "title": "Zone dangereuse",
+      "subtitle": "Ces actions sont irréversibles. Veuillez procéder avec prudence."
+    },
+    "export": {
+      "title": "Mes données",
+      "subtitle": "Téléchargez une copie de toutes vos données personnelles.",
+      "btn": "Exporter mes données"
+    },
+    "delete": {
+      "btn": "Supprimer mon compte",
+      "modal_title": "Supprimer le compte",
+      "modal_warning": "Cette action est permanente et irréversible. Toutes vos données seront supprimées. Un code de confirmation vous sera envoyé par email.",
+      "password_label": "Mot de passe actuel",
+      "password_required": "Le mot de passe est requis",
+      "code_required": "Le code est requis",
+      "code_length": "Le code doit contenir 6 chiffres",
+      "code_digits": "Le code ne doit contenir que des chiffres",
+      "send_code_btn": "Envoyer le code de confirmation",
+      "code_sent_info": "Un code de confirmation a été envoyé à votre adresse email. Entrez-le ci-dessous pour confirmer la suppression.",
+      "resend_wait": "Renvoi disponible dans {{time}}",
+      "resend_btn": "Renvoyer le code",
+      "confirm_btn": "Supprimer mon compte",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    }
   }
 }
