@@ -17,6 +17,8 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 
+const TOPICS_PAGE_SIZE = 5;
+
 export function LanguageDetailPage() {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -27,7 +29,7 @@ export function LanguageDetailPage() {
     const [topics, setTopics] = useState<TopicResponse[]>([]);
     const [page, setPage] = useState<number>(0);
     const [totalPages, setTotalPages] = useState<number>(1);
-    const size = 5;
+    const size = TOPICS_PAGE_SIZE;
     const { userLanguages, fetchLearningLanguages, addLanguage, deleteLanguage } = useUserLanguage();
 
     useEffect(() => {

@@ -4,7 +4,14 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
 import { Select } from "@/components/ui/Select";
-import { CHALLENGE_TYPES, PUBLIC_LESSON_TYPES } from "@/constants/challenge";
+import {
+    CHALLENGE_TYPES,
+    PUBLIC_LESSON_TYPES,
+    AI_CHALLENGE_MIN_ITEMS_DEFAULT,
+    AI_CHALLENGE_MAX_ITEMS_DEFAULT,
+    AI_CHALLENGE_MIN_ITEMS_EXTENDED,
+    AI_CHALLENGE_MAX_ITEMS_EXTENDED
+} from "@/constants/challenge";
 import { useChallenge } from "@/hooks/useChallenge";
 import { lessonService } from "@/services/lessonService";
 import { topicService } from "@/services/topicService";
@@ -62,13 +69,13 @@ export function CreateChallengeForm() {
     const [aiErrors, setAiErrors] = useState<Record<string, string>>({});
 
     const isQcmOrFlashcard = lessonType === 'QCM' || lessonType === 'FLASHCARD';
-    const minItems = isQcmOrFlashcard ? 5 : 3;
-    const maxItems = isQcmOrFlashcard ? 20 : 10;
+    const minItems = isQcmOrFlashcard ? AI_CHALLENGE_MIN_ITEMS_EXTENDED : AI_CHALLENGE_MIN_ITEMS_DEFAULT;
+    const maxItems = isQcmOrFlashcard ? AI_CHALLENGE_MAX_ITEMS_EXTENDED : AI_CHALLENGE_MAX_ITEMS_DEFAULT;
 
     const handleLessonTypeChange = (newType: LessonType) => {
         setLessonType(newType);
         setValue('lessonType', newType);
-        const newMaxItems = (newType === 'QCM' || newType === 'FLASHCARD') ? 20 : 10;
+        const newMaxItems = (newType === 'QCM' || newType === 'FLASHCARD') ? AI_CHALLENGE_MAX_ITEMS_EXTENDED : AI_CHALLENGE_MAX_ITEMS_DEFAULT;
         if (aiItemCount !== undefined && aiItemCount > newMaxItems) {
             setAiItemCount(newMaxItems);
         }
