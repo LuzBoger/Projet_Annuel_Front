@@ -16,6 +16,7 @@
     "loading": "Loading...",
     "locked": "Locked",
     "finish": "Finish",
+    "remove": "Remove",
     "empty": "No data available",
     "noData": "No data available",
     "search": "Search...",
@@ -160,6 +161,10 @@
       "premium": "Premium"
     },
     "included": "Included",
+    "ai_quota": {
+      "limited": "{{count}} AI request included",
+      "morelimited": "{{count}} AI requests included"
+    },
     "enabled": "Enabled",
     "disabled": "Disabled",
     "interval": {
@@ -250,7 +255,12 @@
       "currency": "Currency",
       "payment_interval": "Payment interval",
       "stripe_price_id": "Stripe price ID",
-      "subscription_type": "Subscription type"
+      "subscription_type": "Subscription type",
+      "ai_quota": "AI quota",
+      "ai_quota_hint": "Number of AI requests included in this plan.",
+      "features": "Features",
+      "add_feature": "Add feature",
+      "feature_placeholder": "Feature description"
     },
     "types": {
       "Free": "Free",
@@ -493,8 +503,9 @@
           "empty_description": "Please enter a description before starting.",
           "empty_description_modify": "Please enter modification instructions before starting.",
           "type_helper": "* Determines the lesson format (required for both AI generation and manual configuration).",
-          "item_count_label": "Number of items to generate (optional)",
+          "item_count_label": "Number of items to generate",
           "item_count_placeholder": "E.g., 5",
+          "item_count_required": "The number of items to generate is required.",
           "generating_title": "Designing your lesson...",
           "generating_title_modify": "Modifying your lesson...",
           "generating_subtitle": "The AI is structuring your exercises and contents. Please wait a few moments.",
@@ -594,6 +605,8 @@
     "freeVsPremium": " Free and Premium subscribers",
     "topics": "Topics",
     "view_all": "View all",
+    "no_active_topics": "You have no topics currently in progress.",
+    "explore_topics": "Explore topics",
     "language": {
       "active": "Active language",
       "level": "Level {{level}}"
@@ -748,9 +761,10 @@
       "submit": "Create challenge"
     },
     "create": {
-      "source_language": "Written-in language",
-      "target_language": "Language to learn",
-      "select_language": "Select a language"
+      "source_language": "Source language",
+      "target_language": "Target language",
+      "select_language": "Select a language",
+      "public_details": "Public challenge settings"
     },
     "type": {
       "public": {
@@ -820,6 +834,18 @@
       "sortingExercises": {
         "min": "At least 1 sorting exercise is required"
       }
+    },
+    "ai": {
+      "button": "Generate with AI",
+      "title": "Generate exercises with AI",
+      "quota_exceeded_title": "AI Generation Limit Reached",
+      "quota_exceeded_desc": "You have exhausted your monthly AI generation credits. Upgrade to a Premium plan to unlock your AI quota.",
+      "upgrade": "Upgrade",
+      "generate": "Generate",
+      "prompt_label": "Generation Theme or Prompt",
+      "prompt_placeholder": "Ex: Common expressions at the restaurant",
+      "items_count": "Number of questions",
+      "generated_desc": "AI Generated: {{prompt}}"
     }
   },
   "error": {
@@ -922,6 +948,7 @@
     "no_desc": "No description provided",
     "practice_btn": "Practice now",
     "order": "Order: {{orderIndex}}",
+    "pagination_info": "Showing {{start}} to {{end}} of {{total}} topics",
     "lessons_title": "Lessons Playground",
     "lessons_desc": "Explore the lessons below in chronological order to progress and master this topic.",
     "exam_status": "Exam Status",
@@ -1078,6 +1105,15 @@
       "manual_key": "Or enter this key manually:",
       "enter_code": "Enter the verification code",
       "verify_button": "Verify"
+    },
+    "profile": {
+      "usernameRequired": "Username is required.",
+      "usernameTooShort": "Username must be at least 3 characters long.",
+      "usernameTooLong": "Username cannot exceed 50 characters.",
+      "usernameInvalid": "Username can only contain letters, numbers, hyphens and underscores.",
+      "bioTooLong": "Biography cannot exceed 500 characters.",
+      "countryCodeRequired": "Country is required.",
+      "timezoneRequired": "Time zone is required."
     }
   },
   "validation": {
@@ -1133,6 +1169,19 @@
     "planPaymentInterval": {
       "required": "Payment interval is required",
       "oneOf": "Must be monthly or yearly"
+    },
+    "subscriptionType": {
+      "required": "Subscription type is required",
+      "oneOf": "Must be Free or Premium"
+    },
+    "planAiQuota": {
+      "required": "AI quota is required",
+      "min": "Minimum 5",
+      "integer": "Must be a whole number"
+    },
+    "planFeatureLabel": {
+      "required": "Feature label is required",
+      "max": "Maximum 255 characters"
     },
     "review": {
       "rating_required": "Please select a rating",
@@ -1291,12 +1340,12 @@
   },
   "home": {
     "page_title": "Skaldly - Master a New Language with AI as Your Personal Assistant",
-    "page_description": "Skaldly helps you learn a new language through structured courses and varied exercises: flashcards, quizzes, matching pairs, sorting, and interactive challenges. Stuck on a word or grammar rule? An AI assistant is there to explain it in real time. Progress at your own pace across a wide range of languages from around the world.",
-    "page_keywords": "language learning, flashcards, language exercises, AI assistance, Japanese, Spanish, English, vocabulary, grammar, Skaldly",
+    "page_description": "Learn a new language with artificial intelligence: flashcards, quizzes and interactive exercises. An AI assistant to help you progress at your own pace.",
+    "page_keywords": "learn a language with AI, learn a language with artificial intelligence, language learning app, flashcards, language quiz, spaced repetition, AI language assistant, Skaldly",
     "hero": {
-      "title_start": "Master a new language with ",
+      "title_start": "Learn a language with ",
       "title_highlight": "Artificial Intelligence",
-      "description": "Skaldly leverages cognitive science and cutting-edge algorithms to create the ultimate learning journey. Spaced repetition, custom lessons, and total immersion.",
+      "description": "Skaldly is the platform to learn a language with AI: spaced repetition, custom lessons and total immersion through artificial intelligence.",
       "logged_in_as": "Logged in as ",
       "continue_learning": "Continue learning",
       "start_free": "Start for free"
@@ -1307,19 +1356,19 @@
         "description": "Our lessons are based on proven cognitive studies. Spaced repetition ensures long-term memory retention."
       },
       "ai": {
-        "title": "Omnipresent AI",
+        "title": "AI to learn a language",
         "description": "Pedagogy that adapts in real time. Artificial intelligence evaluates your weaknesses and generates perfect content to help you progress."
       },
       "variety": {
         "title": "Diverse Tools",
-        "description": "A multitude of varied interactive exercises, specifically designed to maximize linguistic retention and total immersion."
+        "description": "Flashcards, quizzes, matching pairs, sorting exercises and interactive challenges — designed to maximize linguistic retention and total immersion."
       }
     },
     "science": {
       "title": "Proven by Science",
-      "subtitle": "The effectiveness of our tools is backed by decades of research in cognitive science and linguistics.",
+      "subtitle": "To learn a language effectively, Skaldly draws on decades of cognitive science research, amplified by artificial intelligence.",
       "spaced_repetition": {
-        "title": "1. Flashcards & Spacing Effect",
+        "title": "1. Flashcards & Spaced Repetition to memorize vocabulary",
         "description": "Without review, the brain naturally forgets 78% of information (Ebbinghaus forgetting curve). Spaced repetition forces active recall just before forgetting, maximizing memorization via long-term potentiation.",
         "stat1": "+200% to +400%",
         "stat1_desc": " improvement compared to cramming.",
@@ -1359,6 +1408,37 @@
         "source3": "(2006). Test-enhanced learning. The Testing Effect using quizzes produces better retrieval capacities than simple re-reading.",
         "source4": "(1956). The magical number seven, plus or minus two, and Semantic Encoding (Craik & Lockhart, 1972). Chunking changes the hierarchy of mental storage regarding language learning."
       }
+    },
+    "languages": {
+      "title": "Learn the language of your choice with AI",
+      "subtitle": "Skaldly supports many languages to learn with artificial intelligence",
+      "items": ["English", "Spanish", "Japanese", "German", "Italian", "Portuguese", "Arabic", "Mandarin"]
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "question": "How does Skaldly work to learn a language with artificial intelligence?",
+          "answer": "Skaldly offers varied exercises to learn a language: flashcards, quizzes, matching pairs and interactive exercises. When you get stuck on a word or grammar rule, the AI assistant steps in real time to explain the grammar rule, suggest a mnemonic trick, flag a common pitfall or provide usage context."
+        },
+        {
+          "question": "How long does it take to learn a language with Skaldly?",
+          "answer": "Results vary depending on the language and your starting level. Thanks to spaced repetition and AI algorithms, our users see significant progress within the first weeks of regular use."
+        },
+        {
+          "question": "Is Skaldly free?",
+          "answer": "Yes, Skaldly offers a free version to start learning a language with AI. Advanced features are available with our Premium subscriptions."
+        },
+        {
+          "question": "Which languages can you learn with Skaldly?",
+          "answer": "Skaldly offers learning for many languages: English, Spanish, Japanese, German, Italian, Portuguese, Arabic and many more. All benefit from artificial intelligence assistance."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Start learning a language with artificial intelligence",
+      "subtitle": "Join thousands of learners using AI to progress faster.",
+      "button": "Start for free"
     },
     "ai_demo": {
       "assistant_label": "AI Assistant",
@@ -1582,11 +1662,12 @@
   "duration": "Duration",
   "status": "Status",
   "footer": {
-    "tagline": "Learn languages naturally, at your own pace.",
+    "tagline": "Learn languages with artificial intelligence, naturally and at your own pace.",
     "cta": "Get started for free",
     "product": "Product",
     "links": {
       "plans": "Plans",
+      "faq": "FAQ",
       "login": "Log in",
       "register": "Sign up"
     },
@@ -2025,6 +2106,7 @@
     "nav": {
       "lessons": "Our lessons",
       "plans": "Plans",
+      "faq": "FAQ",
       "contact": "Contact"
     }
   },
@@ -2056,5 +2138,35 @@
     "aria_font_group": "Font size",
     "aria_font_size_section": "Font size",
     "aria_visual_section": "Visual options"
+  },
+  "data": {
+    "exportSuccess": "Your data has been exported successfully.",
+    "exportError": "An error occurred while exporting your data.",
+    "deleteError": "An error occurred while deleting your account.",
+    "danger_zone": {
+      "title": "Danger zone",
+      "subtitle": "These actions are irreversible. Please proceed with caution."
+    },
+    "export": {
+      "title": "My data",
+      "subtitle": "Download a copy of all your personal data.",
+      "btn": "Export my data"
+    },
+    "delete": {
+      "btn": "Delete my account",
+      "modal_title": "Delete account",
+      "modal_warning": "This action is permanent and cannot be undone. All your data will be deleted. A confirmation code will be sent to your email address.",
+      "password_label": "Current password",
+      "password_required": "Password is required",
+      "code_required": "The code is required",
+      "code_length": "The code must be 6 digits",
+      "code_digits": "The code must only contain digits",
+      "send_code_btn": "Send confirmation code",
+      "code_sent_info": "A confirmation code has been sent to your email address. Enter it below to confirm the deletion.",
+      "resend_wait": "Resend available in {{time}}",
+      "resend_btn": "Resend the code",
+      "confirm_btn": "Delete my account",
+      "error": "An error occurred. Please try again."
+    }
   }
 }

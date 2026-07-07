@@ -1,5 +1,6 @@
 import apiClient from "@/services/axios";
 import type { TopicResponse, CreateTopicRequest, UpdateTopicRequest, ExamResponse, ExamResultRequest, CompleteExamResponse, TopicWithProgressResponse } from "@/types/topic/topic";
+import type { Page } from "@/types/api/page";
 
 
 export const topicService = {
@@ -34,8 +35,44 @@ export const topicService = {
         return response.data;
     },
 
+    async searchActiveTopicsPaginated(
+        languageId: string,
+        name?: string,
+        difficulty?: string,
+        page?: number,
+        size?: number,
+        sort?: string
+    ): Promise<Page<TopicResponse>> {
+        const params = new URLSearchParams();
+        params.append('languageId', languageId);
+        if (name) params.append('name', name);
+        if (difficulty) params.append('difficulty', difficulty);
+        if (page !== undefined) params.append('page', page.toString());
+        if (size !== undefined) params.append('size', size.toString());
+        if (sort) params.append('sort', sort);
+
+        const response = await apiClient.get<Page<TopicResponse>>('/topics/search/active/paginated', { params });
+        return response.data;
+    },
+
     async getTopicsByLanguage(languageId: string): Promise<TopicWithProgressResponse[]> {
         const response = await apiClient.get<TopicWithProgressResponse[]>(`/topics/language/${languageId}`);
+        return response.data;
+    },
+
+    async getActiveProgressTopicsPaginated(
+        languageId: string,
+        page?: number,
+        size?: number,
+        sort?: string
+    ): Promise<Page<TopicWithProgressResponse>> {
+        const params = new URLSearchParams();
+        params.append('languageId', languageId);
+        if (page !== undefined) params.append('page', page.toString());
+        if (size !== undefined) params.append('size', size.toString());
+        if (sort) params.append('sort', sort);
+
+        const response = await apiClient.get<Page<TopicWithProgressResponse>>('/topics/progress/active', { params });
         return response.data;
     },
 

@@ -140,13 +140,13 @@ export interface AILessonGenerateRequest {
     lessonType: LessonType;
     topicId: string;
     description: string;
-    itemCount?: number;
+    itemCount: number;
 }
 
 export interface AILessonModifyRequest {
     lessonId: string;
     prompt: string;
-    itemCount?: number;
+    itemCount: number;
     lesson: LessonRequest;
 }
 

@@ -39,7 +39,7 @@ export function ToastProvider({ children }: Readonly<{ children: React.ReactNode
     return (
         <ToastContext.Provider value={{ addToast, removeToast }}>
             {children}
-            <div className="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none">
+            <div className="fixed top-4 right-4 z-[200] flex flex-col gap-2 pointer-events-none">
                 {toasts.map((toast) => (
                     <Toast
                         key={toast.id}

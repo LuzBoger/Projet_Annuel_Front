@@ -15,6 +15,7 @@
     "user": "Utilisateur",
     "locked": "Verrouillé",
     "finish": "Terminer",
+    "remove": "Supprimer",
     "empty": "Aucune donnée disponible",
     "noData": "Aucune donnée disponible",
     "search": "Rechercher...",
@@ -160,6 +161,10 @@
       "premium": "Premium"
     },
     "included": "Inclus",
+    "ai_quota": {
+      "limited": "{{count}} requête IA incluse",
+      "morelimited": "{{count}} requêtes IA incluses"
+    },
     "enabled": "Activé",
     "disabled": "Désactivé",
     "interval": {
@@ -250,7 +255,12 @@
       "currency": "Devise",
       "payment_interval": "Période de paiement",
       "stripe_price_id": "ID du prix Stripe",
-      "subscription_type": "Type d'abonnement"
+      "subscription_type": "Type d'abonnement",
+      "ai_quota": "Quota IA",
+      "ai_quota_hint": "Nombre de requêtes IA incluses dans ce plan.",
+      "features": "Fonctionnalités",
+      "add_feature": "Ajouter une fonctionnalité",
+      "feature_placeholder": "Description de la fonctionnalité"
     },
     "types": {
       "Free": "Gratuit",
@@ -498,8 +508,9 @@
           "empty_description": "Veuillez saisir une description avant de lancer la génération.",
           "empty_description_modify": "Veuillez saisir des consignes avant de lancer la modification.",
           "type_helper": "* Détermine le format de leçon (requis pour la génération par IA et la configuration manuelle).",
-          "item_count_label": "Nombre d'éléments à générer (optionnel)",
+          "item_count_label": "Nombre d'éléments à générer",
           "item_count_placeholder": "Ex : 5",
+          "item_count_required": "Le nombre d'éléments à générer est requis.",
           "generating_title": "Conception de la leçon...",
           "generating_title_modify": "Modification de la leçon...",
           "generating_subtitle": "L'IA structure vos exercices et vos contenus. Veuillez patienter quelques instants.",
@@ -599,6 +610,8 @@
     "freeVsPremium": "Nombre d'abonnés gratuits et premium",
     "topics": "Sujets",
     "view_all": "Voir tout",
+    "no_active_topics": "Vous n'avez aucun thème en cours d'apprentissage pour le moment.",
+    "explore_topics": "Explorer les thèmes",
     "language": {
       "active": "Langue active",
       "level": "Niveau {{level}}"
@@ -755,7 +768,8 @@
     "create": {
       "source_language": "Langue de rédaction",
       "target_language": "Langue à apprendre",
-      "select_language": "Sélectionner une langue"
+      "select_language": "Sélectionner une langue",
+      "public_details": "Paramètres du défi public"
     },
     "type": {
       "public": {
@@ -825,6 +839,18 @@
       "sortingExercises": {
         "min": "Au moins 1 exercice de tri est requis"
       }
+    },
+    "ai": {
+      "button": "Générer avec l'IA",
+      "title": "Générer les exercices par IA",
+      "quota_exceeded_title": "Limite de génération d'IA atteinte",
+      "quota_exceeded_desc": "Vous avez épuisé vos crédits de génération mensuels. Passez à l'abonnement Premium pour débloquer votre quota d'IA.",
+      "upgrade": "S'abonner",
+      "generate": "Générer",
+      "prompt_label": "Thème ou prompt de génération",
+      "prompt_placeholder": "Ex : Les expressions courantes au restaurant",
+      "items_count": "Nombre de questions",
+      "generated_desc": "Généré par IA : {{prompt}}"
     }
   },
   "error": {
@@ -927,6 +953,7 @@
     "no_desc": "Aucune description fournie",
     "practice_btn": "S'entraîner maintenant",
     "order": "Ordre: {{orderIndex}}",
+    "pagination_info": "Affichage de {{start}} à {{end}} sur {{total}} thèmes",
     "lessons_title": "Plateau de Leçons",
     "lessons_desc": "Explorez les leçons ci-dessous dans l'ordre chronologique pour progresser et maîtriser ce sujet.",
     "exam_status": "Statut de l'Examen",
@@ -972,7 +999,7 @@
       "modal_title": "Aide à la Mémorisation par IA",
       "modal_subtitle": "Choisissez le type d'assistance dont vous avez besoin :",
       "option_structure_and_rule": "Structure & Règles",
-      "option_association_and_mnemonic": "Moyen mémotechnique",
+      "option_association_and_mnemonic": "Moyen mnémotechnique",
       "option_trap_warning": "Pièges à éviter",
       "option_usage_context": "Exemple en contexte",
       "loading": "Génération de l'aide par l'IA...",
@@ -1083,6 +1110,15 @@
       "manual_key": "Ou entrez cette clé manuellement :",
       "enter_code": "Entrez le code de vérification",
       "verify_button": "Vérifier"
+    },
+    "profile": {
+      "usernameRequired": "Le nom d'utilisateur est requis.",
+      "usernameTooShort": "Le nom d'utilisateur doit contenir au moins 3 caractères.",
+      "usernameTooLong": "Le nom d'utilisateur ne peut pas dépasser 50 caractères.",
+      "usernameInvalid": "Le nom d'utilisateur ne peut contenir que des lettres, chiffres, tirets et underscores.",
+      "bioTooLong": "La biographie ne peut pas dépasser 500 caractères.",
+      "countryCodeRequired": "Le pays est requis.",
+      "timezoneRequired": "Le fuseau horaire est requis."
     }
   },
   "validation": {
@@ -1138,6 +1174,19 @@
     "planPaymentInterval": {
       "required": "L'intervalle de paiement est requis",
       "oneOf": "Doit être mensuel ou annuel"
+    },
+    "subscriptionType": {
+      "required": "Le type d'abonnement est requis",
+      "oneOf": "Doit être Gratuit ou Premium"
+    },
+    "planAiQuota": {
+      "required": "Le quota IA est requis",
+      "min": "Minimum 5",
+      "integer": "Doit être un nombre entier"
+    },
+    "planFeatureLabel": {
+      "required": "Le libellé de la fonctionnalité est requis",
+      "max": "Maximum 255 caractères"
     },
     "review": {
       "rating_required": "Veuillez sélectionner une note",
@@ -1296,12 +1345,12 @@
   },
   "home": {
     "page_title": "Skaldly - Maîtrise une nouvelle langue avec l'IA comme assistant personnel",
-    "page_description": "Skaldly vous aide à apprendre une nouvelle langue grâce à des cours structurés et des exercices variés : flashcards, quiz, associations de paires, remise en ordre et exercices interactifs. Bloquez sur un mot ou une règle ? Une assistance IA est là pour vous expliquer en temps réel. Progressez à votre rythme sur de nombreuses langues du monde entier.",
-    "page_keywords": "apprentissage des langues, flashcards, exercices de langue, assistance IA, japonais, espagnol, anglais, vocabulaire, grammaire, Skaldly",
+    "page_description": "Apprenez une nouvelle langue avec l'intelligence artificielle : flashcards, quiz et exercices interactifs. Un assistant IA pour progresser à votre rythme.",
+    "page_keywords": "apprendre une langue avec l'IA, apprendre une langue avec l'intelligence artificielle, application apprentissage langue, flashcards, quiz langue, répétition espacée, assistant IA langue, Skaldly",
     "hero": {
-      "title_start": "Maîtrisez une langue avec ",
+      "title_start": "Apprenez une langue avec ",
       "title_highlight": "l'Intelligence Artificielle",
-      "description": "Skaldly s'appuie sur la science cognitive et des algorithmes de pointe pour créer le parcours d'apprentissage absolu. Répétition espacée, leçons sur-mesure et immersion totale.",
+      "description": "Skaldly est la plateforme pour apprendre une langue avec l'IA : répétition espacée, leçons sur-mesure et immersion totale grâce à l'intelligence artificielle.",
       "logged_in_as": "Connecté en tant que ",
       "continue_learning": "Continuer mon apprentissage",
       "start_free": "Commencer gratuitement"
@@ -1312,19 +1361,19 @@
         "description": "Nos leçons sont fondées sur des études cognitives prouvées. La répétition espacée garantit une mémorisation gravée sur le long terme."
       },
       "ai": {
-        "title": "IA Omniprésente",
+        "title": "IA pour apprendre une langue",
         "description": "Une pédagogie qui s'adapte en temps réel. L'intelligence artificielle évalue vos faiblesses et génère le contenu parfait pour vous faire progresser."
       },
       "variety": {
         "title": "Dispositifs Variés",
-        "description": "Une multitude d'exercices interactifs et variés, conçus spécifiquement pour maximiser la rétention linguistique et l'immersion totale."
+        "description": "Flashcards, quiz, associations de paires, remise en ordre et exercices interactifs — conçus pour maximiser la rétention linguistique et l'immersion totale."
       }
     },
     "science": {
       "title": "Prouvé par la science",
-      "subtitle": "L'efficacité de nos dispositifs s'appuie sur des décennies de recherche en sciences cognitives et en linguistique.",
+      "subtitle": "Pour apprendre une langue efficacement, Skaldly s'appuie sur des décennies de recherche en sciences cognitives, amplifiées par l'intelligence artificielle.",
       "spaced_repetition": {
-        "title": "1. Cartes Mémoire & Effet d'Espacement",
+        "title": "1. Flashcards & Répétition Espacée pour mémoriser le vocabulaire",
         "description": "Sans révision, le cerveau oublie naturellement 78% des informations (la courbe de l'oubli d'Ebbinghaus). La répétition espacée force le rappel actif juste avant l'oubli, maximisant la mémorisation grâce à la \"potentialisation à long terme\".",
         "stat1": "+200% à +400%",
         "stat1_desc": " d'amélioration par rapport au \"bachotage\".",
@@ -1364,6 +1413,37 @@
         "source3": "(2006). Test-enhanced learning. L'application du QCM (\"Testing Effect\") produit de meilleures capacités de récupération que le simple temps de relecture.",
         "source4": "(1956). The magical number seven, plus or minus two, and Semantic Encoding (Craik & Lockhart, 1972). Le chunking modifie la hiérarchie du stockage mental vis-à-vis des apprentissages linguistiques."
       }
+    },
+    "languages": {
+      "title": "Apprenez la langue de votre choix avec l'IA",
+      "subtitle": "Skaldly supporte de nombreuses langues pour apprendre avec l'intelligence artificielle",
+      "items": ["Anglais", "Espagnol", "Japonais", "Allemand", "Italien", "Portugais", "Arabe", "Mandarin"]
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "items": [
+        {
+          "question": "Comment fonctionne Skaldly pour apprendre une langue avec l'intelligence artificielle ?",
+          "answer": "Skaldly propose des exercices variés pour apprendre une langue : flashcards, quiz, associations de paires et exercices interactifs. Lorsque vous bloquez sur un mot ou une règle, l'assistant IA intervient en temps réel pour vous expliquer la règle grammaticale, proposer une astuce mnémotechnique, signaler un piège courant ou donner le contexte d'usage."
+        },
+        {
+          "question": "Combien de temps faut-il pour apprendre une langue avec Skaldly ?",
+          "answer": "Les résultats varient selon la langue et votre niveau de départ. Grâce à la répétition espacée et aux algorithmes d'IA, nos utilisateurs constatent des progrès significatifs dès les premières semaines d'utilisation régulière."
+        },
+        {
+          "question": "Skaldly est-il gratuit ?",
+          "answer": "Oui, Skaldly propose une version gratuite pour commencer à apprendre une langue avec l'IA. Des fonctionnalités avancées sont disponibles avec nos abonnements Premium."
+        },
+        {
+          "question": "Quelles langues peut-on apprendre avec Skaldly ?",
+          "answer": "Skaldly propose l'apprentissage de nombreuses langues : anglais, espagnol, japonais, allemand, italien, portugais, arabe et bien d'autres. Toutes bénéficient de l'assistance de l'intelligence artificielle."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Commencez à apprendre une langue avec l'intelligence artificielle",
+      "subtitle": "Rejoignez des milliers d'apprenants qui utilisent l'IA pour progresser plus vite.",
+      "button": "Commencer gratuitement"
     },
     "ai_demo": {
       "assistant_label": "Assistant IA",
@@ -1587,11 +1667,12 @@
   "duration": "Durée",
   "status": "Statut",
   "footer": {
-    "tagline": "Apprenez les langues naturellement, à votre rythme.",
+    "tagline": "Apprenez les langues avec l'intelligence artificielle, naturellement et à votre rythme.",
     "cta": "Commencer gratuitement",
     "product": "Produit",
     "links": {
       "plans": "Offres",
+      "faq": "FAQ",
       "login": "Connexion",
       "register": "Inscription"
     },
@@ -2030,6 +2111,7 @@
     "nav": {
       "lessons": "Nos leçons",
       "plans": "Offres",
+      "faq": "FAQ",
       "contact": "Contact"
     }
   },
@@ -2061,5 +2143,35 @@
     "aria_font_group": "Taille de police",
     "aria_font_size_section": "Taille de police",
     "aria_visual_section": "Options visuelles"
+  },
+  "data": {
+    "exportSuccess": "Vos données ont été exportées avec succès.",
+    "exportError": "Une erreur est survenue lors de l'exportation de vos données.",
+    "deleteError": "Une erreur est survenue lors de la suppression de votre compte.",
+    "danger_zone": {
+      "title": "Zone dangereuse",
+      "subtitle": "Ces actions sont irréversibles. Veuillez procéder avec prudence."
+    },
+    "export": {
+      "title": "Mes données",
+      "subtitle": "Téléchargez une copie de toutes vos données personnelles.",
+      "btn": "Exporter mes données"
+    },
+    "delete": {
+      "btn": "Supprimer mon compte",
+      "modal_title": "Supprimer le compte",
+      "modal_warning": "Cette action est permanente et irréversible. Toutes vos données seront supprimées. Un code de confirmation vous sera envoyé par email.",
+      "password_label": "Mot de passe actuel",
+      "password_required": "Le mot de passe est requis",
+      "code_required": "Le code est requis",
+      "code_length": "Le code doit contenir 6 chiffres",
+      "code_digits": "Le code ne doit contenir que des chiffres",
+      "send_code_btn": "Envoyer le code de confirmation",
+      "code_sent_info": "Un code de confirmation a été envoyé à votre adresse email. Entrez-le ci-dessous pour confirmer la suppression.",
+      "resend_wait": "Renvoi disponible dans {{time}}",
+      "resend_btn": "Renvoyer le code",
+      "confirm_btn": "Supprimer mon compte",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    }
   }
 }

@@ -18,11 +18,11 @@ export const aiGenerationSchema = (t: (key: string) => string, lessonType: Lesso
     aiItemCount: yup
       .number()
       .transform((value, originalValue) => (originalValue === "" || originalValue === undefined || originalValue === null) ? undefined : value)
-      .nullable()
-      .optional()
+      .typeError(t("admin.lessons.form.ai_generate.item_count_required"))
+      .required(t("admin.lessons.form.ai_generate.item_count_required"))
       .test("is-valid-range", function (value) {
         if (value === undefined || value === null || isNaN(value)) {
-          return true;
+          return false;
         }
 
         if (value < minItems || value > maxItems) {

@@ -30,15 +30,23 @@ export function Topics({ topics, activeLanguageId }: Readonly<TopicsProps>) {
                     </Button>
                 )}
             </div>
-            <div className="flex flex-col gap-2">
-                {topics.map((topic) => (
-                    <TopicCard
-                        key={topic.id}
-                        topic={topic}
-                        onPractice={() => navigate(`/topics/${topic.id}`)}
-                    />
-                ))}
-            </div>
+            {topics.length > 0 ? (
+                <div className="flex flex-col gap-2">
+                    {topics.map((topic) => (
+                        <TopicCard
+                            key={topic.id}
+                            topic={topic}
+                            onPractice={() => navigate(`/topics/${topic.id}`)}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="text-center py-8 bg-gray-50/50 dark:bg-gray-900/30 border border-dashed border-gray-200 dark:border-gray-800 rounded-2xl p-6">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {t("dashboard.no_active_topics") || "Vous n'avez aucun thème en cours d'apprentissage pour le moment."}
+                    </p>
+                </div>
+            )}
         </div>
     );
 }

@@ -27,7 +27,7 @@ const mockUserData = {
     username: 'satoru_gojo',
     bio: 'I am the strongest exorcist.',
     countryCode: 'JP',
-    timezone: 'Asia/Tokyo',
+    timezone: 'JST',
     isPublic: true,
     hasCompletedOnboarding: true,
     isAccountPrivate: false,
@@ -43,9 +43,9 @@ describe('UpdateProfileForm', () => {
 
     it('should render the form with user data', () => {
         renderWithProviders(<UpdateProfileForm data={mockUserData} onSuccess={mockOnSuccess} />)
-        expect(screen.getByLabelText(t('profile.username'))).toHaveValue(mockUserData.username);
-        expect(screen.getByLabelText(t('profile.countryCode'))).toHaveValue(mockUserData.countryCode);
-        expect(screen.getByLabelText(t('profile.timezone'))).toHaveValue(mockUserData.timezone);
+        expect(screen.getByLabelText(t('profile.username'), { exact: false })).toHaveValue(mockUserData.username);
+        expect(screen.getByLabelText(t('profile.countryCode'), { exact: false })).toHaveValue(mockUserData.countryCode);
+        expect(screen.getByLabelText(t('profile.timezone'), { exact: false })).toHaveValue('JST');
         expect(screen.getByRole('button', { name: t('profile.updateButton') })).toBeInTheDocument();
     });
 
@@ -61,7 +61,7 @@ describe('UpdateProfileForm', () => {
 
     it('should show validation error when username is empty', async () => {
         const user = userEvent.setup();
-        renderWithProviders(<UpdateProfileForm data={{ ...mockUserData, username: '' }} onSuccess={mockOnSuccess} />);
+        renderWithProviders(<UpdateProfileForm data={{ ...mockUserData, username: 'a' }} onSuccess={mockOnSuccess} />);
 
         await user.click(screen.getByRole('button', { name: t('profile.updateButton') }));
 

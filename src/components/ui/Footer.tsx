@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import {  Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { LogoSkaldly } from "@/assets/icons";
 
@@ -18,14 +17,6 @@ export function Footer() {
             <p className="text-sm text-gray-400 leading-relaxed mb-6">
               {t("footer.tagline")}
             </p>
-            <Link
-              to="/register"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:scale-105"
-              style={{ background: "linear-gradient(to bottom, #4f46e5, #4338ca)" }}
-            >
-              <Sparkles className="w-4 h-4" />
-              {t("footer.cta")}
-            </Link>
           </div>
 
           <div>
@@ -36,6 +27,11 @@ export function Footer() {
               <li>
                 <Link to="/plans" className="text-sm hover:text-indigo-400 transition-colors">
                   {t("footer.links.plans")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/#faq" className="text-sm hover:text-indigo-400 transition-colors">
+                  {t("footer.links.faq")}
                 </Link>
               </li>
               <li>

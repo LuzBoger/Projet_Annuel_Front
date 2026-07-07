@@ -55,6 +55,7 @@ export const LANG_META: Record<string, { code: string; color: string }> = {
 };
 
 export const SHOW_ACTIVE_LANGUAGE = 2;
+export const TOPICS_PAGE_SIZE = 5;
 
 export const getUILanguages = (t: (key: string) => string) => [
     { code: "fr", label: t('settings.languages.french'), flag: "🇫🇷" },
