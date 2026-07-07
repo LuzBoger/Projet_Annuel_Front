@@ -16,8 +16,7 @@ import { ArrowLeft, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-
-const TOPICS_PAGE_SIZE = 5;
+import { TOPICS_PAGE_SIZE } from "@/constants/languages";
 
 export function LanguageDetailPage() {
     const { t } = useTranslation();
