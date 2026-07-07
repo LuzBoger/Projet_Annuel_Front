@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
 import { LogoSk, LogoSkaldly } from "@/assets/icons";
+import { Button } from '@/components/ui/Button';
 
 export function Header() {
     const { t } = useTranslation();
@@ -22,6 +23,18 @@ export function Header() {
         }
     };
 
+    const handleFaqClick = () => {
+        setMenuOpen(false);
+        if (location.pathname === '/') {
+            document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            navigate('/');
+            setTimeout(() => {
+                document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+    };
+
     return (
         <header className="bg-gray-100 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40">
             <div className="max-w-full mx-auto px-4 sm:px-6">
@@ -35,15 +48,23 @@ export function Header() {
                     </div>
 
                     <nav className="hidden md:flex flex-1 justify-center space-x-8">
-                        <button
+                        <Button
+                            variant='none'
                             onClick={handleLessonsClick}
                             className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors cursor-pointer"
                         >
                             {t("header.nav.lessons")}
-                        </button>
+                        </Button>
                         <Link to="/plans" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                             {t("header.nav.plans")}
                         </Link>
+                        <Button
+                            variant='none'
+                            onClick={handleFaqClick}
+                            className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors cursor-pointer"
+                        >
+                            {t("header.nav.faq")}
+                        </Button>
                         <Link to="/contact" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                             {t("header.nav.contact")}
                         </Link>
@@ -95,6 +116,13 @@ export function Header() {
                     >
                         {t("header.nav.plans")}
                     </Link>
+                    <Button
+                        variant='none'
+                        onClick={handleFaqClick}
+                        className="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+                    >
+                        {t("header.nav.faq")}
+                    </Button>
                     <Link
                         to="/contact"
                         onClick={() => setMenuOpen(false)}

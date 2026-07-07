@@ -90,3 +90,6 @@ export const DEMO_TAB_LESSONS: LessonTypeDemo[] = [
     { key: 'sorting', label: 'home.exercise_section.tabs.sorting.label', description: 'home.exercise_section.tabs.sorting.desc'},
     { key: 'interactive', label: 'home.exercise_section.tabs.interactive.label', description: 'home.exercise_section.tabs.interactive.desc' },
 ];
+
+export const DEFAULT_OG_IMAGE = 'https://skaldly.fr/skaldly.svg'
+export const SITE_URL = 'https://skaldly.fr'

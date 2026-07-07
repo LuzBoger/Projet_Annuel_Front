@@ -1314,12 +1314,12 @@
   },
   "home": {
     "page_title": "Skaldly - Master a New Language with AI as Your Personal Assistant",
-    "page_description": "Skaldly helps you learn a new language through structured courses and varied exercises: flashcards, quizzes, matching pairs, sorting, and interactive challenges. Stuck on a word or grammar rule? An AI assistant is there to explain it in real time. Progress at your own pace across a wide range of languages from around the world.",
-    "page_keywords": "language learning, flashcards, language exercises, AI assistance, Japanese, Spanish, English, vocabulary, grammar, Skaldly",
+    "page_description": "Learn a new language with artificial intelligence: flashcards, quizzes and interactive exercises. An AI assistant to help you progress at your own pace.",
+    "page_keywords": "learn a language with AI, learn a language with artificial intelligence, language learning app, flashcards, language quiz, spaced repetition, AI language assistant, Skaldly",
     "hero": {
-      "title_start": "Master a new language with ",
+      "title_start": "Learn a language with ",
       "title_highlight": "Artificial Intelligence",
-      "description": "Skaldly leverages cognitive science and cutting-edge algorithms to create the ultimate learning journey. Spaced repetition, custom lessons, and total immersion.",
+      "description": "Skaldly is the platform to learn a language with AI: spaced repetition, custom lessons and total immersion through artificial intelligence.",
       "logged_in_as": "Logged in as ",
       "continue_learning": "Continue learning",
       "start_free": "Start for free"
@@ -1330,19 +1330,19 @@
         "description": "Our lessons are based on proven cognitive studies. Spaced repetition ensures long-term memory retention."
       },
       "ai": {
-        "title": "Omnipresent AI",
+        "title": "AI to learn a language",
         "description": "Pedagogy that adapts in real time. Artificial intelligence evaluates your weaknesses and generates perfect content to help you progress."
       },
       "variety": {
         "title": "Diverse Tools",
-        "description": "A multitude of varied interactive exercises, specifically designed to maximize linguistic retention and total immersion."
+        "description": "Flashcards, quizzes, matching pairs, sorting exercises and interactive challenges — designed to maximize linguistic retention and total immersion."
       }
     },
     "science": {
       "title": "Proven by Science",
-      "subtitle": "The effectiveness of our tools is backed by decades of research in cognitive science and linguistics.",
+      "subtitle": "To learn a language effectively, Skaldly draws on decades of cognitive science research, amplified by artificial intelligence.",
       "spaced_repetition": {
-        "title": "1. Flashcards & Spacing Effect",
+        "title": "1. Flashcards & Spaced Repetition to memorize vocabulary",
         "description": "Without review, the brain naturally forgets 78% of information (Ebbinghaus forgetting curve). Spaced repetition forces active recall just before forgetting, maximizing memorization via long-term potentiation.",
         "stat1": "+200% to +400%",
         "stat1_desc": " improvement compared to cramming.",
@@ -1382,6 +1382,37 @@
         "source3": "(2006). Test-enhanced learning. The Testing Effect using quizzes produces better retrieval capacities than simple re-reading.",
         "source4": "(1956). The magical number seven, plus or minus two, and Semantic Encoding (Craik & Lockhart, 1972). Chunking changes the hierarchy of mental storage regarding language learning."
       }
+    },
+    "languages": {
+      "title": "Learn the language of your choice with AI",
+      "subtitle": "Skaldly supports many languages to learn with artificial intelligence",
+      "items": ["English", "Spanish", "Japanese", "German", "Italian", "Portuguese", "Arabic", "Mandarin"]
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "question": "How does Skaldly work to learn a language with artificial intelligence?",
+          "answer": "Skaldly offers varied exercises to learn a language: flashcards, quizzes, matching pairs and interactive exercises. When you get stuck on a word or grammar rule, the AI assistant steps in real time to explain the grammar rule, suggest a mnemonic trick, flag a common pitfall or provide usage context."
+        },
+        {
+          "question": "How long does it take to learn a language with Skaldly?",
+          "answer": "Results vary depending on the language and your starting level. Thanks to spaced repetition and AI algorithms, our users see significant progress within the first weeks of regular use."
+        },
+        {
+          "question": "Is Skaldly free?",
+          "answer": "Yes, Skaldly offers a free version to start learning a language with AI. Advanced features are available with our Premium subscriptions."
+        },
+        {
+          "question": "Which languages can you learn with Skaldly?",
+          "answer": "Skaldly offers learning for many languages: English, Spanish, Japanese, German, Italian, Portuguese, Arabic and many more. All benefit from artificial intelligence assistance."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Start learning a language with artificial intelligence",
+      "subtitle": "Join thousands of learners using AI to progress faster.",
+      "button": "Start for free"
     },
     "ai_demo": {
       "assistant_label": "AI Assistant",
@@ -1605,11 +1636,12 @@
   "duration": "Duration",
   "status": "Status",
   "footer": {
-    "tagline": "Learn languages naturally, at your own pace.",
+    "tagline": "Learn languages with artificial intelligence, naturally and at your own pace.",
     "cta": "Get started for free",
     "product": "Product",
     "links": {
       "plans": "Plans",
+      "faq": "FAQ",
       "login": "Log in",
       "register": "Sign up"
     },
@@ -2048,6 +2080,7 @@
     "nav": {
       "lessons": "Our lessons",
       "plans": "Plans",
+      "faq": "FAQ",
       "contact": "Contact"
     }
   },

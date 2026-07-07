@@ -5,8 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { Brain, Sparkles, BookOpen } from '@/assets/icons';
 import { RoleEnum } from '@/types/enum/roles';
 import { MetaData } from '@/components/seo/MetaData';
+import { SchemaOrg } from '@/components/seo/SchemaOrg';
 import { AICourseDemo } from '@/components/home/AICourseDemo';
 import { ExerciseDemoSection } from '@/components/home/ExerciseDemoSection';
+import { FAQ } from '@/components/home/FAQ';
 
 
 
@@ -27,6 +29,7 @@ export default function Home() {
         `}</style>
 
         <MetaData title={t('home.page_title')} description={t('home.page_description')} keywords={t('home.page_keywords')} robots='index, follow' url='https://skaldly.fr' />
+        <SchemaOrg />
         <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col relative">
             <main className="flex-grow flex items-center py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -34,7 +37,7 @@ export default function Home() {
                     <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
                         <div style={{ animation: 'fadeUp 0.7s ease both' }}>
                             <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-6">
-                                {t('home.hero.title_start')}<span className="text-brand-600">{t('home.hero.title_highlight')}</span>
+                                {t('home.hero.title_start')}{t('home.hero.title_highlight')}
                             </h1>
                             <p className="mt-3 text-base text-gray-600 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl md:mt-5 md:text-xl">
                                 {t('home.hero.description')}
@@ -287,6 +290,8 @@ export default function Home() {
                     </ol>
                 </div>
             </section>
+
+            <FAQ />
 
         </div>
         </>

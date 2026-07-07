@@ -6,7 +6,7 @@ export type LessonInteractivePhase = 'typing' | 'correct' | 'clearing';
 export type MatchingPairSide = 'left' | 'right';
 export type LessonQCMPhase = 'idle' | 'wrong' | 'right';
 export type IconType = FC<SVGProps<SVGSVGElement>>;
-
+export type Locale = 'fr_FR' | 'en_US';
 export interface LessonTypeDemo {
     key: LessonTypeHome;
     label: string;
@@ -34,3 +34,8 @@ export interface HelpOption {
     Icon: IconType;
     style: string;
 };
+
+export interface FAQItem {
+    question: string;
+    answer: string;
+}
