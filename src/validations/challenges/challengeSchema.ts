@@ -24,13 +24,13 @@ export const challengeSchema = (t: (key: string) => string) => yup.object({
 
     languageId: yup.string().when('challengeType', {
         is: 'PUBLIC',
-        then: (schema) => schema.uuid().required(t('challenge.validation.languageId')),
+        then: (schema) => schema.uuid(t('challenge.validation.languageId')).required(t('challenge.validation.languageId')),
         otherwise: (schema) => schema.notRequired()
     }),
 
     sourceLanguageId: yup.string().when('challengeType', {
         is: 'PUBLIC',
-        then: (schema) => schema.uuid().required(t('challenge.validation.sourceLanguageId')),
+        then: (schema) => schema.uuid(t('challenge.validation.sourceLanguageId')).required(t('challenge.validation.sourceLanguageId')),
         otherwise: (schema) => schema.notRequired()
     }),
 
