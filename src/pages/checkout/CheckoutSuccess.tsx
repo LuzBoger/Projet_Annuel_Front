@@ -39,9 +39,9 @@ export default function CheckoutSuccess() {
                     {t('checkout.success.description')}
                 </p>
                 <Button
-                    variant="none"
+                    variant="primary"
                     onClick={() => navigate('/subscription')}
-                    className="bg-brand-600 text-white px-6 py-3 rounded-md hover:bg-brand-700 transition-colors"
+                    className="px-6 py-3"
                 >
                     {t('checkout.view_subscription')}
                 </Button>

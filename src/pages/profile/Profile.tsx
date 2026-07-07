@@ -132,15 +132,15 @@ export function Profile() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-[#faf7f2] dark:bg-gray-900 flex justify-center items-center">
-                <div className="w-7 h-7 rounded-full border-2 border-[#e8dcc8] border-t-[#c8a97e] animate-spin" />
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex justify-center items-center">
+                <div className="w-7 h-7 rounded-full border-2 border-gray-200 dark:border-gray-800 border-t-indigo-600 dark:border-t-indigo-500 animate-spin" />
             </div>
         );
     }
 
     if (error || !profile) {
         return (
-            <div className="min-h-screen bg-[#faf7f2] dark:bg-gray-900 flex justify-center items-center px-4">
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex justify-center items-center px-4">
                 <div className="px-6 py-4 bg-[#fcebeb] dark:bg-red-900/20 text-[#791F1F] dark:text-red-400 rounded-xl border border-[#f09595] dark:border-red-800 text-sm">
                     {error || t("profile.error.loadFailed")}
                 </div>
@@ -150,14 +150,14 @@ export function Profile() {
 
     if (!isProfile && profile.isAccountPrivate) {
         return (
-            <div className="min-h-screen bg-[#faf7f2] dark:bg-gray-900 flex flex-col items-center justify-center gap-4 px-4">
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col items-center justify-center gap-4 px-4">
                 <div className="relative inline-block">
-                    <div className="flex-shrink-0 border-2 border-[#e8dcc8] rounded-full">
+                    <div className="flex-shrink-0 border-2 border-gray-200 dark:border-gray-700 rounded-full">
                         <Avatar imageUrl={getProfileImageUrl(profile.photoUrl ?? '') ?? undefined} size="w-20 h-20" />
                     </div>
                     {friendshipStatus !== 'ACCEPTED' && friendButton}
                 </div>
-                <h1 className="text-lg font-semibold text-[#3a2e1e] dark:text-white">{profile.username}</h1>
+                <h1 className="text-lg font-semibold text-gray-800 dark:text-white">{profile.username}</h1>
                 <InfoAccountPrivate />
             </div>
         );
@@ -166,7 +166,7 @@ export function Profile() {
     return (
         <>
             <MetaData title={profile.username} robots="noindex, nofollow" />
-            <div className="min-h-screen bg-[#faf7f2] dark:bg-gray-900">
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
                 {isProfile && !profile.isPublic && <InfoPrivateBanner />}
 
                 <div className="max-w-5xl mx-auto px-4 py-8">
@@ -174,19 +174,19 @@ export function Profile() {
 
                         <aside className="w-full md:w-56 flex-shrink-0 flex flex-col gap-4 md:sticky md:top-8">
 
-                            <div className="relative bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-5 py-5 flex flex-col items-center gap-3 text-center">
+                            <div className="relative bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800/80 px-5 py-5 flex flex-col items-center gap-3 text-center">
                                 {isProfile && (
                                     <Button
                                         onClick={() => setFriendsOpen(true)}
                                         variant="none"
-                                        className="absolute top-3 right-3 p-1.5 rounded-lg text-[#8a7a60] dark:text-gray-400 hover:bg-[#f5ede0] dark:hover:bg-gray-700 transition-colors"
+                                        className="absolute top-3 right-3 p-1.5 rounded-lg text-gray-400 hover:text-gray-650 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                                         title={t('friends.manage')}
                                     >
                                         <Users className="w-4 h-4" />
                                     </Button>
                                 )}
                                 <div className="relative inline-block">
-                                    <div className="flex-shrink-0 border-2 border-[#e8dcc8] rounded-full">
+                                    <div className="flex-shrink-0 border-2 border-gray-200 dark:border-gray-700 rounded-full">
                                         <Avatar
                                             imageUrl={getProfileImageUrl(profile.photoUrl ?? "") ?? undefined}
                                             size="w-16 h-16"
@@ -201,42 +201,45 @@ export function Profile() {
                                     {!isProfile && friendshipStatus !== 'ACCEPTED' && friendButton}
                                 </div>
                                 <div className="min-w-0">
-                                    <h1 className="text-[16px] font-medium text-[#3a2e1e] dark:text-white truncate">{profile.username}</h1>
+                                    <h1 className="text-[16px] font-medium text-gray-800 dark:text-white truncate">{profile.username}</h1>
                                 </div>
                                 {isProfile && (
-                                    <Link
-                                        to="/settings"
-                                        className="w-full inline-flex justify-center items-center px-4 py-2 text-sm font-medium rounded-lg border border-[#c8a97e] dark:border-gray-600 text-[#5a4a2e] dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-[#faf7f2] dark:hover:bg-gray-600 transition-colors"
-                                    >
-                                        {t("profile.edit")}
+                                    <Link to="/settings" className="w-full">
+                                        <Button
+                                            variant="primary"
+                                            fullWidth={true}
+                                            className="rounded-xl py-2 cursor-pointer font-semibold text-sm"
+                                        >
+                                            {t("profile.edit")}
+                                        </Button>
                                     </Link>
                                 )}
                             </div>
 
                             {profile.bio && (
-                                <div className="bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-6 py-5">
-                                    <h2 className="text-[10px] font-medium text-[#8a7a60] dark:text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800/80 px-6 py-5">
+                                    <h2 className="text-[10px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
                                         {t("profile.bio")}
-                                        <span className="flex-1 h-px bg-[#e8dcc8]" />
+                                        <span className="flex-1 h-px bg-gray-200 dark:bg-gray-700/60" />
                                     </h2>
-                                    <p className="text-[15px] text-[#3a2e1e] dark:text-gray-300 leading-relaxed font-light">{profile.bio}</p>
+                                    <p className="text-[15px] text-gray-750 dark:text-gray-300 leading-relaxed font-light">{profile.bio}</p>
                                 </div>
                             )}
 
                             {isProfile && aiQuota && (
-                                <div className="bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-6 py-5 flex flex-col gap-3">
-                                    <h2 className="text-[10px] font-medium text-[#8a7a60] dark:text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                                <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800/80 px-6 py-5 flex flex-col gap-3">
+                                    <h2 className="text-[10px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest flex items-center gap-2">
                                         {t("profile.ai_quota.title")}
-                                        <span className="flex-1 h-px bg-[#e8dcc8] dark:bg-[#e8dcc8]" />
+                                        <span className="flex-1 h-px bg-gray-200 dark:bg-gray-750/60" />
                                     </h2>
                                     
                                     <div className="space-y-2">
-                                        <div className="flex justify-between text-xs text-[#3a2e1e] dark:text-gray-300">
+                                        <div className="flex justify-between text-xs text-gray-750 dark:text-gray-300">
                                             <span className="font-medium">{t("profile.ai_quota.usage")}</span>
                                             <span className="font-semibold">{aiQuota.currentUsage} / {aiQuota.maxQuota}</span>
                                         </div>
                                         
-                                        <div className="w-full bg-[#faf7f2] dark:bg-gray-900 rounded-full h-2.5 overflow-hidden border border-[#e8dcc8]/40 dark:border-gray-700">
+                                        <div className="w-full bg-gray-50 dark:bg-gray-950 rounded-full h-2.5 overflow-hidden border border-gray-200/40 dark:border-gray-800/60">
                                             <div 
                                                 className="bg-indigo-600 dark:bg-indigo-500 h-full rounded-full transition-all duration-500" 
                                                 style={{ width: `${Math.min(100, Math.round((aiQuota.currentUsage / aiQuota.maxQuota) * 100))}%` }}
@@ -244,7 +247,7 @@ export function Profile() {
                                         </div>
                                     </div>
 
-                                    <p className="text-[11px] text-[#8a7a60] dark:text-gray-400 leading-normal">
+                                    <p className="text-[11px] text-gray-450 dark:text-gray-500 leading-normal">
                                         {t("profile.ai_quota.renews_on", { date: new Date(aiQuota.periodEnd).toLocaleDateString() })}
                                     </p>
                                 </div>
@@ -254,10 +257,10 @@ export function Profile() {
 
                         <main className="flex-1 min-w-0 flex flex-col gap-6">
 
-                            <section className="bg-white dark:bg-gray-800 rounded-2xl border border-[#e8dcc8] dark:border-gray-700 px-6 py-5 space-y-4">
-                                <h2 className="text-[10px] font-medium text-[#8a7a60] dark:text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                            <section className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800/80 px-6 py-5 space-y-4">
+                                <h2 className="text-[10px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest flex items-center gap-2">
                                     {t("profile.languageSection.learningLanguages")}
-                                    <span className="flex-1 h-px bg-[#e8dcc8] dark:bg-gray-700" />
+                                    <span className="flex-1 h-px bg-gray-200 dark:bg-gray-700/60" />
                                 </h2>
                                 <ProfileLanguageSection languages={languages} onLanguageRemove={handleLanguageRemoved} isProfileOwner={isProfile} />
                             </section>

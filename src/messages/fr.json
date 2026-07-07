@@ -508,8 +508,9 @@
           "empty_description": "Veuillez saisir une description avant de lancer la génération.",
           "empty_description_modify": "Veuillez saisir des consignes avant de lancer la modification.",
           "type_helper": "* Détermine le format de leçon (requis pour la génération par IA et la configuration manuelle).",
-          "item_count_label": "Nombre d'éléments à générer (optionnel)",
+          "item_count_label": "Nombre d'éléments à générer",
           "item_count_placeholder": "Ex : 5",
+          "item_count_required": "Le nombre d'éléments à générer est requis.",
           "generating_title": "Conception de la leçon...",
           "generating_title_modify": "Modification de la leçon...",
           "generating_subtitle": "L'IA structure vos exercices et vos contenus. Veuillez patienter quelques instants.",
@@ -609,6 +610,8 @@
     "freeVsPremium": "Nombre d'abonnés gratuits et premium",
     "topics": "Sujets",
     "view_all": "Voir tout",
+    "no_active_topics": "Vous n'avez aucun thème en cours d'apprentissage pour le moment.",
+    "explore_topics": "Explorer les thèmes",
     "language": {
       "active": "Langue active",
       "level": "Niveau {{level}}"
@@ -765,7 +768,8 @@
     "create": {
       "source_language": "Langue de rédaction",
       "target_language": "Langue à apprendre",
-      "select_language": "Sélectionner une langue"
+      "select_language": "Sélectionner une langue",
+      "public_details": "Paramètres du défi public"
     },
     "type": {
       "public": {
@@ -835,6 +839,18 @@
       "sortingExercises": {
         "min": "Au moins 1 exercice de tri est requis"
       }
+    },
+    "ai": {
+      "button": "Générer avec l'IA",
+      "title": "Générer les exercices par IA",
+      "quota_exceeded_title": "Limite de génération d'IA atteinte",
+      "quota_exceeded_desc": "Vous avez épuisé vos crédits de génération mensuels. Passez à l'abonnement Premium pour débloquer votre quota d'IA.",
+      "upgrade": "S'abonner",
+      "generate": "Générer",
+      "prompt_label": "Thème ou prompt de génération",
+      "prompt_placeholder": "Ex : Les expressions courantes au restaurant",
+      "items_count": "Nombre de questions",
+      "generated_desc": "Généré par IA : {{prompt}}"
     }
   },
   "error": {
@@ -937,6 +953,7 @@
     "no_desc": "Aucune description fournie",
     "practice_btn": "S'entraîner maintenant",
     "order": "Ordre: {{orderIndex}}",
+    "pagination_info": "Affichage de {{start}} à {{end}} sur {{total}} thèmes",
     "lessons_title": "Plateau de Leçons",
     "lessons_desc": "Explorez les leçons ci-dessous dans l'ordre chronologique pour progresser et maîtriser ce sujet.",
     "exam_status": "Statut de l'Examen",
@@ -1093,6 +1110,15 @@
       "manual_key": "Ou entrez cette clé manuellement :",
       "enter_code": "Entrez le code de vérification",
       "verify_button": "Vérifier"
+    },
+    "profile": {
+      "usernameRequired": "Le nom d'utilisateur est requis.",
+      "usernameTooShort": "Le nom d'utilisateur doit contenir au moins 3 caractères.",
+      "usernameTooLong": "Le nom d'utilisateur ne peut pas dépasser 50 caractères.",
+      "usernameInvalid": "Le nom d'utilisateur ne peut contenir que des lettres, chiffres, tirets et underscores.",
+      "bioTooLong": "La biographie ne peut pas dépasser 500 caractères.",
+      "countryCodeRequired": "Le pays est requis.",
+      "timezoneRequired": "Le fuseau horaire est requis."
     }
   },
   "validation": {

@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
 import { TextArea } from "@/components/ui/TextArea";
+import { Select } from "@/components/ui/Select";
 import { useAuth } from "@/hooks/useAuth";
 import { profileService } from "@/services/profileService";
 import { UserProfileResponse } from "@/types/profile/profile";
 import { ProfileFormData, profileSchema } from "@/validations/settings/profileSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { COUNTRY_OPTIONS, TIMEZONE_OPTIONS } from "@/constants/profile";
 
 interface UpdateProfileFormProps {
     data: UserProfileResponse;
@@ -19,12 +21,14 @@ export function UpdateProfileForm({ data, onSuccess }: UpdateProfileFormProps) {
     const {t} = useTranslation();
     const { fetchUser } = useAuth();
 
-    const {register, handleSubmit, reset, formState: { errors, isSubmitting}} = useForm<ProfileFormData>({
+    const {register, handleSubmit, reset, setValue, control, formState: { errors, isSubmitting}} = useForm<ProfileFormData>({
         resolver: yupResolver(profileSchema(t)),
-    })
+    });
+
+    const countryCode = useWatch({ control, name: "countryCode" });
+    const timezone = useWatch({ control, name: "timezone" });
 
     useEffect(() => {
-
         reset({
           username: data.username ?? '',
           bio: data.bio ?? '',
@@ -32,11 +36,10 @@ export function UpdateProfileForm({ data, onSuccess }: UpdateProfileFormProps) {
           timezone: data.timezone ?? '',
           isPublic: data.isPublic,
         });
-   
     }, [data, reset]);
 
-  const onSubmit = async (data: ProfileFormData) => {
-      await profileService.updateProfile(data);
+  const onSubmit = async (formData: ProfileFormData) => {
+      await profileService.updateProfile(formData);
       await fetchUser();
       onSuccess();
   };
@@ -53,6 +56,7 @@ export function UpdateProfileForm({ data, onSuccess }: UpdateProfileFormProps) {
             disabled={isSubmitting}
             error={errors.username?.message}
             {...register('username')}
+            required
           />
 
           <div>
@@ -69,24 +73,28 @@ export function UpdateProfileForm({ data, onSuccess }: UpdateProfileFormProps) {
             />
           </div>
 
-          <FormField
+          <Select
             id="countryCode"
             label={t('profile.countryCode')}
-            type="text"
             placeholder={t('profile.countryCode_placeholder')}
             disabled={isSubmitting}
+            value={countryCode}
+            options={COUNTRY_OPTIONS}
+            onChange={(val) => setValue('countryCode', val)}
             error={errors.countryCode?.message}
-            {...register('countryCode')}
+            required
           />
 
-          <FormField
+          <Select
             id="timezone"
             label={t('profile.timezone')}
-            type="text"
             placeholder={t('profile.timezone_placeholder')}
             disabled={isSubmitting}
+            value={timezone}
+            options={TIMEZONE_OPTIONS}
+            onChange={(val) => setValue('timezone', val)}
             error={errors.timezone?.message}
-            {...register('timezone')}
+            required
           />
 
           <div className="flex items-center gap-3">

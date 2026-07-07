@@ -225,7 +225,7 @@ export default function LessonForm() {
                 const modificationRequest = {
                     lessonId,
                     prompt: aiGenerationDescription,
-                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD || lessonType === LessonType.INTERACTIVE) ? aiItemCount : undefined,
+                    itemCount: aiItemCount!,
                     lesson: currentLessonRequest
                 };
 
@@ -235,7 +235,7 @@ export default function LessonForm() {
                     lessonType: lessonType,
                     topicId: topicId,
                     description: aiGenerationDescription,
-                    itemCount: (lessonType === LessonType.QCM || lessonType === LessonType.FLASHCARD || lessonType === LessonType.INTERACTIVE) ? aiItemCount : undefined
+                    itemCount: aiItemCount!
                 };
 
                 generatedLessonData = await generateLessonWithAI(generationRequest);
@@ -399,6 +399,7 @@ export default function LessonForm() {
                                                       placeholder={t('admin.lessons.form.ai_generate.item_count_placeholder') + ` (${minItems}-${maxItems})`}
                                                       className="bg-white/50 dark:bg-gray-900/50"
                                                       error={aiTouched.aiItemCount ? aiErrors.aiItemCount : undefined}
+                                                      required
                                                   />
                                               </div>
                                          </div>

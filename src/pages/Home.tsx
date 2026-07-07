@@ -59,7 +59,7 @@ export default function Home() {
                                 ) : (
                                     <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-start">
                                         <Link to="/register" className="w-full sm:w-auto">
-                                            <Button variant="primary" size="lg" fullWidth className="bg-purple-600 hover:bg-purple-700">
+                                            <Button variant="primary" size="lg" fullWidth>
                                                 {t('home.hero.start_free')}
                                             </Button>
                                         </Link>

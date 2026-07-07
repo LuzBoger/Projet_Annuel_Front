@@ -25,27 +25,25 @@ export function UserStatsTable() {
         fetchUserStats('', 0, 10);
     }, [fetchUserStats]);
 
-    const users = userStatsList?.users ?? [];
-
     const filtered = useMemo(() => {
-        const q = search.trim().toLowerCase();
-        if (!q) return users;
-        return users.filter(u =>
-            u.username.toLowerCase().includes(q) ||
-            u.email.toLowerCase().includes(q)
+        const users = userStatsList?.users ?? [];
+        const query = search.trim().toLowerCase();
+        if (!query) return users;
+        return users.filter(user => user.username.toLowerCase().includes(query) ||
+            user.email.toLowerCase().includes(query)
         );
-    }, [users, search]);
+    }, [userStatsList?.users, search]);
 
     const columns: TableColumn[] = [
-        { key: 'user', label: t('admin.stats.table.user') },
+        { key: 'user', label: t('admin.stats.table.user')},
         { key: 'status', label: t('admin.stats.table.status') },
-        { key: 'xp', label: 'XP', align: 'center' },
-        { key: 'accuracy', label: t('admin.stats.avgAccuracy'), align: 'center' },
-        { key: 'time', label: t('admin.stats.studyTime'), align: 'center' },
-        { key: 'streak',label: 'Streak', align: 'center' },
-        { key: 'lessons', label: t('admin.stats.lessons'), align: 'center' },
-        { key: 'topics', label: t('admin.stats.topicsCompleted'), align: 'center' },
-        { key: 'activity', label: t('admin.stats.table.lastActivity'), align: 'center' },
+        { key: 'xp', label: 'XP', align: 'center'},
+        { key: 'accuracy', label: t('admin.stats.avgAccuracy'), align: 'center'},
+        { key: 'time', label: t('admin.stats.studyTime'), align: 'center'},
+        { key: 'streak',label: 'Streak', align: 'center'},
+        { key: 'lessons', label: t('admin.stats.lessons'), align: 'center'},
+        { key: 'topics', label: t('admin.stats.topicsCompleted'), align: 'center'},
+        { key: 'activity', label: t('admin.stats.table.lastActivity'), align: 'center'},
         { key: 'actions', label: t('common.actions') },
     ];
 

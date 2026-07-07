@@ -147,3 +147,21 @@ export interface ChallengeTime {
   time: number;
   unit: UnitTime;
 }
+
+export interface AIChallengeGenerateRequest {
+    topicId?: string;
+    languageId?: string;
+    sourceLanguageId?: string;
+    lessonType: LessonType;
+    description: string;
+    itemCount: number;
+}
+
+export interface AIChallengeContentResponse {
+    lessonType: LessonType;
+    qcm?: Omit<ChallengeQcmQuestion, 'id'>[] | null;
+    flashcards?: Omit<ChallengeFlashcard, 'id'>[] | null;
+    matchingPairs?: Omit<ChallengeMatchingPair, 'id'>[] | null;
+    sortingExercises?: ChallengeSortingExercise[] | null;
+    interactives?: ChallengeInteractive[] | null;
+}

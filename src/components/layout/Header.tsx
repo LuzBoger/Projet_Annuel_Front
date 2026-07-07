@@ -74,8 +74,10 @@ export function Header() {
                         <Link to="/login" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                             {t("auth.login.title")}
                         </Link>
-                        <Link to="/register" className="text-sm font-medium px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white transition-colors">
-                            {t("auth.register.title")}
+                        <Link to="/register">
+                            <Button variant="primary">
+                                {t("auth.register.title")}
+                            </Button>
                         </Link>
                         <LocaleLanguageSwitcher />
                     </div>
@@ -141,9 +143,11 @@ export function Header() {
                         <Link
                             to="/register"
                             onClick={() => setMenuOpen(false)}
-                            className="block px-3 py-2.5 rounded-lg text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 transition-colors text-center"
+                            className="block"
                         >
-                            {t("auth.register.title")}
+                            <Button variant="primary" fullWidth>
+                                {t("auth.register.title")}
+                            </Button>
                         </Link>
                     </div>
                 </div>

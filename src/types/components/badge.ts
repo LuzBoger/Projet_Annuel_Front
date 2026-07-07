@@ -4,4 +4,5 @@ export interface BadgeTagProps {
     children: React.ReactNode;
     color?: BadgeColor;
     className?: string;
+    title?: string;
 }

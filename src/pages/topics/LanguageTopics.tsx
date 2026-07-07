@@ -7,6 +7,7 @@ import { TopicCard } from "@/components/topics/TopicCard";
 import { FloatingFilterBar } from "@/components/topics/FloatingFilterBar";
 import { Search } from "@/assets/icons";
 import { MetaData } from "@/components/seo/MetaData";
+import { Pagination } from "@/components/ui/Pagination";
 
 export default function LanguageTopics() {
     const { languageId } = useParams<{ languageId: string }>();
@@ -21,12 +22,22 @@ export default function LanguageTopics() {
     const [debouncedSearchName, setDebouncedSearchName] = useState<string>("");
     const [searchDifficulty, setSearchDifficulty] = useState<string>("");
 
+    const [page, setPage] = useState<number>(0);
+    const [totalPages, setTotalPages] = useState<number>(1);
+    const size = 9;
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedSearchName(searchName);
+            setPage(0);
         }, 500);
         return () => clearTimeout(timer);
     }, [searchName]);
+
+    const handleSearchDifficultyChange = (difficulty: string) => {
+        setSearchDifficulty(difficulty);
+        setPage(0);
+    };
 
     useEffect(() => {
         if (!languageId) {
@@ -45,13 +56,16 @@ export default function LanguageTopics() {
             setError(null);
 
             try {
-                const data = await topicService.searchActiveTopics(
+                const data = await topicService.searchActiveTopicsPaginated(
                     languageId,
                     debouncedSearchName || undefined,
-                    searchDifficulty || undefined
+                    searchDifficulty || undefined,
+                    page,
+                    size
                 );
                 if (active) {
-                    setTopics(data);
+                    setTopics(data.content);
+                    setTotalPages(data.totalPages);
                 }
             } catch (err) {
                 console.error("Erreur de recuperation", err);
@@ -70,7 +84,7 @@ export default function LanguageTopics() {
         return () => {
             active = false;
         };
-    }, [languageId, debouncedSearchName, searchDifficulty, t]);
+    }, [languageId, debouncedSearchName, searchDifficulty, page, t]);
 
     function handleTopicClick(topicId: string) {
         navigate(`/topics/${topicId}`);
@@ -99,7 +113,7 @@ export default function LanguageTopics() {
                 searchName={searchName}
                 onSearchNameChange={setSearchName}
                 searchDifficulty={searchDifficulty}
-                onSearchDifficultyChange={setSearchDifficulty}
+                onSearchDifficultyChange={handleSearchDifficultyChange}
             />
 
             {isLoading ? (
@@ -107,14 +121,25 @@ export default function LanguageTopics() {
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"></div>
                 </div>
             ) : topics.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {topics.map((topic) => (
-                        <TopicCard 
-                            key={topic.id} 
-                            topic={topic} 
-                            onClick={handleTopicClick} 
+                <div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {topics.map((topic) => (
+                            <TopicCard 
+                                key={topic.id} 
+                                topic={topic} 
+                                onClick={handleTopicClick} 
+                            />
+                        ))}
+                    </div>
+                    
+                    <div className="mt-8 flex items-center justify-center border-t border-gray-200 dark:border-gray-800 pt-6">
+                        <Pagination
+                            currentPage={page + 1}
+                            hasMore={page + 1 < totalPages}
+                            onNext={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+                            onPrev={() => setPage((p) => Math.max(0, p - 1))}
                         />
-                    ))}
+                    </div>
                 </div>
             ) : (
                 <div className="text-center py-20 bg-white dark:bg-gray-900 bg-opacity-50 rounded-3xl border border-gray-200 dark:border-gray-800 border-dashed">

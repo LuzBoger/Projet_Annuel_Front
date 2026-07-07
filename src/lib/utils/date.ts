@@ -30,14 +30,17 @@ export function formatTotalTime(time: number) : string {
     return minutes > 0 ? `${minutes}m ${seconds}s` : `  ${seconds}s`;
 }
 
-export function formatDate(date: string): string {
-    return new Date(date).toLocaleDateString('fr-FR', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-    });
+export function formatDate(dateStr: string): string {
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return '-';
+    
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
 }
 
 export function formatMinutes(minutes: number): string {

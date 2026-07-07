@@ -14,8 +14,10 @@ export function LocaleLanguageSwitcher() {
           key={locale}
           variant="none"
           onClick={() => {
-            i18n.changeLanguage(locale.toLowerCase());
-            localStorage.setItem('locale', locale.toLowerCase());
+            const lang = locale.toLowerCase();
+            i18n.changeLanguage(lang);
+            localStorage.setItem('locale', lang);
+            document.cookie = `myAppLocaleCookie=${lang};path=/;max-age=31536000;SameSite=Lax`;
           }}
           className={clsx(
             'px-2.5 py-1 text-[11px] uppercase font-bold transition-all duration-200 rounded-md', 
