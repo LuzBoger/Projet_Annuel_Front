@@ -83,7 +83,7 @@ export function CreateChallengeForm() {
     const [learningLanguages, setLearningLanguages] = useState<UserLanguageResponse[]>([]);
     const [nativeLanguages, setNativeLanguages] = useState<UserLanguageResponse[]>([]);
 
-    const { register, control, handleSubmit, setValue, formState: { errors } } = useForm<ChallengeFormData>({
+    const { register, control, handleSubmit, setValue, trigger, formState: { errors } } = useForm<ChallengeFormData>({
         resolver: yupResolver(challengeSchema(t)) as Resolver<ChallengeFormData>,
         defaultValues: {
             title: '',
@@ -177,10 +177,14 @@ export function CreateChallengeForm() {
         e.preventDefault();
         setAiSubmitted(true);
 
+        const isLanguageValid = await trigger(['sourceLanguageId', 'languageId']);
         const schema = aiGenerationSchema(t, lessonType, false);
+        let isAiSchemaValid = false;
+
         try {
             await schema.validate({ aiGenerationDescription: aiPrompt, aiItemCount }, { abortEarly: false });
             setAiErrors({});
+            isAiSchemaValid = true;
         } catch (err: unknown) {
             if (err instanceof yup.ValidationError) {
                 const newErrors: Record<string, string> = {};
@@ -191,6 +195,9 @@ export function CreateChallengeForm() {
                 });
                 setAiErrors(newErrors);
             }
+        }
+
+        if (!isLanguageValid || !isAiSchemaValid) {
             return;
         }
 
@@ -200,8 +207,8 @@ export function CreateChallengeForm() {
 
         try {
             const response = await challengeService.generateChallengeContent({
-                languageId: selectedLanguageIdPublic || undefined,
-                sourceLanguageId: selectedSourceLanguageId || undefined,
+                targetLanguageId: selectedLanguageIdPublic,
+                sourceLanguageId: selectedSourceLanguageId,
                 lessonType,
                 description: aiPrompt,
                 itemCount: aiItemCount!,

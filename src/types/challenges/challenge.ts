@@ -150,8 +150,8 @@ export interface ChallengeTime {
 
 export interface AIChallengeGenerateRequest {
     topicId?: string;
-    languageId?: string;
-    sourceLanguageId?: string;
+    targetLanguageId: string;
+    sourceLanguageId: string;
     lessonType: LessonType;
     description: string;
     itemCount: number;
