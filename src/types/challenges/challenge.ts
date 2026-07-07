@@ -149,7 +149,9 @@ export interface ChallengeTime {
 }
 
 export interface AIChallengeGenerateRequest {
-    topicId: string;
+    topicId?: string;
+    languageId?: string;
+    sourceLanguageId?: string;
     lessonType: LessonType;
     description: string;
     itemCount: number;

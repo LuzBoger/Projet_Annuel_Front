@@ -53,7 +53,6 @@ export function CreateChallengeForm() {
     const [lessonType, setLessonType] = useState<LessonType>('QCM');
     const [selectedParticipant, setSelectedParticipant] = useState<ChallengeUser | null>(null);
     const [isParticipantModalOpen, setIsParticipantModalOpen] = useState(false);
-    const [aiTopicId, setAiTopicId] = useState("");
     const [aiPrompt, setAiPrompt] = useState("");
     const [aiItemCount, setAiItemCount] = useState<number | undefined>(5);
     const [aiLoading, setAiLoading] = useState(false);
@@ -170,7 +169,6 @@ export function CreateChallengeForm() {
     const handleAiGenerate = async (e: React.FormEvent) => {
         e.preventDefault();
         setAiSubmitted(true);
-        if (!aiTopicId) return;
 
         const schema = aiGenerationSchema(t, lessonType, false);
         try {
@@ -195,17 +193,12 @@ export function CreateChallengeForm() {
 
         try {
             const response = await challengeService.generateChallengeContent({
-                topicId: aiTopicId,
+                languageId: selectedLanguageIdPublic || undefined,
+                sourceLanguageId: selectedSourceLanguageId || undefined,
                 lessonType,
                 description: aiPrompt,
                 itemCount: aiItemCount!,
             });
-
-            const matchedTopic = topics.find(topic => topic.id === aiTopicId);
-            if (matchedTopic) {
-                setValue('sourceLanguageId', matchedTopic.sourceLanguageId);
-                setValue('languageId', matchedTopic.targetLanguageId);
-            }
 
             setLessonValue('title', aiPrompt);
             setLessonValue('description', t('challenge.ai.generated_desc', { prompt: aiPrompt }) || `Généré par IA : ${aiPrompt}`);
@@ -213,8 +206,8 @@ export function CreateChallengeForm() {
             if (lessonType === 'QCM' && response.qcm) {
                 setLessonValue('questions', response.qcm);
             } else if (lessonType === 'FLASHCARD' && response.flashcards) {
-                const sourceLang = nativeLanguages.find(lang => lang.languageId === matchedTopic?.sourceLanguageId)?.languageCode ?? 'fr';
-                const targetLang = learningLanguages.find(lang => lang.languageId === matchedTopic?.targetLanguageId)?.languageCode ?? 'en';
+                const sourceLang = nativeLanguages.find(lang => lang.languageId === selectedSourceLanguageId)?.languageCode ?? 'fr';
+                const targetLang = learningLanguages.find(lang => lang.languageId === selectedLanguageIdPublic)?.languageCode ?? 'en';
                 
                 const formattedFlashcards = response.flashcards.map(card => ({
                     front: card.front,
@@ -424,15 +417,7 @@ export function CreateChallengeForm() {
                                     </div>
                                 )}
                                 
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                    <Select
-                                        label={`${t("challenge.form.topic") || "Sujet/Thème de base"} *`}
-                                        value={aiTopicId}
-                                        options={topics.map(topic => ({ value: topic.id, label: topic.name }))}
-                                        onChange={setAiTopicId}
-                                        placeholder={t("challenge.form.topic_placeholder") || "Sélectionnez un sujet"}
-                                        error={aiSubmitted && !aiTopicId ? t("challenge.validation.topic") || "Le sujet est requis" : undefined}
-                                    />
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <Select
                                         label={t("challenge.form.lesson_type") || "Type d'exercice"}
                                         value={lessonType}
