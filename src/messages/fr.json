@@ -1286,6 +1286,7 @@
       }
     },
     "languageSection": {
+      "nativeLanguage": "Langue native",
       "learningLanguages": "Langues que j'apprends",
       "addLanguage": "Ajouter une langue",
       "noLearningLanguages": "Aucune langue ajoutée pour l'instant.",
