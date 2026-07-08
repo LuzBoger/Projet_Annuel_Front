@@ -30,10 +30,10 @@ export function ProfileLanguageSection({ languages, onLanguageRemove, isProfileO
         <div className="mt-6">
             <div className="flex items-start justify-between mb-4 gap-3">
                 <div>
-                    <h3 className="text-sm font-semibold text-white">
+                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
                         {t("profile.languageSection.learningLanguages")}
                     </h3>
-                    <p className="text-xs text-neutral-500 mt-0.5">
+                    <p className="text-xs text-gray-500 dark:text-neutral-500 mt-0.5">
                         {learningLanguages.length} {t("profile.languageSection.learningLanguages").toLowerCase()}
                     </p>
                 </div>
@@ -64,7 +64,7 @@ export function ProfileLanguageSection({ languages, onLanguageRemove, isProfileO
                     {learningLanguages.map((lang) => (
                         <div
                             key={lang.id}
-                            className="inline-flex items-center gap-1.5 bg-neutral-800 border border-neutral-700 hover:border-neutral-500 rounded-full px-2.5 py-1.5 transition-colors"
+                            className="inline-flex items-center gap-1.5 bg-gray-50 dark:bg-neutral-800/60 border border-gray-200 dark:border-neutral-700 hover:border-gray-300 dark:hover:border-neutral-500 rounded-full px-2.5 py-1.5 transition-colors"
                         >
                             <div
                                 className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
@@ -77,16 +77,16 @@ export function ProfileLanguageSection({ languages, onLanguageRemove, isProfileO
                                     {lang.languageCode.toUpperCase()}
                                 </span>
                             </div>
-                            <span className="text-xs text-neutral-300 whitespace-nowrap">
+                            <span className="text-xs text-gray-700 dark:text-neutral-300 whitespace-nowrap">
                                 {lang.languageName}
                             </span>
                             {isProfileOwner && (
                                 <Button
                                     variant="none"
                                     onClick={() => handleRemoveLanguage(lang)}
-                                    className="w-4 h-4 rounded-full bg-neutral-700 hover:bg-red-900/30 flex items-center justify-center flex-shrink-0 ml-0.5 transition-colors group"
+                                    className="w-4 h-4 rounded-full bg-gray-200 dark:bg-neutral-700 hover:bg-red-100 dark:hover:bg-red-900/30 flex items-center justify-center flex-shrink-0 ml-0.5 transition-colors group"
                                 >
-                                    <RemoveIcon className="text-neutral-500 group-hover:text-red-400" />
+                                    <RemoveIcon className="text-gray-500 dark:text-neutral-500 group-hover:text-red-650 dark:group-hover:text-red-400" />
                                 </Button>
                             )}
                         </div>
