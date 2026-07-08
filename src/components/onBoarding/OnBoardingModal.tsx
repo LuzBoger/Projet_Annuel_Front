@@ -1,7 +1,7 @@
 import { useOnBoarding } from "@/hooks/useOnBoarding";
 import { languageService } from "@/services/languageService";
 import { LanguageResponse } from "@/types/language/language";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { LanguageOptionCard } from "@/components/ui/card/LanguageOptionCard";
@@ -15,17 +15,13 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
   const { t } = useTranslation();
   const [languages, setLanguages] = useState<LanguageResponse[]>([]);
 
-  const {
-    step,
-    nativeLanguageId,
-    setNativeLanguageId,
-    learningLanguageId,
-    setLearningLanguageId,
-    nextStep,
-    previousStep,
-    confirm,
-    isLoading,
-  } = useOnBoarding(onClose);
+  const { step, nativeLanguageId, setNativeLanguageId, learningLanguageId, setLearningLanguageId, nextStep, previousStep, confirm, isLoading} = useOnBoarding(onClose);
+
+  const setToTop = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setToTop.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [step]);
 
   useEffect(() => {
     languageService.getAllActiveLanguages().then(setLanguages);
@@ -39,6 +35,7 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
       title={step === "native" ? t("onBoarding.selectNativeLanguage") : t("onBoarding.selectLearningLanguage")}
       size="md"
     >
+      <div ref={setToTop} />
       <div className="flex items-center justify-between mb-8 -mt-2">
         {step === "learning" ? (
           <Button onClick={previousStep} variant="ghost" size="sm" className="rounded-lg">

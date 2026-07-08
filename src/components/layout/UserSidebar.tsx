@@ -45,7 +45,7 @@ export function UserSidebar({ onClose, photoUrl, handleLogout }: UserSidebarProp
         userLanguageService.getUserLearningLanguages()
             .then(setLearningLanguages)
             .catch(() => {});
-    }, [isAuthenticated]);
+    }, [isAuthenticated, user?.hasCompletedOnboarding]);
 
     useEffect(() => {
         const handler = (...args: unknown[]) => {

@@ -1,10 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/Button";
 import { useTranslation } from "react-i18next";
 import { LogoSkaldly } from "@/assets/icons";
 
 export function Footer() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  const handleClick = () => {
+    if (location.pathname === '/') {
+      document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+  };
   return (
     <footer className="bg-gray-900 dark:bg-black text-gray-400 pt-16 pb-8 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,9 +43,10 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/#faq" className="text-sm hover:text-indigo-400 transition-colors">
-                  {t("footer.links.faq")}
-                </Link>
+              <Button variant='none' onClick={handleClick} className="text-sm hover:text-indigo-400 transition-colors cursor-pointer">
+                {t("footer.links.faq")}
+              </Button>
+
               </li>
               <li>
                 <Link to="/login" className="text-sm hover:text-indigo-400 transition-colors">
