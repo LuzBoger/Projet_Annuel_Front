@@ -27,7 +27,7 @@ export function FriendsTabBar({ activeTab, onChange, friendsCount, pendingReques
                     variant="none"
                     onClick={() => onChange(tab.key)}
                     className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
-                        activeTab === tab.key ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                        activeTab === tab.key ? 'border-black text-gray-900 dark:border-white dark:text-white' : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
                     }`}
                 >
                     {tab.label}
