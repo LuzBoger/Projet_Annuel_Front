@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc'
 import tailwindcss from '@tailwindcss/vite'
 import svgr from 'vite-plugin-svgr'
 import path from 'path'
-import { generateSitemap, generateRobots } from './sitemap.config';
+import { generateSitemap, generateRobots } from './sitemap.config'
 
 const sitemap = {
   name: 'sitemap',

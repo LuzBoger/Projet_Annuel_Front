@@ -18,6 +18,7 @@ export function ProfileLanguageSection({ languages, onLanguageRemove, isProfileO
     const {t} = useTranslation();
     const navigate = useNavigate();
 
+    const nativeLanguage = languages.find((language) => language.languageType === "NATIVE");
     const learningLanguages = languages.filter((language) => language.languageType === "LEARNING");
 
     const handleRemoveLanguage = async (language: UserLanguageResponse) => {
@@ -27,7 +28,31 @@ export function ProfileLanguageSection({ languages, onLanguageRemove, isProfileO
     }
 
     return (
-        <div className="mt-6">
+        <div className="mt-6 flex flex-col gap-6">
+            {nativeLanguage && (
+                <div>
+                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                        {t("profile.languageSection.nativeLanguage")}
+                    </h3>
+                    <div className="inline-flex items-center gap-1.5 bg-gray-50 dark:bg-neutral-800/60 border border-gray-200 dark:border-neutral-700 rounded-full px-2.5 py-1.5">
+                        <div
+                            className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
+                            style={{ background: `${getLanguageColor(nativeLanguage.languageCode)}22` }}
+                        >
+                            <span
+                                className="text-[10px] font-bold leading-none"
+                                style={{ color: getLanguageColor(nativeLanguage.languageCode) }}
+                            >
+                                {nativeLanguage.languageCode.toUpperCase()}
+                            </span>
+                        </div>
+                        <span className="text-xs text-gray-700 dark:text-neutral-300 whitespace-nowrap">
+                            {nativeLanguage.languageName}
+                        </span>
+                    </div>
+                </div>
+            )}
+            <div>
             <div className="flex items-start justify-between mb-4 gap-3">
                 <div>
                     <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
@@ -93,6 +118,7 @@ export function ProfileLanguageSection({ languages, onLanguageRemove, isProfileO
                     ))}
                 </div>
             )}
+            </div>
         </div>
     );
 

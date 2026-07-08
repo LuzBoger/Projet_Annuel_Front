@@ -63,8 +63,8 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
                  <ul className="space-y-2 mb-6">
                     {plan.features.map((feature) => (
                         <li key={feature.id} className="flex items-start gap-2">
-                            <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.subscriptionType === 'FREE' ? 'text-brand-500' : 'text-white'}`} />
-                            <span className={`text-sm ${plan.subscriptionType === 'FREE' ? 'text-gray-600 dark:text-gray-300' : 'text-brand-100'}`}>
+                            <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-brand-500" />
+                            <span className="text-sm text-gray-600 dark:text-gray-300">
                                 {feature.label}
                             </span>
                         </li>
@@ -73,7 +73,7 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
             )}
 
             {plan.aiQuota !== undefined && (
-                    <p className={`text-xs mb-4 ${plan.subscriptionType === 'FREE' ? 'text-gray-400 dark:text-gray-500' : 'text-brand-300'}`}>
+                    <p className="text-xs mb-4 text-gray-400 dark:text-gray-500">
                 {t('subscription.ai_quota.limited', { count: plan.aiQuota })}
             </p>   
             )}

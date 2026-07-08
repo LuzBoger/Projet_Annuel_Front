@@ -8,12 +8,13 @@ import { Button } from "@/components/ui/Button";
 import { LogoSk } from "@/assets/icons";
 
 export function UserLayout() {
-    const { logout } = useAuth();
+    const { logout, isAuthenticated } = useAuth();
     const navigate = useNavigate();
     const [photoUrl, setPhotoUrl] = useState<string | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
+        if (!isAuthenticated) return;
         profileService.getMyProfile()
             .then((profile) => {
                 if (profile.photoUrl) {
@@ -21,7 +22,7 @@ export function UserLayout() {
                 }
             })
             .catch(() => {});
-    }, []);
+    }, [isAuthenticated]);
 
     const handleLogout = async () => {
         await logout();
@@ -30,11 +31,13 @@ export function UserLayout() {
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex">
-            <aside className="hidden md:flex w-56 shrink-0 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex-col">
-                <UserSidebar photoUrl={photoUrl} handleLogout={handleLogout} />
-            </aside>
+            {isAuthenticated && (
+                <aside className="hidden md:flex w-56 shrink-0 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex-col">
+                    <UserSidebar photoUrl={photoUrl} handleLogout={handleLogout} />
+                </aside>
+            )}
 
-            {sidebarOpen && (
+            {isAuthenticated && sidebarOpen && (
                 <div className="fixed inset-0 z-50 flex md:hidden">
                     <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
                     <aside className="relative w-64 h-full bg-white dark:bg-gray-900 flex flex-col shadow-2xl">
@@ -48,23 +51,25 @@ export function UserLayout() {
             )}
 
             <div className="flex-1 min-w-0 flex flex-col">
-                <div className="md:hidden flex items-center gap-3 px-4 py-3 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40">
-                    <Button
-                        variant="none"
-                        onClick={() => setSidebarOpen(true)}
-                        className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                        aria-label="Open menu"
-                    >
-                        <div className="flex flex-col gap-1.5 w-5">
-                            <span className="block h-0.5 bg-current rounded" />
-                            <span className="block h-0.5 bg-current rounded" />
-                            <span className="block h-0.5 bg-current rounded" />
-                        </div>
-                    </Button>
-                    <Link to="/dashboard" className="flex items-center text-brand-600 dark:text-white">
-                        <LogoSk className="h-8 w-8 shrink-0" />
-                    </Link>
-                </div>
+                {isAuthenticated && (
+                    <div className="md:hidden flex items-center gap-3 px-4 py-3 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40">
+                        <Button
+                            variant="none"
+                            onClick={() => setSidebarOpen(true)}
+                            className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                            aria-label="Open menu"
+                        >
+                            <div className="flex flex-col gap-1.5 w-5">
+                                <span className="block h-0.5 bg-current rounded" />
+                                <span className="block h-0.5 bg-current rounded" />
+                                <span className="block h-0.5 bg-current rounded" />
+                            </div>
+                        </Button>
+                        <Link to="/dashboard" className="flex items-center text-brand-600 dark:text-white">
+                            <LogoSk className="h-8 w-8 shrink-0" />
+                        </Link>
+                    </div>
+                )}
 
                 <div className="flex-1 max-w-6xl mx-auto w-full px-4 md:px-6 py-6 md:py-8">
                     <Outlet />

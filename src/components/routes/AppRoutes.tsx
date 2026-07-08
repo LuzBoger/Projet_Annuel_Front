@@ -72,7 +72,6 @@ export function AppRoutes() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/verify-2fa" element={<Verify2FA />} />
-          <Route path="/plans" element={<Plans />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/legal/mentions-legales" element={<MentionsLegales />} />
           <Route path="/legal/cgu" element={<CGU />} />
@@ -81,6 +80,7 @@ export function AppRoutes() {
           <Route path="/legal/politique-de-cookies" element={<PolitiqueCookies />} />
 
           <Route element={<UserLayout />}>
+            <Route path="/plans" element={<Plans />} />
             <Route path="/dashboard" element={<ProtectedRoute userOnly><Dashboard /></ProtectedRoute>} />
             <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
             <Route path="/catalog-languages" element={<ProtectedRoute><LanguageCatalog /></ProtectedRoute>} />
