@@ -187,6 +187,21 @@ input:-webkit-autofill:active {
   }
 }
 
+
+.dark ::placeholder {
+    color: #9ca3af !important;
+}
+
+.search-input-no-focus:focus {
+    box-shadow: none !important;
+    border-color: #d1d5db !important;
+}
+
+.dark .search-input-no-focus:focus {
+    border-color: #1f2937 !important;
+}
+
+
 [data-accessibility-text="large"] { font-size: 109% !important; }
 [data-accessibility-text="xlarge"] { font-size: 120% !important; }
 
