@@ -61,7 +61,7 @@ export default function Dashboard() {
         })
         .catch(() => {});
         profileService.getStreak().then(setStreak).catch(() => {});
-    }, [fetchData]);
+    }, [fetchData, user?.hasCompletedOnboarding]);
 
     useEffect(() => {
         if (!effectiveLanguageId) return;

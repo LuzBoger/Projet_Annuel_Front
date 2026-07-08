@@ -78,7 +78,7 @@ export const profileService = {
     },
 
     async generateCode(): Promise<void> {
-        await apiClient.post('/data-privacy/generate-deletion-code');
+        await apiClient.post('/data-privacy/generate-code');
     }
 
 }
