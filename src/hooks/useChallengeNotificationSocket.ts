@@ -12,7 +12,7 @@ export function useChallengeNotificationSocket(accountId: string) {
             brokerURL: `${WS_BASE_URL}/api/ws`,
             reconnectDelay: 5000,
             onConnect: () => {
-                client.subscribe(`/topic/user/${accountId}/notification/duel`, (message) => {
+                client.subscribe(`/topic/duel.${accountId}`, (message) => {
                     const notification: ChallengeNotification = JSON.parse(message.body);
                     setNotif(notification);
                 });
