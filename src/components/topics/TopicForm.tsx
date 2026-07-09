@@ -46,26 +46,28 @@ export function TopicForm({ isOpen, isLoading, topic, activeLanguages, onCancel,
     const isActive = useWatch({ control, name: "isActive" });
 
     useEffect(() => {
-        if (topic) {
-            reset({
-                targetLanguageId: topic.targetLanguageId,
-                sourceLanguageId: topic.sourceLanguageId,
-                name: topic.name,
-                description: topic.description || "",
-                difficulty: topic.difficulty,
-                isActive: topic.isActive,
-            });
-        } else {
-            reset({
-                targetLanguageId: "",
-                sourceLanguageId: "",
-                name: "",
-                description: "",
-                difficulty: "",
-                isActive: true,
-            });
+        if (isOpen) {
+            if (topic) {
+                reset({
+                    targetLanguageId: topic.targetLanguageId,
+                    sourceLanguageId: topic.sourceLanguageId,
+                    name: topic.name,
+                    description: topic.description || "",
+                    difficulty: topic.difficulty,
+                    isActive: topic.isActive,
+                });
+            } else {
+                reset({
+                    targetLanguageId: "",
+                    sourceLanguageId: "",
+                    name: "",
+                    description: "",
+                    difficulty: "",
+                    isActive: true,
+                });
+            }
         }
-    }, [topic, reset]);
+    }, [topic, isOpen, reset]);
 
     const languageOptions = activeLanguages.map(lang => ({
         label: `${lang.name} (${lang.code.toUpperCase()})`,
