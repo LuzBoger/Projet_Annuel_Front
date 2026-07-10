@@ -111,7 +111,6 @@ export function SortingPlayer({ lessonId, exercises, onFinish }: SortingPlayerPr
 
     const isAllSelected = pool.length === 0;
 
-    // Compute statuses for header
     const statuses = exercises.map((_, idx) => {
         if (idx === currentIndex) return 'current' as SegmentStatus;
         return results[idx];

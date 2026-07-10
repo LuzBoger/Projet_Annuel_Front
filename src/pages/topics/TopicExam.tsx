@@ -58,7 +58,6 @@ export default function TopicExam() {
                     shuffledIndices: shuffleArray(s.items.map((_, i) => i))
                 }));
 
-                // Rassembler toutes les paires en une seule question 'MATCHING'
                 let matchings: ExamItem[] = [];
                 if (data.matchingPairs && data.matchingPairs.length > 0) {
                     const tiles: Tile[] = [];

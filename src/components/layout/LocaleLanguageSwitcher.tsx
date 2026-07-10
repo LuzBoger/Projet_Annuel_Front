@@ -3,10 +3,12 @@ import { useTranslation } from "react-i18next";
 import { SelectedLanguagesButton } from "@/components/ui/dropdown/SelectedLanguagesButton";
 import { DropDownMenu } from "@/components/ui/dropdown/DropDownMenu";
 import { LanguageFlag } from "@/components/languages/LanguageFlag";
+import { Align, Position } from "@/types/components/home";
+import { LANGUAGES_CODE } from "@/constants/languages";
 
 interface LocaleLanguageSwitcherProps {
-  align?: "left" | "right";
-  position?: "top" | "bottom";
+  align?: Align;
+  position?: Position;
 }
 
 export function LocaleLanguageSwitcher({ align = "left", position = "bottom" }: LocaleLanguageSwitcherProps) {
@@ -16,9 +18,7 @@ export function LocaleLanguageSwitcher({ align = "left", position = "bottom" }: 
 
   const currentLanguage = i18n.language.slice(0, 2).toLowerCase();
 
-  const languagesList = ["fr", "en", "es", "de", "it"];
-
-  const currentLangCode = languagesList.includes(currentLanguage) ? currentLanguage : "fr";
+  const currentLangCode = LANGUAGES_CODE.includes(currentLanguage) ? currentLanguage : "fr";
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -32,19 +32,18 @@ export function LocaleLanguageSwitcher({ align = "left", position = "bottom" }: 
     };
   }, []);
 
-  const items = languagesList.map((lang) => ({
-    key: lang,
-    isActive: currentLanguage === lang,
+  const items = LANGUAGES_CODE.map((language) => ({
+    key: language,
+    isActive: currentLanguage === language,
     onClick: () => {
-      i18n.changeLanguage(lang);
-      localStorage.setItem('language', lang);
-      // Synchronize both language and locale localStorage keys
-      localStorage.setItem('locale', lang);
-      document.cookie = `myAppLocaleCookie=${lang};path=/;max-age=31536000;SameSite=Lax`;
+      i18n.changeLanguage(language);
+      localStorage.setItem('language', language);
+      localStorage.setItem('locale', language);
+      document.cookie = `myAppLocaleCookie=${language};path=/;max-age=31536000;SameSite=Lax`;
       setIsOpen(false);
     },
     label: (
-      <LanguageFlag languageCode={lang} className="w-5 h-4 rounded-sm object-cover" />
+      <LanguageFlag languageCode={language} className="w-5 h-4 rounded-sm object-cover" />
     ),
   }));
 

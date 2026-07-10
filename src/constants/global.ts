@@ -17,7 +17,6 @@ export const SSE_EVENT: Record<string, { key: string; type: "info" | "success" |
     FRIEND_REQUEST_RECEIVED: { key: "friends.notif.request_received", type: "info" },
     FRIEND_REQUEST_ACCEPTED: { key: "friends.notif.request_accepted", type: "success" },
 };
-// Event name for synchronizing mute state across the application
 export const MUTE_EVENT = 'glotrush_mute_toggle';
 
 

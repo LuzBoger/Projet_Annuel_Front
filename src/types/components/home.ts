@@ -7,6 +7,8 @@ export type MatchingPairSide = 'left' | 'right';
 export type LessonQCMPhase = 'idle' | 'wrong' | 'right';
 export type IconType = FC<SVGProps<SVGSVGElement>>;
 export type Locale = 'fr_FR' | 'en_US';
+export type Align = "left" | "right";
+export type Position = "top" | "bottom";
 export interface LessonTypeDemo {
     key: LessonTypeHome;
     label: string;

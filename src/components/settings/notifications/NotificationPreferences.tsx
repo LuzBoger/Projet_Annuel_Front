@@ -17,7 +17,6 @@ export function NotificationPreferences() {
     const handleToggle = async (key: keyof NotificationPreferencesResponse) => {
         const updated = {...choices, [key]: !choices[key]};
         setChoices(updated);
-        // Persist the updated preferences to the server
         await profileService.updateNotificationPreferences(updated);
     };
 
