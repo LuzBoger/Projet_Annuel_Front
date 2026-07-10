@@ -34,7 +34,8 @@
     "validate": "Validate",
     "actions": "Action",
     "accept": "Accept",
-    "learn_more": "Learn more"
+    "learn_more": "Learn more",
+    "selectLanguage": "Select a language"
   },
   "cookie_banner": {
     "title": "This website uses cookies",
@@ -1342,9 +1343,9 @@
     }
   },
   "home": {
-    "page_title": "Skaldly - Master a New Language with AI as Your Personal Assistant",
+    "page_title": "Skaldly - Learn a Language with Artificial Intelligence",
     "page_description": "Learn a new language with artificial intelligence: flashcards, quizzes and interactive exercises. An AI assistant to help you progress at your own pace.",
-    "page_keywords": "learn a language with AI, learn a language with artificial intelligence, language learning app, flashcards, language quiz, spaced repetition, AI language assistant, Skaldly",
+    "page_keywords": "learn a language with AI, learn a language with artificial intelligence, language learning app, flashcards, language quiz, AI language assistant, Skaldly",
     "hero": {
       "title_start": "Learn a language with ",
       "title_highlight": "Artificial Intelligence",

@@ -4,8 +4,8 @@ self.addEventListener('push', (event) => {
     event.waitUntil(
         self.registration.showNotification(data.title, {
             body: data.body,
-            icon: './vite.svg',
-            badge: './vite.svg',
+            icon: './sk.svg',
+            badge: './sk.svg',
         })
     );
 });
