@@ -21,20 +21,10 @@ import { BadgeTag } from "@/components/ui/BadgeTag";
 export default function TopicList() {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const {
-        topics,
-        loading,
-        error,
-        fetchAllTopics,
-        searchTopics,
-        createTopic,
-        updateTopic,
-        deleteTopic
-    } = useTopic();
+    const {topics, loading, error, fetchAllTopics, searchTopics, createTopic, updateTopic} = useTopic();
 
     const [activeLanguages, setActiveLanguages] = useState<LanguageResponse[]>([]);
     const [showForm, setShowForm] = useState(false);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showStatusModal, setShowStatusModal] = useState(false);
     const [selectedTopic, setSelectedTopic] = useState<TopicResponse | null>(null);
     const [pendingStatus, setPendingStatus] = useState<boolean | null>(null);
@@ -85,11 +75,6 @@ export default function TopicList() {
         setShowForm(true);
     };
 
-    const handleDelete = (topic: TopicResponse) => {
-        setSelectedTopic(topic);
-        setShowDeleteModal(true);
-    };
-
     const handleStatusToggle = (topic: TopicResponse, newStatus: boolean) => {
         setSelectedTopic(topic);
         setPendingStatus(newStatus);
@@ -105,15 +90,6 @@ export default function TopicList() {
         setShowForm(false);
         setSelectedTopic(null);
         fetchAllTopics();
-    };
-
-    const confirmDelete = async () => {
-        if (selectedTopic) {
-            await deleteTopic(selectedTopic.id);
-            setShowDeleteModal(false);
-            setSelectedTopic(null);
-            fetchAllTopics();
-        }
     };
 
     const confirmStatusChange = async () => {
@@ -249,7 +225,6 @@ export default function TopicList() {
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right border-b border-gray-200 dark:border-gray-700">
                                     <TableActions
                                         onEdit={() => handleEdit(topic)}
-                                        onDelete={() => handleDelete(topic)}
                                         onLessons={() => navigate(`/admin/topics/${topic.id}/lessons`)}
                                     />
                                 </td>
@@ -265,16 +240,6 @@ export default function TopicList() {
                     activeLanguages={activeLanguages}
                     onCancel={() => setShowForm(false)}
                     onSubmit={onSubmitForm}
-                />
-
-                <ConfirmModal
-                    isOpen={showDeleteModal}
-                    title={t('admin.topics.delete_title')}
-                    description={t('admin.topics.delete_desc')}
-                    onConfirm={confirmDelete}
-                    onCancel={() => setShowDeleteModal(false)}
-                    isConfirming={loading}
-                    confirmVariant="danger"
                 />
 
                 <ConfirmModal
