@@ -87,7 +87,10 @@
       "has_account": "Already have an account?",
       "login": "Sign in",
       "success": "Registration successful! You can now sign in.",
-      "email_placeholder": "paul@example.com"
+      "email_placeholder": "paul@example.com",
+      "firstName_placeholder": "John",
+      "lastName_placeholder": "Doe",
+      "username_placeholder": "johndoe"
     },
     "back_home": "Back to home",
     "forgot_password": {
@@ -1427,7 +1430,16 @@
     "languages": {
       "title": "Learn the language of your choice with AI",
       "subtitle": "Skaldly supports many languages to learn with artificial intelligence",
-      "items": ["English", "Spanish", "Japanese", "German", "Italian", "Portuguese", "Arabic", "Mandarin"]
+      "items": [
+        "English",
+        "Spanish",
+        "Japanese",
+        "German",
+        "Italian",
+        "Portuguese",
+        "Arabic",
+        "Mandarin"
+      ]
     },
     "faq": {
       "title": "Frequently asked questions",
@@ -1676,7 +1688,9 @@
   "total": "Total",
   "accuracy": "Accuracy",
   "duration": "Duration",
-  "status": "Status",
+  "status": {
+    "deleted": "Deleted"
+  },
   "footer": {
     "tagline": "Learn languages with artificial intelligence, naturally and at your own pace.",
     "cta": "Get started for free",

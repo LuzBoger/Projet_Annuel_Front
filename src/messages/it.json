@@ -336,11 +336,12 @@
       "statusUpdated": "Stato aggiornato.",
       "status": {
         "active": "Attivo",
+        "deleted": "Eliminato",
         "locked": "Bloccato",
-        "pending_verification": "In attesa",
+        "pending_verification": "In sospeso",
         "suspended": "Sospeso"
       },
-      "suspend": "Sospeso",
+      "suspend": "Sospendi",
       "suspendDesc": "Sei sicuro di voler sospendere {{username}}?",
       "suspendTitle": "Sospendi l'utente",
       "unlock": "Sblocca",
@@ -402,15 +403,18 @@
       "email": "Indirizzo e-mail",
       "email_placeholder": "paul@example.com",
       "firstName": "Nome",
+      "firstName_placeholder": "Jean",
       "has_account": "Hai già un account?",
       "lastName": "Nome",
-      "login": "Login",
+      "lastName_placeholder": "Dupont",
+      "login": "Accesso",
       "password": "Password",
       "password_hint": "Min. 12 caratteri, 1 maiuscolo, 1 minuscolo, 1 numero, 1 speciale",
       "submit": "Crea il mio account",
       "success": "Registrazione avvenuta con successo! Ora puoi accedere.",
       "title": "Crea account",
-      "username": "Nome utente"
+      "username": "Nome utente",
+      "username_placeholder": "jeandupont"
     },
     "reset_password": {
       "confirm_password": "Conferma password",
@@ -448,15 +452,16 @@
   "challenge": {
     "acceptSuccess": "Sfida accettata.",
     "ai": {
-      "button": "Genera con l'intelligenza artificiale",
+      "button": "Genera con AI",
       "generate": "Genera",
-      "generated_desc": "Generato dall'intelligenza artificiale: {{prompt}}",
+      "generated_desc": "Generato da AI: {{prompt}}",
       "items_count": "Numero di domande",
       "prompt_label": "Tema o suggerimento di generazione",
-      "prompt_placeholder": "Esempio: espressioni comuni nei ristoranti",
+      "prompt_placeholder": "Esempio: Espressioni comuni nei ristoranti",
       "quota_exceeded_desc": "Hai esaurito i tuoi crediti mensili di generazione. Passa a Premium per sbloccare la tua quota AI.",
-      "quota_exceeded_title": "Limite di generazione dell'IA raggiunto",
-      "title": "Genera esercizi tramite l'IA",
+      "quota_exceeded_title": "Limite generazione AI raggiunto",
+      "required_fields": "Compila i campi obbligatori (*) per generare gli esercizi tramite AI.",
+      "title": "Genera esercizi tramite AI",
       "upgrade": "Iscriviti"
     },
     "author": "Entro {{username}}",
@@ -499,7 +504,7 @@
       "question_count_placeholder": "Lascia vuoto per avere tutte le domande",
       "submit": "Crea la sfida",
       "summary": "Riepilogo",
-      "title": "Titolo della sfida",
+      "title": "Crea la sfida",
       "topic": "Tema",
       "topic_placeholder": "Seleziona un tema"
     },
@@ -524,6 +529,7 @@
       "in-progress": "Il tuo avversario sta attualmente completando la sfida...",
       "live": "Classifica",
       "not_played": "Il tuo avversario non ha ancora completato questa sfida.",
+      "not_played_self": "Non hai ancora giocato.",
       "results": "Risultati",
       "score": {
         "hidden": "Il punteggio di {{username}} è nascosto fino alla fine della sfida."
@@ -598,7 +604,7 @@
         "min": "È richiesta almeno 1 domanda",
         "options": "È richiesta un'opzione",
         "options.min": "Sono richieste almeno 2 opzioni",
-        "question": "È richiesta una domanda"
+        "question": "Domanda è richiesto"
       },
       "sortingExercises": {
         "min": "È richiesto almeno 1 esercizio di ordinamento"
@@ -610,7 +616,7 @@
         "items.min": "Sono richiesti almeno 2 elementi"
       },
       "sourceLanguageId": "Seleziona la lingua di scrittura",
-      "title": "Il titolo è richiesto",
+      "title": "È richiesto il titolo",
       "title.max": "Massimo 200 caratteri",
       "title_max": "Massimo 200 caratteri"
     }
@@ -650,16 +656,17 @@
     "mute": "Disattiva audio",
     "next": "Successivo",
     "noData": "Nessun dato disponibile",
-    "on": "su",
+    "on": "di",
     "quit": "Esci",
     "remove": "Elimina",
     "save": "Salva",
     "search": "Cerca...",
+    "selectLanguage": "Seleziona lingua",
     "skip": "Salta",
     "unmute": "Riattiva",
     "update": "Aggiorna",
     "user": "Utente",
-    "validate": "Conferma",
+    "validate": "Convalida",
     "view": "Visualizza",
     "viewProfile": "Visualizza profilo"
   },
@@ -686,7 +693,7 @@
       "messagePlaceholder": "Descrivi la tua richiesta...",
       "name": "Nome completo",
       "send": "Invia messaggio",
-      "sending": "Invio in corso...",
+      "sending": "Invio...",
       "subject": "Oggetto",
       "subjects": {
         "billing": "Fatturazione",
@@ -745,7 +752,7 @@
     "streak": {
       "best": "Migliore:",
       "days": "giorni",
-      "milestone": "{{days}} giorni al livello successivo"
+      "milestone": "{{days}} giorni per il livello successivo"
     },
     "subscriptions": "Abbonamenti",
     "subscriptionsOverTime": "Abbonamenti nel tempo",
@@ -887,7 +894,7 @@
     "joinChallenge": "Impossibile partecipare alla sfida.",
     "reactivateSubscription": "Impossibile riattivare l'abbonamento.",
     "rejectReview": "Impossibile rifiutare la recensione.",
-    "removeFriend": "Impossibile rimuovere l'amico.",
+    "removeFriend": "Unable to remove friend.",
     "searchTopics": "Impossibile cercare argomenti.",
     "searchUsers": "Impossibile cercare gli utenti.",
     "sendFriendRequest": "Impossibile inviare la richiesta di amicizia.",
@@ -936,7 +943,7 @@
     "acceptRequest": {
       "success": "Richiesta di amicizia accettata!"
     },
-    "addFriend": "Aggiungi",
+    "addFriend": "Add",
     "alreadyFriends": "Amici",
     "cancel": "Annulla",
     "cancelRequest": {
@@ -946,8 +953,8 @@
     "declineRequest": {
       "success": "Richiesta di amicizia rifiutata."
     },
-    "incoming": "Ricevuto.",
-    "manage": "Gestisci gli amici",
+    "incoming": "Ricevuti",
+    "manage": "Gestisci amici",
     "noFriends": "Non hai ancora amici.",
     "noRequests": "Nessuna richiesta ricevuta.",
     "noResults": "Nessun utente trovato.",
@@ -1023,7 +1030,7 @@
     },
     "cta": {
       "button": "Inizia gratuitamente",
-      "subtitle": "Unisciti a migliaia di studenti che utilizzano l'intelligenza artificiale per progredire più velocemente.",
+      "subtitle": "Unisciti a migliaia di studenti che usano l'intelligenza artificiale per progredire più velocemente.",
       "title": "Inizia ad imparare una lingua con l'intelligenza artificiale"
     },
     "exercise_section": {
@@ -1085,18 +1092,18 @@
       },
       "variety": {
         "description": "Flashcard, quiz, abbinamento di coppie, riordino ed esercizi interattivi, progettati per massimizzare la ritenzione della lingua e l'immersione totale.",
-        "title": "Dispositivi vari"
+        "title": "Vari dispositivi"
       }
     },
     "flashcard_demo": {
       "easy": "Facile",
       "hard": "Difficile",
-      "medium": "Medio"
+      "medium": "MEDIA"
     },
     "hero": {
       "continue_learning": "Continua il mio apprendimento",
       "description": "Skaldly è la piattaforma per imparare una lingua con l'intelligenza artificiale: ripetizione distanziata, lezioni su misura e immersione totale grazie all'intelligenza artificiale.",
-      "logged_in_as": "Accedi come",
+      "logged_in_as": "Effettuato l'accesso come",
       "start_free": "Inizia gratuitamente",
       "title_highlight": "Intelligenza artificiale",
       "title_start": "Impara una lingua con"
@@ -1122,8 +1129,8 @@
       "title": "Impara la lingua che preferisci con l'intelligenza artificiale"
     },
     "page_description": "Impara una nuova lingua con l'intelligenza artificiale: flashcard, quiz ed esercizi interattivi. Un assistente AI per progredire al tuo ritmo.",
-    "page_keywords": "impara una lingua con l'intelligenza artificiale, impara una lingua con l'intelligenza artificiale, applicazione per l'apprendimento delle lingue, flashcard, quiz linguistico, ripetizione spaziata, assistente linguistico AI, Skaldly",
-    "page_title": "Skaldly – ​​Padroneggia una nuova lingua con l'intelligenza artificiale come assistente personale",
+    "page_keywords": "impara una lingua con l'intelligenza artificiale, impara una lingua con l'intelligenza artificiale, applicazione per l'apprendimento delle lingue, flashcard, quiz linguistico, assistente linguistico AI, Skaldly",
+    "page_title": "Skaldly - Impara una lingua con l'intelligenza artificiale",
     "qcm_demo": {
       "feedback": "Arigatou (ありがとう) significa \"Grazie\" in giapponese.",
       "options": [
@@ -1147,7 +1154,7 @@
         "dual_coding": "Doppia codifica",
         "stat1": "Riduzione del sovraccarico cognitivo.",
         "stat2": "+65%",
-        "stat2_desc": "ritenzione rispetto al testo senza contesto visivo (Paivio, 1971).",
+        "stat2_desc": "di ritenzione rispetto al testo senza contesto visivo (Paivio, 1971).",
         "text_only": "Solo testo",
         "title": "2. Coppie visive e teoria della doppia codifica"
       },
@@ -1208,15 +1215,15 @@
   "legal": {
     "cgu": {
       "acceptance": {
-        "p1": "L'uso del servizio implica la piena accettazione di questi T&C. Se non accetti i presenti Termini, ti preghiamo di non utilizzare il Servizio.",
+        "p1": "L'utilizzo del servizio implica la piena accettazione dei presenti T&C. Se non accetti i presenti Termini, ti preghiamo di non utilizzare il Servizio.",
         "title": "2. Accettazione"
       },
       "account": {
-        "intro": "Per accedere alle funzionalità del servizio l'utente deve:",
+        "intro": "Per accedere alle funzionalità del servizio, l'utente deve:",
         "item1": "Avere almeno 15 anni (o avere il consenso dei genitori)",
-        "item2": "Fornisci informazioni precise durante la registrazione",
-        "item3": "Mantieni la riservatezza delle tue credenziali di accesso",
-        "item4": "Notifica immediatamente qualsiasi accesso non autorizzato al tuo account",
+        "item2": "Fornire informazioni precise in fase di registrazione",
+        "item3": "Mantenere riservate le proprie credenziali di accesso",
+        "item4": "Comunicare immediatamente qualsiasi accesso non autorizzato al proprio account",
         "title": "3. Registrazione e account utente"
       },
       "description": "Condizioni generali di utilizzo del servizio Skaldly.",
@@ -1275,10 +1282,10 @@
       },
       "object": {
         "p1": "Le presenti Condizioni Generali di Vendita (CGV) definiscono i diritti e gli obblighi di Skaldly e dei suoi clienti nel contesto della sottoscrizione degli abbonamenti Skaldly.",
-        "title": "1. Scopo"
+        "title": "1. Oggetto"
       },
       "pricing": {
-        "item1": "I prezzi sono indicati in euro IVA inclusa.",
+        "item1": "I prezzi sono indicati in Euro IVA inclusa.",
         "item2": "Il pagamento viene effettuato online tramite il nostro fornitore di servizi sicuri Stripe.",
         "item3": "L'abbonamento si rinnova automaticamente ad ogni scadenza.",
         "item4": "Skaldly si riserva il diritto di modificare i propri prezzi con un preavviso di 30 giorni.",
@@ -1322,7 +1329,7 @@
         "p1": "Per maggiori informazioni sui cookie, visita il sito",
         "title": "4. Per saperne di più"
       },
-      "title": "Politica sui cookie",
+      "title": "Cookie Policy",
       "used": {
         "access_token_duration": "15 minuti",
         "access_token_purpose": "Autenticazione JWT (HttpOnly, SameSite=Lax)",
@@ -1330,7 +1337,7 @@
         "col_duration": "Durata",
         "col_name": "Nome",
         "col_purpose": "Scopo",
-        "intro": "Skaldly utilizza solo cookie strettamente necessari al funzionamento del servizio. Non vengono inseriti cookie analitici o di marketing.",
+        "intro": "Skaldly utilizza solo i cookie strettamente necessari per il funzionamento del servizio. Non vengono inseriti cookie analitici o di marketing.",
         "locale_duration": "30 giorni",
         "locale_purpose": "Memorizzazione della lingua scelta (fr/en)",
         "refresh_token_duration": "7 giorni",
@@ -1338,7 +1345,7 @@
         "title": "2. Cookie utilizzati da Skaldly"
       },
       "what": {
-        "p1": "Un cookie è un piccolo file di testo depositato sul tuo terminale (computer, smartphone, tablet) quando visiti un sito web. Memorizza informazioni relative alla tua navigazione e alle tue preferenze.",
+        "p1": "Un cookie è un piccolo file di testo inserito nel tuo terminale (computer, smartphone, tablet) quando visiti un sito web. Memorizza informazioni relative alla tua navigazione e alle tue preferenze.",
         "title": "1. Cos'è un cookie?"
       }
     },
@@ -1388,20 +1395,20 @@
         "contact": "Dati di contatto",
         "contact_val": "nome, email, messaggio (modulo di contatto)",
         "identity": "Dati identificativi",
-        "identity_val": "cognome, nome, nome utente, indirizzo email",
+        "identity_val": "nome, nome, nome utente, indirizzo email",
         "intro": "Raccogliamo i seguenti dati:",
         "learning": "Dati di apprendimento",
-        "learning_val": "progressi, lezioni completate, punteggi, serie, XP",
+        "learning_val": "progressi, lezioni completate, punteggi, serie di vittorie, XP",
         "payment": "Dati di pagamento",
         "payment_val": "gestiti esclusivamente da Stripe (non memorizziamo i tuoi dati bancari), cronologia degli abbonamenti",
         "profile": "Dati del profilo",
-        "profile_val": "biografia, paese, fuso orario, foto del profilo",
+        "profile_val": "biografia, nazione, fuso orario, foto del profilo",
         "security": "Sicurezza",
-        "security_val": "le password hanno hash (bcrypt) e non sono mai leggibili, nemmeno dal nostro team",
+        "security_val": "Le password sono hash (bcrypt) e non sono mai leggibili, nemmeno dal nostro team",
         "social": "Dati social",
-        "social_val": "rapporti di amicizia tra utenti",
+        "social_val": "Rapporti di amicizia tra utenti",
         "technical": "Dati tecnici",
-        "technical_val": "log di connessione, token di sessione",
+        "technical_val": "Connessione registri, token di sessione",
         "title": "2. Dati raccolti"
       },
       "description": "Informativa sulla privacy del servizio Skaldly.",
@@ -1436,15 +1443,15 @@
         "contact": "Messaggi di contatto",
         "contact_val": "1 anno (poi cancellazione definitiva)",
         "deleted": "Dati dopo la cancellazione dell'account",
-        "deleted_val": "30 giorni (poi cancellazione permanente)",
+        "deleted_val": "30 giorni (poi cancellazione definitiva)",
         "title": "4. Periodo di conservazione",
         "tokens": "Token di sessione",
         "tokens_val": "revocati immediatamente in caso di disconnessione o cancellazione dell'account"
       },
       "rights": {
         "access": "Diritto di accesso",
-        "access_val": "(Art. 15) — ottenere una copia dei tuoi dati",
-        "cnil": "Hai inoltre il diritto di proporre reclamo a",
+        "access_val": "(Art. 15) - ottenere una copia dei tuoi dati",
+        "cnil": "Hai anche il diritto di presentare un reclamo a",
         "delay": "(risposta entro 30 giorni).",
         "email_or": "o via email a",
         "erasure": "Diritto alla cancellazione",
@@ -1483,14 +1490,14 @@
       "failed": "Non riuscite"
     },
     "table": {
-      "accuracy": "Precisione",
+      "accuracy": "Accuratezza",
       "correct": "Corretta",
       "date": "Data",
       "duration": "Durata",
       "errors": "Errori",
       "lesson": "Lezione",
       "status": "Stato",
-      "topic": "Oggetto",
+      "topic": "Argomento",
       "total": "Totale"
     },
     "totalTime": "Tempo totale"
@@ -1536,7 +1543,7 @@
       "instruction": "Abbina le coppie corrispondenti",
       "matches_found": "Coppie trovate",
       "title": "Set di coppie",
-      "with_errors": "Tutte le coppie sono state trovate."
+      "with_errors": "Tutte le coppie trovate."
     },
     "medium": "Media - L'abbiamo messa da parte",
     "not_found": "Lezione non trovata.",
@@ -1585,14 +1592,14 @@
       "submit": "Visualizza i miei risultati",
       "submit_desc": "Invia le tue risposte per vedere i risultati.",
       "subtitle": "{{total}} domanda/e da rivedere",
-      "title": "Revisione di oggi"
+      "title": "Revisione del giorno"
     },
     "detail": {
       "correct_answer": "Risposta corretta",
       "next_review": "Revisione successiva",
       "question": "Domanda",
       "streak": "Serie",
-      "title": "Dettagli dell'errore",
+      "title": "Dettagli errore",
       "your_answer": "La tua risposta"
     },
     "empty": {
@@ -1656,15 +1663,15 @@
   },
   "plans": {
     "create": {
-      "title": "Crea un piano"
+      "title": "Crea piano"
     },
     "delete": {
       "description": "Sei sicuro di voler eliminare questo piano? Questa azione è irreversibile.",
-      "title": "Rimuovi il piano"
+      "title": "Elimina piano"
     },
     "descriptions": {
       "Free plan": "Questo è il piano gratuito",
-      "Premium plan": "Piano Premium con tutte le funzionalità"
+      "Premium plan": "Piano premium con tutte le funzionalità"
     },
     "edit": {
       "title": "Modifica piano"
@@ -1672,7 +1679,7 @@
     "form": {
       "add_feature": "Aggiungi funzionalità",
       "ai_quota": "Quota AI",
-      "ai_quota_hint": "Numero di richieste AI incluse in questo piano.",
+      "ai_quota_hint": "Numero di query AI incluse in questo piano.",
       "currency": "Valuta",
       "description": "Descrizione del piano",
       "feature_placeholder": "Descrizione delle funzionalità",
@@ -1711,7 +1718,7 @@
     "bio": "Biografia",
     "bio_placeholder": "Raccontaci di te...",
     "countryCode": "Paese",
-    "countryCode_placeholder": "es. IT",
+    "countryCode_placeholder": "ex. IT",
     "edit": "Modifica profilo",
     "error": {
       "loadFailed": "Impossibile caricare il profilo."
@@ -1724,7 +1731,7 @@
       "delete": "Elimina foto",
       "edit_label": "Modifica",
       "error": {
-        "deleteFailed": "L'eliminazione non è riuscita. Per favore riprova.",
+        "deleteFailed": "Eliminazione non riuscita. Per favore riprova.",
         "invalidType": "Tipo di file non valido. Sono accettati solo JPG e PNG.",
         "tooLarge": "Il file è troppo grande. Dimensione massima: 5 MB.",
         "uploadFailed": "Caricamento non riuscito. Per favore riprova."
@@ -1827,7 +1834,7 @@
     },
     "modal_title": "Valuta questo argomento",
     "no_comment": "Nessun commento",
-    "no_reviews": "Ancora nessuna recensione.",
+    "no_reviews": "Nessuna recensione ancora.",
     "notif_approved": "La tua recensione è stata approvata!",
     "notif_auto_rejected": "La tua recensione è stata automaticamente rifiutata.",
     "notif_banned": "Sei stato bannato dall'area commenti.",
@@ -1870,9 +1877,9 @@
   "settings": {
     "2fa": {
       "cancel": "Annulla",
-      "confirm_disable": "Conferma la disattivazione",
+      "confirm_disable": "Conferma la rinuncia",
       "disable_button": "Disattiva 2FA",
-      "disable_success": "L'autenticazione a due fattori è stata disattivata.",
+      "disable_success": "L'autenticazione a due fattori è stata disabilitata.",
       "enable_button": "Abilita 2FA",
       "enable_success": "L'autenticazione a due fattori è stata abilitata.",
       "enabled_status": "L'autenticazione a due fattori è abilitata.",
@@ -1923,7 +1930,7 @@
     "password": {
       "description": "Gestisci la password del tuo account.",
       "page_title": "Impostazioni password",
-      "title": "Password"
+      "title": "La password"
     },
     "profile": {
       "bioTooLong": "La biografia non può superare i 500 caratteri.",
@@ -1980,7 +1987,7 @@
       "end_date": "Data di fine",
       "my_subscription": "Il mio abbonamento",
       "payment_history_title": "Cronologia pagamenti",
-      "plan_name": "Nome del piano",
+      "plan_name": "Nome piano",
       "start_date": "Data di inizio",
       "status": {
         "ACTIVE": "Attivo",
@@ -2005,12 +2012,12 @@
     "keep_subscription": "Mantieni abbonamento",
     "manage": {
       "cancel": "Annulla abbonamento",
-      "change_plan": "Modifica piano",
+      "change_plan": "Cambia piano",
       "disable_auto_renewal": "Disattiva rinnovo automatico",
-      "enable_auto_renewal": "Abilita rinnovo automatico",
-      "reactivate": "Riattiva abbonamento",
-      "renew": "Rinnova abbonamento",
-      "title": "Gestisci abbonamento"
+      "enable_auto_renewal": "Attiva il rinnovo automatico",
+      "reactivate": "Riattiva l'abbonamento",
+      "renew": "Rinnova l'abbonamento",
+      "title": "Gestisci l'abbonamento"
     },
     "page_title": "Il mio abbonamento",
     "paymentHistory": {
@@ -2040,7 +2047,7 @@
     },
     "title": "Abbonamento",
     "type": {
-      "free": "Gratis",
+      "free": "Gratuito",
       "premium": "Premium"
     },
     "upgrade_message": "Passa a un piano superiore per accedere a più funzionalità.",
@@ -2082,7 +2089,7 @@
     "lessons_count_label": "Lezioni completate",
     "lessons_desc": "Esplora le lezioni seguenti in ordine cronologico per progredire e padroneggiare questo argomento.",
     "lessons_page_title": "Lezioni",
-    "lessons_title": "Vassoio delle lezioni",
+    "lessons_title": "Bacheca delle lezioni",
     "level": "Livello {{level}}",
     "no_desc": "Nessuna descrizione fornita",
     "no_lessons_desc": "Torna più tardi!",
@@ -2120,36 +2127,36 @@
     },
     "confirmPassword": {
       "match": "Le password non corrispondono",
-      "required": "È richiesta una conferma"
+      "required": "È richiesta la conferma"
     },
     "contactEmail": {
-      "invalid": "Formato e-mail non valido",
-      "required": "È richiesto un indirizzo e-mail"
+      "invalid": "Formato email non valido",
+      "required": "L'indirizzo email è obbligatorio"
     },
     "contactMessage": {
       "min": "Minimo 10 caratteri",
-      "required": "Messaggio è richiesto"
+      "required": "Il messaggio è obbligatorio"
     },
     "contactName": {
       "max": "Massimo 100 caratteri",
-      "required": "Nome è obbligatorio"
+      "required": "Il nome è obbligatorio"
     },
     "contactSubject": {
-      "required": "Oggetto è obbligatorio"
+      "required": "L'oggetto è obbligatorio"
     },
     "email": {
-      "invalid": "Formato e-mail non valido",
-      "required": "E-mail è obbligatorio"
+      "invalid": "Formato email non valido",
+      "required": "L'email è obbligatoria"
     },
     "firstName": {
-      "required": "Nome è obbligatorio"
+      "required": "Il nome è obbligatorio"
     },
     "lastName": {
-      "required": "Cognome è obbligatorio"
+      "required": "Il cognome è obbligatorio"
     },
     "password": {
       "min": "Minimo 12 caratteri",
-      "pattern": "Deve contenere lettere maiuscole, minuscole, numeri e caratteri speciali (@#$%^&+=!)",
+      "pattern": "Deve contenere lettere maiuscole, minuscole, numero e caratteri speciali (@#$%^&+=!)",
       "required": "La password è obbligatoria"
     },
     "planAiQuota": {
@@ -2158,7 +2165,7 @@
       "required": "È richiesta una quota AI"
     },
     "planCurrency": {
-      "length": "La valuta deve essere di 3 caratteri",
+      "length": "La valuta deve contenere 3 caratteri",
       "required": "La valuta è richiesta"
     },
     "planDescription": {
@@ -2166,7 +2173,7 @@
     },
     "planFeatureLabel": {
       "max": "Massimo 255 caratteri",
-      "required": "È richiesta l'etichetta della funzionalità"
+      "required": "L'etichetta della funzionalità è obbligatoria"
     },
     "planName": {
       "max": "Massimo 100 caratteri",
@@ -2179,20 +2186,20 @@
     },
     "planPrice": {
       "min": "Il prezzo deve essere maggiore di 0",
-      "required": "Il prezzo è richiesto",
+      "required": "Il prezzo è obbligatorio",
       "typeError": "Il prezzo deve essere un numero valido"
     },
     "review": {
       "comment_max": "Il commento non può superare i 1000 caratteri",
       "rating_max": "La valutazione non può superare 5",
-      "rating_required": "Seleziona una valutazione"
+      "rating_required": "Selezionare una valutazione"
     },
     "subscriptionType": {
-      "oneOf": "Deve essere gratuito o Premium",
+      "oneOf": "Deve essere Gratuito o Premium",
       "required": "È richiesto il tipo di abbonamento"
     },
     "username": {
-      "max": "Massimo 50 caratteri",
+      "max": "Numero massimo 50 caratteri",
       "min": "Minimo 3 caratteri",
       "required": "Il nome utente è obbligatorio"
     }

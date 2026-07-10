@@ -30,6 +30,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
                 id="firstName"
                 label={t('auth.register.firstName')}
                 type="text"
+                placeholder={t('auth.register.firstName_placeholder')}
                 disabled={isLoading}
                 error={errors.firstName?.message}
                 {...register('firstName')}
@@ -39,6 +40,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
                 id="lastName"
                 label={t('auth.register.lastName')}
                 type="text"
+                placeholder={t('auth.register.lastName_placeholder')}
                 disabled={isLoading}
                 error={errors.lastName?.message}
                 {...register('lastName')}
@@ -48,6 +50,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
                 id='username'
                 label={t('auth.register.username')}
                 type="text"
+                placeholder={t('auth.register.username_placeholder')}
                 disabled={isLoading}
                 error={errors.username?.message}
                 {...register('username')}
@@ -67,6 +70,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
                 id="password"
                 label={t('auth.register.password')}
                 type="password"
+                placeholder="••••••••"
                 disabled={isLoading}
                 error={errors.password?.message}
                 {...register('password')}
@@ -76,6 +80,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
                 id="confirmPassword"
                 label={t('auth.register.confirmPassword')}
                 type="password"
+                placeholder="••••••••"
                 disabled={isLoading}
                 error={errors.confirmPassword?.message}
                 {...register('confirmPassword')}

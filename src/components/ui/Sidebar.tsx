@@ -1,7 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { User, StarIcon, BookOpen, Brain, Eye, Sparkles, Cross, LogoSkaldly } from "@/assets/icons";
-import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
 import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/Button";
@@ -71,9 +70,6 @@ export function Sidebar({ onClose, photoUrl, handleLogout }: SidebarProps) {
             </nav>
 
             <div className="border-t border-gray-100 dark:border-gray-800 p-3 flex flex-col gap-1">
-                <div className="px-3 py-1.5 flex">
-                    <LocaleLanguageSwitcher />
-                </div>
                 <Link
                     to="/settings"
                     onClick={onClose}
