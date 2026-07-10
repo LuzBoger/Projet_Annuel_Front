@@ -4,29 +4,7 @@ import { NotificationPreferencesResponse } from "@/types/profile/notificationPre
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { BookOpen, Flame, Clock, Trophy, Star } from "lucide-react";
-
-interface SwitchProps {
-    checked: boolean;
-    onChange: () => void;
-}
-
-function Switch({ checked, onChange }: SwitchProps) {
-    return (
-        <button
-            type="button"
-            onClick={onChange}
-            className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border border-gray-300 dark:border-gray-700 transition-colors duration-200 ease-in-out focus:outline-none items-center ${
-                checked ? "bg-brand-600 dark:bg-brand-500 border-transparent" : "bg-gray-100 dark:bg-gray-800"
-            }`}
-        >
-            <span
-                className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-                    checked ? "translate-x-5" : "translate-x-0.5"
-                }`}
-            />
-        </button>
-    );
-}
+import { Switch } from "@/components/ui/Switch";
 
 export function NotificationPreferences() {
     const {t} = useTranslation();
@@ -101,6 +79,7 @@ export function NotificationPreferences() {
                                 <Switch
                                     checked={choices[key]}
                                     onChange={() => handleToggle(key)}
+                                    className="border border-gray-300/40 dark:border-transparent"
                                 />
                             </div>
                         </div>
