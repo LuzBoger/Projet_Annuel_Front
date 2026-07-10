@@ -1,8 +1,9 @@
-import { Bell, Globe, Lock, Shield, User } from "lucide-react";
+import { Bell, Lock, Shield, User } from "lucide-react";
 import { MenuItem, SettingsTab } from "@/types/components/menutItem";
 import { useTranslation } from "react-i18next";
 import { NotificationToggle } from "@/components/ui/NotificationToggle";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
 import clsx from "clsx";
 
 interface SideBarProps {
@@ -17,9 +18,7 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
         { id: 'profile', label: t('settings.menu.profile'), icon: <User className="w-5 h-5" /> },
         { id: 'password', label: t('settings.menu.password'), icon: <Lock className="w-5 h-5" /> },
         { id: '2fa', label: t('settings.menu.2fa'), icon: <Shield className="w-5 h-5" /> },
-        { id: 'language', label: t('settings.menu.language'), icon: <Globe className="w-5 h-5" /> },
         { id: 'notifications', label: t('settings.menu.notifications'), icon: <Bell className="w-5 h-5" /> },
-
     ];
 
     return (
@@ -48,7 +47,11 @@ export function SideBar({ activeTab, onTabChange }: SideBarProps) {
         ))}
       </nav>
       <div className="bg-white dark:bg-gray-900 rounded-xl p-4 flex items-center justify-between border border-gray-200 dark:border-gray-800 shadow-sm">
-        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">{t('settings.menu.theme')}</span>
+        <span className="text-sm font-medium text-gray-650 dark:text-gray-400">{t('settings.language.title')}</span>
+        <LocaleLanguageSwitcher align="right" position="top" />
+      </div>
+      <div className="bg-white dark:bg-gray-900 rounded-xl p-4 flex items-center justify-between border border-gray-200 dark:border-gray-800 shadow-sm">
+        <span className="text-sm font-medium text-gray-650 dark:text-gray-400">{t('settings.menu.theme')}</span>
         <ThemeToggle />
       </div>
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-3 flex items-center justify-between">

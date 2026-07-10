@@ -60,4 +60,7 @@ export const TOPICS_PAGE_SIZE = 5;
 export const getUILanguages = (t: (key: string) => string) => [
     { code: "fr", label: t('settings.languages.french'), flag: "🇫🇷" },
     { code: "en", label: t('settings.languages.english'), flag: "🇬🇧" },
+    { code: "es", label: t('settings.languages.spanish'), flag: "🇪🇸" },
+    { code: "de", label: t('settings.languages.german'), flag: "🇩🇪" },
+    { code: "it", label: t('settings.languages.italian'), flag: "🇮🇹" },
 ];

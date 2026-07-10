@@ -79,11 +79,11 @@ export function Header() {
                                 {t("auth.register.title")}
                             </Button>
                         </Link>
-                        <LocaleLanguageSwitcher />
+                        <LocaleLanguageSwitcher align="right" position="bottom" />
                     </div>
 
                     <div className="flex md:hidden items-center gap-2">
-                        <LocaleLanguageSwitcher />
+                        <LocaleLanguageSwitcher align="right" position="bottom" />
                         <button
                             onClick={() => setMenuOpen(o => !o)}
                             className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"

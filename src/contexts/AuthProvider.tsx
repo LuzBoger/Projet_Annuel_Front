@@ -2,6 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { AuthContextType, AuthState } from "@/types/auth/context";
 import { authService } from "@/services/authService";
 import { AuthContext } from "@/contexts/AuthContext";
+import { userLanguageService } from "@/services/userLanguage";
+import i18n from "@/i18n/i18n";
 
 const initialAuthState: AuthState = {
     user: null,
@@ -25,6 +27,19 @@ export function AuthProvider({ children }: Readonly<{ children: React.ReactNode 
                     required2FA: false,
                     tempUserId: null,
                 });
+
+                if (!localStorage.getItem("language")) {
+                    userLanguageService.getUserNativeLanguages()
+                        .then((nativeLanguages) => {
+                            if (nativeLanguages && nativeLanguages.length > 0) {
+                                const firstNativeLanguage = nativeLanguages[0];
+                                i18n.changeLanguage(firstNativeLanguage.languageCode);
+                                localStorage.setItem("language", firstNativeLanguage.languageCode);
+                                localStorage.setItem("locale", firstNativeLanguage.languageCode);
+                            }
+                        })
+                        .catch(() => {});
+                }
             } else {
                 setState({ ...initialAuthState, isLoading: false });
             }
@@ -45,6 +60,19 @@ export function AuthProvider({ children }: Readonly<{ children: React.ReactNode 
                         required2FA: false,
                         tempUserId: null,
                     });
+
+                    if (!localStorage.getItem("language")) {
+                        userLanguageService.getUserNativeLanguages()
+                            .then((nativeLanguages) => {
+                                if (nativeLanguages && nativeLanguages.length > 0) {
+                                    const firstNativeLanguage = nativeLanguages[0];
+                                    i18n.changeLanguage(firstNativeLanguage.languageCode);
+                                    localStorage.setItem("language", firstNativeLanguage.languageCode);
+                                    localStorage.setItem("locale", firstNativeLanguage.languageCode);
+                                }
+                            })
+                            .catch(() => {});
+                    }
                 } else {
                     setState({ ...initialAuthState, isLoading: false });
                 }
