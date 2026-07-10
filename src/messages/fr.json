@@ -1074,7 +1074,10 @@
     },
     "languages": {
       "french": "Français",
-      "english": "Anglais"
+      "english": "Anglais",
+      "spanish": "Espagnol",
+      "german": "Allemand",
+      "italian": "Italien"
     },
     "password": {
       "title": "Mot de passe",
@@ -1095,10 +1098,15 @@
       "enabled": "Notifications activées",
       "disable": "Désactiver les notifications",
       "lessonReminders": "Rappel de leçon quotidien",
+      "lessonReminders_desc": "Recevez des rappels quotidiens pour pratiquer vos leçons.",
       "streakUrgency": "Alerte série en danger",
+      "streakUrgency_desc": "Soyez averti lorsque votre série d'apprentissage est en danger.",
       "inactivity": "Rappel d'inactivité",
+      "inactivity_desc": "Des encouragements lorsque vous ne vous êtes pas connecté depuis quelques jours.",
       "weeklyGoal": "Objectif hebdomadaire atteint",
-      "reviewReminders": "Rappel de révision"
+      "weeklyGoal_desc": "Célébrez et soyez averti lorsque vous atteignez votre objectif hebdomadaire.",
+      "reviewReminders": "Rappel de révision",
+      "reviewReminders_desc": "Recevez des rappels lorsque des leçons sont prêtes à être révisées."
     },
     "2fa": {
       "title": "Authentification à deux facteurs",

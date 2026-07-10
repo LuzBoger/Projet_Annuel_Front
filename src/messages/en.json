@@ -1069,7 +1069,10 @@
     },
     "languages": {
       "french": "French",
-      "english": "English"
+      "english": "English",
+      "spanish": "Spanish",
+      "german": "German",
+      "italian": "Italian"
     },
     "password": {
       "title": "Password",
@@ -1090,10 +1093,15 @@
       "enabled": "Notifications enabled",
       "disable": "Disable notifications",
       "lessonReminders": "Daily lesson reminder",
+      "lessonReminders_desc": "Receive daily reminders to practice your lessons.",
       "streakUrgency": "Streak at risk alert",
+      "streakUrgency_desc": "Get warned when your learning streak is about to break.",
       "inactivity": "Inactivity reminder",
+      "inactivity_desc": "Friendly nudges when you haven't logged in for a few days.",
       "weeklyGoal": "Weekly goal achieved",
-      "reviewReminders": "Review reminder"
+      "weeklyGoal_desc": "Celebrate and get notified when you reach your weekly goals.",
+      "reviewReminders": "Review reminder",
+      "reviewReminders_desc": "Get reminders when lessons are ready for review."
     },
     "2fa": {
       "title": "Two-factor authentication",

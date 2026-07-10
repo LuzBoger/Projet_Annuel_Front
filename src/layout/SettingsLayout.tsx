@@ -9,7 +9,6 @@ import { Sidebar } from "@/components/ui/Sidebar";
 import { UserSidebar } from "@/components/layout/UserSidebar";
 import { Button } from "@/components/ui/Button";
 import { LogoSk } from "@/assets/icons";
-import { LanguagesSettings } from "@/components/settings/languages/LanguagesSettings";
 import { NotificationPreferences } from "@/components/settings/notifications/NotificationPreferences";
 import { SideBar } from "@/components/settings/SideBar";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -88,7 +87,6 @@ export function SettingsLayout() {
                             {activeTab === 'profile' && <ProfileSettings />}
                             {activeTab === 'password' && <PasswordSettings />}
                             {activeTab === '2fa' && <TwoFactorSettings />}
-                            {activeTab === 'language' && <LanguagesSettings />}
                             {activeTab === 'theme' && <ThemeToggle />}
                             {activeTab === 'notifications' && <NotificationPreferences />}
                         </main>
