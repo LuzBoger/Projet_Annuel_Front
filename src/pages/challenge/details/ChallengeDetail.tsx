@@ -55,11 +55,17 @@ export default function ChallengeDetail() {
         const timePassed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
         setIsParticipants(false);
         await submitScore(challengeId, {score, timePassed});
+        await fetchChallenge(challengeId);
     }
 
-    const isChallengeExpired = challenge ? checkIfChallengeExpired(challenge.expiresAt) : false;
+    const isChallengeExpired = challenge
+        ? (challenge.challengeType === 'DUEL'
+            ? challenge.challengeStatus === 'EXPIRED'
+            : checkIfChallengeExpired(challenge.expiresAt))
+        : false;
     const timeLeft = challenge ? getTimeLeft(challenge.expiresAt) : { time: 0, unit: 'hours'};
     const alreadyPlayed = challenge?.participants.some(p => p.accountId === user?.id && p.hasCompleted) ?? false;
+    const isParticipantInDuel = challenge?.challengeType === 'DUEL' && (challenge.participants.some(p => p.accountId === user?.id));
 
     if (loading) {
     return (
@@ -154,7 +160,7 @@ export default function ChallengeDetail() {
           )}
 
           {challenge.challengeStatus === 'ACTIVE' && !isParticipants && !alreadyPlayed && !isChallengeExpired &&
-            (challenge.challengeType === 'PUBLIC' || challenge.challenger.id === user?.id || challenge.challenged?.id === user?.id) && (
+            (challenge.challengeType === 'PUBLIC' || challenge.challenger.id === user?.id || challenge.challenged?.id === user?.id || isParticipantInDuel) && (
             <Button
               variant="primary"
               size="lg"

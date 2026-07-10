@@ -737,10 +737,11 @@
       },
       "in-progress": "Your opponent is currently taking the challenge...",
       "not_played": "Your opponent has not yet taken this challenge.",
+      "not_played_self": "You haven't played yet.",
       "empty": "No participants yet."
     },
     "form": {
-      "title": "Challenge title",
+      "title": "Create a challenge",
       "placeholder": "E.g. Irregular verbs in English",
       "language": "Language",
       "language_placeholder": "Select a language",
@@ -841,6 +842,7 @@
     "ai": {
       "button": "Generate with AI",
       "title": "Generate exercises with AI",
+      "required_fields": "Please fill in the required fields (*) to generate exercises with AI.",
       "quota_exceeded_title": "AI Generation Limit Reached",
       "quota_exceeded_desc": "You have exhausted your monthly AI generation credits. Upgrade to a Premium plan to unlock your AI quota.",
       "upgrade": "Upgrade",

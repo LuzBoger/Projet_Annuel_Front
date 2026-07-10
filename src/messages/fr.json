@@ -742,10 +742,11 @@
       },
       "in-progress": "Votre adversaire réalise le défi actuellement...",
       "not_played": "Votre adversaire n'a pas encore effectué ce défi.",
+      "not_played_self": "Vous n'avez pas encore joué.",
       "empty": "Aucun participant pour l'instant."
     },
     "form": {
-      "title": "Titre du défi",
+      "title": "Création de défi",
       "placeholder": "Ex : Verbes irréguliers en anglais",
       "language": "Langue",
       "language_placeholder": "Sélectionnez une langue",
@@ -846,6 +847,7 @@
     "ai": {
       "button": "Générer avec l'IA",
       "title": "Générer les exercices par IA",
+      "required_fields": "Veuillez renseigner les champs obligatoires (*) pour générer les exercices par IA.",
       "quota_exceeded_title": "Limite de génération d'IA atteinte",
       "quota_exceeded_desc": "Vous avez épuisé vos crédits de génération mensuels. Passez à l'abonnement Premium pour débloquer votre quota d'IA.",
       "upgrade": "S'abonner",

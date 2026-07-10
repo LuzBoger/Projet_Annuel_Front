@@ -4,14 +4,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
 import { Select } from "@/components/ui/Select";
-import {
-    CHALLENGE_TYPES,
-    PUBLIC_LESSON_TYPES,
-    AI_CHALLENGE_MIN_ITEMS_DEFAULT,
-    AI_CHALLENGE_MAX_ITEMS_DEFAULT,
-    AI_CHALLENGE_MIN_ITEMS_EXTENDED,
-    AI_CHALLENGE_MAX_ITEMS_EXTENDED
-} from "@/constants/challenge";
+import {CHALLENGE_TYPES, PUBLIC_LESSON_TYPES, AI_CHALLENGE_MIN_ITEMS_DEFAULT, AI_CHALLENGE_MAX_ITEMS_DEFAULT,AI_CHALLENGE_MIN_ITEMS_EXTENDED,AI_CHALLENGE_MAX_ITEMS_EXTENDED} from "@/constants/challenge";
 import { useChallenge } from "@/hooks/useChallenge";
 import { lessonService } from "@/services/lessonService";
 import { topicService } from "@/services/topicService";
@@ -332,7 +325,7 @@ export function CreateChallengeForm() {
                                 <Select
                                     label={t('challenge.form.lesson')}
                                     value={selectedLessonId ?? ''}
-                                    options={lessons.map(lesson => ({ value: lesson.id, label: lesson.title }))}
+                                    options={lessons.filter(lesson => lesson.lessonType === 'QCM' || lesson.lessonType === 'FLASHCARD').map(less => ({ value: less.id, label: less.title }))}
                                     onChange={(value) => setValue('lessonId', value)}
                                     error={errors.lessonId?.message}
                                     placeholder={t('challenge.form.lesson_placeholder')}
@@ -394,16 +387,15 @@ export function CreateChallengeForm() {
 
             {challengeType === 'PUBLIC' && (
                 <>
-                    {/* Carte de génération IA */}
                     <div className="bg-brand-50/30 dark:bg-brand-950/10 border border-brand-200 dark:border-gray-800 rounded-2xl p-6 mb-5 space-y-4 shadow-sm">
                         <div className="flex items-center gap-2">
                             <Sparkles className="w-5 h-5 text-indigo-500" />
                             <div>
                                 <h3 className="text-sm font-bold text-gray-900 dark:text-white">
-                                    {t("challenge.ai.title") || "Générer les exercices par IA (Optionnel)"}
+                                    {t("challenge.ai.title")}
                                 </h3>
                                 <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">
-                                    Veuillez renseigner les champs obligatoires (*) pour générer les exercices par IA.
+                                    {t("challenge.ai.required_fields")}
                                 </p>
                             </div>
                         </div>
@@ -415,10 +407,10 @@ export function CreateChallengeForm() {
                                 </div>
                                 <div className="space-y-1">
                                     <p className="text-sm font-bold text-gray-900 dark:text-white">
-                                        {t("challenge.ai.quota_exceeded_title") || "Limite de génération d'IA atteinte"}
+                                        {t("challenge.ai.quota_exceeded_title")}
                                     </p>
                                     <p className="text-xs text-gray-500 dark:text-gray-400 max-w-sm mx-auto">
-                                        {t("challenge.ai.quota_exceeded_desc") || "Vous avez épuisé vos crédits de génération mensuels. Passez à l'abonnement Premium pour débloquer votre quota d'IA."}
+                                        {t("challenge.ai.quota_exceeded_desc")}
                                     </p>
                                 </div>
                                 <Button
@@ -427,7 +419,7 @@ export function CreateChallengeForm() {
                                     onClick={() => navigate("/plans")}
                                     className="cursor-pointer text-xs py-2 px-4 mx-auto block"
                                 >
-                                    {t("challenge.ai.upgrade") || "S'abonner"}
+                                    {t("challenge.ai.upgrade")}
                                 </Button>
                             </div>
                         ) : (
@@ -440,7 +432,7 @@ export function CreateChallengeForm() {
                                 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <Select
-                                        label={t("challenge.form.lesson_type") || "Type d'exercice"}
+                                        label={t("challenge.form.lesson_type")}
                                         value={lessonType}
                                         options={PUBLIC_LESSON_TYPES.map(type => ({
                                             value: type,
@@ -449,7 +441,7 @@ export function CreateChallengeForm() {
                                         onChange={(val) => handleLessonTypeChange(val as LessonType)}
                                     />
                                     <FormField
-                                        label={t("challenge.ai.items_count") || "Nombre de questions"}
+                                        label={t("challenge.ai.items_count")}
                                         type="number"
                                         min={minItems}
                                         max={maxItems}
@@ -467,7 +459,7 @@ export function CreateChallengeForm() {
 
                                 <div className="space-y-2">
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        {t("challenge.ai.prompt_label") || "Thème ou prompt de génération"} <span className="text-red-500">*</span>
+                                        {t("challenge.ai.prompt_label")} <span className="text-red-500">*</span>
                                     </label>
                                     <div className="flex gap-2 items-start">
                                         <div className="flex-1">
@@ -475,7 +467,7 @@ export function CreateChallengeForm() {
                                                 value={aiPrompt}
                                                 onChange={(e) => setAiPrompt(e.target.value)}
                                                 rows={2}
-                                                placeholder={t("challenge.ai.prompt_placeholder") || "Ex: Les expressions courantes au restaurant"}
+                                                placeholder={t("challenge.ai.prompt_placeholder")}
                                                 className={`w-full px-3 py-2 border rounded-lg text-sm text-gray-900 dark:text-white bg-white dark:bg-gray-950 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500
                                                     ${aiSubmitted && aiErrors.aiGenerationDescription ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200 dark:border-gray-800'}`}
                                             />
@@ -491,7 +483,7 @@ export function CreateChallengeForm() {
                                             disabled={aiLoading}
                                             className="px-6 h-[58px] cursor-pointer"
                                         >
-                                            {t("challenge.ai.generate") || "Générer"}
+                                            {t("challenge.ai.generate")}
                                         </Button>
                                     </div>
                                 </div>
@@ -502,7 +494,7 @@ export function CreateChallengeForm() {
                     <div className={"bg-white dark:bg-gray-800/60 rounded-2xl border border-gray-200 dark:border-gray-700/60 p-6"}>
                         <div className="flex justify-between items-center gap-4 mb-6">
                             <span className="text-sm font-medium text-gray-650 dark:text-gray-400">
-                                {t('challenge.create.public_details') || "Paramètres du défi public"}
+                                {t('challenge.create.public_details')}
                             </span>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">

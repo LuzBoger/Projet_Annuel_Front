@@ -72,7 +72,9 @@ export default function Ranking({ participants, progressChallenge }: RankingProp
                             </div>
                         ) : (
                             <span className="text-xs text-gray-400 shrink-0">
-                                {t("challenge.ranking.not_played")}
+                                {participant.accountId === user?.id
+                                    ? t("challenge.ranking.not_played_self")
+                                    : t("challenge.ranking.not_played")}
                             </span>
                         )}
                     </div>
