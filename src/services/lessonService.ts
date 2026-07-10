@@ -1,5 +1,5 @@
 import apiClient from "@/services/axios";
-import type { LessonRequest, LessonResponse, UserLessonProgressSummary, CompleteLessonRequest, CompleteLessonResponse, TopicLessonsResponse, AILessonGenerateRequest, AILessonModifyRequest } from "@/types/lesson/lesson";
+import type { LessonRequest, LessonResponse, UserLessonProgressSummary, CompleteLessonRequest, CompleteLessonResponse, TopicLessonsResponse, AILessonGenerateRequest } from "@/types/lesson/lesson";
 
 export const lessonService = {
 
@@ -61,10 +61,6 @@ export const lessonService = {
         return response.data;
     },
 
-    async modifyLessonWithAI(data: AILessonModifyRequest): Promise<LessonRequest> {
-        const response = await apiClient.post<LessonRequest>('/admin/lessons/modify', data);
-        return response.data;
-    },
 
     async uploadImage(file: File): Promise<{ message: string; pathFile: string }> {
         const formData = new FormData();

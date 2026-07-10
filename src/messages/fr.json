@@ -34,7 +34,8 @@
     "validate": "Valider",
     "actions": "Action",
     "accept": "Accepter",
-    "learn_more": "En savoir plus"
+    "learn_more": "En savoir plus",
+    "selectLanguage": "Sélectionner une langue"
   },
   "cookie_banner": {
     "title": "Ce site utilise des cookies",
@@ -369,7 +370,8 @@
         "active": "Actif",
         "locked": "Verrouillé",
         "suspended": "Suspendu",
-        "pending_verification": "En attente"
+        "pending_verification": "En attente",
+        "deleted": "Supprimé"
       }
     },
     "plans": {
@@ -527,8 +529,10 @@
           "questions_max": "Une leçon QCM ne peut pas contenir plus de 20 questions.",
           "matching_min": "Un exercice d'association doit contenir au moins 3 paires.",
           "matching_max": "Un exercice d'association ne peut pas contenir plus de 10 paires.",
-          "sorting_min": "Un exercice de tri doit contenir au moins 3 éléments.",
-          "sorting_max": "Un exercice de tri ne peut pas contenir plus de 10 éléments."
+          "sorting_min": "Une leçon de mise en ordre doit contenir au moins 3 phrases à trier.",
+          "sorting_max": "Une leçon de mise en ordre ne peut pas contenir plus de 10 phrases à trier.",
+          "sorting_min_words": "Chaque phrase doit contenir au moins 3 mots.",
+          "sorting_max_words": "Chaque phrase ne doit pas contenir plus de 10 mots."
         }
       },
       "flashcards": {
@@ -739,10 +743,11 @@
       },
       "in-progress": "Votre adversaire réalise le défi actuellement...",
       "not_played": "Votre adversaire n'a pas encore effectué ce défi.",
+      "not_played_self": "Vous n'avez pas encore joué.",
       "empty": "Aucun participant pour l'instant."
     },
     "form": {
-      "title": "Titre du défi",
+      "title": "Création de défi",
       "placeholder": "Ex : Verbes irréguliers en anglais",
       "language": "Langue",
       "language_placeholder": "Sélectionnez une langue",
@@ -843,6 +848,7 @@
     "ai": {
       "button": "Générer avec l'IA",
       "title": "Générer les exercices par IA",
+      "required_fields": "Veuillez renseigner les champs obligatoires (*) pour générer les exercices par IA.",
       "quota_exceeded_title": "Limite de génération d'IA atteinte",
       "quota_exceeded_desc": "Vous avez épuisé vos crédits de génération mensuels. Passez à l'abonnement Premium pour débloquer votre quota d'IA.",
       "upgrade": "S'abonner",
@@ -1068,7 +1074,10 @@
     },
     "languages": {
       "french": "Français",
-      "english": "Anglais"
+      "english": "Anglais",
+      "spanish": "Espagnol",
+      "german": "Allemand",
+      "italian": "Italien"
     },
     "password": {
       "title": "Mot de passe",
@@ -1089,10 +1098,15 @@
       "enabled": "Notifications activées",
       "disable": "Désactiver les notifications",
       "lessonReminders": "Rappel de leçon quotidien",
+      "lessonReminders_desc": "Recevez des rappels quotidiens pour pratiquer vos leçons.",
       "streakUrgency": "Alerte série en danger",
+      "streakUrgency_desc": "Soyez averti lorsque votre série d'apprentissage est en danger.",
       "inactivity": "Rappel d'inactivité",
+      "inactivity_desc": "Des encouragements lorsque vous ne vous êtes pas connecté depuis quelques jours.",
       "weeklyGoal": "Objectif hebdomadaire atteint",
-      "reviewReminders": "Rappel de révision"
+      "weeklyGoal_desc": "Célébrez et soyez averti lorsque vous atteignez votre objectif hebdomadaire.",
+      "reviewReminders": "Rappel de révision",
+      "reviewReminders_desc": "Recevez des rappels lorsque des leçons sont prêtes à être révisées."
     },
     "2fa": {
       "title": "Authentification à deux facteurs",
@@ -1345,9 +1359,9 @@
     }
   },
   "home": {
-    "page_title": "Skaldly - Maîtrise une nouvelle langue avec l'IA comme assistant personnel",
+    "page_title": "Skaldly - Apprendre une langue avec l'Intelligence Artificielle",
     "page_description": "Apprenez une nouvelle langue avec l'intelligence artificielle : flashcards, quiz et exercices interactifs. Un assistant IA pour progresser à votre rythme.",
-    "page_keywords": "apprendre une langue avec l'IA, apprendre une langue avec l'intelligence artificielle, application apprentissage langue, flashcards, quiz langue, répétition espacée, assistant IA langue, Skaldly",
+    "page_keywords": "apprendre une langue avec l'IA, apprendre une langue avec l'intelligence artificielle, application apprentissage langue, flashcards, quiz langue, assistant IA langue, Skaldly",
     "hero": {
       "title_start": "Apprenez une langue avec ",
       "title_highlight": "l'Intelligence Artificielle",
@@ -1600,7 +1614,8 @@
     "notif_approved": "Votre avis a été approuvé !",
     "notif_rejected": "Votre avis a été rejeté.",
     "notif_auto_rejected": "Votre avis a été automatiquement rejeté.",
-    "notif_banned": "Vous avez été banni de l'espace commentaire."
+    "notif_banned": "Vous avez été banni de l'espace commentaire.",
+    "view_details_title": "Détails de l'avis"
   },
   "ranking": {
     "title": "Classement",

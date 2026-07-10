@@ -143,12 +143,6 @@ export interface AILessonGenerateRequest {
     itemCount: number;
 }
 
-export interface AILessonModifyRequest {
-    lessonId: string;
-    prompt: string;
-    itemCount: number;
-    lesson: LessonRequest;
-}
 
 export type HelpType = "STRUCTURE_AND_RULE" | "ASSOCIATION_AND_MNEMONIC" | "TRAP_WARNING" | "USAGE_CONTEXT";
 

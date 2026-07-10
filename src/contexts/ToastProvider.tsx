@@ -25,7 +25,6 @@ export function ToastProvider({ children }: Readonly<{ children: React.ReactNode
         }
     }, [removeToast]);
 
-    // Écouter les évènements globaux (ex: depuis les intercepteurs Axios)
     useEffect(() => {
         const unsubscribe = globalEvents.on("SHOW_TOAST", (data: unknown) => {
             addToast(data as ToastData);

@@ -1,4 +1,5 @@
 import { ReviewActions } from "@/components/reviews/ReviewActions";
+import { ReviewDetailsModal } from "@/components/reviews/ReviewDetailsModal";
 import { ReviewTabs } from "@/components/reviews/ReviewTabs";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { ReviewStatusBadge } from "@/components/ui/reviews/ReviewStatusBadge";
@@ -10,6 +11,7 @@ import { getFiltersReviewByStatus, getReviewCountByStatus } from "@/lib/utils/re
 import { reviewService } from "@/services/reviewService";
 import { Tab } from "@/types/components/reviewsTabs";
 import { TableColumn } from "@/types/components/tableColumn";
+import { TopicReviewResponse } from "@/types/review/review";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -19,6 +21,7 @@ export default function ReviewManage() {
     const { reviews, loading, fetchAllReviews, approveReview, deleteReview } = useReview();
     const [tab, setTab] = useState<Tab>("PENDING");
     const [reviewToDelete, setReviewToDelete] = useState<string | null>(null);
+    const [selectedReview, setSelectedReview] = useState<TopicReviewResponse | null>(null);
 
     useEffect(() => {
         fetchAllReviews();
@@ -100,6 +103,7 @@ export default function ReviewManage() {
                                     onApprove={() => approveReview(review.id)}
                                     onReject={() => handleReject(review.id)}
                                     onDelete={() => setReviewToDelete(review.id)}
+                                    onView={() => setSelectedReview(review)}
                                 />
                             </td>
                         </>
@@ -115,6 +119,12 @@ export default function ReviewManage() {
                 onCancel={() => setReviewToDelete(null)}
                 isConfirming={loading}
                 confirmVariant="danger"
+            />
+
+            <ReviewDetailsModal
+                isOpen={!!selectedReview}
+                onClose={() => setSelectedReview(null)}
+                review={selectedReview}
             />
         </div>
     );

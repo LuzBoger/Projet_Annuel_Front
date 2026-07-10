@@ -34,7 +34,8 @@
     "validate": "Validate",
     "actions": "Action",
     "accept": "Accept",
-    "learn_more": "Learn more"
+    "learn_more": "Learn more",
+    "selectLanguage": "Select a language"
   },
   "cookie_banner": {
     "title": "This website uses cookies",
@@ -365,7 +366,8 @@
         "active": "Active",
         "locked": "Locked",
         "suspended": "Suspended",
-        "pending_verification": "Pending"
+        "pending_verification": "Pending",
+        "deleted": "Deleted"
       }
     },
     "plans": {
@@ -522,8 +524,10 @@
           "questions_max": "An MCQ lesson cannot contain more than 20 questions.",
           "matching_min": "A matching pairs exercise must contain at least 3 pairs.",
           "matching_max": "A matching pairs exercise cannot contain more than 10 pairs.",
-          "sorting_min": "A sorting exercise must contain at least 3 items.",
-          "sorting_max": "A sorting exercise cannot contain more than 10 items."
+          "sorting_min": "A sorting lesson must contain at least 3 sentences to sort.",
+          "sorting_max": "A sorting lesson cannot contain more than 10 sentences to sort.",
+          "sorting_min_words": "Each sentence must contain at least 3 words.",
+          "sorting_max_words": "Each sentence must not contain more than 10 words."
         }
       },
       "flashcards": {
@@ -548,13 +552,13 @@
         "add": "Add a pair"
       },
       "sorting": {
-        "items": "Items to sort (comma separated)",
-        "order": "Correct order (comma separated indices, e.g.: 0,1,2)",
-        "note": "Note: Items and order are managed by comma-separated strings in this simplified form.",
-        "add": "Add an item",
+        "items": "Words to sort",
+        "add": "Add a sentence",
         "move_up": "Move up",
         "move_down": "Move down",
-        "note_new": "The order in which you add the items defines the correct answer."
+        "sentence_label": "Sentence {{index}}",
+        "sentence_placeholder": "Enter the sentence in the correct order (e.g. My name is Arthur)",
+        "note_new": "The system will automatically split the sentence by spaces. The order of the entered words will define the correct answer."
       },
       "interactive": {
         "title": "Interactive Question",
@@ -734,10 +738,11 @@
       },
       "in-progress": "Your opponent is currently taking the challenge...",
       "not_played": "Your opponent has not yet taken this challenge.",
+      "not_played_self": "You haven't played yet.",
       "empty": "No participants yet."
     },
     "form": {
-      "title": "Challenge title",
+      "title": "Create a challenge",
       "placeholder": "E.g. Irregular verbs in English",
       "language": "Language",
       "language_placeholder": "Select a language",
@@ -838,6 +843,7 @@
     "ai": {
       "button": "Generate with AI",
       "title": "Generate exercises with AI",
+      "required_fields": "Please fill in the required fields (*) to generate exercises with AI.",
       "quota_exceeded_title": "AI Generation Limit Reached",
       "quota_exceeded_desc": "You have exhausted your monthly AI generation credits. Upgrade to a Premium plan to unlock your AI quota.",
       "upgrade": "Upgrade",
@@ -1063,7 +1069,10 @@
     },
     "languages": {
       "french": "French",
-      "english": "English"
+      "english": "English",
+      "spanish": "Spanish",
+      "german": "German",
+      "italian": "Italian"
     },
     "password": {
       "title": "Password",
@@ -1084,10 +1093,15 @@
       "enabled": "Notifications enabled",
       "disable": "Disable notifications",
       "lessonReminders": "Daily lesson reminder",
+      "lessonReminders_desc": "Receive daily reminders to practice your lessons.",
       "streakUrgency": "Streak at risk alert",
+      "streakUrgency_desc": "Get warned when your learning streak is about to break.",
       "inactivity": "Inactivity reminder",
+      "inactivity_desc": "Friendly nudges when you haven't logged in for a few days.",
       "weeklyGoal": "Weekly goal achieved",
-      "reviewReminders": "Review reminder"
+      "weeklyGoal_desc": "Celebrate and get notified when you reach your weekly goals.",
+      "reviewReminders": "Review reminder",
+      "reviewReminders_desc": "Get reminders when lessons are ready for review."
     },
     "2fa": {
       "title": "Two-factor authentication",
@@ -1340,9 +1354,9 @@
     }
   },
   "home": {
-    "page_title": "Skaldly - Master a New Language with AI as Your Personal Assistant",
+    "page_title": "Skaldly - Learn a Language with Artificial Intelligence",
     "page_description": "Learn a new language with artificial intelligence: flashcards, quizzes and interactive exercises. An AI assistant to help you progress at your own pace.",
-    "page_keywords": "learn a language with AI, learn a language with artificial intelligence, language learning app, flashcards, language quiz, spaced repetition, AI language assistant, Skaldly",
+    "page_keywords": "learn a language with AI, learn a language with artificial intelligence, language learning app, flashcards, language quiz, AI language assistant, Skaldly",
     "hero": {
       "title_start": "Learn a language with ",
       "title_highlight": "Artificial Intelligence",
@@ -1595,7 +1609,8 @@
     "notif_approved": "Your review has been approved!",
     "notif_rejected": "Your review has been rejected.",
     "notif_auto_rejected": "Your review was automatically rejected.",
-    "notif_banned": "You have been banned from the comment section."
+    "notif_banned": "You have been banned from the comment section.",
+    "view_details_title": "Review details"
   },
   "ranking": {
     "title": "Ranking",

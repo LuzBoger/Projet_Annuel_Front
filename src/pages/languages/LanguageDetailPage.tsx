@@ -78,7 +78,7 @@ export function LanguageDetailPage() {
             .catch((err) => {
                 console.error("Failed to load paginated topics", err);
             });
-    }, [languageId, page]);
+    }, [languageId, page, size]);
 
     const userLanguage: UserLanguageResponse | undefined = userLanguages.find((lang) => lang.languageId === language?.id);
     const isLearning = !!userLanguage;
@@ -177,7 +177,7 @@ export function LanguageDetailPage() {
                      </div>
                  ) : (
                      <div className="text-center py-12 bg-white dark:bg-gray-900 bg-opacity-50 rounded-2xl border border-gray-200 dark:border-gray-800 border-dashed">
-                         <p className="text-sm text-gray-500 dark:text-gray-400">{t('topics.empty_title') || "Aucun topic disponible"}</p>
+                         <p className="text-sm text-gray-500 dark:text-gray-400">{t('topics.empty_title')}</p>
                      </div>
                  )}
              </div>

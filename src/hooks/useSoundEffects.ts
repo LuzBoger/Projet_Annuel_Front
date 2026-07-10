@@ -17,7 +17,6 @@ export function useSoundEffects() {
     const incorrectAudio = useRef<HTMLAudioElement | null>(null);
     const successAudio = useRef<HTMLAudioElement | null>(null);
 
-    // Initialize audio objects lazily
     const getAudio = useCallback((type: SoundEffectType) => {
         if (type === 'correct') {
             if (!correctAudio.current) {
@@ -40,14 +39,12 @@ export function useSoundEffects() {
         return null;
     }, []);
 
-    // Sync state with localStorage and other components
     useEffect(() => {
         const handleSync = () => {
             const stored = localStorage.getItem('glotrush_muted');
             setIsMuted(stored === 'true');
         };
 
-        // Listen for changes from other tabs and other components in the same tab
         window.addEventListener('storage', handleSync);
         window.addEventListener(MUTE_EVENT, handleSync);
 
@@ -62,19 +59,17 @@ export function useSoundEffects() {
 
         const audio = getAudio(type);
         if (audio) {
-            audio.currentTime = 0; // Restart if already playing
+            audio.currentTime = 0; 
             audio.play().catch(error => {
-                // Ignore errors related to auto-play restrictions or missing files
                 console.warn(`Could not play sound ${type}:`, error);
             });
         }
-    }, [isMuted, getAudio]); // Dependency on isMuted is crucial to avoid stale closures
+    }, [isMuted, getAudio]); 
 
     const toggleMute = useCallback(() => {
         const newValue = !isMuted;
         localStorage.setItem('glotrush_muted', String(newValue));
         setIsMuted(newValue);
-        // Synchronize all instances in the same tab
         window.dispatchEvent(new Event(MUTE_EVENT));
     }, [isMuted]);
 

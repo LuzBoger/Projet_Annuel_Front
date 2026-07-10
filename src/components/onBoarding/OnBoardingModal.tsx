@@ -12,7 +12,7 @@ interface OnBoardingModalProps {
 }
 
 export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [languages, setLanguages] = useState<LanguageResponse[]>([]);
 
   const { step, nativeLanguageId, setNativeLanguageId, learningLanguageId, setLearningLanguageId, nextStep, previousStep, confirm, isLoading} = useOnBoarding(onClose);
@@ -26,6 +26,16 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
   useEffect(() => {
     languageService.getAllActiveLanguages().then(setLanguages);
   }, [t]);
+
+  const handleConfirm = async () => {
+    const nativeLanguage = languages.find((language) => language.id === nativeLanguageId);
+    if (nativeLanguage) {
+      i18n.changeLanguage(nativeLanguage.code);
+      localStorage.setItem("language", nativeLanguage.code);
+      localStorage.setItem("locale", nativeLanguage.code);
+    }
+    await confirm();
+  };
 
   return (
     <Modal
@@ -73,7 +83,7 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
 
       <div className="space-y-6">
         <Button
-          onClick={step === "native" ? nextStep : confirm}
+          onClick={step === "native" ? nextStep : handleConfirm}
           disabled={
             step === "native" ? !nativeLanguageId : !learningLanguageId || isLoading
           }
@@ -86,18 +96,11 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
 
         <div className="flex justify-center gap-2.5">
           <div
-            className={`h-2 w-8 rounded-full transition-all duration-300 ${
-              step === "native" 
-                ? "bg-brand-600 dark:bg-brand-400 w-12" 
-                : "bg-gray-200 dark:bg-gray-800"
-            }`}
+            className={`h-2 w-8 rounded-full transition-all duration-300 ${step === "native" ? "bg-brand-600 dark:bg-brand-400 w-12" : "bg-gray-200 dark:bg-gray-800"}`}
           />
           <div
             className={`h-2 w-8 rounded-full transition-all duration-300 ${
-              step === "learning" 
-                ? "bg-brand-600 dark:bg-brand-400 w-12" 
-                : "bg-gray-200 dark:bg-gray-800"
-            }`}
+              step === "learning" ? "bg-brand-600 dark:bg-brand-400 w-12" : "bg-gray-200 dark:bg-gray-800"}`}
           />
         </div>
       </div>

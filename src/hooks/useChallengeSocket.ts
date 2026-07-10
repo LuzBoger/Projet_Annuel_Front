@@ -18,7 +18,7 @@ export function useChallengeSocket(challengeId: string) {
             brokerURL: `${WS_BASE_URL}/api/ws`,
             reconnectDelay: 5000,
             onConnect: () => {
-                client.subscribe(`/topic/challenge/${challengeId}/progress`, (message) => {
+                client.subscribe(`/topic/challenge.${challengeId}.progress`, (message) => {
                     const progress: ChallengeProgress = JSON.parse(message.body);
                     setChallengeProgress((prev => {
                         const isProgressExisting = prev.findIndex(user => user.accountId === progress.accountId);
@@ -32,7 +32,7 @@ export function useChallengeSocket(challengeId: string) {
                     }));
                 });
 
-                client.subscribe(`/topic/challenge/${challengeId}/result`, (message) => {
+                client.subscribe(`/topic/challenge.${challengeId}.result`, (message) => {
                     const progress: ChallengeProgress = JSON.parse(message.body);
                     setChallengeProgress((prev) => {
                         const isProgressExisting = prev.findIndex(user => user.accountId === progress.accountId);
@@ -46,7 +46,7 @@ export function useChallengeSocket(challengeId: string) {
                     });         
                 });
 
-                client.subscribe(`/topic/challenge/${challengeId}/start`, () => {
+                client.subscribe(`/topic/challenge.${challengeId}.start`, () => {
                     setIsDuelStarted(true);
                 });
             }

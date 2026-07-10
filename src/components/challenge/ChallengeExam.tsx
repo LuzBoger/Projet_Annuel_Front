@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ChallengeFlashcard, ChallengeMatchingPair, ChallengeQcmQuestion, ChallengeSortingExercise, ExamItem, ChallengeInteractive } from "@/types/challenges/challenge";
+import { ChallengeFlashcard, ChallengeMatchingPair, ChallengeQcmQuestion, ChallengeSortingExercise, ExamItem, ChallengeInteractive, SubmitChallengeRequest } from "@/types/challenges/challenge";
 import { ExamFlashcardQuestion } from "@/components/topics/ExamFlashcardQuestion";
 import { ExamMatchingQuestion } from "@/components/topics/ExamMatchingQuestion";
 import { ExamQcmQuestion } from "@/components/topics/ExamQcmQuestion";
@@ -10,8 +10,6 @@ import { Button } from "@/components/ui/Button";
 import { UserPairAnswer, Tile } from "@/types/components/examMatching";
 import { shuffleArray } from "@/lib/utils/topic";
 import { LessonType } from "@/types/lesson/lesson";
-import { calculateScore } from "@/lib/utils/challenge";
-
 interface ChallengeExamProps {
     lessonType: LessonType;
     qcms: ChallengeQcmQuestion[];
@@ -19,7 +17,7 @@ interface ChallengeExamProps {
     matchingPairs: ChallengeMatchingPair[];
     sortingExercises: ChallengeSortingExercise[];
     interactives?: ChallengeInteractive[];
-    onFinish: (score: number) => void;
+    onFinish: (answers: Omit<SubmitChallengeRequest, 'timePassed'>) => void;
 }
 
 
@@ -27,27 +25,23 @@ export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sor
     const { t } = useTranslation();
 
     const items = useMemo<ExamItem[]>(() => {
+        let list: ExamItem[] = [];
         if (lessonType === 'QCM') {
-            return qcms.map(qcm => ({ type: 'QCM', data: qcm }));
-        }
-
-        if (lessonType === 'FLASHCARD') {   
-            return flashcards.map(flashCard => ({ type: 'FLASHCARD', data: flashCard }));
-        }
-        if (lessonType === 'SORTING_EXERCISE') {
-            return sortingExercises.map(sortingExercise => ({ type: 'SORTING', data: sortingExercise, shuffledIndices: shuffleArray(sortingExercise.items.map((_, i) => i)) }));
-        }
-        if (lessonType === 'MATCHING_PAIR' && matchingPairs.length > 0) {
+            list = qcms.map(qcm => ({ type: 'QCM', data: qcm }));
+        } else if (lessonType === 'FLASHCARD') {   
+            list = flashcards.map(flashCard => ({ type: 'FLASHCARD', data: flashCard }));
+        } else if (lessonType === 'SORTING_EXERCISE') {
+            list = sortingExercises.map(sortingExercise => ({ type: 'SORTING', data: sortingExercise, shuffledIndices: shuffleArray(sortingExercise.items.map((_, i) => i)) }));
+        } else if (lessonType === 'MATCHING_PAIR' && matchingPairs.length > 0) {
             const tiles: Tile[] = matchingPairs.flatMap((pair, index) => [
                 { id: `t1-${index}-${pair.id}`, text: pair.item1, originalPairId: pair.id },
                 { id: `t2-${index}-${pair.id}`, text: pair.item2, originalPairId: pair.id },
             ]);
-            return [{ type: 'MATCHING', data: matchingPairs, shuffledTiles: shuffleArray(tiles) }];
+            list = [{ type: 'MATCHING', data: matchingPairs, shuffledTiles: shuffleArray(tiles) }];
+        } else if (lessonType === 'INTERACTIVE') {
+            list = interactives.map(interactive => ({ type: 'INTERACTIVE', data: interactive }));
         }
-        if (lessonType === 'INTERACTIVE') {
-            return interactives.map(interactive => ({ type: 'INTERACTIVE', data: interactive }));
-        }
-        return [];
+        return shuffleArray(list);
     }, [lessonType, qcms, flashcards, matchingPairs, sortingExercises, interactives]);
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -88,7 +82,32 @@ export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sor
             <div className="p-10 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 text-center space-y-6">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('topics.exam_completed_title')}</h2>
                 <p className="text-gray-500 dark:text-gray-400">{t('topics.exam_completed_desc')}</p>
-                <Button size="lg" className="w-full py-4 text-lg" onClick={() => onFinish(calculateScore(items, qcmAnswers, flashcardAnswers, sortingAnswers, matchingAnswers))}>
+                <Button 
+                    size="lg" 
+                    className="w-full py-4 text-lg" 
+                    onClick={() => {
+                        const payload: Omit<SubmitChallengeRequest, 'timePassed'> = {};
+                        if (lessonType === 'QCM') {
+                            payload.qcmAnswers = Object.entries(qcmAnswers).map(([id, idx]) => ({ id, selectedOptionIndex: idx }));
+                        } else if (lessonType === 'FLASHCARD') {
+                            payload.flashcardAnswers = Object.entries(flashcardAnswers).map(([id, text]) => ({ id, userResponse: text }));
+                        } else if (lessonType === 'MATCHING_PAIR') {
+                            payload.matchingPairAnswers = matchingAnswers.map(ans => ({ id: ans.id, item1: ans.item1, item2: ans.item2 }));
+                        } else if (lessonType === 'SORTING_EXERCISE') {
+                            payload.sortingExerciseAnswers = Object.entries(sortingAnswers).map(([id, order]) => ({ id, userOrder: order }));
+                        } else if (lessonType === 'INTERACTIVE') {
+                            payload.interactiveAnswers = interactives.map(item => {
+                                const isQcm = item.systemType === 'MULTIPLE_CHOICE';
+                                return {
+                                    id: item.id,
+                                    selectedOptionIndex: isQcm ? (qcmAnswers[item.id] ?? null) : null,
+                                    userResponse: !isQcm ? (flashcardAnswers[item.id] ?? null) : null
+                                };
+                            });
+                        }
+                        onFinish(payload);
+                    }}
+                >
                     {t('topics.exam_submit')}
                 </Button>
             </div>

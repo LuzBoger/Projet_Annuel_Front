@@ -57,7 +57,6 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Learning metrics */}
                     <div>
                         <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-4">
                             {t('admin.stats.learningMetrics')}

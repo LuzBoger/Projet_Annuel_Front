@@ -7,12 +7,12 @@ import { QCMPlayer } from "@/components/lessons/players/QCMPlayer";
 import { MatchingPlayer } from "@/components/lessons/players/MatchingPlayer";
 import { SortingPlayer } from "@/components/lessons/players/SortingPlayer";
 import { InteractivePlayer } from "@/components/lessons/players/InteractivePlayer";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/Button";
 import { Check, IconFlashcard } from "@/assets/icons";
 import { BadgeTag } from "@/components/ui/BadgeTag";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
-import { useEffect } from "react";
+import { shuffleArray } from "@/lib/utils/topic";
 
 interface LessonSimulatorModalProps {
   isOpen: boolean;
@@ -32,6 +32,17 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
     }
   }, [isFinished, finalScore, playSuccess]);
 
+  const shuffledData = useMemo(() => {
+    if (!isOpen) return null;
+    return {
+      flashcards: data.flashcards ? shuffleArray(data.flashcards) : [],
+      questions: data.questions ? shuffleArray(data.questions) : [],
+      matchingPairs: data.matchingPairs ? shuffleArray(data.matchingPairs) : [],
+      sortingExercises: data.sortingExercises ? shuffleArray(data.sortingExercises) : [],
+      interactiveQuestions: data.interactiveQuestions ? shuffleArray(data.interactiveQuestions) : []
+    };
+  }, [data, isOpen, isFinished]);
+
   const resetSimulation = () => {
     setIsFinished(false);
     setFinalScore(0);
@@ -43,11 +54,13 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
   };
 
   const renderSimulator = () => {
+    if (!shuffledData) return null;
+
     switch (data.lessonType) {
       case LessonType.FLASHCARD:
         return (
           <FlashcardPlayer
-            flashcards={data.flashcards || []}
+            flashcards={shuffledData.flashcards}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);
@@ -57,7 +70,7 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
       case LessonType.QCM:
         return (
           <QCMPlayer
-            questions={data.questions || []}
+            questions={shuffledData.questions}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);
@@ -67,7 +80,7 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
       case LessonType.MATCHING_PAIR:
         return (
           <MatchingPlayer
-            pairs={data.matchingPairs || []}
+            pairs={shuffledData.matchingPairs}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);
@@ -77,10 +90,13 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
       case LessonType.SORTING_EXERCISE:
         return (
           <SortingPlayer
-            exercises={data.sortingItems ? [{
-              items: data.sortingItems.map(item => item.value || ''),
-              correctOrder: data.sortingItems.map((_, i) => i)
-            }] : []}
+            exercises={shuffledData.sortingExercises ? shuffledData.sortingExercises.map(ex => {
+              const items = (ex.sentence || "").trim().split(/\s+/);
+              return {
+                items,
+                correctOrder: items.map((_: string, idx: number) => idx)
+              };
+            }) : []}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);
@@ -90,7 +106,7 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
       case LessonType.INTERACTIVE:
         return (
           <InteractivePlayer
-            questions={data.interactiveQuestions || []}
+            questions={shuffledData.interactiveQuestions}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);

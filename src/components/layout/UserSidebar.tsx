@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { Sparkles, Brain, StarIcon, BookOpen, Eye, User, Cross, LogoSkaldly } from "@/assets/icons";
-import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
 import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/Button";
@@ -57,11 +56,18 @@ export function UserSidebar({ onClose, photoUrl, handleLogout }: UserSidebarProp
     }, []);
 
     useEffect(() => {
-        const onAdded = (...args: unknown[]) => setLearningLanguages(prev => [...prev, args[0] as UserLanguageResponse]);
+        const onAdded = (...args: unknown[]) => {
+            setLearningLanguages(prev => [...prev, args[0] as UserLanguageResponse]);
+            profileService.getMyProfile()
+                .then(profile => setActiveLanguage(profile.activeLanguage ?? null))
+                .catch(() => {});
+        };
         const onRemoved = (...args: unknown[]) => {
             const removedId = args[0] as string;
             setLearningLanguages(prev => prev.filter(l => l.languageId !== removedId));
-            setActiveLanguage(prev => prev?.id === removedId ? null : prev);
+            profileService.getMyProfile()
+                .then(profile => setActiveLanguage(profile.activeLanguage ?? null))
+                .catch(() => setActiveLanguage(prev => prev?.id === removedId ? null : prev));
         };
         globalEvents.on(EVENT_USER_LANGUAGE_ADDED, onAdded);
         globalEvents.on(EVENT_USER_LANGUAGE_REMOVED, onRemoved);
@@ -117,9 +123,6 @@ export function UserSidebar({ onClose, photoUrl, handleLogout }: UserSidebarProp
             </nav>
 
             <div className="border-t border-gray-100 dark:border-gray-800 p-3 flex flex-col gap-1">
-                <div className="px-3 py-1.5 flex">
-                    <LocaleLanguageSwitcher />
-                </div>
                 <Link
                     to="/profile"
                     onClick={onClose}

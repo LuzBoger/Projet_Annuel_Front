@@ -16,7 +16,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
     const { t } = useTranslation();
     const { fields, append, remove, swap } = useFieldArray({
         control,
-        name: "sortingItems"
+        name: "sortingExercises"
     });
 
     return (
@@ -27,7 +27,7 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                     type="button" 
                     variant="pill-green"
                     size="sm" 
-                    onClick={() => append({ value: "" })}
+                    onClick={() => append({ sentence: "" })}
                     className="gap-2"
                 >
                     <Plus className="w-4 h-4" />
@@ -35,9 +35,9 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
                 </Button>
             </div>
 
-            {errors.sortingItems?.message && (
+            {errors.sortingExercises?.message && (
                 <div className="p-3.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 text-xs font-semibold rounded-2xl border border-red-100 dark:border-red-900/50">
-                    {errors.sortingItems.message}
+                    {errors.sortingExercises.message}
                 </div>
             )}
 
@@ -74,10 +74,10 @@ export function SortingExerciseForm({ control, register, errors }: SortingExerci
 
                         <div className="flex-1 mt-6">
                             <FormField
-                                label=""
-                                {...register(`sortingItems.${index}.value`)}
-                                placeholder="ex: Je m'appelle..."
-                                error={(errors.sortingItems?.[index] as Record<string, FieldError | undefined>)?.value?.message}
+                                label={t('admin.lessons.sorting.sentence_label', { index: index + 1 })}
+                                {...register(`sortingExercises.${index}.sentence`)}
+                                placeholder={t('admin.lessons.sorting.sentence_placeholder')}
+                                error={(errors.sortingExercises?.[index] as Record<string, FieldError | undefined>)?.sentence?.message}
                                 required/>
                         </div>
                     </div>
