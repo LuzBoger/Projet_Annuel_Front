@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLesson } from "@/hooks/useLesson";
-import { LessonMistake, LessonResponse, LessonType } from "@/types/lesson/lesson";
+import { LessonMistake, LessonResponse, LessonType, InteractiveQuestion } from "@/types/lesson/lesson";
 import { ChevronLeft } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { FlashcardPlayer } from "@/components/lessons/players/FlashcardPlayer";
