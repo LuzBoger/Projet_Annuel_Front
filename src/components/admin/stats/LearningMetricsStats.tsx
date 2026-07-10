@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAdminStats } from '@/hooks/useAdminStats';
 import { StatsCard } from '@/components/ui/card/StatsCard';
-import { formatMinutes } from '@/lib/utils/date';
+import { formatSeconds } from '@/lib/utils/date';
 
 export function LearningMetricsStats() {
     const { t } = useTranslation();
@@ -36,7 +36,7 @@ export function LearningMetricsStats() {
             />
             <StatsCard
                 title={t('admin.stats.totalStudyTime')}
-                value={formatMinutes(learningMetrics.totalStudyTimeMinutes)}
+                value={formatSeconds(learningMetrics.totalStudyTimeMinutes)}
                 variant="blue"
             />
             {learningMetrics.mostPopularLanguage && (

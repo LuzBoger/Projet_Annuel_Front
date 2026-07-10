@@ -6,7 +6,7 @@ import { ProgressBar } from '@/components/ui/ProgressBar';
 import { Table } from '@/components/ui/Table';
 import { TableColumn } from '@/types/components/tableColumn';
 import { StatsCard } from '@/components/ui/card/StatsCard';
-import { formatMinutes, formatSeconds } from '@/lib/utils/date';
+import { formatSeconds } from '@/lib/utils/date';
 import { Avatar } from '@/components/ui/Avatar';
 import { getProfileImageUrl } from '@/lib/utils/image';
 
@@ -53,7 +53,7 @@ export function UserStatsDetailModal({ userId, onClose }: UserStatsDetailModalPr
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                         <StatsCard title={t('admin.stats.totalXP')} value={userDetail.totalXP.toLocaleString()} variant="amber" className="p-3" />
                         <StatsCard title={t('admin.stats.avgAccuracy')} value={`${userDetail.avgAccuracy}%`} variant="emerald" className="p-3" />
-                        <StatsCard title={t('admin.stats.studyTime')} value={formatMinutes(userDetail.totalStudyTimeMinutes)} variant="blue" className="p-3" />
+                        <StatsCard title={t('admin.stats.studyTime')} value={formatSeconds(userDetail.totalStudyTimeMinutes)} variant="blue" className="p-3" />
                         <StatsCard title={t('admin.stats.lessons')} value={userDetail.totalLessonsCompleted.toLocaleString()} variant="default" className="p-3" />
                         <StatsCard title={t('admin.stats.currentStreak')} value={`${userDetail.currentStreak}j`} variant="rose" className="p-3" />
                         <StatsCard title={t('admin.stats.longestStreak')} value={`${userDetail.longestStreak}j`} variant="default" className="p-3" />

@@ -366,7 +366,8 @@
         "active": "Active",
         "locked": "Locked",
         "suspended": "Suspended",
-        "pending_verification": "Pending"
+        "pending_verification": "Pending",
+        "deleted": "Deleted"
       }
     },
     "plans": {

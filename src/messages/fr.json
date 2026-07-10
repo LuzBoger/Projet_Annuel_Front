@@ -370,7 +370,8 @@
         "active": "Actif",
         "locked": "Verrouillé",
         "suspended": "Suspendu",
-        "pending_verification": "En attente"
+        "pending_verification": "En attente",
+        "deleted": "Supprimé"
       }
     },
     "plans": {

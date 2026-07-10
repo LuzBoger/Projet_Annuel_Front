@@ -10,7 +10,7 @@ import { UserStatsDetailModal } from '@/components/admin/stats/UserStatsDetailMo
 import { UserEditModal } from '@/components/admin/stats/UserEditModal';
 import { Edit, Eye } from '@/assets/icons';
 import { UserStatsResponse } from '@/types/admin/stats/stats';
-import { formatMinutes } from '@/lib/utils/date';
+import { formatSeconds } from '@/lib/utils/date';
 
 export function UserStatsTable() {
     const { t, i18n } = useTranslation();
@@ -95,7 +95,7 @@ export function UserStatsTable() {
                             {user.avgAccuracy}%
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 text-center">
-                            {formatMinutes(user.totalStudyTimeMinutes)}
+                            {formatSeconds(user.totalStudyTimeMinutes)}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 text-center">
                             {user.currentStreak}j
