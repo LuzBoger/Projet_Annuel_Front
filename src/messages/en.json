@@ -1597,7 +1597,8 @@
     "notif_approved": "Your review has been approved!",
     "notif_rejected": "Your review has been rejected.",
     "notif_auto_rejected": "Your review was automatically rejected.",
-    "notif_banned": "You have been banned from the comment section."
+    "notif_banned": "You have been banned from the comment section.",
+    "view_details_title": "Review details"
   },
   "ranking": {
     "title": "Ranking",
