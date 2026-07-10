@@ -107,7 +107,7 @@ export function CreateChallengeForm() {
             questions: [{ question: '', options: ['', '', '', ''], correctOptionIndex: 0, explanation: '' }],
             flashcards: [{ front: '', back: '', frontLanguage: 'fr', backLanguage: 'en' }],
             matchingPairs: [{ item1: '', item2: '' }],
-            sortingItems: [{ value: '' }, { value: '' }],
+            sortingExercises: [],
             interactiveQuestions: [{
                 questionText: "",
                 imagePaths: [],
@@ -157,8 +157,14 @@ export function CreateChallengeForm() {
                 qcm: lessonType === 'QCM' ? lessonData.questions : undefined,
                 flashcards: lessonType === 'FLASHCARD' ? lessonData.flashcards : undefined,
                 matchingPairs: lessonType === 'MATCHING_PAIR' ? lessonData.matchingPairs : undefined,
-                sortingExercises: lessonType === 'SORTING_EXERCISE' && lessonData.sortingItems 
-                    ? [{ items: lessonData.sortingItems.map(i => i.value), correctOrder: lessonData.sortingItems.map((_, idx) => idx) }]
+                sortingExercises: lessonType === 'SORTING_EXERCISE' && lessonData.sortingExercises 
+                    ? lessonData.sortingExercises.map(ex => {
+                        const items = (ex.sentence || "").trim().split(/\s+/);
+                        return {
+                            items,
+                            correctOrder: items.map((_: string, idx: number) => idx)
+                        };
+                    })
                     : undefined,
                 interactives: lessonType === 'INTERACTIVE' ? lessonData.interactiveQuestions : undefined,
             });
@@ -233,9 +239,10 @@ export function CreateChallengeForm() {
             } else if (lessonType === 'MATCHING_PAIR' && response.matchingPairs) {
                 setLessonValue('matchingPairs', response.matchingPairs);
             } else if (lessonType === 'SORTING_EXERCISE' && response.sortingExercises && response.sortingExercises.length > 0) {
-                const firstExercise = response.sortingExercises[0];
-                const formattedSortingItems = firstExercise.items.map(value => ({ value }));
-                setLessonValue('sortingItems', formattedSortingItems);
+                const formattedSortingExercises = response.sortingExercises.map(ex => ({
+                    sentence: ex.items.join(" ")
+                }));
+                setLessonValue('sortingExercises', formattedSortingExercises);
             } else if (lessonType === 'INTERACTIVE' && response.interactives) {
                 setLessonValue('interactiveQuestions', response.interactives);
             }

@@ -77,10 +77,13 @@ export function LessonSimulatorModal({ isOpen, onClose, data }: LessonSimulatorM
       case LessonType.SORTING_EXERCISE:
         return (
           <SortingPlayer
-            exercises={data.sortingItems ? [{
-              items: data.sortingItems.map(item => item.value || ''),
-              correctOrder: data.sortingItems.map((_, i) => i)
-            }] : []}
+            exercises={data.sortingExercises ? data.sortingExercises.map(ex => {
+              const items = (ex.sentence || "").trim().split(/\s+/);
+              return {
+                items,
+                correctOrder: items.map((_: string, idx: number) => idx)
+              };
+            }) : []}
             onFinish={(score) => {
               setFinalScore(score);
               setIsFinished(true);

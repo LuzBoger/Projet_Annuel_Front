@@ -522,8 +522,10 @@
           "questions_max": "An MCQ lesson cannot contain more than 20 questions.",
           "matching_min": "A matching pairs exercise must contain at least 3 pairs.",
           "matching_max": "A matching pairs exercise cannot contain more than 10 pairs.",
-          "sorting_min": "A sorting exercise must contain at least 3 items.",
-          "sorting_max": "A sorting exercise cannot contain more than 10 items."
+          "sorting_min": "A sorting lesson must contain at least 3 sentences to sort.",
+          "sorting_max": "A sorting lesson cannot contain more than 10 sentences to sort.",
+          "sorting_min_words": "Each sentence must contain at least 3 words.",
+          "sorting_max_words": "Each sentence must not contain more than 10 words."
         }
       },
       "flashcards": {
@@ -548,13 +550,13 @@
         "add": "Add a pair"
       },
       "sorting": {
-        "items": "Items to sort (comma separated)",
-        "order": "Correct order (comma separated indices, e.g.: 0,1,2)",
-        "note": "Note: Items and order are managed by comma-separated strings in this simplified form.",
-        "add": "Add an item",
+        "items": "Words to sort",
+        "add": "Add a sentence",
         "move_up": "Move up",
         "move_down": "Move down",
-        "note_new": "The order in which you add the items defines the correct answer."
+        "sentence_label": "Sentence {{index}}",
+        "sentence_placeholder": "Enter the sentence in the correct order (e.g. My name is Arthur)",
+        "note_new": "The system will automatically split the sentence by spaces. The order of the entered words will define the correct answer."
       },
       "interactive": {
         "title": "Interactive Question",

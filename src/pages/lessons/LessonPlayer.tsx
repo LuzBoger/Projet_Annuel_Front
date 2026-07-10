@@ -146,7 +146,7 @@ export default function LessonPlayer() {
                             <SortingPlayer lessonId={lesson.id} exercises={lesson.sortingExercise || []} onFinish={handleLessonComplete} />
                         )}
                         {lesson.lessonType === LessonType.INTERACTIVE && (
-                            <InteractivePlayer lessonId={lesson.id} questions={lesson.interactiveQuestions || []} onFinish={handleLessonComplete} />
+                            <InteractivePlayer lessonId={lesson.id} questions={lesson.interactiveQuestions || (lesson.questions as unknown as InteractiveQuestion[]) || []} onFinish={handleLessonComplete} />
                         )}
                     </div>
                 </main>

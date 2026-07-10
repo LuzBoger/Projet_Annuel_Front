@@ -46,7 +46,7 @@ export default function LessonForm() {
         aiItemCount?: boolean;
     }>({});
 
-    const { loading: lessonLoading, createLesson, updateLesson, fetchLessonById, generateLessonWithAI, modifyLessonWithAI } = useLesson();
+    const { loading: lessonLoading, createLesson, updateLesson, fetchLessonById, generateLessonWithAI } = useLesson();
     const { topics, fetchAllTopics } = useTopic();
     const currentTopic = topics.find(t => t.id === topicId);
 
@@ -63,7 +63,8 @@ export default function LessonForm() {
             flashcards: [],
             questions: [],
             matchingPairs: [],
-            sortingItems: [{ value: "" }, { value: "" }]
+            sortingExercises: [],
+            interactiveQuestions: []
         }
     });
 
@@ -71,8 +72,29 @@ export default function LessonForm() {
     const isActive = useWatch({ control, name: "isActive" });
     const formData = useWatch({ control });
 
+    const hasExistingData = (() => {
+        if (lessonType === LessonType.FLASHCARD) {
+            return !!formData.flashcards && formData.flashcards.length > 0;
+        }
+        if (lessonType === LessonType.QCM) {
+            return !!formData.questions && formData.questions.length > 0;
+        }
+        if (lessonType === LessonType.MATCHING_PAIR) {
+            return !!formData.matchingPairs && formData.matchingPairs.length > 0;
+        }
+        if (lessonType === LessonType.SORTING_EXERCISE) {
+            return !!formData.sortingExercises && formData.sortingExercises.length > 0 && formData.sortingExercises.some(ex => ex?.sentence && ex.sentence.trim() !== "");
+        }
+        if (lessonType === LessonType.INTERACTIVE) {
+            return !!formData.interactiveQuestions && formData.interactiveQuestions.length > 0;
+        }
+        return false;
+    })();
+
+    const isGenerateMode = !isEdit || !hasExistingData || lessonType === LessonType.SORTING_EXERCISE;
+
     useEffect(() => {
-        const schema = aiGenerationSchema(t, lessonType as LessonType, isEdit);
+        const schema = aiGenerationSchema(t, lessonType as LessonType, !isGenerateMode);
         schema.validate({ aiGenerationDescription, aiItemCount }, { abortEarly: false })
             .then(() => {
                 setAiErrors({});
@@ -88,7 +110,7 @@ export default function LessonForm() {
                     setAiErrors(newErrors);
                 }
             });
-    }, [aiGenerationDescription, aiItemCount, lessonType, isEdit, t]);
+    }, [aiGenerationDescription, aiItemCount, lessonType, isGenerateMode, t]);
 
     const isFlashcardOrQcm = lessonType === LessonType.FLASHCARD || lessonType === LessonType.QCM;
     const minItems = isFlashcardOrQcm ? 5 : 3;
@@ -97,7 +119,7 @@ export default function LessonForm() {
     const flashcardsCount = formData.flashcards?.length;
     const questionsCount = formData.questions?.length;
     const matchingPairsCount = formData.matchingPairs?.length;
-    const sortingItemsCount = formData.sortingItems?.length;
+    const sortingExercisesCount = formData.sortingExercises?.length;
     const interactiveQuestionsCount = formData.interactiveQuestions?.length;
 
     const [prevValues, setPrevValues] = useState({
@@ -105,7 +127,7 @@ export default function LessonForm() {
         flashcardsCount,
         questionsCount,
         matchingPairsCount,
-        sortingItemsCount,
+        sortingExercisesCount,
         interactiveQuestionsCount
     });
 
@@ -114,7 +136,7 @@ export default function LessonForm() {
         flashcardsCount !== prevValues.flashcardsCount ||
         questionsCount !== prevValues.questionsCount ||
         matchingPairsCount !== prevValues.matchingPairsCount ||
-        sortingItemsCount !== prevValues.sortingItemsCount ||
+        sortingExercisesCount !== prevValues.sortingExercisesCount ||
         interactiveQuestionsCount !== prevValues.interactiveQuestionsCount
     ) {
         setPrevValues({
@@ -122,7 +144,7 @@ export default function LessonForm() {
             flashcardsCount,
             questionsCount,
             matchingPairsCount,
-            sortingItemsCount,
+            sortingExercisesCount,
             interactiveQuestionsCount
         });
 
@@ -134,7 +156,7 @@ export default function LessonForm() {
         } else if (lessonType === LessonType.MATCHING_PAIR) {
             newCount = matchingPairsCount || undefined;
         } else if (lessonType === LessonType.SORTING_EXERCISE) {
-            newCount = sortingItemsCount || undefined;
+            newCount = sortingExercisesCount || undefined;
         } else if (lessonType === LessonType.INTERACTIVE) {
             newCount = interactiveQuestionsCount || undefined;
         }
@@ -153,9 +175,11 @@ export default function LessonForm() {
                 if (lesson) {
                     const initialData: Partial<LessonFormData> = { ...lesson };
                     if (lesson.lessonType === LessonType.SORTING_EXERCISE && lesson.sortingExercise && lesson.sortingExercise.length > 0) {
-                        initialData.sortingItems = lesson.sortingExercise[0].items.map((item: string) => ({ value: item }));
+                        initialData.sortingExercises = lesson.sortingExercise.map((ex) => ({
+                            sentence: ex.items.join(" ")
+                        }));
                     } else if (lesson.lessonType === LessonType.INTERACTIVE) {
-                        initialData.interactiveQuestions = lesson.interactiveQuestions;
+                        initialData.interactiveQuestions = lesson.interactiveQuestions || (lesson.questions as unknown as InteractiveQuestion[]);
                     }
                     reset(initialData);
                 }
@@ -176,7 +200,7 @@ export default function LessonForm() {
 
         setAiTouched({ aiGenerationDescription: true, aiItemCount: true });
 
-        const schema = aiGenerationSchema(t, lessonType as LessonType, isEdit);
+        const schema = aiGenerationSchema(t, lessonType as LessonType, !isGenerateMode);
         try {
             await schema.validate({ aiGenerationDescription, aiItemCount }, { abortEarly: false });
         } catch (err: unknown) {
@@ -195,51 +219,14 @@ export default function LessonForm() {
         setIsGeneratingLesson(true);
 
         try {
-            let generatedLessonData;
+            const generationRequest: AILessonGenerateRequest = {
+                lessonType: lessonType as LessonType,
+                topicId: topicId,
+                description: aiGenerationDescription,
+                itemCount: aiItemCount!
+            };
 
-            if (isEdit && lessonId) {
-                const currentLessonRequest: LessonRequest = {
-                    topicId,
-                    title: formData.title || "",
-                    description: formData.description || "",
-                    orderIndex: formData.orderIndex || 0,
-                    isActive: formData.isActive ?? true,
-                    lessonType: lessonType as LessonType,
-                };
-
-                if (lessonType === LessonType.FLASHCARD) {
-                    currentLessonRequest.flashcards = formData.flashcards as FlashcardRequest[];
-                } else if (lessonType === LessonType.QCM) {
-                    currentLessonRequest.questions = formData.questions as QcmQuestionRequest[];
-                } else if (lessonType === LessonType.MATCHING_PAIR) {
-                    currentLessonRequest.matchingPairs = formData.matchingPairs as MatchingPairRequest[];
-                } else if (lessonType === LessonType.SORTING_EXERCISE && formData.sortingItems) {
-                    currentLessonRequest.sortingExercise = [{
-                        items: formData.sortingItems.map((item) => item?.value || ""),
-                        correctOrder: formData.sortingItems.map((_, idx) => idx)
-                    }];
-                } else if (lessonType === LessonType.INTERACTIVE) {
-                    currentLessonRequest.interactiveQuestions = formData.interactiveQuestions as InteractiveQuestion[];
-                }
-
-                const modificationRequest = {
-                    lessonId,
-                    prompt: aiGenerationDescription,
-                    itemCount: aiItemCount!,
-                    lesson: currentLessonRequest
-                };
-
-                generatedLessonData = await modifyLessonWithAI(modificationRequest);
-            } else {
-                const generationRequest: AILessonGenerateRequest = {
-                    lessonType: lessonType,
-                    topicId: topicId,
-                    description: aiGenerationDescription,
-                    itemCount: aiItemCount!
-                };
-
-                generatedLessonData = await generateLessonWithAI(generationRequest);
-            }
+            const generatedLessonData = await generateLessonWithAI(generationRequest);
 
             if (generatedLessonData) {
                 setValue("title", generatedLessonData.title || "");
@@ -252,14 +239,16 @@ export default function LessonForm() {
                 } else if (generatedLessonData.lessonType === LessonType.MATCHING_PAIR) {
                     setValue("matchingPairs", generatedLessonData.matchingPairs || []);
                 } else if (generatedLessonData.lessonType === LessonType.SORTING_EXERCISE && generatedLessonData.sortingExercise && generatedLessonData.sortingExercise.length > 0) {
-                    const sortedItems = generatedLessonData.sortingExercise[0].items.map((item: string) => ({ value: item }));
-                    setValue("sortingItems", sortedItems);
+                    const sentences = generatedLessonData.sortingExercise.map((ex) => ({
+                        sentence: ex.items.join(" ")
+                    }));
+                    setValue("sortingExercises", sentences);
                 } else if (generatedLessonData.lessonType === LessonType.INTERACTIVE) {
-                    setValue("interactiveQuestions", generatedLessonData.questions || []);
+                    setValue("interactiveQuestions", generatedLessonData.interactiveQuestions || []);
                 }
             }
         } catch (error: unknown) {
-            console.error("AI Lesson generation/modification failed", error);
+            console.error("AI Lesson generation failed", error);
             const axiosError = error as { response?: { status?: number } };
             if (axiosError?.response?.status === 429) {
                 setIsQuotaModalOpen(true);
@@ -284,11 +273,14 @@ export default function LessonForm() {
         if (data.lessonType === LessonType.FLASHCARD) request.flashcards = data.flashcards;
         else if (data.lessonType === LessonType.QCM) request.questions = data.questions;
         else if (data.lessonType === LessonType.MATCHING_PAIR) request.matchingPairs = data.matchingPairs;
-        else if (data.lessonType === LessonType.SORTING_EXERCISE && data.sortingItems) {
-            request.sortingExercise = [{
-                items: data.sortingItems.map((i) => i.value),
-                correctOrder: data.sortingItems.map((_, idx) => idx)
-            }];
+        else if (data.lessonType === LessonType.SORTING_EXERCISE && data.sortingExercises) {
+            request.sortingExercise = data.sortingExercises.map((ex) => {
+                const items = (ex.sentence || "").trim().split(/\s+/);
+                return {
+                    items,
+                    correctOrder: items.map((_: string, idx: number) => idx)
+                };
+            });
         } else if (data.lessonType === LessonType.INTERACTIVE) {
             request.interactiveQuestions = data.interactiveQuestions as InteractiveQuestion[];
         }
@@ -356,10 +348,10 @@ export default function LessonForm() {
                                 </div>
                                 <div>
                                     <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                                        {isEdit ? t('admin.lessons.form.ai_generate.title_modify') : t('admin.lessons.form.ai_generate.title')}
+                                        {isGenerateMode ? t('admin.lessons.form.ai_generate.title') : t('admin.lessons.form.ai_generate.title_modify')}
                                     </h2>
                                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                                        {isEdit ? t('admin.lessons.form.ai_generate.subtitle_modify') : t('admin.lessons.form.ai_generate.subtitle')}
+                                        {isGenerateMode ? t('admin.lessons.form.ai_generate.subtitle') : t('admin.lessons.form.ai_generate.subtitle_modify')}
                                     </p>
                                 </div>
                             </div>
@@ -405,7 +397,7 @@ export default function LessonForm() {
                                          </div>
                                          <div className="md:col-span-2">
                                              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
-                                                 {isEdit ? t('admin.lessons.form.ai_generate.description_label_modify') : t('admin.lessons.form.ai_generate.description_label')}
+                                                 {isGenerateMode ? t('admin.lessons.form.ai_generate.description_label') : t('admin.lessons.form.ai_generate.description_label_modify')}
                                              </label>
                                              <TextArea
                                                  value={aiGenerationDescription}
@@ -414,7 +406,7 @@ export default function LessonForm() {
                                                      setAiTouched((prev) => ({ ...prev, aiGenerationDescription: true }));
                                                  }}
                                                  onBlur={() => setAiTouched((prev) => ({ ...prev, aiGenerationDescription: true }))}
-                                                 placeholder={isEdit ? t('admin.lessons.form.ai_generate.description_placeholder_modify') : t('admin.lessons.form.ai_generate.description_placeholder')}
+                                                 placeholder={isGenerateMode ? t('admin.lessons.form.ai_generate.description_placeholder') : t('admin.lessons.form.ai_generate.description_placeholder_modify')}
                                                  className="min-h-[160px] bg-white/50 dark:bg-gray-900/50 rounded-2xl"
                                                  disabled={isGeneratingLesson}
                                                  error={aiTouched.aiGenerationDescription ? aiErrors.aiGenerationDescription : undefined}
@@ -434,7 +426,7 @@ export default function LessonForm() {
                                         className="shadow-md shadow-brand-500/20"
                                     >
                                         <Sparkles className="w-4 h-4 mr-2" />
-                                        {isEdit ? t('admin.lessons.form.ai_generate.trigger_btn_modify') : t('admin.lessons.form.ai_generate.trigger_btn')}
+                                        {isGenerateMode ? t('admin.lessons.form.ai_generate.trigger_btn') : t('admin.lessons.form.ai_generate.trigger_btn_modify')}
                                     </Button>
                                 </div>
                             </div>
@@ -558,7 +550,7 @@ export default function LessonForm() {
                     </div>
 
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
-                        {isEdit ? t('admin.lessons.form.ai_generate.generating_title_modify') : t('admin.lessons.form.ai_generate.generating_title')}
+                        {isGenerateMode ? t('admin.lessons.form.ai_generate.generating_title') : t('admin.lessons.form.ai_generate.generating_title_modify')}
                     </h3>
 
                     <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs">

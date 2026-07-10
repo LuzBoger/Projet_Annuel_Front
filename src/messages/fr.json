@@ -527,8 +527,10 @@
           "questions_max": "Une leçon QCM ne peut pas contenir plus de 20 questions.",
           "matching_min": "Un exercice d'association doit contenir au moins 3 paires.",
           "matching_max": "Un exercice d'association ne peut pas contenir plus de 10 paires.",
-          "sorting_min": "Un exercice de tri doit contenir au moins 3 éléments.",
-          "sorting_max": "Un exercice de tri ne peut pas contenir plus de 10 éléments."
+          "sorting_min": "Une leçon de mise en ordre doit contenir au moins 3 phrases à trier.",
+          "sorting_max": "Une leçon de mise en ordre ne peut pas contenir plus de 10 phrases à trier.",
+          "sorting_min_words": "Chaque phrase doit contenir au moins 3 mots.",
+          "sorting_max_words": "Chaque phrase ne doit pas contenir plus de 10 mots."
         }
       },
       "flashcards": {

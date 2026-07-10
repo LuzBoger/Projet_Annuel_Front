@@ -50,11 +50,21 @@ export const lessonSchema = (t: (key: string) => string) => yup.object({
     otherwise: (schema) => schema.notRequired(),
   }),
 
-  sortingItems: yup.array().when('lessonType', {
+  sortingExercises: yup.array().when('lessonType', {
     is: LessonType.SORTING_EXERCISE,
     then: (schema) => schema.of(
       yup.object({
-        value: yup.string().required(t('common.required'))
+        sentence: yup.string().required(t('common.required'))
+          .test('min-words', t('admin.lessons.form.validation.sorting_min_words'), (value) => {
+              if (!value) return false;
+              const words = value.trim().split(/\s+/);
+              return words.length >= 3;
+          })
+          .test('max-words', t('admin.lessons.form.validation.sorting_max_words'), (value) => {
+              if (!value) return false;
+              const words = value.trim().split(/\s+/);
+              return words.length <= 10;
+          })
       })
     )
     .min(3, t('admin.lessons.form.validation.sorting_min'))

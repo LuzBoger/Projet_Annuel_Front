@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { lessonService } from '@/services/lessonService';
-import type { LessonResponse, LessonRequest, CompleteLessonRequest, AILessonGenerateRequest, AILessonModifyRequest } from '@/types/lesson/lesson';
+import type { LessonResponse, LessonRequest, CompleteLessonRequest, AILessonGenerateRequest } from '@/types/lesson/lesson';
 import { useToast } from '@/hooks/useToast';
 import { useTranslation } from 'react-i18next';
 
@@ -212,29 +212,6 @@ export function useLesson() {
         }
     }, [addToast, t]);
 
-    const modifyLessonWithAI = useCallback(async (modifyRequestData: AILessonModifyRequest) => {
-        try {
-            setLoading(true);
-            setError(null);
-            const modifiedLessonData = await lessonService.modifyLessonWithAI(modifyRequestData);
-            addToast({ type: 'success', message: t('admin.lessons.form.ai_generate.success_modify') });
-            return modifiedLessonData;
-        } catch (error: unknown) {
-            console.error('Error modifying lesson with AI:', error);
-            const axiosResponseError = error as { response?: { status?: number; data?: { message?: string } } };
-            if (axiosResponseError.response?.status !== 429) {
-                const resolvedErrorMessage = axiosResponseError.response?.data?.message || t('admin.lessons.form.ai_generate.error_modify');
-                setError(resolvedErrorMessage);
-                addToast({ type: 'error', message: resolvedErrorMessage });
-            } else {
-                setError('QUOTA_EXCEEDED');
-            }
-            throw error;
-        } finally {
-            setLoading(false);
-        }
-    }, [addToast, t]);
-
     return {
         lessons,
         loading,
@@ -249,7 +226,6 @@ export function useLesson() {
         deleteLesson,
         startLesson,
         completeLesson,
-        generateLessonWithAI,
-        modifyLessonWithAI
+        generateLessonWithAI
     };
 }
