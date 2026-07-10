@@ -1,7 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { User, StarIcon, BookOpen, Brain, Eye, Sparkles, Cross, LogoSkaldly } from "@/assets/icons";
-import { LocaleLanguageSwitcher } from "@/components/layout/LocaleLanguageSwitcher";
 import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/Button";
