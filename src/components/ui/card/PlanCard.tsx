@@ -27,12 +27,12 @@ export function PlanCard({ plan, isCurrentUserPlan = false, hasActiveSubscriptio
         `}>
 
             {isCurrentUserPlan ? (
-                <BadgeTag color="brand" className="absolute -top-3 left-1/2 -translate-x-1/2 shadow-md whitespace-nowrap bg-white dark:bg-gray-800">
+                <BadgeTag color="brand" className="absolute -top-3 left-1/2 -translate-x-1/2 shadow-md whitespace-nowrap bg-white dark:bg-gray-800 !px-4 !py-1.5">
                     <Check className="w-3 h-3" />
                     {t("common.active")}
                 </BadgeTag>
             ) : plan.subscriptionType !== 'FREE' && (
-                <BadgeTag color="yellow" className="absolute -top-3 left-1/2 -translate-x-1/2 shadow-md whitespace-nowrap bg-yellow-100 dark:bg-yellow-950">
+                <BadgeTag color="yellow" className="absolute -top-3 left-1/2 -translate-x-1/2 shadow-md whitespace-nowrap bg-yellow-100 dark:bg-yellow-950 !px-4 !py-1.5">
                     Premium
                 </BadgeTag>
             )}
