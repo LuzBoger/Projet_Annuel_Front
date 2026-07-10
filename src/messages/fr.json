@@ -87,7 +87,10 @@
       "has_account": "Déjà un compte ?",
       "login": "Se connecter",
       "success": "Inscription réussie ! Vous pouvez maintenant vous connecter.",
-      "email_placeholder": "paul@exemple.com"
+      "email_placeholder": "paul@exemple.com",
+      "firstName_placeholder": "Jean",
+      "lastName_placeholder": "Dupont",
+      "username_placeholder": "jeandupont"
     },
     "back_home": "Retour à l'accueil",
     "forgot_password": {
@@ -1432,7 +1435,16 @@
     "languages": {
       "title": "Apprenez la langue de votre choix avec l'IA",
       "subtitle": "Skaldly supporte de nombreuses langues pour apprendre avec l'intelligence artificielle",
-      "items": ["Anglais", "Espagnol", "Japonais", "Allemand", "Italien", "Portugais", "Arabe", "Mandarin"]
+      "items": [
+        "Anglais",
+        "Espagnol",
+        "Japonais",
+        "Allemand",
+        "Italien",
+        "Portugais",
+        "Arabe",
+        "Mandarin"
+      ]
     },
     "faq": {
       "title": "Questions fréquentes",
@@ -1681,7 +1693,9 @@
   "total": "Total",
   "accuracy": "Précision",
   "duration": "Durée",
-  "status": "Statut",
+  "status": {
+    "deleted": "Supprimé"
+  },
   "footer": {
     "tagline": "Apprenez les langues avec l'intelligence artificielle, naturellement et à votre rythme.",
     "cta": "Commencer gratuitement",

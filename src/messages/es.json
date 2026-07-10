@@ -336,12 +336,13 @@
       "statusUpdated": "Estado actualizado.",
       "status": {
         "active": "Activo",
+        "deleted": "Eliminado",
         "locked": "Bloqueado",
-        "pending_verification": "En espera",
+        "pending_verification": "Pendiente",
         "suspended": "Suspendido"
       },
-      "suspend": "Suspendido",
-      "suspendDesc": "¿Está seguro de que desea suspender {{username}}?",
+      "suspend": "Suspender",
+      "suspendDesc": "¿Estás seguro de que deseas suspender {{username}}?",
       "suspendTitle": "Suspender usuario",
       "unlock": "Desbloquear",
       "unlocked": "Cuenta desbloqueada."
@@ -402,19 +403,22 @@
       "email": "Dirección de correo electrónico",
       "email_placeholder": "paul@example.com",
       "firstName": "Nombre",
+      "firstName_placeholder": "Jean",
       "has_account": "¿Ya tienes una cuenta?",
       "lastName": "Nombre",
-      "login": "Iniciar sesión",
+      "lastName_placeholder": "Dupont",
+      "login": "Inicio de sesión",
       "password": "Contraseña",
       "password_hint": "Min. 12 caracteres, 1 mayúscula, 1 minúscula, 1 número, 1 especial",
       "submit": "Crear mi cuenta",
-      "success": "¡Registro exitoso! Ahora puede iniciar sesión.",
+      "success": "¡Registro exitoso! Ahora puedes iniciar sesión.",
       "title": "Crear cuenta",
-      "username": "Nombre de usuario"
+      "username": "Nombre de usuario",
+      "username_placeholder": "jeandupont"
     },
     "reset_password": {
       "confirm_password": "Confirmar contraseña",
-      "description": "Ingrese su nueva contraseña.",
+      "description": "Ingresa tu nueva contraseña.",
       "go_to_login": "Ir a Iniciar sesión",
       "invalid_link": "El enlace de restablecimiento no es válido o ha caducado.",
       "new_password": "Nueva contraseña",
@@ -450,17 +454,18 @@
     "ai": {
       "button": "Generar con IA",
       "generate": "Generar",
-      "generated_desc": "Generado por IA: {{prompt}}",
+      "generated_desc": "Generar con IA: {{prompt}}",
       "items_count": "Número de preguntas",
       "prompt_label": "Tema o mensaje de generación",
-      "prompt_placeholder": "Ej: Expresiones comunes de restaurantes",
+      "prompt_placeholder": "Ej: Expresiones comunes en restaurantes",
       "quota_exceeded_desc": "Has agotado tus créditos de generación mensuales. Actualice a Premium para desbloquear su cuota de IA.",
       "quota_exceeded_title": "Límite de generación de IA alcanzado",
+      "required_fields": "Complete los campos obligatorios (*) para generar los ejercicios por IA.",
       "title": "Generar ejercicios por IA",
       "upgrade": "Suscribirse"
     },
     "author": "Por {{username}}",
-    "createSuccess": "Desafío creado exitosamente.",
+    "createSuccess": "Reto creado exitosamente.",
     "create_title": "Crear desafío",
     "create": {
       "public_details": "Configuración de desafío público",
@@ -496,20 +501,20 @@
       },
       "placeholder": "Ej: Verbos irregulares en inglés",
       "question_count": "Número de preguntas",
-      "question_count_placeholder": "Deja en blanco para tener todas las preguntas",
-      "submit": "Crea el desafío",
+      "question_count_placeholder": "Dejar vacío para tener todas las preguntas",
+      "submit": "Crear el desafío",
       "summary": "Resumen",
-      "title": "Título del desafío",
+      "title": "Crear desafío",
       "topic": "Tema",
       "topic_placeholder": "Selecciona un tema"
     },
-    "joinSuccess": "Te has sumado al desafío.",
+    "joinSuccess": "Te has unido al desafío.",
     "lobby": {
       "cancel": "Cancelar desafío",
       "waiting": "Esperando que {{username}} acepte..."
     },
     "notification": {
-      "invite": "{{from}} ¡te retó!"
+      "invite": "¡{{from}} te ha desafiado!"
     },
     "participants": {
       "count": "{{count}} participante",
@@ -524,6 +529,7 @@
       "in-progress": "Tu oponente actualmente está completando el desafío...",
       "live": "Clasificación",
       "not_played": "Tu oponente aún no ha completado este desafío.",
+      "not_played_self": "Aún no has jugado.",
       "results": "Resultados",
       "score": {
         "hidden": "La puntuación de {{username}} está oculta hasta el final del desafío."
@@ -571,21 +577,21 @@
       "my_challenges": "Mis desafíos"
     },
     "validation": {
-      "challengeType": "Se requiere el tipo de desafío",
+      "challengeType": "El tipo de desafío es obligatorio",
       "challengedId": {
-        "required": "Agregue un oponente"
+        "required": "Por favor agrega un oponente"
       },
       "flashcards": {
         "min": "Se requiere al menos 1 tarjeta"
       },
       "flashcard": {
-        "back": "Se requiere la espalda",
+        "back": "Se requiere el reverso",
         "front": "Se requiere el frente"
       },
       "languageId": "Seleccione un idioma",
       "lessonId": "Elija una lección",
       "lessonId.duel": "Elija una lección para este duelo",
-      "lessonType": "Se requiere tipo de lección",
+      "lessonType": "Se requiere el tipo de lección",
       "matchingPairs": {
         "min": "Se requiere al menos 1 par"
       },
@@ -596,21 +602,21 @@
       "qcm": {
         "correctOptionIndex.required": "Se requiere una respuesta correcta",
         "min": "Se requiere al menos 1 pregunta",
-        "options": "Se requiere una opción",
+        "options": "Se requiere opción",
         "options.min": "Se requieren al menos 2 opciones",
-        "question": "Se requiere una pregunta"
+        "question": "Pregunta se requiere"
       },
       "sortingExercises": {
         "min": "Se requiere al menos 1 ejercicio de clasificación"
       },
       "sortingExercise": {
-        "correctOrder": "Se requiere un orden correcto",
+        "correctOrder": "Se requiere el orden correcto",
         "correctOrder.min": "Se requieren al menos 2 elementos",
-        "items": "Se requiere un elemento",
+        "items": "Se requiere el artículo",
         "items.min": "Se requieren al menos 2 elementos"
       },
       "sourceLanguageId": "Seleccione el idioma de escritura",
-      "title": "El título es obligatorio",
+      "title": "Se requiere el título",
       "title.max": "Máximo 200 caracteres",
       "title_max": "Máximo 200 caracteres"
     }
@@ -629,7 +635,7 @@
   "common": {
     "accept": "Aceptar",
     "actions": "Acción",
-    "active": "Activo",
+    "active": "Activa",
     "back": "Atrás",
     "cancel": "Cancelar",
     "close": "Cerrar",
@@ -642,7 +648,7 @@
     "empty": "No hay datos disponibles",
     "enabled": "Habilitado",
     "finish": "Finalizar",
-    "home": "Volver a inicio",
+    "home": "Volver a Inicio",
     "inactive": "Inactivo",
     "learn_more": "Más información",
     "loading": "Cargando...",
@@ -650,16 +656,17 @@
     "mute": "Silenciar",
     "next": "Siguiente",
     "noData": "No hay datos disponibles",
-    "on": "en",
+    "on": "de",
     "quit": "Salir",
     "remove": "Eliminar",
     "save": "Guardar",
     "search": "Buscar...",
-    "skip": "Omitir",
+    "selectLanguage": "Seleccionar idioma",
+    "skip": "Saltar",
     "unmute": "Activar silencio",
     "update": "Actualizar",
     "user": "Usuario",
-    "validate": "Confirmar",
+    "validate": "Validar",
     "view": "Ver",
     "viewProfile": "Ver perfil"
   },
@@ -670,7 +677,7 @@
       "notStarted": "No iniciado"
     },
     "topicCard": {
-      "allLessonsFinished": "¡Se han completado todas las lecciones!",
+      "allLessonsFinished": "¡Todas las lecciones se han completado!",
       "completed": "lecciones completadas",
       "lessons": "",
       "next": "SIGUIENTE",
@@ -745,12 +752,12 @@
     "streak": {
       "best": "Mejor:",
       "days": "días",
-      "milestone": "{{days}} días hasta el siguiente nivel"
+      "milestone": "{{days}} días para el siguiente nivel"
     },
     "subscriptions": "Suscripciones",
     "subscriptionsOverTime": "Suscripciones a lo largo del tiempo",
     "topics": "Temas",
-    "view_all": "Ver todo",
+    "view_all": "Ver todos",
     "welcome": {
       "afternoon": [
         "Mantenga el impulso esta tarde.",
@@ -801,7 +808,7 @@
       "modal_title": "Eliminar cuenta",
       "modal_warning": "Esta acción es permanente e irreversible. Todos tus datos serán eliminados. Se le enviará un código de confirmación por correo electrónico.",
       "password_label": "Contraseña actual",
-      "password_required": "Se requiere contraseña",
+      "password_required": "La contraseña es requerida",
       "resend_btn": "Código de retorno",
       "resend_wait": "Devolución disponible en {{time}}",
       "send_code_btn": "Enviar código de confirmación"
@@ -847,7 +854,7 @@
     "completeLesson": "No se puede validar la lección.",
     "createChallenge": "No se pudo crear el desafío.",
     "createLanguage": "No se puede crear el idioma.",
-    "createLesson": "No se pudo crear la lección.",
+    "createLesson": "No se puede crear la lección.",
     "createPlan": "No se puede crear el plan de suscripción.",
     "createTopic": "No se puede crear el tema.",
     "declineChallenge": "Imposible rechazar el desafío.",
@@ -887,7 +894,7 @@
     "joinChallenge": "No se puede unir al desafío.",
     "reactivateSubscription": "No se puede reactivar la suscripción.",
     "rejectReview": "No se puede rechazar la revisión.",
-    "removeFriend": "No se puede eliminar un amigo.",
+    "removeFriend": "No se puede eliminar amigo.",
     "searchTopics": "No se pueden buscar temas.",
     "searchUsers": "No se pueden buscar usuarios.",
     "sendFriendRequest": "No se pudo enviar la solicitud de amistad.",
@@ -1014,8 +1021,8 @@
       ],
       "help_btn": "¿Necesita ayuda?",
       "help_options": {
-        "memo": "Asociación y Memo",
-        "rule": "Regla y Estructura",
+        "memo": "Asociación y nota",
+        "rule": "Regla y estructura",
         "trap": "Trampa a evitar",
         "usage": "Contexto de uso"
       },
@@ -1085,16 +1092,16 @@
       },
       "variety": {
         "description": "Tarjetas didácticas, cuestionarios, emparejamiento, reordenamiento y ejercicios interactivos, diseñados para maximizar la retención del idioma y la inmersión total.",
-        "title": "Varios Dispositivos"
+        "title": "Varios dispositivos"
       }
     },
     "flashcard_demo": {
       "easy": "Fácil",
       "hard": "Difícil",
-      "medium": "Medio"
+      "medium": "PROMEDIO"
     },
     "hero": {
-      "continue_learning": "Continuar mi aprendizaje",
+      "continue_learning": "continuar mi aprendizaje",
       "description": "Skaldly es la plataforma para aprender un idioma con IA: repetición espaciada, lecciones a medida e inmersión total gracias a la inteligencia artificial.",
       "logged_in_as": "Iniciado sesión como",
       "start_free": "Empieza gratis",
@@ -1122,8 +1129,8 @@
       "title": "Aprende el idioma de tu elección con IA"
     },
     "page_description": "Aprende un nuevo idioma con inteligencia artificial: tarjetas didácticas, cuestionarios y ejercicios interactivos. Un asistente de IA para progresar a tu propio ritmo.",
-    "page_keywords": "aprender un idioma con IA, aprender un idioma con inteligencia artificial, aplicación de aprendizaje de idiomas, tarjetas didácticas, cuestionario de idiomas, repetición espaciada, asistente de idiomas con IA, Skaldly",
-    "page_title": "Skáldly: domina un nuevo idioma con la IA como asistente personal",
+    "page_keywords": "aprender un idioma con IA, aprender un idioma con inteligencia artificial, aplicación de aprendizaje de idiomas, tarjetas didácticas, cuestionario de idiomas, asistente de idiomas con IA, Skaldly",
+    "page_title": "Skáldly - Aprende un idioma con Inteligencia Artificial",
     "qcm_demo": {
       "feedback": "Arigatou (ありがとう) significa \"gracias\" en japonés.",
       "options": [
@@ -1147,8 +1154,8 @@
         "dual_coding": "Codificación doble",
         "stat1": "Reducción de la sobrecarga cognitiva.",
         "stat2": "+65%",
-        "stat2_desc": "retención en comparación con el texto sin contexto visual (Paivio, 1971).",
-        "text_only": "Sólo texto",
+        "stat2_desc": "de retención en comparación con texto sin contexto visual (Paivio, 1971).",
+        "text_only": "Texto solo",
         "title": "2. Teoría de pares visuales y codificación doble"
       },
       "sources": {
@@ -1198,7 +1205,7 @@
     "nextLanguage": "siguiente idioma",
     "regions": {
       "afrique": "África",
-      "all": "Todo",
+      "all": "Todos",
       "amériques": "América",
       "asie": "Asia",
       "europe": "Europa",
@@ -1208,18 +1215,18 @@
   "legal": {
     "cgu": {
       "acceptance": {
-        "p1": "El uso del servicio implica la aceptación total de estos TyC. Si no está de acuerdo con estos Términos, no utilice el Servicio.",
+        "p1": "El uso del servicio implica la plena aceptación de estos TyC. Si no está de acuerdo con estos Términos, no utilice el Servicio.",
         "title": "2. Aceptación"
       },
       "account": {
-        "intro": "Para acceder a las funciones del servicio, el usuario debe:",
+        "intro": "Para acceder a las funcionalidades del servicio, el usuario debe:",
         "item1": "Tener al menos 15 años (o contar con el consentimiento de sus padres)",
-        "item2": "Proporcionar información precisa durante el registro",
+        "item2": "Proporcionar información veraz durante el registro",
         "item3": "Mantener la confidencialidad de sus credenciales de inicio de sesión",
         "item4": "Notificar inmediatamente cualquier acceso no autorizado a su cuenta",
         "title": "3. Registro y cuenta de usuario"
       },
-      "description": "Condiciones generales de uso del servicio Skaldly.",
+      "description": "Condiciones Generales de Uso del servicio Skaldly.",
       "lastUpdate": "Última actualización: 7 de junio de 2025",
       "law": {
         "p1": "Estos T&C están sujetos a la ley francesa. Cualquier litigio se someterá a los tribunales competentes dentro de la jurisdicción de la sede de Skaldly, situada en París.",
@@ -1275,10 +1282,10 @@
       },
       "object": {
         "p1": "Estas Condiciones Generales de Venta (CGV) definen los derechos y obligaciones de Skaldly y sus clientes en el contexto de la suscripción a suscripciones de Skaldly.",
-        "title": "1. Propósito"
+        "title": "1. Asunto"
       },
       "pricing": {
-        "item1": "Los precios están indicados en euros IVA incluido.",
+        "item1": "Los precios se indican en euros IVA incluido.",
         "item2": "El pago se realiza en línea a través de nuestro proveedor de servicios seguros Stripe.",
         "item3": "La suscripción se renueva automáticamente en cada fecha de vencimiento.",
         "item4": "Skaldly se reserva el derecho de modificar sus precios con un preaviso de 30 días.",
@@ -1315,11 +1322,11 @@
       "manage": {
         "p1": "Dado que las cookies utilizadas por Skaldly son estrictamente necesarias para el funcionamiento del servicio, no se pueden desactivar. Sin embargo, puede restablecer sus preferencias de consentimiento haciendo clic a continuación.",
         "reset_btn": "Restablecer mis preferencias",
-        "title": "3. Administrar tus preferencias"
+        "title": "3. Gestionar tus preferencias"
       },
       "more": {
         "cnil_link": "CNIL",
-        "p1": "Para más información sobre las cookies, visita el sitio web",
+        "p1": "Para más información sobre las cookies, visita la web",
         "title": "4. Para saber más"
       },
       "title": "Política de Cookies",
@@ -1330,11 +1337,11 @@
         "col_duration": "Duración",
         "col_name": "Nombre",
         "col_purpose": "Finalidad",
-        "intro": "Skaldly solo utiliza cookies estrictamente necesarias para el funcionamiento del servicio. No se colocan cookies analíticas ni de marketing.",
+        "intro": "Skaldly sólo utiliza cookies estrictamente necesarias para el funcionamiento del servicio. No se colocan cookies analíticas ni de marketing.",
         "locale_duration": "30 días",
         "locale_purpose": "Memorización del idioma elegido (fr/en)",
         "refresh_token_duration": "7 días",
-        "refresh_token_purpose": "Renovación de sesión (HttpOnly, SameSite=Lax)",
+        "refresh_token_purpose": "Renovación de la sesión (HttpOnly, SameSite=Lax)",
         "title": "2. Cookies utilizadas por Skaldly"
       },
       "what": {
@@ -1388,16 +1395,16 @@
         "contact": "Datos de contacto",
         "contact_val": "nombre, correo electrónico, mensaje (formulario de contacto)",
         "identity": "Datos de identidad",
-        "identity_val": "apellido, nombre, nombre de usuario, dirección de correo electrónico",
+        "identity_val": "nombre, nombre, nombre de usuario, dirección de correo electrónico",
         "intro": "Recopilamos los siguientes datos:",
         "learning": "Datos de aprendizaje",
-        "learning_val": "progreso, lecciones completadas, puntuaciones, rachas, XP",
+        "learning_val": "progreso, lecciones completadas, puntajes, rachas, XP",
         "payment": "Datos de pago",
         "payment_val": "administrados exclusivamente por Stripe (no almacenamos sus datos bancarios), historial de suscripción",
         "profile": "Datos de perfil",
         "profile_val": "biografía, país, zona horaria, foto de perfil",
         "security": "Seguridad",
-        "security_val": "las contraseñas están codificadas (bcrypt) y nunca son legibles, ni siquiera por nuestro equipo",
+        "security_val": "Las contraseñas están codificadas (bcrypt) y nunca son legibles, ni siquiera por nuestro equipo",
         "social": "Datos sociales",
         "social_val": "relaciones de amistad entre usuarios",
         "technical": "Datos técnicos",
@@ -1443,7 +1450,7 @@
       },
       "rights": {
         "access": "Derecho de acceso",
-        "access_val": "(Art. 15) — obtenga una copia de sus datos",
+        "access_val": "(Art. 15) - obtener una copia de sus datos",
         "cnil": "También tiene derecho a presentar una queja ante",
         "delay": "(respuesta dentro de los 30 días).",
         "email_or": "o por correo electrónico a",
@@ -1490,7 +1497,7 @@
       "errors": "Errores",
       "lesson": "Lección",
       "status": "Estado",
-      "topic": "Asunto",
+      "topic": "Tema",
       "total": "Total"
     },
     "totalTime": "Tiempo total"
@@ -1536,7 +1543,7 @@
       "instruction": "Emparejar pares coincidentes",
       "matches_found": "Pares encontrados",
       "title": "Conjunto de pares",
-      "with_errors": "Se han encontrado todos los pares."
+      "with_errors": "Todos los pares encontrados."
     },
     "medium": "Promedio - Lo dejamos a un lado",
     "not_found": "Lección no encontrada.",
@@ -1585,7 +1592,7 @@
       "submit": "Ver mis resultados",
       "submit_desc": "Envíe sus respuestas para ver sus resultados.",
       "subtitle": "{{total}} pregunta(s) para revisar",
-      "title": "Revisión de hoy"
+      "title": "Revisión del día"
     },
     "detail": {
       "correct_answer": "Respuesta correcta",
@@ -1593,15 +1600,15 @@
       "question": "Pregunta",
       "streak": "Serie",
       "title": "Detalles del error",
-      "your_answer": "Tu respuesta"
+      "your_answer": "Su respuesta"
     },
     "empty": {
       "subtitle": "No hay preguntas disponibles en este momento. ¡Vuelve más tarde!",
       "title": "¡Todo está actualizado!"
     },
     "filters": {
-      "ALL": "Todos",
-      "FLASHCARD": "Tarjeta didáctica",
+      "ALL": "Todo",
+      "FLASHCARD": "Flashcard",
       "INTERACTIVE": "Interactivo",
       "MATCHING_PAIR": "Asociación",
       "QCM": "MCQ",
@@ -1656,7 +1663,7 @@
   },
   "plans": {
     "create": {
-      "title": "Crear un plan"
+      "title": "Crear plan"
     },
     "delete": {
       "description": "¿Estás seguro de que deseas eliminar este plan? Esta acción es irreversible.",
@@ -1664,15 +1671,15 @@
     },
     "descriptions": {
       "Free plan": "Este es el plan gratuito",
-      "Premium plan": "Plan Premium con todas las funciones"
+      "Premium plan": "Plan premium con todas las funciones"
     },
     "edit": {
       "title": "Editar plan"
     },
     "form": {
       "add_feature": "Agregar función",
-      "ai_quota": "Cuota de IA",
-      "ai_quota_hint": "Número de solicitudes de IA incluidas en este plan.",
+      "ai_quota": "Cuota de AI",
+      "ai_quota_hint": "Número de consultas de AI incluidas en este plan.",
       "currency": "Moneda",
       "description": "Descripción del plan",
       "feature_placeholder": "Descripción de la función",
@@ -1711,7 +1718,7 @@
     "bio": "Biografía",
     "bio_placeholder": "Cuéntanos sobre ti...",
     "countryCode": "País",
-    "countryCode_placeholder": "ej. ES",
+    "countryCode_placeholder": "ex. ES",
     "edit": "Editar perfil",
     "error": {
       "loadFailed": "No se puede cargar el perfil."
@@ -1724,7 +1731,7 @@
       "delete": "Eliminar foto",
       "edit_label": "Editar",
       "error": {
-        "deleteFailed": "La eliminación falló. Por favor inténtalo de nuevo.",
+        "deleteFailed": "Error al eliminar. Por favor inténtalo de nuevo.",
         "invalidType": "Tipo de archivo no válido. Sólo se aceptan JPG y PNG.",
         "tooLarge": "El archivo es demasiado grande. Tamaño máximo: 5 MB.",
         "uploadFailed": "La carga falló. Por favor inténtalo de nuevo."
@@ -1822,7 +1829,7 @@
     "edit": "Editar",
     "edit_title": "Editar tu reseña",
     "formHeader": {
-      "add": "Deja una reseña",
+      "add": "Dejar una reseña",
       "edit": "Editar tu reseña"
     },
     "modal_title": "Califica este tema",
@@ -1870,14 +1877,14 @@
   "settings": {
     "2fa": {
       "cancel": "Cancelar",
-      "confirm_disable": "Confirmar desactivación",
+      "confirm_disable": "Confirmar la exclusión voluntaria",
       "disable_button": "Deshabilitar 2FA",
-      "disable_success": "Se ha deshabilitado la autenticación de dos factores.",
+      "disable_success": "La autenticación de dos factores ha sido deshabilitada.",
       "enable_button": "Habilitar 2FA",
       "enable_success": "Se ha habilitado la autenticación de dos factores.",
       "enabled_status": "La autenticación de dos factores está habilitada.",
       "enter_code": "Ingrese el código de verificación",
-      "enter_code_disable": "Ingrese un código para desactivar 2FA",
+      "enter_code_disable": "Ingrese un código para deshabilitar 2FA",
       "manual_key": "O ingrese esta clave manualmente:",
       "not_enabled": "La autenticación de dos factores no está habilitada.",
       "page_title": "Autenticación de dos factores",
@@ -1941,7 +1948,9 @@
     "exam": "Revisar",
     "lesson": "Lección"
   },
-  "status": "Estado",
+  "status": {
+    "deleted": "Eliminado"
+  },
   "subscriptions": {
     "free": "Gratis",
     "page_title": "Gestión de suscripciones",
@@ -1987,17 +1996,17 @@
         "CANCELED": "Cancelado",
         "EXPIRED": "Vencido",
         "PENDING": "Pendiente",
-        "active": "Activa",
-        "canceled": "Cancelada",
-        "expired": "Vencida",
+        "active": "Activo",
+        "canceled": "Cancelado",
+        "expired": "Vencido",
         "pending": "Pendiente"
       },
-      "title": "Detalles de suscripción",
+      "title": "Detalles de la suscripción",
       "type": "Tipo"
     },
-    "disabled": "Deshabilitada",
-    "enabled": "Habilitada",
-    "included": "Incluida",
+    "disabled": "Deshabilitado",
+    "enabled": "Habilitado",
+    "included": "Incluido",
     "interval": {
       "monthly": "Mensual",
       "yearly": "Anual"
@@ -2006,9 +2015,9 @@
     "manage": {
       "cancel": "Cancelar suscripción",
       "change_plan": "Cambiar plan",
-      "disable_auto_renewal": "Deshabilitar renovación automática",
-      "enable_auto_renewal": "Habilitar renovación automática",
-      "reactivate": "Volver a habilitar suscripción",
+      "disable_auto_renewal": "Desactivar renovación automática",
+      "enable_auto_renewal": "Activar renovación automática",
+      "reactivate": "Reactivar suscripción",
       "renew": "Renovar suscripción",
       "title": "Administrar suscripción"
     },
@@ -2033,7 +2042,7 @@
       "keywords": "planes, precios, suscripción, premium, gratis, Skaldly",
       "title": "Planes"
     },
-    "select_plan": "Elige un plan",
+    "select_plan": "Elija un plan",
     "stats": {
       "totalActiveSubscribers": "Total de suscriptores activos",
       "totalRevenue": "Ingresos totales"
@@ -2082,9 +2091,9 @@
     "lessons_count_label": "Lecciones completadas",
     "lessons_desc": "Explore las lecciones a continuación en orden cronológico para progresar y dominar este tema.",
     "lessons_page_title": "Lecciones",
-    "lessons_title": "Bandeja de lecciones",
+    "lessons_title": "Tablero de lecciones",
     "level": "Nivel {{level}}",
-    "no_desc": "No se proporcionó descripción",
+    "no_desc": "No se proporciona descripción",
     "no_lessons_desc": "¡Vuelve más tarde!",
     "no_lessons_title": "No hay lecciones disponibles",
     "no_questions": "No hay preguntas para este examen.",
@@ -2116,7 +2125,7 @@
     "code": {
       "digits": "El código debe contener solo dígitos",
       "length": "El código debe contener 6 dígitos",
-      "required": "Se requiere código"
+      "required": "El código es obligatorio"
     },
     "confirmPassword": {
       "match": "Las contraseñas no coinciden",
@@ -2124,7 +2133,7 @@
     },
     "contactEmail": {
       "invalid": "Formato de correo electrónico no válido",
-      "required": "Se requiere dirección de correo electrónico"
+      "required": "Se requiere una dirección de correo electrónico"
     },
     "contactMessage": {
       "min": "Mínimo 10 caracteres",
@@ -2132,10 +2141,10 @@
     },
     "contactName": {
       "max": "Máximo 100 caracteres",
-      "required": "Se requiere nombre"
+      "required": "Se requiere el nombre"
     },
     "contactSubject": {
-      "required": "Se requiere asunto"
+      "required": "Se requiere el asunto"
     },
     "email": {
       "invalid": "Formato de correo electrónico no válido",
@@ -2158,7 +2167,7 @@
       "required": "Se requiere cuota de AI"
     },
     "planCurrency": {
-      "length": "La moneda debe tener 3 caracteres",
+      "length": "La moneda debe contener 3 caracteres",
       "required": "Se requiere moneda"
     },
     "planDescription": {
@@ -2166,12 +2175,12 @@
     },
     "planFeatureLabel": {
       "max": "Máximo 255 caracteres",
-      "required": "Se requiere etiqueta de característica"
+      "required": "Se requiere etiqueta de función"
     },
     "planName": {
       "max": "Máximo 100 caracteres",
       "min": "Mínimo 2 caracteres",
-      "required": "Se requiere el nombre del plan"
+      "required": "Se requiere nombre del plan"
     },
     "planPaymentInterval": {
       "oneOf": "Debe ser mensual o anual",
@@ -2184,12 +2193,12 @@
     },
     "review": {
       "comment_max": "El comentario no puede exceder los 1000 caracteres",
-      "rating_max": "La calificación no puede exceder los 5",
+      "rating_max": "La calificación no puede exceder 5",
       "rating_required": "Seleccione una calificación"
     },
     "subscriptionType": {
       "oneOf": "Debe ser gratuita o Premium",
-      "required": "Se requiere tipo de suscripción"
+      "required": "Se requiere el tipo de suscripción"
     },
     "username": {
       "max": "Máximo 50 caracteres",

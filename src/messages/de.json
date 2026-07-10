@@ -336,11 +336,12 @@
       "statusUpdated": "Status aktualisiert.",
       "status": {
         "active": "Aktiv",
+        "deleted": "Gelöscht",
         "locked": "Gesperrt",
-        "pending_verification": "Wartend",
+        "pending_verification": "Ausstehend",
         "suspended": "Angehalten"
       },
-      "suspend": "Angehalten",
+      "suspend": "Suspendieren",
       "suspendDesc": "Sind Sie sicher, dass Sie {{username}} sperren möchten?",
       "suspendTitle": "Benutzer sperren",
       "unlock": "Entsperren",
@@ -402,15 +403,18 @@
       "email": "E-Mail-Adresse",
       "email_placeholder": "paul@example.com",
       "firstName": "Vorname",
+      "firstName_placeholder": "Jean",
       "has_account": "Sie haben bereits ein Konto?",
       "lastName": "Name",
+      "lastName_placeholder": "Dupont",
       "login": "Login",
       "password": "Passwort",
       "password_hint": "Min. 12 Zeichen, 1 Großbuchstabe, 1 Kleinbuchstabe, 1 Zahl, 1 Sonderzeichen",
       "submit": "Mein Konto erstellen",
       "success": "Registrierung erfolgreich! Sie können sich jetzt anmelden.",
       "title": "Konto erstellen",
-      "username": "Benutzername"
+      "username": "Benutzername",
+      "username_placeholder": "jeandupont"
     },
     "reset_password": {
       "confirm_password": "Passwort bestätigen",
@@ -452,10 +456,11 @@
       "generate": "Generieren",
       "generated_desc": "Generiert durch KI: {{prompt}}",
       "items_count": "Anzahl der Fragen",
-      "prompt_label": "Generierungsthema oder -aufforderung",
-      "prompt_placeholder": "Beispiel: Gängige Restaurantausdrücke",
-      "quota_exceeded_desc": "Sie haben Ihr monatliches Generierungsguthaben aufgebraucht. Führen Sie ein Upgrade auf Premium durch, um Ihr KI-Kontingent freizuschalten.",
+      "prompt_label": "Themen- oder Generationsaufforderung",
+      "prompt_placeholder": "Beispiel: Gebräuchliche Ausdrücke in Restaurants",
+      "quota_exceeded_desc": "Sie haben Ihr monatliches Generationsguthaben aufgebraucht. Führen Sie ein Upgrade auf Premium durch, um Ihr KI-Kontingent freizuschalten.",
       "quota_exceeded_title": "KI-Generierungsgrenze erreicht",
+      "required_fields": "Bitte füllen Sie die Pflichtfelder (*) aus, um die Übungen per KI zu generieren.",
       "title": "Generieren Sie Übungen durch KI",
       "upgrade": "Abonnieren"
     },
@@ -499,17 +504,17 @@
       "question_count_placeholder": "Lassen Sie das Feld leer, um alle Fragen zu stellen",
       "submit": "Erstellen Sie die Herausforderung",
       "summary": "Zusammenfassung",
-      "title": "Herausforderungstitel",
+      "title": "Herausforderungserstellung",
       "topic": "Thema",
-      "topic_placeholder": "Wählen Sie ein Thema aus"
+      "topic_placeholder": "Wählen Sie ein Thema"
     },
     "joinSuccess": "Sie haben sich der Herausforderung angeschlossen.",
     "lobby": {
-      "cancel": "Herausforderung abbrechen",
-      "waiting": "Warten auf die Annahme durch {{username}}..."
+      "cancel": "Herausforderung abbrechen.",
+      "waiting": "Warten auf die Annahme durch {{username}}."
     },
     "notification": {
-      "invite": "{{from}} hat dich herausgefordert!"
+      "invite": "{{from}} hat Sie herausgefordert!"
     },
     "participants": {
       "count": "{{count}} Teilnehmer",
@@ -521,25 +526,26 @@
     },
     "ranking": {
       "empty": "Noch keine Teilnehmer.",
-      "in-progress": "Dein Gegner schließt gerade die Herausforderung ab ...",
+      "in-progress": "Dein Gegner schließt gerade die Herausforderung ab...",
       "live": "Rang",
       "not_played": "Dein Gegner hat diese Herausforderung noch nicht abgeschlossen.",
+      "not_played_self": "Du hast noch nicht gespielt.",
       "results": "Ergebnisse",
       "score": {
-        "hidden": "Die {{username}}-Punktzahl bleibt bis zum Ende der Herausforderung verborgen."
+        "hidden": "Die Punktzahl von {{username}} bleibt bis zum Ende der Herausforderung verborgen."
       }
     },
     "status": {
       "ACTIVE": "Aktiv",
-      "CANCELLED": "Abgesagt",
-      "COMPLETED": "Fertig",
+      "CANCELLED": "Abgebrochen",
+      "COMPLETED": "Abgeschlossen",
       "EXPIRED": "Abgelaufen",
-      "PENDING": "In der Warteschleife"
+      "PENDING": "Ausstehend"
     },
     "submitSuccess": "Bewertung erfolgreich übermittelt.",
-    "time_left_hours": "{{count}} verbleibende Stunde(n).",
-    "time_left_minutes": "{{count}} verbleibende Minute(n).",
-    "time_left_seconds": "{{count}} verbleibende Sekunde(n).",
+    "time_left_hours": "{{count}} Stunde(n) verbleibend",
+    "time_left_minutes": "{{count}} Minute(n) verbleibend",
+    "time_left_seconds": "{{count}} Sekunde(n) verbleibend",
     "title": "Herausforderungen",
     "type": {
       "duel": {
@@ -553,11 +559,11 @@
         "type": "Interaktive Fragen"
       },
       "matching_pair": {
-        "type": "Paare zum Verbinden"
+        "type": "Passende Paare"
       },
       "public": {
         "description": "Offen für alle Spieler",
-        "type": "Publikum"
+        "type": "Öffentlich"
       },
       "qcm": {
         "type": "MCQ"
@@ -567,11 +573,11 @@
       }
     },
     "user": {
-      "empty": "Im Moment haben Sie keine Herausforderungen.",
+      "empty": "Sie haben im Moment keine Herausforderungen.",
       "my_challenges": "Meine Herausforderungen"
     },
     "validation": {
-      "challengeType": "Der Herausforderungstyp ist erforderlich",
+      "challengeType": "Herausforderungstyp ist erforderlich.",
       "challengedId": {
         "required": "Bitte fügen Sie einen Gegner hinzu"
       },
@@ -587,32 +593,32 @@
       "lessonId.duel": "Bitte wählen Sie eine Lektion für dieses Duell",
       "lessonType": "Unterrichtsart ist erforderlich",
       "matchingPairs": {
-        "min": "Mindestens 1 Paar ist erforderlich"
+        "min": "Es ist mindestens 1 Paar erforderlich"
       },
       "matchingPair": {
         "item1": "Punkt 1 ist erforderlich",
         "item2": "Punkt 2 ist erforderlich"
       },
       "qcm": {
-        "correctOptionIndex.required": "Richtige Antwort ist erforderlich",
-        "min": "Mindestens 1 Frage ist erforderlich",
+        "correctOptionIndex.required": "Die richtige Antwort ist erforderlich",
+        "min": "Es ist mindestens 1 Frage erforderlich",
         "options": "Option ist erforderlich",
-        "options.min": "Mindestens 2 Optionen sind erforderlich",
-        "question": "Frage ist erforderlich"
+        "options.min": "Es sind mindestens 2 Optionen erforderlich",
+        "question": "Die Frage ist erforderlich"
       },
       "sortingExercises": {
-        "min": "Mindestens 1 Sortierübung ist erforderlich"
+        "min": "Es ist mindestens 1 Sortierübung erforderlich"
       },
       "sortingExercise": {
-        "correctOrder": "Richtige Reihenfolge ist erforderlich",
-        "correctOrder.min": "Mindestens 2 Elemente sind erforderlich",
-        "items": "Element ist erforderlich",
-        "items.min": "Mindestens 2 Elemente sind erforderlich"
+        "correctOrder": "Eine korrekte Reihenfolge ist erforderlich",
+        "correctOrder.min": "Es sind mindestens 2 Artikel erforderlich",
+        "items": "Artikel ist erforderlich",
+        "items.min": "Es sind mindestens 2 Artikel erforderlich"
       },
-      "sourceLanguageId": "Bitte wählen Sie die Schreibsprache aus.",
-      "title": "Titel ist erforderlich.",
-      "title.max": "Maximal 200 Zeichen.",
-      "title_max": "Maximal 200 Zeichen."
+      "sourceLanguageId": "Bitte wählen Sie die Schreibsprache aus",
+      "title": "Titel ist erforderlich",
+      "title.max": "Maximal 200 Zeichen",
+      "title_max": "Maximal 200 Zeichen"
     }
   },
   "checkout": {
@@ -624,19 +630,19 @@
       "description": "Ihr Abonnement wurde erfolgreich aktiviert.",
       "title": "Zahlung erfolgreich!"
     },
-    "view_subscription": "Mein Abonnement anzeigen"
+    "view_subscription": "Sehen Sie sich mein Abonnement an"
   },
   "common": {
     "accept": "Akzeptieren",
     "actions": "Aktion",
     "active": "Aktiv",
     "back": "Zurück",
-    "cancel": "Abbrechen",
+    "cancel": "Stornieren",
     "close": "Schließen",
     "confirm": "Bestätigen",
-    "continue": "Weiter",
+    "continue": "Weitermachen",
     "create": "Erstellen",
-    "delete": "Löschen",
+    "delete": "LÖSCHEN",
     "disabled": "Deaktiviert",
     "edit": "Bearbeiten",
     "empty": "Keine Daten verfügbar",
@@ -650,24 +656,25 @@
     "mute": "Stummschalten",
     "next": "Weiter",
     "noData": "Keine Daten verfügbar",
-    "on": "am",
+    "on": "von",
     "quit": "Beenden",
     "remove": "Löschen",
     "save": "Speichern",
     "search": "Suchen...",
+    "selectLanguage": "Sprache auswählen",
     "skip": "Überspringen",
     "unmute": "Stummschaltung aufheben",
     "update": "Aktualisieren",
     "user": "Benutzer",
-    "validate": "Bestätigen",
+    "validate": "Validieren",
     "view": "Anzeigen",
-    "viewProfile": "Profil anzeigen"
+    "viewProfile": "Profil ansehen"
   },
   "components": {
     "badgeStatusLanguages": {
       "completed": "Abgeschlossen",
       "inProgress": "In Bearbeitung",
-      "notStarted": "Nicht gestartet"
+      "notStarted": "Nicht begonnen"
     },
     "topicCard": {
       "allLessonsFinished": "Alle Lektionen wurden abgeschlossen!",
@@ -683,10 +690,10 @@
     "form": {
       "email": "E-Mail-Adresse",
       "message": "Nachricht",
-      "messagePlaceholder": "Beschreiben Sie Ihre Anfrage ...",
+      "messagePlaceholder": "Beschreiben Sie Ihr Anliegen...",
       "name": "Vollständiger Name",
       "send": "Nachricht senden",
-      "sending": "Wird gesendet ...",
+      "sending": "Wird gesendet...",
       "subject": "Betreff",
       "subjects": {
         "billing": "Abrechnung",
@@ -743,17 +750,17 @@
     "no_active_topics": "Sie lernen derzeit keine Themen.",
     "page_title": "Dashboard",
     "streak": {
-      "best": "Beste:",
+      "best": "Am besten:",
       "days": "Tage",
-      "milestone": "{{days}} Tage bis zur nächsten Stufe"
+      "milestone": "{{days}} Tage für das nächste Level"
     },
     "subscriptions": "Abonnements",
-    "subscriptionsOverTime": "Abonnements im Zeitverlauf",
+    "subscriptionsOverTime": "Abonnements im Laufe der Zeit",
     "topics": "Themen",
     "view_all": "Alle anzeigen",
     "welcome": {
       "afternoon": [
-        "Bleiben Sie heute Nachmittag auf dem Laufenden.",
+        "Bleiben Sie heute Nachmittag in Schwung.",
         "Eine tolle Zeit für eine schnelle Sitzung!",
         "Mid-Day Boost – Ihr Fortschritt wartet auf Sie.",
         "Bleiben Sie regelmäßig. Jede Anstrengung zählt.",
@@ -847,14 +854,14 @@
     "completeLesson": "Die Lektion konnte nicht validiert werden.",
     "createChallenge": "Herausforderung konnte nicht erstellt werden.",
     "createLanguage": "Sprache kann nicht erstellt werden.",
-    "createLesson": "Lektion konnte nicht erstellt werden.",
+    "createLesson": "Die Lektion kann nicht erstellt werden.",
     "createPlan": "Abonnementplan kann nicht erstellt werden.",
     "createTopic": "Thema kann nicht erstellt werden.",
     "declineChallenge": "Es ist unmöglich, die Herausforderung abzulehnen.",
     "declineFriendRequest": "Freundschaftsanfrage konnte nicht abgelehnt werden.",
     "deleteLanguage": "Sprache kann nicht gelöscht werden.",
     "deleteLesson": "Die Lektion konnte nicht gelöscht werden.",
-    "deletePlan": "Der Abonnementplan kann nicht gelöscht werden.",
+    "deletePlan": "Abonnementplan kann nicht gelöscht werden.",
     "deleteReview": "Bewertung konnte nicht gelöscht werden.",
     "deleteTopic": "Thema kann nicht gelöscht werden.",
     "fetchChallenge": "Die Herausforderung konnte nicht wiederhergestellt werden.",
@@ -887,14 +894,14 @@
     "joinChallenge": "Der Herausforderung kann nicht beigetreten werden.",
     "reactivateSubscription": "Das Abonnement kann nicht erneut aktiviert werden.",
     "rejectReview": "Bewertung kann nicht abgelehnt werden.",
-    "removeFriend": "Freund konnte nicht entfernt werden.",
+    "removeFriend": "Freund kann nicht entfernt werden.",
     "searchTopics": "Es konnte nicht nach Themen gesucht werden.",
     "searchUsers": "Es konnte nicht nach Benutzern gesucht werden.",
     "sendFriendRequest": "Freundschaftsanfrage konnte nicht gesendet werden.",
     "startLesson": "Lektion kann nicht gestartet werden.",
     "submitChallenge": "Bewertung konnte nicht übermittelt werden.",
     "subscribeToPlan": "Der Plan kann nicht abonniert werden.",
-    "unknown": "Es ist ein unbekannter Fehler aufgetreten.",
+    "unknown": "Ein unbekannter Fehler ist aufgetreten.",
     "updateLanguage": "Sprache kann nicht aktualisiert werden.",
     "updateLesson": "Die Lektion konnte nicht aktualisiert werden.",
     "updatePlan": "Abonnementplan kann nicht aktualisiert werden.",
@@ -936,8 +943,8 @@
     "acceptRequest": {
       "success": "Freundschaftsanfrage angenommen!"
     },
-    "addFriend": "",
-    "alreadyFriends": "Freunde hinzufügen",
+    "addFriend": "Hinzufügen",
+    "alreadyFriends": "Freunde",
     "cancel": "Abbrechen",
     "cancelRequest": {
       "success": "Freundschaftsanfrage abgebrochen."
@@ -1005,16 +1012,16 @@
         {
           "context": "Japanische Höflichkeit",
           "examples": [
-            "Arigatou! (unter Freunden)",
+            "Arigatou! (zwischen Freunden)",
             "Arigatou gozaimasu (formell/höflich)"
           ],
-          "explanation": "„Arigatou“ (ありがとう) ist die umgangssprachliche Form. Um höflich zu sein, sagen Sie „Arigatou gozaimasu“. Der Grad der Höflichkeit hängt vom Kontext und davon ab, mit wem Sie sprechen.",
+          "explanation": "„Arigatou“ (ありがとう) ist die bekannte Form. Um höflich zu sein, sagen Sie „Arigatou gozaimasu“. Der Grad der Höflichkeit hängt vom Kontext und davon ab, mit wem Sie sprechen.",
           "title": "Regel und Struktur"
         }
       ],
       "help_btn": "Brauchen Sie Hilfe?",
       "help_options": {
-        "memo": "Assoziation und Memo.",
+        "memo": "Assoziation & Memo",
         "rule": "Regel und Struktur",
         "trap": "Falle, die es zu vermeiden gilt",
         "usage": "Nutzungskontext"
@@ -1122,8 +1129,8 @@
       "title": "Lernen Sie die Sprache Ihrer Wahl mit KI"
     },
     "page_description": "Lernen Sie eine neue Sprache mit künstlicher Intelligenz: Lernkarten, Quiz und interaktive Übungen. Ein KI-Assistent, mit dem Sie in Ihrem eigenen Tempo Fortschritte machen können.",
-    "page_keywords": "Lernen Sie eine Sprache mit KI, lernen Sie eine Sprache mit künstlicher Intelligenz, Sprachlernanwendung, Lernkarten, Sprachquiz, räumliche Wiederholung, KI-Sprachassistent, Skaldly",
-    "page_title": "Skaldly – ​​​​Meistern Sie eine neue Sprache mit KI als Ihrem persönlichen Assistenten",
+    "page_keywords": "eine Sprache lernen mit KI, eine Sprache lernen mit künstlicher Intelligenz, Sprachlernanwendung, Lernkarten, Sprachquiz, KI-Sprachassistent, Skaldly",
+    "page_title": "Skaldly – ​​Lernen Sie eine Sprache mit künstlicher Intelligenz",
     "qcm_demo": {
       "feedback": "Arigatou (ありがとう) bedeutet auf Japanisch „Danke“.",
       "options": [
@@ -1148,7 +1155,7 @@
         "stat1": "Reduzierung der kognitiven Überlastung.",
         "stat2": "+65 %",
         "stat2_desc": "Retention im Vergleich zu Text ohne visuellen Kontext (Paivio, 1971).",
-        "text_only": "Nur Text",
+        "text_only": "Text allein",
         "title": "2. Visuelle Paare und Doppelkodierungstheorie"
       },
       "sources": {
@@ -1212,8 +1219,8 @@
         "title": "2. Akzeptanz"
       },
       "account": {
-        "intro": "Um auf die Funktionen des Dienstes zugreifen zu können, muss der Benutzer:",
-        "item1": "mindestens 15 Jahre alt sein (oder die Zustimmung der Eltern haben)",
+        "intro": "Um auf die Funktionalitäten des Dienstes zugreifen zu können, muss der Benutzer:",
+        "item1": "Mindestens 15 Jahre alt sein (oder die Einverständniserklärung der Eltern haben)",
         "item2": "Bereitstellung korrekter Informationen bei der Registrierung",
         "item3": "Bewahren Sie die Vertraulichkeit Ihrer Anmeldedaten",
         "item4": "Benachrichtigen Sie umgehend jeden unbefugten Zugriff auf Ihr Konto",
@@ -1270,12 +1277,12 @@
         "title": "7. Anwendbares Recht und Streitigkeiten"
       },
       "liability": {
-        "p1": "Skaldly ist bestrebt, den Dienst mit bestmöglicher Verfügbarkeit bereitzustellen, kann jedoch keinen unterbrechungsfreien Zugriff garantieren. Im Falle einer von Skaldly zu vertretenden längeren Nichtverfügbarkeit kann eine Entschädigung (Abonnementverlängerung) gewährt werden.",
+        "p1": "Skaldly verpflichtet sich, den Dienst mit bestmöglicher Verfügbarkeit bereitzustellen, kann jedoch keinen unterbrechungsfreien Zugang garantieren. Im Falle einer von Skaldly zu vertretenden längeren Nichtverfügbarkeit kann eine Entschädigung (Abonnementverlängerung) gewährt werden.",
         "title": "6. Haftung"
       },
       "object": {
         "p1": "Diese Allgemeinen Verkaufsbedingungen (CGV) definieren die Rechte und Pflichten von Skaldly und seinen Kunden im Zusammenhang mit dem Abschluss von Skaldly-Abonnements.",
-        "title": "1. Zweck"
+        "title": "1. Betreff"
       },
       "pricing": {
         "item1": "Die Preise sind in Euro inklusive Mehrwertsteuer angegeben.",
@@ -1315,7 +1322,7 @@
       "manage": {
         "p1": "Da die von Skaldly verwendeten Cookies für den Betrieb des Dienstes unbedingt erforderlich sind, können sie nicht deaktiviert werden. Sie können Ihre Einwilligungseinstellungen jedoch zurücksetzen, indem Sie unten klicken.",
         "reset_btn": "Meine Einstellungen zurücksetzen",
-        "title": "3. Ihre Einstellungen verwalten"
+        "title": "3. Verwalten Sie Ihre Einstellungen"
       },
       "more": {
         "cnil_link": "CNIL",
@@ -1334,7 +1341,7 @@
         "locale_duration": "30 Tage",
         "locale_purpose": "Speicherung der gewählten Sprache (fr/en)",
         "refresh_token_duration": "7 Tage",
-        "refresh_token_purpose": "Sitzungserneuerung (HttpOnly, SameSite=Lax)",
+        "refresh_token_purpose": "Erneuerung der Sitzung (HttpOnly, SameSite=Lax)",
         "title": "2. Von Skaldly verwendete Cookies"
       },
       "what": {
@@ -1388,20 +1395,20 @@
         "contact": "Kontaktdaten",
         "contact_val": "Name, E-Mail, Nachricht (Kontaktformular)",
         "identity": "Identitätsdaten",
-        "identity_val": "Nachname, Vorname, Benutzername, E-Mail-Adresse",
+        "identity_val": "Name, Vorname, Benutzername, E-Mail-Adresse",
         "intro": "Wir erfassen die folgenden Daten:",
         "learning": "Lerndaten",
         "learning_val": "Fortschritt, abgeschlossene Lektionen, Punkte, Streaks, XP",
         "payment": "Zahlungsdaten",
         "payment_val": "ausschließlich von Stripe verwaltet (wir speichern Ihre Bankdaten nicht), Abonnementverlauf",
         "profile": "Profildaten",
-        "profile_val": "Biografie, Land, Zeitzone, Profil Foto",
+        "profile_val": "Biografie, Land, Zeitzone, Profilfoto",
         "security": "Sicherheit",
-        "security_val": "Passwörter werden gehasht (bcrypt) und sind selbst für unser Team niemals lesbar",
+        "security_val": "Passwörter werden gehasht (bcrypt) und sind niemals lesbar, auch nicht für unser Team",
         "social": "Soziale Daten",
         "social_val": "Freundschaftsbeziehungen zwischen Benutzern",
         "technical": "Technische Daten",
-        "technical_val": "Verbindungsprotokolle, Sitzungstoken",
+        "technical_val": "Verbindung Protokolle, Sitzungstoken",
         "title": "2. Erfasste Daten"
       },
       "description": "Datenschutzrichtlinie des Skaldly-Dienstes.",
@@ -1437,12 +1444,12 @@
         "contact_val": "1 Jahr (dann endgültige Löschung)",
         "deleted": "Daten nach Kontolöschung",
         "deleted_val": "30 Tage (dann endgültige Löschung)",
-        "title": "4. Aufbewahrungsfrist",
-        "tokens": "Sitzungs-Tokens",
-        "tokens_val": "werden sofort nach Trennung oder Löschung des Kontos widerrufen"
+        "title": "4. Haltbarkeit",
+        "tokens": "Sitzungstoken",
+        "tokens_val": "mit sofortiger Sperrung oder Löschung des Kontos widerrufen"
       },
       "rights": {
-        "access": "Zugriffsrecht",
+        "access": "Zugangsrecht",
         "access_val": "(Art. 15) – Erhalten Sie eine Kopie Ihrer Daten",
         "cnil": "Sie haben auch das Recht, eine Beschwerde bei der einzureichen",
         "delay": "(Antwort innerhalb von 30 Tagen).",
@@ -1496,7 +1503,7 @@
     "totalTime": "Gesamtzeit"
   },
   "lessons": {
-    "click_to_flip": "Tippen Sie, um",
+    "click_to_flip": "Tippen, um",
     "complete_error": "Verbindungsfehler während der Validierung anzuzeigen.",
     "computing_score": "Punkteberechnung läuft...",
     "easy": "Leicht – Bestanden",
@@ -1535,14 +1542,14 @@
       "flawless": "Du hast alles beim ersten Mal gefunden!",
       "instruction": "Passende Paare finden",
       "matches_found": "Paare gefunden",
-      "title": "Paarsatz",
+      "title": "Paarspiel",
       "with_errors": "Alle Paare wurden gefunden."
     },
-    "medium": "Durchschnittlich – Wir legen es beiseite.",
+    "medium": "Mittel – Wir legen es beiseite",
     "not_found": "Lektion nicht gefunden.",
-    "progress": "Fortschritt der Übung",
+    "progress": "Übungsfortschritt",
     "qcm": {
-      "correct": "Richtige Antwort!",
+      "correct": "Gute Antwort!",
       "incorrect": "Falsche Antwort",
       "next": "Nachfolgend",
       "title": "Quiz",
@@ -1596,7 +1603,7 @@
       "your_answer": "Ihre Antwort"
     },
     "empty": {
-      "subtitle": "Derzeit sind keine Fragen verfügbar. Komm später wieder!",
+      "subtitle": "Zur Zeit sind keine Fragen verfügbar. Komm später wieder!",
       "title": "Alles ist auf dem neuesten Stand!"
     },
     "filters": {
@@ -1656,27 +1663,27 @@
   },
   "plans": {
     "create": {
-      "title": "Plan erstellen"
+      "title": "Erstellen Sie einen Plan"
     },
     "delete": {
-      "description": "Sind Sie sicher, dass Sie diesen Plan löschen möchten? Diese Aktion ist irreversibel.",
-      "title": "Plan entfernen"
+      "description": "Möchten Sie diesen Plan wirklich löschen? Diese Aktion ist irreversibel.",
+      "title": "Plan löschen"
     },
     "descriptions": {
-      "Free plan": "Dies ist der kostenlose Plan.",
+      "Free plan": "Dies ist der kostenlose Plan",
       "Premium plan": "Premium-Plan mit allen Funktionen"
     },
     "edit": {
       "title": "Plan bearbeiten"
     },
     "form": {
-      "add_feature": "Funktion hinzufügen",
-      "ai_quota": "AI-Kontingent",
-      "ai_quota_hint": "Anzahl der in diesem Plan enthaltenen AI-Anfragen.",
+      "add_feature": "Fügen Sie eine Funktion hinzu",
+      "ai_quota": "KI-Quote",
+      "ai_quota_hint": "Anzahl der in diesem Plan enthaltenen KI-Abfragen.",
       "currency": "Währung",
       "description": "Planbeschreibung",
       "feature_placeholder": "Funktionsbeschreibung",
-      "features": "Funktionen",
+      "features": "Merkmale",
       "name": "Planname",
       "payment_interval": "Zahlungszeitraum",
       "price": "Preis",
@@ -1692,21 +1699,21 @@
       "name": "Name",
       "price": "Preis",
       "status": "Status",
-      "type": "Typ"
+      "type": "Art"
     },
     "title": "Pläne",
     "types": {
-      "Free": "Kostenlos",
-      "Premium": "Premium"
+      "Free": "Frei",
+      "Premium": "Prämie"
     }
   },
   "popular": "Beliebt",
-  "previous": "Vorherig",
+  "previous": "Vorherige",
   "profile": {
     "ai_quota": {
-      "renews_on": "Verlängert am {{date}}",
+      "renews_on": "Verlängerung am {{date}}",
       "title": "KI-Quote",
-      "usage": "Verwendete Generationen"
+      "usage": "Generationen verwendet"
     },
     "bio": "Bio",
     "bio_placeholder": "Erzählen Sie uns etwas über sich...",
@@ -1724,7 +1731,7 @@
       "delete": "Foto löschen",
       "edit_label": "Bearbeiten",
       "error": {
-        "deleteFailed": "Der Löschvorgang ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
+        "deleteFailed": "Löschen fehlgeschlagen. Bitte versuchen Sie es erneut.",
         "invalidType": "Ungültiger Dateityp. Es werden nur JPG und PNG akzeptiert.",
         "tooLarge": "Die Datei ist zu groß. Maximale Größe: 5 MB.",
         "uploadFailed": "Hochladen fehlgeschlagen. Bitte versuchen Sie es erneut."
@@ -1834,8 +1841,8 @@
     "notif_new_pending": "Eine neue Rezension wartet auf Moderation.",
     "notif_pending": "Ihre Bewertung wartet auf Moderation.",
     "notif_rejected": "Ihre Bewertung wurde abgelehnt.",
-    "pending_badge": "Ausstehend",
-    "pending_message": "Ihre Bewertung wartet auf die Moderation.",
+    "pending_badge": "Pending",
+    "pending_message": "Your review is awaiting moderation.",
     "rate_and_continue": "Bewerten und fortfahren",
     "rating_1": "Schlecht",
     "rating_2": "Mittelmäßig",
@@ -1864,20 +1871,20 @@
     "total": "Rezension",
     "update": "Aktualisieren",
     "update_error": "Rezension konnte nicht aktualisiert werden.",
-    "view_details_title": "Bewertungsdetails",
-    "your_review": "Ihre Bewertung"
+    "view_details_title": "Review details",
+    "your_review": "Your review"
   },
   "settings": {
     "2fa": {
-      "cancel": "Abbrechen",
-      "confirm_disable": "Deaktivierung bestätigen",
-      "disable_button": "2FA deaktivieren",
+      "cancel": "Cancel",
+      "confirm_disable": "Confirm opt-out",
+      "disable_button": "Disable 2FA",
       "disable_success": "Die Zwei-Faktor-Authentifizierung wurde deaktiviert.",
-      "enable_button": "2FA aktivieren",
+      "enable_button": "Aktivieren Sie 2FA",
       "enable_success": "Die Zwei-Faktor-Authentifizierung wurde aktiviert.",
-      "enabled_status": "Zwei-Faktor-Authentifizierung ist aktiviert.",
-      "enter_code": "Geben Sie den Bestätigungscode ein.",
-      "enter_code_disable": "Geben Sie einen Code zum Deaktivieren von 2FA ein.",
+      "enabled_status": "Die Zwei-Faktor-Authentifizierung ist aktiviert.",
+      "enter_code": "Geben Sie den Bestätigungscode ein",
+      "enter_code_disable": "Geben Sie einen Code ein, um 2FA zu deaktivieren",
       "manual_key": "Oder geben Sie diesen Schlüssel manuell ein:",
       "not_enabled": "Die Zwei-Faktor-Authentifizierung ist nicht aktiviert.",
       "page_title": "Zwei-Faktor-Authentifizierung",
@@ -1926,12 +1933,12 @@
       "title": "Passwort"
     },
     "profile": {
-      "bioTooLong": "Die Biografie darf 500 Zeichen nicht überschreiten.",
+      "bioTooLong": "Bio darf 500 Zeichen nicht überschreiten.",
       "countryCodeRequired": "Land ist erforderlich.",
-      "timezoneRequired": "Die Zeitzone ist erforderlich.",
+      "timezoneRequired": "Zeitzone ist erforderlich.",
       "usernameInvalid": "Der Benutzername darf nur Buchstaben, Zahlen, Bindestriche und Unterstriche enthalten.",
       "usernameRequired": "Benutzername ist erforderlich.",
-      "usernameTooLong": "Der Benutzername darf nicht länger als 50 Zeichen sein.",
+      "usernameTooLong": "Der Benutzername darf 50 Zeichen nicht überschreiten.",
       "usernameTooShort": "Der Benutzername muss mindestens 3 Zeichen enthalten."
     },
     "title": "Einstellungen"
@@ -1973,7 +1980,7 @@
     "current_plan": "Aktueller Plan",
     "details": {
       "cancel_at_period_end_warning": "Ihr Abonnement wird zum Ende des aktuellen Zeitraums gekündigt.",
-      "canceled_at": "Gekündigt am",
+      "canceled_at": "Storniert am",
       "current_period": "Aktueller Zeitraum",
       "days": "Tage",
       "days_remaining": "Verbleibende Tage",
@@ -1988,7 +1995,7 @@
         "EXPIRED": "Abgelaufen",
         "PENDING": "Ausstehend",
         "active": "Aktiv",
-        "canceled": "Abgebrochen",
+        "canceled": "Gekündigt",
         "expired": "Abgelaufen",
         "pending": "Ausstehend"
       },
@@ -2016,7 +2023,7 @@
     "paymentHistory": {
       "amount": "Betrag",
       "date": "Datum",
-      "method": "Zahlungsart",
+      "method": "Zahlungsmethode",
       "no_payments": "Keine Zahlungen gefunden.",
       "payments": "Zahlung{{s}}",
       "status": {
@@ -2082,26 +2089,26 @@
     "lessons_count_label": "Abgeschlossene Lektionen",
     "lessons_desc": "Erkunden Sie die folgenden Lektionen in chronologischer Reihenfolge, um Fortschritte zu machen und dieses Thema zu meistern.",
     "lessons_page_title": "Lektionen",
-    "lessons_title": "Lektionenablage",
+    "lessons_title": "Unterrichtstafel",
     "level": "Level {{level}}",
     "no_desc": "Keine Beschreibung angegeben",
     "no_lessons_desc": "Komm später wieder!",
-    "no_lessons_title": "Keine Unterrichtsstunden verfügbar",
-    "no_questions": "Für diese Prüfung gibt es keine Fragen.",
-    "not_passed": "Passen",
-    "order": "Bestellung: {{orderIndex}}",
-    "page_desc": "Wählen Sie ein Thema aus, um mit dem Training zu beginnen.",
+    "no_lessons_title": "Keine Lektionen verfügbar.",
+    "no_questions": "Keine Fragen für diese Prüfung.",
+    "not_passed": "Zum Bestehen",
+    "order": "Reihenfolge: {{orderIndex}}",
+    "page_desc": "Wählen Sie ein Fach aus, um mit dem Training zu beginnen.",
     "page_title": "Verfügbare Themen",
-    "pagination_info": "Anzeige von {{start}} bis {{end}} auf {{total}} Themes",
-    "passed": "Gültig",
-    "practice_btn": "Trainiere jetzt",
+    "pagination_info": "Anzeigen von {{start}} bis {{end}} zu {{total}} Themen",
+    "passed": "Bestätigt",
+    "practice_btn": "Jetzt üben",
     "progress": "Fortschritt",
     "replay_lesson_btn": "Wiederholen Sie die Lektion",
-    "search_placeholder": "Suchen Sie nach einem Thema anhand des Namens...",
-    "start_lesson_btn": "Beginnen Sie mit der Lektion",
+    "search_placeholder": "Suchen Sie nach einem Thema nach Namen ...",
+    "start_lesson_btn": "Starten Sie die Lektion",
     "take_exam": "Machen Sie die Prüfung",
-    "translate_or_answer": "Übersetzen oder antworten Sie",
-    "type_answer_here": "Geben Sie hier Ihre Antwort ein..."
+    "translate_or_answer": "Übersetzen oder beantworten Sie",
+    "type_answer_here": "Geben Sie hier Ihre Antwort ein ..."
   },
   "total": "Gesamt",
   "training": {
@@ -2114,13 +2121,13 @@
       "max": "Maximal 500 Zeichen"
     },
     "code": {
-      "digits": "Der Code darf nur Zahlen enthalten",
-      "length": "Der Code muss 6 Ziffern enthalten",
+      "digits": "Code darf nur Ziffern enthalten",
+      "length": "Code muss 6 Ziffern enthalten",
       "required": "Code ist erforderlich"
     },
     "confirmPassword": {
       "match": "Passwörter stimmen nicht überein",
-      "required": "Eine Bestätigung ist erforderlich"
+      "required": "Bestätigung ist erforderlich"
     },
     "contactEmail": {
       "invalid": "Ungültiges E-Mail-Format",
