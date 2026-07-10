@@ -13,7 +13,7 @@ import { Switch } from "@/components/ui/Switch";
 import { ChevronLeft, Eye, Check, Cross, Sparkles, Warning } from "@/assets/icons";
 import { useLesson } from "@/hooks/useLesson";
 import { useTopic } from "@/hooks/useTopic";
-import { LessonType, LessonRequest, AILessonGenerateRequest, FlashcardRequest, QcmQuestionRequest, MatchingPairRequest, InteractiveQuestion } from "@/types/lesson/lesson";
+import { LessonType, LessonRequest, AILessonGenerateRequest, InteractiveQuestion } from "@/types/lesson/lesson";
 import * as yup from "yup";
 import { lessonSchema, type LessonFormData } from "@/validations/lessons/lessonSchema";
 import { aiGenerationSchema } from "@/validations/lessons/aiGenerationSchema";
