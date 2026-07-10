@@ -64,3 +64,5 @@ export const getUILanguages = (t: (key: string) => string) => [
     { code: "de", label: t('settings.languages.german'), flag: "🇩🇪" },
     { code: "it", label: t('settings.languages.italian'), flag: "🇮🇹" },
 ];
+
+export const LANGUAGES_CODE = ["fr", "en", "es", "de", "it"];

@@ -28,12 +28,11 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
   }, [t]);
 
   const handleConfirm = async () => {
-    const nativeLangObj = languages.find((lang) => lang.id === nativeLanguageId);
-    if (nativeLangObj) {
-      i18n.changeLanguage(nativeLangObj.code);
-      localStorage.setItem("language", nativeLangObj.code);
-      // Synchronize both language and locale localStorage keys
-      localStorage.setItem("locale", nativeLangObj.code);
+    const nativeLanguage = languages.find((language) => language.id === nativeLanguageId);
+    if (nativeLanguage) {
+      i18n.changeLanguage(nativeLanguage.code);
+      localStorage.setItem("language", nativeLanguage.code);
+      localStorage.setItem("locale", nativeLanguage.code);
     }
     await confirm();
   };
@@ -97,18 +96,11 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
 
         <div className="flex justify-center gap-2.5">
           <div
-            className={`h-2 w-8 rounded-full transition-all duration-300 ${
-              step === "native" 
-                ? "bg-brand-600 dark:bg-brand-400 w-12" 
-                : "bg-gray-200 dark:bg-gray-800"
-            }`}
+            className={`h-2 w-8 rounded-full transition-all duration-300 ${step === "native" ? "bg-brand-600 dark:bg-brand-400 w-12" : "bg-gray-200 dark:bg-gray-800"}`}
           />
           <div
             className={`h-2 w-8 rounded-full transition-all duration-300 ${
-              step === "learning" 
-                ? "bg-brand-600 dark:bg-brand-400 w-12" 
-                : "bg-gray-200 dark:bg-gray-800"
-            }`}
+              step === "learning" ? "bg-brand-600 dark:bg-brand-400 w-12" : "bg-gray-200 dark:bg-gray-800"}`}
           />
         </div>
       </div>

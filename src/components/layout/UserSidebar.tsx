@@ -56,11 +56,18 @@ export function UserSidebar({ onClose, photoUrl, handleLogout }: UserSidebarProp
     }, []);
 
     useEffect(() => {
-        const onAdded = (...args: unknown[]) => setLearningLanguages(prev => [...prev, args[0] as UserLanguageResponse]);
+        const onAdded = (...args: unknown[]) => {
+            setLearningLanguages(prev => [...prev, args[0] as UserLanguageResponse]);
+            profileService.getMyProfile()
+                .then(profile => setActiveLanguage(profile.activeLanguage ?? null))
+                .catch(() => {});
+        };
         const onRemoved = (...args: unknown[]) => {
             const removedId = args[0] as string;
             setLearningLanguages(prev => prev.filter(l => l.languageId !== removedId));
-            setActiveLanguage(prev => prev?.id === removedId ? null : prev);
+            profileService.getMyProfile()
+                .then(profile => setActiveLanguage(profile.activeLanguage ?? null))
+                .catch(() => setActiveLanguage(prev => prev?.id === removedId ? null : prev));
         };
         globalEvents.on(EVENT_USER_LANGUAGE_ADDED, onAdded);
         globalEvents.on(EVENT_USER_LANGUAGE_REMOVED, onRemoved);

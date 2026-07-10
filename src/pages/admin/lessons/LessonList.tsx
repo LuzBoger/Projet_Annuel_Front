@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLesson } from "@/hooks/useLesson";
@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/Button";
 import { SortableTable } from "@/components/ui/SortableTable";
 import { Switch } from "@/components/ui/Switch";
 import { TableActions } from "@/components/ui/TableActions";
-import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { TableColumn } from "@/types/components/tableColumn";
 import { LessonResponse } from "@/types/lesson/lesson";
 import { ChevronLeft } from "@/assets/icons";
@@ -28,11 +27,8 @@ export default function LessonList() {
     const { topicId } = useParams<{ topicId: string }>();
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const { lessons, loading, fetchAdminLessonsByTopic, deleteLesson, toggleLessonStatus, reorderLessons } = useLesson();
+    const { lessons, loading, fetchAdminLessonsByTopic, toggleLessonStatus, reorderLessons } = useLesson();
     const { topics, fetchAllTopics } = useTopic();
-    
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [selectedLesson, setSelectedLesson] = useState<LessonResponse | null>(null);
     
     const currentTopic = topics.find(t => t.id === topicId);
 
@@ -53,19 +49,6 @@ export default function LessonList() {
         navigate(`/admin/topics/${topicId}/lessons/${lesson.id}/edit`);
     };
 
-    const handleDeleteClick = (lesson: LessonResponse) => {
-        setSelectedLesson(lesson);
-        setShowDeleteModal(true);
-    };
-
-    const confirmDelete = async () => {
-        if (selectedLesson) {
-            await deleteLesson(selectedLesson.id);
-            setShowDeleteModal(false);
-            setSelectedLesson(null);
-        }
-    };
-
     const handleStatusToggle = async (lesson: LessonResponse) => {
         try {
             await toggleLessonStatus(lesson.id);
@@ -79,14 +62,14 @@ export default function LessonList() {
         
         const reorderRequests = newData.map((lesson, index) => ({
             id: lesson.id,
-            orderIndex: index + 1 // We use 1-based index or sequential
+            orderIndex: index + 1
         }));
 
         try {
             await reorderLessons(topicId, reorderRequests);
         } catch (error) {
             console.error("Failed to reorder lessons", error);
-            if (topicId) fetchAdminLessonsByTopic(topicId); // Rollback on error
+            if (topicId) fetchAdminLessonsByTopic(topicId); 
         }
     };
 
@@ -155,21 +138,12 @@ export default function LessonList() {
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">
                                 <TableActions
                                     onEdit={() => handleEdit(lesson)}
-                                    onDelete={() => handleDeleteClick(lesson)}
                                 />
                             </td>
                         </>
                     )}
                 />
 
-                <ConfirmModal
-                    isOpen={showDeleteModal}
-                    title={t('admin.lessons.delete_title')}
-                    description={t('admin.lessons.delete_desc')}
-                    onConfirm={confirmDelete}
-                    onCancel={() => setShowDeleteModal(false)}
-                    isConfirming={loading}
-                />
             </div>
         </>
     );

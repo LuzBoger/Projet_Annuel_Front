@@ -17,15 +17,14 @@ export const SSE_EVENT: Record<string, { key: string; type: "info" | "success" |
     FRIEND_REQUEST_RECEIVED: { key: "friends.notif.request_received", type: "info" },
     FRIEND_REQUEST_ACCEPTED: { key: "friends.notif.request_accepted", type: "success" },
 };
-// Event name for synchronizing mute state across the application
 export const MUTE_EVENT = 'glotrush_mute_toggle';
 
 
 
 
 export const WS_BASE_URL = (API_URL as string)?.replace('https://', 'wss://')?.replace('http://', 'ws://')?.replace('/api/v1', '') ?? 'ws://localhost:8080';
-export const WS_GLOBAl_RANKING = '/topic/ranking/global';
-export const WS_LANGUAGE_RANKING = '/topic/ranking/language/';
+export const WS_GLOBAl_RANKING = '/topic/ranking.global';
+export const WS_LANGUAGE_RANKING = '/topic/ranking.language.';
 export const PASSWORD_LENGTH = 12;
 export const REMOVE_NON_NUMERIC_REGEX = /\D/g;
 export const TWO_FACTOR_CODE_REGEX = /^\d*$/;

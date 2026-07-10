@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { Align, Position } from "@/types/components/home";
 
 interface DropDownMenuItemProps {
     key: string;
@@ -9,8 +10,8 @@ interface DropDownMenuItemProps {
 
 interface DropDownMenuProps {
     items: DropDownMenuItemProps[];
-    align?: "left" | "right";
-    position?: "top" | "bottom";
+    align?: Align;
+    position?: Position;
     className?: string;
     itemClassName?: string;
 }

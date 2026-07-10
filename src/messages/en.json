@@ -34,7 +34,8 @@
     "validate": "Validate",
     "actions": "Action",
     "accept": "Accept",
-    "learn_more": "Learn more"
+    "learn_more": "Learn more",
+    "selectLanguage": "Select a language"
   },
   "cookie_banner": {
     "title": "This website uses cookies",
@@ -365,7 +366,8 @@
         "active": "Active",
         "locked": "Locked",
         "suspended": "Suspended",
-        "pending_verification": "Pending"
+        "pending_verification": "Pending",
+        "deleted": "Deleted"
       }
     },
     "plans": {
@@ -736,10 +738,11 @@
       },
       "in-progress": "Your opponent is currently taking the challenge...",
       "not_played": "Your opponent has not yet taken this challenge.",
+      "not_played_self": "You haven't played yet.",
       "empty": "No participants yet."
     },
     "form": {
-      "title": "Challenge title",
+      "title": "Create a challenge",
       "placeholder": "E.g. Irregular verbs in English",
       "language": "Language",
       "language_placeholder": "Select a language",
@@ -840,6 +843,7 @@
     "ai": {
       "button": "Generate with AI",
       "title": "Generate exercises with AI",
+      "required_fields": "Please fill in the required fields (*) to generate exercises with AI.",
       "quota_exceeded_title": "AI Generation Limit Reached",
       "quota_exceeded_desc": "You have exhausted your monthly AI generation credits. Upgrade to a Premium plan to unlock your AI quota.",
       "upgrade": "Upgrade",
@@ -1350,9 +1354,9 @@
     }
   },
   "home": {
-    "page_title": "Skaldly - Master a New Language with AI as Your Personal Assistant",
+    "page_title": "Skaldly - Learn a Language with Artificial Intelligence",
     "page_description": "Learn a new language with artificial intelligence: flashcards, quizzes and interactive exercises. An AI assistant to help you progress at your own pace.",
-    "page_keywords": "learn a language with AI, learn a language with artificial intelligence, language learning app, flashcards, language quiz, spaced repetition, AI language assistant, Skaldly",
+    "page_keywords": "learn a language with AI, learn a language with artificial intelligence, language learning app, flashcards, language quiz, AI language assistant, Skaldly",
     "hero": {
       "title_start": "Learn a language with ",
       "title_highlight": "Artificial Intelligence",

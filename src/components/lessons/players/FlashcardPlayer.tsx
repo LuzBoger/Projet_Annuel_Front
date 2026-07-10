@@ -101,12 +101,10 @@ export function FlashcardPlayer({ lessonId, flashcards, onFinish }: FlashcardPla
                 newQueue.splice(insertIndex, 0, currentItem);
             }
 
-            // Update content while invisible
             setIsFlipped(false);
             setQueue(newQueue);
 
             if (newQueue.length === 0) {
-                // Calculate final score: only count cards that were correctly answered (Green)
                 const correctCount = newScores.filter(s => s === 100).length;
                 const finalScore = Math.round((correctCount / flashcards.length) * 100);
                 setTimeout(() => onFinish(finalScore, correctCount, flashcards.length, mistakeIds.current), 400);
@@ -130,7 +128,6 @@ export function FlashcardPlayer({ lessonId, flashcards, onFinish }: FlashcardPla
         }
     };
 
-    // Calculate statuses for the segmented stepper
     const segmentStatuses = flashcards.map((_, idx) => {
         if (queue.length > 0 && idx === queue[0].originalIndex) return 'current';
         if (scores[idx] === 100) return 'correct';
