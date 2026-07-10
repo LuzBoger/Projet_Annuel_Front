@@ -1,10 +1,12 @@
-# GloTrush Frontend
+# Skaldly Frontend
 
-Application React avec TypeScript et Vite.
+Partie frontend de l'application Skaldly, une application d'apprentissage de langues assistée par l'IA.
 
 ## Configuration
 
-Créer un fichier `.env` à la racine du projet avec les variables suivantes :
+Créer un fichier `.env` à la racine du projet :
+
+### `.env` — Développement local
 
 ```env
 VITE_API_URL=http://localhost:8080/api/v1
@@ -46,32 +48,22 @@ npm run lint
 npm run preview
 ```
 
-## Déploiement
+## Docker
 
-### Docker
+### Développement
 
-#### Build l'image
+
 ```bash
-docker build -t glotrush-front:latest .
+docker compose -f compose.dev.yml up --build
 ```
+L'application sera accessible sur [http://localhost:5173](http://localhost:5173).
 
-#### Tag et Push
-```bash
-docker tag glotrush-front:latest arthurbrd/glotrush-front:latest
-docker push arthurbrd/glotrush-front:latest
-```
-
-#### Run sur le serveur
-```bash
-# Récupérer la dernière version
-docker pull arthurbrd/glotrush-front:latest
-
-# Lancer le conteneur
-docker run -d -p 80:80 --name glotrush-front arthurbrd/glotrush-front:latest
-```
 
 ## Structure
 
-- `/src/pages` : Pages de l'application (Home, Login, Register)
+- `/src/pages` : Pages de l'application
 - `/src/components` : Composants réutilisables
-- `/src/test` : Configuration des tests
+- `/src/hooks` : Hooks personnalisés
+- `/src/services` : Appels API
+- `/src/types` : Types TypeScript
+- `/src/messages` : Fichiers de traduction (fr/en)
