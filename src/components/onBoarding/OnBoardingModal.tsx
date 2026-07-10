@@ -12,7 +12,7 @@ interface OnBoardingModalProps {
 }
 
 export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [languages, setLanguages] = useState<LanguageResponse[]>([]);
 
   const { step, nativeLanguageId, setNativeLanguageId, learningLanguageId, setLearningLanguageId, nextStep, previousStep, confirm, isLoading} = useOnBoarding(onClose);
@@ -26,6 +26,17 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
   useEffect(() => {
     languageService.getAllActiveLanguages().then(setLanguages);
   }, [t]);
+
+  const handleConfirm = async () => {
+    const nativeLangObj = languages.find((lang) => lang.id === nativeLanguageId);
+    if (nativeLangObj) {
+      i18n.changeLanguage(nativeLangObj.code);
+      localStorage.setItem("language", nativeLangObj.code);
+      // Synchronize both language and locale localStorage keys
+      localStorage.setItem("locale", nativeLangObj.code);
+    }
+    await confirm();
+  };
 
   return (
     <Modal
@@ -73,7 +84,7 @@ export function OnBoardingModal({ onClose }: OnBoardingModalProps) {
 
       <div className="space-y-6">
         <Button
-          onClick={step === "native" ? nextStep : confirm}
+          onClick={step === "native" ? nextStep : handleConfirm}
           disabled={
             step === "native" ? !nativeLanguageId : !learningLanguageId || isLoading
           }

@@ -1,0 +1,2200 @@
+{
+  "accessibility": {
+    "aria_font_group": "Schriftgröße",
+    "aria_font_size_section": "Schriftgröße",
+    "aria_visual_section": "Visuelle Optionen",
+    "close": "Schließen",
+    "dark_mode_desc": "Dunkle Augen-Thema",
+    "dark_mode_label": "Dunkler Modus",
+    "dyslexia_desc": "Schriftart + Abstand",
+    "dyslexia_label": "Legasthenie",
+    "font_large": "Groß",
+    "font_normal": "Normal",
+    "font_xlarge": "Extra groß",
+    "high_contrast_desc": "Lesbarkeit verbessern",
+    "high_contrast_label": "Kontrast",
+    "hint": "Tippen Sie auf eine Karte, um sie zu aktivieren",
+    "open": "Barrierefreiheitsoptionen öffnen",
+    "reduced_motion_desc": "Effekte ausschalten",
+    "reduced_motion_label": "Animationen",
+    "reset": "Alles zurücksetzen",
+    "reset_label": "Barrierefreiheitseinstellungen zurücksetzen",
+    "subtitle_active_one": "1 aktive Option",
+    "subtitle_active_other": "{{count}} Aktive Optionen",
+    "subtitle_none": "Personalisieren Sie Ihre Lektüre",
+    "text_size": "Textgröße",
+    "title": "Barrierefreiheit",
+    "underline_links_desc": "Unterstreichungslinks",
+    "underline_links_label": "Links",
+    "visual_options": "Visuelle Optionen"
+  },
+  "accuracy": "Genauigkeit",
+  "admin": {
+    "dashboard": {
+      "activeSubscribers": "Aktive Abonnenten",
+      "languagesDesc": "Verfügbare Lernsprachen",
+      "plansDesc": "Pläne erstellen und konfigurieren",
+      "reviewsDesc": "Benutzerbewertungen moderieren",
+      "sections": "Schnellzugriff",
+      "statsDesc": "Engagement, Fortschritt, Streaks",
+      "subscriptionsDesc": "Abonnements verwalten und verfolgen",
+      "subtitle": "Plattformübersicht und wichtige Kennzahlen",
+      "title": "Dashboard",
+      "topicsDesc": "Thema und Lektion Management",
+      "totalRevenue": "Gesamtumsatz"
+    },
+    "languages": {
+      "create": "Erstellen Sie eine Sprache",
+      "delete_desc": "Möchten Sie diese Sprache wirklich entfernen? Diese Aktion ist irreversibel.",
+      "delete_title": "Sprache löschen",
+      "edit": "Sprache ändern",
+      "form": {
+        "active": "Aktive Sprache",
+        "code": "Ausgewählter Code",
+        "flag_preview": "Flaggenvorschau:",
+        "name": "Angezeigte Beschriftung",
+        "select_placeholder": "Sprache auswählen"
+      },
+      "page_title": "Sprachverwaltung",
+      "status_desc": "Sind Sie sicher, dass Sie den Status (aktiv/inaktiv) dieser Sprache ändern möchten?",
+      "status_title": "Status ändern",
+      "table": {
+        "actions": "Aktionen",
+        "code": "Code",
+        "isActive": "Aktiv",
+        "lessonsCount": "Lektionen",
+        "name": "Name",
+        "topicsCount": "Themen"
+      }
+    },
+    "lessons": {
+      "create": "Lektion erstellen",
+      "create_success": "Lektion erfolgreich erstellt.",
+      "delete_desc": "Sind Sie sicher, dass Sie diese Lektion löschen möchten? Diese Aktion ist irreversibel.",
+      "delete_success": "Lektion erfolgreich gelöscht.",
+      "delete_title": "Lektion löschen",
+      "edit": "Lektion bearbeiten",
+      "flashcards": {
+        "add": "Karteikarte hinzufügen",
+        "back": "Verso (Rückseite)",
+        "backLang": "Sprache Verso",
+        "front": "Recto (Vorderseite)",
+        "frontLang": "Sprache Recto"
+      },
+      "form": {
+        "active": "Aktive Lektion",
+        "ai_generate": {
+          "description_label": "Lektionsbeschreibung für AI",
+          "description_label_modify": "Bearbeitungsanweisungen für AI",
+          "description_placeholder": "Beispiel: Erstellen Sie einen Obstvokabular-MCQ für Anfänger.",
+          "description_placeholder_modify": "Bsp.: Fügt 3 neue schwierige Fragen zum Thema hinzu.",
+          "empty_description": "Bitte geben Sie eine Beschreibung ein, bevor Sie mit der Generierung beginnen.",
+          "empty_description_modify": "Bitte geben Sie Anweisungen ein, bevor Sie mit der Änderung beginnen.",
+          "error": "Die Generierung der KI-Lektionen ist fehlgeschlagen.",
+          "error_modify": "Die Lektion konnte nicht von der KI bearbeitet werden.",
+          "generating_subtitle": "KI strukturiert Ihre Übungen und Inhalte. Bitte warten Sie einen Moment.",
+          "generating_title": "Unterrichtsgestaltung...",
+          "generating_title_modify": "Unterrichtsmodifikation...",
+          "item_count_error_flashcard_qcm": "Die Anzahl der Elemente für diese Unterrichtsart muss zwischen 5 und 20 liegen.",
+          "item_count_error_matching_sorting": "Die Anzahl der Elemente für diese Unterrichtsart muss zwischen 3 und 10 liegen.",
+          "item_count_label": "Anzahl der zu generierenden Elemente",
+          "item_count_placeholder": "Beispiel: 5",
+          "item_count_required": "Die Anzahl der zu generierenden Elemente ist erforderlich.",
+          "quota_exceeded_cta": "Verstanden",
+          "quota_exceeded_message": "Sie haben das Limit der Ihrem Konto für diesen Zeitraum zugewiesenen KI-Builds oder -Änderungen erreicht. Ihr Kontingent wird an dem in Ihrem Profil angegebenen Datum zurückgesetzt.",
+          "quota_exceeded_title": "KI-Quote überschritten",
+          "subtitle": "Lassen Sie künstliche Intelligenz Ihre Unterrichtsstruktur mit einem Klick gestalten.",
+          "subtitle_modify": "Geben Sie der KI Anweisungen, bestehende Inhalte anzureichern oder anzupassen.",
+          "success": "Lektion erfolgreich von KI generiert!",
+          "success_modify": "Lektion erfolgreich von KI geändert!",
+          "title": "KI-unterstützte Generierung",
+          "title_modify": "KI-unterstützte Bearbeitung",
+          "trigger_btn": "Erstellen mit KI",
+          "trigger_btn_modify": "Bearbeiten mit KI",
+          "type_helper": "* Bestimmt das Unterrichtsformat (erforderlich für KI-Generierung und manuelle Einrichtung)."
+        },
+        "description": "Beschreibung",
+        "no_description": "Keine Beschreibung angegeben.",
+        "order": "Sortierindex",
+        "passScore": "Bestehenspunktzahl (%)",
+        "sections": {
+          "basic_info": "Grundlegende Informationen",
+          "lesson_content": "Lektionsinhalt"
+        },
+        "title": "Lektionstitel",
+        "topic_label": "Thema:",
+        "type": "Lektionstyp",
+        "type_placeholder": "Wählen Sie einen Typ",
+        "types": {
+          "FLASHCARD": "Karteikarte",
+          "INTERACTIVE": "Interaktive Lektion",
+          "MATCHING_PAIR": "Passende Paare",
+          "QCM": "MCQs",
+          "SORTING_EXERCISE": "Reihenfolge"
+        },
+        "untitled": "Lektion ohne Titel",
+        "validation": {
+          "flashcards_max": "Eine Karteikartenlektion darf nicht mehr als 20 Karteikarten enthalten.",
+          "flashcards_min": "Eine Karteikartenlektion muss mindestens 5 Karteikarten enthalten.",
+          "matching_max": "Eine Matching-Übung darf nicht mehr als 10 Paare enthalten.",
+          "matching_min": "Eine Assoziationsübung muss mindestens 3 Paare enthalten.",
+          "questions_max": "Eine MCQ-Lektion darf nicht mehr als 20 Fragen enthalten.",
+          "questions_min": "Eine MCQ-Lektion muss mindestens 5 Fragen enthalten.",
+          "sorting_max": "Eine Ordnungslektion darf nicht mehr als 10 zu sortierende Sätze enthalten.",
+          "sorting_max_words": "Jeder Satz sollte nicht mehr als 10 Wörter enthalten.",
+          "sorting_min": "Eine Ordnungslektion muss mindestens 3 zu sortierende Sätze enthalten.",
+          "sorting_min_words": "Jeder Satz muss mindestens 3 Wörter enthalten."
+        }
+      },
+      "interactive": {
+        "addAudio": "Audio hinzufügen",
+        "addImage": "Bild hinzufügen",
+        "addOption": "Option hinzufügen",
+        "add_question": "Frage hinzufügen",
+        "audiosLabel": "Audios (Stimme)",
+        "correctWordLabel": "Richtiges Wort erwartet",
+        "correctWordPlaceholder": "Beispiel: Katze",
+        "imagesLabel": "Bilder (Visuals)",
+        "multipleChoice": "Multiple Choice (MCQ)",
+        "noAudio": "Kein Audio hochgeladen",
+        "noImage": "Kein Bild hochgeladen",
+        "openText": "Freie Texteingabe",
+        "optionsLabel": "Multiple Choice (Optionen)",
+        "questionText": "Anweisungen / Frage",
+        "questionTextPlaceholder": "Beispiel: Hören Sie sich das Audio an und wählen Sie die richtige Antwort aus ...",
+        "systemType": "Fragetyp",
+        "title": "Interaktive Frage"
+      },
+      "list_title": "Lektionen für das Thema: {{topicName}}",
+      "matching": {
+        "add": "Ein Paar hinzufügen",
+        "item1": "Element 1",
+        "item2": "Element 2"
+      },
+      "no_lessons": "Keine Lektionen für dieses Thema.",
+      "page_title": "Unterrichtsverwaltung – {{topicName}}",
+      "preview": {
+        "flashcard_label": "Karteikarte",
+        "no_data": "Geben Sie die Informationen ein, um die Vorschau anzuzeigen.",
+        "retry_simulation": "Beginnen Sie erneut.",
+        "score_preview": "Ihre simulierte Punktzahl:",
+        "simulate_btn": "Simulieren Sie die Unterrichtseinheit.",
+        "simulate_title": "Unterrichtssimulation.",
+        "simulation_complete": "Simulation abgeschlossen!",
+        "sorting_label": "Bestellen",
+        "title": "Schnellaktionen",
+        "unsupported_type": "Unterrichtstyp wird für Simulation nicht unterstützt",
+        "visual_confirm": "Dies ist nur eine visuelle Vorschau"
+      },
+      "qcm": {
+        "add_option": "Option hinzufügen",
+        "add_question": "Frage hinzufügen",
+        "correct": "Richtige Antwort",
+        "explanation": "Erläuterung",
+        "explanation_placeholder": "Erklären Sie, warum diese Antwort richtig ist ...",
+        "option": "Option {{index}}",
+        "question": "Frage"
+      },
+      "sorting": {
+        "add": "Fügen Sie einen Artikel hinzu",
+        "items": "Zu sortierende Elemente (durch Kommas getrennt)",
+        "move_down": "Runterkommen",
+        "move_up": "Nach oben gehen",
+        "note": "Hinweis: Elemente und Reihenfolge werden in dieser vereinfachten Form durch durch Kommas getrennte Zeichenfolgen verwaltet.",
+        "note_new": "Die Reihenfolge, in der Sie die Elemente hinzufügen, bestimmt die richtige Antwort.",
+        "order": "Korrekte Reihenfolge (durch Kommas getrennte Indizes, z. B.: 0,1,2)",
+        "sentence_label": "Satz {{index}}",
+        "sentence_placeholder": "Geben Sie den Satz in der richtigen Reihenfolge ein (z. B. Mein Name ist Arthur)"
+      },
+      "table": {
+        "actions": "Aktionen",
+        "active": "Aktiv",
+        "order": "Befehl",
+        "title": "Titel",
+        "type": "Art"
+      },
+      "update_success": "Lektion erfolgreich aktualisiert."
+    },
+    "nav": {
+      "languages": "SPRACHEN",
+      "overview": "Überblick",
+      "plans": "Pläne",
+      "reviews": "Beachten",
+      "stats": "Benutzerstatistiken",
+      "subscriptions": "Abonnements",
+      "topics": "Themen"
+    },
+    "plans": {
+      "status_desc": "Sind Sie sicher, dass Sie den Status dieses Abonnementplans ändern möchten?",
+      "status_title": "Status ändern",
+      "title": "Pläne"
+    },
+    "stats": {
+      "accuracy": "Präzision",
+      "activeStreaks": "Aktive Streifen",
+      "activeUsers7d": "Aktiv (7 Tage)",
+      "avgAccuracy": "Durchschnittliche Genauigkeit",
+      "avgCompletion": "Durchschnittlicher Abschluss",
+      "completion": "Fertigstellung",
+      "currentStreak": "Aktuelle Serie",
+      "engagement": "Engagement",
+      "fetchEngagementError": "Interaktionsstatistiken können nicht geladen werden.",
+      "fetchMetricsError": "Bildungsmetriken können nicht geladen werden.",
+      "fetchUserDetailError": "Benutzerdetails konnten nicht geladen werden.",
+      "fetchUsersError": "Benutzerliste konnte nicht geladen werden.",
+      "learningMetrics": "Bildungskennzahlen",
+      "lessons": "Unterricht",
+      "longestStreak": "Max Streak",
+      "mostPopularLanguage": "Sprache, die am meisten gelernt wird",
+      "newUsers": "Neue Benutzer",
+      "newUsers7d": "Neu (7 Tage)",
+      "pageTitle": "Benutzerstatistiken",
+      "statsOf": "Statistiken —",
+      "studyTime": "Lernzeit",
+      "table": {
+        "lastActivity": "Letzte Aktivität",
+        "status": "Status",
+        "user": "Benutzer"
+      },
+      "time": "Zeit",
+      "topic": "Thema",
+      "topicBreakdown": "Fortschritt nach Thema",
+      "topicsCompleted": "Abgeschlossene Themen",
+      "totalStudyTime": "Gesamte Lernzeit",
+      "totalUsers": "Benutzer",
+      "totalXP": "Gesamt-XP",
+      "userGrowthTitle": "Neue Benutzer (letzte 12 Monate)",
+      "usersCount": "Benutzer",
+      "usersTitle": "Benutzer"
+    },
+    "subscriptions": {
+      "title": "Abonnementverwaltung"
+    },
+    "topics": {
+      "create": "Erstellen Sie ein Thema",
+      "create_success": "Thema erfolgreich erstellt.",
+      "delete_desc": "Sind Sie sicher, dass Sie dieses Thema löschen möchten? Diese Aktion ist irreversibel.",
+      "delete_success": "Thema erfolgreich gelöscht.",
+      "delete_title": "Thema löschen",
+      "edit": "Thema bearbeiten",
+      "filters": {
+        "all_difficulties": "Alle Schwierigkeiten",
+        "search_name": "Nach Namen suchen...",
+        "status_active": "Nur aktiv",
+        "status_all": "Alle Status",
+        "status_inactive": "Nur inaktiv"
+      },
+      "form": {
+        "active": "Aktives Thema",
+        "description": "Beschreibung",
+        "difficulty": "Schwierigkeitsgrad",
+        "difficulty_placeholder": "Wählen Sie eine Ebene aus",
+        "language_placeholder": "Wählen Sie eine Sprache aus",
+        "levels": {
+          "A1": "A1 – Anfänger",
+          "A2": "A2 – Grundstufe",
+          "B1": "B1 – Mittelstufe",
+          "B2": "B2 – Obere Mittelstufe",
+          "C1": "C1 – Fortgeschritten",
+          "C2": "C2 – Fortgeschritten"
+        },
+        "name": "Themenname",
+        "order": "Sortierindex",
+        "source_language": "Ausgangssprache",
+        "target_language": "Zielsprache"
+      },
+      "manage_lessons": "Lektionen verwalten",
+      "page_title": "Themenverwaltung",
+      "table": {
+        "actions": "Aktionen",
+        "active": "Aktiv",
+        "description": "Beschreibung",
+        "difficulty": "Schwierigkeit",
+        "language": "Sprache",
+        "name": "Name",
+        "order": "Reihenfolge"
+      },
+      "update_success": "Thema mit Erfolg aktualisiert."
+    },
+    "users": {
+      "actionError": "Während der Aktion ist ein Fehler aufgetreten.",
+      "activate": "Aktivieren",
+      "activateDesc": "Sind Sie sicher, dass Sie {{username}} wieder aktivieren möchten?",
+      "activateTitle": "Benutzer aktivieren",
+      "deleteArea": "Benutzerkonto löschen",
+      "deleteDesc": "Sind Sie sicher, dass Sie {{username}} löschen möchten? Diese Aktion ist irreversibel.",
+      "deleteTitle": "Benutzer löschen",
+      "deleted": "Benutzer gelöscht.",
+      "editTitle": "Benutzer verwalten",
+      "fetchError": "Benutzerliste konnte nicht geladen werden.",
+      "lockDesc": "Sind Sie sicher, dass Sie {{username}} sperren möchten?",
+      "lockTitle": "Benutzer sperren",
+      "newPassword": "Neues Passwort",
+      "passwordMinLength": "Das Passwort muss mindestens 12 Zeichen lang sein.",
+      "passwordPlaceholder": "Mindestens 12 Zeichen.",
+      "passwordReset": "Passwort zurücksetzen.",
+      "statusUpdated": "Status aktualisiert.",
+      "status": {
+        "active": "Aktiv",
+        "locked": "Gesperrt",
+        "pending_verification": "Wartend",
+        "suspended": "Angehalten"
+      },
+      "suspend": "Angehalten",
+      "suspendDesc": "Sind Sie sicher, dass Sie {{username}} sperren möchten?",
+      "suspendTitle": "Benutzer sperren",
+      "unlock": "Entsperren",
+      "unlocked": "Konto entsperrt."
+    }
+  },
+  "auth": {
+    "back_home": "Zurück zur Startseite",
+    "forgot_password": {
+      "back_to_login": "Zurück zur Anmeldung",
+      "check_inbox": "Überprüfen Sie Ihren Posteingang, um Ihr Passwort zurückzusetzen.",
+      "description": "Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
+      "email": "E-Mail-Adresse",
+      "email_sent": "E-Mail gesendet!",
+      "submit": "Link senden",
+      "title": "Passwort vergessen"
+    },
+    "illustrations": {
+      "admin": {
+        "description": "Dieser Bereich ist ausschließlich für die Verwaltung und Konfiguration der Skaldly-Plattform reserviert.",
+        "title_highlight": "Verwaltung",
+        "title_start": "Raum"
+      },
+      "default": {
+        "description": "Basierend auf jahrzehntelanger kognitionswissenschaftlicher Forschung, um Vokabeln in Ihr Langzeitgedächtnis einzubrennen.",
+        "title_highlight": "Künstliche Intelligenz",
+        "title_start": "Meistern Sie Sprachen mit"
+      },
+      "forgot_password": {
+        "description": "Skaldly wird Sie niemals per E-Mail oder Telefon nach einer persönlichen Kennung oder einem Passwort fragen.",
+        "title_highlight": "Konto",
+        "title_start": "Sicherheit Ihres"
+      },
+      "login": {
+        "description": "Finden Sie Ihren Fortschritt, Statistiken und personalisierte Bewertungen an einem Ort.",
+        "title_highlight": "Lernen",
+        "title_start": "Zurück in Ihrem Bereich"
+      },
+      "register": {
+        "description": "Ihre persönlichen Daten sind vertraulich und werden niemals an Dritte weitergegeben. Ihr Fortschritt liegt bei Ihnen.",
+        "title_highlight": "Lernen",
+        "title_start": "Werden Sie Teil der Revolution von"
+      }
+    },
+    "login": {
+      "create_account": "Erstellen Sie ein Konto",
+      "email": "E-Mail-Adresse",
+      "email_placeholder": "paul@example.com",
+      "forgot_password": "Passwort vergessen?",
+      "no_account": "Noch kein Konto?",
+      "password": "Passwort",
+      "secretKey": "Geheimschlüssel",
+      "submit": "Anmelden",
+      "title": "Anmelden"
+    },
+    "logout": "Abmelden",
+    "register": {
+      "confirmPassword": "Passwort bestätigen",
+      "email": "E-Mail-Adresse",
+      "email_placeholder": "paul@example.com",
+      "firstName": "Vorname",
+      "has_account": "Sie haben bereits ein Konto?",
+      "lastName": "Name",
+      "login": "Login",
+      "password": "Passwort",
+      "password_hint": "Min. 12 Zeichen, 1 Großbuchstabe, 1 Kleinbuchstabe, 1 Zahl, 1 Sonderzeichen",
+      "submit": "Mein Konto erstellen",
+      "success": "Registrierung erfolgreich! Sie können sich jetzt anmelden.",
+      "title": "Konto erstellen",
+      "username": "Benutzername"
+    },
+    "reset_password": {
+      "confirm_password": "Passwort bestätigen",
+      "description": "Geben Sie Ihr neues Passwort ein.",
+      "go_to_login": "Zum Anmelden gehen",
+      "invalid_link": "Der Link zum Zurücksetzen ist ungültig oder abgelaufen.",
+      "new_password": "Neues Passwort",
+      "request_new_link": "Neuen Link anfordern",
+      "submit": "Passwort zurücksetzen",
+      "success": "Ihr Passwort wurde erfolgreich zurückgesetzt.",
+      "title": "Passwort zurücksetzen",
+      "token_expired": "Der Link zum Zurücksetzen ist abgelaufen.",
+      "weak_password": "Das Passwort ist zu schwach."
+    },
+    "verify_2fa": {
+      "description": "Geben Sie den 6-stelligen Code für Ihre Authentifizierungsanwendung ein.",
+      "submit": "Überprüfen",
+      "title": "Zwei-Faktor-Authentifizierung"
+    }
+  },
+  "catalogLanguages": {
+    "title": "Sprachen"
+  },
+  "catalog_languages": {
+    "page_title": "Sprachkatalog"
+  },
+  "catalog": {
+    "currentlyLearning": "Lernen",
+    "discover": "Entdecken",
+    "lessons": "Lektionen",
+    "noResults": "Keine Sprachen gefunden.",
+    "search": "Nach einer Sprache suchen…",
+    "topics": "Themen"
+  },
+  "challenge": {
+    "acceptSuccess": "Herausforderung angenommen.",
+    "ai": {
+      "button": "Generieren mit KI",
+      "generate": "Generieren",
+      "generated_desc": "Generiert durch KI: {{prompt}}",
+      "items_count": "Anzahl der Fragen",
+      "prompt_label": "Generierungsthema oder -aufforderung",
+      "prompt_placeholder": "Beispiel: Gängige Restaurantausdrücke",
+      "quota_exceeded_desc": "Sie haben Ihr monatliches Generierungsguthaben aufgebraucht. Führen Sie ein Upgrade auf Premium durch, um Ihr KI-Kontingent freizuschalten.",
+      "quota_exceeded_title": "KI-Generierungsgrenze erreicht",
+      "title": "Generieren Sie Übungen durch KI",
+      "upgrade": "Abonnieren"
+    },
+    "author": "Von {{username}}",
+    "createSuccess": "Herausforderung erfolgreich erstellt.",
+    "create_title": "Erstellen Sie eine Herausforderung",
+    "create": {
+      "public_details": "Einstellungen für öffentliche Herausforderungen",
+      "select_language": "Wählen Sie eine Sprache aus",
+      "source_language": "Schreibsprache",
+      "target_language": "Sprache zum Lernen"
+    },
+    "declineSuccess": "Herausforderung abgelehnt.",
+    "details": {
+      "accept": "Akzeptieren",
+      "already_played": "Sie haben diese Herausforderung bereits abgeschlossen",
+      "decline": "Verweigern",
+      "play": "Starten Sie die Herausforderung"
+    },
+    "duel": {
+      "challenged_by": "Herausgefordert von {{username}}",
+      "pending": "Duell wartet"
+    },
+    "form": {
+      "language": "Sprache",
+      "language_placeholder": "Wählen Sie eine Sprache aus",
+      "lesson": "Lektion",
+      "lesson_placeholder": "Wählen Sie eine Lektion aus",
+      "lesson_type": "Unterrichtsart",
+      "mode": "Herausforderungstyp",
+      "opponent": {
+        "all": "Lernende",
+        "change": "Gegner wechseln",
+        "empty": "Keine Gegner gefunden",
+        "friends": "Freunde",
+        "label": "Gegner",
+        "select": "Wählen Sie einen Gegner aus"
+      },
+      "placeholder": "Beispiel: Unregelmäßige Verben im Englischen",
+      "question_count": "Anzahl der Fragen",
+      "question_count_placeholder": "Lassen Sie das Feld leer, um alle Fragen zu stellen",
+      "submit": "Erstellen Sie die Herausforderung",
+      "summary": "Zusammenfassung",
+      "title": "Herausforderungstitel",
+      "topic": "Thema",
+      "topic_placeholder": "Wählen Sie ein Thema aus"
+    },
+    "joinSuccess": "Sie haben sich der Herausforderung angeschlossen.",
+    "lobby": {
+      "cancel": "Herausforderung abbrechen",
+      "waiting": "Warten auf die Annahme durch {{username}}..."
+    },
+    "notification": {
+      "invite": "{{from}} hat dich herausgefordert!"
+    },
+    "participants": {
+      "count": "{{count}} Teilnehmer",
+      "counts": "{{count}} Teilnehmer"
+    },
+    "public": {
+      "challenges": "Öffentliche Herausforderungen",
+      "empty": "Keine öffentlichen Herausforderungen verfügbar."
+    },
+    "ranking": {
+      "empty": "Noch keine Teilnehmer.",
+      "in-progress": "Dein Gegner schließt gerade die Herausforderung ab ...",
+      "live": "Rang",
+      "not_played": "Dein Gegner hat diese Herausforderung noch nicht abgeschlossen.",
+      "results": "Ergebnisse",
+      "score": {
+        "hidden": "Die {{username}}-Punktzahl bleibt bis zum Ende der Herausforderung verborgen."
+      }
+    },
+    "status": {
+      "ACTIVE": "Aktiv",
+      "CANCELLED": "Abgesagt",
+      "COMPLETED": "Fertig",
+      "EXPIRED": "Abgelaufen",
+      "PENDING": "In der Warteschleife"
+    },
+    "submitSuccess": "Bewertung erfolgreich übermittelt.",
+    "time_left_hours": "{{count}} verbleibende Stunde(n).",
+    "time_left_minutes": "{{count}} verbleibende Minute(n).",
+    "time_left_seconds": "{{count}} verbleibende Sekunde(n).",
+    "title": "Herausforderungen",
+    "type": {
+      "duel": {
+        "description": "Fordern Sie einen bestimmten Gegner heraus",
+        "type": "Duell"
+      },
+      "flashcard": {
+        "type": "Karteikarte"
+      },
+      "interactive": {
+        "type": "Interaktive Fragen"
+      },
+      "matching_pair": {
+        "type": "Paare zum Verbinden"
+      },
+      "public": {
+        "description": "Offen für alle Spieler",
+        "type": "Publikum"
+      },
+      "qcm": {
+        "type": "MCQ"
+      },
+      "sorting_exercise": {
+        "type": "Ordnung schaffen"
+      }
+    },
+    "user": {
+      "empty": "Im Moment haben Sie keine Herausforderungen.",
+      "my_challenges": "Meine Herausforderungen"
+    },
+    "validation": {
+      "challengeType": "Der Herausforderungstyp ist erforderlich",
+      "challengedId": {
+        "required": "Bitte fügen Sie einen Gegner hinzu"
+      },
+      "flashcards": {
+        "min": "Es ist mindestens 1 Karteikarte erforderlich"
+      },
+      "flashcard": {
+        "back": "Die Rückseite ist erforderlich",
+        "front": "Die Vorderseite ist erforderlich"
+      },
+      "languageId": "Bitte wählen Sie eine Sprache aus",
+      "lessonId": "Bitte wählen Sie eine Lektion aus",
+      "lessonId.duel": "Bitte wählen Sie eine Lektion für dieses Duell",
+      "lessonType": "Unterrichtsart ist erforderlich",
+      "matchingPairs": {
+        "min": "Mindestens 1 Paar ist erforderlich"
+      },
+      "matchingPair": {
+        "item1": "Punkt 1 ist erforderlich",
+        "item2": "Punkt 2 ist erforderlich"
+      },
+      "qcm": {
+        "correctOptionIndex.required": "Richtige Antwort ist erforderlich",
+        "min": "Mindestens 1 Frage ist erforderlich",
+        "options": "Option ist erforderlich",
+        "options.min": "Mindestens 2 Optionen sind erforderlich",
+        "question": "Frage ist erforderlich"
+      },
+      "sortingExercises": {
+        "min": "Mindestens 1 Sortierübung ist erforderlich"
+      },
+      "sortingExercise": {
+        "correctOrder": "Richtige Reihenfolge ist erforderlich",
+        "correctOrder.min": "Mindestens 2 Elemente sind erforderlich",
+        "items": "Element ist erforderlich",
+        "items.min": "Mindestens 2 Elemente sind erforderlich"
+      },
+      "sourceLanguageId": "Bitte wählen Sie die Schreibsprache aus.",
+      "title": "Titel ist erforderlich.",
+      "title.max": "Maximal 200 Zeichen.",
+      "title_max": "Maximal 200 Zeichen."
+    }
+  },
+  "checkout": {
+    "cancel": {
+      "description": "Ihre Zahlung wurde storniert. Sie können es jederzeit erneut versuchen.",
+      "title": "Zahlung storniert"
+    },
+    "success": {
+      "description": "Ihr Abonnement wurde erfolgreich aktiviert.",
+      "title": "Zahlung erfolgreich!"
+    },
+    "view_subscription": "Mein Abonnement anzeigen"
+  },
+  "common": {
+    "accept": "Akzeptieren",
+    "actions": "Aktion",
+    "active": "Aktiv",
+    "back": "Zurück",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "confirm": "Bestätigen",
+    "continue": "Weiter",
+    "create": "Erstellen",
+    "delete": "Löschen",
+    "disabled": "Deaktiviert",
+    "edit": "Bearbeiten",
+    "empty": "Keine Daten verfügbar",
+    "enabled": "Aktiviert",
+    "finish": "Fertig stellen",
+    "home": "Zurück zur Startseite",
+    "inactive": "Inaktiv",
+    "learn_more": "Mehr erfahren",
+    "loading": "Laden...",
+    "locked": "Gesperrt",
+    "mute": "Stummschalten",
+    "next": "Weiter",
+    "noData": "Keine Daten verfügbar",
+    "on": "am",
+    "quit": "Beenden",
+    "remove": "Löschen",
+    "save": "Speichern",
+    "search": "Suchen...",
+    "skip": "Überspringen",
+    "unmute": "Stummschaltung aufheben",
+    "update": "Aktualisieren",
+    "user": "Benutzer",
+    "validate": "Bestätigen",
+    "view": "Anzeigen",
+    "viewProfile": "Profil anzeigen"
+  },
+  "components": {
+    "badgeStatusLanguages": {
+      "completed": "Abgeschlossen",
+      "inProgress": "In Bearbeitung",
+      "notStarted": "Nicht gestartet"
+    },
+    "topicCard": {
+      "allLessonsFinished": "Alle Lektionen wurden abgeschlossen!",
+      "completed": "abgeschlossen",
+      "lessons": "Lektionen",
+      "next": "WEITER",
+      "practice": "Übung",
+      "review": "Wiederholung"
+    }
+  },
+  "contact": {
+    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "form": {
+      "email": "E-Mail-Adresse",
+      "message": "Nachricht",
+      "messagePlaceholder": "Beschreiben Sie Ihre Anfrage ...",
+      "name": "Vollständiger Name",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet ...",
+      "subject": "Betreff",
+      "subjects": {
+        "billing": "Abrechnung",
+        "general": "Allgemeine Frage",
+        "other": "Sonstiges",
+        "privacy": "Datenschutz / DSGVO",
+        "technical": "Technisches Problem"
+      },
+      "success": "Ihre Nachricht wurde gesendet! Wir werden Ihnen in Kürze antworten."
+    },
+    "info": {
+      "emailLabel": "Allgemeiner Kontakt",
+      "emailValue": "contact@skaldly.fr",
+      "responseTime": "Wir antworten innerhalb von 48 Arbeitsstunden.",
+      "rgpdLabel": "Datenschutz",
+      "rgpdValue": "contact@skaldly.fr",
+      "title": "Informationen",
+      "usefulLinks": "Nützliche Links"
+    },
+    "subtitle": "Eine Frage? Wir werden Ihnen innerhalb von 48 Stunden antworten.",
+    "success": "Nachricht erfolgreich gesendet.",
+    "title": "Kontaktieren Sie uns"
+  },
+  "cookie_banner": {
+    "about": {
+      "text": "Cookies sind kleine Textdateien, die auf Ihrem Gerät abgelegt werden, wenn Sie eine Website besuchen. Skaldly verwendet nur unbedingt notwendige Cookies – kein Tracking oder Werbung.",
+      "title": "Über Cookies"
+    },
+    "allow_all": "Alle zulassen",
+    "decline": "Verweigern",
+    "deny": "Verweigern",
+    "details": {
+      "always_active": "Immer aktiviert",
+      "necessary_desc": "Notwendige Cookies tragen dazu bei, eine Website nutzbar zu machen, indem sie grundlegende Funktionen wie Seitennavigation und Zugriff auf sichere Bereiche der Website ermöglichen. Ohne diese Cookies kann die Website nicht ordnungsgemäß funktionieren.",
+      "necessary_title": "Notwendig"
+    },
+    "tabs": {
+      "about": "Über",
+      "consent": "Einwilligung",
+      "details": "Einzelheiten"
+    },
+    "text": "Wir verwenden nur Cookies, die für das ordnungsgemäße Funktionieren des Dienstes unbedingt erforderlich sind. Es werden keine Werbe- oder Tracking-Cookies gesetzt.",
+    "title": "Diese Website verwendet Cookies."
+  },
+  "correct": "Korrekt",
+  "dashboard": {
+    "explore_topics": "Themen erkunden",
+    "freeVsPremium": "Anzahl der kostenlosen und Premium-Abonnenten",
+    "language": {
+      "active": "Aktive Sprache",
+      "level": "Level {{level}}"
+    },
+    "monthly": "Monatlich",
+    "no_active_topics": "Sie lernen derzeit keine Themen.",
+    "page_title": "Dashboard",
+    "streak": {
+      "best": "Beste:",
+      "days": "Tage",
+      "milestone": "{{days}} Tage bis zur nächsten Stufe"
+    },
+    "subscriptions": "Abonnements",
+    "subscriptionsOverTime": "Abonnements im Zeitverlauf",
+    "topics": "Themen",
+    "view_all": "Alle anzeigen",
+    "welcome": {
+      "afternoon": [
+        "Bleiben Sie heute Nachmittag auf dem Laufenden.",
+        "Eine tolle Zeit für eine schnelle Sitzung!",
+        "Mid-Day Boost – Ihr Fortschritt wartet auf Sie.",
+        "Bleiben Sie regelmäßig. Jede Anstrengung zählt.",
+        "Die Wiederholung am Nachmittag fördert das Auswendiglernen.",
+        "Der halbe Tag ist vergangen – weitermachen!"
+      ],
+      "evening": [
+        "Beenden Sie den Tag mit einer Lernsitzung.",
+        "Abendliche Wiederholung festigt Ihr Gedächtnis.",
+        "Beenden Sie den Tag mit Stil!",
+        "Perfekte Zeit zum Nachdenken und Überarbeiten.",
+        "Lernen vor dem Schlafengehen verbessert das Gedächtnis.",
+        "Guten Abend! Heute noch eine Sitzung?"
+      ],
+      "greeting": "Hallo,",
+      "morning": [
+        "Ein toller Morgen, um etwas Neues zu lernen!",
+        "Fangen Sie stark an – Ihr Gehirn ist an der Spitze.",
+        "Der Morgen ist die beste Zeit, um neue Gewohnheiten zu entwickeln.",
+        "Steh auf und lerne! Jede Sitzung zählt.",
+        "Hallo! Lasst uns heute Fortschritte machen.",
+        "Ein neuer Anfang. Machen Sie etwas damit!"
+      ],
+      "subtitle": "Ihr Dashboard"
+    },
+    "xp": {
+      "level": "Level"
+    },
+    "yearly": "Jährlich"
+  },
+  "data": {
+    "danger_zone": {
+      "subtitle": "Diese Aktionen sind irreversibel. Bitte gehen Sie vorsichtig vor.",
+      "title": "Gefahrenzone"
+    },
+    "deleteError": "Beim Löschen Ihres Kontos ist ein Fehler aufgetreten.",
+    "delete": {
+      "btn": "Mein Konto löschen",
+      "code_digits": "Der Code darf nur Ziffern enthalten.",
+      "code_length": "Der Code muss 6 Ziffern enthalten.",
+      "code_required": "Der Code ist erforderlich.",
+      "code_sent_info": "Ein Bestätigungscode wurde an Ihre E-Mail-Adresse gesendet. Geben Sie es unten ein, um den Löschvorgang zu bestätigen.",
+      "confirm_btn": "Mein Konto löschen",
+      "error": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "modal_title": "Konto löschen",
+      "modal_warning": "Diese Aktion ist dauerhaft und unumkehrbar. Alle Ihre Daten werden gelöscht. Ein Bestätigungscode wird Ihnen per E-Mail zugesandt.",
+      "password_label": "Aktuelles Passwort",
+      "password_required": "Passwort ist erforderlich",
+      "resend_btn": "Rückgabecode",
+      "resend_wait": "Rückgabe verfügbar in {{time}}",
+      "send_code_btn": "Bestätigungscode senden"
+    },
+    "exportError": "Beim Exportieren Ihrer Daten ist ein Fehler aufgetreten.",
+    "exportSuccess": "Ihre Daten wurden erfolgreich exportiert.",
+    "export": {
+      "btn": "Meine Daten exportieren",
+      "subtitle": "Laden Sie eine Kopie aller Ihrer persönlichen Daten herunter.",
+      "title": "Meine Daten"
+    }
+  },
+  "date": "Datum",
+  "duration": "Dauer",
+  "empty": "Keine Daten verfügbar",
+  "errors": "Fehler",
+  "error": {
+    "acceptChallenge": "Die Herausforderung kann nicht angenommen werden.",
+    "acceptFriendRequest": "Freundschaftsanfrage konnte nicht angenommen werden.",
+    "addReview": "Bewertung konnte nicht eingereicht werden.",
+    "approveReview": "Die Überprüfung konnte nicht genehmigt werden.",
+    "auth": {
+      "account_locked": "Konto nach zu vielen Versuchen gesperrt. Versuchen Sie es in 30 Minuten erneut.",
+      "account_locked_admin": "Ihr Konto wurde von einem Administrator gesperrt. Kontaktieren Sie den Support für weitere Informationen.",
+      "account_locked_attempts": "Konto aufgrund zu vieler fehlgeschlagener Anmeldeversuche gesperrt.",
+      "account_locked_until": "Das Konto ist gesperrt bis: {{until}}.",
+      "account_not_found": "Konto nicht gefunden.",
+      "account_suspended": "Ihr Konto wurde von einem Administrator gesperrt. Kontaktieren Sie den Support für weitere Informationen.",
+      "already_exists": "Es existiert bereits ein Konto mit diesen Informationen.",
+      "email_already_registered": "E-Mail bereits vorhanden.",
+      "invalid_2fa_code": "Ungültiger Bestätigungscode.",
+      "invalid_credentials": "Ungültige Bezeichner.",
+      "invalid_reset_token": "Ungültiges oder abgelaufenes Reset-Token.",
+      "invalid_token": "Ungültiges oder abgelaufenes Aktualisierungstoken.",
+      "password_expired": "Passwort abgelaufen, bitte ändern Sie Ihr Passwort.",
+      "username_already_taken": "Benutzername bereits vergeben."
+    },
+    "cancelChallenge": "Die Herausforderung konnte nicht abgebrochen werden.",
+    "cancelFriendRequest": "Freundschaftsanfrage konnte nicht abgebrochen werden.",
+    "cancelSubscription": "Das Abonnement kann nicht gekündigt werden.",
+    "cancelSubscriptionByAdmin": "Das Abonnement kann nicht gekündigt werden.",
+    "changePlan": "Das Flugzeug konnte nicht geändert werden.",
+    "completeLesson": "Die Lektion konnte nicht validiert werden.",
+    "createChallenge": "Herausforderung konnte nicht erstellt werden.",
+    "createLanguage": "Sprache kann nicht erstellt werden.",
+    "createLesson": "Lektion konnte nicht erstellt werden.",
+    "createPlan": "Abonnementplan kann nicht erstellt werden.",
+    "createTopic": "Thema kann nicht erstellt werden.",
+    "declineChallenge": "Es ist unmöglich, die Herausforderung abzulehnen.",
+    "declineFriendRequest": "Freundschaftsanfrage konnte nicht abgelehnt werden.",
+    "deleteLanguage": "Sprache kann nicht gelöscht werden.",
+    "deleteLesson": "Die Lektion konnte nicht gelöscht werden.",
+    "deletePlan": "Der Abonnementplan kann nicht gelöscht werden.",
+    "deleteReview": "Bewertung konnte nicht gelöscht werden.",
+    "deleteTopic": "Thema kann nicht gelöscht werden.",
+    "fetchChallenge": "Die Herausforderung konnte nicht wiederhergestellt werden.",
+    "fetchChallenges": "Herausforderungen können nicht wiederhergestellt werden.",
+    "fetchFriends": "Freunde können nicht abgerufen werden.",
+    "fetchFriendsRanking": "Die Bestenliste der Freunde konnte nicht geladen werden.",
+    "fetchGlobalRanking": "Weltrangliste konnte nicht wiederhergestellt werden.",
+    "fetchLanguageByCode": "Die Sprache kann nicht per Code abgerufen werden.",
+    "fetchLanguageById": "Sprachdetails können nicht abgerufen werden.",
+    "fetchLanguageRanking": "Das Ranking nach Sprache konnte nicht abgerufen werden.",
+    "fetchLanguages": "Sprachen können nicht wiederhergestellt werden.",
+    "fetchLessonById": "Die Lektion konnte nicht abgerufen werden.",
+    "fetchLessonSessions": "Unterrichtseinheiten konnten nicht abgerufen werden.",
+    "fetchLessons": "Lektionen können nicht abgerufen werden.",
+    "fetchParticipants": "Teilnehmer konnten nicht abgerufen werden.",
+    "fetchPaymentHistory": "Der Zahlungsverlauf konnte nicht abgerufen werden.",
+    "fetchPaymentHistoryByAccountId": "Der Zahlungsverlauf konnte nicht abgerufen werden.",
+    "fetchPendingRequests": "Empfangene Anfragen konnten nicht abgerufen werden.",
+    "fetchPlanById": "Abonnementplandetails können nicht abgerufen werden.",
+    "fetchPlans": "Abonnementpläne können nicht abgerufen werden.",
+    "fetchPlansByInterval": "Abonnementpläne können nicht nach Intervall abgerufen werden.",
+    "fetchPublicChallenges": "Öffentliche Herausforderungen können nicht abgerufen werden.",
+    "fetchReviews": "Bewertungen konnten nicht abgerufen werden.",
+    "fetchSentRequests": "Gesendete Anfragen können nicht abgerufen werden.",
+    "fetchSubscriptionByAccountId": "Das Abonnement konnte nicht wiederhergestellt werden.",
+    "fetchSubscriptionDetails": "Abonnementdetails können nicht abgerufen werden.",
+    "fetchSubscriptions": "Abonnements können nicht wiederhergestellt werden.",
+    "fetchTopics": "Themen können nicht abgerufen werden.",
+    "generic": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "joinChallenge": "Der Herausforderung kann nicht beigetreten werden.",
+    "reactivateSubscription": "Das Abonnement kann nicht erneut aktiviert werden.",
+    "rejectReview": "Bewertung kann nicht abgelehnt werden.",
+    "removeFriend": "Freund konnte nicht entfernt werden.",
+    "searchTopics": "Es konnte nicht nach Themen gesucht werden.",
+    "searchUsers": "Es konnte nicht nach Benutzern gesucht werden.",
+    "sendFriendRequest": "Freundschaftsanfrage konnte nicht gesendet werden.",
+    "startLesson": "Lektion kann nicht gestartet werden.",
+    "submitChallenge": "Bewertung konnte nicht übermittelt werden.",
+    "subscribeToPlan": "Der Plan kann nicht abonniert werden.",
+    "unknown": "Es ist ein unbekannter Fehler aufgetreten.",
+    "updateLanguage": "Sprache kann nicht aktualisiert werden.",
+    "updateLesson": "Die Lektion konnte nicht aktualisiert werden.",
+    "updatePlan": "Abonnementplan kann nicht aktualisiert werden.",
+    "updateReview": "Bewertung konnte nicht aktualisiert werden.",
+    "updateTopic": "Das Thema konnte nicht aktualisiert werden.",
+    "validation": "Die eingegebenen Daten sind ungültig."
+  },
+  "footer": {
+    "cgu": "CGU",
+    "cgv": "CGV",
+    "contact": "Kontakt",
+    "cookies": "Cookie-Richtlinie",
+    "copyright": "© {{year}} Skaldly. Alle Rechte vorbehalten.",
+    "cta": "Kostenlos starten",
+    "legal": "Rechtliche Hinweise",
+    "legalLinks": {
+      "cgu": "CGU",
+      "cgv": "CGV",
+      "cookies": "Cookie-Richtlinie",
+      "mentions": "Rechtliche Hinweise",
+      "privacy": "Datenschutzrichtlinie"
+    },
+    "links": {
+      "faq": "FAQ",
+      "login": "Verbindung",
+      "plans": "Angebote",
+      "register": "Registrierung"
+    },
+    "manageCookies": "Meine Cookies verwalten",
+    "mentionsLegales": "Rechtliche Hinweise",
+    "privacy": "Datenschutzrichtlinie",
+    "product": "Produkt",
+    "rights": "Alle Rechte vorbehalten.",
+    "support": "Unterstützen Sie",
+    "tagline": "Lernen Sie Sprachen mit künstlicher Intelligenz, natürlich und in Ihrem eigenen Tempo."
+  },
+  "friends": {
+    "accept": "Akzeptieren",
+    "acceptRequest": {
+      "success": "Freundschaftsanfrage angenommen!"
+    },
+    "addFriend": "",
+    "alreadyFriends": "Freunde hinzufügen",
+    "cancel": "Abbrechen",
+    "cancelRequest": {
+      "success": "Freundschaftsanfrage abgebrochen."
+    },
+    "decline": "Ablehnen",
+    "declineRequest": {
+      "success": "Freundschaftsanfrage abgelehnt."
+    },
+    "incoming": "Erhalten",
+    "manage": "Freunde verwalten",
+    "noFriends": "Du hast noch keine Freunde.",
+    "noRequests": "Keine Anfragen erhalten.",
+    "noResults": "Keine Benutzer gefunden.",
+    "noSentRequests": "Keine Anfrage gesendet.",
+    "notif": {
+      "request_accepted": "Ihre Freundschaftsanfrage wurde angenommen.",
+      "request_received": "Sie haben eine neue Freundschaftsanfrage."
+    },
+    "pending": "Ausstehend.",
+    "remove": "Löschen.",
+    "removeFriend": {
+      "success": "Freund gelöscht."
+    },
+    "searchPlaceholder": "Suche nach Benutzername...",
+    "sendRequest": {
+      "success": "Freundschaftsanfrage gesendet!"
+    },
+    "sent": "Gesendet",
+    "streak": "Tage in Serie",
+    "tabs": {
+      "friends": "Freunde",
+      "requests": "Anfragen",
+      "search": "Suchen"
+    },
+    "title": "Freunde"
+  },
+  "header": {
+    "nav": {
+      "contact": "Kontakt",
+      "faq": "FAQ",
+      "lessons": "Unsere Lektionen",
+      "plans": "Angebote"
+    }
+  },
+  "home": {
+    "ai_demo": {
+      "assistant_label": "KI-Assistent",
+      "assistant_subtitle": "Brauchen Sie Hilfe bei dieser Übung?",
+      "demos": [
+        {
+          "context": "Japanischer Wortschatz",
+          "explanation": "Stellen Sie sich vor, ein Samurai begrüßt Sie mitten am Tag. Das Wort ist aufgeschlüsselt: „Kon“ (cet) + „nichi“ (Tag) + „wa“ (Partikel). Wörtlich: „Was diesen Tag betrifft ...“",
+          "title": "Memotechnischer Tipp",
+          "visual_anchor": "Ein Samurai unter der Mittagssonne, der „Konnichiwa“ sagt, während er sich verbeugt"
+        },
+        {
+          "context": "Spanischer Wortschatz",
+          "examples": [
+            "Me gustaría una ___ por favor",
+            "Vivo a dos ___ de aquí"
+          ],
+          "explanation": "„Manzana“ bezeichnet den Apfel, aber auch eine Häuserinsel in Lateinamerika. Je nach Kontext in beiden Bedeutungen sehr häufig.",
+          "title": "Verwendungskontext"
+        },
+        {
+          "context": "Japanische Höflichkeit",
+          "examples": [
+            "Arigatou! (unter Freunden)",
+            "Arigatou gozaimasu (formell/höflich)"
+          ],
+          "explanation": "„Arigatou“ (ありがとう) ist die umgangssprachliche Form. Um höflich zu sein, sagen Sie „Arigatou gozaimasu“. Der Grad der Höflichkeit hängt vom Kontext und davon ab, mit wem Sie sprechen.",
+          "title": "Regel und Struktur"
+        }
+      ],
+      "help_btn": "Brauchen Sie Hilfe?",
+      "help_options": {
+        "memo": "Assoziation und Memo.",
+        "rule": "Regel und Struktur",
+        "trap": "Falle, die es zu vermeiden gilt",
+        "usage": "Nutzungskontext"
+      },
+      "loading_text": "Die KI analysiert die Übung…"
+    },
+    "cta": {
+      "button": "Starten Sie kostenlos",
+      "subtitle": "Schließen Sie sich Tausenden von Lernenden an, die KI nutzen, um schneller Fortschritte zu machen.",
+      "title": "Beginnen Sie mit dem Erlernen einer Sprache mit künstlicher Intelligenz"
+    },
+    "exercise_section": {
+      "subtitle": "Jede Methode stimuliert einen anderen Aspekt des Auswendiglernens",
+      "tabs": {
+        "flashcard": {
+          "desc": "Doppelseitige Karten mit Abstandswiederholung",
+          "label": "Karteikarten"
+        },
+        "interactive": {
+          "desc": "Antworten Sie frei und schriftlich",
+          "label": "Interaktiv"
+        },
+        "matching": {
+          "desc": "Ordnen Sie die Wörter ihren Übersetzungen zu",
+          "label": "Paare"
+        },
+        "qcm": {
+          "desc": "Multiple-Choice-Fragen mit Erklärung",
+          "label": "Quiz"
+        },
+        "sorting": {
+          "desc": "Bringen Sie die Gegenstände wieder in die richtige Reihenfolge",
+          "label": "Befehl"
+        }
+      },
+      "title_highlight": "schnell vorankommen",
+      "title_start": "5 Arten von Übungen für"
+    },
+    "faq": {
+      "items": [
+        {
+          "answer": "Skaldly bietet verschiedene Übungen zum Erlernen einer Sprache: Lernkarten, Quiz, Paarassoziationen und interaktive Übungen. Wenn Sie bei einem Wort oder einer Regel nicht weiterkommen, greift der KI-Assistent in Echtzeit ein, um die grammatikalische Regel zu erklären, einen Gedächtnistipp zu geben, auf eine häufige Falle hinzuweisen oder den Verwendungskontext anzugeben.",
+          "question": "Wie funktioniert Skaldly beim Erlernen einer Sprache mit künstlicher Intelligenz?"
+        },
+        {
+          "answer": "Die Ergebnisse variieren je nach Sprache und Ihrem Ausgangsniveau. Dank räumlicher Wiederholung und KI-Algorithmen sehen unsere Benutzer bereits in den ersten Wochen der regelmäßigen Nutzung deutliche Fortschritte.",
+          "question": "Wie lange dauert es, mit Skaldly eine Sprache zu lernen?"
+        },
+        {
+          "answer": "Ja, Skaldly bietet eine kostenlose Version an, um mit dem Erlernen einer Sprache mit KI zu beginnen. Erweiterte Funktionen sind mit unseren Premium-Abonnements verfügbar.",
+          "question": "Ist Skaldly kostenlos?"
+        },
+        {
+          "answer": "Skaldly bietet das Erlernen vieler Sprachen an: Englisch, Spanisch, Japanisch, Deutsch, Italienisch, Portugiesisch, Arabisch und viele andere. Alle profitieren von der Unterstützung künstlicher Intelligenz.",
+          "question": "Welche Sprachen können Sie mit Skaldly lernen?"
+        }
+      ],
+      "title": "Häufig gestellte Fragen"
+    },
+    "features": {
+      "ai": {
+        "description": "Eine Pädagogik, die sich in Echtzeit anpasst. Künstliche Intelligenz bewertet Ihre Schwächen und generiert die perfekten Inhalte, die Sie bei der Verbesserung unterstützen.",
+        "title": "KI zum Erlernen einer Sprache"
+      },
+      "scientific": {
+        "description": "Unser Unterricht basiert auf bewährten kognitiven Studien. Die räumliche Wiederholung garantiert ein langfristiges Auswendiglernen.",
+        "title": "Wissenschaftliches Lernen"
+      },
+      "variety": {
+        "description": "Karteikarten, Quizze, Paarzuordnung, Neuordnung und interaktive Übungen – entwickelt, um den Spracherhalt und das vollständige Eintauchen zu maximieren.",
+        "title": "Verschiedene Geräte"
+      }
+    },
+    "flashcard_demo": {
+      "easy": "Einfach",
+      "hard": "Schwierig",
+      "medium": "DURCHSCHNITT"
+    },
+    "hero": {
+      "continue_learning": "Setze mein Lernen fort",
+      "description": "Skaldly ist die Plattform zum Erlernen einer Sprache mit KI: räumliche Wiederholung, maßgeschneiderter Unterricht und völliges Eintauchen dank künstlicher Intelligenz.",
+      "logged_in_as": "Angemeldet als",
+      "start_free": "Starten Sie kostenlos",
+      "title_highlight": "Künstliche Intelligenz",
+      "title_start": "Lerne eine Sprache mit"
+    },
+    "interactive_demo": {
+      "instruction": "Vervollständigen Sie den Satz:",
+      "sentence_after": "Sprachen lernen.",
+      "sentence_before": "ICH",
+      "success": "Gute Antwort! „Ich möchte Sprachen lernen.“"
+    },
+    "languages": {
+      "items": [
+        "Englisch",
+        "Spanisch",
+        "japanisch",
+        "Deutsch",
+        "Italienisch",
+        "Portugiesisch",
+        "Araber",
+        "Mandarin"
+      ],
+      "subtitle": "Skaldly unterstützt das Erlernen vieler Sprachen mit künstlicher Intelligenz",
+      "title": "Lernen Sie die Sprache Ihrer Wahl mit KI"
+    },
+    "page_description": "Lernen Sie eine neue Sprache mit künstlicher Intelligenz: Lernkarten, Quiz und interaktive Übungen. Ein KI-Assistent, mit dem Sie in Ihrem eigenen Tempo Fortschritte machen können.",
+    "page_keywords": "Lernen Sie eine Sprache mit KI, lernen Sie eine Sprache mit künstlicher Intelligenz, Sprachlernanwendung, Lernkarten, Sprachquiz, räumliche Wiederholung, KI-Sprachassistent, Skaldly",
+    "page_title": "Skaldly – ​​​​Meistern Sie eine neue Sprache mit KI als Ihrem persönlichen Assistenten",
+    "qcm_demo": {
+      "feedback": "Arigatou (ありがとう) bedeutet auf Japanisch „Danke“.",
+      "options": [
+        "Sayonara",
+        "Konnichiwa",
+        "Arigatou",
+        "Hai"
+      ],
+      "question": "Wie sagt man auf Japanisch „Danke“?"
+    },
+    "science": {
+      "chunking": {
+        "chunk_word": "CHUNK",
+        "description": "Das natürliche Arbeitsgedächtnis erreicht seinen Höhepunkt bei etwa 7 Elementen (Miller-Gesetz). Sortierübungen erfordern eine starke semantische Kodierung (durch die Bedeutung der Kategorie), die eine Gruppierung der Informationen ermöglicht (Chunking).",
+        "stat1": "Überträgt Informationen vom gesättigten Kurzgedächtnis in das strukturierte semantische Gedächtnis.",
+        "title": "4. Konzeptionelles Sortieren und Chunking"
+      },
+      "dual_coding": {
+        "chart_title": "Erinnerungspfade",
+        "description": "Durch die gleichzeitige Verarbeitung von Informationen über visuelle und verbale Kanäle (wie bei Paar-Matching-Spielen) entstehen mehrere Abrufwege im Gehirn.",
+        "dual_coding": "Doppelte Codierung",
+        "stat1": "Reduzierung der kognitiven Überlastung.",
+        "stat2": "+65 %",
+        "stat2_desc": "Retention im Vergleich zu Text ohne visuellen Kontext (Paivio, 1971).",
+        "text_only": "Nur Text",
+        "title": "2. Visuelle Paare und Doppelkodierungstheorie"
+      },
+      "sources": {
+        "source1": "(1885). Gedächtnis: Ein Beitrag zur experimentellen Psychologie. Der Spacing-Effekt bewahrt das Vergessen systematisch mit Raten von über 80 % im Vergleich zu weniger als 25 % ohne Erinnerungen.",
+        "source2": "(1971). Bildsprache und verbale Prozesse. Die Dual-Coding-Theorie. Es gibt Hinweise darauf, dass Text-Bild-Paare gekreuzte Gedächtnispfade stimulieren.",
+        "source3": "(2006). Testgestütztes Lernen. Die Anwendung des MCQ („Testing Effect“) führt zu besseren Abruffähigkeiten als die einfache Wiederholungszeit.",
+        "source4": "(1956). Die magische Zahl sieben, plus oder minus zwei und semantische Kodierung (Craik & Lockhart, 1972). Chunking verändert die Hierarchie der mentalen Speicherung im Hinblick auf das sprachliche Lernen.",
+        "title": "Quellen und Referenzen von Studien:"
+      },
+      "spaced_repetition": {
+        "chart_title": "Retentionsrate nach 1 Jahr",
+        "classic": "Klassisches Lernen",
+        "description": "Ohne Wiederholung vergisst das Gehirn auf natürliche Weise 78 % der Informationen (die Ebbinghaus-Vergessenskurve). Abstandswiederholungen erzwingen eine aktive Erinnerung kurz vor dem Vergessen und maximieren das Auswendiglernen durch „langfristige Potenzierung“.",
+        "glotrush": "Spaced Learning (Skaldly)",
+        "stat1": "+200 % bis +400 %",
+        "stat1_desc": "Verbesserung gegenüber „Cramming“.",
+        "title": "1. Karteikarten und räumliche Wiederholungen zum Auswendiglernen von Vokabeln"
+      },
+      "subtitle": "Um eine Sprache effektiv zu lernen, greift Skaldly auf jahrzehntelange Forschung in der Kognitionswissenschaft zurück, verstärkt durch künstliche Intelligenz.",
+      "testing_effect": {
+        "chart_desc": "dank wiederkehrender Tests",
+        "chart_title": "Speicherzugriffsgeschwindigkeit gesteigert",
+        "description": "Retrieval-Übungen sind dem passiven Lernen überlegen. Gut kalibrierte Multiple-Choice-Fragen erfordern diskriminierende Informationen, die die Spur direkt im Gedächtnis konsolidieren und weit über eine einfache Auswertung hinausgehen.",
+        "stat1_end": "schneller.",
+        "stat1_highlight": "340 %",
+        "stat1_start": "Zugriff auf Wortschatz bis zu",
+        "title": "3. MCQ & Testeffekt"
+      },
+      "title": "Wissenschaftlich bewiesen"
+    },
+    "sorting_demo": {
+      "correct": "✓ Richtig!",
+      "placeholder": "Ordnen Sie die Wörter ..."
+    }
+  },
+  "info": {
+    "description": "Dieser Benutzer hat sich dafür entschieden, sein Profil privat zu halten.",
+    "title": "Dieses Profil ist privat."
+  },
+  "items_one": "Artikel",
+  "items_other": "Artikel",
+  "languages": {
+    "available": "verfügbare Sprachen",
+    "chooseYour": "Wählen Sie Ihre",
+    "clickToExplore": "Klicken Sie auf eine Sprache, um deren Themen und Lektionen zu erkunden.",
+    "inLearning": "Lernen",
+    "nextLanguage": "nächste Sprache",
+    "regions": {
+      "afrique": "Afrika",
+      "all": "Alle",
+      "amériques": "Amerika",
+      "asie": "Asien",
+      "europe": "Europa",
+      "populaires": "Beliebt"
+    }
+  },
+  "legal": {
+    "cgu": {
+      "acceptance": {
+        "p1": "Die Nutzung des Dienstes setzt die vollständige Akzeptanz dieser AGB voraus. Wenn Sie diesen Bedingungen nicht zustimmen, nutzen Sie den Dienst bitte nicht.",
+        "title": "2. Akzeptanz"
+      },
+      "account": {
+        "intro": "Um auf die Funktionen des Dienstes zugreifen zu können, muss der Benutzer:",
+        "item1": "mindestens 15 Jahre alt sein (oder die Zustimmung der Eltern haben)",
+        "item2": "Bereitstellung korrekter Informationen bei der Registrierung",
+        "item3": "Bewahren Sie die Vertraulichkeit Ihrer Anmeldedaten",
+        "item4": "Benachrichtigen Sie umgehend jeden unbefugten Zugriff auf Ihr Konto",
+        "title": "3. Registrierung und Benutzerkonto"
+      },
+      "description": "Allgemeine Nutzungsbedingungen des Skaldly-Dienstes.",
+      "lastUpdate": "Letzte Aktualisierung: 7. Juni 2025",
+      "law": {
+        "p1": "Diese AGB unterliegen französischem Recht. Alle Streitigkeiten werden vor den zuständigen Gerichten im Zuständigkeitsbereich des Hauptsitzes von Skaldly in Paris verhandelt.",
+        "title": "9. Anwendbares Recht"
+      },
+      "modification": {
+        "p1": "Skaldly behält sich das Recht vor, diese AGB jederzeit zu ändern. Benutzer werden per E-Mail oder In-App-Benachrichtigung informiert. Durch die weitere Nutzung des Dienstes nach der Änderung akzeptieren Sie die neuen AGB.",
+        "title": "8. Änderung der AGB"
+      },
+      "object": {
+        "p1": "Diese Allgemeinen Nutzungsbedingungen (CGU) regeln den Zugang und die Nutzung des Skaldly-Dienstes, einer durch künstliche Intelligenz unterstützten Sprachlernplattform, die unter der Adresse zugänglich ist",
+        "title": "1. Zweck"
+      },
+      "privacy": {
+        "p1": "Die Verarbeitung Ihrer personenbezogenen Daten ist in unserem beschrieben",
+        "privacy_link": "Datenschutzrichtlinie",
+        "title": "6. Persönliche Daten"
+      },
+      "subscription": {
+        "cgv_link": "Allgemeine Geschäftsbedingungen",
+        "p1": "Auf einige Skaldly-Funktionen kann über ein kostenpflichtiges Abonnement zugegriffen werden. Die Preisbedingungen finden Sie auf der Seite",
+        "p2": "Die Verkaufsbedingungen finden Sie in unseren",
+        "plans_link": "Pläne",
+        "title": "5. Abonnements und Zahlung"
+      },
+      "suspension": {
+        "p1": "Skaldly behält sich das Recht vor, den Zugriff auf den Dienst eines Benutzers, der diese AGB nicht einhält, ohne Vorankündigung oder Entschädigung auszusetzen oder zu sperren.",
+        "p2": "Der Benutzer kann sein Konto jederzeit über seine Einstellungen oder durch Kontaktaufnahme mit unserem Team unter löschen",
+        "title": "7. Aussetzung und Kündigung"
+      },
+      "title": "Allgemeine Nutzungsbedingungen",
+      "usage": {
+        "intro": "Der Nutzer verpflichtet sich, Folgendes nicht zu tun:",
+        "item1": "Nutzen Sie den Dienst für illegale Zwecke oder im Widerspruch zu diesen AGB",
+        "item2": "Versuchen Sie, auf nicht autorisierte Bereiche der Plattform zuzugreifen",
+        "item3": "Den Dienst ganz oder teilweise reproduzieren, kopieren oder weiterverkaufen",
+        "item4": "Veröffentlichen Sie Inhalte, die beleidigend oder verleumderisch sind oder die Rechte Dritter verletzen",
+        "item5": "Verwenden Sie Bots, Skripte oder andere automatisierte Tools ohne Genehmigung",
+        "title": "4. Nutzung des Dienstes"
+      }
+    },
+    "cgv": {
+      "description": "Allgemeine Verkaufsbedingungen für den Skaldly-Service.",
+      "lastUpdate": "Letzte Aktualisierung: 7. Juni 2025",
+      "law": {
+        "p1": "Diese Allgemeinen Geschäftsbedingungen unterliegen französischem Recht. Im Streitfall wird vorrangig eine einvernehmliche Lösung angestrebt. Andernfalls sind die französischen Gerichte zuständig.",
+        "p2": "Online-Streitbeilegungsplattform (EU):",
+        "title": "7. Anwendbares Recht und Streitigkeiten"
+      },
+      "liability": {
+        "p1": "Skaldly ist bestrebt, den Dienst mit bestmöglicher Verfügbarkeit bereitzustellen, kann jedoch keinen unterbrechungsfreien Zugriff garantieren. Im Falle einer von Skaldly zu vertretenden längeren Nichtverfügbarkeit kann eine Entschädigung (Abonnementverlängerung) gewährt werden.",
+        "title": "6. Haftung"
+      },
+      "object": {
+        "p1": "Diese Allgemeinen Verkaufsbedingungen (CGV) definieren die Rechte und Pflichten von Skaldly und seinen Kunden im Zusammenhang mit dem Abschluss von Skaldly-Abonnements.",
+        "title": "1. Zweck"
+      },
+      "pricing": {
+        "item1": "Die Preise sind in Euro inklusive Mehrwertsteuer angegeben.",
+        "item2": "Die Bezahlung erfolgt online über unseren sicheren Dienstleister Stripe.",
+        "item3": "Das Abonnement verlängert sich automatisch zu jedem Fälligkeitsdatum.",
+        "item4": "Skaldly behält sich das Recht vor, seine Preise mit einer Frist von 30 Tagen zu ändern.",
+        "title": "3. Preis und Zahlung"
+      },
+      "products": {
+        "p1": "Skaldly bietet Monats- und Jahresabonnements an, die Zugriff auf alle Premium-Funktionen der Plattform ermöglichen. Die Merkmale jedes Angebots finden Sie auf der Seite",
+        "plans_link": "Pläne",
+        "title": "2. Produkte und Dienstleistungen"
+      },
+      "termination": {
+        "p1": "Das Abonnement kann jederzeit über die Kontoeinstellungen gekündigt werden. Die Kündigung wird zum Ende der aktuellen Periode wirksam. Für den bereits gezahlten Zeitraum erfolgt keine Rückerstattung, sofern nicht vom Widerrufsrecht Gebrauch gemacht wird.",
+        "title": "5. Kündigung"
+      },
+      "title": "Allgemeine Verkaufsbedingungen",
+      "withdrawal": {
+        "days": "14 Tage",
+        "note": "Hinweis: Wenn Sie in diesem Zeitraum mit der Nutzung des Dienstes begonnen haben und ausdrücklich auf Ihr Widerrufsrecht verzichtet haben, wird eine anteilige Teilrückerstattung berechnet.",
+        "p1_after": "ab dem Zeitpunkt der Anmeldung Ihr Widerrufsrecht ohne Angabe von Gründen auszuüben.",
+        "p1_before": "Gemäß Artikel L.221-18 des Verbraucherschutzgesetzes hat der Verbraucher eine Frist von",
+        "p2": "Um dieses Recht auszuüben, kontaktieren Sie uns unter:",
+        "title": "4. Widerrufsrecht"
+      }
+    },
+    "cookies": {
+      "categories": {
+        "essential": {
+          "description": "Diese Cookies sind für den Betrieb der Plattform unerlässlich. Sie verwalten Ihre Authentifizierungs- und Sitzungspräferenzen.",
+          "title": "Wesentliche Cookies."
+        }
+      },
+      "description": "Skaldly-Service-Cookie-Richtlinie.",
+      "lastUpdate": "Letzte Aktualisierung: 7. Juni 2025",
+      "manage": {
+        "p1": "Da die von Skaldly verwendeten Cookies für den Betrieb des Dienstes unbedingt erforderlich sind, können sie nicht deaktiviert werden. Sie können Ihre Einwilligungseinstellungen jedoch zurücksetzen, indem Sie unten klicken.",
+        "reset_btn": "Meine Einstellungen zurücksetzen",
+        "title": "3. Ihre Einstellungen verwalten"
+      },
+      "more": {
+        "cnil_link": "CNIL",
+        "p1": "Weitere Informationen zu Cookies finden Sie auf der Website",
+        "title": "4. Um mehr zu erfahren"
+      },
+      "title": "Cookie-Richtlinie",
+      "used": {
+        "access_token_duration": "15 Minuten",
+        "access_token_purpose": "Authentifizierung JWT (HttpOnly, SameSite=Lax)",
+        "always_active": "Immer aktiv",
+        "col_duration": "Dauer",
+        "col_name": "Name",
+        "col_purpose": "Zweck",
+        "intro": "Skaldly verwendet nur Cookies, die für den Betrieb des Dienstes unbedingt erforderlich sind. Es werden keine Analyse- oder Marketing-Cookies platziert.",
+        "locale_duration": "30 Tage",
+        "locale_purpose": "Speicherung der gewählten Sprache (fr/en)",
+        "refresh_token_duration": "7 Tage",
+        "refresh_token_purpose": "Sitzungserneuerung (HttpOnly, SameSite=Lax)",
+        "title": "2. Von Skaldly verwendete Cookies"
+      },
+      "what": {
+        "p1": "Ein Cookie ist eine kleine Textdatei, die beim Besuch einer Website auf Ihrem Endgerät (Computer, Smartphone, Tablet) abgelegt wird. Es speichert Informationen über Ihr Surfverhalten und Ihre Präferenzen.",
+        "title": "1. Was ist ein Cookie?"
+      }
+    },
+    "mentionsLegales": {
+      "description": "Rechtliche Hinweise der Skaldly-Website.",
+      "editor": {
+        "address": "Adresse",
+        "capital": "Aktienkapital",
+        "companyName": "Firmenname",
+        "directors": "Publikationsleiter",
+        "email": "E-Mail",
+        "intro": "Die Skaldly-Website wird veröffentlicht von:",
+        "legalForm": "Rechtsform",
+        "phone": "Telefonnummer",
+        "siret": "SIRET",
+        "title": "1. Website-Herausgeber"
+      },
+      "host": {
+        "address": "Adresse",
+        "infrastructure": "Infrastruktur",
+        "name": "Name",
+        "site": "Website",
+        "title": "2. Host"
+      },
+      "ip": {
+        "p1": "Alle auf der Skaldly-Website vorhandenen Inhalte (Texte, Bilder, Grafiken, Logos, Symbole, Software usw.) sind ausschließliches Eigentum seiner Autoren und ist durch französische und internationale Gesetze zum geistigen Eigentum geschützt.",
+        "p2": "Jegliche Vervielfältigung, Darstellung, Änderung oder Veröffentlichung, gleich mit welchem ​​Mittel, ist ohne vorherige schriftliche Genehmigung untersagt.",
+        "title": "3. Geistiges Eigentum"
+      },
+      "lastUpdate": "Letzte Aktualisierung: 7. Juni 2025",
+      "law": {
+        "p1": "Diese rechtlichen Hinweise unterliegen französischem Recht. Im Streitfall sind ausschließlich die französischen Gerichte zuständig.",
+        "title": "5. Anwendbares Recht"
+      },
+      "liability": {
+        "p1": "Das Skaldly-Team ist bestrebt, die Richtigkeit der auf dieser Website veröffentlichten Informationen sicherzustellen. Sie kann jedoch keine Gewähr für deren Vollständigkeit oder Aktualität übernehmen und lehnt jede Haftung für etwaige Fehler oder Auslassungen ab.",
+        "title": "4. Haftungsbeschränkung"
+      },
+      "title": "Rechtliche Hinweise"
+    },
+    "privacy": {
+      "controller": {
+        "p1": "Der Verantwortliche für die Verarbeitung Ihrer personenbezogenen Daten ist Skaldly (SASU – SIRET 988 091 575 00387), dessen Hauptsitz sich in der Rue de Rivoli 142, 75001 Paris befindet. Kontakt:",
+        "title": "1. Datenverantwortlicher"
+      },
+      "data": {
+        "contact": "Kontaktdaten",
+        "contact_val": "Name, E-Mail, Nachricht (Kontaktformular)",
+        "identity": "Identitätsdaten",
+        "identity_val": "Nachname, Vorname, Benutzername, E-Mail-Adresse",
+        "intro": "Wir erfassen die folgenden Daten:",
+        "learning": "Lerndaten",
+        "learning_val": "Fortschritt, abgeschlossene Lektionen, Punkte, Streaks, XP",
+        "payment": "Zahlungsdaten",
+        "payment_val": "ausschließlich von Stripe verwaltet (wir speichern Ihre Bankdaten nicht), Abonnementverlauf",
+        "profile": "Profildaten",
+        "profile_val": "Biografie, Land, Zeitzone, Profil Foto",
+        "security": "Sicherheit",
+        "security_val": "Passwörter werden gehasht (bcrypt) und sind selbst für unser Team niemals lesbar",
+        "social": "Soziale Daten",
+        "social_val": "Freundschaftsbeziehungen zwischen Benutzern",
+        "technical": "Technische Daten",
+        "technical_val": "Verbindungsprotokolle, Sitzungstoken",
+        "title": "2. Erfasste Daten"
+      },
+      "description": "Datenschutzrichtlinie des Skaldly-Dienstes.",
+      "lastUpdate": "Letzte Aktualisierung: 7. Juni 2025",
+      "purposes": {
+        "account_mgmt": "Konto- und Serviceverwaltung",
+        "basis_contract": "Vertragsdurchführung (Art. 6.1.b)",
+        "basis_legal": "Gesetzliche Verpflichtung (Art. 6.1.c)",
+        "basis_legitimate": "Berechtigtes Interesse (Art. 6.1.f)",
+        "col_basis": "Rechtsgrundlage",
+        "col_purpose": "Zweck",
+        "contact": "Bearbeitung von Kontaktanfragen",
+        "legal_obligations": "Gesetzliche Pflichten (Buchhaltung)",
+        "payment": "Zahlungsabwicklung",
+        "security": "Sicherheit und Betrugsbekämpfung",
+        "social": "Verwaltung der sozialen Beziehungen",
+        "title": "3. Zwecke und Rechtsgrundlagen"
+      },
+      "recipients": {
+        "closing": "Alle unsere Subunternehmer sind vertraglich gebunden und verpflichten sich zur Einhaltung der DSGVO.",
+        "google": "Versand von Transaktions-E-Mails (USA – SCCs)",
+        "intro": "Ihre Daten können im Rahmen der Leistungserbringung an unsere Subunternehmer übermittelt werden:",
+        "ionos": "VPS-Hosting (Frankreich – EU)",
+        "stripe": "Zahlungsabwicklung (USA – SCCs)",
+        "title": "5. Empfänger der Daten"
+      },
+      "retention": {
+        "active": "Aktive Kontodaten",
+        "active_val": "für die gesamte Dauer des Vertragsverhältnisses",
+        "billing": "Abrechnungsdaten",
+        "billing_val": "10 Jahre (gesetzliche Buchhaltungspflicht)",
+        "contact": "Kontaktnachrichten",
+        "contact_val": "1 Jahr (dann endgültige Löschung)",
+        "deleted": "Daten nach Kontolöschung",
+        "deleted_val": "30 Tage (dann endgültige Löschung)",
+        "title": "4. Aufbewahrungsfrist",
+        "tokens": "Sitzungs-Tokens",
+        "tokens_val": "werden sofort nach Trennung oder Löschung des Kontos widerrufen"
+      },
+      "rights": {
+        "access": "Zugriffsrecht",
+        "access_val": "(Art. 15) – Erhalten Sie eine Kopie Ihrer Daten",
+        "cnil": "Sie haben auch das Recht, eine Beschwerde bei der einzureichen",
+        "delay": "(Antwort innerhalb von 30 Tagen).",
+        "email_or": "oder per E-Mail an",
+        "erasure": "Recht auf Löschung",
+        "erasure_val": "(Art. 17) – Ihre Daten löschen",
+        "exercise": "Um diese Rechte auszuüben:",
+        "intro": "Gemäß der DSGVO haben Sie folgende Rechte:",
+        "limitation": "Recht auf Einschränkung",
+        "limitation_val": "(Art. 18) – Einschränkung der Nutzung Ihrer Daten",
+        "opposition": "Widerspruchsrecht",
+        "opposition_val": "(Art. 21) – Widerspruch gegen bestimmte Verarbeitungen einlegen",
+        "portability": "Recht auf Portabilität",
+        "portability_val": "(Art. 20) – Sie erhalten Ihre Daten in einem strukturierten Format",
+        "rectification": "Recht auf Berichtigung",
+        "rectification_val": "(Art. 16) – Berichtigung unrichtiger Daten",
+        "settings_link": "Einstellungen → Meine Daten",
+        "title": "6. Ihre Rechte"
+      },
+      "title": "Datenschutzrichtlinie"
+    }
+  },
+  "lessonSession": {
+    "averageAccuracy": "Durchschnittliche Genauigkeit",
+    "correctAnswers": "Richtige Antworten",
+    "details": {
+      "accuracy": "Präzision",
+      "correctAnswers": "Richtige Antworten",
+      "errors": "Fehler",
+      "review": "Sehen Sie sich die Lektion noch einmal an",
+      "title": "Sitzungsdetails",
+      "totalQuestions": "Gesamtzahl der Fragen"
+    },
+    "noSessions": "Zur Zeit keine Sitzungen.",
+    "sessions": "Sitzungen",
+    "status": {
+      "completed": "Fertig",
+      "failed": "Fehlgeschlagen"
+    },
+    "table": {
+      "accuracy": "Präzision",
+      "correct": "Richtig",
+      "date": "Datum",
+      "duration": "Dauer",
+      "errors": "Fehler",
+      "lesson": "Lektion",
+      "status": "Status",
+      "topic": "Thema",
+      "total": "Gesamt"
+    },
+    "totalTime": "Gesamtzeit"
+  },
+  "lessons": {
+    "click_to_flip": "Tippen Sie, um",
+    "complete_error": "Verbindungsfehler während der Validierung anzuzeigen.",
+    "computing_score": "Punkteberechnung läuft...",
+    "easy": "Leicht – Bestanden",
+    "failed": "Nicht bestanden",
+    "finish": "Abgeschlossen",
+    "hard": "Schwierig – Überprüfen",
+    "help": {
+      "error_generic": "Die KI-Hilfe kann derzeit nicht geladen werden. Bitte versuchen Sie es erneut.",
+      "loading": "Generierung von Hilfe durch KI...",
+      "modal_subtitle": "Wählen Sie die Art der Unterstützung, die Sie benötigen:",
+      "modal_title": "Hilfe beim Auswendiglernen durch KI",
+      "option_association_and_mnemonic": "Memotechnische Mittel",
+      "option_structure_and_rule": "Struktur und Regeln",
+      "option_trap_warning": "Zu vermeidende Fallstricke",
+      "option_usage_context": "Beispiel im Kontext",
+      "quota_exceeded_cta": "Entdecken Sie das Premium-Angebot",
+      "quota_exceeded_message": "Sie haben Ihre Credits für künstliche Intelligenz für diesen Zeitraum aufgebraucht. Upgraden Sie auf den Premium-Plan, um unbegrenzte Erklärungen zu erhalten!",
+      "quota_exceeded_title": "KI-Unterstützungsgrenze erreicht",
+      "section_examples": "Beispiele im Kontext",
+      "section_visual_anchor": "Mentaler Anker / Visualisierung",
+      "section_warning": "Vorsicht vor der Falle!",
+      "trigger_button": "KI-Hilfe"
+    },
+    "interactive": {
+      "correct": "Richtig!",
+      "correct_answer_prefix": "Die richtige Antwort ist:",
+      "incorrect": "Falsch!",
+      "listen_pronunciation": "Hören Sie sich die Aussprache an.",
+      "type_answer_placeholder": "Geben Sie hier Ihre Antwort ein ..."
+    },
+    "lesson_completed": "Lektion abgeschlossen!",
+    "level_up": "Level aufsteigen! Level {{level}}",
+    "matching": {
+      "completed": "Ausgezeichnet!",
+      "errors": "Fehler",
+      "flawless": "Du hast alles beim ersten Mal gefunden!",
+      "instruction": "Passende Paare finden",
+      "matches_found": "Paare gefunden",
+      "title": "Paarsatz",
+      "with_errors": "Alle Paare wurden gefunden."
+    },
+    "medium": "Durchschnittlich – Wir legen es beiseite.",
+    "not_found": "Lektion nicht gefunden.",
+    "progress": "Fortschritt der Übung",
+    "qcm": {
+      "correct": "Richtige Antwort!",
+      "incorrect": "Falsche Antwort",
+      "next": "Nachfolgend",
+      "title": "Quiz",
+      "validate": "Zur Validierung"
+    },
+    "session_invalid": "Sitzung nicht gefunden oder abgelaufen.",
+    "sorting": {
+      "correct_order_prefix": "Lösung :",
+      "empty_target": "Wählen Sie die Elemente in der richtigen Reihenfolge aus",
+      "instruction": "Bringen Sie die Gegenstände wieder in die richtige Reihenfolge",
+      "next": "Weitermachen",
+      "title": "Ordnung schaffen",
+      "validate": "Antwort prüfen"
+    },
+    "start_error": "Fehler beim Starten der Lektion.",
+    "starting": "Vorbereitung auf den Unterricht...",
+    "status": "Ergebnis",
+    "success": "Validiert",
+    "xp_earned": "XP verdient"
+  },
+  "lesson": {
+    "completed": "vollendet",
+    "resume": "Setzen Sie die Lektion fort",
+    "start_first_lesson": "Beginnen Sie mit Ihrer ersten Lektion, um loszulegen!"
+  },
+  "matching": {
+    "instruction": "Was ist das entsprechende Wort?",
+    "placeholder": "Geben Sie Ihre Antwort ein..."
+  },
+  "mistake": {
+    "banner": {
+      "cta": "Überarbeiten",
+      "subtitle": "{{count}} Frage(n) zur Überprüfung",
+      "title": "Täglicher Rückblick"
+    },
+    "daily_check": {
+      "all_done": "Alle Fragen werden beantwortet!",
+      "label": "Täglicher Rückblick",
+      "progress": "Fortschritt",
+      "submit": "Sehen Sie sich meine Ergebnisse an",
+      "submit_desc": "Senden Sie Ihre Antworten, um Ihre Ergebnisse zu sehen.",
+      "subtitle": "{{total}} Frage(n) zur Überprüfung",
+      "title": "Rückblick auf den Tag"
+    },
+    "detail": {
+      "correct_answer": "Gute Antwort",
+      "next_review": "Nächste Rezension",
+      "question": "Frage",
+      "streak": "Serie",
+      "title": "Fehlerdetails",
+      "your_answer": "Ihre Antwort"
+    },
+    "empty": {
+      "subtitle": "Derzeit sind keine Fragen verfügbar. Komm später wieder!",
+      "title": "Alles ist auf dem neuesten Stand!"
+    },
+    "filters": {
+      "ALL": "Alle",
+      "FLASHCARD": "Karteikarte",
+      "INTERACTIVE": "Interaktiv",
+      "MATCHING_PAIR": "Assoziation",
+      "QCM": "MCQ",
+      "SORTING_EXERCISE": "Sortieren"
+    },
+    "liste": {
+      "empty_subtitle": "Trainieren Sie weiter, um Fortschritte zu machen!",
+      "empty_title": "Keine ausstehenden Fehler",
+      "page_title": "Meine Fehler",
+      "practice_cta": "Jetzt überprüfen",
+      "subtitle": "{{count}} Fehler(e) Ausstehende Überprüfung",
+      "title": "Meine Fehler"
+    },
+    "result": {
+      "daily_check": {
+        "all_done": "Alle Fragen beantwortet!",
+        "label": "Tägliche Überprüfung",
+        "progress": "Fortschritt",
+        "submit": "Meine Ergebnisse ansehen",
+        "submit_desc": "Senden Sie Ihre Antworten, um Ihre Ergebnisse zu sehen.",
+        "subtitle": "{{total}} zu überprüfende Frage(n)"
+      },
+      "dashboard": "Dashboard",
+      "list": "Meine Fehler sehen",
+      "mastered": "Gemeistert!",
+      "remaining": "{{count}} Fehler stehen noch aus",
+      "resolved": "Beherrscht",
+      "score": "Punktzahl",
+      "title": "Ergebnisse"
+    }
+  },
+  "next": "Nächster",
+  "of": "von",
+  "onBoarding": {
+    "selectLearningLanguage": "Welche Sprache möchten Sie lernen?",
+    "selectNativeLanguage": "Was ist deine Muttersprache?"
+  },
+  "pages": {
+    "languageDetail": {
+      "lessons": "Lektionen",
+      "remove": "Aus meinen Sprachen entfernen",
+      "start": "Mit dem Lernen beginnen",
+      "topics": "Themen",
+      "topicsAndLessons": "Themen und Lektionen"
+    }
+  },
+  "payment": {
+    "intervals": {
+      "monthly": "Monatlich",
+      "yearly": "Jährlich"
+    }
+  },
+  "plans": {
+    "create": {
+      "title": "Plan erstellen"
+    },
+    "delete": {
+      "description": "Sind Sie sicher, dass Sie diesen Plan löschen möchten? Diese Aktion ist irreversibel.",
+      "title": "Plan entfernen"
+    },
+    "descriptions": {
+      "Free plan": "Dies ist der kostenlose Plan.",
+      "Premium plan": "Premium-Plan mit allen Funktionen"
+    },
+    "edit": {
+      "title": "Plan bearbeiten"
+    },
+    "form": {
+      "add_feature": "Funktion hinzufügen",
+      "ai_quota": "AI-Kontingent",
+      "ai_quota_hint": "Anzahl der in diesem Plan enthaltenen AI-Anfragen.",
+      "currency": "Währung",
+      "description": "Planbeschreibung",
+      "feature_placeholder": "Funktionsbeschreibung",
+      "features": "Funktionen",
+      "name": "Planname",
+      "payment_interval": "Zahlungszeitraum",
+      "price": "Preis",
+      "stripe_price_id": "Stripe-Preis-ID",
+      "subscription_type": "Abonnementtyp"
+    },
+    "is_active": "Aktiv",
+    "page_title": "Planverwaltung",
+    "table": {
+      "actions": "Aktionen",
+      "description": "Beschreibung",
+      "interval": "Zahlungszeitraum",
+      "name": "Name",
+      "price": "Preis",
+      "status": "Status",
+      "type": "Typ"
+    },
+    "title": "Pläne",
+    "types": {
+      "Free": "Kostenlos",
+      "Premium": "Premium"
+    }
+  },
+  "popular": "Beliebt",
+  "previous": "Vorherig",
+  "profile": {
+    "ai_quota": {
+      "renews_on": "Verlängert am {{date}}",
+      "title": "KI-Quote",
+      "usage": "Verwendete Generationen"
+    },
+    "bio": "Bio",
+    "bio_placeholder": "Erzählen Sie uns etwas über sich...",
+    "countryCode": "Land",
+    "countryCode_placeholder": "ex. DE",
+    "edit": "Profil bearbeiten",
+    "error": {
+      "loadFailed": "Profil kann nicht geladen werden."
+    },
+    "image": {
+      "confirmDelete": {
+        "message": "Sind Sie sicher, dass Sie Ihr Profilbild löschen möchten?",
+        "title": "Profilfoto löschen"
+      },
+      "delete": "Foto löschen",
+      "edit_label": "Bearbeiten",
+      "error": {
+        "deleteFailed": "Der Löschvorgang ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
+        "invalidType": "Ungültiger Dateityp. Es werden nur JPG und PNG akzeptiert.",
+        "tooLarge": "Die Datei ist zu groß. Maximale Größe: 5 MB.",
+        "uploadFailed": "Hochladen fehlgeschlagen. Bitte versuchen Sie es erneut."
+      },
+      "requirements": "JPG, PNG. Maximal 5 MB.",
+      "title": "Profilfoto",
+      "upload": "Foto hochladen"
+    },
+    "info": {
+      "description": "Ihr Profil ist nicht öffentlich sichtbar. Aktualisieren Sie Ihre Einstellungen, um es sichtbar zu machen.",
+      "section_title": "Profilinformationen",
+      "title": "Ihr Profil ist privat"
+    },
+    "isPublic": "Öffentliches Profil",
+    "languageSection": {
+      "addLanguage": "Fügen Sie eine Sprache hinzu",
+      "chooseLanguage": "Wählen Sie eine Sprache",
+      "learningLanguages": "Sprachen, die ich lerne",
+      "nativeLanguage": "Muttersprache",
+      "noLearningLanguages": "Noch keine Sprachen hinzugefügt."
+    },
+    "password": {
+      "change": "Passwort ändern",
+      "confirm": "Neues Passwort bestätigen",
+      "current": "Aktuelles Passwort",
+      "error": {
+        "generic": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+        "invalidCurrent": "Das aktuelle Passwort ist falsch.",
+        "mismatch": "Passwörter stimmen nicht überein."
+      },
+      "new": "Neues Passwort",
+      "successMessage": "Passwort erfolgreich geändert."
+    },
+    "privateDescription": "Dieses Profil ist nicht öffentlich sichtbar.",
+    "privateTitle": "Privates Profil",
+    "settings": {
+      "page_title": "Profileinstellungen",
+      "subtitle": "Verwalten Sie Ihre öffentlichen Profilinformationen."
+    },
+    "timezone": "Zeitzone",
+    "timezone_placeholder": "z.B. Europa/Paris",
+    "title": "Mein Profil",
+    "updateButton": "Profil aktualisieren",
+    "update": {
+      "success": "Profil erfolgreich aktualisiert."
+    },
+    "username": "Benutzername",
+    "username_placeholder": "Ihr korrekter Benutzername"
+  },
+  "queue": {
+    "streak": "{{count}}/4"
+  },
+  "ranking": {
+    "empty": "Noch keine Teilnehmer.",
+    "friends": {
+      "empty": "Füge Freunde hinzu, um deine Rangliste untereinander zu sehen!"
+    },
+    "info": {
+      "description": "Sammeln Sie XP, indem Sie Ihre Lektionen abschließen, erklimmen Sie die Bestenliste und gewinnen Sie exklusive Belohnungen, die den besten Lernenden des Monats vorbehalten sind.",
+      "label": "Wie funktioniert es?",
+      "title": "Sei der Beste. Verdienen Sie jeden Monat Prämien."
+    },
+    "level": "Lv. {{level}}",
+    "motivation": {
+      "close": "Nur noch {{xp}} XP übrig, um #{{rank}} zu überschreiten!",
+      "leader": "Du bist an der Spitze 🔥"
+    },
+    "neighborhood": "Um dich herum",
+    "tab": {
+      "friends": "Freunde",
+      "global": "Weltweit",
+      "language": "Nach Sprache"
+    },
+    "title": "Ranking",
+    "to_pass": "soll #{{rank}} überschreiten",
+    "total": "{{count}} Gesamtteilnehmer",
+    "user": "Benutzer",
+    "you": "Sie"
+  },
+  "reviews": {
+    "add_error": "Bewertung kann nicht abgegeben werden.",
+    "admin_title": "Bewertungsmanagement",
+    "approve": "Genehmigen",
+    "approved_success": "Bewertung genehmigt.",
+    "col_comment": "Kommentar",
+    "col_date": "Datum",
+    "col_rating": "Bewertung",
+    "col_status": "Status",
+    "col_topic": "Thema",
+    "col_user": "Benutzer",
+    "comment_placeholder": "Schreiben Sie Ihren Kommentar (optional) ...",
+    "delete_description": "Sind Sie sicher, dass Sie diese Bewertung löschen möchten? Diese Aktion ist irreversibel.",
+    "delete_success": "Bewertung erfolgreich gelöscht.",
+    "delete_title": "Bewertung löschen",
+    "edit": "Bearbeiten",
+    "edit_title": "Bewertung bearbeiten",
+    "formHeader": {
+      "add": "Bewertung hinterlassen",
+      "edit": "Bewertung bearbeiten"
+    },
+    "modal_title": "Dieses Thema bewerten",
+    "no_comment": "Keine Kommentare",
+    "no_reviews": "Noch keine Bewertungen.",
+    "notif_approved": "Ihre Bewertung wurde genehmigt!",
+    "notif_auto_rejected": "Ihre Bewertung wurde automatisch abgelehnt.",
+    "notif_banned": "Du wurdest aus dem Kommentarbereich ausgeschlossen.",
+    "notif_new_pending": "Eine neue Rezension wartet auf Moderation.",
+    "notif_pending": "Ihre Bewertung wartet auf Moderation.",
+    "notif_rejected": "Ihre Bewertung wurde abgelehnt.",
+    "pending_badge": "Ausstehend",
+    "pending_message": "Ihre Bewertung wartet auf die Moderation.",
+    "rate_and_continue": "Bewerten und fortfahren",
+    "rating_1": "Schlecht",
+    "rating_2": "Mittelmäßig",
+    "rating_3": "Gut",
+    "rating_4": "Sehr gut",
+    "rating_5": "Ausgezeichnet",
+    "rating": {
+      "label": "Bewertung"
+    },
+    "reject": "Ablehnen",
+    "reject_error": "Bewertung kann nicht abgelehnt werden.",
+    "rejected_badge": "Abgelehnt",
+    "rejected_message": "Ihre Bewertung wurde von der Moderation abgelehnt.",
+    "rejected_success": "Rezension abgelehnt.",
+    "section_title": "Bewertung",
+    "status_pending": "Ausstehend",
+    "status_published": "Veröffentlicht",
+    "status_rejected": "Abgelehnt",
+    "submit": "Senden",
+    "success_subtitle": "Ihre Bewertung wurde für",
+    "success_title": "eingereicht. Vielen Dank!",
+    "tab_all": "Alle",
+    "tab_pending": "Ausstehend",
+    "tab_published": "Veröffentlicht",
+    "tab_rejected": "Abgelehnt",
+    "total": "Rezension",
+    "update": "Aktualisieren",
+    "update_error": "Rezension konnte nicht aktualisiert werden.",
+    "view_details_title": "Bewertungsdetails",
+    "your_review": "Ihre Bewertung"
+  },
+  "settings": {
+    "2fa": {
+      "cancel": "Abbrechen",
+      "confirm_disable": "Deaktivierung bestätigen",
+      "disable_button": "2FA deaktivieren",
+      "disable_success": "Die Zwei-Faktor-Authentifizierung wurde deaktiviert.",
+      "enable_button": "2FA aktivieren",
+      "enable_success": "Die Zwei-Faktor-Authentifizierung wurde aktiviert.",
+      "enabled_status": "Zwei-Faktor-Authentifizierung ist aktiviert.",
+      "enter_code": "Geben Sie den Bestätigungscode ein.",
+      "enter_code_disable": "Geben Sie einen Code zum Deaktivieren von 2FA ein.",
+      "manual_key": "Oder geben Sie diesen Schlüssel manuell ein:",
+      "not_enabled": "Die Zwei-Faktor-Authentifizierung ist nicht aktiviert.",
+      "page_title": "Zwei-Faktor-Authentifizierung",
+      "scan_qr": "Scannen Sie diesen QR-Code mit Ihrer Authentifizierungsanwendung",
+      "title": "Zwei-Faktor-Authentifizierung",
+      "verify_button": "Überprüfen"
+    },
+    "languages": {
+      "english": "Englisch",
+      "french": "Französisch",
+      "german": "Deutsch",
+      "italian": "Italienisch",
+      "spanish": "Spanisch"
+    },
+    "language": {
+      "page_title": "Spracheinstellungen",
+      "title": "Schnittstellensprache"
+    },
+    "menu": {
+      "2fa": "Duale Auth",
+      "language": "Sprache",
+      "notifications": "Benachrichtigungen",
+      "password": "Passwort",
+      "profile": "Profil",
+      "theme": "Thema"
+    },
+    "notifications": {
+      "disable": "Deaktivieren Sie Benachrichtigungen",
+      "enable": "Benachrichtigungen aktivieren",
+      "enabled": "Benachrichtigungen aktiviert",
+      "inactivity": "Inaktivitätserinnerung",
+      "inactivity_desc": "Ermutigung, wenn Sie sich einige Tage lang nicht angemeldet haben.",
+      "lessonReminders": "Tägliche Unterrichtserinnerung",
+      "lessonReminders_desc": "Erhalten Sie tägliche Erinnerungen, um Ihre Lektionen zu üben.",
+      "reviewReminders": "Bewertungserinnerung",
+      "reviewReminders_desc": "Erhalten Sie Erinnerungen, wenn Lektionen zur Überprüfung bereit sind.",
+      "streakUrgency": "Warnung vor Seriengefahr",
+      "streakUrgency_desc": "Lassen Sie sich benachrichtigen, wenn Ihre Lernreihe in Gefahr ist.",
+      "title": "Benachrichtigungseinstellungen",
+      "weeklyGoal": "Wochenziel erreicht",
+      "weeklyGoal_desc": "Feiern Sie und lassen Sie sich benachrichtigen, wenn Sie Ihr Wochenziel erreicht haben."
+    },
+    "password": {
+      "description": "Verwalten Sie Ihr Kontopasswort.",
+      "page_title": "Passworteinstellungen",
+      "title": "Passwort"
+    },
+    "profile": {
+      "bioTooLong": "Die Biografie darf 500 Zeichen nicht überschreiten.",
+      "countryCodeRequired": "Land ist erforderlich.",
+      "timezoneRequired": "Die Zeitzone ist erforderlich.",
+      "usernameInvalid": "Der Benutzername darf nur Buchstaben, Zahlen, Bindestriche und Unterstriche enthalten.",
+      "usernameRequired": "Benutzername ist erforderlich.",
+      "usernameTooLong": "Der Benutzername darf nicht länger als 50 Zeichen sein.",
+      "usernameTooShort": "Der Benutzername muss mindestens 3 Zeichen enthalten."
+    },
+    "title": "Einstellungen"
+  },
+  "show": "Anzeigen",
+  "source": {
+    "exam": "Rezension",
+    "lesson": "Lektion"
+  },
+  "status": "Status",
+  "subscriptions": {
+    "free": "Kostenlos",
+    "page_title": "Abonnementverwaltung",
+    "premium": "Premium",
+    "table": {
+      "account": "Konto",
+      "actions": "Aktionen",
+      "endDate": "Enddatum",
+      "plan": "Plan",
+      "startDate": "Startdatum",
+      "status": "Status"
+    },
+    "title": "Abonnements"
+  },
+  "subscription": {
+    "ai_quota": {
+      "limited": "{{count}} KI-Abfrage enthalten",
+      "morelimited": "{{count}} KI-Abfrage enthalten"
+    },
+    "cancel": {
+      "confirm_cancel": "Kündigung bestätigen",
+      "description": "Sind Sie sicher, dass Sie Ihr Abonnement kündigen möchten? Sie verlieren den Zugriff auf Premium-Funktionen.",
+      "now": "Jetzt kündigen",
+      "reason": "Grund für die Kündigung",
+      "reason_placeholder": "Bitte geben Sie den Grund für die Kündigung an...",
+      "title": "Abonnement kündigen",
+      "warning": "Sie verlieren sofort den Zugriff auf Premium-Funktionen."
+    },
+    "current_plan": "Aktueller Plan",
+    "details": {
+      "cancel_at_period_end_warning": "Ihr Abonnement wird zum Ende des aktuellen Zeitraums gekündigt.",
+      "canceled_at": "Gekündigt am",
+      "current_period": "Aktueller Zeitraum",
+      "days": "Tage",
+      "days_remaining": "Verbleibende Tage",
+      "end_date": "Enddatum",
+      "my_subscription": "Mein Abonnement",
+      "payment_history_title": "Zahlungshistorie",
+      "plan_name": "Planname",
+      "start_date": "Startdatum",
+      "status": {
+        "ACTIVE": "Aktiv",
+        "CANCELED": "Gekündigt",
+        "EXPIRED": "Abgelaufen",
+        "PENDING": "Ausstehend",
+        "active": "Aktiv",
+        "canceled": "Abgebrochen",
+        "expired": "Abgelaufen",
+        "pending": "Ausstehend"
+      },
+      "title": "Abonnementdetails",
+      "type": "Typ"
+    },
+    "disabled": "Deaktiviert",
+    "enabled": "Aktiviert",
+    "included": "Eingeschlossen",
+    "interval": {
+      "monthly": "Monatlich",
+      "yearly": "Jährlich"
+    },
+    "keep_subscription": "Abonnement behalten",
+    "manage": {
+      "cancel": "Abonnement kündigen",
+      "change_plan": "Plan ändern",
+      "disable_auto_renewal": "Automatische Verlängerung deaktivieren",
+      "enable_auto_renewal": "Automatische Verlängerung aktivieren",
+      "reactivate": "Abonnement erneut aktivieren",
+      "renew": "Abonnement erneuern",
+      "title": "Abonnement verwalten"
+    },
+    "page_title": "Mein Abonnement",
+    "paymentHistory": {
+      "amount": "Betrag",
+      "date": "Datum",
+      "method": "Zahlungsart",
+      "no_payments": "Keine Zahlungen gefunden.",
+      "payments": "Zahlung{{s}}",
+      "status": {
+        "failed": "Fehlgeschlagen",
+        "label": "Status",
+        "pending": "Ausstehend",
+        "refunded": "Erstattet",
+        "succeeded": "Erfolgreich"
+      }
+    },
+    "payment_history_title": "Zahlungsverlauf",
+    "plans": {
+      "description": "Wählen Sie den Plan, der am besten zu Ihnen passt.",
+      "keywords": "Pläne, Preise, Abonnement, Premium, kostenlos, Skaldly",
+      "title": "Pläne"
+    },
+    "select_plan": "Wählen Sie einen Plan",
+    "stats": {
+      "totalActiveSubscribers": "Gesamtzahl der aktiven Abonnenten",
+      "totalRevenue": "Gesamtumsatz"
+    },
+    "title": "Abonnement",
+    "type": {
+      "free": "Kostenlos",
+      "premium": "Premium"
+    },
+    "upgrade_message": "Upgraden Sie auf einen höheren Plan, um auf mehr Funktionen zuzugreifen.",
+    "view_plans": "Blaupausen anzeigen"
+  },
+  "token": "Token",
+  "topic": "Betreff",
+  "topics": {
+    "accuracy": "Genauigkeit",
+    "all_levels": "Alle Ebenen",
+    "empty_desc": "Versuchen Sie, Ihre Suchfilter zu ändern.",
+    "empty_title": "Keine Themen gefunden.",
+    "error_load": "Themen können derzeit nicht geladen werden.",
+    "exam_attempts": "Versuche",
+    "exam_clear_pair": "Abbrechen",
+    "exam_completed_desc": "Sie können jetzt Ihre Antworten einreichen, um Ihr Endergebnis zu erfahren.",
+    "exam_completed_title": "Alle Fragen beantwortet!",
+    "exam_desc": "Beantworten Sie die Fragen, um Ihr Wissen zu bestätigen.",
+    "exam_failed": "Prüfung fehlgeschlagen.",
+    "exam_flashcard_title": "Flashcard-Test.",
+    "exam_load_error": "Fehler beim Laden der Prüfung.",
+    "exam_locked": "Schließe zuerst alle Lektionen ab.",
+    "exam_matching_answers": "Paare wurden gefunden.",
+    "exam_matching_finished": "Alle Paare wurden gefunden. Sie können ein Paar fortsetzen oder abbrechen.",
+    "exam_matching_title": "Matching-Test",
+    "exam_page_title": "Themenprüfung",
+    "exam_pairs_selected": "Ausgewählte Paare",
+    "exam_passed": "Prüfung validiert!",
+    "exam_progress": "Prüfungsfortschritt",
+    "exam_qcm_title": "MCQ-Papier",
+    "exam_sorting_title": "Papier wird sortiert",
+    "exam_status": "Prüfungsstatus",
+    "exam_submit": "Prüfung senden",
+    "exam_submit_error": "Fehler beim Senden der Prüfung.",
+    "exam_title": "Überprüfen Sie",
+    "final_exam_desc": "Bewerten Sie Ihr neues Wissen insgesamt.",
+    "final_exam_title": "Abschlussprüfung",
+    "last_accuracy": "Letzte Klärung",
+    "lessons_count_label": "Abgeschlossene Lektionen",
+    "lessons_desc": "Erkunden Sie die folgenden Lektionen in chronologischer Reihenfolge, um Fortschritte zu machen und dieses Thema zu meistern.",
+    "lessons_page_title": "Lektionen",
+    "lessons_title": "Lektionenablage",
+    "level": "Level {{level}}",
+    "no_desc": "Keine Beschreibung angegeben",
+    "no_lessons_desc": "Komm später wieder!",
+    "no_lessons_title": "Keine Unterrichtsstunden verfügbar",
+    "no_questions": "Für diese Prüfung gibt es keine Fragen.",
+    "not_passed": "Passen",
+    "order": "Bestellung: {{orderIndex}}",
+    "page_desc": "Wählen Sie ein Thema aus, um mit dem Training zu beginnen.",
+    "page_title": "Verfügbare Themen",
+    "pagination_info": "Anzeige von {{start}} bis {{end}} auf {{total}} Themes",
+    "passed": "Gültig",
+    "practice_btn": "Trainiere jetzt",
+    "progress": "Fortschritt",
+    "replay_lesson_btn": "Wiederholen Sie die Lektion",
+    "search_placeholder": "Suchen Sie nach einem Thema anhand des Namens...",
+    "start_lesson_btn": "Beginnen Sie mit der Lektion",
+    "take_exam": "Machen Sie die Prüfung",
+    "translate_or_answer": "Übersetzen oder antworten Sie",
+    "type_answer_here": "Geben Sie hier Ihre Antwort ein..."
+  },
+  "total": "Gesamt",
+  "training": {
+    "nav": {
+      "liste": "Meine Fehler"
+    }
+  },
+  "validation": {
+    "cancellationReason": {
+      "max": "Maximal 500 Zeichen"
+    },
+    "code": {
+      "digits": "Der Code darf nur Zahlen enthalten",
+      "length": "Der Code muss 6 Ziffern enthalten",
+      "required": "Code ist erforderlich"
+    },
+    "confirmPassword": {
+      "match": "Passwörter stimmen nicht überein",
+      "required": "Eine Bestätigung ist erforderlich"
+    },
+    "contactEmail": {
+      "invalid": "Ungültiges E-Mail-Format",
+      "required": "E-Mail-Adresse ist erforderlich"
+    },
+    "contactMessage": {
+      "min": "Mindestens 10 Zeichen",
+      "required": "Nachricht ist erforderlich"
+    },
+    "contactName": {
+      "max": "Maximal 100 Zeichen",
+      "required": "Name ist erforderlich"
+    },
+    "contactSubject": {
+      "required": "Betreff ist erforderlich"
+    },
+    "email": {
+      "invalid": "Ungültiges E-Mail-Format",
+      "required": "E-Mail ist erforderlich"
+    },
+    "firstName": {
+      "required": "Der Vorname ist erforderlich"
+    },
+    "lastName": {
+      "required": "Name ist erforderlich"
+    },
+    "password": {
+      "min": "Mindestens 12 Zeichen",
+      "pattern": "Muss Großbuchstaben, Kleinbuchstaben, Zahlen und Sonderzeichen enthalten (@#$%^&+=!)",
+      "required": "Passwort ist erforderlich"
+    },
+    "planAiQuota": {
+      "integer": "Muss eine Ganzzahl sein",
+      "min": "Mindestens 5",
+      "required": "Es ist eine KI-Quote erforderlich"
+    },
+    "planCurrency": {
+      "length": "Die Währung muss 3 Zeichen enthalten",
+      "required": "Währung ist erforderlich"
+    },
+    "planDescription": {
+      "max": "Maximal 500 Zeichen"
+    },
+    "planFeatureLabel": {
+      "max": "Maximal 255 Zeichen",
+      "required": "Feature-Label ist erforderlich"
+    },
+    "planName": {
+      "max": "Maximal 100 Zeichen",
+      "min": "Mindestens 2 Zeichen",
+      "required": "Planname ist erforderlich"
+    },
+    "planPaymentInterval": {
+      "oneOf": "Muss monatlich oder jährlich sein",
+      "required": "Zahlungsintervall ist erforderlich"
+    },
+    "planPrice": {
+      "min": "Der Preis muss größer als 0 sein",
+      "required": "Preis ist erforderlich",
+      "typeError": "Der Preis muss eine gültige Zahl sein"
+    },
+    "review": {
+      "comment_max": "Der Kommentar darf 1000 Zeichen nicht überschreiten",
+      "rating_max": "Die Bewertung darf 5 nicht überschreiten",
+      "rating_required": "Bitte wählen Sie eine Bewertung aus"
+    },
+    "subscriptionType": {
+      "oneOf": "Muss kostenlos oder Premium sein",
+      "required": "Abonnementtyp ist erforderlich"
+    },
+    "username": {
+      "max": "Maximal 50 Zeichen",
+      "min": "Mindestens 3 Zeichen",
+      "required": "Benutzername ist erforderlich"
+    }
+  }
+}
