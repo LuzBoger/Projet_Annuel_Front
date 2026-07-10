@@ -9,9 +9,10 @@ interface ReviewActionsProps {
     onApprove: () => void;
     onReject: () => void;
     onDelete: () => void;
+    onView?: () => void;
 }
 
-export function ReviewActions({ status, onApprove, onReject, onDelete }: ReviewActionsProps) {
+export function ReviewActions({ status, onApprove, onReject, onDelete, onView }: ReviewActionsProps) {
     const {t} = useTranslation();
     return (
         <div className="flex items-center justify-end gap-1">
@@ -23,7 +24,7 @@ export function ReviewActions({ status, onApprove, onReject, onDelete }: ReviewA
                         icon={<Ban className="w-4 h-4" />} onClick={onReject} />
                 </>
             )}
-            <TableActions onDelete={onDelete} />
+            <TableActions onView={onView} onDelete={onDelete} />
         </div>
     );
 }

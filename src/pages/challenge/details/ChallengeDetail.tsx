@@ -13,6 +13,7 @@ import { Clock, Globe, Swords, Users, BookOpen } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import { SubmitChallengeRequest } from "@/types/challenges/challenge";
 
 export default function ChallengeDetail() {
     const {challengeId} = useParams<{ challengeId: string }>();
@@ -50,11 +51,14 @@ export default function ChallengeDetail() {
         setIsParticipants(true);
     }
 
-    const handleFinishChallenge = async (score: number) => {
+    const handleFinishChallenge = async (answers: Omit<SubmitChallengeRequest, 'timePassed'>) => {
         if(!challengeId) { return; }
         const timePassed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
         setIsParticipants(false);
-        await submitScore(challengeId, {score, timePassed});
+        await submitScore(challengeId, {
+            timePassed,
+            ...answers
+        });
         await fetchChallenge(challengeId);
     }
 

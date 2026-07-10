@@ -111,8 +111,12 @@ export interface CreateChallengeRequest {
 }
 
 export interface SubmitChallengeRequest {
-    score: number;
     timePassed: number;
+    qcmAnswers?: { id: string; selectedOptionIndex: number }[];
+    flashcardAnswers?: { id: string; userResponse: string }[];
+    matchingPairAnswers?: { id: string; item1: string; item2: string }[];
+    sortingExerciseAnswers?: { id: string; userOrder: number[] }[];
+    interactiveAnswers?: { id: string; selectedOptionIndex: number | null; userResponse: string | null }[];
 }
 
 export interface ChallengeProgress {

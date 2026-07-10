@@ -79,8 +79,9 @@ export function SortingPlayer({ lessonId, exercises, onFinish }: SortingPlayerPr
         if (selectedItems.length === 0) return;
         setIsValidated(true);
 
-        const expectedOrder = currentExercise.correctOrder || (currentExercise.items?.map((_, i) => i) || []);
-        const isOrderCorrect = selectedItems.length === expectedOrder.length && selectedItems.every((item, index) => item.originalIndex === expectedOrder[index]);
+        const userSentence = selectedItems.map(item => item.text).join(" ").trim();
+        const expectedSentence = expectedSequenceText.trim();
+        const isOrderCorrect = userSentence === expectedSentence;
         
         setIsCorrect(isOrderCorrect);
         

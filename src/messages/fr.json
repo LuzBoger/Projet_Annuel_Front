@@ -1606,7 +1606,8 @@
     "notif_approved": "Votre avis a été approuvé !",
     "notif_rejected": "Votre avis a été rejeté.",
     "notif_auto_rejected": "Votre avis a été automatiquement rejeté.",
-    "notif_banned": "Vous avez été banni de l'espace commentaire."
+    "notif_banned": "Vous avez été banni de l'espace commentaire.",
+    "view_details_title": "Détails de l'avis"
   },
   "ranking": {
     "title": "Classement",
