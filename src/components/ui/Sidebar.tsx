@@ -71,9 +71,6 @@ export function Sidebar({ onClose, photoUrl, handleLogout }: SidebarProps) {
             </nav>
 
             <div className="border-t border-gray-100 dark:border-gray-800 p-3 flex flex-col gap-1">
-                <div className="px-3 py-1.5 flex">
-                    <LocaleLanguageSwitcher />
-                </div>
                 <Link
                     to="/settings"
                     onClick={onClose}
