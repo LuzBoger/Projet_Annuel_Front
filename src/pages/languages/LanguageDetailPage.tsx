@@ -78,7 +78,7 @@ export function LanguageDetailPage() {
             .catch((err) => {
                 console.error("Failed to load paginated topics", err);
             });
-    }, [languageId, page]);
+    }, [languageId, page, size]);
 
     const userLanguage: UserLanguageResponse | undefined = userLanguages.find((lang) => lang.languageId === language?.id);
     const isLearning = !!userLanguage;
