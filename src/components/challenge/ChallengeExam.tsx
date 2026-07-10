@@ -27,27 +27,23 @@ export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sor
     const { t } = useTranslation();
 
     const items = useMemo<ExamItem[]>(() => {
+        let list: ExamItem[] = [];
         if (lessonType === 'QCM') {
-            return qcms.map(qcm => ({ type: 'QCM', data: qcm }));
-        }
-
-        if (lessonType === 'FLASHCARD') {   
-            return flashcards.map(flashCard => ({ type: 'FLASHCARD', data: flashCard }));
-        }
-        if (lessonType === 'SORTING_EXERCISE') {
-            return sortingExercises.map(sortingExercise => ({ type: 'SORTING', data: sortingExercise, shuffledIndices: shuffleArray(sortingExercise.items.map((_, i) => i)) }));
-        }
-        if (lessonType === 'MATCHING_PAIR' && matchingPairs.length > 0) {
+            list = qcms.map(qcm => ({ type: 'QCM', data: qcm }));
+        } else if (lessonType === 'FLASHCARD') {   
+            list = flashcards.map(flashCard => ({ type: 'FLASHCARD', data: flashCard }));
+        } else if (lessonType === 'SORTING_EXERCISE') {
+            list = sortingExercises.map(sortingExercise => ({ type: 'SORTING', data: sortingExercise, shuffledIndices: shuffleArray(sortingExercise.items.map((_, i) => i)) }));
+        } else if (lessonType === 'MATCHING_PAIR' && matchingPairs.length > 0) {
             const tiles: Tile[] = matchingPairs.flatMap((pair, index) => [
                 { id: `t1-${index}-${pair.id}`, text: pair.item1, originalPairId: pair.id },
                 { id: `t2-${index}-${pair.id}`, text: pair.item2, originalPairId: pair.id },
             ]);
-            return [{ type: 'MATCHING', data: matchingPairs, shuffledTiles: shuffleArray(tiles) }];
+            list = [{ type: 'MATCHING', data: matchingPairs, shuffledTiles: shuffleArray(tiles) }];
+        } else if (lessonType === 'INTERACTIVE') {
+            list = interactives.map(interactive => ({ type: 'INTERACTIVE', data: interactive }));
         }
-        if (lessonType === 'INTERACTIVE') {
-            return interactives.map(interactive => ({ type: 'INTERACTIVE', data: interactive }));
-        }
-        return [];
+        return shuffleArray(list);
     }, [lessonType, qcms, flashcards, matchingPairs, sortingExercises, interactives]);
 
     const [currentIndex, setCurrentIndex] = useState(0);
