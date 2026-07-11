@@ -56,7 +56,7 @@ export default function MentionsLegales() {
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 py-2">
                   <dt className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide sm:w-44 shrink-0">{t("legal.mentionsLegales.editor.directors")}</dt>
-                  <dd className="text-sm text-gray-800 dark:text-gray-200">Moussi Sid-Ahmed, Arthur Brouard, Sofianne Chadilir</dd>
+                  <dd className="text-sm text-gray-800 dark:text-gray-200">Moussi Sid-Ahmed, Arthur Brouard, Sofiane Chadili</dd>
                 </div>
               </dl>
             </div>
