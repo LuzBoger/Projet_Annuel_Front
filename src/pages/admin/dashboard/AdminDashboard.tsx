@@ -6,6 +6,7 @@ import { StatsCard } from "@/components/ui/card/StatsCard";
 import { useAdminStats } from "@/hooks/useAdminStats";
 import { useSubscription } from "@/hooks/useSubscription";
 import { User, StarIcon, BookOpen, Brain, Eye, ChevronRight } from "@/assets/icons";
+import { formatSeconds } from "@/lib/utils/date";
 
 const sections = [
     { to: "/admin/stats", label: "admin.nav.stats", description: "admin.dashboard.statsDesc", icon: User, variant: "brand" as const },
@@ -73,11 +74,7 @@ export default function AdminDashboard() {
                                 <StatsCard title={t('admin.stats.avgCompletion')} value={`${learningMetrics.avgCompletionPercentage.toFixed(1)}%`} variant="default" />
                                 <StatsCard
                                     title={t('admin.stats.totalStudyTime')}
-                                    value={(() => {
-                                        const h = Math.floor(learningMetrics.totalStudyTimeMinutes / 60);
-                                        const m = learningMetrics.totalStudyTimeMinutes % 60;
-                                        return h === 0 ? `${m}m` : m > 0 ? `${h}h ${m}m` : `${h}h`;
-                                    })()}
+                                    value={formatSeconds(learningMetrics.totalStudyTimeMinutes)}
                                     variant="blue"
                                 />
                                 {learningMetrics.mostPopularLanguage && (

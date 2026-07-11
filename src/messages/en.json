@@ -1104,7 +1104,8 @@
       "weeklyGoal": "Weekly goal achieved",
       "weeklyGoal_desc": "Celebrate and get notified when you reach your weekly goals.",
       "reviewReminders": "Review reminder",
-      "reviewReminders_desc": "Get reminders when lessons are ready for review."
+      "reviewReminders_desc": "Get reminders when lessons are ready for review.",
+      "pushRequired": "Enable push notifications (button below) to manage these preferences."
     },
     "2fa": {
       "title": "Two-factor authentication",

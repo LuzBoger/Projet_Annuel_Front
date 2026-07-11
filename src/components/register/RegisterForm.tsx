@@ -70,7 +70,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
                 id="password"
                 label={t('auth.register.password')}
                 type="password"
-                placeholder="••••••••"
+                placeholder="************"
                 disabled={isLoading}
                 error={errors.password?.message}
                 {...register('password')}
@@ -80,7 +80,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
                 id="confirmPassword"
                 label={t('auth.register.confirmPassword')}
                 type="password"
-                placeholder="••••••••"
+                placeholder="************"
                 disabled={isLoading}
                 error={errors.confirmPassword?.message}
                 {...register('confirmPassword')}

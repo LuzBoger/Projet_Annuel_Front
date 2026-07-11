@@ -1109,7 +1109,8 @@
       "weeklyGoal": "Objectif hebdomadaire atteint",
       "weeklyGoal_desc": "Célébrez et soyez averti lorsque vous atteignez votre objectif hebdomadaire.",
       "reviewReminders": "Rappel de révision",
-      "reviewReminders_desc": "Recevez des rappels lorsque des leçons sont prêtes à être révisées."
+      "reviewReminders_desc": "Recevez des rappels lorsque des leçons sont prêtes à être révisées.",
+      "pushRequired": "Activez les notifications push (bouton ci-dessous) pour gérer ces préférences."
     },
     "2fa": {
       "title": "Authentification à deux facteurs",

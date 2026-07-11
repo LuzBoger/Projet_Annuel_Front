@@ -1921,6 +1921,7 @@
       "lessonReminders_desc": "Reciba recordatorios diarios para practicar sus lecciones.",
       "reviewReminders": "Recordatorio de revisión",
       "reviewReminders_desc": "Reciba recordatorios cuando las lecciones estén listas para su revisión.",
+      "pushRequired": "Active las notificaciones push (botón de abajo) para gestionar estas preferencias.",
       "streakUrgency": "Alerta de serie en peligro",
       "streakUrgency_desc": "Recibe una notificación cuando tu serie de aprendizaje esté en peligro.",
       "title": "Preferencias de notificaciones",

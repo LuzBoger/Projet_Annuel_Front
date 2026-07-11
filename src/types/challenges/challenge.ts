@@ -111,7 +111,6 @@ export interface CreateChallengeRequest {
 }
 
 export interface SubmitChallengeRequest {
-    timePassed: number;
     qcmAnswers?: { id: string; selectedOptionIndex: number }[];
     flashcardAnswers?: { id: string; userResponse: string }[];
     matchingPairAnswers?: { id: string; item1: string; item2: string }[];

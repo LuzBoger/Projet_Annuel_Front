@@ -22,7 +22,6 @@ export default function ChallengeDetail() {
     const {challenge,loading,error,submitScore,fetchChallenge,joinChallenge,acceptChallenge,declineChallenge,cancelChallenge} = useChallenge();
     const {challengeProgress, isDuelStarted} = useChallengeSocket(challengeId!);
     const [isParticipants, setIsParticipants] = useState(false);
-    const [startTime, setStartTime] = useState<number | null>(null);
 
     useEffect(() => {
         if(challengeId) {
@@ -47,18 +46,13 @@ export default function ChallengeDetail() {
             }
         }
         await challengeService.startChallenge(challengeId);
-        setStartTime(Date.now());
         setIsParticipants(true);
     }
 
-    const handleFinishChallenge = async (answers: Omit<SubmitChallengeRequest, 'timePassed'>) => {
+    const handleFinishChallenge = async (answers: SubmitChallengeRequest) => {
         if(!challengeId) { return; }
-        const timePassed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
         setIsParticipants(false);
-        await submitScore(challengeId, {
-            timePassed,
-            ...answers
-        });
+        await submitScore(challengeId, answers);
         await fetchChallenge(challengeId);
     }
 
@@ -188,11 +182,11 @@ export default function ChallengeDetail() {
           {isParticipants && (
             <ChallengeExam
               lessonType={challenge.lessonType}
-              qcms={challenge.qcm}
-              flashcards={challenge.flashcards}
-              matchingPairs={challenge.matchingPairs}
-              sortingExercises={challenge.sortingExercises}
-              interactives={challenge.interactives || []}
+              qcms={challenge.qcm ?? []}
+              flashcards={challenge.flashcards ?? []}
+              matchingPairs={challenge.matchingPairs ?? []}
+              sortingExercises={challenge.sortingExercises ?? []}
+              interactives={challenge.interactives ?? []}
               onFinish={handleFinishChallenge}
             />
           )}

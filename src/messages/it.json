@@ -1921,6 +1921,7 @@
       "lessonReminders_desc": "Ricevi promemoria giornalieri per esercitarti nelle tue lezioni.",
       "reviewReminders": "Promemoria di revisione",
       "reviewReminders_desc": "Ricevi promemoria quando le lezioni sono pronte per la revisione.",
+      "pushRequired": "Attiva le notifiche push (pulsante in basso) per gestire queste preferenze.",
       "streakUrgency": "Avviso seriale in pericolo",
       "streakUrgency_desc": "Ricevi una notifica quando il tuo seriale didattico è in pericolo.",
       "title": "Preferenze notifiche",
