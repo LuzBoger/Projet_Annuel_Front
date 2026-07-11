@@ -2,13 +2,11 @@
 import { STATUS_LESSON_SESSION } from '@/constants/lessonSession';
 import { calculateAccuracy } from '@/lib/utils/lessonSession';
 import { LessonSessionResponse } from '@/types/lessonSession/lessonSession';
-import { useNavigate } from 'react-router-dom';
 import { Modal } from '@/components/ui/Modal';
 import { useTranslation } from 'react-i18next';
 import { BadgeTag } from '@/components/ui/BadgeTag';
 import { Clock } from 'lucide-react';
 import { formatDate, formatTotalTime } from '@/lib/utils/date';
-import { Button } from '@/components/ui/Button';
 
 
 interface LessonSessionDetailsProps {
@@ -19,7 +17,6 @@ interface LessonSessionDetailsProps {
 
 export function LessonSessionDetails({ lessonSession, onClose }: LessonSessionDetailsProps) {
     const {t} = useTranslation();
-    const navigate  = useNavigate();
 
     if(!lessonSession) {
         return null;
@@ -70,16 +67,6 @@ export function LessonSessionDetails({ lessonSession, onClose }: LessonSessionDe
                     <span>{formatDate(lessonSession.completedAt)}</span>
                 </div>
 
-                <Button
-                    variant="primary"
-                    fullWidth
-                    onClick={() => {
-                        onClose();
-                        navigate(`/lessons/${lessonSession.lessonId}/play`);
-                    }}
-                >
-                    {t('lessonSession.details.review')}
-                </Button>
             </div>
         </Modal>
     );
