@@ -9,6 +9,7 @@ import { ChallengeNotification } from '@/components/challenge/ChallengeNotificat
 import { AccessibilityControls } from '@/components/ui/accessibility/AccessibilityControls'
 import { Scroll } from '@/components/ui/Scroll'
 import { CookieBanner } from '@/components/ui/CookieBanner'
+import { PushNotificationProvider } from '@/contexts/PushNotificationProvider'
 
 function App() {
   return (
@@ -17,12 +18,14 @@ function App() {
       <Helmet defaultTitle="Skaldly" titleTemplate="%s | Skaldly" />
       <ThemeProvider>
       <AuthProvider>
-        <ToastProvider>
-          <ChallengeNotification />
-          <AppRoutes />
-          <CookieBanner />
-          <AccessibilityControls />
-        </ToastProvider>
+        <PushNotificationProvider>
+          <ToastProvider>
+            <ChallengeNotification />
+            <AppRoutes />
+            <CookieBanner />
+            <AccessibilityControls />
+          </ToastProvider>
+        </PushNotificationProvider>
       </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>
