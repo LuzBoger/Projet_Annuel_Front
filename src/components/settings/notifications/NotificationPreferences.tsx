@@ -3,11 +3,13 @@ import { profileService } from "@/services/profileService";
 import { NotificationPreferencesResponse } from "@/types/profile/notificationPreferences";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { BookOpen, Flame, Clock, Trophy, Star } from "lucide-react";
+import { BookOpen, Flame, Clock, Trophy, Star, BellOff } from "lucide-react";
 import { Switch } from "@/components/ui/Switch";
+import { usePushNotifications } from "@/hooks/usePushNotifications";
 
 export function NotificationPreferences() {
     const {t} = useTranslation();
+    const { isSubscribed, isSupported } = usePushNotifications();
     const [choices, setChoices] = useState<NotificationPreferencesResponse>(DEFAULT_SETTINGS);
 
     useEffect(() => {
@@ -48,6 +50,8 @@ export function NotificationPreferences() {
         }
     };
 
+    const pushDisabled = isSupported && !isSubscribed;
+
     return (
         <div className="space-y-6">
             <div>
@@ -55,8 +59,15 @@ export function NotificationPreferences() {
                     {t("settings.notifications.title")}
                 </h3>
             </div>
-            
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden divide-y divide-gray-100 dark:divide-gray-800/50 shadow-sm">
+
+            {pushDisabled && (
+                <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-400 text-sm">
+                    <BellOff className="w-4 h-4 shrink-0" />
+                    <span>{t("settings.notifications.pushRequired")}</span>
+                </div>
+            )}
+
+            <div className={`bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden divide-y divide-gray-100 dark:divide-gray-800/50 shadow-sm ${pushDisabled ? "opacity-60" : ""}`}>
                 {(Object.keys(choices) as (keyof NotificationPreferencesResponse)[]).map((key) => {
                     const itemConfig = config[key];
                     return (
@@ -78,6 +89,7 @@ export function NotificationPreferences() {
                                 <Switch
                                     checked={choices[key]}
                                     onChange={() => handleToggle(key)}
+                                    disabled={pushDisabled}
                                     className="border border-gray-300/40 dark:border-transparent"
                                 />
                             </div>

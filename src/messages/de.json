@@ -1921,6 +1921,7 @@
       "lessonReminders_desc": "Erhalten Sie tägliche Erinnerungen, um Ihre Lektionen zu üben.",
       "reviewReminders": "Bewertungserinnerung",
       "reviewReminders_desc": "Erhalten Sie Erinnerungen, wenn Lektionen zur Überprüfung bereit sind.",
+      "pushRequired": "Aktivieren Sie Push-Benachrichtigungen (Schaltfläche unten), um diese Einstellungen zu verwalten.",
       "streakUrgency": "Warnung vor Seriengefahr",
       "streakUrgency_desc": "Lassen Sie sich benachrichtigen, wenn Ihre Lernreihe in Gefahr ist.",
       "title": "Benachrichtigungseinstellungen",

@@ -17,11 +17,11 @@ interface ChallengeExamProps {
     matchingPairs: ChallengeMatchingPair[];
     sortingExercises: ChallengeSortingExercise[];
     interactives?: ChallengeInteractive[];
-    onFinish: (answers: Omit<SubmitChallengeRequest, 'timePassed'>) => void;
+    onFinish: (answers: SubmitChallengeRequest) => void;
 }
 
 
-export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sortingExercises, interactives = [], onFinish }: ChallengeExamProps) {
+export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sortingExercises, interactives = [], onFinish}: ChallengeExamProps) {
     const { t } = useTranslation();
 
     const items = useMemo<ExamItem[]>(() => {
@@ -86,7 +86,7 @@ export function ChallengeExam({ lessonType, qcms, flashcards, matchingPairs, sor
                     size="lg" 
                     className="w-full py-4 text-lg" 
                     onClick={() => {
-                        const payload: Omit<SubmitChallengeRequest, 'timePassed'> = {};
+                        const payload: SubmitChallengeRequest = {};
                         if (lessonType === 'QCM') {
                             payload.qcmAnswers = Object.entries(qcmAnswers).map(([id, idx]) => ({ id, selectedOptionIndex: idx }));
                         } else if (lessonType === 'FLASHCARD') {

@@ -150,7 +150,7 @@ export function CreateChallengeForm() {
                 qcm: lessonType === 'QCM' ? lessonData.questions : undefined,
                 flashcards: lessonType === 'FLASHCARD' ? lessonData.flashcards : undefined,
                 matchingPairs: lessonType === 'MATCHING_PAIR' ? lessonData.matchingPairs : undefined,
-                sortingExercises: lessonType === 'SORTING_EXERCISE' && lessonData.sortingExercises 
+                sortingExercises: lessonType === 'SORTING_EXERCISE' && lessonData.sortingExercises
                     ? lessonData.sortingExercises.map(ex => {
                         const items = (ex.sentence || "").trim().split(/\s+/);
                         return {
@@ -159,7 +159,6 @@ export function CreateChallengeForm() {
                         };
                     })
                     : undefined,
-                interactives: lessonType === 'INTERACTIVE' ? lessonData.interactiveQuestions : undefined,
             });
         }
         if (result) {
@@ -221,12 +220,12 @@ export function CreateChallengeForm() {
             } else if (lessonType === 'FLASHCARD' && response.flashcards) {
                 const sourceLang = nativeLanguages.find(lang => lang.languageId === selectedSourceLanguageId)?.languageCode ?? 'fr';
                 const targetLang = learningLanguages.find(lang => lang.languageId === selectedLanguageIdPublic)?.languageCode ?? 'en';
-                
+
                 const formattedFlashcards = response.flashcards.map(card => ({
                     front: card.front,
                     back: card.back,
-                    frontLanguage: card.frontLanguage || targetLang,
-                    backLanguage: card.backLanguage || sourceLang
+                    frontLanguage: targetLang,
+                    backLanguage: sourceLang
                 }));
                 setLessonValue('flashcards', formattedFlashcards);
             } else if (lessonType === 'MATCHING_PAIR' && response.matchingPairs) {
@@ -236,8 +235,6 @@ export function CreateChallengeForm() {
                     sentence: ex.items.join(" ")
                 }));
                 setLessonValue('sortingExercises', formattedSortingExercises);
-            } else if (lessonType === 'INTERACTIVE' && response.interactives) {
-                setLessonValue('interactiveQuestions', response.interactives);
             }
             
             setAiPrompt("");
