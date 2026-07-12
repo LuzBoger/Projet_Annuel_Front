@@ -198,7 +198,7 @@ export function MatchingPlayer({ lessonId, pairs, onFinish }: MatchingPlayerProp
                     <Button 
                         onClick={handleFinishClick}
                         size="lg"
-                        className="px-12 !bg-gray-100 dark:!bg-gray-800 border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-xl font-bold shadow-md hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center gap-2"
+                        className="px-12 !bg-gray-900 dark:!bg-gray-700 hover:!bg-gray-800 dark:hover:!bg-gray-600 text-white rounded-xl font-bold shadow-md flex items-center justify-center gap-2"
                     >
                         <span>{t('lessons.finish')}</span>
                         <ChevronRight className="w-5 h-5" />

@@ -44,7 +44,7 @@ export function TopicCard({ topic, onPractice }: Readonly<TopicCardProps>) {
                     </BadgeTag>
                 ) : (
                     <BadgeTag color="gray">
-                        {topic.progressPercent}%
+                        {Number.isInteger(topic.progressPercent) ? topic.progressPercent : topic.progressPercent.toFixed(2)}%
                     </BadgeTag>
                 )}
             </div>

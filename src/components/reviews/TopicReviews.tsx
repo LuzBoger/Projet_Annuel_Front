@@ -115,7 +115,7 @@ export function TopicReviews({ topicId }: TopicReviewsProps) {
         return null;
     }
     if(!pendingReview && (!data || data.reviews.length === 0)) {
-        return <p>{t("reviews.no_reviews")}</p>;
+        return <p className="mt-10 text-sm text-gray-500 dark:text-gray-400">{t("reviews.no_reviews")}</p>;
     }
 
 return (

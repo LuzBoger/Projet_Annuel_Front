@@ -15,9 +15,9 @@ import { LanguageResponse } from "@/types/language/language";
 
 const navItems = [
     { to: "/dashboard", label: "dashboard.page_title", icon: Sparkles, end: true },
-    { to: "/catalog-languages", label: "catalogLanguages.title", icon: Brain },
+    { to: "/catalog-languages", label: "catalogLanguages.title", icon: BookOpen },
     { to: "/ranking", label: "ranking.title", icon: StarIcon },
-    { to: "/training/list", label: "training.nav.liste", icon: BookOpen },
+    { to: "/training/list", label: "training.nav.liste", icon: Brain },
     { to: "/challenges", label: "challenge.title", icon: Eye },
     { to: "/subscription", label: "subscription.title", icon: User },
 ];

@@ -3,7 +3,7 @@ import { UserDailyQuestion, UserResultResponse } from "@/types/mistakes/userMist
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Modal } from "@/components/ui/Modal";
-import { Brain, Check, Cross } from "@/assets/icons";
+import { Check, Cross } from "@/assets/icons";
 import { Button } from "@/components/ui/Button";
 import { QuestionRenderer } from "@/components/mistake/QuestionRenderer";
 import { useDailyCheckSession } from "@/hooks/useDailyCheckSession";
@@ -41,7 +41,6 @@ export function DailyCheckModal({isOpen, dailyQuestion, onClose, onComplete,}: D
 
       {result ? (
         <div className="py-4 text-center">
-          <div className="text-5xl mb-4"><Brain /></div>
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
             {t("mistake.result.title")}
           </h2>
@@ -95,7 +94,7 @@ export function DailyCheckModal({isOpen, dailyQuestion, onClose, onComplete,}: D
         <div className="py-2">
           <div className="text-center mb-4">
             <p className="text-xs uppercase tracking-widest text-brand-500 font-semibold mb-1">
-              <Brain /> {t("mistake.result.daily_check.label")}
+              {t("mistake.result.daily_check.label")}
             </p>
             <p className="text-sm text-gray-400">
               {t("mistake.result.daily_check.subtitle", { total: questions.length })}
