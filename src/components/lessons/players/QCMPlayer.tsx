@@ -29,7 +29,7 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
         new Array(questions.length).fill('pending' as SegmentStatus)
     );
     const mistakeIds = useRef<LessonMistake[]>([]);
-    const currentQ = questions && questions.length > 0 ? questions[currentIndex] : undefined;
+    const currentQ = questions[currentIndex];
 
     // Les options sont melangees pour chaque question pour conserver un affichage stable pendant la reponse.
     const shuffledOptions = useMemo(() => {
