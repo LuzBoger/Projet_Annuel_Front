@@ -1085,7 +1085,7 @@
     "menu": {
       "profile": "Profile",
       "password": "Password",
-      "2fa": "Two-factor auth",
+      "2fa": "2FA Authentication",
       "language": "Language",
       "theme": "Theme",
       "notifications": "Notifications"
@@ -1699,9 +1699,11 @@
     "links": {
       "plans": "Plans",
       "faq": "FAQ",
+      "exercises": "Our exercises",
       "login": "Log in",
       "register": "Sign up"
     },
+    "account": "Account",
     "support": "Support",
     "contact": "Contact",
     "legal": "Legal",
@@ -2135,7 +2137,7 @@
   },
   "header": {
     "nav": {
-      "lessons": "Our lessons",
+      "lessons": "Our exercises",
       "plans": "Plans",
       "faq": "FAQ",
       "contact": "Contact"

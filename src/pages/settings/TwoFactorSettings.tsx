@@ -76,7 +76,7 @@ export default function TwoFactorSettings() {
   return (
     <>
       <MetaData title={t('settings.2fa.page_title')}  robots="noindex, nofollow"  />
-    <div className="max-w-lg mx-auto p-6">
+    <div className="max-w-lg mx-auto p-6 text-center">
       <h2 className="text-2xl font-bold text-brand-900 dark:text-white mb-4">
         {t('settings.2fa.title')}
       </h2>

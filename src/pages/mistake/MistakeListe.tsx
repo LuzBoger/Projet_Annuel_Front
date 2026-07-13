@@ -9,12 +9,16 @@ import { useUserMistakes } from "@/hooks/useUserMistakes";
 import type { MistakeFilterValue, UserMistakeRetryListResponse } from "@/types/mistakes/userMistakes";
 import { MistakeTypeFilter } from "@/components/mistake/MistakeTypeFilter";
 import { Check, ChevronLeft } from "@/assets/icons";
+import { Pagination } from "@/components/ui/Pagination";
+import { MISTAKE_ITEMS_PER_PAGE } from "@/constants/global";
+
 
 export default function MistakeListe() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { mistakeList, selectedMistake, loading, fetchPendingMistakes, setSelectedMistake } = useUserMistakes();
   const [filter, setFilter] = useState<MistakeFilterValue>("ALL");
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     fetchPendingMistakes();
@@ -23,6 +27,14 @@ export default function MistakeListe() {
   const filtered = mistakeList?.mistakes.filter(
     (mistake) => filter === "ALL" || mistake.lessonType === filter
   ) ?? [];
+
+  const totalPages = Math.ceil(filtered.length / MISTAKE_ITEMS_PER_PAGE);
+  const paginated = filtered.slice((currentPage - 1) * MISTAKE_ITEMS_PER_PAGE, currentPage * MISTAKE_ITEMS_PER_PAGE);
+
+  const handleFilterChange = (value: MistakeFilterValue) => {
+    setFilter(value);
+    setCurrentPage(1);
+  };
 
   return (
     <>
@@ -53,7 +65,7 @@ export default function MistakeListe() {
         </p>
 
         <div className="mb-6">
-          <MistakeTypeFilter value={filter} onChange={setFilter} />
+          <MistakeTypeFilter value={filter} onChange={handleFilterChange} />
         </div>
 
         {loading ? (
@@ -76,15 +88,25 @@ export default function MistakeListe() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {filtered.map((mistake) => (
-              <MistakeCard
-                key={mistake.userMistakeId}
-                mistake={mistake}
-                onClick={(mistake: UserMistakeRetryListResponse) => setSelectedMistake(mistake)}
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {paginated.map((mistake) => (
+                <MistakeCard
+                  key={mistake.userMistakeId}
+                  mistake={mistake}
+                  onClick={(mistake: UserMistakeRetryListResponse) => setSelectedMistake(mistake)}
+                />
+              ))}
+            </div>
+            <div className="mt-8">
+              <Pagination
+                currentPage={currentPage}
+                hasMore={currentPage < totalPages}
+                onNext={() => setCurrentPage(p => p + 1)}
+                onPrev={() => setCurrentPage(p => p - 1)}
               />
-            ))}
-          </div>
+            </div>
+          </>
         )}
       </div>
 

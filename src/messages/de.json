@@ -926,10 +926,12 @@
     },
     "links": {
       "faq": "FAQ",
+      "exercises": "Unsere Übungen",
       "login": "Verbindung",
       "plans": "Angebote",
       "register": "Registrierung"
     },
+    "account": "Konto",
     "manageCookies": "Meine Cookies verwalten",
     "mentionsLegales": "Rechtliche Hinweise",
     "privacy": "Datenschutzrichtlinie",
@@ -985,7 +987,7 @@
     "nav": {
       "contact": "Kontakt",
       "faq": "FAQ",
-      "lessons": "Unsere Lektionen",
+      "lessons": "Unsere Übungen",
       "plans": "Angebote"
     }
   },
@@ -1904,7 +1906,7 @@
       "title": "Schnittstellensprache"
     },
     "menu": {
-      "2fa": "Duale Auth",
+      "2fa": "2FA-Authentifizierung",
       "language": "Sprache",
       "notifications": "Benachrichtigungen",
       "password": "Passwort",

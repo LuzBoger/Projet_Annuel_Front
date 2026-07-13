@@ -926,10 +926,12 @@
     },
     "links": {
       "faq": "Preguntas frecuentes",
+      "exercises": "Nuestros ejercicios",
       "login": "Conexión",
       "plans": "Ofertas",
       "register": "Registro"
     },
+    "account": "Cuenta",
     "manageCookies": "Administrar mis cookies",
     "mentionsLegales": "Avisos legales",
     "privacy": "Política de privacidad",
@@ -985,7 +987,7 @@
     "nav": {
       "contact": "Contacto",
       "faq": "Preguntas frecuentes",
-      "lessons": "Nuestras lecciones",
+      "lessons": "Nuestros ejercicios",
       "plans": "Ofertas"
     }
   },
@@ -1904,7 +1906,7 @@
       "title": "Idioma de la interfaz"
     },
     "menu": {
-      "2fa": "Autenticación dual",
+      "2fa": "Autenticación 2FA",
       "language": "Idioma",
       "notifications": "Notificaciones",
       "password": "Contraseña",
