@@ -29,18 +29,7 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
         new Array(questions.length).fill('pending' as SegmentStatus)
     );
     const mistakeIds = useRef<LessonMistake[]>([]);
-
-    if (!questions || questions.length === 0) {
-        return (
-            <PlayerLayout>
-                <div className="text-center p-8 text-gray-500 font-medium bg-white dark:bg-gray-800 rounded-2xl shadow-sm w-full">
-                    {t('common.empty')}
-                </div>
-            </PlayerLayout>
-        );
-    }
-
-    const currentQ = questions[currentIndex]; 
+    const currentQ = questions && questions.length > 0 ? questions[currentIndex] : undefined;
 
     // Les options sont melangees pour chaque question pour conserver un affichage stable pendant la reponse.
     const shuffledOptions = useMemo(() => {
@@ -53,6 +42,16 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
         }));
         return shuffleArray(mappedOptions);
     }, [currentQ]);
+
+    if (!questions || questions.length === 0) {
+        return (
+            <PlayerLayout>
+                <div className="text-center p-8 text-gray-500 font-medium bg-white dark:bg-gray-800 rounded-2xl shadow-sm w-full">
+                    {t('common.empty')}
+                </div>
+            </PlayerLayout>
+        );
+    }
 
     const isCorrect = Number(selectedOption) === Number(currentQ.correctOptionIndex);
 
