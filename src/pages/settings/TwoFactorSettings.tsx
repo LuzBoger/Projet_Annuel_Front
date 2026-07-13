@@ -76,7 +76,8 @@ export default function TwoFactorSettings() {
   return (
     <>
       <MetaData title={t('settings.2fa.page_title')}  robots="noindex, nofollow"  />
-    <div className="max-w-lg mx-auto p-6">
+    <div className="flex items-center justify-center min-h-[70vh]">
+    <div className="max-w-lg w-full mx-auto p-6">
       <h2 className="text-2xl font-bold text-brand-900 dark:text-white mb-4">
         {t('settings.2fa.title')}
       </h2>
@@ -110,6 +111,7 @@ export default function TwoFactorSettings() {
           </Button>
         </div>
       )}
+    </div>
     </div>
     </>
   );
