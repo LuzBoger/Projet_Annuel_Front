@@ -8,20 +8,20 @@ export function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleClick = () => {
+  const handleScrollTo = (id: string) => {
     if (location.pathname === '/') {
-      document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     } else {
       navigate('/');
       setTimeout(() => {
-        document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
       }, 300);
     }
   };
   return (
     <footer className="bg-gray-900 dark:bg-black text-gray-400 pt-16 pb-8 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-14">
 
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-4 text-white hover:text-gray-300 transition-colors">
@@ -38,16 +38,28 @@ export function Footer() {
             </h3>
             <ul className="space-y-3.5">
               <li>
+                <Button variant='none' onClick={() => handleScrollTo('lessons')} className="text-sm hover:text-indigo-400 transition-colors cursor-pointer">
+                  {t("footer.links.exercises")}
+                </Button>
+              </li>
+              <li>
                 <Link to="/plans" className="text-sm hover:text-indigo-400 transition-colors">
                   {t("footer.links.plans")}
                 </Link>
               </li>
               <li>
-              <Button variant='none' onClick={handleClick} className="text-sm hover:text-indigo-400 transition-colors cursor-pointer">
-                {t("footer.links.faq")}
-              </Button>
-
+                <Button variant='none' onClick={() => handleScrollTo('faq')} className="text-sm hover:text-indigo-400 transition-colors cursor-pointer">
+                  {t("footer.links.faq")}
+                </Button>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-white font-bold text-xs uppercase tracking-widest mb-5">
+              {t("footer.account")}
+            </h3>
+            <ul className="space-y-3.5">
               <li>
                 <Link to="/login" className="text-sm hover:text-indigo-400 transition-colors">
                   {t("footer.links.login")}

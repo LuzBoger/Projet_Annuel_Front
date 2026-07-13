@@ -197,7 +197,7 @@ export default function TopicExam() {
             </Button>
 
             <div className="mb-12 text-center">
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-900 dark:text-white tracking-tight">
                     {t('topics.exam_title')}
                 </h1>
                 <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">

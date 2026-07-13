@@ -1090,7 +1090,7 @@
     "menu": {
       "profile": "Profil",
       "password": "Mot de passe",
-      "2fa": "Double Auth",
+      "2fa": "Authentification 2FA",
       "language": "Langue",
       "theme": "Thème",
       "notifications": "Notifications"
@@ -1704,9 +1704,11 @@
     "links": {
       "plans": "Offres",
       "faq": "FAQ",
+      "exercises": "Nos exercices",
       "login": "Connexion",
       "register": "Inscription"
     },
+    "account": "Compte",
     "support": "Support",
     "contact": "Contact",
     "legal": "Légal",
@@ -2140,7 +2142,7 @@
   },
   "header": {
     "nav": {
-      "lessons": "Nos leçons",
+      "lessons": "Nos exercices",
       "plans": "Offres",
       "faq": "FAQ",
       "contact": "Contact"
