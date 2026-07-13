@@ -9,7 +9,6 @@ import { useUserMistakes } from "@/hooks/useUserMistakes";
 import type { MistakeFilterValue, UserMistakeRetryListResponse } from "@/types/mistakes/userMistakes";
 import { MistakeTypeFilter } from "@/components/mistake/MistakeTypeFilter";
 import { Check, ChevronLeft } from "@/assets/icons";
-import { Brain } from "lucide-react";
 
 export default function MistakeListe() {
   const { t } = useTranslation();
@@ -40,9 +39,8 @@ export default function MistakeListe() {
         </Button>
 
         <div className="flex items-center justify-between mb-2">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2">
-            <Brain className="w-6 h-6 text-brand-500 dark:text-brand-400" />
-            <span>{t("mistake.liste.title")}</span>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
+            {t("mistake.liste.title")}
           </h1>
           {mistakeList && mistakeList.totalPendingMistakes > 0 && (
             <Button size="sm" onClick={() => navigate("/training/daily-check")}>
