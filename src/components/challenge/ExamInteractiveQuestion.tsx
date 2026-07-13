@@ -3,9 +3,10 @@ import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { Button } from "@/components/ui/Button";
 import { PlayIcon } from "@/assets/icons";
 import { getImageUrl, getAudioUrl } from "@/lib/utils/media";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import { shuffleArray } from "@/lib/utils/topic";
 
 interface ExamInteractiveQuestionProps {
   question: ChallengeInteractive;
@@ -18,6 +19,18 @@ interface ExamInteractiveQuestionProps {
 export function ExamInteractiveQuestion({ question, selectedValue, onSelect, textValue, onTextChange }: ExamInteractiveQuestionProps) {
   const { t } = useTranslation();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Les options sont melangees pour chaque question pour conserver un affichage stable.
+  const shuffledOptions = useMemo(() => {
+    if (!question.options) {
+      return [];
+    }
+    const mappedOptions = question.options.map((optionText, originalOptionIndex) => ({
+      optionText,
+      originalOptionIndex,
+    }));
+    return shuffleArray(mappedOptions);
+  }, [question]);
 
   const playAudio = () => {
     if (question.audioPaths && question.audioPaths.length > 0) {
@@ -70,13 +83,13 @@ export function ExamInteractiveQuestion({ question, selectedValue, onSelect, tex
 
       {question.systemType === "MULTIPLE_CHOICE" ? (
         <div className="space-y-4 max-w-lg mx-auto w-full">
-          {question.options?.map((option, idx) => {
-            const isSelected = selectedValue === idx;
+          {shuffledOptions.map((item, displayIndex) => {
+            const isSelected = selectedValue === item.originalOptionIndex;
 
             return (
               <Button
-                key={idx}
-                onClick={() => onSelect(idx)}
+                key={item.originalOptionIndex}
+                onClick={() => onSelect(item.originalOptionIndex)}
                 variant="none"
                 type="button"
                 className={clsx(
@@ -92,9 +105,9 @@ export function ExamInteractiveQuestion({ question, selectedValue, onSelect, tex
                     ? "bg-brand-500 border-brand-500 text-white"
                     : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500 group-hover:border-brand-200 dark:group-hover:border-brand-700 group-hover:text-brand-400 dark:group-hover:text-brand-300 group-hover:bg-brand-50/30 dark:group-hover:bg-brand-900/20"
                 )}>
-                  {String.fromCharCode(65 + idx)}
+                  {String.fromCharCode(65 + displayIndex)}
                 </span>
-                <span className="flex-1">{option}</span>
+                <span className="flex-1">{item.optionText}</span>
               </Button>
             );
           })}

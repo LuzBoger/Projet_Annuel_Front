@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { LessonMistake, QcmQuestionRequest } from "@/types/lesson/lesson";
 import { Button } from "@/components/ui/Button";
@@ -10,6 +10,7 @@ import { PlayerCard } from "@/components/lessons/players/common/PlayerCard";
 import { PlayerFooter } from "@/components/lessons/players/common/PlayerFooter";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 import { MemorizationHelpButton } from "@/components/lessons/players/common/MemorizationHelpButton";
+import { shuffleArray } from "@/lib/utils/topic";
 
 interface QCMPlayerProps {
     lessonId?: string;
@@ -28,6 +29,19 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
         new Array(questions.length).fill('pending' as SegmentStatus)
     );
     const mistakeIds = useRef<LessonMistake[]>([]);
+    const currentQ = questions[currentIndex];
+
+    // Les options sont melangees pour chaque question pour conserver un affichage stable pendant la reponse.
+    const shuffledOptions = useMemo(() => {
+        if (!currentQ) {
+            return [];
+        }
+        const mappedOptions = currentQ.options.map((optionText, originalOptionIndex) => ({
+            optionText,
+            originalOptionIndex,
+        }));
+        return shuffleArray(mappedOptions);
+    }, [currentQ]);
 
     if (!questions || questions.length === 0) {
         return (
@@ -39,7 +53,6 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
         );
     }
 
-    const currentQ = questions[currentIndex]; 
     const isCorrect = Number(selectedOption) === Number(currentQ.correctOptionIndex);
 
     const handleSelect = (index: number) => {
@@ -101,17 +114,17 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
                                 </div>
                             )}
                             <div className="space-y-4">
-                                {currentQ.options.map((option, idx) => {
+                                {shuffledOptions.map((item, displayIndex) => {
                                     let buttonClass = "w-full p-4 rounded-xl border-2 text-left transition-all duration-200 flex items-center group relative ";
                                     
                                     if (!isValidated) {
-                                        buttonClass += selectedOption === idx 
+                                        buttonClass += selectedOption === item.originalOptionIndex 
                                             ? "border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-800 dark:text-white"
                                             : "border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300";
                                     } else {
-                                        if (idx === Number(currentQ.correctOptionIndex)) {
+                                        if (item.originalOptionIndex === Number(currentQ.correctOptionIndex)) {
                                             buttonClass += "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-white";
-                                        } else if (idx === selectedOption) {
+                                        } else if (item.originalOptionIndex === selectedOption) {
                                             buttonClass += "border-red-400 bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-white";
                                         } else {
                                             buttonClass += "border-gray-100 dark:border-gray-700 opacity-50 bg-white dark:bg-gray-800 text-gray-400";
@@ -120,20 +133,20 @@ export function QCMPlayer({ lessonId, questions, onFinish }: QCMPlayerProps) {
 
                                     return (
                                         <button
-                                            key={idx}
-                                            onClick={() => handleSelect(idx)}
+                                            key={item.originalOptionIndex}
+                                            onClick={() => handleSelect(item.originalOptionIndex)}
                                             disabled={isValidated}
                                             className={buttonClass}
                                         >
                                             <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full border-2 text-center mr-4 text-sm font-medium flex-shrink-0 transition-colors ${
-                                                (!isValidated && selectedOption === idx) ? "bg-brand-500 border-brand-500 text-white" :
-                                                (isValidated && idx === Number(currentQ.correctOptionIndex)) ? "bg-emerald-500 border-emerald-500 text-white" :
-                                                (isValidated && idx === selectedOption) ? "bg-red-400 border-red-400 text-white" :
+                                                (!isValidated && selectedOption === item.originalOptionIndex) ? "bg-brand-500 border-brand-500 text-white" :
+                                                (isValidated && item.originalOptionIndex === Number(currentQ.correctOptionIndex)) ? "bg-emerald-500 border-emerald-500 text-white" :
+                                                (isValidated && item.originalOptionIndex === selectedOption) ? "bg-red-400 border-red-400 text-white" :
                                                 "bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-400 group-hover:border-gray-300 group-hover:text-gray-500"
                                             }`}>
-                                                {String.fromCharCode(65 + idx)}
+                                                {String.fromCharCode(65 + displayIndex)}
                                             </span>
-                                            <span className="font-medium">{option}</span>
+                                            <span className="font-medium">{item.optionText}</span>
                                         </button>
                                     );
                                 })}
