@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { MistakeQuestionResponse } from "@/types/mistakes/userMistakes";
 import { useTranslation } from "react-i18next";
 import { ExamFlashcardQuestion } from "@/components/topics/ExamFlashcardQuestion";
@@ -25,16 +26,21 @@ interface QuestionRendererProps {
 
 export function QuestionRenderer({question, flashCardAnswer, qcmAnswer, matchingAnswer, sortingAnswer, sortingIndices, onFlashcardChange, onQcmSelect, onMatchingChange, onSortingChange}: QuestionRendererProps) {
     const {t} = useTranslation();
-    
+
+    const qcmQuestion = useMemo(() => {
+        if (!question.question || !question.options) return null;
+        return { id: question.questionId, question: question.question, options: question.options };
+    }, [question.questionId]); 
+
     if (question.lessonType === 'FLASHCARD' && question.front) {
         return (
             <ExamFlashcardQuestion flashcard={{ id: question.questionId, front: question.front }} value={flashCardAnswer} onChange={onFlashcardChange} />
         );
     }
 
-    if (question.lessonType === 'QCM' && question.question && question.options) {
+    if (question.lessonType === 'QCM' && qcmQuestion) {
         return (
-            <ExamQcmQuestion question={{ id: question.questionId, question: question.question, options: question.options }} selectedValue={qcmAnswer} onSelect={onQcmSelect} />
+            <ExamQcmQuestion question={qcmQuestion} selectedValue={qcmAnswer} onSelect={onQcmSelect} />
         );
     }
 
