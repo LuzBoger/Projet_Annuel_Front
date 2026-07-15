@@ -72,11 +72,13 @@ export function QuestionRenderer({question, flashCardAnswer, qcmAnswer, matching
         return (
             <div className="w-full bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-sm p-6 text-center">
                 <p className="text-xs uppercase tracking-widest text-brand-500 font-semibold mb-4">
-                    {question.systemType === "MULTIPLE_CHOICE" ? "Question à choix multiples" : "Traduction / Saisie libre"}
+                    {question.options && question.options.length > 0 ? t("admin.lessons.interactive.multipleChoice") : t("admin.lessons.interactive.openText")}
                 </p>
-                <div className="text-xl font-bold text-gray-900 dark:text-white mb-6">
-                    {question.questionText}
-                </div>
+                {(question.questionText || question.question) && (
+                    <div className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                        {question.questionText || question.question}
+                    </div>
+                )}
 
                 {question.audioPaths && question.audioPaths.length > 0 && (
                     <div className="flex justify-center mb-6">
@@ -90,7 +92,7 @@ export function QuestionRenderer({question, flashCardAnswer, qcmAnswer, matching
                             className="flex items-center gap-2 px-4 py-2 text-xs font-semibold bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400 border border-brand-100 dark:border-brand-500/10 rounded-full shadow-sm flex items-center justify-center"
                         >
                             <PlayIcon className="w-4 h-4 text-brand-600 dark:text-brand-400" />
-                            <span>Prononciation</span>
+                            <span>{t("lessons.interactive.listen_pronunciation")}</span>
                         </Button>
                     </div>
                 )}
@@ -105,7 +107,7 @@ export function QuestionRenderer({question, flashCardAnswer, qcmAnswer, matching
                     </div>
                 )}
 
-                {question.systemType === "MULTIPLE_CHOICE" && question.options ? (
+                {question.options && question.options.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto">
                         {question.options.map((option, idx) => {
                             const isSelected = qcmAnswer === idx;
@@ -132,7 +134,7 @@ export function QuestionRenderer({question, flashCardAnswer, qcmAnswer, matching
                         type="text"
                         value={flashCardAnswer}
                         onChange={(e) => onFlashcardChange(e.target.value)}
-                        placeholder="Tapez votre réponse ici..."
+                        placeholder={t("topics.type_answer_here")}
                         className="w-full border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-lg text-center bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-white"
                     />
                 )}

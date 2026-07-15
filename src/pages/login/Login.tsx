@@ -37,6 +37,8 @@ export default function Login() {
         setError(axiosError.response?.data?.message ?? t('error.auth.account_locked'));
       } else if (status === 401) {
         setError(t('error.auth.invalid_credentials'));
+      } else if (status === 403) {
+        setError(axiosError.response?.data?.message ?? t('error.generic'));
       } else {
         setError(t('error.generic'));
       }
