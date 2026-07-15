@@ -1008,7 +1008,7 @@
       "modal_title": "Aide à la Mémorisation par IA",
       "modal_subtitle": "Choisissez le type d'assistance dont vous avez besoin :",
       "option_structure_and_rule": "Structure & Règles",
-      "option_association_and_mnemonic": "Moyen mémotechnique",
+      "option_association_and_mnemonic": "Moyen mnémotechnique",
       "option_trap_warning": "Pièges à éviter",
       "option_usage_context": "Exemple en contexte",
       "loading": "Génération de l'aide par l'IA...",
@@ -1452,7 +1452,7 @@
       "items": [
         {
           "question": "Comment fonctionne Skaldly pour apprendre une langue avec l'intelligence artificielle ?",
-          "answer": "Skaldly propose des exercices variés pour apprendre une langue : flashcards, quiz, associations de paires et exercices interactifs. Lorsque vous bloquez sur un mot ou une règle, l'assistant IA intervient en temps réel pour vous expliquer la règle grammaticale, proposer une astuce mémotechnique, signaler un piège courant ou donner le contexte d'usage."
+          "answer": "Skaldly propose des exercices variés pour apprendre une langue : flashcards, quiz, associations de paires et exercices interactifs. Lorsque vous bloquez sur un mot ou une règle, l'assistant IA intervient en temps réel pour vous expliquer la règle grammaticale, proposer une astuce mnémotechnique, signaler un piège courant ou donner le contexte d'usage."
         },
         {
           "question": "Combien de temps faut-il pour apprendre une langue avec Skaldly ?",
@@ -1487,7 +1487,7 @@
       "demos": {
         "0": {
           "context": "Vocabulaire japonais",
-          "title": "Astuce mémotechnique",
+          "title": "Astuce mnémotechnique",
           "explanation": "Imaginez un samouraï vous saluant au milieu de la journée. Le mot se décompose : \"Kon\" (cet) + \"nichi\" (jour) + \"wa\" (particule). Littéralement : \"Quant à ce jour…\"",
           "visual_anchor": "Un samouraï sous le soleil de midi qui dit \"Konnichiwa\" en s'inclinant"
         },
