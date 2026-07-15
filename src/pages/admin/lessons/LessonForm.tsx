@@ -233,7 +233,11 @@ export default function LessonForm() {
                 setValue("description", generatedLessonData.description || "");
 
                 if (generatedLessonData.lessonType === LessonType.FLASHCARD) {
-                    setValue("flashcards", generatedLessonData.flashcards || []);
+                    setValue("flashcards", (generatedLessonData.flashcards || []).map(fc => ({
+                        ...fc,
+                        frontLanguage: topicLanguageOptions.find(l => l.name === fc.frontLanguage)?.code ?? fc.frontLanguage,
+                        backLanguage: topicLanguageOptions.find(l => l.name === fc.backLanguage)?.code ?? fc.backLanguage,
+                    })));
                 } else if (generatedLessonData.lessonType === LessonType.QCM) {
                     setValue("questions", generatedLessonData.questions || []);
                 } else if (generatedLessonData.lessonType === LessonType.MATCHING_PAIR) {

@@ -144,7 +144,7 @@ export function FlashcardPlayer({ lessonId, flashcards, onFinish }: FlashcardPla
                 statuses={segmentStatuses as SegmentStatus[]}
             />
 
-            <div className="flex-1 overflow-y-auto min-h-0 py-4 flex flex-col">
+            <div className="flex-1 overflow-y-hidden min-h-0 py-4 flex flex-col">
                 <div className="my-auto w-full py-4">
                     {lessonId && (
                         <div className="flex justify-center mb-6">
